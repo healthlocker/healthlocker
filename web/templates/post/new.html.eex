@@ -1,0 +1,8 @@
+<h1>New Post</h1>
+
+<%= form_for @changeset, post_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <%= textarea f, :content, placeholder: "Content", class: "form-control" %>
+  </div>
+  <%= submit "Create Post", class: "btn btn-primary" %>
+<% end %>

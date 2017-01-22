@@ -6,4 +6,10 @@ defmodule Healthlocker.Post do
 
     timestamps
   end
+
+  def changeset(model, params \\ :empty) do
+    model
+    |> cast(params, ~w(content), [])
+    |> validate_required([:content])
+  end
 end

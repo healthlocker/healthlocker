@@ -1,0 +1,2 @@
+<h1>Post</h1>
+<%= render "post.html", post: @post %>
