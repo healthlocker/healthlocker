@@ -7,9 +7,9 @@ defmodule Healthlocker.Post do
     timestamps
   end
 
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ :invalid) do
     model
-    |> cast(params, ~w(content), [])
+    |> cast(params, ~w(content))
     |> validate_required([:content])
   end
 end
