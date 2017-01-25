@@ -1,0 +1,1 @@
+<%= text_to_html @post.content %></p>
