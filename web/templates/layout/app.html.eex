@@ -9,6 +9,7 @@
 
     <title>Hello Healthlocker!</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
   </head>
 
   <body>
