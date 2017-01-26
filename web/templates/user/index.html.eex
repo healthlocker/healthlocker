@@ -1,0 +1,38 @@
+<h2>Listing users</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Dob</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Pin</th>
+      <th>Securityquestion</th>
+      <th>Securityanswer</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.dob %></td>
+      <td><%= user.email %></td>
+      <td><%= user.password %></td>
+      <td><%= user.pin %></td>
+      <td><%= user.securityquestion %></td>
+      <td><%= user.securityanswer %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New user", to: user_path(@conn, :new) %>
