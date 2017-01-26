@@ -18,7 +18,7 @@ defmodule Healthlocker.Router do
 
     get "/", PageController, :index
     resources "/posts", PostController, only: [:show, :new, :create]
-    resources "/users", UserController, only: [:new, :create]
+    resources "/users", UserController, only: [:show, :new, :create, :index, :edit, :delete]
   end
 
   # Other scopes may use custom stacks.
