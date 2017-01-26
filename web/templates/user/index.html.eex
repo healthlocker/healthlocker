@@ -4,12 +4,12 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Dob</th>
+      <th>Date of Birth</th>
       <th>Email</th>
       <th>Password</th>
       <th>Pin</th>
-      <th>Securityquestion</th>
-      <th>Securityanswer</th>
+      <th>Security Question</th>
+      <th>Security Answer</th>
 
       <th></th>
     </tr>

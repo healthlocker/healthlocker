@@ -6,15 +6,9 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
+    <%= label f, :full_name, class: "control-label" %>
     <%= text_input f, :name, class: "form-control" %>
     <%= error_tag f, :name %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :dob, class: "control-label" %>
-    <%= date_select f, :dob, class: "form-control" %>
-    <%= error_tag f, :dob %>
   </div>
 
   <div class="form-group">
@@ -29,25 +23,35 @@
     <%= error_tag f, :password %>
   </div>
 
-  <div class="form-group">
+  <div>
+    <button class="bg-moon-gray b--moon-gray fr" id="show-btn">Show more</button>
+  </div>
+
+  <div class="form-group hidden">
+    <%= label f, :date_of_birth, class: "control-label" %>
+    <%= date_select f, :dob, class: "form-control", year: [options: 1900..2017], default: {1990, 1, 1} %>
+    <%= error_tag f, :dob %>
+  </div>
+
+  <div class="form-group hidden">
     <%= label f, :pin, class: "control-label" %>
     <%= text_input f, :pin, class: "form-control" %>
     <%= error_tag f, :pin %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :securityquestion, class: "control-label" %>
+  <div class="form-group hidden">
+    <%= label f, :security_question, class: "control-label" %>
     <%= text_input f, :securityquestion, class: "form-control" %>
     <%= error_tag f, :securityquestion %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :securityanswer, class: "control-label" %>
+  <div class="form-group hidden">
+    <%= label f, :security_answer, class: "control-label" %>
     <%= text_input f, :securityanswer, class: "form-control" %>
     <%= error_tag f, :securityanswer %>
   </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+  <div class="form-group hidden sub" id="sub-btn">
+    <%= submit "Submit", class: "bg-moon-gray b--moon-gray" %>
   </div>
 <% end %>
