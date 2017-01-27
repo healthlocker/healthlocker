@@ -1,0 +1,57 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :full_name, class: "control-label" %>
+    <%= text_input f, :name, class: "form-control" %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :email, class: "control-label" %>
+    <%= text_input f, :email, class: "form-control" %>
+    <%= error_tag f, :email %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :password, class: "control-label" %>
+    <%= text_input f, :password, class: "form-control" %>
+    <%= error_tag f, :password %>
+  </div>
+
+  <div>
+    <button class="bg-moon-gray b--moon-gray fr" id="show-btn">Show more</button>
+  </div>
+
+  <div class="form-group hidden">
+    <%= label f, :date_of_birth, class: "control-label" %>
+    <%= date_select f, :dob, class: "form-control", year: [options: 1900..2017], default: {1990, 1, 1} %>
+    <%= error_tag f, :dob %>
+  </div>
+
+  <div class="form-group hidden">
+    <%= label f, :pin, class: "control-label" %>
+    <%= text_input f, :pin, class: "form-control" %>
+    <%= error_tag f, :pin %>
+  </div>
+
+  <div class="form-group hidden">
+    <%= label f, :security_question, class: "control-label" %>
+    <%= text_input f, :security_question, class: "form-control" %>
+    <%= error_tag f, :security_question %>
+  </div>
+
+  <div class="form-group hidden">
+    <%= label f, :security_answer, class: "control-label" %>
+    <%= text_input f, :security_answer, class: "form-control" %>
+    <%= error_tag f, :security_answer %>
+  </div>
+
+  <div class="form-group hidden sub" id="sub-btn">
+    <%= submit "Submit", class: "bg-moon-gray b--moon-gray" %>
+  </div>
+<% end %>
