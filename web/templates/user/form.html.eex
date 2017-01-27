@@ -41,14 +41,14 @@
 
   <div class="form-group hidden">
     <%= label f, :security_question, class: "control-label" %>
-    <%= text_input f, :securityquestion, class: "form-control" %>
-    <%= error_tag f, :securityquestion %>
+    <%= text_input f, :security_question, class: "form-control" %>
+    <%= error_tag f, :security_question %>
   </div>
 
   <div class="form-group hidden">
     <%= label f, :security_answer, class: "control-label" %>
-    <%= text_input f, :securityanswer, class: "form-control" %>
-    <%= error_tag f, :securityanswer %>
+    <%= text_input f, :security_answer, class: "form-control" %>
+    <%= error_tag f, :security_answer %>
   </div>
 
   <div class="form-group hidden sub" id="sub-btn">

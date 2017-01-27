@@ -28,13 +28,13 @@
   </li>
 
   <li>
-    <strong>Securityquestion:</strong>
-    <%= @user.securityquestion %>
+    <strong>Security Question:</strong>
+    <%= @user.security_question %>
   </li>
 
   <li>
-    <strong>Securityanswer:</strong>
-    <%= @user.securityanswer %>
+    <strong>Security Answer:</strong>
+    <%= @user.security_answer %>
   </li>
 
 </ul>

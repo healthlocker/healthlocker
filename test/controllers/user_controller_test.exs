@@ -2,7 +2,7 @@ defmodule Healthlocker.UserControllerTest do
   use Healthlocker.ConnCase
 
   alias Healthlocker.User
-  @valid_attrs %{dob: %{day: 17, month: 4, year: 2010}, email: "some content", name: "some content", password: "some content", pin: "some content", securityanswer: "some content", securityquestion: "some content"}
+  @valid_attrs %{dob: %{day: 17, month: 4, year: 2010}, email: "some content", name: "some content", password: "some content", pin: "some content", security_answer: "some content", security_question: "some content"}
   @invalid_attrs %{}
 
   test "lists all entries on index", %{conn: conn} do
