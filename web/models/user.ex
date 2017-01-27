@@ -7,8 +7,8 @@ defmodule Healthlocker.User do
     field :email, :string
     field :password, :string
     field :pin, :string
-    field :securityquestion, :string
-    field :securityanswer, :string
+    field :security_question, :string
+    field :security_answer, :string
 
     timestamps()
   end
@@ -18,7 +18,7 @@ defmodule Healthlocker.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :dob, :email, :password, :pin, :securityquestion, :securityanswer])
-    |> validate_required([:name, :dob, :email, :password, :pin, :securityquestion, :securityanswer])
+    |> cast(params, [:name, :dob, :email, :password, :pin, :security_question, :security_answer])
+    |> validate_required([:name, :dob, :email, :password, :pin, :security_question, :security_answer])
   end
 end

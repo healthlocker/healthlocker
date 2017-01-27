@@ -8,8 +8,8 @@ defmodule Healthlocker.Repo.Migrations.CreateUser do
       add :email, :string
       add :password, :string
       add :pin, :string
-      add :securityquestion, :string
-      add :securityanswer, :string
+      add :security_question, :string
+      add :security_answer, :string
 
       timestamps()
     end
