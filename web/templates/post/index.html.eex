@@ -1,0 +1,8 @@
+<%= for post <- @posts do %>
+<article class="ma3 ma4-m ma6-l ba b--black-90 mv2 mv3-m mv4-l">
+  <h1 class="tc f4 f3-l black-60 pv2 ph3 mv0">Title to go here</h1>
+  <div class="pa3 b--black-10">
+    <p class="pv2 ph2 f5 f4-l lh-copy"><%= post.content %></p>
+  </div>
+</article>
+<% end %>
