@@ -1,0 +1,28 @@
+<h2>Listing tips</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Tag</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for tip <- @tips do %>
+    <tr>
+      <td><%= tip.value %></td>
+      <td><%= tip.tag %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: tip_path(@conn, :show, tip), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: tip_path(@conn, :edit, tip), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: tip_path(@conn, :delete, tip), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New tip", to: tip_path(@conn, :new) %>

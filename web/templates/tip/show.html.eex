@@ -1,0 +1,18 @@
+<h2>Show tip</h2>
+
+<ul>
+
+  <li>
+    <strong>Value:</strong>
+    <%= @tip.value %>
+  </li>
+
+  <li>
+    <strong>Tag:</strong>
+    <%= @tip.tag %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: tip_path(@conn, :edit, @tip) %>
+<%= link "Back", to: tip_path(@conn, :index) %>

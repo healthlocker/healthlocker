@@ -1,0 +1,6 @@
+<h2>Edit tip</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: tip_path(@conn, :update, @tip) %>
+
+<%= link "Back", to: tip_path(@conn, :index) %>
