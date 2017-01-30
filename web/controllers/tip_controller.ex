@@ -3,8 +3,12 @@ defmodule Healthlocker.TipController do
 
   alias Healthlocker.Tip
 
-  def index(conn, _params) do
-    tips = Repo.all(Tip)
+  def index(conn, params) do
+    tips = if params["tag"] do
+            Repo.all(from t in Tip, where: t.tag == ^params["tag"])
+          else
+            Repo.all(Tip)
+          end
     render(conn, "index.html", tips: tips)
   end
 
@@ -25,11 +29,5 @@ defmodule Healthlocker.TipController do
         render(conn, "new.html", changeset: changeset)
     end
   end
-
-  def show(conn, %{"id" => id}) do
-    tip = Repo.get!(Tip, id)
-    render(conn, "show.html", tip: tip)
-  end
-
 
 end
