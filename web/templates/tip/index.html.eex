@@ -1,26 +1,13 @@
-<h2>Listing tips</h2>
+<h2 class="ma3 ma4-m ma6-l mv2 mv3-m mv4-l tc">Tips</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Value</th>
-      <th>Tag</th>
-
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
 <%= for tip <- @tips do %>
-    <tr>
-      <td><%= tip.value %></td>
-      <td><%= tip.tag %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: tip_path(@conn, :show, tip), class: "btn btn-default btn-xs" %>
-      </td>
-    </tr>
+<article class="ma3 ma4-m ma6-l ba b--black-05 mv2 mv3-m mv4-l">
+      <h1 class="tc f4 f3-l bg-near-white black-60 pv2 ph3 mv0">Tip: <%= tip.tag %></h1>
+      <div class="pa3 bg-near-white b--black-10">
+        <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= tip.value %></p>
+        <a href="/tips/?tag=<%= tip.tag %>">See more "<%= tip.tag %>" tips</a>
+      </div>
+    </article>
 <% end %>
-  </tbody>
-</table>
 
 <%= link "New tip", to: tip_path(@conn, :new) %>
