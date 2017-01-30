@@ -14,5 +14,4 @@
 
 </ul>
 
-<%= link "Edit", to: tip_path(@conn, :edit, @tip) %>
 <%= link "Back", to: tip_path(@conn, :index) %>

@@ -31,35 +31,5 @@ defmodule Healthlocker.TipController do
     render(conn, "show.html", tip: tip)
   end
 
-  def edit(conn, %{"id" => id}) do
-    tip = Repo.get!(Tip, id)
-    changeset = Tip.changeset(tip)
-    render(conn, "edit.html", tip: tip, changeset: changeset)
-  end
 
-  def update(conn, %{"id" => id, "tip" => tip_params}) do
-    tip = Repo.get!(Tip, id)
-    changeset = Tip.changeset(tip, tip_params)
-
-    case Repo.update(changeset) do
-      {:ok, tip} ->
-        conn
-        |> put_flash(:info, "Tip updated successfully.")
-        |> redirect(to: tip_path(conn, :show, tip))
-      {:error, changeset} ->
-        render(conn, "edit.html", tip: tip, changeset: changeset)
-    end
-  end
-
-  def delete(conn, %{"id" => id}) do
-    tip = Repo.get!(Tip, id)
-
-    # Here we use delete! (with a bang) because we expect
-    # it to always work (and if it does not, it will raise).
-    Repo.delete!(tip)
-
-    conn
-    |> put_flash(:info, "Tip deleted successfully.")
-    |> redirect(to: tip_path(conn, :index))
-  end
 end

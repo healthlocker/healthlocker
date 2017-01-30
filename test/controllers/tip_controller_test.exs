@@ -38,29 +38,4 @@ defmodule Healthlocker.TipControllerTest do
     end
   end
 
-  test "renders form for editing chosen resource", %{conn: conn} do
-    tip = Repo.insert! %Tip{}
-    conn = get conn, tip_path(conn, :edit, tip)
-    assert html_response(conn, 200) =~ "Edit tip"
-  end
-
-  test "updates chosen resource and redirects when data is valid", %{conn: conn} do
-    tip = Repo.insert! %Tip{}
-    conn = put conn, tip_path(conn, :update, tip), tip: @valid_attrs
-    assert redirected_to(conn) == tip_path(conn, :show, tip)
-    assert Repo.get_by(Tip, @valid_attrs)
-  end
-
-  test "does not update chosen resource and renders errors when data is invalid", %{conn: conn} do
-    tip = Repo.insert! %Tip{}
-    conn = put conn, tip_path(conn, :update, tip), tip: @invalid_attrs
-    assert html_response(conn, 200) =~ "Edit tip"
-  end
-
-  test "deletes chosen resource", %{conn: conn} do
-    tip = Repo.insert! %Tip{}
-    conn = delete conn, tip_path(conn, :delete, tip)
-    assert redirected_to(conn) == tip_path(conn, :index)
-    refute Repo.get(Tip, tip.id)
-  end
 end
