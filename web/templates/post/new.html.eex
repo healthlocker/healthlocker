@@ -1,8 +1,8 @@
 <%= form_for @changeset, post_path(@conn, :create), fn f -> %>
   <div class="center mh2 mt2 mh5-m mh7-l">
     <h3 class="tc bg-near-white pv2 mh3 black-70">What's on your mind?</h3>
-    <%= text_input f, :title, placeholder: "Add a title", class: "w-100 h4 mb2 b--light-blue form-control"%>
     <div class="mh4">
+      <%= text_input f, :title, placeholder: "Add a title", class: "w-100 h4 mb2 b--light-blue form-control"%>
       <%= textarea f, :content, placeholder: "Content", class: "w-100 h4 mb2 b--light-blue form-control" %>
       <button type="button" name="Photo" class="bg-near-white b--black-10 black-50 b pv1">Photo</button>
       <button type="button" name="Location" class="bg-near-white ml2 b--black-10 black-50 b pv1">Location</button>
