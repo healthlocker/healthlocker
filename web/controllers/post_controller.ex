@@ -4,7 +4,7 @@ defmodule Healthlocker.PostController do
   alias Healthlocker.Post
 
   def show(conn, %{"id" => id}) do
-    post = Repo.get(Post, id)
+    post = Repo.get!(Post, id)
     render conn, "show.html", post: post
   end
 
@@ -17,8 +17,15 @@ defmodule Healthlocker.PostController do
     changeset = Post.changeset(%Post{}, post_params)
     {:ok, post} = Repo.insert(changeset)
 
+    posts = Repo.all(Post)
+
     conn
     |> put_flash(:info, "Post created!")
-    |> redirect(to: post_path(conn, :show, post.id))
+    |> redirect(to: post_path(conn, :index, posts))
+  end
+
+  def index(conn, _params) do
+    posts = Repo.all(Post)
+    render(conn, "index.html", posts: posts)
   end
 end

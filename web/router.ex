@@ -17,7 +17,7 @@ defmodule Healthlocker.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/posts", PostController, only: [:show, :new, :create]
+    resources "/posts", PostController, only: [:show, :new, :create, :index]
     resources "/tips", TipController, only: [:index, :new, :create]
 
   end
