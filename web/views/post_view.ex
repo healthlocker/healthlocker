@@ -1,5 +1,9 @@
 defmodule Healthlocker.PostView do
   use Healthlocker.Web, :view
 
-  alias Healthlocker.Post
+  def markdown(body) do
+    body
+    |> Earmark.as_html!
+    |> raw
+  end
 end
