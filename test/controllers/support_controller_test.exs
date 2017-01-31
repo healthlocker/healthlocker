@@ -3,6 +3,6 @@ defmodule Healthlocker.SupportControllerTest do
 
   test "GET /support", %{conn: conn} do
     conn = get conn, "/support"
-    assert html_response(conn, 200) =~ "Get Support"
+    assert html_response(conn, 200) =~ "What to do in a crisis"
   end
 end
