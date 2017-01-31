@@ -1,0 +1,8 @@
+<h1>Components</h1>
+
+<section>
+  <h1>Buttons</h1>
+
+  <a href="#" class="pa2 bg-red white br1 link w2 tc ml2" >Next</a>
+  <a href="#" class="small f4-ns mbs paxs pas-ns border border--red red">Next</a>
+</section>
