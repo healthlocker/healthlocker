@@ -16,6 +16,13 @@
     <div class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <nav class="bb pv4 mb4">
+        <img src="https://cloud.githubusercontent.com/assets/1287388/22473871/1faa58b8-e7d2-11e6-9c89-ac74ce5a5a67.png" alt="burger menu">
+        <a href="/">Home</a>
+        <a href="#">About</a>
+        <a href="#">Log in</a>
+        <a href="#">Get support</a>
+      </nav>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
