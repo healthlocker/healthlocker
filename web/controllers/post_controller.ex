@@ -25,7 +25,7 @@ defmodule Healthlocker.PostController do
   end
 
   def index(conn, _params) do
-    posts = Repo.all(Post)
+    posts = Repo.all(from p in Post, where: ilike(p.content, "%#story%"))
     render(conn, "index.html", posts: posts)
   end
 end
