@@ -2,7 +2,7 @@ defmodule Healthlocker.PostTest do
   use Healthlocker.ModelCase, async: true
   alias Healthlocker.Post
 
-  @valid_attrs %{content: "world!", title: "Hello"}
+  @valid_attrs %{content: "Hello world!"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
