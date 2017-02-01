@@ -3,14 +3,13 @@ defmodule Healthlocker.Post do
 
   schema "posts" do
     field :content, :string
-    field :title, :string
 
     timestamps()
   end
 
   def changeset(model, params \\ :invalid) do
     model
-    |> cast(params, [:content, :title])
-    |> validate_required([:content, :title])
+    |> cast(params, [:content])
+    |> validate_required([:content])
   end
 end
