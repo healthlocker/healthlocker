@@ -28,3 +28,4 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
 * Story content can be input by users, and are displayed in cards with a
 story preview
 * Stories can be expanded to view the full individual story
+* Support page is available in full
