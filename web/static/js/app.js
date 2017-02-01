@@ -12,6 +12,18 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
+var nav = document.getElementById('my-sidenav')
+
+function openNav () {
+  nav.style.width = '250px'
+}
+
+function closeNav () {
+  nav.style.width = '0'
+}
+
+document.getElementById('open-nav').addEventListener('click', openNav)
+document.getElementById('close-nav').addEventListener('click', closeNav)
 
 // Import local files
 //
