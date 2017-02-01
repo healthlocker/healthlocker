@@ -1,1 +1,2 @@
+<h1>Stories</h1>
 <%= render "post.html", post: @post %>

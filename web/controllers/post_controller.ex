@@ -15,13 +15,16 @@ defmodule Healthlocker.PostController do
 
   def create(conn, %{"post" => post_params}) do
     changeset = Post.changeset(%Post{}, post_params)
-    {:ok, post} = Repo.insert(changeset)
 
-    posts = Repo.all(Post)
-
-    conn
-    |> put_flash(:info, "Post created!")
-    |> redirect(to: post_path(conn, :index, posts))
+    case Repo.insert(changeset) do
+      {:ok, _post} ->
+        posts = Repo.all(Post)
+        conn
+        |> put_flash(:info, "Post created!")
+        |> redirect(to: post_path(conn, :index, posts))
+      {:error, changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
   end
 
   def index(conn, _params) do
