@@ -19,3 +19,4 @@
     <a href="/tips/?tag=<%= tag %>">See more "<%= tag %>" tips</a>
   </div>
 </article>
+<a class="fr mr3" href="/tips">See more tips</a>

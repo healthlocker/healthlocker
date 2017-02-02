@@ -1,5 +1,3 @@
-<h2 class="ma3 ma4-m ma6-l mv2 mv3-m mv4-l tc">Tips</h2>
-
 <%= for post <- @posts do %>
 
 <article class="ma3 ma4-m ma6-l ba b--black-05 mv2 mv3-m mv4-l">
