@@ -16,16 +16,23 @@
     <div class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <nav class="bb pv4 mb4 sidenav" id="my-sidenav">
-        <img id="close-nav" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
-        <a href="/">Home</a>
-        <a href="#">About</a>
-        <a href="#">Log in</a>
-        <a href="/support">Get support</a>
+      <nav class="sidenav h-100 fixed z-1 top-0 left-0 bg-gray overflow-x-hidden tc" id="my-sidenav">
+        <img id="close-nav" class="w3" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
+        <a class="pa3 f1 white-80 db hover-white" href="/">Home</a>
+        <a class="pa3 f1 white-80 db hover-white" href="#">About</a>
+        <a class="pa3 f1 white-80 db hover-white" href="#">Log in</a>
+        <a class="mt3 mh6 bg-light-red pv2 f1 white-80 db hover-white" href="/support">Get support</a>
       </nav>
-      <img id="open-nav" src="https://cloud.githubusercontent.com/assets/1287388/22473871/1faa58b8-e7d2-11e6-9c89-ac74ce5a5a67.png" alt="burger menu">
-
-      <main role="main">
+      <img class="fl w4 mt4" id="open-nav" src="https://cloud.githubusercontent.com/assets/1287388/22473871/1faa58b8-e7d2-11e6-9c89-ac74ce5a5a67.png" alt="burger menu">
+      <h1 class="fl ml5 ml6-m ml7-l mt5"><%= case @conn.request_path do
+                    "/" -> "Home"
+                    "/posts" -> "Stories"
+                    "/tips" -> "Tips"
+                    "/support" -> "Get Support"
+                    _ -> ""
+              end
+      %></h1>
+      <main class="mt7" role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
 

@@ -15,7 +15,7 @@ import "phoenix_html"
 var nav = document.getElementById('my-sidenav')
 
 function openNav () {
-  nav.style.width = '250px'
+  nav.style.width = '100%'
 }
 
 function closeNav () {
