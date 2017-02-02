@@ -1,8 +1,7 @@
 <%= for post <- @posts do %>
 <article class="ma3 ma4-m ma6-l ba b--black-90 mv2 mv3-m mv4-l">
-  <h1 class="tc f4 f3-l black-60 pv2 ph3 mv0">Story: <%= post.title %></h1>
   <div class="pa3 b--black-10">
-    <p class="pv2 ph2 f5 f4-l lh-copy"><%= String.slice(post.content, 0, 300) %>...</p>
+    <p class="pv2 ph2 f5 f4-l lh-copy"><%= markdown String.slice(post.content, 0, 325) %>...</p>
     <a href="/posts/<%= post.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story...</a>
   </div>
 </article>

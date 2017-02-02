@@ -18,3 +18,14 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+
+# What?
+
+### Current features
+
+* Tips can be added in, and can be viewed either in full or filtered by tag
+* Story content can be input by users, and are displayed in cards with a
+story preview
+* Stories can be expanded to view the full individual story
+* Support page is available in full
