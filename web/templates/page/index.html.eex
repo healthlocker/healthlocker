@@ -1,36 +1,21 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}", name: "Phoenix!" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
-
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
+<article class="ma3 ma4-m ma6-l ba b--black-90 mv2 mv3-m mv4-l">
+  <div class="pa3 b--black-10">
+    <p class="pv2 ph2 f5 f4-l lh-copy"><%= markdown String.slice(@story.content, 0, 325) %>...</p>
+    <a href="/posts/<%= @story.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story...</a>
   </div>
+</article>
 
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
+<article class="ma3 ma4-m ma6-l ba b--black-05 mv2 mv3-m mv4-l">
+  <div class="pa3 bg-near-white b--black-10">
+    <h4><%= tag = cond do
+                String.contains?(@tip.content, "#connect") -> "connect"
+                String.contains?(@tip.content, "#keeplearning") -> "keeplearning"
+                String.contains?(@tip.content, "#givetoothers") -> "givetoothers"
+                String.contains?(@tip.content, "#beactive") -> "beactive"
+                String.contains?(@tip.content, "#takenotice") -> "takenotice"
+                true -> "no tag found"
+              end%></h4>
+    <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= @tip.content %></p>
+    <a href="/tips/?tag=<%= tag %>">See more "<%= tag %>" tips</a>
   </div>
-</div>
+</article>
