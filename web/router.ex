@@ -7,6 +7,7 @@ defmodule Healthlocker.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Healthlocker.Auth, repo: Healthlocker.Repo
   end
 
   pipeline :api do
@@ -21,6 +22,7 @@ defmodule Healthlocker.Router do
     resources "/tips", TipController, only: [:index]
     get "/support", SupportController, :index
     resources "/users", UserController, only: [:index, :new, :create]
+    resources "/login", LoginController, only: [:index, :create, :delete]
 
   end
 
