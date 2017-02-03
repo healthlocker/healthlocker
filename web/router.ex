@@ -20,7 +20,8 @@ defmodule Healthlocker.Router do
     resources "/posts", PostController, only: [:show, :new, :create, :index]
     resources "/tips", TipController, only: [:index, :new, :create]
     get "/support", SupportController, :index
-    
+    resources "/user", UserController
+
   end
 
   # Other scopes may use custom stacks.
