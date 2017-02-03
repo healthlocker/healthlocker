@@ -1,9 +1,10 @@
 defmodule Healthlocker.User do
   use Healthlocker.Web, :model
 
-  schema "user" do
+  schema "users" do
     field :email, :string
-    field :password, :string
+    field :password, :string, virtual: true
+    field :password_hash, :string
 
     timestamps()
   end
@@ -11,9 +12,9 @@ defmodule Healthlocker.User do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(struct, params \\ %{}) do
+  def changeset(struct, params \\ :empty) do
     struct
-    |> cast(params, [:email, :password_hashed])
-    |> validate_required([:email, :password_hashed])
+    |> cast(params, [:email])
+    |> validate_required([:email])
   end
 end
