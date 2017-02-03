@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-<%= for user <- @user do %>
+<%= for user <- @users do %>
     <tr>
       <td><%= user.email %></td>
       <td><%= user.password_hash %></td
