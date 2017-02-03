@@ -4,8 +4,7 @@ defmodule Healthlocker.UserController do
   alias Healthlocker.User
 
   def index(conn, _params) do
-      users = Repo.all(User)
-      render(conn, "index.html", users: users)
+    render conn, "index.html"
   end
 
   def new(conn, _params) do
