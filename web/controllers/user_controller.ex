@@ -4,8 +4,8 @@ defmodule Healthlocker.UserController do
   alias Healthlocker.User
 
   def index(conn, _params) do
-    user = Repo.all(User)
-    render(conn, "index.html", user: user)
+      users = Repo.all(User)
+      render(conn, "index.html", users: users)
   end
 
   def new(conn, _params) do
@@ -17,8 +17,9 @@ defmodule Healthlocker.UserController do
     changeset = User.registration_changeset(%User{}, user_params)
 
     case Repo.insert(changeset) do
-      {:ok, _user} ->
+      {:ok, user} ->
         conn
+        |> Healthlocker.Auth.login(user)
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: user_path(conn, :index))
       {:error, changeset} ->
