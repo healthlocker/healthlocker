@@ -21,7 +21,7 @@ defmodule Healthlocker.Router do
     resources "/posts", PostController, only: [:show, :new, :create, :index]
     resources "/tips", TipController, only: [:index]
     get "/support", SupportController, :index
-    resources "/users", UserController, only: [:index, :new, :create]
+    resources "/users", UserController, only: [:index]
     resources "/login", LoginController, only: [:index, :create, :delete]
 
   end
