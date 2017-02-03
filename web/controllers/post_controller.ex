@@ -1,6 +1,8 @@
 defmodule Healthlocker.PostController do
   use Healthlocker.Web, :controller
 
+plug :authenticate when action in [:new, :create]
+
   alias Healthlocker.Post
 
   def show(conn, %{"id" => id}) do
@@ -27,5 +29,16 @@ defmodule Healthlocker.PostController do
   def index(conn, _params) do
     posts = Repo.all(Post)
     render(conn, "index.html", posts: posts)
+  end
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:error,  "You must be logged in to access that page!")
+      |> redirect(to: page_path(conn, :index))
+      |> halt()
+    end
   end
 end
