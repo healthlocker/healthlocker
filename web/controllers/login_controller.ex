@@ -17,4 +17,10 @@ defmodule Healthlocker.LoginController do
         |> render("index.html")
     end
   end
+
+  def delete(conn, _) do
+    conn
+    |> Healthlocker.Auth.logout()
+    |> redirect(to: page_path(conn, :index))
+  end
 end
