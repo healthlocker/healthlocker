@@ -5,6 +5,4 @@ defmodule Healthlocker.LoginControllerTest do
     conn = get conn, "/login"
     assert html_response(conn, 200) =~ "Email"
   end
-
-  test 
 end
