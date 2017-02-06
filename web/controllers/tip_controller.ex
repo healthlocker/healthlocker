@@ -5,9 +5,9 @@ defmodule Healthlocker.TipController do
 
   def index(conn, params) do
     tips = if params["tag"] do
-            Repo.all(from p in Post, where: ilike(p.content, ^"%##{params["tag"]}%"))
+            Post |> Post.find_tags(params) |> Repo.all
           else
-            Repo.all(from p in Post, where: ilike(p.content, "%#tip%"))
+            Post |> Post.find_tips |> Repo.all
           end
     render(conn, "index.html", posts: tips)
   end
