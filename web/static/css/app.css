@@ -1,1 +1,11 @@
 /* This file is for your main application css. */
+.sidenav {
+    width: 0;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    text-decoration: none;
+    transition: 0.3s
+}

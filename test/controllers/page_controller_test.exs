@@ -1,8 +1,10 @@
 defmodule Healthlocker.PageControllerTest do
   use Healthlocker.ConnCase
+  import Healthlocker.Fixtures
 
   test "GET /", %{conn: conn} do
+    post  = fixture(:post)
     conn = get conn, "/"
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+    assert html_response(conn, 200) =~ "Home"
   end
 end

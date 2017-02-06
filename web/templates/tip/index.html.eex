@@ -1,19 +1,17 @@
-<h2 class="ma3 ma4-m ma6-l mv2 mv3-m mv4-l tc">Tips</h2>
-
 <%= for post <- @posts do %>
 
 <article class="ma3 ma4-m ma6-l ba b--black-05 mv2 mv3-m mv4-l">
-      <div class="pa3 bg-near-white b--black-10">
-        <h4><%= tag = cond do
-                    String.contains?(post.content, "#connect") -> "connect"
-                    String.contains?(post.content, "#keeplearning") -> "keeplearning"
-                    String.contains?(post.content, "#givetoothers") -> "givetoothers"
-                    String.contains?(post.content, "#beactive") -> "beactive"
-                    String.contains?(post.content, "#takenotice") -> "takenotice"
-                    true -> "no tag found"
-                  end%></h4>
-        <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= post.content %></p>
-        <a href="/tips/?tag=<%= tag %>">See more "<%= tag %>" tips</a>
-      </div>
-    </article>
+  <div class="pa3 bg-near-white b--black-10">
+    <h4><%= tag = cond do
+                String.contains?(post.content, "#connect") -> "connect"
+                String.contains?(post.content, "#keeplearning") -> "keeplearning"
+                String.contains?(post.content, "#givetoothers") -> "givetoothers"
+                String.contains?(post.content, "#beactive") -> "beactive"
+                String.contains?(post.content, "#takenotice") -> "takenotice"
+                true -> "no tag found"
+              end%></h4>
+    <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= post.content %></p>
+    <a href="/tips/?tag=<%= tag %>">See more "<%= tag %>" tips</a>
+  </div>
+</article>
 <% end %>
