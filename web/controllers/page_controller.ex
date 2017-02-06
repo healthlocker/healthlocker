@@ -5,10 +5,10 @@ defmodule Healthlocker.PageController do
 
   def index(conn, _params) do
     featured_story = Post
-                     |> Post.find_stories
+                     |> Post.find_single_story
                      |> Repo.one
     featured_tip = Post
-                   |> Post.find_tips
+                   |> Post.find_single_tip
                    |> Repo.one
     render conn, "index.html", story: featured_story, tip: featured_tip
   end

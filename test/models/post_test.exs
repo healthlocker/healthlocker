@@ -16,27 +16,40 @@ defmodule Healthlocker.PostTest do
     refute changeset.valid?
   end
 
-  test "find_stories returns a story" do
+  test "find_single_story returns a story" do
     post  = fixture(:post)
-    story = Post |> Post.find_stories |> Repo.one
+    story = Post |> Post.find_single_story |> Repo.one
     assert String.contains? story.content, "#story"
   end
 
-  test "find_stories does not return any tips" do
+  test "find_single_story does not return any tips" do
     post  = fixture(:post)
-    story = Post |> Post.find_stories |> Repo.one
+    story = Post |> Post.find_single_story |> Repo.one
     refute String.contains? story.content, "#tip"
   end
 
-  test "find_tips returns a tip" do
+  test "find_single_tip returns a tip" do
     post  = fixture(:post)
-    tip = Post |> Post.find_tips |> Repo.one
+    tip = Post |> Post.find_single_tip |> Repo.one
     assert String.contains? tip.content, "#tip"
   end
 
-  test "find_tips does not return any stories" do
+  test "find_single_tip does not return any stories" do
     post  = fixture(:post)
-    tip = Post |> Post.find_tips |> Repo.one
+    tip = Post |> Post.find_single_tip |> Repo.one
     refute String.contains? tip.content, "#story"
   end
+
+  test "find_tips returns all tips" do
+    post = fixture(:post)
+    tips = Post |> Post.find_tips |> Repo.all
+    assert Kernel.length(tips) == 2
+  end
+
+  test "find_stories returns all stories" do
+    post = fixture(:post)
+    stories = Post |> Post.find_stories |> Repo.all
+    assert Kernel.length(stories) == 3
+  end
+
 end
