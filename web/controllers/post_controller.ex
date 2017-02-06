@@ -23,7 +23,7 @@ plug :authenticate when action in [:new, :create]
         posts = Repo.all(Post)
         conn
         |> put_flash(:info, "Post created!")
-        |> redirect(to: post_path(conn, :index, posts))
+        |> redirect(to: post_path(conn, :new, posts))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
