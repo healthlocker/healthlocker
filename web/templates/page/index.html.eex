@@ -13,7 +13,7 @@
 
 <article class="ma3 ma4-m ma6-l ba b--black-05 mv2 mv3-m mv4-l">
   <div class="pa3 bg-near-white b--black-10">
-    <% if @tip do %>
+    <%= if @tip do %>
       <h4><%= tag = cond do
         String.contains?(@tip.content, "#connect") -> "connect"
         String.contains?(@tip.content, "#keeplearning") -> "keeplearning"
