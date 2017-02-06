@@ -12,4 +12,16 @@ defmodule Healthlocker.Post do
     |> cast(params, [:content])
     |> validate_required([:content])
   end
+
+  def find_stories(query) do
+    from p in query,
+      limit: 1,
+      where: ilike(p.content, "%#story%")
+  end
+
+  def find_tips(query) do
+    from p in query,
+      limit: 1,
+      where: ilike(p.content, "%#tip%")
+  end
 end
