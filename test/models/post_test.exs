@@ -52,4 +52,10 @@ defmodule Healthlocker.PostTest do
     assert Kernel.length(stories) == 3
   end
 
+  test "find_tags returns tips with the correct tag type" do
+    post = fixture(:post)
+    tip = Post |> Post.find_tags(%{"tag" => "connect"}) |> Repo.all |> List.first
+    assert String.contains? tip.content, "#connect"
+  end
+
 end
