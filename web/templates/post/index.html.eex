@@ -1,4 +1,3 @@
-<h1>Stories</h1>
 <%= for post <- @posts do %>
 <article class="ma3 ma4-m ma6-l ba b--black-90 mv2 mv3-m mv4-l">
   <div class="pa3 b--black-10">

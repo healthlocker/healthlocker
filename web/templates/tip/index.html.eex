@@ -10,7 +10,7 @@
                 String.contains?(post.content, "#takenotice") -> "takenotice"
                 true -> "no tag found"
               end%></h4>
-    <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= post.content %></p>
+    <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= markdown post.content %></p>
     <a href="/tips/?tag=<%= tag %>">See more "<%= tag %>" tips</a>
   </div>
 </article>
