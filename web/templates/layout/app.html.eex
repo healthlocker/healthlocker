@@ -20,7 +20,14 @@
         <img id="close-nav" class="w3" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
         <a class="pa3 f1 white-80 db hover-white" href="/">Home</a>
         <a class="pa3 f1 white-80 db hover-white" href="#">About</a>
-        <a class="pa3 f1 white-80 db hover-white" href="#">Log in</a>
+        <%= if @current_user do %>
+          <%= link "Log out", class: "pa3 f1 white-80 db hover-white",
+                              to: login_path(@conn, :delete, @current_user),
+                              method: "delete" %>
+        <%= else %>
+          <%= link "Log in", class: "pa3 f1 white-80 db hover-white",
+                                 to: login_path(@conn, :index) %>
+        <%= end %>
         <a class="mt3 mh6 bg-light-red pv2 f1 white-80 db hover-white" href="/support">Get support</a>
       </nav>
       <img class="fl w4 mt4" id="open-nav" src="https://cloud.githubusercontent.com/assets/1287388/22473871/1faa58b8-e7d2-11e6-9c89-ac74ce5a5a67.png" alt="burger menu">
@@ -29,6 +36,7 @@
                     "/posts" -> "Stories"
                     "/tips" -> "Tips"
                     "/support" -> "Get Support"
+                    "/login" -> "Log in"
                     _ -> ""
               end
       %></h1>
