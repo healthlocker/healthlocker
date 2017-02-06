@@ -16,27 +16,27 @@ defmodule Healthlocker.PostTest do
     refute changeset.valid?
   end
 
-  test "featured_story returns a story" do
+  test "find_stories returns a story" do
     post  = fixture(:post)
-    story = Post |> Post.featured_story |> Repo.one
+    story = Post |> Post.find_stories |> Repo.one
     assert String.contains? story.content, "#story"
   end
 
-  test "featured_story does not return any tips" do
+  test "find_stories does not return any tips" do
     post  = fixture(:post)
-    story = Post |> Post.featured_story |> Repo.one
+    story = Post |> Post.find_stories |> Repo.one
     refute String.contains? story.content, "#tip"
   end
 
-  test "featured_tip returns a tip" do
+  test "find_tips returns a tip" do
     post  = fixture(:post)
-    tip = Post |> Post.featured_tip |> Repo.one
+    tip = Post |> Post.find_tips |> Repo.one
     assert String.contains? tip.content, "#tip"
   end
 
-  test "featured_tip does not return any stories" do
+  test "find_tips does not return any stories" do
     post  = fixture(:post)
-    tip = Post |> Post.featured_tip |> Repo.one
+    tip = Post |> Post.find_tips |> Repo.one
     refute String.contains? tip.content, "#story"
   end
 end
