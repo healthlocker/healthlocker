@@ -1,6 +1,7 @@
 {
   "name": "healthlocker",
   "scripts": {
+    "postdeploy": "POOL_SIZE=2 mix ecto.migrate"
   },
   "env": {
     "POOL_SIZE": {
@@ -13,7 +14,7 @@
   "formation": {
   },
   "addons": [
-
+    "heroku-postgresql:hobby-dev"
   ],
   "buildpacks": [
     {
