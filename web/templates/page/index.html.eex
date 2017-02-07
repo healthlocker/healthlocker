@@ -11,6 +11,7 @@
       <%= end %>
   </div>
 </article>
+<a class="mh3 mh4-m mh4-l mv1 mv2-m mv3-l fr" href="/posts">See more stories</a><br/><br/>
 
 <article class="ma3 ma4-m ma4-l ba b--black-05 mv2 mv3-m mv4-l">
   <div class="pa3 bg-near-white b--black-10">
