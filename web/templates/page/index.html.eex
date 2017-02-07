@@ -1,4 +1,4 @@
-<article class="ma3 ma4-m ma4-l ba b--black-90 mv2 mv3-m mv4-l">
+<article class="mh3 mh4-m mh4-l ba b--black-90 mv0 mv2-m mv3-l">
   <div class="pa3 b--black-10">
     <p class="pv2 ph2 f5 f4-l lh-copy">
       <%= if @story do %>

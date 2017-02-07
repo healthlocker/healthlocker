@@ -40,6 +40,9 @@
                     _ -> ""
               end
       %></h1>
+      <%= if @current_user do %>
+        <a class="fr mt6 mh3 mh4-m mh4-l ph3 pv2 bg-gray white-80 hover-white" href="/posts/new">New Post</a>
+      <%= end %>
       <main class="mt7" role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
