@@ -2,11 +2,11 @@ defmodule Healthlocker.TestHelpers do
   alias Healthlocker.Repo
   alias Healthlocker.User
 
-  def insert_user(attrs \\%{}) do
-    changes = Dict.merge(%{
-      email: "user#{Base.encode16(:crypto.rand_bytes(8))}",
+  def insert_user() do
+    changes = %{
+      email: "user@example.com",
       password: "password"
-    }, attrs)
+    }
 
     %User{}
     |> User.registration_changeset(changes)
