@@ -1,0 +1,15 @@
+<%= form_for @conn, login_path(@conn, :create), [as: :login], fn f -> %>
+  <div class="form-group">
+    <%= label f, :email, class: "control-label" %>
+    <%= text_input f, :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :password, class: "control-label" %>
+    <%= text_input f, :password, class: "form-control", type: :password%>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Log in", class: "bg-moon-gray b--moon-gray" %>
+  </div>
+<% end %>

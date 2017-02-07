@@ -26,6 +26,7 @@ defmodule Healthlocker.ConnCase do
       import Ecto.Query
 
       import Healthlocker.Router.Helpers
+      import Healthlocker.TestHelpers
 
       # The default endpoint for testing
       @endpoint Healthlocker.Endpoint
