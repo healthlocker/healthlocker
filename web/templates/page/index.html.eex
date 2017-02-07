@@ -1,32 +1,32 @@
-<article class="ma3 ma4-m ma6-l ba b--black-90 mv2 mv3-m mv4-l">
+<article class="ma3 ma4-m ma4-l ba b--black-90 mv2 mv3-m mv4-l">
   <div class="pa3 b--black-10">
     <p class="pv2 ph2 f5 f4-l lh-copy">
       <%= if @story do %>
         <p class="pv2 ph2 f5 f4-l lh-copy">
-          <%= markdown String.slice(@story.content, 0, 325) %>...</p>
-          <a href="/posts/<%= @story.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story...</a>
+          <%= markdown String.slice(@story.content, 0, 325) <> "..." %>
+        </p>
+        <a href="/posts/<%= @story.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
       <%= else %>
         <p class="pv2 ph2 f5 f4-l lh-copy">No stories found</p>
       <%= end %>
   </div>
 </article>
 
-<article class="ma3 ma4-m ma6-l ba b--black-05 mv2 mv3-m mv4-l">
+<article class="ma3 ma4-m ma4-l ba b--black-05 mv2 mv3-m mv4-l">
   <div class="pa3 bg-near-white b--black-10">
     <%= if @tip do %>
-      <h4><%= tag = cond do
+      <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= markdown @tip.content %></p>
+      <a href="/tips/?tag=<%= tag = cond do
         String.contains?(@tip.content, "#connect") -> "connect"
         String.contains?(@tip.content, "#keeplearning") -> "keeplearning"
         String.contains?(@tip.content, "#givetoothers") -> "givetoothers"
         String.contains?(@tip.content, "#beactive") -> "beactive"
         String.contains?(@tip.content, "#takenotice") -> "takenotice"
         true -> "no tag found"
-      end%></h4>
-      <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= @tip.content %></p>
-      <a href="/tips/?tag=<%= tag %>">See more "<%= tag %>" tips</a>
+      end %>">See more "<%= tag %>" tips</a>
     <%= else %>
       <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy">No tips found</p>
     <%= end %>
   </div>
 </article>
-<a class="fr mr3" href="/tips">See more tips</a>
+<a class="mh3 mh4-m mh4-l mv1 mv2-m mv3-l fr" href="/tips">See more tips</a>
