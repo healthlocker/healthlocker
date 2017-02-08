@@ -22,7 +22,6 @@ defmodule Healthlocker.UserControllerTest do
     conn = get conn, user_path(conn, :new)
     assert html_response(conn, 200) =~ "New user"
   end
-  # Below tests will be used later when sign up is complete
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @valid_attrs
