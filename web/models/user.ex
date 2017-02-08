@@ -19,23 +19,23 @@ defmodule Healthlocker.User do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(struct, params \\ :empty) do
+  def changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name, :answer, :selected_question, :data_access, :role])
-    |> validate_required([:email, :selected_question, :answer, :data_access, :role])
+    |> cast(params, [:email, :name, :security_answer, :security_question, :data_access, :role])
+    |> validate_required([:email, :security_question, :security_answer, :data_access, :role])
   end
 
   def registration_changeset(model, params) do
     model
     |> changeset(params)
-    |> cast(params, [:password, :answer])
+    |> cast(params, [:password])
     |> validate_length(:password, min: 6, max: 100)
     |> put_pass_hash()
   end
 
   def put_pass_hash(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: pass, answer: ans}} ->
+      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
         put_change(changeset, :password_hash, Bcrypt.hashpwsalt(pass))
       _ ->
         changeset
