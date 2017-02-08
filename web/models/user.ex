@@ -8,9 +8,8 @@ defmodule Healthlocker.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :name, :string
-    field :selected_question, :string
-    field :answer, :string, virtual: true
-    field :encrypted_answer, :string
+    field :security_question, :string
+    field :security_answer, :string
     field :data_access, :boolean
     field :role, :string
 
@@ -22,21 +21,21 @@ defmodule Healthlocker.User do
   """
   def changeset(struct, params \\ :empty) do
     struct
-    |> cast(params, [:email, :name, :selected_question, :data_access, :role])
-    |> validate_required([:email, :selected_question, :data_access, :role])
+    |> cast(params, [:email, :name, :answer, :selected_question, :data_access, :role])
+    |> validate_required([:email, :selected_question, :answer, :data_access, :role])
   end
 
   def registration_changeset(model, params) do
     model
     |> changeset(params)
-    |> cast(params, [:password])
+    |> cast(params, [:password, :answer])
     |> validate_length(:password, min: 6, max: 100)
     |> put_pass_hash()
   end
 
   def put_pass_hash(changeset) do
     case changeset do
-      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
+      %Ecto.Changeset{valid?: true, changes: %{password: pass, answer: ans}} ->
         put_change(changeset, :password_hash, Bcrypt.hashpwsalt(pass))
       _ ->
         changeset
