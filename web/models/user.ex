@@ -7,6 +7,12 @@ defmodule Healthlocker.User do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+    field :name, :string
+    field :selected_question, :string
+    field :answer, :string, virtual: true
+    field :encrypted_answer, :string
+    field :data_access, :boolean
+    field :role, :string
 
     timestamps()
   end
@@ -16,8 +22,8 @@ defmodule Healthlocker.User do
   """
   def changeset(struct, params \\ :empty) do
     struct
-    |> cast(params, [:email])
-    |> validate_required([:email])
+    |> cast(params, [:email, :name, :selected_question, :data_access, :role])
+    |> validate_required([:email, :selected_question, :data_access, :role])
   end
 
   def registration_changeset(model, params) do
