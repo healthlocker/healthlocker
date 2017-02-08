@@ -4,8 +4,8 @@ defmodule Healthlocker.Repo.Migrations.AddFieldsToUsers do
   def change do
     alter table(:users) do
       add :name, :string
-      add :selected_question, :string
-      add :encrypted_answer, :string
+      add :security_question, :string
+      add :security_answer, :string
       add :data_access, :boolean
       add :role, :string
     end
