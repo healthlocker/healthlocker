@@ -3,7 +3,15 @@ defmodule Healthlocker.UserTest do
 
   alias Healthlocker.User
 
-  @valid_attrs %{email: "some content", password: "some content"}
+  @valid_attrs %{
+    email: "me@example.com",
+    password: "abc123",
+    name: "MyName",
+    security_question: "Favourite animal?",
+    security_answer: "Cat",
+    data_access: true,
+    role: "service user"
+  }
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
