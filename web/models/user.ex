@@ -21,13 +21,24 @@ defmodule Healthlocker.User do
   """
   def changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name, :security_answer, :security_question, :data_access, :role])
-    |> validate_required([:email, :security_question, :security_answer, :data_access, :role])
+    |> cast(params, [:email, :name])
+    |> validate_format(:email, ~r/@/)
+    |> validate_required([:email])
+  end
+
+  def security_question(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:security_question, :security_answer])
+  end
+
+  def changeset3(struct, params) do
+    struct
+    |> cast(params, [:data_access, :role])
   end
 
   def registration_changeset(model, params) do
     model
-    |> changeset(params)
+    |> security_question(params)
     |> cast(params, [:password])
     |> validate_length(:password, min: 6, max: 100)
     |> put_pass_hash()
