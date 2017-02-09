@@ -18,7 +18,6 @@ defmodule Healthlocker.UserController do
       {:ok, user} ->
         conn
         |> redirect(to: "/users/#{user.id}/signup2", action: :signup2, user: user)
-        # render(conn, "signup2.html", changeset: changeset, action: :update, user: user)
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -27,11 +26,10 @@ defmodule Healthlocker.UserController do
   def signup2(conn, %{"id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.security_question(%User{})
-    IO.inspect changeset
-    render(conn, "signup2.html", changeset: changeset, action: "/users/#{user.id}/#{:update}")
+    render(conn, "signup2.html", changeset: changeset, action: "/users/#{user.id}/#{:create2}", user: user)
   end
 
-  def update(conn, %{"user" => user_params, "id" => id}) do
+  def create2(conn, %{"user" => user_params, "id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.registration_changeset(user, user_params)
 
@@ -46,7 +44,6 @@ defmodule Healthlocker.UserController do
     end
   end
 
-  #
   # def update(conn, %{"id" => id, "user" => user_params}) do
   #   user = Repo.get!(User, id)
   #   changeset = User.changeset(user, user_params)
