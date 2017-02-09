@@ -4,8 +4,13 @@ defmodule Healthlocker.TestHelpers do
 
   def insert_user() do
     changes = %{
-      email: "user@example.com",
-      password: "password"
+      email: "me@example.com",
+      password: "abc123",
+      name: "MyName",
+      security_question: "Favourite animal?",
+      security_answer: "Cat",
+      data_access: true,
+      role: "service user"
     }
 
     %User{}
