@@ -28,12 +28,7 @@ defmodule Healthlocker.User do
 
   def security_question(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:security_question, :security_answer])
-  end
-
-  def changeset3(struct, params) do
-    struct
-    |> cast(params, [:data_access, :role])
+    |> cast(params, [:security_question, :security_answer, :data_access])
   end
 
   def registration_changeset(model, params) do
