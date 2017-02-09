@@ -23,6 +23,7 @@ defmodule Healthlocker.Router do
     get "/support", SupportController, :index
     resources "/users", UserController, only: [:index, :new, :create, :update]
     get "/users/:id/signup2", UserController, :signup2
+    post "/users/:id/create2", UserController, :create2 
     resources "/login", LoginController, only: [:index, :create, :delete]
 
   end
