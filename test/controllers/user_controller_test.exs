@@ -25,8 +25,9 @@ defmodule Healthlocker.UserControllerTest do
 
   test "creates resource and redirects when data is valid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @valid_attrs
-    assert html_response(conn, 200) =~ "Password"
-    assert Repo.get_by(User, email: "me@example.com")
+    user = Repo.get_by(User, email: "me@example.com")
+    assert redirected_to(conn) == "/users/#{user.id}/signup2"
+    assert user
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
