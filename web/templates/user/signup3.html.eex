@@ -1,0 +1,32 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, "I accept terms and conditions", class: "control-label"%>
+    <%= checkbox f, :terms_conditions, class: "form-control" %>
+    <%= error_tag f, :terms_conditions %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, "I accept the terms of our Privacy Statement",
+                  class: "control-label"%>
+    <%= checkbox f, :privacy, class: "form-control" %>
+    <%= error_tag f, :privacy %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, "I allow my anonymous data to be accessed by researchers to
+                  drive forward the future of mental health and care.",
+                  class: "control-label"%>
+    <%= checkbox f, :data_access, class: "form-control" %>
+    <%= error_tag f, :data_access %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "bg-moon-gray b--moon-gray" %>
+  </div>
+<% end %>
