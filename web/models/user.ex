@@ -23,12 +23,20 @@ defmodule Healthlocker.User do
     struct
     |> cast(params, [:email, :name])
     |> validate_format(:email, ~r/@/)
-    |> validate_required([:email])
+    |> validate_required(:email)
   end
 
   def security_question(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:security_question, :security_answer, :data_access])
+    |> cast(params, [:security_question, :security_answer])
+    |> validate_required([:security_question, :security_answer])
+  end
+
+  def data_access(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:data_access])
+    |> validate_acceptance(:terms_conditions)
+    |> validate_acceptance(:privacy)
   end
 
   def registration_changeset(model, params) do
