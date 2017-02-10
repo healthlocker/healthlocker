@@ -7,8 +7,16 @@
 
   <div class="form-group">
     <%= label f, :password, class: "control-label" %>
-    <%= text_input f, :password, class: "form-control" %>
+    <%= text_input f, :password, class: "form-control",
+                      type: :password %>
     <%= error_tag f, :password %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :repeat_password, class: "control-label" %>
+    <%= text_input f, :password_confirmation, class: "form-control",
+                      type: :password%>
+    <%= error_tag f, :password_confirmation %>
   </div>
 
   <div class="form-group">
