@@ -19,26 +19,28 @@ defmodule Healthlocker.UserControllerTest do
   end
 
   test "renders form for new user password and security Q&A", %{conn: conn} do
-    case Repo.insert %User{
-      email: "me@example.com",
-      name: "MyName"
-    } do
-      {:ok, user} ->
-        conn = get conn, "/users/#{user.id}/signup2"
-    end
+    conn =
+      case Repo.insert %User{
+        email: "me@example.com",
+        name: "MyName"
+        } do
+          {:ok, user} ->
+            get conn, "/users/#{user.id}/signup2"
+          end
     assert html_response(conn, 200) =~ "Password"
   end
 
   test "renders form for accepting T&Cs, privacy, and data access request", %{conn: conn} do
-    case Repo.insert %User{
-      email: "me@example.com",
-      password: "password",
-      security_question: "Favourite food?",
-      security_answer: "pizza"
-    } do
-      {:ok, user} ->
-        conn = get conn, "/users/#{user.id}/signup3"
-    end
+    conn =
+      case Repo.insert %User{
+        email: "me@example.com",
+        password: "password",
+        security_question: "Favourite food?",
+        security_answer: "pizza"
+      } do
+        {:ok, user} ->
+          get conn, "/users/#{user.id}/signup3"
+      end
     assert html_response(conn, 200) =~ "terms and conditions"
   end
 
