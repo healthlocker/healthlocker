@@ -1,4 +1,5 @@
 <%= form_for @changeset, @action, fn f -> %>
+  <input name="_method" type="hidden" value="put" />
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
@@ -21,7 +22,15 @@
 
   <div class="form-group">
     <%= label f, :security_question, class: "control-label" %>
-    <%= text_input f, :security_question, class: "form-control" %>
+    <%= select f, :security_question,
+      ["What were the last four digits of your childhood telephone number?": 1,
+      "What was the house number and street name you lived in as a child?": 2,
+      "What time of the day were you born? (hh:mm)": 3,
+      "What are the last five digits of your driver's licence number?": 4,
+      "What is your grandmother's (on your mother's side) maiden name?": 5
+      ],
+      prompt: "Choose a security question",
+      class: "form-control" %>
     <%= error_tag f, :security_question %>
   </div>
 
