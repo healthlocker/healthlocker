@@ -30,6 +30,7 @@ defmodule Healthlocker.User do
     struct
     |> cast(params, [:security_question, :security_answer])
     |> validate_required([:security_question, :security_answer])
+    |> validate_confirmation(:password, message: "Passwords do not match")
   end
 
   def data_access(struct, params \\ :invalid) do
