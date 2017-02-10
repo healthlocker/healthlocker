@@ -36,25 +36,30 @@ defmodule Healthlocker.UserController do
     case Repo.update(changeset) do
       {:ok, user} ->
         conn
+        |> redirect(to: "/users/#{user.id}/signup3", action: :signup3, user: user)
+      {:error, changeset} ->
+        render(conn, "signup2.html", changeset: changeset, action: "/users/#{user.id}/#{:create2}", user: user)
+    end
+  end
+
+  def signup3(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+    changeset = User.data_access(%User{})
+    render(conn, "signup3.html", changeset: changeset, action: "/users/#{user.id}/#{:create3}", user: user)
+  end
+
+  def create3(conn, %{"user" => user_params, "id" => id}) do
+    user = Repo.get!(User, id)
+    changeset = User.data_access(%User{}, user_params)
+
+    case Repo.update(changeset) do
+      {:ok, user} ->
+        conn
         |> Healthlocker.Auth.login(user)
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: user_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "signup2.html", changeset: changeset)
+        render(conn, "signup3.html", changeset: changeset, action: "/users/#{user.id}/#{:create3}", user: user)
     end
   end
-
-  # def update(conn, %{"id" => id, "user" => user_params}) do
-  #   user = Repo.get!(User, id)
-  #   changeset = User.changeset(user, user_params)
-  #
-  #   case Repo.update(changeset) do
-  #     {:ok, user} ->
-  #       conn
-  #       |> put_flash(:info, "User updated successfully.")
-  #       |> redirect(to: user_path(conn, :show, user))
-  #     {:error, changeset} ->
-  #       render(conn, "edit.html", user: user, changeset: changeset)
-  #   end
-  # end
 end
