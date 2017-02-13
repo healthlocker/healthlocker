@@ -3,6 +3,7 @@ defmodule Healthlocker.Post do
 
   schema "posts" do
     field :content, :string
+    belongs_to :user, Healthlocker.User
 
     timestamps()
   end
