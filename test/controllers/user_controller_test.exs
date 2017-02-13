@@ -6,6 +6,15 @@ defmodule Healthlocker.UserControllerTest do
     email: "me@example.com",
     name: "MyName"
   }
+  @step2_attrs %{password: "abc123",
+   password_confirmation: "abc123",
+   security_answer: "B658H",
+   security_question: "4"}
+  @step3_attrs %{
+    terms_conditions: true,
+    privacy: true,
+    data_access: true
+  }
   @invalid_attrs %{}
 
   test "loads index.html on /users", %{conn: conn} do
@@ -51,8 +60,48 @@ defmodule Healthlocker.UserControllerTest do
     assert user
   end
 
+  test "creates resource and redirects when only email is input", %{conn: conn} do
+    conn = post conn, user_path(conn, :create), user: %{email: "user@mail.com"}
+    user = Repo.get_by(User, email: "user@mail.com")
+    assert redirected_to(conn) == "/users/#{user.id}/signup2"
+    assert user
+  end
+
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @invalid_attrs
     assert html_response(conn, 200) =~ "New user"
+  end
+
+  test "update resourse with password, security Q&A and redirects when data is valid", %{conn: conn} do
+    Repo.insert %User{email: "me@example.com"}
+    user = Repo.get_by(User, email: "me@example.com")
+    conn = put conn, "/users/#{user.id}/#{:create2}", user: @step2_attrs
+    assert redirected_to(conn) == "/users/#{user.id}/signup3"
+  end
+
+  test "does not update resource with password, security Q&A and renders errors when data is invalid", %{conn: conn} do
+    Repo.insert %User{email: "me@example.com"}
+    user = Repo.get_by(User, email: "me@example.com")
+    conn = put conn, "/users/#{user.id}/#{:create2}", user: @invalid_attrs
+    assert html_response(conn, 200) =~ "Password"
+  end
+
+  test "update resourse with data_access and redirects when data is valid", %{conn: conn} do
+    Repo.insert %User{
+      email: "me@example.com",
+      password: "password",
+      security_question: "Favourite food?",
+      security_answer: "pizza"
+    }
+    user = Repo.get_by(User, email: "me@example.com")
+    conn = put conn, "/users/#{user.id}/#{:create3}", user: @step3_attrs
+    assert redirected_to(conn) == user_path(conn, :index)
+  end
+
+  test "does not update resource with data_access and renders errors when data is invalid", %{conn: conn} do
+    Repo.insert %User{email: "me@example.com"}
+    user = Repo.get_by(User, email: "me@example.com")
+    conn = put conn, "/users/#{user.id}/#{:create3}", user: @invalid_attrs
+    assert html_response(conn, 200) =~ "terms and conditions"
   end
 end
