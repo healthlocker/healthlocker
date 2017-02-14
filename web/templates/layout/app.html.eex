@@ -8,6 +8,7 @@
     <meta name="author" content="">
 
     <title>Hello Healthlocker!</title>
+    <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
     <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
@@ -17,9 +18,12 @@
   <body class="w-100 sans-serif bg-white">
     <main>
       <header class="bg-blue fixed w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
-        <nav class="f6 fw6 tracked">
+        <nav class="f4 fw6 tracked">
+          <a class="link dim white dib mr3 fl" href="#" title="Nav">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </a>
           <a class="link dim white dib mr3" href="#" title="Home">
-            <h1>Healthlocker</h1>
+            Healthlocker
           </a>
         </nav>
       </header>
