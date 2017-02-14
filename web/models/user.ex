@@ -12,6 +12,7 @@ defmodule Healthlocker.User do
     field :security_answer, :string
     field :data_access, :boolean
     field :role, :string
+    many_to_many :likes, Healthlocker.Post, join_through: "posts_likes"
 
     timestamps()
   end
