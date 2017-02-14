@@ -27,6 +27,7 @@
           </a>
         </nav>
       </header>
+
       <section class="pa3 pa5-ns bt b--black-10 black-70 bg-white">
         <%= render @view_module, @view_template, assigns %>
       </section>
