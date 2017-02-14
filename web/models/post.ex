@@ -3,6 +3,7 @@ defmodule Healthlocker.Post do
 
   schema "posts" do
     field :content, :string
+    many_to_many :likes, Healthlocker.User, join_through: "posts_likes" 
 
     timestamps()
   end
