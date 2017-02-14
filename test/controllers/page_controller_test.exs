@@ -3,7 +3,7 @@ defmodule Healthlocker.PageControllerTest do
   import Healthlocker.Fixtures
 
   test "GET /", %{conn: conn} do
-    post  = fixture(:post)
+    fixture(:post)
     conn = get conn, "/"
     assert html_response(conn, 200) =~ "Home"
   end

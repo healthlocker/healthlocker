@@ -7,6 +7,11 @@ defmodule Healthlocker.User do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+    field :name, :string
+    field :security_question, :string
+    field :security_answer, :string
+    field :data_access, :boolean
+    field :role, :string
     has_many :posts, Healthlocker.Post
 
     timestamps()
@@ -15,17 +20,32 @@ defmodule Healthlocker.User do
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
-  def changeset(struct, params \\ :empty) do
+  def changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email])
-    |> validate_required([:email])
+    |> cast(params, [:email, :name])
+    |> validate_format(:email, ~r/@/)
+    |> validate_required(:email)
+  end
+
+  def security_question(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:security_question, :security_answer])
+    |> validate_required([:security_question, :security_answer])
+  end
+
+  def data_access(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:data_access])
+    |> validate_acceptance(:terms_conditions)
+    |> validate_acceptance(:privacy)
   end
 
   def registration_changeset(model, params) do
     model
-    |> changeset(params)
+    |> security_question(params)
     |> cast(params, [:password])
     |> validate_length(:password, min: 6, max: 100)
+    |> validate_confirmation(:password, message: "Passwords do not match")
     |> put_pass_hash()
   end
 

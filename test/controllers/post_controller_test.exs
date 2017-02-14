@@ -6,11 +6,11 @@ defmodule Healthlocker.PostControllerTest do
   @valid_attrs %{content: "some content #story"}
   @invalid_attrs %{}
 
-  setup do
-    user = insert_user()
-    conn = assign(build_conn(), :current_user, user)
-    {:ok, conn: conn, user: user}
-  end
+  # setup do
+  #   user = insert_user()
+  #   conn = assign(build_conn(), :current_user, user)
+  #   {:ok, conn: conn, user: user}
+  # end
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, post_path(conn, :index)

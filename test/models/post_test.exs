@@ -53,7 +53,7 @@ defmodule Healthlocker.PostTest do
   end
 
   test "find_tags returns tips with the correct tag type" do
-    post = fixture(:post)
+    fixture(:post)
     tip = Post |> Post.find_tags(%{"tag" => "connect"}) |> Repo.all |> List.first
     assert String.contains? tip.content, "#connect"
   end
