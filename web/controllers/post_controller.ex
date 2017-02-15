@@ -34,6 +34,19 @@ plug :authenticate when action in [:new, :create]
     render(conn, "index.html", posts: posts)
   end
 
+  def likes(conn, %{"id" => id}) do
+    user = conn.assigns.current_user
+    post = Repo.get!(Post, id)
+    post
+    |> Repo.preload(:likes)
+    |> Ecto.Changeset.change()
+    |> Ecto.Changeset.put_assoc(:likes, [user])
+    |> Repo.update
+
+    posts = Post |> Post.find_stories |> Repo.all
+    conn |> redirect(to: post_path(conn, :index, posts))
+  end
+
   defp authenticate(conn, _opts) do
     if conn.assigns.current_user do
       conn
