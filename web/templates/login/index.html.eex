@@ -1,26 +1,22 @@
 <section class="mw7 center">
   <%= form_for @conn, login_path(@conn, :create), [as: :login, class: "mw6 bg-white br2 br--bottom shadow-1--bottom pa3 mv3 ba b--black-10 center"], fn f -> %>
     <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
-      <legend class="f4 fw6 ph0 mh0">Sign In</legend>
-
-      <div class="mt3">
-        <%= label f, :email, class: "db fw6 lh-copy f6" %>
-        <%= text_input f, :email, class: "pa2 input-reset ba bg-transparent w-100" %>
+      <div>
+        <%= text_input f, :email, placeholder: "Email", class: "pa3 input-reset ba b--black-40 w-100" %>
       </div>
 
       <div class="mt3">
-        <%= label f, :password, class: "db fw6 lh-copy f6" %>
-        <%= text_input f, :password, class: "pa2 input-reset ba bg-transparent w-100", type: :password %>
+        <%= text_input f, :password, placeholder: "Password", class: "pa3 input-reset ba b--black-40 w-100", type: :password %>
       </div>
     </fieldset>
 
     <div>
-      <%= submit "Sign in", class: "b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" %>
+      <%= submit "Sign in", class: "fw1 ph3 pv3 input-reset white bg-pink b--none br1 pointer f5 w-100" %>
     </div>
 
     <div class="lh-copy mt3">
-      <a href="#0" class="f6 link dim black db">Sign up</a>
-      <a href="#0" class="f6 link dim black db">Forgot your password?</a>
+      <a href="#0" class="f6 link dim black-60 db">Sign up</a>
+      <a href="#0" class="f6 link dim black-60 db">Forgot your password?</a>
     </div>
   <% end %>
 </section>
