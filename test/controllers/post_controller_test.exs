@@ -27,7 +27,8 @@ defmodule Healthlocker.PostControllerTest do
     fixture(:post)
     post = Repo.get_by!(Post, content: "Another #tip #beactive")
     conn = post conn, "/posts/#{post.id}/likes"
-    assert html_response(conn, 302)
+    flash = get_flash(conn, :info)
+    assert flash = "Post liked!"
   end
 
   # test "renders form for new resources", %{conn: conn, user: user} do
