@@ -13,10 +13,9 @@
         <h1 class="f6 f5-ns fw6 lh-title black mv0">Tony Daly</h1>
         <h2 class="f6 fw4 mt0 mb0 black-60">Healthlocker</h2>
       </div>
-      <div class="dtc v-mid">
-        <form class="w-100 tr">
-          <button class="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60" type="submit">+ Follow</button>
-        </form>
+      <div class="dtc v-mid tr">
+        <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-sky-blue" href="#0">#Tip</a>
+        <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-pink" href="#0">#Coping</a>
       </div>
     </footer>
 
