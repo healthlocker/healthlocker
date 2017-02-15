@@ -16,19 +16,19 @@
   </head>
 
   <body class="w-100 sans-serif bg-white">
-    <main>
-      <header class="bg-blue w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
-        <nav class="f4 fw6 tracked">
-          <a class="link dim white dib mr3 fl" href="#" title="Nav">
-            <i class="fa fa-bars" aria-hidden="true"></i>
-          </a>
-          <a class="link dim white dib mr3" href="#" title="Home">
-            Healthlocker
-          </a>
-        </nav>
-      </header>
+    <header class="bg-fly-high w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
+      <nav class="f4 fw6 tracked">
+        <a class="link dim white dib mr3 fl" href="#" title="Nav">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </a>
+        <a class="link dim white dib mr3" href="#" title="Home">
+          Healthlocker
+        </a>
+      </nav>
+    </header>
 
-      <section class="pa3 pa5-ns bt b--black-10 black-70 bg-white">
+    <main>
+      <section class="pa3 pa5-ns bt b--black-10 black-70 bg-near-white">
         <%= render @view_module, @view_template, assigns %>
       </section>
     </main>
