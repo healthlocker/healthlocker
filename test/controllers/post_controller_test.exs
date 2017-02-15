@@ -29,6 +29,7 @@ defmodule Healthlocker.PostControllerTest do
     conn = post conn, "/posts/#{post.id}/likes"
     flash = get_flash(conn, :info)
     assert flash = "Post liked!"
+    assert html_response(conn, 302)
   end
 
   # test "renders form for new resources", %{conn: conn, user: user} do

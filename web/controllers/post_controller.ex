@@ -44,7 +44,10 @@ plug :authenticate when action in [:new, :create]
     |> Repo.update
 
     posts = Post |> Post.find_stories |> Repo.all
-    conn |> put_flash(:info, "Post liked!")
+    conn
+    |> put_flash(:info, "Post liked!")
+    |> redirect(to: post_path(conn, :index, posts))
+
   end
 
   defp authenticate(conn, _opts) do
