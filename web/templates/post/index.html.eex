@@ -5,9 +5,20 @@
       <%= markdown String.slice(post.content, 0, 325) <> "..." %>
     </p>
     <a href="/posts/<%= post.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
-    <%= link "Like", class: "pa3 f1 blue db hover-faded-blue",
-                    to: post_path(@conn, :likes, post.id),
-                    method: "post" %>
+    <%= if @current_user do %>
+      <%= link "Like", class: "pa3 f3 blue db hover-faded-blue",
+                        to: post_path(@conn, :likes, post.id),
+                        method: "post" %>
+    <%= else %>
+      <p class="mt3">
+        <%= link "Log in", class: "f3 blue hover-faded-blue",
+        to: login_path(@conn, :index) %>
+        or
+        <%= link "Sign up", class: "f3 blue hover-faded-blue",
+        to: user_path(@conn, :new) %>
+        to like this!
+      </p>
+    <%= end %>
   </div>
 </article>
 <% end %>
