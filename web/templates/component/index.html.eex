@@ -1,8 +1,103 @@
-<h1>Components</h1>
 
-<section>
-  <h1>Buttons</h1>
+<section class="mw7 center">
+  <article class="mw6 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+    <h1 class="f4">Talking about anxiety</h1>
+    <p class="lh-copy measure measure-wide-ns center f6 black-70">
+      Reducing stigma comes from the frontline, from education and most of all from being brave enough to admit when you’re not feeling well. In short, it’s about talking. But a lot of people still don’t feel able to talk about their mental health, so it’s up to all of us …
+    </p>
+    <footer class="dt w-100">
+      <div class="dtc w2 w3-ns v-mid">
+        <img src="http://i.pravatar.cc/128?img=54" class="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"/>
+      </div>
+      <div class="dtc v-mid pl3">
+        <h1 class="f6 f5-ns fw6 lh-title black mv0">Tony Daly</h1>
+        <h2 class="f6 fw4 mt0 mb0 black-60">Healthlocker</h2>
+      </div>
+      <div class="dtc v-mid">
+        <form class="w-100 tr">
+          <button class="f6 button-reset bg-white ba b--black-10 dim pointer pv1 black-60" type="submit">+ Follow</button>
+        </form>
+      </div>
+    </footer>
 
-  <a href="#" class="pa2 bg-red white br1 link w2 tc ml2" >Next</a>
-  <a href="#" class="small f4-ns mbs paxs pas-ns border border--red red">Next</a>
+  </article>
+  <article class="ba b--black-10 bg-white br2 br--bottom shadow-bottom mb4">
+    <a class="db pv4 ph3 ph0-l no-underline black" href="#0">
+      <div class="flex flex-column flex-row-ns">
+        <div class="w-100 w-60-ns pl3-ns">
+          <h1 class="f3 fw1 baskerville mt0 lh-title">Tech Giant Invests Huge Money to Build a Computer Out of Science Fiction</h1>
+          <p class="f6 f5-l lh-copy">
+            The tech giant says it is ready to begin planning a quantum
+            computer, a powerful cpu machine that relies on subatomic particles instead7
+            of transistors.
+          </p>
+          <p class="f6 lh-copy mv0">By Robin Darnell</p>
+        </div>
+      </div>
+    </a>
+  </article>
+  <article class="ba b--black-10 bg-white br2 br--bottom shadow-bottom mb4">
+    <div class="db pv4 ph3 ph0-l no-underline black">
+      <div class="flex flex-column flex-row-ns">
+        <div class="w-100 pl3-ns">
+          <h1 class="f3 fw1 baskerville mt0 lh-title">Warehouse Prices Are Fast on the Rise</h1>
+          <p class="f6 f5-l lh-copy">
+            A warehouse is a commercial building for storage of goods.
+            Warehouses are used by manufacturers, importers, exporters,
+            wholesalers, transport businesses, customs, etc. They are
+            usually large plain buildings in industrial areas of cities,
+            towns and villages.
+          </p>
+
+          <div class="mw9 center ph3-ns">
+            <div class="cf ph2-ns">
+              <div class="fl w-100 w-third-ns pa2">
+                <div>
+                  <img
+                      src="http://tachyons.io/img/logo.jpg"
+                      class="br4 h3 w3 dib" alt="avatar">
+                </div>
+              </div>
+              <div class="fl w-100 w-third-ns pa2">
+                <span class="f6 db black-70">Tony Daly</span>
+                <span class="f6 db black-70">Healthlocker</span>
+              </div>
+              <div class="fl w-100 w-third-ns pa2">
+                <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-dark-blue" href="#">#CoolBeans</a>
+                <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-dark-green"href="#">#Coping</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-100 db">
+            <!-- <div class="fl w-20 pa2pa4 tc">
+              <img
+                  src="http://tachyons.io/img/logo.jpg"
+                  class="br4 h3 w3 dib" alt="avatar">
+            </div> -->
+            <!-- <div class="fl w-50 pa2">
+
+            </div> -->
+            <!-- <div class="fl w-30 ph2">
+              <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-dark-blue" href="#">#CoolBeans</a>
+              <a class="f6 link dim br-pill ph3 pv2 mb2 dib white bg-dark-green"href="#">#Coping</a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+  <article class="bt bb b--black-10">
+    <h1>Coping Strategy</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <footer>
+      <div class="avatar">
+
+      </div>
+      <div class="social-stuff">
+
+      </div>
+    </footer>
+  </article>
 </section>
