@@ -11,6 +11,9 @@
                 String.contains?(post.content, "#takenotice") -> "takenotice"
                 true -> "no tag found"
               end%>">See more "<%= tag %>" tips</a>
+    <%= link "Like", class: "pa3 f1 blue db hover-faded-blue",
+                        to: post_path(@conn, :likes, post.id),
+                        method: "post" %>
   </div>
 </article>
 <% end %>

@@ -6,6 +6,9 @@
           <%= markdown String.slice(@story.content, 0, 325) <> "..." %>
         </p>
         <a href="/posts/<%= @story.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
+        <%= link "Like", class: "pa3 f1 blue db hover-faded-blue",
+                          to: post_path(@conn, :likes, @story.id),
+                          method: "post" %>
       <%= else %>
         <p class="pv2 ph2 f5 f4-l lh-copy">No stories found</p>
       <%= end %>
@@ -25,6 +28,9 @@
         String.contains?(@tip.content, "#takenotice") -> "takenotice"
         true -> "no tag found"
       end %>">See more "<%= tag %>" tips</a>
+      <%= link "Like", class: "pa3 f1 blue db hover-faded-blue",
+                          to: post_path(@conn, :likes, @tip.id),
+                          method: "post" %>
     <%= else %>
       <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy">No tips found</p>
     <%= end %>

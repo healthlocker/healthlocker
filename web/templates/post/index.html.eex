@@ -5,6 +5,9 @@
       <%= markdown String.slice(post.content, 0, 325) <> "..." %>
     </p>
     <a href="/posts/<%= post.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
+    <%= link "Like", class: "pa3 f1 blue db hover-faded-blue",
+                    to: post_path(@conn, :likes, post.id),
+                    method: "post" %>
   </div>
 </article>
 <% end %>
