@@ -46,12 +46,16 @@ plug :authenticate when action in [:new, :create]
   end
 
   def find_redirect_path(conn) do
-    previous_path = conn
-                    |> get_req_header("referer")
-                    |> List.first
-                    |> String.split("/")
-                    |> List.last
-    conn |> redirect(to: ("/" <> previous_path))
+    if conn |> get_req_header("referer") |> List.first do
+      previous_path = conn
+                      |> get_req_header("referer")
+                      |> List.first
+                      |> String.split("/")
+                      |> List.last
+      conn |> redirect(to: ("/" <> previous_path))
+    else
+      conn |> redirect(to: "/")
+    end
   end
 
   defp authenticate(conn, _opts) do
