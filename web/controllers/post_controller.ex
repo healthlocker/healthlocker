@@ -6,7 +6,7 @@ plug :authenticate when action in [:new, :create]
   alias Healthlocker.Post
 
   def show(conn, %{"id" => id}) do
-    post = Repo.get!(Post, id)
+    post = Repo.get!(Post, id) |> Repo.preload(:likes)
     render conn, "show.html", post: post
   end
 
