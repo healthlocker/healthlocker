@@ -1,6 +1,8 @@
 defmodule Healthlocker.CopingStrategyController do
   use Healthlocker.ConnCase
 
+  alias Healthlocker.Post
+
   @valid_attrs %{content: "some content"}
 
   test "renders form for new name and email", %{conn: conn} do
