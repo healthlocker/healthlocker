@@ -42,12 +42,16 @@ plug :authenticate when action in [:new, :create]
     |> Ecto.Changeset.change()
     |> Ecto.Changeset.put_assoc(:likes, [user])
     |> Repo.update
+    find_redirect_path(conn)
+  end
 
-    posts = Post |> Post.find_stories |> Repo.all
-    conn
-    |> put_flash(:info, "Post liked!")
-    |> redirect(to: post_path(conn, :index, posts))
-
+  def find_redirect_path(conn) do
+    previous_path = conn
+                    |> get_req_header("referer")
+                    |> List.first
+                    |> String.split("/")
+                    |> List.last
+    conn |> redirect(to: ("/" <> previous_path))
   end
 
   defp authenticate(conn, _opts) do
