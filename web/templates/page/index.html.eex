@@ -36,7 +36,7 @@
   <div class="pa3 bg-near-white b--black-10">
     <%= if @tip do %>
       <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= markdown @tip.content %></p>
-      <a href="/tips/?tag=<%= tag = cond do
+      <a href="/tips?tag=<%= tag = cond do
         String.contains?(@tip.content, "#connect") -> "connect"
         String.contains?(@tip.content, "#keeplearning") -> "keeplearning"
         String.contains?(@tip.content, "#givetoothers") -> "givetoothers"
