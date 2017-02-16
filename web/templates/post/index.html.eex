@@ -6,9 +6,14 @@
     </p>
     <a href="/posts/<%= post.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
     <%= if @current_user do %>
-      <%= link "Like", class: "pa3 f3 blue db hover-faded-blue",
+      <%= user_likes = @current_user.likes |> Enum.map(fn(p) -> p.id end) %>
+      <%= if Enum.member?(user_likes, post.id) do %>
+        <p class="pa3 f3 red db">Liked!</p>
+      <%= else %>
+        <%= link "Like", class: "pa3 f3 blue db hover-faded-blue",
                         to: post_path(@conn, :likes, post.id),
                         method: "post" %>
+      <%= end %>
     <%= else %>
       <p class="mt3">
         <%= link "Log in", class: "f3 blue hover-faded-blue",
