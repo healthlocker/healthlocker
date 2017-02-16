@@ -1,0 +1,9 @@
+<%= form_for @changeset, coping_strategy_path(@conn, :create), fn f -> %>
+  <div class="center mh2 mt2 mh5-m mh7-l">
+    <h3 class="tc pv2 mh3 black-70">Add new</h3>
+    <div class="mh4">
+      <%= textarea f, :content, placeholder: "Content", class: "w-100 h4 mb2 b--light-blue f4 pa2" %>
+      <%= submit "Add new", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+    </div>
+  </div>
+<% end %>
