@@ -15,6 +15,11 @@ defmodule Healthlocker.CopingStrategyController do
     render conn, "new.html", changeset: changeset
   end
 
+  def show(conn, %{"id" => id}) do
+    coping_strategy = Repo.get!(Post, id)
+    render conn, "show.html", coping_strategy: coping_strategy
+  end
+
   def create(conn, %{"post" => coping_strategy_params}) do
     content = %{"content" => coping_strategy_params["content"] <> " #CopingStrategy"}
     user_id = get_session(conn, :user_id)
