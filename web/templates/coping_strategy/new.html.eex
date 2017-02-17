@@ -1,3 +1,6 @@
+<p>Note down an action you can take to stay well.
+Something can you do, or avoid doing when you notice a change in your feelings, thoughts or behaviour.
+For example, practice relaxation techniques, leave the room if things are too tense, take a break or tell someone you trust.</p>
 <%= form_for @changeset, coping_strategy_path(@conn, :create), fn f -> %>
   <div class="center mh2 mt2 mh5-m mh7-l">
     <h3 class="tc pv2 mh3 black-70">Add new</h3>
