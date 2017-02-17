@@ -1,1 +1,14 @@
 <h1>Toolkit</h1>
+<div class="goals-container">
+
+</div>
+
+<div class="strategies-container ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+  <h3 class="di pa3 ma3 mv2">Coping Strategies</h3>
+  <%= link "Add new", to: coping_strategy_path(@conn, :new), class: "di fr"%>
+  <%= for coping_strategy <- @coping_strategies do %>
+    <p class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy">
+      <%= String.trim_trailing(coping_strategy.content, " #CopingStrategy")%>
+    </p>
+  <%= end %>
+</div>
