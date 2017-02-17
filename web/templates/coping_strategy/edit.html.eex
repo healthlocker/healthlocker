@@ -1,0 +1,4 @@
+<h2>Edit coping strategy</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: coping_strategy_path(@conn, :update, @coping_strategy) %>
