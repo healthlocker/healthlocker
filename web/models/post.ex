@@ -40,4 +40,10 @@ defmodule Healthlocker.Post do
     from p in query,
     where: ilike(p.content, "%#story%")
   end
+
+  def get_coping_strategies(query) do
+    from p in query,
+    limit: 3,
+    where: like(p.content, "%#CopingStrategy")
+  end
 end
