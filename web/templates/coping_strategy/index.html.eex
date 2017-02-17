@@ -1,4 +1,4 @@
-<h1>Coping strategies</h1>
+<h3>Coping strategies</h3>
 <%= for coping_strategy <- @coping_strategies do %>
   <p class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy">
     <%= markdown String.trim_trailing(coping_strategy.content, " #CopingStrategy") %>
