@@ -1,0 +1,1 @@
+<%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
