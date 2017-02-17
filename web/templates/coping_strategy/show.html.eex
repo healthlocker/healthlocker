@@ -1,1 +1,2 @@
 <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
+<%= link "Edit", to: coping_strategy_path(@conn, :edit, @coping_strategy) %>
