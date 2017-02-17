@@ -28,7 +28,6 @@ defmodule Healthlocker.CopingStrategyController do
 
     case Repo.insert(changeset) do
       {:ok, _post} ->
-        posts = Repo.all(Post)
         conn
         |> put_flash(:info, "Coping strategy added!")
         |> redirect(to: toolkit_path(conn, :index))
@@ -58,5 +57,15 @@ defmodule Healthlocker.CopingStrategyController do
       {:error, changeset} ->
         render(conn, "edit.html", coping_strategy: coping_strategy, changeset: changeset)
     end
+  end
+
+  def delete(conn, %{"id" => id}) do
+    coping_strategy = Repo.get!(Post, id)
+
+    Repo.delete!(coping_strategy)
+
+    conn
+    |> put_flash(:info, "Coping strategy deleted successfully.")
+    |> redirect(to: coping_strategy_path(conn, :index))
   end
 end
