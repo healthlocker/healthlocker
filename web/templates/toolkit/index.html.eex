@@ -11,4 +11,5 @@
       <%= String.trim_trailing(coping_strategy.content, " #CopingStrategy")%>
     </p>
   <%= end %>
+  <%= link "See more", to: coping_strategy_path(@conn, :index), class: "fr" %>
 </div>
