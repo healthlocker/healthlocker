@@ -10,6 +10,12 @@ defmodule Healthlocker.CopingStrategyController do
     assert html_response(conn, 200) =~ "Coping strategies"
   end
 
+  test "renders page not found when coping strategy id is nonexistent", %{conn: conn} do
+    assert_error_sent 404, fn ->
+      get conn, coping_strategy_path(conn, :show, -1)
+    end
+  end
+
   test "renders form for new name and email", %{conn: conn} do
     conn = get conn, coping_strategy_path(conn, :new)
     assert html_response(conn, 200) =~ "Add new"
