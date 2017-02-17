@@ -19,7 +19,7 @@ defmodule Healthlocker.CopingStrategyController do
         posts = Repo.all(Post)
         conn
         |> put_flash(:info, "Coping strategy added!")
-        |> redirect(to: coping_strategy_path(conn, :index))
+        |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
