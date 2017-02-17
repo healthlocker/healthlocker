@@ -7,6 +7,7 @@ defmodule Healthlocker.ToolkitController do
     coping_strategies = Post
                         |> Post.get_coping_strategies
                         |> Repo.all
+                        |> Enum.take(-3)
     render conn, "index.html", coping_strategies: coping_strategies
   end
 end
