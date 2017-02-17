@@ -3,6 +3,13 @@ defmodule Healthlocker.CopingStrategyController do
 
   alias Healthlocker.Post
 
+  def index(conn, _params) do
+    coping_strategies = Post
+                        |> Post.get_coping_strategies
+                        |> Repo.all
+    render conn, "index.html", coping_strategies: coping_strategies
+  end
+
   def new(conn, _params) do
     changeset =  Post.changeset(%Post{})
     render conn, "new.html", changeset: changeset
