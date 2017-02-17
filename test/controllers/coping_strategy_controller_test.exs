@@ -1,4 +1,4 @@
-defmodule Healthlocker.CopingStrategyController do
+defmodule Healthlocker.CopingStrategyControllerTest do
   use Healthlocker.ConnCase
 
   alias Healthlocker.Post
@@ -31,7 +31,7 @@ defmodule Healthlocker.CopingStrategyController do
   test "creates coping strategy and redirects when data is valid", %{conn: conn} do
     conn = post conn, coping_strategy_path(conn, :create), post: @valid_attrs
     assert redirected_to(conn) == coping_strategy_path(conn, :index)
-    assert Repo.get_by(Post, @valid_attrs)
+    assert Repo.get_by(Post, content: "some content #CopingStrategy")
   end
 
   test "does not create coping strategy and renders errors when data is invalid", %{conn: conn} do
@@ -60,6 +60,6 @@ defmodule Healthlocker.CopingStrategyController do
   test "delete chosen coping strategy", %{conn: conn} do
     coping_strategy = Repo.insert! %Post{content: "some content"}
     conn = delete conn, coping_strategy_path(conn, :delete, coping_strategy)
-    assert redirected_to(conn) == coping_strategy_path(conn, :show, coping_strategy)
+    assert redirected_to(conn) == coping_strategy_path(conn, :index, coping_strategy)
   end
 end
