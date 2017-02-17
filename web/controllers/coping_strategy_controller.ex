@@ -12,7 +12,7 @@ defmodule Healthlocker.CopingStrategyController do
 
   def new(conn, _params) do
     changeset =  Post.changeset(%Post{})
-    render conn, "new.html", changeset: changeset
+    render(conn, "new.html", changeset: changeset)
   end
 
   def show(conn, %{"id" => id}) do
@@ -34,6 +34,29 @@ defmodule Healthlocker.CopingStrategyController do
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
+    end
+  end
+
+  def edit(conn, %{"id" => id}) do
+    coping_strategy = Repo.get!(Post, id)
+                      |> Map.update!(:content, &(String.trim_trailing(&1, " #CopingStrategy")))
+
+    changeset = Post.changeset(coping_strategy)
+    render(conn, "edit.html", coping_strategy: coping_strategy, changeset: changeset)
+  end
+
+  def update(conn, %{"id" => id, "post" => coping_strategy_params}) do
+    coping_strategy = Repo.get!(Post, id)
+    content = %{"content" => coping_strategy_params["content"] <> " #CopingStrategy"}
+    changeset = Post.changeset(coping_strategy, content)
+
+    case Repo.update(changeset) do
+      {:ok, coping_strategy} ->
+        conn
+        |> put_flash(:info, "Coping strategy updated successfully.")
+        |> redirect(to: coping_strategy_path(conn, :show, coping_strategy))
+      {:error, changeset} ->
+        render(conn, "edit.html", coping_strategy: coping_strategy, changeset: changeset)
     end
   end
 end
