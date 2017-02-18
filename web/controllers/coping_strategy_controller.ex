@@ -21,7 +21,7 @@ defmodule Healthlocker.CopingStrategyController do
   end
 
   def create(conn, %{"post" => coping_strategy_params}) do
-    content = %{"content" => coping_strategy_params["content"] <> " #CopingStrategy"}
+    content = get_content(coping_strategy_params)
     user_id = get_session(conn, :user_id)
     changeset = Post.changeset(%Post{}, content)
     changeset = Ecto.Changeset.put_change(changeset, :user_id, user_id)
@@ -39,14 +39,13 @@ defmodule Healthlocker.CopingStrategyController do
   def edit(conn, %{"id" => id}) do
     coping_strategy = Repo.get!(Post, id)
                       |> Map.update!(:content, &(String.trim_trailing(&1, " #CopingStrategy")))
-
     changeset = Post.changeset(coping_strategy)
     render(conn, "edit.html", coping_strategy: coping_strategy, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "post" => coping_strategy_params}) do
     coping_strategy = Repo.get!(Post, id)
-    content = %{"content" => coping_strategy_params["content"] <> " #CopingStrategy"}
+    content = get_content(coping_strategy_params)
     changeset = Post.changeset(coping_strategy, content)
 
     case Repo.update(changeset) do
@@ -67,5 +66,13 @@ defmodule Healthlocker.CopingStrategyController do
     conn
     |> put_flash(:info, "Coping strategy deleted successfully.")
     |> redirect(to: coping_strategy_path(conn, :index))
+  end
+
+  def get_content(params) do
+    if Map.has_key?(params, "content") && params["content"] != "" do
+      %{"content" => params["content"] <> " #CopingStrategy"}
+    else
+      params
+    end
   end
 end
