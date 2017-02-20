@@ -32,3 +32,4 @@ story preview
 * Three-step sign up process
 * Login
 * Users can only post content when logged in
+* Users can create, view, update and delete coping strategies they have made
