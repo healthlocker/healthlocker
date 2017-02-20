@@ -1,7 +1,7 @@
 defmodule Healthlocker.PostController do
   use Healthlocker.Web, :controller
 
-plug :authenticate when action in [:new, :create]
+  plug :authenticate when action in [:new, :create]
 
   alias Healthlocker.Post
 
@@ -16,7 +16,9 @@ plug :authenticate when action in [:new, :create]
   end
 
   def create(conn, %{"post" => post_params}) do
+    user_id = get_session(conn, :user_id)
     changeset = Post.changeset(%Post{}, post_params)
+    changeset = Ecto.Changeset.put_change(changeset, :user_id, user_id)
 
     case Repo.insert(changeset) do
       {:ok, _post} ->
@@ -64,7 +66,7 @@ plug :authenticate when action in [:new, :create]
     else
       conn
       |> put_flash(:error,  "You must be logged in to access that page!")
-      |> redirect(to: page_path(conn, :index))
+      |> redirect(to: login_path(conn, :index))
       |> halt()
     end
   end

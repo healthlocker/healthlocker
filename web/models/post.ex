@@ -3,6 +3,7 @@ defmodule Healthlocker.Post do
 
   schema "posts" do
     field :content, :string
+    belongs_to :user, Healthlocker.User
     many_to_many :likes, Healthlocker.User, join_through: "posts_likes"
 
     timestamps()
@@ -44,5 +45,15 @@ defmodule Healthlocker.Post do
     from p in query,
     where: ilike(p.content, "%#story%"),
     preload: [:likes]
+  end
+
+  def get_coping_strategies(query, user_id) do
+    from p in query,
+    where: like(p.content, "%#CopingStrategy") and p.user_id == ^user_id
+  end
+
+  def get_coping_strategy_by_user(query, id, user_id) do
+    from p in query,
+    where: p.id == ^id and p.user_id == ^user_id
   end
 end

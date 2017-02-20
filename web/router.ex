@@ -28,6 +28,8 @@ defmodule Healthlocker.Router do
     get "/users/:id/signup3", UserController, :signup3
     put "/users/:id/create3", UserController, :create3
     resources "/login", LoginController, only: [:index, :create, :delete]
+    resources "/coping-strategy", CopingStrategyController
+    resources "/toolkit", ToolkitController, only: [:index]
 
   end
 
