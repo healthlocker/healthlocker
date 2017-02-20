@@ -41,19 +41,25 @@ defmodule Healthlocker.CopingStrategyControllerTest do
     end
   end
 
-  test "renders form for new coping strategy", %{conn: conn} do
-    conn = get conn, coping_strategy_path(conn, :new)
+  test "renders form for new coping strategy", %{conn: conn, user: user} do
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> get(coping_strategy_path(conn, :new))
     assert html_response(conn, 200) =~ "Add new"
   end
 
-  test "creates coping strategy and redirects when data is valid", %{conn: conn} do
-    conn = post conn, coping_strategy_path(conn, :create), post: @valid_attrs
+  test "creates coping strategy and redirects when data is valid", %{conn: conn, user: user} do
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> post(coping_strategy_path(conn, :create), post: @valid_attrs)
     assert redirected_to(conn) == coping_strategy_path(conn, :index)
     assert Repo.get_by(Post, content: "some content #CopingStrategy")
   end
 
-  test "does not create coping strategy and renders errors when data is invalid", %{conn: conn} do
-    conn = post conn, coping_strategy_path(conn, :create), post: @invalid_attrs
+  test "does not create coping strategy and renders errors when data is invalid", %{conn: conn, user: user} do
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> post(coping_strategy_path(conn, :create), post: @invalid_attrs)
     assert html_response(conn, 200) =~ "Add new"
   end
 
@@ -65,15 +71,19 @@ defmodule Healthlocker.CopingStrategyControllerTest do
     assert html_response(conn, 200) =~ "Edit coping strategy"
   end
 
-  test "updates coping strategy with valid data", %{conn: conn} do
+  test "updates coping strategy with valid data", %{conn: conn, user: user} do
     coping_strategy = Repo.insert! %Post{content: "some stuff"}
-    conn = put conn, coping_strategy_path(conn, :update, coping_strategy), post: @valid_attrs
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> put(coping_strategy_path(conn, :update, coping_strategy), post: @valid_attrs)
     assert redirected_to(conn) == coping_strategy_path(conn, :show, coping_strategy)
   end
 
-  test "does not update coping strategy when data is invalid", %{conn: conn} do
+  test "does not update coping strategy when data is invalid", %{conn: conn, user: user} do
     coping_strategy = Repo.insert! %Post{content: "some stuff"}
-    conn = put conn, coping_strategy_path(conn, :update, coping_strategy), post: @invalid_attrs
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> put(coping_strategy_path(conn, :update, coping_strategy), post: @invalid_attrs)
     assert html_response(conn, 200) =~ "Edit coping strategy"
   end
 
