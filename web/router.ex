@@ -19,6 +19,7 @@ defmodule Healthlocker.Router do
 
     get "/", PageController, :index
     resources "/posts", PostController, only: [:show, :new, :create, :index]
+    post "/posts/:id/likes", PostController, :likes
     resources "/tips", TipController, only: [:index]
     get "/support", SupportController, :index
     resources "/users", UserController, only: [:index, :new, :create, :update]
