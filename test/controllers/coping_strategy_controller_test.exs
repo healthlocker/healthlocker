@@ -2,12 +2,27 @@ defmodule Healthlocker.CopingStrategyControllerTest do
   use Healthlocker.ConnCase
 
   alias Healthlocker.Post
+  alias Healthlocker.User
+
+  setup do
+    %User{
+      id: 123456,
+      name: "lcp",
+      email: "abc@gmail.com",
+      password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+    } |> Repo.insert
+
+    {:ok, user: Repo.get(User, 123456) }
+  end
 
   @valid_attrs %{content: "some content"}
   @invalid_attrs %{content: ""}
 
-  test "renders index.html on /coping-strategy", %{conn: conn} do
-    conn = get conn, coping_strategy_path(conn, :index)
+  test "renders index.html on /coping-strategy", %{conn: conn, user: user} do
+    conn = conn()
+        |> put_req_header("content-type", "text/html")
+        |> assign(:current_user, user)
+        |> get build_conn, coping_strategy_path(conn, :index)
     assert html_response(conn, 200) =~ "Coping strategies"
   end
 
