@@ -41,8 +41,13 @@ defmodule Healthlocker.Post do
     where: ilike(p.content, "%#story%")
   end
 
-  def get_coping_strategies(query) do
+  def get_coping_strategies(query, user_id) do
     from p in query,
-    where: like(p.content, "%#CopingStrategy")
+    where: like(p.content, "%#CopingStrategy") and p.user_id == ^user_id
+  end
+
+  def get_coping_strategy_by_user(query, id, user_id) do
+    from p in query,
+    where: p.id == ^id and p.user_id == ^user_id
   end
 end
