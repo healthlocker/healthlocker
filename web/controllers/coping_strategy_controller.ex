@@ -4,8 +4,9 @@ defmodule Healthlocker.CopingStrategyController do
   alias Healthlocker.Post
 
   def index(conn, _params) do
+    user_id = conn.assigns.current_user.id
     coping_strategies = Post
-                        |> Post.get_coping_strategies
+                        |> Post.get_coping_strategies(user_id)
                         |> Repo.all
     render conn, "index.html", coping_strategies: coping_strategies
   end
@@ -16,7 +17,10 @@ defmodule Healthlocker.CopingStrategyController do
   end
 
   def show(conn, %{"id" => id}) do
-    coping_strategy = Repo.get!(Post, id)
+    user_id = conn.assigns.current_user.id
+    coping_strategy = Post
+                      |> Post.get_coping_strategy_by_user(id, user_id)
+                      |> Repo.one
     render conn, "show.html", coping_strategy: coping_strategy
   end
 
@@ -37,7 +41,10 @@ defmodule Healthlocker.CopingStrategyController do
   end
 
   def edit(conn, %{"id" => id}) do
-    coping_strategy = Repo.get!(Post, id)
+    user_id = conn.assigns.current_user.id
+    coping_strategy = Post
+                      |> Post.get_coping_strategy_by_user(id, user_id)
+                      |> Repo.one
                       |> Map.update!(:content, &(String.trim_trailing(&1, " #CopingStrategy")))
     changeset = Post.changeset(coping_strategy)
     render(conn, "edit.html", coping_strategy: coping_strategy, changeset: changeset)
@@ -59,7 +66,10 @@ defmodule Healthlocker.CopingStrategyController do
   end
 
   def delete(conn, %{"id" => id}) do
-    coping_strategy = Repo.get!(Post, id)
+    user_id = conn.assigns.current_user.id
+    coping_strategy = Post
+                      |> Post.get_coping_strategy_by_user(id, user_id)
+                      |> Repo.one
 
     Repo.delete!(coping_strategy)
 
