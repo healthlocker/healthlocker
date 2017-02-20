@@ -7,7 +7,7 @@ defmodule Healthlocker.CopingStrategyControllerTest do
   setup do
     %User{
       id: 123456,
-      name: "lcp",
+      name: "MyName",
       email: "abc@gmail.com",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password")
     } |> Repo.insert
@@ -19,22 +19,25 @@ defmodule Healthlocker.CopingStrategyControllerTest do
   @invalid_attrs %{content: ""}
 
   test "renders index.html on /coping-strategy", %{conn: conn, user: user} do
-    conn = conn()
-        |> put_req_header("content-type", "text/html")
+    conn = build_conn()
         |> assign(:current_user, user)
-        |> get build_conn, coping_strategy_path(conn, :index)
+        |> get(coping_strategy_path(conn, :index))
     assert html_response(conn, 200) =~ "Coping strategies"
   end
 
-  test "shows chosen coping strategy", %{conn: conn} do
-    coping_strategy = Repo.insert! %Post{content: "some content"}
-    conn = get conn, coping_strategy_path(conn, :show, coping_strategy)
+  test "shows chosen coping strategy", %{conn: conn, user: user} do
+    coping_strategy = Repo.insert! %Post{content: "some content",  user_id: 123456}
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> get(coping_strategy_path(conn, :show, coping_strategy))
     assert html_response(conn, 200) =~ "Toolkit"
   end
 
-  test "renders page not found when coping strategy id is nonexistent", %{conn: conn} do
+  test "renders page not found when coping strategy id is nonexistent", %{conn: conn, user: user} do
     assert_error_sent 404, fn ->
-      get conn, coping_strategy_path(conn, :show, -1)
+      conn = build_conn()
+          |> assign(:current_user, user)
+          |> get(coping_strategy_path(conn, :show, -1))
     end
   end
 
@@ -54,9 +57,11 @@ defmodule Healthlocker.CopingStrategyControllerTest do
     assert html_response(conn, 200) =~ "Add new"
   end
 
-  test "renders form for editing coping strategy", %{conn: conn} do
-    coping_strategy = Repo.insert %Post{content: "some content #CopingStrategy"}
-    conn = get conn, coping_strategy_path(conn, :edit, elem(coping_strategy, 1))
+  test "renders form for editing coping strategy", %{conn: conn, user: user} do
+    coping_strategy = Repo.insert %Post{content: "some content #CopingStrategy", user_id: 123456}
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> get(coping_strategy_path(conn, :edit, elem(coping_strategy, 1)))
     assert html_response(conn, 200) =~ "Edit coping strategy"
   end
 
@@ -72,9 +77,11 @@ defmodule Healthlocker.CopingStrategyControllerTest do
     assert html_response(conn, 200) =~ "Edit coping strategy"
   end
 
-  test "delete chosen coping strategy", %{conn: conn} do
-    coping_strategy = Repo.insert! %Post{content: "some content"}
-    conn = delete conn, coping_strategy_path(conn, :delete, coping_strategy)
+  test "delete chosen coping strategy", %{conn: conn, user: user} do
+    coping_strategy = Repo.insert! %Post{content: "some content", user_id: 123456}
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> delete(coping_strategy_path(conn, :delete, coping_strategy))
     assert redirected_to(conn) == coping_strategy_path(conn, :index)
   end
 end
