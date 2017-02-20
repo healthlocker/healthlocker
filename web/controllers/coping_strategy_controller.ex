@@ -20,7 +20,7 @@ defmodule Healthlocker.CopingStrategyController do
     user_id = conn.assigns.current_user.id
     coping_strategy = Post
                       |> Post.get_coping_strategy_by_user(id, user_id)
-                      |> Repo.one
+                      |> Repo.one!
     render conn, "show.html", coping_strategy: coping_strategy
   end
 
