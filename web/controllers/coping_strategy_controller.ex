@@ -1,6 +1,8 @@
 defmodule Healthlocker.CopingStrategyController do
   use Healthlocker.Web, :controller
 
+  plug :authenticate
+
   alias Healthlocker.Post
 
   def index(conn, _params) do
@@ -83,6 +85,17 @@ defmodule Healthlocker.CopingStrategyController do
       %{"content" => params["content"] <> " #CopingStrategy"}
     else
       params
+    end
+  end
+
+  defp authenticate(conn, _opts) do
+    if conn.assigns.current_user do
+      conn
+    else
+      conn
+      |> put_flash(:error,  "You must be logged in to access that page!")
+      |> redirect(to: login_path(conn, :index))
+      |> halt()
     end
   end
 end
