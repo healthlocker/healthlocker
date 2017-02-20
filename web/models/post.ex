@@ -4,6 +4,7 @@ defmodule Healthlocker.Post do
   schema "posts" do
     field :content, :string
     belongs_to :user, Healthlocker.User
+    many_to_many :likes, Healthlocker.User, join_through: "posts_likes"
 
     timestamps()
   end
@@ -17,28 +18,33 @@ defmodule Healthlocker.Post do
   def find_single_story(query) do
     from p in query,
       limit: 1,
-      where: ilike(p.content, "%#story%")
+      where: ilike(p.content, "%#story%"),
+      preload: [:likes]
   end
 
   def find_single_tip(query) do
     from p in query,
       limit: 1,
-      where: ilike(p.content, "%#tip%")
+      where: ilike(p.content, "%#tip%"),
+      preload: [:likes]
   end
 
   def find_tags(query, params) do
     from p in query,
-    where: ilike(p.content, ^"%##{params["tag"]}%")
+    where: ilike(p.content, ^"%##{params["tag"]}%"),
+    preload: [:likes]
   end
 
   def find_tips(query) do
     from p in query,
-    where: ilike(p.content, "%#tip%")
+    where: ilike(p.content, "%#tip%"),
+    preload: [:likes]
   end
 
   def find_stories(query) do
     from p in query,
-    where: ilike(p.content, "%#story%")
+    where: ilike(p.content, "%#story%"),
+    preload: [:likes]
   end
 
   def get_coping_strategies(query, user_id) do
