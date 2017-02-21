@@ -1,4 +1,4 @@
-<h2>Edit goal</h2>
+<h3 class="tc pv2 mh3 black-70">Edit goal</h3>
 
 <%= render "form.html", changeset: @changeset,
                         action: goal_path(@conn, :update, @goal) %>
