@@ -1,6 +1,6 @@
 <h3>Toolkit</h3>
 <div class="">
-  <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
+  <b><%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %></b>
   <%= link "Edit", to: coping_strategy_path(@conn, :edit, @coping_strategy) %>
 </div>
 <p>Created <%= @coping_strategy.inserted_at %></p>
