@@ -21,17 +21,16 @@
         <a class="pa3 f1 white-80 db hover-white" href="/">Home</a>
         <a class="pa3 f1 white-80 db hover-white" href="#">About</a>
         <%= if @current_user do %>
+          <%= link "Toolkit",  class: "pa3 f1 white-80 db hover-white",
+                               to: toolkit_path(@conn, :index) %>
           <%= link "Log out", class: "pa3 f1 white-80 db hover-white",
                               to: login_path(@conn, :delete, @current_user),
                               method: "delete" %>
         <%= else %>
-          <div class="di pa3 mb5">
-            <%= link "Sign up", class: "f1 white-80 di hover-white",
-                to: user_path(@conn, :new) %>
-                <p class="f1 di white-80">/</p>
-            <%= link "Log in", class: "f1 white-80 di hover-white",
-                to: login_path(@conn, :index) %>
-          </div>
+          <%= link "Sign up", class: "pa3 f1 white-80 db hover-white",
+              to: user_path(@conn, :new) %>
+          <%= link "Log in", class: "pa3 f1 white-80 db hover-white",
+              to: login_path(@conn, :index) %>
         <%= end %>
         <a class="mt3 mh6 bg-light-red pv2 f1 white-80 db hover-white" href="/support">Get support</a>
       </nav>

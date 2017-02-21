@@ -4,10 +4,10 @@
 <%= end %>
 <%= for coping_strategy <- @coping_strategies do %>
 <a href="/coping-strategy/<%= coping_strategy.id %>">
-  <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l bg-light-silver">
-    <p class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy">
+  <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l bg-light-silver black">
+    <h4 class="pv2 ph2 ph3-m ph4-l lh-copy">
       <%= markdown String.trim_trailing(coping_strategy.content, " #CopingStrategy") %>
-    </p>
+    </h4>
   </div>
 </a>
 <% end %>
