@@ -21,6 +21,8 @@
         <a class="pa3 f1 white-80 db hover-white" href="/">Home</a>
         <a class="pa3 f1 white-80 db hover-white" href="#">About</a>
         <%= if @current_user do %>
+          <%= link "Toolkit",  class: "pa3 f1 white-80 db hover-white",
+                               to: toolkit_path(@conn, :index) %>
           <%= link "Log out", class: "pa3 f1 white-80 db hover-white",
                               to: login_path(@conn, :delete, @current_user),
                               method: "delete" %>
