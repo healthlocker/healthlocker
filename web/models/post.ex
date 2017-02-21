@@ -56,4 +56,14 @@ defmodule Healthlocker.Post do
     from p in query,
     where: p.id == ^id and p.user_id == ^user_id
   end
+
+  def get_goals(query, user_id) do
+    from p in query,
+    where: like(p.content, "%#Goal") and p.user_id == ^user_id
+  end
+
+  def get_goal_by_user(query, id, user_id) do
+    from p in query,
+    where: p.id == ^id and p.user_id == ^user_id
+  end
 end
