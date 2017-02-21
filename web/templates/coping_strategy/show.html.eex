@@ -1,10 +1,13 @@
-<h3>Toolkit</h3>
-<div class="">
-  <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
-  <%= link "Edit", to: coping_strategy_path(@conn, :edit, @coping_strategy) %>
+<h3 class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">Toolkit</h3>
+<%= link "Add new", to: coping_strategy_path(@conn, :new), class: "fr" %>
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l ">
+  <b class="di">
+    <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
+  </b>
+  <%= link "Edit", to: coping_strategy_path(@conn, :edit, @coping_strategy),
+                   class: "di"%>
+ <p class="mv3">Created <%= @coping_strategy.inserted_at %></p>
+ <%= link "Delete coping strategy",
+ to: coping_strategy_path(@conn, :delete, @coping_strategy),
+ method: "delete"%>
 </div>
-<p>Created <%= @coping_strategy.inserted_at %></p>
-
-<%= link "Delete coping strategy",
-    to: coping_strategy_path(@conn, :delete, @coping_strategy),
-    method: "delete"%>

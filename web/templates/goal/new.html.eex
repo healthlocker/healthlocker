@@ -1,0 +1,4 @@
+<h3 class="tc pv2 mh3 black-70">Add new</h3>
+
+<%= render "form.html", changeset: @changeset,
+                        action: goal_path(@conn, :create) %>

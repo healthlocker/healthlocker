@@ -1,6 +1,4 @@
-<p class="tc">Note down an action you can take to stay well.
-Something can you do, or avoid doing when you notice a change in your feelings, thoughts or behaviour.
-For example, practice relaxation techniques, leave the room if things are too tense, take a break or tell someone you trust.</p>
+<p class="tc"><b>What do you want to achieve? Describe a personal goal.</b></p>
 <%= form_for @changeset, @action, fn f -> %>
   <div class="center mh2 mt2 mh5-m mh7-l">
     <div class="mh4">

@@ -1,0 +1,10 @@
+<h3 class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">Toolkit</h3>
+<%= link "Add new", to: goal_path(@conn, :new), class: "fr" %>
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+  <b class="di"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></b>
+  <%= link "Edit", to: goal_path(@conn, :edit, @goal), class: "di" %>
+  <p class="mv3">Created <%= @goal.inserted_at %></p>
+  <%= link "Delete goal",
+  to: goal_path(@conn, :delete, @goal),
+  method: "delete"%>
+</div>
