@@ -59,13 +59,13 @@ defmodule Healthlocker.UserController do
   def create3(conn, %{"user" => user_params, "id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.data_access(user, user_params)
-    
+
     case Repo.update(changeset) do
       {:ok, user} ->
         conn
         |> Healthlocker.Auth.login(user)
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: user_path(conn, :index))
+        |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render(conn, "signup3.html", changeset: changeset,
                                      action: "/users/#{user.id}/#{:create3}",

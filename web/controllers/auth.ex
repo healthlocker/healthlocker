@@ -11,7 +11,7 @@ defmodule Healthlocker.Auth do
     cond do
       user = conn.assigns[:current_user] ->
         conn
-      user = user_id && repo.get(Healthlocker.User, user_id) ->
+      user = user_id && repo.get(Healthlocker.User, user_id) |> repo.preload(:likes) ->
         assign(conn, :current_user, user)
       true ->
         assign(conn, :current_user, nil)
@@ -27,7 +27,7 @@ defmodule Healthlocker.Auth do
 
   def email_and_pass_login(conn, email, given_pass, opts) do
     repo = Keyword.fetch!(opts, :repo)
-    user = repo.get_by(Healthlocker.User, email: email)
+    user = repo.get_by(Healthlocker.User, email: email) |> repo.preload(:likes)
 
     cond do
       user && checkpw(given_pass, user.password_hash) ->
