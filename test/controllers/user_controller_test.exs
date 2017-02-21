@@ -95,7 +95,7 @@ defmodule Healthlocker.UserControllerTest do
     }
     user = Repo.get_by(User, email: "me@example.com")
     conn = put conn, "/users/#{user.id}/#{:create3}", user: @step3_attrs
-    assert redirected_to(conn) == user_path(conn, :index)
+    assert redirected_to(conn) == toolkit_path(conn, :index)
   end
 
   test "does not update resource with data_access and renders errors when data is invalid", %{conn: conn} do
