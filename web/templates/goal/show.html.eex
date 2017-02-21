@@ -1,0 +1,10 @@
+<h3>Toolkit</h3>
+<div class="">
+  <b><%= markdown String.trim_trailing(@goal.content, " #Goal") %></b>
+  <%= link "Edit", to: goal_path(@conn, :edit, @goal) %>
+</div>
+<p>Created <%= @goal.inserted_at %></p>
+
+<%= link "Delete coping strategy",
+    to: goal_path(@conn, :delete, @goal),
+    method: "delete"%>

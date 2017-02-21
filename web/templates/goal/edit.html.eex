@@ -1,0 +1,4 @@
+<h2>Edit goal</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: goal_path(@conn, :update, @goal) %>
