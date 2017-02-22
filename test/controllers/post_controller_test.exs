@@ -20,21 +20,18 @@ defmodule Healthlocker.PostControllerTest do
     end
 
     test "renders form for new resources", %{conn: conn} do
-      conn = conn
-      |> get(post_path(conn, :new))
+      conn = get conn, post_path(conn, :new)
       assert html_response(conn, 200) =~ "Post a story or tip"
     end
 
     test "creates resource and redirects when data is valid", %{conn: conn} do
-      conn = conn
-      |> post(post_path(conn, :create), post: @valid_attrs)
+      conn = post conn, post_path(conn, :create), post: @valid_attrs
       assert redirected_to(conn) == post_path(conn, :new)
       assert Repo.get_by(Post, @valid_attrs)
     end
 
     test "does not create resource and renders errors when data is invalid", %{conn: conn} do
-      conn = conn
-      |> post(post_path(conn, :create), post: @invalid_attrs)
+      conn = post conn, post_path(conn, :create), post: @invalid_attrs
       assert html_response(conn, 200) =~ "Post a story or tip"
     end
   end
@@ -46,6 +43,11 @@ defmodule Healthlocker.PostControllerTest do
       assert conn.halted
     end
 
+    test "creates resource and redirects when data is valid", %{conn: conn} do
+      conn = post conn, post_path(conn, :create), post: @valid_attrs
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
   end
 
   test "lists all entries on index", %{conn: conn} do
