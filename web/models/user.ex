@@ -29,6 +29,13 @@ defmodule Healthlocker.User do
     |> validate_required(:email)
   end
 
+  def update_changeset(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:email, :name, :phone_number])
+    |> validate_format(:email, ~r/@/)
+    |> validate_required(:email)
+  end
+
   def security_question(struct, params \\ :invalid) do
     struct
     |> cast(params, [:security_question, :security_answer])
