@@ -25,33 +25,54 @@ defmodule Healthlocker.AccountControllerTest do
     end
 
     test "renders index.html on /account", %{conn: conn} do
-      conn = conn
-      |> get(account_path(conn, :index))
+      conn = get conn, account_path(conn, :index)
       assert html_response(conn, 200) =~ "Account"
     end
 
     test "update user with valid data", %{conn: conn} do
-      conn = conn
-      |> put(account_path(conn, :update), user: @valid_attrs)
+      conn = put conn, account_path(conn, :update), user: @valid_attrs
       assert redirected_to(conn) == account_path(conn, :index)
     end
 
     test "does not update user when data is invalid", %{conn: conn} do
-      conn = conn
-      |> put(account_path(conn, :update), user: @invalid_attrs)
+      conn = put conn, account_path(conn, :update), user: @invalid_attrs
       assert html_response(conn, 200) =~ "Account"
     end
 
     test "renders consent.html on /account/consent", %{conn: conn} do
-      conn = conn
-      |> get(account_path(conn, :consent))
+      conn = get conn, account_path(conn, :consent)
       assert html_response(conn, 200) =~ "anonymous data"
     end
 
     test "updates user data_access with valid data", %{conn: conn} do
-      conn = conn
-      |> put(account_path(conn, :update_consent), user: %{data_access: true})
+      conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
       assert redirected_to(conn) == account_path(conn, :index)
+    end
+  end
+
+  describe "connection is halted if there is no current_user" do
+    test "index", %{conn: conn} do
+      conn = get conn, account_path(conn, :index)
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "update", %{conn: conn} do
+      conn = put conn, account_path(conn, :update), user: @valid_attrs
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "consent", %{conn: conn} do
+      conn = get conn, account_path(conn, :consent)
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "update user data_access", %{conn: conn} do
+      conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
+      assert html_response(conn, 302)
+      assert conn.halted
     end
   end
 
