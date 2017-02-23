@@ -84,13 +84,6 @@ defmodule Healthlocker.GoalControllerTest do
       assert conn.halted
     end
 
-    test "show", %{conn: conn} do
-      goal = Repo.insert! %Post{content: "some content",  user_id: 123456}
-      conn = get conn, goal_path(conn, :show, goal)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
     test "new", %{conn: conn} do
       conn = get conn, goal_path(conn, :new)
       assert html_response(conn, 302)
@@ -103,16 +96,34 @@ defmodule Healthlocker.GoalControllerTest do
       assert conn.halted
     end
 
-    test "edit", %{conn: conn} do
-      goal = Repo.insert %Post{content: "some content #Goal", user_id: 123456}
-      conn = get conn, goal_path(conn, :edit, elem(goal, 1))
+    test "update", %{conn: conn} do
+      goal = Repo.insert! %Post{content: "some stuff"}
+      conn = put conn, goal_path(conn, :update, goal), post: @valid_attrs
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+  end
+
+  describe "conn is halted if there is no current_user and foreign key constraints match" do
+    setup do
+      %User{
+        id: 123456,
+        name: "MyName",
+        email: "abc@gmail.com",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+        } |> Repo.insert
+    end
+
+    test "show", %{conn: conn} do
+      goal = Repo.insert! %Post{content: "some content",  user_id: 123456}
+      conn = get conn, goal_path(conn, :show, goal)
       assert html_response(conn, 302)
       assert conn.halted
     end
 
-    test "update", %{conn: conn} do
-      goal = Repo.insert! %Post{content: "some stuff"}
-      conn = put conn, goal_path(conn, :update, goal), post: @valid_attrs
+    test "edit", %{conn: conn} do
+      goal = Repo.insert %Post{content: "some content #Goal", user_id: 123456}
+      conn = get conn, goal_path(conn, :edit, elem(goal, 1))
       assert html_response(conn, 302)
       assert conn.halted
     end

@@ -79,15 +79,8 @@ defmodule Healthlocker.CopingStrategyControllerTest do
   end
 
   describe "conn is halted if there is no current_user" do
-    test "rindex", %{conn: conn} do
+    test "index", %{conn: conn} do
       conn = get conn, coping_strategy_path(conn, :index)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
-    test "show", %{conn: conn} do
-      coping_strategy = Repo.insert! %Post{content: "some content",  user_id: 123456}
-      conn = get conn, coping_strategy_path(conn, :show, coping_strategy)
       assert html_response(conn, 302)
       assert conn.halted
     end
@@ -104,16 +97,34 @@ defmodule Healthlocker.CopingStrategyControllerTest do
       assert conn.halted
     end
 
-    test "edit", %{conn: conn} do
-      coping_strategy = Repo.insert %Post{content: "some content #CopingStrategy", user_id: 123456}
-      conn = get conn, coping_strategy_path(conn, :edit, elem(coping_strategy, 1))
+    test "update", %{conn: conn} do
+      coping_strategy = Repo.insert! %Post{content: "some stuff"}
+      conn = put conn, coping_strategy_path(conn, :update, coping_strategy), post: @valid_attrs
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+  end
+
+  describe "conn is halted if there is no current_user and foreign key constraints match" do
+    setup do
+      %User{
+        id: 123456,
+        name: "MyName",
+        email: "abc@gmail.com",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+        } |> Repo.insert
+    end
+
+    test "show", %{conn: conn} do
+      coping_strategy = Repo.insert! %Post{content: "some content",  user_id: 123456}
+      conn = get conn, coping_strategy_path(conn, :show, coping_strategy)
       assert html_response(conn, 302)
       assert conn.halted
     end
 
-    test "update", %{conn: conn} do
-      coping_strategy = Repo.insert! %Post{content: "some stuff"}
-      conn = put conn, coping_strategy_path(conn, :update, coping_strategy), post: @valid_attrs
+    test "edit", %{conn: conn} do
+      coping_strategy = Repo.insert %Post{content: "some content #CopingStrategy", user_id: 123456}
+      conn = get conn, coping_strategy_path(conn, :edit, elem(coping_strategy, 1))
       assert html_response(conn, 302)
       assert conn.halted
     end
