@@ -2,7 +2,6 @@ defmodule Healthlocker.AccountControllerTest do
   use Healthlocker.ConnCase
 
   alias Healthlocker.User
-  alias Healthlocker.Post
 
   setup do
     %User{
@@ -41,5 +40,26 @@ defmodule Healthlocker.AccountControllerTest do
           |> assign(:current_user, user)
           |> put(account_path(conn, :update), user: @invalid_attrs)
     assert html_response(conn, 200) =~ "Account"
+  end
+
+  test "render security.html", %{conn: conn, user: user} do
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> get(account_path(conn, :security))
+    assert html_response(conn, 200) =~ "Security"
+  end
+
+  test "render edit_security.html", %{conn: conn, user: user} do
+    conn = build_conn()
+        |> assign(:current_user, user)
+        |> get(account_path(conn, :edit_security))
+    assert html_response(conn, 200) =~ "Current security question"
+  end
+
+  test "updates security question and answer when data is valid", %{conn: conn, user: user} do
+    conn = build_conn()
+          |> assign(:current_user, user)
+          |> put(account_path(conn, :update_security), user: @valid_security_update)
+    assert redirected_to(conn) == account_path(conn, :edit_security)
   end
 end
