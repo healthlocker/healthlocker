@@ -5,7 +5,7 @@ defmodule Healthlocker.AccountController do
 
   alias Healthlocker.User
 
-  def index(conn, params) do
+  def index(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
     changeset = User.update_changeset(user)
@@ -25,6 +25,33 @@ defmodule Healthlocker.AccountController do
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         render(conn, "index.html", changeset: changeset, user: user, action: "account/update")
+    end
+  end
+
+  def security(conn, _params) do
+    render conn, "security.html"
+  end
+
+  def edit_security(conn, _params) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get!(User, user_id)
+    changeset = User.security_question(user)
+    render conn, "edit_security.html", changeset: changeset, user: user, action: "/account/update-security"
+  end
+
+  def update_security(conn, %{"user" => user_params}) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get!(User, user_id)
+
+    changeset = User.security_question(user, user_params)
+    
+    case Repo.update(changeset) do
+      {:ok, _params} ->
+        conn
+        |> put_flash(:info, "Updated successfully!")
+        |> redirect(to: account_path(conn, :edit_security))
+      {:error, changeset} ->
+        render(conn, "security.html", changeset: changeset, user: user, action: "/account/update-security")
     end
   end
 
