@@ -112,10 +112,11 @@ defmodule Healthlocker.GoalControllerTest do
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password")
         } |> Repo.insert
+
+      {:ok, goal: Repo.insert! %Post{content: "some content", user_id: 123456}}
     end
 
-    test "show", %{conn: conn} do
-      goal = Repo.insert! %Post{content: "some content",  user_id: 123456}
+    test "show", %{conn: conn, goal: goal} do
       conn = get conn, goal_path(conn, :show, goal)
       assert html_response(conn, 302)
       assert conn.halted
@@ -128,8 +129,7 @@ defmodule Healthlocker.GoalControllerTest do
       assert conn.halted
     end
 
-    test "delete", %{conn: conn} do
-      goal = Repo.insert! %Post{content: "some content", user_id: 123456}
+    test "delete", %{conn: conn, goal: goal} do
       conn = delete conn, goal_path(conn, :delete, goal)
       assert html_response(conn, 302)
       assert conn.halted

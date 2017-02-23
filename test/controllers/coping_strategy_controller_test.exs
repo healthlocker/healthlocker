@@ -113,10 +113,11 @@ defmodule Healthlocker.CopingStrategyControllerTest do
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password")
         } |> Repo.insert
+
+      {:ok, coping_strategy: Repo.insert! %Post{content: "some content",  user_id: 123456}}
     end
 
-    test "show", %{conn: conn} do
-      coping_strategy = Repo.insert! %Post{content: "some content",  user_id: 123456}
+    test "show", %{conn: conn, coping_strategy: coping_strategy} do
       conn = get conn, coping_strategy_path(conn, :show, coping_strategy)
       assert html_response(conn, 302)
       assert conn.halted
@@ -129,8 +130,7 @@ defmodule Healthlocker.CopingStrategyControllerTest do
       assert conn.halted
     end
 
-    test "delete", %{conn: conn} do
-      coping_strategy = Repo.insert! %Post{content: "some content", user_id: 123456}
+    test "delete", %{conn: conn, coping_strategy: coping_strategy} do
       conn = delete conn, coping_strategy_path(conn, :delete, coping_strategy)
       assert html_response(conn, 302)
       assert conn.halted
