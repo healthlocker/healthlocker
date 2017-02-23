@@ -33,3 +33,5 @@ story preview
 * Login
 * Users can only post content when logged in
 * Users can create, view, update and delete coping strategies they have made
+* Users can visit their account page where they can update their name, email,
+or phone number
