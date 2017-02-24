@@ -86,4 +86,11 @@ defmodule Healthlocker.AccountControllerTest do
           |> put(account_path(conn, :update_security), user: @invalid_attrs)
     assert html_response(conn, 200) =~ "Current security question"
   end
+
+  test "render edit_password.html", %{conn: conn, user: user} do
+    conn = build_conn()
+          |> assign(:current_user, user)
+          |> get(account_path(conn, :edit_password))
+    assert html_response(conn, 200) =~ "Current password"
+  end
 end
