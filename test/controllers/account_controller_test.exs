@@ -16,18 +16,33 @@ defmodule Healthlocker.AccountControllerTest do
     {:ok, user: Repo.get(User, 123456) }
   end
 
-  @valid_attrs %{name: "NewName"}
+  @valid_attrs %{
+    name: "NewName",
+    security_check: "Answer",
+    security_question: "?",
+    security_answer: "yes",
+    password_check: "password",
+    password: "New password",
+    password_confirmation: "New password"
+  }
   @invalid_attrs %{
     name: "",
     email: "",
     phone_number: "",
     security_check: "Answer",
     security_question: "",
-    security_answer: ""
+    security_answer: "",
+    password_check: "password",
   }
-  @valid_security_update %{
-    security_question: "2",
+  @wrong_security_answer %{
+    security_check: "Wrong answer",
+    security_question: "?",
     security_answer: "yes"
+  }
+  @wrong_password %{
+    password_check: "Wrong password",
+    password: "New password",
+    password_confirmation: "New password"
   }
 
   test "renders index.html on /account", %{conn: conn, user: user} do
@@ -68,14 +83,14 @@ defmodule Healthlocker.AccountControllerTest do
   test "updates security question and answer when data is valid", %{conn: conn, user: user} do
     conn = build_conn()
           |> assign(:current_user, user)
-          |> put(account_path(conn, :update_security), user: @valid_security_update)
+          |> put(account_path(conn, :update_security), user: @valid_attrs)
     assert redirected_to(conn) == account_path(conn, :edit_security)
   end
 
   test "does not update when security answer is incorrect", %{conn: conn, user: user} do
     conn = build_conn()
           |> assign(:current_user, user)
-          |> put(account_path(conn, :update_security), user: @valid_security_update)
+          |> put(account_path(conn, :update_security), user: @wrong_security_answer)
     assert redirected_to(conn) == account_path(conn, :edit_security)
     assert get_flash(conn, :error) == "Security answer does not match"
   end
@@ -91,6 +106,29 @@ defmodule Healthlocker.AccountControllerTest do
     conn = build_conn()
           |> assign(:current_user, user)
           |> get(account_path(conn, :edit_password))
+    assert html_response(conn, 200) =~ "Current password"
+  end
+
+  test "does not update when current password is incorrect", %{conn: conn, user: user} do
+    conn = build_conn()
+          |> assign(:current_user, user)
+          |> put(account_path(conn, :update_password), user: @wrong_password)
+    assert redirected_to(conn) == account_path(conn, :edit_password)
+    assert get_flash(conn, :error) == "Incorrect current password"
+  end
+
+  test "updates password with valid data", %{conn: conn, user: user} do
+    conn = build_conn()
+          |> assign(:current_user, user)
+          |> put(account_path(conn, :update_password), user: @valid_attrs)
+    assert redirected_to(conn) == account_path(conn, :edit_password)
+    refute get_flash(conn, :error) == "Incorrect current password"
+  end
+
+  test "does not update password when data is invalid", %{conn: conn, user: user} do
+    conn = build_conn()
+          |> assign(:current_user, user)
+          |> put(account_path(conn, :update_password), user: @invalid_attrs)
     assert html_response(conn, 200) =~ "Current password"
   end
 end
