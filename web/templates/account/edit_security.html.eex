@@ -1,34 +1,38 @@
-<p>Please confirm your security details and enter new ones.</p>
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+  <p>Please confirm your security details and enter new ones.</p>
 
-<p>Current security question : </p>
-<p>Put security question here - need to get from DB and pass in</p>
-<%= form_for @changeset, @action, fn f -> %>
-  <input name="_method" type="hidden" value="put" />
-  <div class="form-group">
-    <%= label f, "Current answer", class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
-    <%= error_tag f, :name %>
-  </div>
+  <p>Current security question : </p>
+  <%= @user.security_question %>
+  <%= form_for @validate_changeset, @action, fn f -> %>
+    <div class="form-group">
+      <%= label :user, "Current answer", class: "control-label" %>
+      <%= text_input :user, :security_answer, class: "form-control" %>
+    </div>
+  <% end %>
 
-  <div class="form-group">
-    <%= label f, "New security question", class: "control-label" %>
-    <%= select f, :security_question,
-      ["What were the last four digits of your childhood telephone number?": 1,
-      "What was the house number and street name you lived in as a child?": 2,
-      "What time of the day were you born? (hh:mm)": 3,
-      "What are the last five digits of your driver's licence number?": 4,
-      "What is your grandmother's (on your mother's side) maiden name?": 5
-      ],
-      prompt: "Choose a security question",
-      class: "form-control" %>
-    <%= error_tag f, :security_question %>
-  </div>
+  <%= form_for @changeset, @action, fn f -> %>
+    <input name="_method" type="hidden" value="put" />
 
-  <div class="form-group">
-    <%= label f, "New security answer", class: "control-label" %>
-    <%= text_input f, :security_answer, class: "form-control" %>
-    <%= error_tag f, :security_answer %>
-  </div>
+    <div class="form-group">
+      <%= label f, "New security question", class: "control-label" %>
+      <%= select f, :security_question,
+        ["What were the last four digits of your childhood telephone number?": "What were the last four digits of your childhood telephone number?",
+        "What was the house number and street name you lived in as a child?": "What was the house number and street name you lived in as a child?",
+        "What time of the day were you born? (hh:mm)": "What time of the day were you born? (hh:mm)",
+        "What are the last five digits of your driver's licence number?": "What are the last five digits of your driver's licence number?",
+        "What is your grandmother's (on your mother's side) maiden name?": "What is your grandmother's (on your mother's side) maiden name?"
+        ],
+        prompt: "Choose a security question",
+        class: "form-control" %>
+      <%= error_tag f, :security_question %>
+    </div>
 
-  <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
-<% end %>
+    <div class="form-group">
+      <%= label f, "New security answer", class: "control-label" %>
+      <%= text_input f, :security_answer, class: "form-control" %>
+      <%= error_tag f, :security_answer %>
+    </div>
+
+    <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+  <% end %>
+</div>
