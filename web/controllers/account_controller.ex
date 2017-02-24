@@ -35,23 +35,30 @@ defmodule Healthlocker.AccountController do
   def edit_security(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
-    changeset = User.security_question(user)
-    render conn, "edit_security.html", changeset: changeset, user: user, action: "/account/update-security"
+    changeset = User.security_question(%User{})
+    render conn, "edit_security.html", changeset: changeset, user: user,
+                                       action: "/account/update-security"
   end
 
   def update_security(conn, %{"user" => user_params}) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
 
-    changeset = User.security_question(user, user_params)
-    
-    case Repo.update(changeset) do
-      {:ok, _params} ->
-        conn
-        |> put_flash(:info, "Updated successfully!")
-        |> redirect(to: account_path(conn, :edit_security))
-      {:error, changeset} ->
-        render(conn, "security.html", changeset: changeset, user: user, action: "/account/update-security")
+    if user_params["security_check"] == user.security_answer do
+      changeset = User.security_question(user, user_params)
+      IO.inspect changeset
+      case Repo.update(changeset) do
+        {:ok, _params} ->
+          conn
+          |> put_flash(:info, "Updated successfully!")
+          |> redirect(to: account_path(conn, :edit_security))
+        {:error, changeset} ->
+          render(conn, "edit_security.html", changeset: changeset, user: user, action: "/account/update-security")
+      end
+    else
+      conn
+      |> put_flash(:error, "Security answer does not match")
+      |> redirect(to: account_path(conn, :edit_security))
     end
   end
 
