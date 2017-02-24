@@ -9,7 +9,7 @@ defmodule Healthlocker.AccountController do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
     changeset = User.update_changeset(user)
-    render conn, "index.html", changeset: changeset, action: "account/update", user: user
+    render conn, "index.html", changeset: changeset, action: "/account/update", user: user
   end
 
   def update(conn, %{"user" => user_params}) do
@@ -24,7 +24,30 @@ defmodule Healthlocker.AccountController do
         |> put_flash(:info, "Updated successfully!")
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "index.html", changeset: changeset, user: user, action: "account/update")
+        render(conn, "index.html", changeset: changeset, user: user, action: "/account/update")
+    end
+  end
+
+  def consent(conn, _params) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get!(User, user_id)
+    changeset = User.update_changeset(user)
+    render conn, "consent.html", changeset: changeset, user: user, action: "/account/update-consent"
+  end
+
+  def update_consent(conn, %{"user" => user_params}) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get!(User, user_id)
+
+    changeset = User.update_data_access(user, user_params)
+
+    case Repo.update(changeset) do
+      {:ok, _params} ->
+        conn
+        |> put_flash(:info, "Updated successfully!")
+        |> redirect(to: account_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "consent.html", changeset: changeset, user: user, action: "/account/update-consent")
     end
   end
 

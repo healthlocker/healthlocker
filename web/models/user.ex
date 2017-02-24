@@ -49,6 +49,11 @@ defmodule Healthlocker.User do
     |> validate_acceptance(:privacy)
   end
 
+  def update_data_access(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:data_access])
+  end
+
   def registration_changeset(model, params) do
     model
     |> security_question(params)
