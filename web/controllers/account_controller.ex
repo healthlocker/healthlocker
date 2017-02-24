@@ -73,6 +73,17 @@ defmodule Healthlocker.AccountController do
   def update_password(conn, %{"user" => user_params}) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
+
+    case Healthlocker.Auth.check_password(conn, user_id, user_params["password_check"], repo: Repo) do
+      {:ok, conn} ->
+        conn
+        |> put_flash(:info, "Password matches!")
+        |> redirect(to: account_path(conn, :edit_password))
+      {:error, _reason, conn} ->
+        conn
+        |> put_flash(:error, "Incorrect current password")
+        |> redirect(to: account_path(conn, :edit_password))
+    end
   end
 
   defp authenticate(conn, _opts) do
