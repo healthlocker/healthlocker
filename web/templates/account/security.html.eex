@@ -1,3 +1,5 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <h3>Security</h3>
+
+  <%= link "Update security question", to: account_path(@conn, :edit_security) %>
 </div>
