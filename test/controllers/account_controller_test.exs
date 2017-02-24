@@ -20,6 +20,10 @@ defmodule Healthlocker.AccountControllerTest do
     email: "",
     phone_number: ""
   }
+  @valid_security_update %{
+    security_question: "2",
+    security_answer: "yes"
+  }
 
   test "renders index.html on /account", %{conn: conn, user: user} do
     conn = build_conn()
