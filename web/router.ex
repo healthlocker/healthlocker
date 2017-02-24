@@ -36,6 +36,8 @@ defmodule Healthlocker.Router do
     get "/account/security", AccountController, :security
     get "/account/edit-security", AccountController, :edit_security
     put "/account/update-security", AccountController, :update_security
+    get "/account/edit-password", AccountController, :edit_password
+    put "/account/update-password", AccountController, :update_password
 
   end
 
