@@ -8,7 +8,9 @@ defmodule Healthlocker.AccountControllerTest do
       id: 123456,
       name: "MyName",
       email: "abc@gmail.com",
-      password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+      password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+      security_question: "Question?",
+      security_answer: "Answer"
     } |> Repo.insert
 
     {:ok, user: Repo.get(User, 123456) }
@@ -18,7 +20,10 @@ defmodule Healthlocker.AccountControllerTest do
   @invalid_attrs %{
     name: "",
     email: "",
-    phone_number: ""
+    phone_number: "",
+    security_check: "Answer",
+    security_question: "",
+    security_answer: ""
   }
   @valid_security_update %{
     security_question: "2",
@@ -65,5 +70,20 @@ defmodule Healthlocker.AccountControllerTest do
           |> assign(:current_user, user)
           |> put(account_path(conn, :update_security), user: @valid_security_update)
     assert redirected_to(conn) == account_path(conn, :edit_security)
+  end
+
+  test "does not update when security answer is incorrect", %{conn: conn, user: user} do
+    conn = build_conn()
+          |> assign(:current_user, user)
+          |> put(account_path(conn, :update_security), user: @valid_security_update)
+    assert redirected_to(conn) == account_path(conn, :edit_security)
+    assert get_flash(conn, :error) == "Security answer does not match"
+  end
+
+  test "does not update when data is invalid", %{conn: conn, user: user} do
+    conn = build_conn()
+          |> assign(:current_user, user)
+          |> put(account_path(conn, :update_security), user: @invalid_attrs)
+    assert html_response(conn, 200) =~ "Current security question"
   end
 end
