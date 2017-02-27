@@ -51,6 +51,12 @@ defmodule Healthlocker.AccountController do
     end
   end
 
+  def slam(conn, _params) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get!(User, user_id)
+    render conn, "slam.html", user: user
+  end
+
   defp authenticate(conn, _opts) do
     if conn.assigns.current_user do
       conn
