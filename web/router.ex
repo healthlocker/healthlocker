@@ -18,15 +18,17 @@ defmodule Healthlocker.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/posts", PostController, only: [:show, :new, :create, :index]
-    post "/posts/:id/likes", PostController, :likes
+    resources "/posts", PostController, only: [:show, :new, :create, :index] do
+      post "/likes", PostController, :likes
+    end
     resources "/tips", TipController, only: [:index]
     get "/support", SupportController, :index
-    resources "/users", UserController, only: [:index, :new, :create, :update]
-    get "/users/:id/signup2", UserController, :signup2
-    put "/users/:id/create2", UserController, :create2
-    get "/users/:id/signup3", UserController, :signup3
-    put "/users/:id/create3", UserController, :create3
+    resources "/users", UserController, only: [:index, :new, :create, :update] do
+      get "/signup2", UserController, :signup2
+      put "/create2", UserController, :create2
+      get "/signup3", UserController, :signup3
+      put "/create3", UserController, :create3
+    end
     resources "/login", LoginController, only: [:index, :create, :delete]
     resources "/coping-strategy", CopingStrategyController
     resources "/goal", GoalController
