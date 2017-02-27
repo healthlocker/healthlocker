@@ -17,7 +17,7 @@
           <p class="pa3 f3 red db">Liked!</p>
         <%= else %>
           <%= link "Like", class: "pa3 f3 blue db hover-faded-blue",
-                          to: post_path(@conn, :likes, post.id),
+                          to: post_post_path(@conn, :likes, post.id),
                           method: "post" %>
         <%= end %>
       <%= else %>
