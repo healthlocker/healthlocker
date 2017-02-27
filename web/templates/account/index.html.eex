@@ -12,7 +12,7 @@
     </div>
 
     <%= if @user.slam_user do %>
-      <%= link "Connect with my SLaM care team and health record ?", to: account_path(@conn, :index) %>
+      <%= link "Connect with my SLaM care team and health record ?", to: account_path(@conn, :slam) %>
     <% end %>
 
     <div class="form-group mt4">
