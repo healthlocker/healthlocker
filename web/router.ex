@@ -35,6 +35,7 @@ defmodule Healthlocker.Router do
     put "/account/update", AccountController, :update
     get "/account/consent", AccountController, :consent
     put "/account/update-consent", AccountController, :update_consent
+    get "/account/slam", AccountController, :slam
 
   end
 
