@@ -32,7 +32,7 @@ defmodule Healthlocker.GoalControllerTest do
 
     test "renders page not found when goal id is nonexistent", %{conn: conn} do
       assert_error_sent 404, fn ->
-        conn = get conn, goal_path(conn, :show, -1)
+        get conn, goal_path(conn, :show, -1)
       end
     end
 

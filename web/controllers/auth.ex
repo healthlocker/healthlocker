@@ -25,6 +25,18 @@ defmodule Healthlocker.Auth do
     |> configure_session(renew: true)
   end
 
+  def check_password(conn, id, given_pass, opts) do
+    repo = Keyword.fetch!(opts, :repo)
+    user = repo.get(Healthlocker.User, id) |> repo.preload(:likes)
+
+    cond do
+      user && checkpw(given_pass, user.password_hash) ->
+        {:ok, conn}
+      user ->
+        {:error, :wrong_password, conn}
+    end
+  end
+
   def email_and_pass_login(conn, email, given_pass, opts) do
     repo = Keyword.fetch!(opts, :repo)
     user = repo.get_by(Healthlocker.User, email: email) |> repo.preload(:likes)
