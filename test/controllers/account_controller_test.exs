@@ -20,7 +20,7 @@ defmodule Healthlocker.AccountControllerTest do
     security_question: "",
     security_answer: "",
     password_check: "password",
-    password: ""
+    password: 1
   }
   @wrong_security_answer %{
     security_check: "Wrong answer",
@@ -74,7 +74,7 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "render security.html", %{conn: conn} do
       conn = get conn, account_path(conn, :security)
-      assert html_response(conn, 200) =~ "Security"
+      assert html_response(conn, 200) =~ "Update security question"
     end
 
     test "render edit_security.html", %{conn: conn} do
