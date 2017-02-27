@@ -20,6 +20,7 @@ defmodule Healthlocker.AccountControllerTest do
     security_question: "",
     security_answer: "",
     password_check: "password",
+    password: ""
   }
   @wrong_security_answer %{
     security_check: "Wrong answer",
@@ -38,7 +39,9 @@ defmodule Healthlocker.AccountControllerTest do
         id: 123456,
         name: "MyName",
         email: "abc@gmail.com",
-        password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        security_question: "Question?",
+        security_answer: "Answer"
       } |> Repo.insert
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
