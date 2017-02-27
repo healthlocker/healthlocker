@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h3 class="tc">Account</h3>
+  <%= render "menu.html", conn: @conn %>
 
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />

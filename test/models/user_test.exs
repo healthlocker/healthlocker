@@ -22,6 +22,10 @@ defmodule Healthlocker.UserTest do
     phone_number: "07512345678",
     slam_user: true
   }
+  @security_question_attrs %{
+     security_answer: "B658H",
+     security_question: "4"
+  }
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -35,7 +39,7 @@ defmodule Healthlocker.UserTest do
   end
 
   test "security_question changeset with valid attributes" do
-    changeset = User.security_question(%User{}, @step2_attrs)
+    changeset = User.security_question(%User{}, @security_question_attrs)
     assert changeset.valid?
   end
 

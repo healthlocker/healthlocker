@@ -64,6 +64,13 @@ defmodule Healthlocker.User do
     |> put_pass_hash()
   end
 
+  def update_password(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:password])
+    |> validate_length(:password, min: 6, max: 100)
+    |> put_pass_hash()
+  end
+
   def put_pass_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->

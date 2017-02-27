@@ -23,15 +23,20 @@
         <%= if @current_user do %>
           <%= link "Toolkit",  class: "pa3 f1 white-80 db hover-white",
                                to: toolkit_path(@conn, :index) %>
-          <%= link "Log out", class: "pa3 f1 white-80 db hover-white",
-                              to: login_path(@conn, :delete, @current_user),
-                              method: "delete" %>
         <%= else %>
           <%= link "Sign up", class: "pa3 f1 white-80 db hover-white",
               to: user_path(@conn, :new) %>
           <%= link "Log in", class: "pa3 f1 white-80 db hover-white",
               to: login_path(@conn, :index) %>
         <%= end %>
+        <p class="pa3 f1 white-80 db">-------------------------------</p>
+        <%= if @current_user do %>
+          <%= link "Account", to: account_path(@conn, :index),
+                    class: "pa3 f2 white-60 db hover-white" %>
+          <%= link "Log out", class: "pa3 f2 white-60 db hover-white",
+                              to: login_path(@conn, :delete, @current_user),
+                              method: "delete" %>
+        <% end %>
         <a class="mt3 mh6 bg-light-red pv2 f1 white-80 db hover-white" href="/support">Get support</a>
       </nav>
       <img class="fl w4 mt4" id="open-nav" src="https://cloud.githubusercontent.com/assets/1287388/22473871/1faa58b8-e7d2-11e6-9c89-ac74ce5a5a67.png" alt="burger menu">

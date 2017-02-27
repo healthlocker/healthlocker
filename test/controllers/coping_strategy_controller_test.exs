@@ -33,7 +33,7 @@ defmodule Healthlocker.CopingStrategyControllerTest do
 
     test "renders page not found when coping strategy id is nonexistent", %{conn: conn} do
       assert_error_sent 404, fn ->
-        conn = get conn, coping_strategy_path(conn, :show, -1)
+        get conn, coping_strategy_path(conn, :show, -1)
       end
     end
 
