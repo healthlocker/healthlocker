@@ -19,7 +19,8 @@ defmodule Healthlocker.UserTest do
   @update_attrs %{
     name: "MyName",
     email: "me@example.com",
-    phone_number: "07512345678"
+    phone_number: "07512345678",
+    slam_user: true
   }
   @invalid_attrs %{}
 
