@@ -18,15 +18,17 @@ defmodule Healthlocker.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    resources "/posts", PostController, only: [:show, :new, :create, :index]
-    post "/posts/:id/likes", PostController, :likes
+    resources "/posts", PostController, only: [:show, :new, :create, :index] do
+      post "/likes", PostController, :likes
+    end
     resources "/tips", TipController, only: [:index]
     get "/support", SupportController, :index
-    resources "/users", UserController, only: [:index, :new, :create, :update]
-    get "/users/:id/signup2", UserController, :signup2
-    put "/users/:id/create2", UserController, :create2
-    get "/users/:id/signup3", UserController, :signup3
-    put "/users/:id/create3", UserController, :create3
+    resources "/users", UserController, only: [:index, :new, :create, :update] do
+      get "/signup2", UserController, :signup2
+      put "/create2", UserController, :create2
+      get "/signup3", UserController, :signup3
+      put "/create3", UserController, :create3
+    end
     resources "/login", LoginController, only: [:index, :create, :delete]
     resources "/coping-strategy", CopingStrategyController
     resources "/goal", GoalController
@@ -34,12 +36,13 @@ defmodule Healthlocker.Router do
     resources "/account", AccountController, only: [:index]
     put "/account/update", AccountController, :update
     get "/account/consent", AccountController, :consent
-    put "/account/update-consent", AccountController, :update_consent
+    put "/account/consent/update", AccountController, :update_consent
     get "/account/security", AccountController, :security
-    get "/account/edit-security", AccountController, :edit_security
-    put "/account/update-security", AccountController, :update_security
-    get "/account/edit-password", AccountController, :edit_password
-    put "/account/update-password", AccountController, :update_password
+    get "/account/security/edit", AccountController, :edit_security
+    put "/account/security/update", AccountController, :update_security
+    get "/account/password/edit", AccountController, :edit_password
+    put "/account/password/update", AccountController, :update_password
+    get "/account/slam", AccountController, :slam
 
   end
 

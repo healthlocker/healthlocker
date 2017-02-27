@@ -3,7 +3,19 @@
 
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />
+
     <div class="form-group">
+      <%= label f, "I am a South London and Maudsley service user.",
+          class: "control-label" %>
+      <%= checkbox f, :slam_user, class: "form-control" %>
+      <%= error_tag f, :slam_user %>
+    </div>
+
+    <%= if @user.slam_user do %>
+      <%= link "Connect with my SLaM care team and health record ?", to: account_path(@conn, :slam) %>
+    <% end %>
+
+    <div class="form-group mt4">
       <%= label f, "Name (optional)", class: "control-label" %>
       <%= text_input f, :name, class: "form-control" %>
       <%= error_tag f, :name %>
