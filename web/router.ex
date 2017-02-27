@@ -36,12 +36,12 @@ defmodule Healthlocker.Router do
     resources "/account", AccountController, only: [:index]
     put "/account/update", AccountController, :update
     get "/account/consent", AccountController, :consent
-    put "/account/update-consent", AccountController, :update_consent
+    put "/account/consent/update", AccountController, :update_consent
     get "/account/security", AccountController, :security
-    get "/account/edit-security", AccountController, :edit_security
-    put "/account/update-security", AccountController, :update_security
-    get "/account/edit-password", AccountController, :edit_password
-    put "/account/update-password", AccountController, :update_password
+    get "/account/security/edit", AccountController, :edit_security
+    put "/account/security/update", AccountController, :update_security
+    get "/account/password/edit", AccountController, :edit_password
+    put "/account/password/update", AccountController, :update_password
     get "/account/slam", AccountController, :slam
 
   end
