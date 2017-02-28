@@ -32,6 +32,11 @@ defmodule Healthlocker.AccountControllerTest do
     password: "New password",
     password_confirmation: "New password"
   }
+  @wrong_confirmation %{
+    password_check: "password",
+    password: "New password",
+    password_confirmation: "not new password"
+  }
 
   describe "current_user is assigned in the session" do
     setup do
@@ -122,6 +127,11 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "does not update password when data is invalid", %{conn: conn} do
       conn = put conn, account_path(conn, :update_password), user: @invalid_attrs
+      assert html_response(conn, 200) =~ "Current password"
+    end
+
+    test "does not update password when confirmation does not match", %{conn: conn} do
+      conn = put conn, account_path(conn, :update_password), user: @wrong_confirmation
       assert html_response(conn, 200) =~ "Current password"
     end
   end

@@ -93,7 +93,7 @@ defmodule Healthlocker.AccountController do
   def edit_password(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
-    changeset = User.update_password(%User{})
+    changeset = User.password_changeset(%User{})
     render conn, "edit_password.html", changeset: changeset, user: user,
                                        action: account_path(conn, :update_password)
   end

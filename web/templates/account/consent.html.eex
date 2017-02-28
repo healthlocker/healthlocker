@@ -1,14 +1,16 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <%= render "menu.html", conn: @conn %>
-  <%= form_for @changeset, @action, fn f -> %>
+  <div class="mt6">
+    <%= form_for @changeset, @action, fn f -> %>
     <div class="form-group">
       <%= label f, "I allow my anonymous data to be accessed by researchers to
-                    drive forward the future of mental health and care",
-                    class: "control-label"%>
+      drive forward the future of mental health and care",
+      class: "control-label"%>
       <%= checkbox f, :data_access, class: "form-control" %>
       <%= error_tag f, :data_access %>
     </div>
 
     <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
-  <% end %>
+    <% end %>
+  </div>
 </div>

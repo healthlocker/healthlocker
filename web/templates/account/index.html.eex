@@ -1,11 +1,15 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <%= render "menu.html", conn: @conn %>
 
-  <%= if !@slam_user do %>
-    <%= render "profile.html", assigns %>
-  <% end %>
+  <div class="mt6">
+    <%= if !@slam_user do %>
+      <%= render "profile.html", assigns %>
+    <% end %>
+  </div>
 
-  <%= if @slam_user do %>
-    <%= render "slam_connected.html", assigns %>
-  <% end %>
+  <div class="mt6">
+    <%= if @slam_user do %>
+      <%= render "slam_connected.html", assigns %>
+    <% end %>
+  </div>
 </div>
