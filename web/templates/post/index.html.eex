@@ -5,25 +5,8 @@
       <%= markdown String.slice(post.content, 0, 325) <> "..." %>
     </p>
     <a href="/posts/<%= post.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
-    <%= if @current_user do %>
-      <%= user_likes = @current_user.likes |> Enum.map(fn(p) -> p.id end) %>
-      <%= if Enum.member?(user_likes, post.id) do %>
-        <p class="pa3 f3 red db">Liked!</p>
-      <%= else %>
-        <%= link "Like", class: "pa3 f3 blue db hover-faded-blue",
-                        to: post_post_path(@conn, :likes, post.id),
-                        method: "post" %>
-      <%= end %>
-    <%= else %>
-      <p class="mt3">
-        <%= link "Log in", class: "f3 blue hover-faded-blue",
-        to: login_path(@conn, :index) %>
-        or
-        <%= link "Sign up", class: "f3 blue hover-faded-blue",
-        to: user_path(@conn, :new) %>
-        to like this!
-      </p>
-    <%= end %>
+    <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: post, 
+      current_user: @current_user %>
   </div>
 </article>
 <% end %>

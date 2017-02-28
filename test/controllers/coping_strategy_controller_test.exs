@@ -21,8 +21,14 @@ defmodule Healthlocker.CopingStrategyControllerTest do
     end
 
     test "renders index.html on /coping-strategy", %{conn: conn} do
+      Repo.insert %Post{content: "some content #CopingStrategy", user_id: 123456}
       conn = get conn, coping_strategy_path(conn, :index)
       assert html_response(conn, 200) =~ "Coping strategies"
+    end
+
+    test "redirects from index.html to new.html if there are no coping strats", %{conn: conn} do
+      conn = get conn, coping_strategy_path(conn, :index)
+      assert redirected_to(conn) == coping_strategy_path(conn, :new)
     end
 
     test "shows chosen coping strategy", %{conn: conn} do

@@ -10,7 +10,12 @@ defmodule Healthlocker.GoalController do
     goals = Post
            |> Post.get_goals(user_id)
            |> Repo.all
-    render conn, "index.html", goals: goals
+    if Kernel.length(goals) == 0 do
+      conn
+      |> redirect(to: goal_path(conn, :new))
+    else
+      render conn, "index.html", goals: goals
+    end
   end
 
   def new(conn, _params) do
