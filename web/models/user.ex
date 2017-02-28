@@ -64,10 +64,17 @@ defmodule Healthlocker.User do
     |> put_pass_hash()
   end
 
-  def update_password(struct, params \\ :invalid) do
+  def password_changeset(struct, params \\ :invalid) do
     struct
     |> cast(params, [:password])
+  end
+
+  def update_password(struct, params \\ :invalid) do
+    struct
+    |> password_changeset(params)
+    |> cast(params, [:password])
     |> validate_length(:password, min: 6, max: 100)
+    |> validate_confirmation(:password, message: "New passwords do not match")
     |> put_pass_hash()
   end
 
