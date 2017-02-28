@@ -10,7 +10,12 @@ defmodule Healthlocker.CopingStrategyController do
     coping_strategies = Post
                         |> Post.get_coping_strategies(user_id)
                         |> Repo.all
-    render conn, "index.html", coping_strategies: coping_strategies
+    if Kernel.length(coping_strategies) == 0 do
+      conn
+      |> redirect(to: coping_strategy_path(conn, :new))
+    else
+      render conn, "index.html", coping_strategies: coping_strategies
+    end
   end
 
   def new(conn, _params) do
