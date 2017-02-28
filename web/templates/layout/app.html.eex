@@ -21,9 +21,7 @@
         <a class="link dim white dib mr3 fl" href="#" title="Nav">
           <i class="fa fa-bars" aria-hidden="true"></i>
         </a>
-        <a class="link dim white dib mr3" href="#" title="Home">
-          Healthlocker
-        </a>
+        <%= link("Healthlocker", to: "/", class: "link dim white dib mr3") %>
       </nav>
     </header>
 
