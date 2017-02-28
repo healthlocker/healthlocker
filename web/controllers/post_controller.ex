@@ -36,14 +36,14 @@ defmodule Healthlocker.PostController do
     render(conn, "index.html", posts: posts)
   end
 
-  def likes(conn, %{"id" => id}) do
+  def likes(conn, %{"post_id" => id}) do
     user = conn.assigns.current_user
     post = Repo.get!(Post, id)
     post
-    |> Repo.preload(:likes)
-    |> Ecto.Changeset.change()
-    |> Ecto.Changeset.put_assoc(:likes, [user])
-    |> Repo.update
+      |> Repo.preload(:likes)
+      |> Ecto.Changeset.change()
+      |> Ecto.Changeset.put_assoc(:likes, [user])
+      |> Repo.update
     find_redirect_path(conn)
   end
 

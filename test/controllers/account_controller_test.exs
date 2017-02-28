@@ -67,6 +67,11 @@ defmodule Healthlocker.AccountControllerTest do
       assert html_response(conn, 200) =~ "anonymous data"
     end
 
+    test "renders slam.html on /account/slam", %{conn: conn} do
+      conn = get conn, account_path(conn, :slam)
+      assert html_response(conn, 200) =~ "Please use the correct information as it appears on your health record."
+    end
+
     test "updates user data_access with valid data", %{conn: conn} do
       conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
       assert redirected_to(conn) == account_path(conn, :index)
@@ -136,6 +141,12 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "consent", %{conn: conn} do
       conn = get conn, account_path(conn, :consent)
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "slam", %{conn: conn} do
+      conn = get conn, account_path(conn, :slam)
       assert html_response(conn, 302)
       assert conn.halted
     end

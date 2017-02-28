@@ -13,6 +13,7 @@ defmodule Healthlocker.User do
     field :security_answer, :string
     field :data_access, :boolean
     field :role, :string
+    field :slam_user, :boolean
     has_many :posts, Healthlocker.Post
     many_to_many :likes, Healthlocker.Post, join_through: "posts_likes"
 
@@ -31,7 +32,7 @@ defmodule Healthlocker.User do
 
   def update_changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name, :phone_number])
+    |> cast(params, [:email, :name, :phone_number, :slam_user])
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
   end

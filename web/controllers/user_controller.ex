@@ -24,7 +24,7 @@ defmodule Healthlocker.UserController do
     end
   end
 
-  def signup2(conn, %{"id" => id}) do
+  def signup2(conn, %{"user_id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.security_question(%User{})
     render(conn, "signup2.html", changeset: changeset,
@@ -32,7 +32,7 @@ defmodule Healthlocker.UserController do
                                  user: user)
   end
 
-  def create2(conn, %{"user" => user_params, "id" => id}) do
+  def create2(conn, %{"user" => user_params, "user_id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.registration_changeset(user, user_params)
 
@@ -48,7 +48,7 @@ defmodule Healthlocker.UserController do
     end
   end
 
-  def signup3(conn, %{"id" => id}) do
+  def signup3(conn, %{"user_id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.data_access(%User{})
     render(conn, "signup3.html", changeset: changeset,
@@ -56,7 +56,7 @@ defmodule Healthlocker.UserController do
                                  user: user)
   end
 
-  def create3(conn, %{"user" => user_params, "id" => id}) do
+  def create3(conn, %{"user" => user_params, "user_id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.data_access(user, user_params)
 
