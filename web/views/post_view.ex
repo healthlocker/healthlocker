@@ -1,5 +1,6 @@
 defmodule Healthlocker.PostView do
   use Healthlocker.Web, :view
+  use Timex
 
   def markdown(body) do
     body
@@ -21,6 +22,10 @@ defmodule Healthlocker.PostView do
   def body(post) do
     [head | _ ] = String.split(post.content, ~r/(#+)(.*)/, trim: true)
     head
+  end
+
+  def time_ago_in_words(date) do
+    Timex.from_now(date)
   end
 
   defp header_regex do
