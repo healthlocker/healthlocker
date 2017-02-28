@@ -16,9 +16,33 @@
   </head>
 
   <body class="w-100 sans-serif bg-white">
+    <nav class="sidenav h-100 fixed z-1 top-0 left-0 bg-gray overflow-x-hidden tc" id="my-sidenav">
+      <img id="close-nav" class="w3" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
+      <a class="pa3 f1 white-80 db hover-white" href="/">Home</a>
+      <a class="pa3 f1 white-80 db hover-white" href="#">About</a>
+      <%= if @current_user do %>
+        <%= link "Toolkit",  class: "pa3 f1 white-80 db hover-white",
+                             to: toolkit_path(@conn, :index) %>
+      <%= else %>
+        <%= link "Sign up", class: "pa3 f1 white-80 db hover-white",
+            to: user_path(@conn, :new) %>
+        <%= link "Log in", class: "pa3 f1 white-80 db hover-white",
+            to: login_path(@conn, :index) %>
+      <%= end %>
+      <p class="pa3 f1 white-80 db">------------</p>
+      <%= if @current_user do %>
+        <%= link "Account", to: account_path(@conn, :index),
+                  class: "pa3 f2 white-60 db hover-white" %>
+        <%= link "Log out", class: "pa3 f2 white-60 db hover-white",
+                            to: login_path(@conn, :delete, @current_user),
+                            method: "delete" %>
+      <% end %>
+      <a class="mt3 mh6 bg-light-red pv2 f1 white-80 db hover-white" href="/support">Get support</a>
+    </nav>
+
     <header class="bg-blue w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
       <nav class="f4 fw3 tracked">
-        <a class="link dim white dib mr3 fl" href="#" title="Nav">
+        <a id="open-nav" class="link dim white dib mr3 fl" href="#" title="Nav">
           <i class="fa fa-bars" aria-hidden="true"></i>
         </a>
         <%= link("Healthlocker", to: "/", class: "link dim white dib mr3") %>
@@ -27,7 +51,12 @@
 
     <main>
       <section class="pa3 pa5-ns bt b--black-10 black-70 bg-near-white">
-        <%= render @view_module, @view_template, assigns %>
+        <section class="mw7 center">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+          <%= render @view_module, @view_template, assigns %>
+        </section>
       </section>
     </main>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
