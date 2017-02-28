@@ -9,7 +9,8 @@ defmodule Healthlocker.AccountController do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
     changeset = User.update_changeset(user)
-    render conn, "index.html", changeset: changeset, action: "/account/update", user: user
+    render conn, "index.html", changeset: changeset, action: "/account/update",
+                              user: user, slam_user: nil
   end
 
   def update(conn, %{"user" => user_params}) do
