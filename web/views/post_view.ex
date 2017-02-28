@@ -20,7 +20,7 @@ defmodule Healthlocker.PostView do
   end
 
   def body(post) do
-    [head | _ ] = String.split(post.content, ~r/(#+)(.*)/, trim: true)
+    [head | _ ] = String.split(post.content, header_regex, trim: true)
     head
   end
 
