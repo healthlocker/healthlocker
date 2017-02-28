@@ -9,13 +9,13 @@
 
 #### Once everything is installed:
 * Enter `brew link autoconf automake` into your terminal
-* Open Postgresql and look for the elephant symbol in your menu bar to show that it's running
+* Open Postgresql (if you can see the elephant symbol in your menu bar you know that it's running)
 * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
 * If prompted by the following message, enter `y`:
 
-Could not find "rebar3", which is needed to build dependency :fs
+` Could not find "rebar3", which is needed to build dependency :fs
 I can install a local copy which is just used by Mix
-Shall I install rebar3? (if running non-interactively, use: "mix local.rebar --force") [Yn]
+Shall I install rebar3? (if running non-interactively, use: "mix local.rebar --force") [Yn] `
 * Install Node.js dependencies with `npm install`
 * Start Phoenix endpoint with `mix phoenix.server`
 
