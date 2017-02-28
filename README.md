@@ -4,7 +4,7 @@
 
 #### Install the following:
 * [Elixir](https://github.com/dwyl/learn-elixir#how)
-* [Postgresql](https://github.com/dwyl/learn-postgresql)
+* [Postgresql](https://github.com/dwyl/learn-postgresql) (and ensure you create a user)
 * [Node.js](https://nodejs.org/en/)
 
 #### Once everything is installed:
