@@ -24,15 +24,19 @@
     <div class="form-group">
       <%= label f, :email, class: "control-label" %>
       <%= text_input f, :email, class: "form-control" %>
-      <span class="bg-red"><%= error_tag f, :email%></span>
+      <%= error_tag f, :email%>
     </div>
 
     <div class="form-group">
       <%= label f, "Phone number (optional)", class: "control-label" %>
       <%= text_input f, :phone_number, class: "form-control" %>
-      <span class="bg-red"><%= error_tag f, :email%></span>
+      <%= error_tag f, :email%>
     </div>
 
     <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+  <% end %>
+
+  <%= if @slam_user do %>
+    <%= render "slam_connected.html", assigns %>
   <% end %>
 </div>
