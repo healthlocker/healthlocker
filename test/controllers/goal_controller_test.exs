@@ -19,7 +19,13 @@ defmodule Healthlocker.GoalControllerTest do
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
     end
 
-    test "renders index.html on /goal", %{conn: conn} do
+    test "redirects from index.html to new.html if there are no goals", %{conn: conn} do
+      conn = get conn, goal_path(conn, :index)
+      assert redirected_to(conn) == goal_path(conn, :new)
+    end
+
+    test "renders index.html on /goals", %{conn: conn} do
+      Repo.insert %Post{content: "some content #Goal", user_id: 123456}
       conn = get conn, goal_path(conn, :index)
       assert html_response(conn, 200) =~ "Goals"
     end
