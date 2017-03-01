@@ -18,8 +18,10 @@
 
     <div class="form-group">
       <label for="nhs-number">NHS number</label>
+      <%= link "(?)", to: account_path(@conn, :nhs_help) %>
       <input type="text" name="nhs-number" value="" class="w-75">
     </div>
+
 
     <button type="submit" name="connect" class="fr bg-near-white b--black-10 black-50 b pv1">Connect</button>
   </form>
