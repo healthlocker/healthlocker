@@ -1,0 +1,14 @@
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l f3-m f2-l">
+  <p>To connect you will need to enter your NHS number, First name, Last name
+  and Date of Birth, these details will be matched against your SLaM record -
+  they must match perfectly.</p>
+
+  <p>Once your account has been connected you will
+  be able to see the contact details of the SLaM staff you see, view your
+  current care plan, interact with your goals and coping strategies from your
+  care plan, receive recommendations and resources from your care team and
+  more. What you share with your care team, is up to you.</p>
+
+
+  <%= link "Close", to: account_path(@conn, :index)%>
+</div>
