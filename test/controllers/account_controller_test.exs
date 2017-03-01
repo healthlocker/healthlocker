@@ -137,7 +137,7 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "render nhs_help.html", %{conn: conn} do
       conn = get conn, account_path(conn, :nhs_help)
-      assert html_response(conn, 200) =~ "You can find your NHS number"
+      assert html_response(conn, 200) =~ "Your NHS number will be on any letter"
     end
   end
 
@@ -172,7 +172,7 @@ defmodule Healthlocker.AccountControllerTest do
       assert conn.halted
     end
 
-    test "nhs_help will halt the conn & redirect" do
+    test "nhs_help will halt the conn & redirect", %{conn: conn} do
       conn = get conn, account_path(conn, :nhs_help)
       assert html_response(conn, 302)
       assert conn.halted
