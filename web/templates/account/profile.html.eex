@@ -1,0 +1,35 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <input name="_method" type="hidden" value="put" />
+
+  <div class="form-group">
+    <%= label f, "I am a South London and Maudsley service user.",
+        class: "control-label" %>
+    <%= checkbox f, :slam_user, class: "form-control" %>
+    <%= error_tag f, :slam_user %>
+  </div>
+
+  <%= if @user.slam_user do %>
+    <%= link "Connect with my SLaM care team and health record ", to: account_path(@conn, :slam) %>
+    <%= link "(?)", to: account_path(@conn, :slam_help) %>
+  <% end %>
+
+  <div class="form-group mt4">
+    <%= label f, "Name (optional)", class: "control-label" %>
+    <%= text_input f, :name, class: "form-control" %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :email, class: "control-label" %>
+    <%= text_input f, :email, class: "form-control" %>
+    <%= error_tag f, :email%>
+  </div>
+
+  <div class="form-group">
+    <%= label f, "Phone number (optional)", class: "control-label" %>
+    <%= text_input f, :phone_number, class: "form-control" %>
+    <%= error_tag f, :email%>
+  </div>
+
+  <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+<% end %>
