@@ -16,6 +16,24 @@ defmodule Healthlocker.UserTest do
     privacy: true,
     data_access: true
   }
+  @update_attrs %{
+    name: "MyName",
+    email: "me@example.com",
+    phone_number: "07512345678",
+    slam_user: true
+  }
+  @security_question_attrs %{
+     security_answer: "B658H",
+     security_question: "4"
+  }
+  @update_password_attrs %{
+    password: "password",
+    password_confirmation: "password"
+  }
+  @invalid_password_attrs %{
+    password: 1,
+    password_confirmation: "abc123"
+  }
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -29,7 +47,7 @@ defmodule Healthlocker.UserTest do
   end
 
   test "security_question changeset with valid attributes" do
-    changeset = User.security_question(%User{}, @step2_attrs)
+    changeset = User.security_question(%User{}, @security_question_attrs)
     assert changeset.valid?
   end
 
@@ -61,5 +79,25 @@ defmodule Healthlocker.UserTest do
   test "put_pass_hash sets password_hash with valid changeset" do
     changeset = User.registration_changeset(%User{}, @step2_attrs)
     assert get_field(changeset, :password_hash)
+  end
+
+  test "update_changeset with valid attributes" do
+    changeset = User.update_changeset(%User{}, @update_attrs)
+    assert changeset.valid?
+  end
+
+  test "update_changeset with invalid attributes" do
+    changeset = User.update_changeset(%User{}, @invalid_attrs)
+    refute changeset.valid?
+  end
+
+  test "update_password with valid attributes" do
+    changeset = User.update_password(%User{}, @update_password_attrs)
+    assert changeset.valid?
+  end
+
+  test "update_password with invalid attributes" do
+    changeset = User.update_password(%User{}, @invalid_password_attrs)
+    refute changeset.valid?
   end
 end

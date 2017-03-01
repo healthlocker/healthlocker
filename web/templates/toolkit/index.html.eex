@@ -1,0 +1,18 @@
+<h3 class="ma3">Toolkit</h3>
+<div class="goals-strategies">
+  <a href="/goal">
+    <div class="goals-container bg-light-gray ma3">
+      <img src="https://cloud.githubusercontent.com/assets/1287388/23158827/69c4926e-f818-11e6-950c-8f475065da7f.png"
+      alt="trophy">
+      <h4 class="black">Goals</h4>
+    </div>
+  </a>
+
+  <a href="/coping-strategy">
+    <div class="bg-light-gray ma3">
+      <img src="https://cloud.githubusercontent.com/assets/1287388/23158828/69ce54ca-f818-11e6-94b3-b35f9f18b0e0.png"
+      alt="thumbs-up">
+      <h4 class="black">Strategies</h4>
+    </div>
+  </a>
+</div>

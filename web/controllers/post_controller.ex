@@ -1,12 +1,12 @@
 defmodule Healthlocker.PostController do
   use Healthlocker.Web, :controller
 
-plug :authenticate when action in [:new, :create]
+  plug :authenticate when action in [:new, :create]
 
   alias Healthlocker.Post
 
   def show(conn, %{"id" => id}) do
-    post = Repo.get!(Post, id)
+    post = Repo.get!(Post, id) |> Repo.preload(:likes)
     render conn, "show.html", post: post
   end
 
@@ -16,7 +16,9 @@ plug :authenticate when action in [:new, :create]
   end
 
   def create(conn, %{"post" => post_params}) do
+    user_id = get_session(conn, :user_id)
     changeset = Post.changeset(%Post{}, post_params)
+    changeset = Ecto.Changeset.put_change(changeset, :user_id, user_id)
 
     case Repo.insert(changeset) do
       {:ok, _post} ->
@@ -34,13 +36,37 @@ plug :authenticate when action in [:new, :create]
     render(conn, "index.html", posts: posts)
   end
 
+  def likes(conn, %{"post_id" => id}) do
+    user = conn.assigns.current_user
+    post = Repo.get!(Post, id)
+    post
+      |> Repo.preload(:likes)
+      |> Ecto.Changeset.change()
+      |> Ecto.Changeset.put_assoc(:likes, [user])
+      |> Repo.update
+    find_redirect_path(conn)
+  end
+
+  def find_redirect_path(conn) do
+    if conn |> get_req_header("referer") |> List.first do
+      previous_path = conn
+                      |> get_req_header("referer")
+                      |> List.first
+                      |> String.split("/")
+                      |> List.last
+      conn |> redirect(to: ("/" <> previous_path))
+    else
+      conn |> redirect(to: "/")
+    end
+  end
+
   defp authenticate(conn, _opts) do
     if conn.assigns.current_user do
       conn
     else
       conn
       |> put_flash(:error,  "You must be logged in to access that page!")
-      |> redirect(to: page_path(conn, :index))
+      |> redirect(to: login_path(conn, :index))
       |> halt()
     end
   end

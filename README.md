@@ -1,15 +1,27 @@
 # Healthlocker
 
-To start your Phoenix app:
+## Getting started
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+#### Install the following:
+* [Elixir](https://github.com/dwyl/learn-elixir#how)
+* [Postgresql](https://github.com/dwyl/learn-postgresql) (and ensure you create a user)
+* [Node.js](https://nodejs.org/en/)
+
+#### Once everything is installed:
+* Enter `brew link autoconf automake` into your terminal
+* Open Postgresql (if you can see the elephant symbol in your menu bar you know that it's running)
+* Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+* If prompted by the following message, enter `y`:
+
+` Could not find "rebar3", which is needed to build dependency :fs
+I can install a local copy which is just used by Mix
+Shall I install rebar3? (if running non-interactively, use: "mix local.rebar --force") [Yn] `
+* Install Node.js dependencies with `npm install`
+* Start Phoenix endpoint with `mix phoenix.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+Ready to run in production? Please [check the deployment guides](http://www.phoenixframework.org/docs/deployment).
 
 ## Learn more
 
@@ -32,3 +44,8 @@ story preview
 * Three-step sign up process
 * Login
 * Users can only post content when logged in
+* Users can create, view, update and delete coping strategies they have made
+* Users can visit their account page where they can update their name, email,
+or phone number
+* Users can visit their profile and the consent section to update their
+preference for sharing their data with researchers

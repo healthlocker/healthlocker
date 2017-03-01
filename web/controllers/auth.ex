@@ -8,8 +8,14 @@ defmodule Healthlocker.Auth do
 
   def call(conn, repo) do
     user_id = get_session(conn, :user_id)
-    user = user_id && repo.get(Healthlocker.User, user_id)
-    assign(conn, :current_user, user)
+    cond do
+      user = conn.assigns[:current_user] ->
+        conn
+      user = user_id && repo.get(Healthlocker.User, user_id) |> repo.preload(:likes) ->
+        assign(conn, :current_user, user)
+      true ->
+        assign(conn, :current_user, nil)
+    end
   end
 
   def login(conn, user) do
@@ -19,9 +25,21 @@ defmodule Healthlocker.Auth do
     |> configure_session(renew: true)
   end
 
+  def check_password(conn, id, given_pass, opts) do
+    repo = Keyword.fetch!(opts, :repo)
+    user = repo.get(Healthlocker.User, id) |> repo.preload(:likes)
+
+    cond do
+      user && checkpw(given_pass, user.password_hash) ->
+        {:ok, conn}
+      user ->
+        {:error, :wrong_password, conn}
+    end
+  end
+
   def email_and_pass_login(conn, email, given_pass, opts) do
     repo = Keyword.fetch!(opts, :repo)
-    user = repo.get_by(Healthlocker.User, email: email)
+    user = repo.get_by(Healthlocker.User, email: email) |> repo.preload(:likes)
 
     cond do
       user && checkpw(given_pass, user.password_hash) ->

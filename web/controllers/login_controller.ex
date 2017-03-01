@@ -10,7 +10,7 @@ defmodule Healthlocker.LoginController do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Welcome to Healthlocker!")
-        |> redirect(to: post_path(conn, :new))
+        |> redirect(to: toolkit_path(conn, :index))
       {:error, _reason, conn} ->
         conn
         |> put_flash(:error, "Invalid email/password combination")

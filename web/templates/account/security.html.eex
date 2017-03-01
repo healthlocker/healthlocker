@@ -1,0 +1,6 @@
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+  <%= render "menu.html", conn: @conn %>
+
+  <%= link "Update password", to: account_path(@conn, :edit_password), class: "db mt6" %>
+  <%= link "Update security question", to: account_path(@conn, :edit_security), class: "db mt3"%>
+</div>

@@ -1,0 +1,11 @@
+<p class="tc">Note down an action you can take to stay well.
+Something can you do, or avoid doing when you notice a change in your feelings, thoughts or behaviour.
+For example, practice relaxation techniques, leave the room if things are too tense, take a break or tell someone you trust.</p>
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="center mh2 mt2 mh5-m mh7-l">
+    <div class="mh4">
+      <%= textarea f, :content, placeholder: "Content", class: "w-100 h4 mb2 b--light-blue f4 pa2" %>
+      <%= submit "Submit", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+    </div>
+  </div>
+<% end %>

@@ -1,10 +1,14 @@
+<h1>Stories</h1>
+
 <%= for post <- @posts do %>
-<article class="ma3 ma4-m ma4-l ba b--black-90 mv2 mv3-m mv4-l">
-  <div class="pa3 b--black-10">
-    <p class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy">
-      <%= markdown String.slice(post.content, 0, 325) <> "..." %>
-    </p>
-    <a href="/posts/<%= post.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
-  </div>
-</article>
+  <article class="ma3 ma4-m ma4-l ba b--black-90 mv2 mv3-m mv4-l">
+    <div class="pa3 b--black-10">
+      <p class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy">
+        <%= markdown String.slice(post.content, 0, 325) <> "..." %>
+      </p>
+      <a href="/posts/<%= post.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
+      <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: post,
+        current_user: @current_user %>
+    </div>
+  </article>
 <% end %>

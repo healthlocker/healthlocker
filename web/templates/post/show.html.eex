@@ -1,1 +1,1 @@
-<%= render "post.html", post: @post %>
+<%= render "_post.html", post: @post %>

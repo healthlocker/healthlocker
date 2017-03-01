@@ -3,6 +3,8 @@ defmodule Healthlocker.Post do
 
   schema "posts" do
     field :content, :string
+    belongs_to :user, Healthlocker.User
+    many_to_many :likes, Healthlocker.User, join_through: "posts_likes"
 
     timestamps()
   end
@@ -16,27 +18,52 @@ defmodule Healthlocker.Post do
   def find_single_story(query) do
     from p in query,
       limit: 1,
-      where: ilike(p.content, "%#story%")
+      where: ilike(p.content, "%#story%"),
+      preload: [:likes]
   end
 
   def find_single_tip(query) do
     from p in query,
       limit: 1,
-      where: ilike(p.content, "%#tip%")
+      where: ilike(p.content, "%#tip%"),
+      preload: [:likes]
   end
 
   def find_tags(query, params) do
     from p in query,
-    where: ilike(p.content, ^"%##{params["tag"]}%")
+    where: ilike(p.content, ^"%##{params["tag"]}%"),
+    preload: [:likes]
   end
 
   def find_tips(query) do
     from p in query,
-    where: ilike(p.content, "%#tip%")
+    where: ilike(p.content, "%#tip%"),
+    preload: [:likes]
   end
 
   def find_stories(query) do
     from p in query,
-    where: ilike(p.content, "%#story%")
+    where: ilike(p.content, "%#story%"),
+    preload: [:likes]
+  end
+
+  def get_coping_strategies(query, user_id) do
+    from p in query,
+    where: like(p.content, "%#CopingStrategy") and p.user_id == ^user_id
+  end
+
+  def get_coping_strategy_by_user(query, id, user_id) do
+    from p in query,
+    where: p.id == ^id and p.user_id == ^user_id
+  end
+
+  def get_goals(query, user_id) do
+    from p in query,
+    where: like(p.content, "%#Goal") and p.user_id == ^user_id
+  end
+
+  def get_goal_by_user(query, id, user_id) do
+    from p in query,
+    where: p.id == ^id and p.user_id == ^user_id
   end
 end
