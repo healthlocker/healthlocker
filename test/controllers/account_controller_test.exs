@@ -134,6 +134,11 @@ defmodule Healthlocker.AccountControllerTest do
       conn = put conn, account_path(conn, :update_password), user: @wrong_confirmation
       assert html_response(conn, 200) =~ "Current password"
     end
+
+    test "renders connecting slam info", %{conn: conn} do
+      conn = get conn, account_path(conn, :slam_help)
+      assert html_response(conn, 200) =~ "To connect you will need to enter"
+    end
   end
 
   describe "connection is halted if there is no current_user" do
@@ -163,6 +168,12 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "update user data_access", %{conn: conn} do
       conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "slam_help is redirect and halted", %{conn: conn} do
+      conn = get conn, account_path(conn, :slam_help)
       assert html_response(conn, 302)
       assert conn.halted
     end
