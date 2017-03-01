@@ -123,6 +123,10 @@ defmodule Healthlocker.AccountController do
     render conn, "slam.html", user: user
   end
 
+  def nhs_help(conn, _params) do
+    render conn, "nhs_help.html"
+  end
+
   defp authenticate(conn, _opts) do
     if conn.assigns.current_user do
       conn
