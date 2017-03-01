@@ -2,6 +2,7 @@
   <%= render "menu.html", conn: @conn %>
 
   <div class="mt6">
+
     <%= if !@slam_user do %>
       <%= render "profile.html", assigns %>
     <% end %>
