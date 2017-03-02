@@ -18,7 +18,17 @@ defmodule Healthlocker.UserControllerTest do
   @invalid_attrs %{}
 
   test "loads index.html on /users", %{conn: conn} do
-    conn = get conn, user_path(conn, :index)
+    %User{
+      id: 123456,
+      name: "MyName",
+      email: "abc@gmail.com",
+      password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+      security_question: "Question?",
+      security_answer: "Answer"
+    } |> Repo.insert
+    conn = build_conn()
+          |> assign(:current_user, Repo.get(User, 123456))
+          |> get(user_path(conn, :index))
     assert html_response(conn, 200) =~ "Welcome! Get started by adding new content"
   end
 
