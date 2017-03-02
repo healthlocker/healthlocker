@@ -44,6 +44,7 @@ defmodule Healthlocker.Router do
     put "/account/password/update", AccountController, :update_password
     get "/account/slam", AccountController, :slam
     get "/account/slam-help", AccountController, :slam_help
+    get "/account/nhs-help", AccountController, :nhs_help
 
   end
 
