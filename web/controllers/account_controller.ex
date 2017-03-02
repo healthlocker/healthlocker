@@ -48,7 +48,7 @@ defmodule Healthlocker.AccountController do
       {:ok, _params} ->
         conn
         |> put_flash(:info, "Updated successfully!")
-        |> redirect(to: account_path(conn, :index))
+        |> redirect(to: account_path(conn, :consent))
       {:error, changeset} ->
         render(conn, "consent.html", changeset: changeset, user: user,
                   action: account_path(conn, :update_consent))
