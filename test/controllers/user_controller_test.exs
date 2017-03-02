@@ -18,14 +18,14 @@ defmodule Healthlocker.UserControllerTest do
   @invalid_attrs %{}
 
   test "loads index.html on /users", %{conn: conn} do
-    %User{
+    Repo.insert %User{
       id: 123456,
       name: "MyName",
       email: "abc@gmail.com",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       security_question: "Question?",
       security_answer: "Answer"
-    } |> Repo.insert
+    }
     conn = build_conn()
           |> assign(:current_user, Repo.get(User, 123456))
           |> get(user_path(conn, :index))
@@ -49,6 +49,7 @@ defmodule Healthlocker.UserControllerTest do
     assert html_response(conn, 200) =~ "Password"
   end
 
+
   test "renders form for accepting T&Cs, privacy, and data access request", %{conn: conn} do
     conn =
       case Repo.insert %User{
@@ -63,11 +64,37 @@ defmodule Healthlocker.UserControllerTest do
     assert html_response(conn, 200) =~ "terms and conditions"
   end
 
-  test "creates resource and redirects when data is valid", %{conn: conn} do
+  test "creates resource and redirects when data is valid and not duplicate", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @step1_attrs
     user = Repo.get_by(User, email: "me@example.com")
     assert redirected_to(conn) == "/users/#{user.id}/signup2"
     assert user
+  end
+
+  test "does not create duplicate resource and redirects when email is duplicate", %{conn: conn} do
+    Repo.insert %User{email: "me@example.com"}
+    conn = post conn, user_path(conn, :create), user: @step1_attrs
+    user = Repo.get_by(User, email: "me@example.com")
+    assert redirected_to(conn) == "/users/#{user.id}/signup2"
+  end
+
+  test "does not create duplicate resource and redirects when user has completed step1 & 2 of signup", %{conn: conn} do
+    Repo.insert %User{email: "me@example.com", password_hash: Comeonin.Bcrypt.hashpwsalt("password")}
+    conn = post conn, user_path(conn, :create), user: @step1_attrs
+    user = Repo.get_by(User, email: "me@example.com")
+    assert redirected_to(conn) == "/users/#{user.id}/signup3"
+  end
+
+  test "does not create duplicate resource and redirects when user has previously signed up with false data_access", %{conn: conn} do
+    Repo.insert %User{email: "me@example.com", password_hash: Comeonin.Bcrypt.hashpwsalt("password"), data_access: false}
+    conn = post conn, user_path(conn, :create), user: @step1_attrs
+    assert redirected_to(conn) == login_path(conn, :index)
+  end
+
+  test "does not create duplicate resource and redirects when user has previously signed up with true data_access", %{conn: conn} do
+    Repo.insert %User{email: "me@example.com", password_hash: Comeonin.Bcrypt.hashpwsalt("password"), data_access: true}
+    conn = post conn, user_path(conn, :create), user: @step1_attrs
+    assert redirected_to(conn) == login_path(conn, :index)
   end
 
   test "creates resource and redirects when only email is input", %{conn: conn} do
