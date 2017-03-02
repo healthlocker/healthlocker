@@ -27,10 +27,13 @@ defmodule Healthlocker.UserController do
           user = Repo.get_by(User, email: changeset.changes[:email])
           cond do
             user.password_hash && user.data_access == nil ->
-              conn |> redirect(to: "/users/#{user.id}/signup3", action: :signup3,
+              conn
+              |> redirect(to: "/users/#{user.id}/signup3", action: :signup3,
                                                            user: user)
             user.password_hash ->
-              conn |> redirect(to: login_path(conn, :index))
+              conn
+              |> put_flash(:error, "You already have an account. Please log in")
+              |> redirect(to: login_path(conn, :index))
             !user.password_hash ->
               conn
               |> redirect(to: "/users/#{user.id}/signup2", action: :signup2,
