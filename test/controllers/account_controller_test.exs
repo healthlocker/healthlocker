@@ -79,7 +79,7 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "updates user data_access with valid data", %{conn: conn} do
       conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
-      assert redirected_to(conn) == account_path(conn, :index)
+      assert redirected_to(conn) == account_path(conn, :consent)
     end
 
     test "render security.html", %{conn: conn} do
