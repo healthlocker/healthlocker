@@ -16,13 +16,31 @@ defmodule Healthlocker.UserController do
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
+
     case Repo.insert(changeset) do
       {:ok, user} ->
         conn
         |> redirect(to: "/users/#{user.id}/signup2", action: :signup2,
                                                      user: user)
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        if elem(changeset.errors[:email], 0) == "has already been taken" do
+          user = Repo.get_by(User, email: changeset.changes[:email])
+          cond do
+            user.password_hash && user.data_access == nil ->
+              conn |> redirect(to: "/users/#{user.id}/signup3", action: :signup3,
+                                                           user: user)
+            user.password_hash ->
+              conn |> redirect(to: login_path(conn, :index))
+            !user.password_hash ->
+              conn
+              |> redirect(to: "/users/#{user.id}/signup2", action: :signup2,
+                                                           user: user)
+            true ->
+              render(conn, "new.html", changeset: changeset)
+          end
+        else
+          render(conn, "new.html", changeset: changeset)
+        end
     end
   end
 
