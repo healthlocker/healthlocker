@@ -2,8 +2,9 @@
   <input name="_method" type="hidden" value="put" />
 
   <div class="form-group">
-    <%= label f, "I am a South London and Maudsley service user.",
-        class: "control-label" %>
+    <%= label f, :slam_user, class: "control-label" do %>
+      I am a South London and Maudsley service user.
+    <% end %>
     <%= checkbox f, :slam_user, class: "form-control" %>
     <%= error_tag f, :slam_user %>
   </div>
