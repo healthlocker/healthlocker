@@ -2,25 +2,35 @@
   <h3 class="tc">Account</h3>
   <p>Please use the correct information as it appears on your health record.</p>
 
-  <form>
-    <div class="form-group">
-      <label for="first-name">First name</label>
-      <input type="text" name="first-name" value="" class="w-33 mr4">
+  <%= form_for @changeset, @action, fn f -> %>
+    <input name="_method" type="hidden" value="put" />
 
-      <label for="last-name" class="">Last name</label>
-      <input type="text" name="last-name" value="" class="w-33">
+    <div class="form-group w-50 fl">
+      <%= label f, "First name", class: "control-label" %>
+      <%= text_input f, :first_name, class: "form-control" %>
+      <%= error_tag f, :first_name %>
+    </div>
+
+    <div class="form-group w-50 fl">
+      <%= label f, "Last name", class: "control-label" %>
+      <%= text_input f, :last_name, class: "form-control" %>
+      <%= error_tag f, :last_name %>
     </div>
 
     <div class="form-group">
-      <label for="dob">Date of birth</label>
-      <input type="text" name="dob" value="" class="w-33">
+      <%= label f, "Date of birth", class: "control-label" %>
+      <%= text_input f, :date_of_birth, class: "form-control" %>
+      <%= error_tag f, :date_of_birth %>
     </div>
 
     <div class="form-group">
-      <label for="nhs-number">NHS number</label>
-      <%= link "(?)", to: account_path(@conn, :nhs_help) %>
-      <input type="text" name="nhs-number" value="" class="w-75">
+      <%= label f, "NHS number", class: "control-label" %>
+      <%= text_input f, :nhs, class: "form-control" %>
+      <%= error_tag f, :nhs %>
     </div>
+
+    <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+  <% end %>
 
 
     <button type="submit" name="connect" class="fr bg-near-white b--black-10 black-50 b pv1">Connect</button>
