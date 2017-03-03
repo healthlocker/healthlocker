@@ -1,7 +1,7 @@
 defmodule Healthlocker.PostController do
   use Healthlocker.Web, :controller
 
-  plug :authenticate when action in [:new, :create]
+  plug :authenticate when action in [:new, :create, :likes]
 
   alias Healthlocker.Post
 

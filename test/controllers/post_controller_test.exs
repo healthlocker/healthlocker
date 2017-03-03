@@ -60,13 +60,12 @@ defmodule Healthlocker.PostControllerTest do
     post = Repo.get_by!(Post, content: "Another #tip #beactive")
     conn = post conn, "/posts/#{post.id}/likes"
     assert html_response(conn, 302)
+    assert conn.halted
   end
-
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
     assert_error_sent 404, fn ->
       get conn, post_path(conn, :show, -1)
     end
   end
-
 end
