@@ -1,5 +1,6 @@
 <%= if @current_user do %>
-  <%= if Enum.member?(@current_user.likes |> Enum.map(fn(p) -> p.id end), @post.id) do %>
+  <%= user_likes = @current_user.likes |> Enum.map(fn(p) -> p.id end) %>
+  <%= if Enum.member?(user_likes, @post.id) do %>
     <p class="pa3 f3 red db">Liked!</p>
   <%= else %>
     <%= link "Like", class: "pa3 f3 blue db hover-faded-blue",
