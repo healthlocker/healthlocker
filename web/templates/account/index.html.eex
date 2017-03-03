@@ -3,13 +3,13 @@
 
   <div class="mt6">
 
-    <%= if !@slam_user do %>
+    <%= if !@slam_connected do %>
       <%= render "profile.html", assigns %>
     <% end %>
   </div>
 
   <div class="mt6">
-    <%= if @slam_user do %>
+    <%= if @slam_connected do %>
       <%= render "slam_connected.html", assigns %>
     <% end %>
   </div>
