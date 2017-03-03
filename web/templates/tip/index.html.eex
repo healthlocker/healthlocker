@@ -4,11 +4,11 @@
   <div class="pa3 bg-near-white b--black-10">
     <p class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy"><%= markdown post.content %></p>
     <a href="/tips?tag=<%= tag = cond do
-                String.contains?(post.content, "#connect") -> "connect"
-                String.contains?(post.content, "#keeplearning") -> "keeplearning"
-                String.contains?(post.content, "#givetoothers") -> "givetoothers"
-                String.contains?(post.content, "#beactive") -> "beactive"
-                String.contains?(post.content, "#takenotice") -> "takenotice"
+                String.contains?(String.downcase(post.content), "#connect") -> "Connect"
+                String.contains?(String.downcase(post.content), "#keeplearning") -> "KeepLearning"
+                String.contains?(String.downcase(post.content), "#givetoothers") -> "GiveToOthers"
+                String.contains?(String.downcase(post.content), "#beactive") -> "BeActive"
+                String.contains?(String.downcase(post.content), "#takenotice") -> "TakeNotice"
                 true -> "no tag found"
               end%>">See more "<%= tag %>" tips</a>
     <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: post,

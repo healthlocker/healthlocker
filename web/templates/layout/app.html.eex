@@ -23,13 +23,13 @@
         <%= if @current_user do %>
           <%= link "Toolkit",  class: "pa3 f1 white-80 db hover-white",
                                to: toolkit_path(@conn, :index) %>
+         <p class="pa3 f1 white-80 db">------------</p>
         <%= else %>
           <%= link "Sign up", class: "pa3 f1 white-80 db hover-white",
               to: user_path(@conn, :new) %>
           <%= link "Log in", class: "pa3 f1 white-80 db hover-white",
               to: login_path(@conn, :index) %>
         <%= end %>
-        <p class="pa3 f1 white-80 db">------------</p>
         <%= if @current_user do %>
           <%= link "Account", to: account_path(@conn, :index),
                     class: "pa3 f2 white-60 db hover-white" %>
