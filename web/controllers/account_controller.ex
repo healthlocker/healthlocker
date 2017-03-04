@@ -4,6 +4,7 @@ defmodule Healthlocker.AccountController do
   plug :authenticate
 
   alias Healthlocker.User
+  alias Healthlocker.SlamUser
 
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
@@ -123,6 +124,9 @@ defmodule Healthlocker.AccountController do
   end
 
   def slam(conn, _params) do
+    # need to get slam_user changeset here and pass in to form
+    # connect tables with user has_one slam_user/slam_user belongs to user
+    # can replace slam_connected in users table with slam_user_id for checking.
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
     render conn, "slam.html", user: user
