@@ -17,34 +17,32 @@
 
   <body class="w-100 sans-serif bg-white">
     <nav class="sidenav h-100 fixed z-1 top-0 left-0 bg-gray overflow-x-hidden tc" id="my-sidenav">
-      <img id="close-nav" class="w3" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
-      <a class="pa3 f1 white-80 db hover-white" href="/">Home</a>
-      <a class="pa3 f1 white-80 db hover-white" href="#">About</a>
+      <img id="close-nav" class="w2" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
+      <a class="pa3 f3 white-80 db hover-white" href="/">Home</a>
+      <a class="pa3 f3 white-80 db hover-white" href="#">About</a>
       <%= if @current_user do %>
-        <%= link "Toolkit",  class: "pa3 f1 white-80 db hover-white",
+        <%= link "Toolkit",  class: "pa3 f3 white-80 db hover-white",
                              to: toolkit_path(@conn, :index) %>
+       <p class="pa3 f3 white-80 db">------------</p>
       <%= else %>
-        <%= link "Sign up", class: "pa3 f1 white-80 db hover-white",
+        <%= link "Sign up", class: "pa3 f3 white-80 db hover-white",
             to: user_path(@conn, :new) %>
-        <%= link "Log in", class: "pa3 f1 white-80 db hover-white",
+        <%= link "Log in", class: "pa3 f3 white-80 db hover-white",
             to: login_path(@conn, :index) %>
       <%= end %>
-      <p class="pa3 f1 white-80 db">------------</p>
       <%= if @current_user do %>
         <%= link "Account", to: account_path(@conn, :index),
-                  class: "pa3 f2 white-60 db hover-white" %>
-        <%= link "Log out", class: "pa3 f2 white-60 db hover-white",
+                  class: "pa3 f4 white-60 db hover-white" %>
+        <%= link "Log out", class: "pa3 f4 white-60 db hover-white",
                             to: login_path(@conn, :delete, @current_user),
                             method: "delete" %>
       <% end %>
-      <a class="mt3 mh6 bg-light-red pv2 f1 white-80 db hover-white" href="/support">Get support</a>
+      <a class="mt3 mh6 bg-light-red pv2 f3 white-80 db hover-white" href="/support">Get support</a>
     </nav>
 
     <header class="bg-blue w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
       <nav class="f4 fw3 tracked">
-        <a id="open-nav" class="link dim white dib mr3 fl" href="#" title="Nav">
-          <i class="fa fa-bars" aria-hidden="true"></i>
-        </a>
+        <i id="open-nav" class="fa fa-bars dim white dib mr3 fl" aria-hidden="true"></i>
         <%= link("Healthlocker", to: "/", class: "link dim white dib mr3") %>
       </nav>
     </header>

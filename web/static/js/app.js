@@ -13,6 +13,18 @@
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
 
+var nav = document.getElementById('my-sidenav')
+
+function openNav () {
+  nav.style.width = '100%'
+}
+
+function closeNav () {
+  nav.style.width = '0'
+}
+
+document.getElementById('open-nav').addEventListener('click', openNav)
+document.getElementById('close-nav').addEventListener('click', closeNav)
 // Import local files
 //
 // Local files can be imported directly using relative

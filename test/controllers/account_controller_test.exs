@@ -38,7 +38,7 @@ defmodule Healthlocker.AccountControllerTest do
     password_confirmation: "not new password"
   }
 
-  describe "all account paths need current_user for access" do
+  describe "current_user is assigned in the session" do
     setup do
       %User{
         id: 123456,
@@ -52,7 +52,7 @@ defmodule Healthlocker.AccountControllerTest do
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
     end
 
-    test "renders index.html on /account", %{conn: conn} do
+    test "renders index.html", %{conn: conn} do
       conn = get conn, account_path(conn, :index)
       assert html_response(conn, 200) =~ "Account"
     end
@@ -79,7 +79,7 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "updates user data_access with valid data", %{conn: conn} do
       conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
-      assert redirected_to(conn) == account_path(conn, :index)
+      assert redirected_to(conn) == account_path(conn, :consent)
     end
 
     test "render security.html", %{conn: conn} do
@@ -134,35 +134,87 @@ defmodule Healthlocker.AccountControllerTest do
       conn = put conn, account_path(conn, :update_password), user: @wrong_confirmation
       assert html_response(conn, 200) =~ "Current password"
     end
+
+    test "renders connecting slam info", %{conn: conn} do
+      conn = get conn, account_path(conn, :slam_help)
+      assert html_response(conn, 200) =~ "To connect you will need to enter"
+    end
+
+    test "render nhs_help.html", %{conn: conn} do
+      conn = get conn, account_path(conn, :nhs_help)
+      assert html_response(conn, 200) =~ "Your NHS number will be on any letter"
+    end
   end
 
-  describe "connection is halted if there is no current_user" do
-    test "index", %{conn: conn} do
+  describe "current_user is not assigned in the session" do
+    test "index is redirected and conn halted", %{conn: conn} do
       conn = get conn, account_path(conn, :index)
       assert html_response(conn, 302)
       assert conn.halted
     end
 
-    test "update", %{conn: conn} do
+    test "update is redirected and conn halted", %{conn: conn} do
       conn = put conn, account_path(conn, :update), user: @valid_attrs
       assert html_response(conn, 302)
       assert conn.halted
     end
 
-    test "consent", %{conn: conn} do
+    test "consent is redirected and conn halted", %{conn: conn} do
       conn = get conn, account_path(conn, :consent)
       assert html_response(conn, 302)
       assert conn.halted
     end
 
-    test "slam", %{conn: conn} do
+    test "update_consent is redirected and conn halted", %{conn: conn} do
+      conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "security is redirected and conn halted", %{conn: conn} do
+      conn = get conn, account_path(conn, :security)
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "edit_security is redirected and conn halted", %{conn: conn} do
+      conn = get conn, account_path(conn, :edit_security)
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "update_security is redirected and conn halted", %{conn: conn} do
+      conn = put conn, account_path(conn, :update_security)
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "edit_password is redirected and conn halted", %{conn: conn} do
+      conn = get conn, account_path(conn, :edit_password)
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "update_password is redirected and conn halted", %{conn: conn} do
+       conn = put conn, account_path(conn, :update_password)
+       assert html_response(conn, 302)
+       assert conn.halted
+    end
+
+    test "slam is redirected and conn halted", %{conn: conn} do
       conn = get conn, account_path(conn, :slam)
       assert html_response(conn, 302)
       assert conn.halted
     end
 
-    test "update user data_access", %{conn: conn} do
-      conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
+    test "slam_help is redirected and conn halted", %{conn: conn} do
+      conn = get conn, account_path(conn, :slam_help)
+      assert html_response(conn, 302)
+      assert conn.halted
+    end
+
+    test "nhs_help is redirected and conn halted", %{conn: conn} do
+      conn = get conn, account_path(conn, :nhs_help)
       assert html_response(conn, 302)
       assert conn.halted
     end

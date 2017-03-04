@@ -15,7 +15,7 @@ defmodule Healthlocker.User do
     field :role, :string
     field :slam_user, :boolean
     has_many :posts, Healthlocker.Post
-    many_to_many :likes, Healthlocker.Post, join_through: "posts_likes"
+    many_to_many :likes, Healthlocker.Post, join_through: "posts_likes", on_replace: :delete
 
     timestamps()
   end
@@ -28,6 +28,7 @@ defmodule Healthlocker.User do
     |> cast(params, [:email, :name])
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
+    |> unique_constraint(:email)
   end
 
   def update_changeset(struct, params \\ :invalid) do
@@ -35,6 +36,7 @@ defmodule Healthlocker.User do
     |> cast(params, [:email, :name, :phone_number, :slam_user])
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
+    |> unique_constraint(:email)
   end
 
   def security_question(struct, params \\ :invalid) do

@@ -4,7 +4,7 @@ defmodule Healthlocker.Post do
   schema "posts" do
     field :content, :string
     belongs_to :user, Healthlocker.User
-    many_to_many :likes, Healthlocker.User, join_through: "posts_likes"
+    many_to_many :likes, Healthlocker.User, join_through: "posts_likes", on_replace: :delete
 
     timestamps()
   end
