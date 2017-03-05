@@ -13,8 +13,9 @@
   </div>
 
   <div class="form-group">
-    <%= label f, "I accept the terms of our Privacy Statement",
-                  class: "control-label"%>
+    <%= label f, :privacy do %>
+      I accept the terms of our <%= link "Privacy Statement", to: privacy_path(@conn, :index) %>
+    <% end %>
     <%= checkbox f, :privacy, class: "form-control" %>
     <%= error_tag f, :privacy %>
   </div>
