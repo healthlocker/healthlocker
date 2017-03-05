@@ -47,6 +47,7 @@ defmodule Healthlocker.Router do
     get "/account/slam", AccountController, :slam
     get "/account/slam-help", AccountController, :slam_help
     get "/account/nhs-help", AccountController, :nhs_help
+    resources "/privacy", PrivacyController, only: [:index]
 
     resources "/components", ComponentController, only: [:index]
   end
