@@ -1,5 +1,6 @@
-<%= for post <- @posts do %>
+<h1>Tips</h1>
 
+<%= for post <- @posts do %>
 <article class="ma3 ma4-m ma4-l ba b--black-05 mv2 mv3-m mv4-l">
   <div class="pa3 bg-near-white b--black-10">
     <p class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy"><%= markdown post.content %></p>

@@ -18,9 +18,11 @@ defmodule Healthlocker.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
     resources "/posts", PostController, only: [:show, :new, :create, :index] do
       post "/likes", PostController, :likes
     end
+
     resources "/tips", TipController, only: [:index]
     get "/support", SupportController, :index
     resources "/users", UserController, only: [:index, :new, :create, :update] do
@@ -46,6 +48,7 @@ defmodule Healthlocker.Router do
     get "/account/slam-help", AccountController, :slam_help
     get "/account/nhs-help", AccountController, :nhs_help
 
+    resources "/components", ComponentController, only: [:index]
   end
 
   # Other scopes may use custom stacks.
