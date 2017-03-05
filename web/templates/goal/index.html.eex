@@ -1,13 +1,13 @@
-<h3 class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l ">Goals</h3>
-<%= if Kernel.length(@goals) == 0 do %>
+<div class="ma3 ma4-m ma4-l">
+  <h3 class="tc">Goals</h3>
   <%= link "Add new", to: goal_path(@conn, :new) %>
-<%= end %>
-<%= for goal <- @goals do %>
-<a href="/goal/<%= goal.id %>">
-  <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l bg-light-silver">
-    <h4 class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy black">
-      <%= markdown String.trim_trailing(goal.content, " #Goal") %>
-    </h4>
-  </div>
-</a>
-<% end %>
+  <%= for goal <- @goals do %>
+  <a href="/goal/<%= goal.id %>">
+    <div class="bg-light-silver black">
+      <h4 class="pv2 ph2 ph3-m ph4-l f5 f4-m f4-l lh-copy black">
+        <%= markdown String.trim_trailing(goal.content, " #Goal") %>
+      </h4>
+    </div>
+  </a>
+  <% end %>
+</div>
