@@ -1,4 +1,6 @@
-<h2>New user</h2>
+<div class="ma3 ma4-m ma4-l">
+  <h3 class="tc">Sign up</h3>
 
-<%= render "form.html", changeset: @changeset,
-                        action: user_path(@conn, :create) %>
+  <%= render "form.html", changeset: @changeset,
+                          action: user_path(@conn, :create) %>
+</div>

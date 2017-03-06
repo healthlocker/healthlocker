@@ -19,14 +19,7 @@
   <div class="pa3 bg-near-white b--black-10">
     <%= if @tip do %>
       <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= markdown @tip.content %></p>
-      <a href="/tips?tag=<%= tag = cond do
-        String.contains?(String.downcase(@tip.content), "#connect") -> "Connect"
-        String.contains?(String.downcase(@tip.content), "#keeplearning") -> "KeepLearning"
-        String.contains?(String.downcase(@tip.content), "#givetoothers") -> "GiveToOthers"
-        String.contains?(String.downcase(@tip.content), "#beactive") -> "BeActive"
-        String.contains?(String.downcase(@tip.content), "#takenotice") -> "TakeNotice"
-        true -> "no tag found"
-      end %>">See more "<%= tag %>" tips</a>
+      <a href="/tips?tag=<%= tip_tag(@tip.content) %>">See more "<%= tip_tag(@tip.content) %>" tips</a>
       <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: @tip,
         current_user: @current_user %>
     <%= else %>

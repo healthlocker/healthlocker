@@ -34,7 +34,7 @@ defmodule Healthlocker.UserControllerTest do
 
   test "renders form for new name and email", %{conn: conn} do
     conn = get conn, user_path(conn, :new)
-    assert html_response(conn, 200) =~ "New user"
+    assert html_response(conn, 200) =~ "Sign up"
   end
 
   test "renders form for new user password and security Q&A", %{conn: conn} do
@@ -106,7 +106,7 @@ defmodule Healthlocker.UserControllerTest do
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @invalid_attrs
-    assert html_response(conn, 200) =~ "New user"
+    assert html_response(conn, 200) =~ "Sign up"
   end
 
   test "update resourse with password, security Q&A and redirects when data is valid", %{conn: conn} do
