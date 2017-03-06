@@ -47,5 +47,6 @@ story preview
 * Users can create, view, update and delete coping strategies they have made
 * Users can visit their account page where they can update their name, email,
 or phone number
-* Users can visit their profile and the consent section to update their
-preference for sharing their data with researchers
+* Users can update their consent for sharing data with researcher in their account
+* Users can update their password and security Q&A in their account
+* Terms & conditions page can be accessed and is linked in sign up
