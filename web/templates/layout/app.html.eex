@@ -8,55 +8,55 @@
     <meta name="author" content="">
 
     <title>Hello Healthlocker!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
+    <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
   </head>
 
-  <body>
-    <div class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <nav class="sidenav h-100 fixed z-1 top-0 left-0 bg-gray overflow-x-hidden tc" id="my-sidenav">
-        <img id="close-nav" class="w3" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
-        <a class="pa3 f1 white-80 db hover-white" href="/">Home</a>
-        <a class="pa3 f1 white-80 db hover-white" href="#">About</a>
-        <%= if @current_user do %>
-          <%= link "Toolkit",  class: "pa3 f1 white-80 db hover-white",
-                               to: toolkit_path(@conn, :index) %>
-         <p class="pa3 f1 white-80 db">------------</p>
-        <%= else %>
-          <%= link "Sign up", class: "pa3 f1 white-80 db hover-white",
-              to: user_path(@conn, :new) %>
-          <%= link "Log in", class: "pa3 f1 white-80 db hover-white",
-              to: login_path(@conn, :index) %>
-        <%= end %>
-        <%= if @current_user do %>
-          <%= link "Account", to: account_path(@conn, :index),
-                    class: "pa3 f2 white-60 db hover-white" %>
-          <%= link "Log out", class: "pa3 f2 white-60 db hover-white",
-                              to: login_path(@conn, :delete, @current_user),
-                              method: "delete" %>
-        <% end %>
-        <a class="mt3 mh6 bg-light-red pv2 f1 white-80 db hover-white" href="/support">Get support</a>
-      </nav>
-      <img class="fl w4 mt4" id="open-nav" src="https://cloud.githubusercontent.com/assets/1287388/22473871/1faa58b8-e7d2-11e6-9c89-ac74ce5a5a67.png" alt="burger menu">
-      <h1 class="fl ml5 ml6-m ml7-l mt5"><%= case @conn.request_path do
-                    "/" -> "Home"
-                    "/posts" -> "Stories"
-                    "/tips" -> "Tips"
-                    "/support" -> "Get Support"
-                    "/login" -> "Log in"
-                    _ -> ""
-              end
-      %></h1>
+  <body class="w-100 sans-serif bg-white">
+    <nav class="sidenav h-100 fixed z-1 top-0 left-0 bg-gray overflow-x-hidden tc" id="my-sidenav">
+      <img id="close-nav" class="w2" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
+      <a class="pa3 f3 white-80 db hover-white" href="/">Home</a>
+      <a class="pa3 f3 white-80 db hover-white" href="#">About</a>
       <%= if @current_user do %>
-        <a class="fr mt6 mh3 mh4-m mh4-l ph3 pv2 bg-gray white-80 hover-white" href="/posts/new">New Post</a>
+        <%= link "Toolkit",  class: "pa3 f3 white-80 db hover-white",
+                             to: toolkit_path(@conn, :index) %>
+       <p class="pa3 f3 white-80 db">------------</p>
+      <%= else %>
+        <%= link "Sign up", class: "pa3 f3 white-80 db hover-white",
+            to: user_path(@conn, :new) %>
+        <%= link "Log in", class: "pa3 f3 white-80 db hover-white",
+            to: login_path(@conn, :index) %>
       <%= end %>
-      <main class="mt7" role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+      <%= if @current_user do %>
+        <%= link "Account", to: account_path(@conn, :index),
+                  class: "pa3 f4 white-60 db hover-white" %>
+        <%= link "Log out", class: "pa3 f4 white-60 db hover-white",
+                            to: login_path(@conn, :delete, @current_user),
+                            method: "delete" %>
+      <% end %>
+      <a class="mt3 mh6 bg-light-red pv2 f3 white-80 db hover-white" href="/support">Get support</a>
+    </nav>
 
-    </div> <!-- /container -->
+    <header class="bg-blue w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
+      <nav class="f4 fw3 tracked">
+        <i id="open-nav" class="fa fa-bars dim white dib mr3 fl" aria-hidden="true"></i>
+        <%= link("Healthlocker", to: "/", class: "link dim white dib mr3") %>
+      </nav>
+    </header>
+
+    <main>
+      <section class="pa3 pa5-ns bt b--black-10 black-70 bg-near-white">
+        <section class="mw7 center">
+          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
+          <%= render @view_module, @view_template, assigns %>
+        </section>
+      </section>
+    </main>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
