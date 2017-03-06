@@ -1,5 +1,6 @@
 <div class="ma3 ma4-m ma4-l">
-  <h3 class="tc">Log in</h3>
+  <h3 class="hl-darkBlue tc">Log in</h3>
+  <p lh-copy measure mt4>Copy tbc Copy tbc Copy tbc Copy tbc Copy tbc Copy tbc Copy tbc </p>
   <section class="mw7 center">
     <%= form_for @conn, login_path(@conn, :create), [as: :login, class: "mw6 bg-white br2 br--bottom shadow-1--bottom pa3 mv3 ba b--black-10 center"], fn f -> %>
       <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
