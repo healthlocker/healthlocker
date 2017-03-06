@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
     <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
 
   </head>
 
-  <body class="w-100 sans-serif bg-white">
+  <body class="w-100 bg-white">
 
     <header class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
       <nav class="f4 fw3 tracked">
@@ -49,7 +50,7 @@
     </nav>
 
     <main>
-      <section class="pa3 pa5-ns bt b--black-10 black-70 bg-near-white">
+      <section class="pa3 pa5-ns bt b--black-10 bg-white">
         <section class="mw7 center">
           <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
           <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
