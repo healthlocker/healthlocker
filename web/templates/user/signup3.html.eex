@@ -7,7 +7,9 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, "I accept terms and conditions", class: "control-label"%>
+    <%= label f, :terms_conditions do %>
+      I accept <%= link "terms and conditions", to: term_path(@conn, :index) %>
+    <% end %>
     <%= checkbox f, :terms_conditions, class: "form-control" %>
     <%= error_tag f, :terms_conditions %>
   </div>
