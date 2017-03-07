@@ -13,10 +13,10 @@ defmodule Healthlocker.User do
     field :security_answer, :string
     field :data_access, :boolean
     field :role, :string
-    field :slam_user, :boolean
-    field :slam_connected, :boolean
+    field :slam, :boolean
     has_many :posts, Healthlocker.Post
     many_to_many :likes, Healthlocker.Post, join_through: "posts_likes", on_replace: :delete
+    belongs_to :slam_user, Healthlocker.SlamUser
 
     timestamps()
   end
@@ -34,7 +34,7 @@ defmodule Healthlocker.User do
 
   def update_changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name, :phone_number, :slam_user])
+    |> cast(params, [:email, :name, :phone_number, :slam])
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
     |> unique_constraint(:email)
