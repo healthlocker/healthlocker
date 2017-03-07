@@ -3,7 +3,7 @@ defmodule Healthlocker.Repo.Migrations.AddSlamFieldToUsers do
 
   def change do
     alter table(:users) do
-      add :slam_user, :boolean
+      add :slam, :boolean
     end
   end
 end
