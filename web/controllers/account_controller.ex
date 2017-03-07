@@ -11,7 +11,7 @@ defmodule Healthlocker.AccountController do
     user = Repo.get!(User, user_id)
     changeset = User.update_changeset(user)
     render conn, "index.html", changeset: changeset, user: user,
-              slam_connected: false, action: account_path(conn, :update)
+              slam_user_id: user.slam_user_id, action: account_path(conn, :update)
   end
 
   def update(conn, %{"user" => user_params}) do
@@ -27,7 +27,7 @@ defmodule Healthlocker.AccountController do
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         render(conn, "index.html", changeset: changeset, user: user,
-                slam_connected: false, action: account_path(conn, :update))
+                slam_user_id: false, action: account_path(conn, :update))
     end
   end
 
@@ -125,11 +125,31 @@ defmodule Healthlocker.AccountController do
 
   def slam(conn, _params) do
     # need to get slam_user changeset here and pass in to form
-    # connect tables with user has_one slam_user/slam_user belongs to user
-    # can replace slam_connected in users table with slam_user_id for checking.
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
-    render conn, "slam.html", user: user
+    changeset = SlamUser.changeset(%SlamUser{})
+    render conn, "slam.html", user: user, changeset: changeset,
+                action: account_path(conn, :check_slam)
+  end
+
+  def check_slam(conn, %{"slam_user" => su_params}) do
+    slam_user = Repo.one(from su in SlamUser,
+                where: su.first_name == ^su_params["first_name"])
+                |> Repo.preload(:address)
+                |> Repo.preload(:user)
+    if slam_user do
+      user_changeset = User.update_changeset(%User{})
+                      |> Ecto.Changeset.put_change(:slam_user_id, slam_user.id)
+      conn
+      |> put_flash(:info, "SLaM account connected!")
+      |> render("index.html", changeset: user_changeset, user: slam_user, slam_user_id: slam_user.id,
+      action: account_path(conn, :update))
+      # render index.html with slam user details
+    else
+      conn
+      |> put_flash(:error, "Details do not match. Please try again later")
+      |> redirect(to: account_path(conn, :slam))
+    end
   end
 
   def slam_help(conn, _params) do
