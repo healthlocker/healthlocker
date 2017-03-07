@@ -29,8 +29,8 @@
 
   <div class="form-group">
     <%= label f, "NHS number", class: "control-label" %>
-    <%= text_input f, :nhs, class: "form-control" %>
-    <%= error_tag f, :nhs %>
+    <%= text_input f, :nhs_number, class: "form-control" %>
+    <%= error_tag f, :nhs_number %>
   </div>
 
   <div class="form-group">
