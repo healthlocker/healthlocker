@@ -8,6 +8,8 @@ defmodule Healthlocker.Repo.Migrations.CreateSlamUser do
      add :email, :string
      add :nhs_number, :string
      add :phone_number, :string
+
+     timestamps()
    end
   end
 end
