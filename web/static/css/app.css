@@ -9,8 +9,8 @@ body {
 button {
   border: none;
 }
-/*elements*/
 
+/*elements*/
 .sidenav {
     width: 0;
     transition: 0.5s;
