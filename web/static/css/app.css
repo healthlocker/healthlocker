@@ -1,4 +1,6 @@
 /* This file is for your main application css. */
+
+/*elements*/
 .sidenav {
     width: 0;
     transition: 0.5s;
@@ -29,4 +31,51 @@
 
 .bg-fly-high {
   background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+}
+
+
+/*color pallette*/
+.hl-aqua {
+  color: #25BDC3;
+}
+
+.hl-bg-aqua {
+  background-color: #25BDC3;
+}
+
+.hl-pink {
+  color: #EC4067;
+}
+
+.hl-bg-pink {
+  background-color: #EC4067;
+}
+
+.hl-darkBlue {
+  color: #242F4F;
+}
+
+.hl-bg-darBlue {
+  background-color: #242F4F;
+}
+
+.hl-grey {
+  color: #EBEBEB;
+}
+
+.hl-bg-grey {
+  background-color: #EBEBEB;
+}
+
+.hl-dark-grey {
+  color: #242F4F;
+  opacity: 50%;
+}
+
+.hl-error {
+  color: #25BDC3;
+}
+
+.hl-bg-error {
+  background-color: #25BDC3;
 }
