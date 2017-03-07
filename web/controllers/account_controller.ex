@@ -9,9 +9,17 @@ defmodule Healthlocker.AccountController do
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
-    changeset = User.update_changeset(user)
-    render conn, "index.html", changeset: changeset, user: user,
-              slam_user_id: user.slam_user_id, action: account_path(conn, :update)
+    if user.slam_user_id do
+      slam_user = Repo.get!(SlamUser, user.slam_user_id)
+      slam_changeset = SlamUser.changeset(slam_user)
+      # needs to go to different update action
+      render conn, "index.html", changeset: slam_changeset, user: user,
+        slam_user_id: user.slam_user_id, action: account_path(conn, :update)
+    else
+      changeset = User.update_changeset(user)
+      render conn, "index.html", changeset: changeset, user: user,
+      slam_user_id: nil, action: account_path(conn, :update)
+    end
   end
 
   def update(conn, %{"user" => user_params}) do
@@ -27,7 +35,7 @@ defmodule Healthlocker.AccountController do
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         render(conn, "index.html", changeset: changeset, user: user,
-                slam_user_id: false, action: account_path(conn, :update))
+                slam_user_id: nil, action: account_path(conn, :update))
     end
   end
 
@@ -127,22 +135,27 @@ defmodule Healthlocker.AccountController do
     # need to get slam_user changeset here and pass in to form
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
-    changeset = SlamUser.changeset(%SlamUser{})
+    changeset = User.connect_slam(%User{})
     render conn, "slam.html", user: user, changeset: changeset,
                 action: account_path(conn, :check_slam)
   end
 
-  def check_slam(conn, %{"slam_user" => su_params}) do
+  def check_slam(conn, %{"user" => %{"first_name" => first_name, "last_name" => last_name, "nhs_number" => nhs, "date_of_birth" => dob}}) do
     slam_user = Repo.one(from su in SlamUser,
-                where: su.first_name == ^su_params["first_name"])
+                where: su.first_name == ^first_name
+                and su.last_name == ^last_name
+                and su.nhs_number == ^nhs
+                and su.date_of_birth == ^dob)
                 |> Repo.preload(:address)
                 |> Repo.preload(:user)
     if slam_user do
-      user_changeset = User.update_changeset(%User{})
-                      |> Ecto.Changeset.put_change(:slam_user_id, slam_user.id)
+      user = Repo.get!(User, conn.assigns.current_user.id)
+      User.connect_slam(user, %{"slam_user_id" => slam_user.id})
+          |> Repo.update!
+      slam_changeset = SlamUser.changeset(slam_user)
       conn
       |> put_flash(:info, "SLaM account connected!")
-      |> render("index.html", changeset: user_changeset, user: slam_user, slam_user_id: slam_user.id,
+      |> render("index.html", changeset: slam_changeset, user: slam_user, slam_user_id: slam_user.id,
       action: account_path(conn, :update))
       # render index.html with slam user details
     else
