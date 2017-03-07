@@ -9,6 +9,7 @@ defmodule Healthlocker.SlamUser do
     field :phone_number, :string
     field :date_of_birth, :string
     has_one :address, Healthlocker.Address
+    has_one :user, Healthlocker.User
 
     timestamps()
   end
