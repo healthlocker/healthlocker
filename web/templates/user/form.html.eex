@@ -6,18 +6,18 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, "Name (optional)", class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
+    <%= label f, "Name (optional)", class: "f5 b db mb2" %>
+    <%= text_input f, :name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :name %>
   </div>
 
   <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
-    <span class="bg-red"><%= error_tag f, :email%></span>
+    <%= label f, :email, class: "f5 b db mb2 mt4" %>
+    <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <span style="color: red;"><%= error_tag f, :email%></span>
   </div>
 
   <div class="form-group">
-    <%= submit "Submit", class: "bg-moon-gray b--moon-gray" %>
+    <%= submit "Submit", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
   </div>
 <% end %>
