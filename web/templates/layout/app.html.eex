@@ -25,8 +25,8 @@
       </nav>
     </header>
 
-    <nav class="sidenav h-100 fixed z-1 top-0 left-0 bg-gray overflow-x-hidden tc" id="my-sidenav">
-      <img id="close-nav" class="w2" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
+    <nav class="sidenav h-100 fixed z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc" id="my-sidenav">
+        <img id="close-nav" class="w2" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
       <a class="pa3 f3 white-80 db hover-white" href="/">Home</a>
       <a class="pa3 f3 white-80 db hover-white" href="#">About</a>
       <%= if @current_user do %>
@@ -46,7 +46,7 @@
                             to: login_path(@conn, :delete, @current_user),
                             method: "delete" %>
       <% end %>
-      <a class="mt3 mh6 bg-light-red pv2 f3 white-80 db hover-white" href="/support">Get support</a>
+      <a class="mt3 mh6 hl-bg-pink pv2 f3 white-80 db hover-white" href="/support">Get support</a>
     </nav>
 
     <main>
