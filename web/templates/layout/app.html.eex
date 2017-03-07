@@ -21,7 +21,7 @@
     <header class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
       <nav class="f4 fw3 tracked">
         <i id="open-nav" class="fa fa-bars dim white dib fl" aria-hidden="true"></i>
-        <a href="/"><%= img_tag("/images/logo.svg", class: "w-70") %></a>
+        <a href="/"><%= img_tag("/images/logo.png", class: "w-70") %></a>
       </nav>
     </header>
 
@@ -52,8 +52,8 @@
     <main>
       <section class="pa3 pa5-ns bt b--black-10 bg-white">
         <section class="mw7 center">
-          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <p class="" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="ma3 ma4-m ma4-l" role="alert"><%= get_flash(@conn, :error) %></p>
 
           <%= render @view_module, @view_template, assigns %>
         </section>

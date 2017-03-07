@@ -3,7 +3,7 @@
   <section class="mw7 center">
     <div class="bb b--black-20 pb4 mt4">
       <span class="fl mt0">Not an existing user?</span>
-      <a class="link dim fr mt0 hl-pink db" href="/users/new">Sign up</a>
+      <a class="link dim fr mt0 db" href="/users/new">Sign up</a>
     </div>
 
     <!-- form -->
@@ -21,7 +21,7 @@
       </fieldset>
 
       <div class="lh-copy">
-        <a href="#0" class="f5 link dim db hl-pink">Forgotten your password?</a>
+        <a href="#0" class="f5 link dim db">Forgotten your password?</a>
       </div>
 
       <div>
