@@ -6,7 +6,11 @@ defmodule Healthlocker.Repo.Migrations.CreateAddress do
       add :flat_number, :integer
       add :building_name, :string
       add :street_name, :string
+      add :post_code, :string
       add :city, :string
+      add :slam_user_id, references(:slam_users)
+
+      timestamps()
     end
   end
 end
