@@ -58,7 +58,7 @@ input:focus {
   border:1px solid #25bdc3;
 }
 
-/*color pallette*/
+/*color palette*/
 .hl-aqua {
   color: #25bdc3;
 }
@@ -75,11 +75,11 @@ input:focus {
   background-color: #EC4067;
 }
 
-.hl-darkBlue {
+.hl-dark-blue {
   color: #242F4F;
 }
 
-.hl-bg-darBlue {
+.hl-bg-dark-blue {
   background-color: #242F4F;
 }
 
