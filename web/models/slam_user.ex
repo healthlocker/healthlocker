@@ -16,7 +16,7 @@ defmodule Healthlocker.SlamUser do
 
   def changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:first_name, :last_name, :date_of_birth, :nhs_number])
-    |> validate_required([:first_name, :last_name, :date_of_birth, :nhs_number])
+    |> cast(params, [:first_name, :last_name, :email, :date_of_birth, :nhs_number, :phone_number, :date_of_birth])
+    |> cast_assoc(:address)
   end
 end
