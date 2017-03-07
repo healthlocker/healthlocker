@@ -11,6 +11,32 @@ button {
 }
 
 /*elements*/
+a:hover {
+  color: #25bdc3;
+}
+
+input {
+  height: 35px;
+  background-color: #3D3D3D;
+  opacity: 10%;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none !important;
+  border:1px solid #25bdc3;
+}
+
+.checkbox {
+  width:20px;
+  height:20px;
+}
+
+select:focus {
+  outline: none !important;
+  border:1px solid #25bdc3;
+}
+
 .sidenav {
     width: 0;
     transition: 0.5s;
@@ -43,26 +69,6 @@ button {
   background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
 }
 
-a:hover {
-  color: #25bdc3;
-}
-
-input {
-  height: 35px;
-  background-color: #3D3D3D;
-  opacity: 10%;
-  border-radius: 5px;
-}
-
-input:focus {
-  outline: none !important;
-  border:1px solid #25bdc3;
-}
-
-select:focus {
-  outline: none !important;
-  border:1px solid #25bdc3;
-}
 
 /*color palette*/
 .hl-aqua {
