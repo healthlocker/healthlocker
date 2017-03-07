@@ -11,4 +11,9 @@ defmodule Healthlocker.Address do
 
     timestamps()
   end
+
+  def changeset(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:flat_number, :building_name, :street_name, :post_code, :city])
+  end
 end
