@@ -37,6 +37,7 @@ defmodule Healthlocker.Router do
     resources "/toolkit", ToolkitController, only: [:index]
     resources "/account", AccountController, only: [:index]
     put "/account/update", AccountController, :update
+    put "/account/slam/update", AccountController, :slam_update
     get "/account/consent", AccountController, :consent
     put "/account/consent/update", AccountController, :update_consent
     get "/account/security", AccountController, :security
