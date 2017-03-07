@@ -1,4 +1,3 @@
-<!-- Stories -->
 <section class="bb b--black-20 pa3 center">
   <h2 class="pa2 ph3 ph0-l ma0">Stories</h2>
   <article class="ph3">
@@ -14,7 +13,6 @@
   <a class="pa0 fr" href="/posts">See more stories</a><br/><br/>
 </section>
 
-<!-- Tips -->
 <section class="bb b--black-20 pa3 center">
   <h2 class="pa2 ph3 ph0-l ma0">Tips</h2>
   <article class="ph3">
