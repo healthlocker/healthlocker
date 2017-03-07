@@ -11,10 +11,10 @@ defmodule Healthlocker.AccountController do
     user = Repo.get!(User, user_id)
     if user.slam_user_id do
       slam_user = Repo.get!(SlamUser, user.slam_user_id)
+                |> Repo.preload(:address)
       slam_changeset = SlamUser.changeset(slam_user)
-      # needs to go to different update action
       render conn, "index.html", changeset: slam_changeset, user: user,
-        slam_user_id: user.slam_user_id, action: account_path(conn, :update)
+        slam_user_id: user.slam_user_id, action: account_path(conn, :slam_update)
     else
       changeset = User.update_changeset(user)
       render conn, "index.html", changeset: changeset, user: user,
@@ -36,6 +36,25 @@ defmodule Healthlocker.AccountController do
       {:error, changeset} ->
         render(conn, "index.html", changeset: changeset, user: user,
                 slam_user_id: nil, action: account_path(conn, :update))
+    end
+  end
+
+  def slam_update(conn, %{"slam_user" => su_params}) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get!(User, user_id)
+
+    slam_user = Repo.get!(SlamUser, user.slam_user_id)
+                |> Repo.preload(:address)
+    changeset = SlamUser.changeset(slam_user, su_params)
+
+    case Repo.update(changeset) do
+      {:ok, _params} ->
+        conn
+        |> put_flash(:info, "Updated successfully!")
+        |> redirect(to: account_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "index.html", changeset: changeset, user: user,
+          slam_user_id: user.slam_user_id, action: account_path(conn, :slam_update))
     end
   end
 
@@ -132,7 +151,6 @@ defmodule Healthlocker.AccountController do
   end
 
   def slam(conn, _params) do
-    # need to get slam_user changeset here and pass in to form
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
     changeset = User.connect_slam(%User{})
@@ -156,7 +174,7 @@ defmodule Healthlocker.AccountController do
       conn
       |> put_flash(:info, "SLaM account connected!")
       |> render("index.html", changeset: slam_changeset, user: slam_user, slam_user_id: slam_user.id,
-      action: account_path(conn, :update))
+      action: account_path(conn, :slam_update))
       # render index.html with slam user details
     else
       conn
