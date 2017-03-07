@@ -40,6 +40,11 @@ defmodule Healthlocker.User do
     |> unique_constraint(:email)
   end
 
+  def connect_slam(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:slam_user_id])
+  end
+
   def security_question(struct, params \\ :invalid) do
     struct
     |> cast(params, [:security_question, :security_answer])
