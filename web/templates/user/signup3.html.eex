@@ -2,11 +2,6 @@
   <h3 class="tc">Sign up</h3>
 
   <p>By Signing to Healthlocker, I agree that...</p>
-  <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-  </ul>
 
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />
@@ -32,9 +27,11 @@
       <%= error_tag f, :privacy %>
     </div>
 
+    <p class="mt3">I also hereby allow...</p>
+
     <div class="mt3">
       <%= checkbox f, :data_access, class: "checkbox" %>
-      <%= label f, "I allow my anonymous data to be accessed by researchers to
+      <%= label f, "My anonymous data to be accessed by researchers to
                     drive forward the future of mental health and care.",
                     class: "control-label"%>
 
