@@ -1,4 +1,16 @@
 /* This file is for your main application css. */
+
+/*fonts*/
+body {
+  font-family: 'Didact Gothic', sans-serif;
+  color: #242F4F;
+}
+
+button {
+  border: none;
+}
+/*elements*/
+
 .sidenav {
     width: 0;
     transition: 0.5s;
@@ -29,4 +41,65 @@
 
 .bg-fly-high {
   background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+}
+
+a:hover {
+  color: #25bdc3;
+}
+
+input {
+  height: 35px;
+  background-color: #3D3D3D;
+  opacity: 10%;
+  border-radius: 5px;
+}
+input:focus {
+  outline: none !important;
+  border:1px solid #25bdc3;
+}
+
+/*color palette*/
+.hl-aqua {
+  color: #25bdc3;
+}
+
+.hl-bg-aqua {
+  background-color: #25BDC3;
+}
+
+.hl-pink {
+  color: #EC4067;
+}
+
+.hl-bg-pink {
+  background-color: #EC4067;
+}
+
+.hl-dark-blue {
+  color: #242F4F;
+}
+
+.hl-bg-dark-blue {
+  background-color: #242F4F;
+}
+
+.hl-grey {
+  color: #EBEBEB;
+}
+
+.hl-bg-grey {
+  background-color: #EBEBEB;
+}
+
+.hl-dark-grey {
+  color: #242F4F;
+  opacity: 50%;
+}
+
+.hl-error {
+  color: #25BDC3;
+}
+
+.hl-bg-error {
+  background-color: #25BDC3;
 }

@@ -12,10 +12,19 @@
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
     <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
 
   </head>
 
-  <body class="w-100 sans-serif bg-white">
+  <body class="w-100 bg-white">
+
+    <header class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
+      <nav class="f4 fw3 tracked">
+        <i id="open-nav" class="fa fa-bars dim white dib fl" aria-hidden="true"></i>
+        <a href="/"><%= img_tag("/images/logo.png", class: "w-70") %></a>
+      </nav>
+    </header>
+
     <nav class="sidenav h-100 fixed z-1 top-0 left-0 bg-gray overflow-x-hidden tc" id="my-sidenav">
       <img id="close-nav" class="w2" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
       <a class="pa3 f3 white-80 db hover-white" href="/">Home</a>
@@ -40,18 +49,11 @@
       <a class="mt3 mh6 bg-light-red pv2 f3 white-80 db hover-white" href="/support">Get support</a>
     </nav>
 
-    <header class="bg-blue w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
-      <nav class="f4 fw3 tracked">
-        <i id="open-nav" class="fa fa-bars dim white dib mr3 fl" aria-hidden="true"></i>
-        <%= link("Healthlocker", to: "/", class: "link dim white dib mr3") %>
-      </nav>
-    </header>
-
     <main>
-      <section class="pa3 pa5-ns bt b--black-10 black-70 bg-near-white">
+      <section class="pa3 pa5-ns bt b--black-10 bg-white">
         <section class="mw7 center">
-          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+          <p class="" role="alert"><%= get_flash(@conn, :info) %></p>
+          <p class="ma3 ma4-m ma4-l" role="alert"><%= get_flash(@conn, :error) %></p>
 
           <%= render @view_module, @view_template, assigns %>
         </section>
