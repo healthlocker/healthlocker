@@ -1,25 +1,34 @@
 <div class="ma3 ma4-m ma4-l">
-  <h3 class="tc">Log in</h3>
+  <h3 class="hl-darkBlue tc">Log in</h3>
   <section class="mw7 center">
-    <%= form_for @conn, login_path(@conn, :create), [as: :login, class: "mw6 bg-white br2 br--bottom shadow-1--bottom pa3 mv3 ba b--black-10 center"], fn f -> %>
+    <div class="bb b--black-20 pb4 mt4">
+      <span class="fl mt0">Not an existing user?</span>
+      <a class="link dim fr mt0 hl-pink db" href="/users/new">Sign up</a>
+    </div>
+
+    <!-- form -->
+    <%= form_for @conn, login_path(@conn, :create), [as: :login, class: "mw6 br2 mv3 center"], fn f -> %>
       <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
         <div>
-          <%= text_input f, :email, placeholder: "Email", class: "pa3 input-reset ba b--black-40 w-100" %>
+          <label for="name" class="f5 b db mb2">Email address</label>
+          <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100" %>
         </div>
 
-        <div class="mt3">
-          <%= text_input f, :password, placeholder: "Password", class: "pa3 input-reset ba b--black-40 w-100", type: :password %>
+        <div class="mt4">
+          <label for="name" class="f5 b db mb2">Password</label>
+          <%= text_input f, :password, class: "pa3 input-reset bn hl-bg-grey w-100", type: :password %>
         </div>
       </fieldset>
 
-      <div>
-        <%= submit "Sign in", class: "fw1 ph3 pv3 input-reset white bg-pink b--none br1 pointer f5 w-100" %>
+      <div class="lh-copy">
+        <a href="#0" class="f5 link dim db hl-pink">Forgotten your password?</a>
       </div>
 
-      <div class="lh-copy mt3">
-        <a href="#0" class="f6 link dim black-60 db">Sign up</a>
-        <a href="#0" class="f6 link dim black-60 db">Forgot your password?</a>
+      <div>
+        <%= submit "Log in", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
       </div>
+
+
     <% end %>
   </section>
 </div>
