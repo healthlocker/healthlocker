@@ -25,14 +25,10 @@
 
     <div class="form-group">
       <%= label f, "NHS number", class: "control-label" %>
-      <%= text_input f, :nhs, class: "form-control" %>
-      <%= error_tag f, :nhs %>
+      <%= text_input f, :nhs_number, class: "form-control" %>
+      <%= error_tag f, :nhs_number %>
     </div>
 
-    <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+    <%= submit "Connect", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
   <% end %>
-
-
-    <button type="submit" name="connect" class="fr bg-near-white b--black-10 black-50 b pv1">Connect</button>
-  </form>
 </div>

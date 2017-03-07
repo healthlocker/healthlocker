@@ -2,14 +2,14 @@
   <input name="_method" type="hidden" value="put" />
 
   <div class="form-group">
-    <%= label f, :slam_user, class: "control-label" do %>
+    <%= label f, :slam, class: "control-label" do %>
       I am a South London and Maudsley service user.
     <% end %>
-    <%= checkbox f, :slam_user, class: "form-control" %>
-    <%= error_tag f, :slam_user %>
+    <%= checkbox f, :slam, class: "form-control" %>
+    <%= error_tag f, :slam %>
   </div>
 
-  <%= if @user.slam_user do %>
+  <%= if @user.slam do %>
     <%= link "Connect with my SLaM care team and health record ", to: account_path(@conn, :slam) %>
     <%= link "(?)", to: account_path(@conn, :slam_help) %>
   <% end %>
