@@ -10,6 +10,7 @@
 #### Once everything is installed:
 * Enter `brew link autoconf automake` into your terminal
 * Open Postgresql (if you can see the elephant symbol in your menu bar you know that it's running)
+* Get dependencies (including if they are out of date) with `mix deps.get`
 * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
 * If prompted by the following message, enter `y`:
 
