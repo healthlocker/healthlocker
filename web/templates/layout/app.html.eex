@@ -17,6 +17,8 @@
     <link rel="icon" type="image/png" href="/images/favicon-hl-32x32.png">
     <link rel=”apple-touch-icon” href=”/images/apple-touch-icon.png”/>
     <link rel=”apple-touch-icon-precomposed” href=”/images/apple-touch-icon.png”/>
+
+    <%= segment_snippet %>
   </head>
 
   <body class="w-100 bg-white">
@@ -74,7 +76,7 @@
           </footer>
 
         </div>
-        
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
