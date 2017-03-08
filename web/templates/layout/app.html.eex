@@ -13,7 +13,7 @@
     <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
-
+    <link rel="icon" type="image/png" href="/images/favicon-hl-32x32.png">
   </head>
 
   <body class="w-100 bg-white">
