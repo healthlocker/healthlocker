@@ -1,30 +1,29 @@
-<article class="mh3 mh4-m mh4-l ba b--black-90 mv0 mv2-m mv3-l">
-  <div class="pa3 b--black-10">
-    <p class="pv2 ph2 f5 f4-l lh-copy">
+<section class="bb b--black-20 pa3 center">
+  <h2 class="pa2 ph3 ph0-l ma0">Stories</h2>
+  <article class="ph3">
       <%= if @story do %>
-        <p class="pv2 ph2 f5 f4-l lh-copy">
           <%= markdown String.slice(@story.content, 0, 325) <> "..." %>
-        </p>
-        <a href="/posts/<%= @story.id %>" class="pv2 ph2 f5 f4-l lh-copy">Read this story</a>
+        <a href="/posts/<%= @story.id %>" class="pa0 f5 f4-l lh-copy">Read this story</a>
         <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: @story,
           current_user: @current_user %>
       <%= else %>
         <p class="pv2 ph2 f5 f4-l lh-copy">No stories found</p>
       <%= end %>
-  </div>
-</article>
-<a class="mh3 mh4-m mh4-l mv1 mv2-m mv3-l fr" href="/posts">See more stories</a><br/><br/>
+  </article>
+  <a class="pa0 fr" href="/posts">See more stories</a><br/><br/>
+</section>
 
-<article class="ma3 ma4-m ma4-l ba b--black-05 mv2 mv3-m mv4-l">
-  <div class="pa3 bg-near-white b--black-10">
+<section class="bb b--black-20 pa3 center">
+  <h2 class="pa2 ph3 ph0-l ma0">Tips</h2>
+  <article class="ph3">
     <%= if @tip do %>
-      <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy"><%= markdown @tip.content %></p>
+      <%= markdown @tip.content %></p>
       <a href="/tips?tag=<%= tip_tag(@tip.content) %>">See more "<%= tip_tag(@tip.content) %>" tips</a>
       <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: @tip,
         current_user: @current_user %>
     <%= else %>
       <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy">No tips found</p>
     <%= end %>
-  </div>
-</article>
-<a class="mh3 mh4-m mh4-l mv1 mv2-m mv3-l fr" href="/tips">See more tips</a>
+  </article>
+  <a class="pa0 fr" href="/posts">See more tips</a><br/><br/>
+</section>

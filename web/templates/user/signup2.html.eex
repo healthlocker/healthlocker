@@ -3,27 +3,27 @@
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />
     <%= if @changeset.action do %>
-      <div class="alert alert-danger">
+      <div style="color: red;">
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
 
     <div class="form-group">
-      <%= label f, :password, class: "control-label" %>
-      <%= text_input f, :password, class: "form-control",
+      <%= label f, :password, class: "f5 b db mb2" %>
+      <%= text_input f, :password, class: "pa3 input-reset bn hl-bg-grey w-100",
                         type: :password %>
       <%= error_tag f, :password %>
     </div>
 
     <div class="form-group">
-      <%= label f, :repeat_password, class: "control-label" %>
-      <%= text_input f, :password_confirmation, class: "form-control",
+      <%= label f, :repeat_password, class: "f5 b db mb2 mt4" %>
+      <%= text_input f, :password_confirmation, class: "pa3 input-reset bn hl-bg-grey w-100",
                         type: :password%>
       <%= error_tag f, :password_confirmation %>
     </div>
 
     <div class="form-group">
-      <%= label f, :security_question, class: "control-label" %>
+      <%= label f, :security_question, class: "f5 b db mb2 mt4" %>
       <%= select f, :security_question,
         ["What were the last four digits of your childhood telephone number?": "What were the last four digits of your childhood telephone number?",
         "What was the house number and street name you lived in as a child?": "What was the house number and street name you lived in as a child?",
@@ -32,18 +32,18 @@
         "What is your grandmother's (on your mother's side) maiden name?": "What is your grandmother's (on your mother's side) maiden name?"
         ],
         prompt: "Choose a security question",
-        class: "form-control" %>
+        class: "pa3 input-reset bn hl-bg-grey w-100" %>
       <%= error_tag f, :security_question %>
     </div>
 
     <div class="form-group">
-      <%= label f, :security_answer, class: "control-label" %>
-      <%= text_input f, :security_answer, class: "form-control" %>
+      <%= label f, :security_answer, class: "f5 b db mb2 mt4" %>
+      <%= text_input f, :security_answer, class: "pa3 input-reset bn hl-bg-grey w-100" %>
       <%= error_tag f, :security_answer %>
     </div>
 
     <div class="form-group">
-      <%= submit "Submit", class: "bg-moon-gray b--moon-gray" %>
+      <%= submit "Submit", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
     </div>
   <% end %>
 </div>
