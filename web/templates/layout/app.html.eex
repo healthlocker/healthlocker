@@ -28,7 +28,7 @@
     <nav class="sidenav h-100 fixed z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc" id="my-sidenav">
         <img id="close-nav" class="w2" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
       <a class="pa3 f3 white-80 db hover-white" href="/">Home</a>
-      <a class="pa3 f3 white-80 db hover-white" href="#">About</a>
+      <a href="/about" class="pa3 f3 white-80 db hover-white">About</a>
       <%= if @current_user do %>
         <%= link "Toolkit",  class: "pa3 f3 white-80 db hover-white",
                              to: toolkit_path(@conn, :index) %>
