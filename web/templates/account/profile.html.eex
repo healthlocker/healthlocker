@@ -1,10 +1,10 @@
 <%= form_for @changeset, @action, fn f -> %>
   <input name="_method" type="hidden" value="put" />
 
-  <div class="form-group">
+  <div class="form-group pt3-m">
+    <%= checkbox f, :slam_user, class: "checkbox " %>
     <%= label f, "I am a South London and Maudsley service user.",
         class: "control-label" %>
-    <%= checkbox f, :slam_user, class: "form-control" %>
     <%= error_tag f, :slam_user %>
   </div>
 
@@ -13,23 +13,23 @@
     <%= link "(?)", to: account_path(@conn, :slam_help) %>
   <% end %>
 
-  <div class="form-group mt4">
-    <%= label f, "Name (optional)", class: "control-label" %>
-    <%= text_input f, :name, class: "form-control" %>
+  <div class="form-group mt3">
+    <%= label f, "Name (optional)", class: "f5 b db mb2" %>
+    <%= text_input f, :name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :name %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
+  <div class="form-group mt4">
+    <%= label f, :email, class: "f5 b db mb2" %>
+    <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :email%>
   </div>
 
-  <div class="form-group">
-    <%= label f, "Phone number (optional)", class: "control-label" %>
-    <%= text_input f, :phone_number, class: "form-control" %>
+  <div class="form-group mt4">
+    <%= label f, "Phone number (optional)", class: "f5 b db mb2" %>
+    <%= text_input f, :phone_number, class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :email%>
   </div>
 
-  <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+  <%= submit "Update", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
 <% end %>
