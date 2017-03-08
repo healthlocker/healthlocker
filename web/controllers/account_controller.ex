@@ -175,7 +175,6 @@ defmodule Healthlocker.AccountController do
       |> put_flash(:info, "SLaM account connected!")
       |> render("index.html", changeset: slam_changeset, user: slam_user, slam_user_id: slam_user.id,
       action: account_path(conn, :slam_update))
-      # render index.html with slam user details
     else
       conn
       |> put_flash(:error, "Details do not match. Please try again later")
