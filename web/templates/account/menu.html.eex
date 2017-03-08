@@ -1,6 +1,21 @@
 <h3 class="tc">Account</h3>
 <div class="w-100">
-  <%= link "Profile", to: account_path(@conn, :index), class: "w-33 ba dib fl black tc pv1 bg-silver" %>
-  <%= link "Security", to: account_path(@conn, :security), class: "w-33 ba dib fl black tc pv1 bg-silver" %>
-  <%= link "Consent", to: account_path(@conn, :consent), class: "w-33 ba dib fl black tc pv1 bg-silver" %>
+  <%= cond do %>
+   <%= @conn.request_path == "/account" -> %>
+     <%= link "Profile", to: account_path(@conn, :index), class: "link w-33 bb dib fl black tc pv1 b--hl-aqua" %>
+     <%= link "Security", to: account_path(@conn, :security), class: "link w-33 dib fl black tc pv1 bg-white" %>
+     <%= link "Consent", to: account_path(@conn, :consent), class: "link w-33 dib fl black tc pv1 bg-white" %>
+   <%= @conn.request_path == "/account/security" -> %>
+     <%= link "Profile", to: account_path(@conn, :index), class: "link w-33 dib fl black tc pv1 bg-white" %>
+     <%= link "Security", to: account_path(@conn, :security), class: "link w-33 bb dib fl black tc pv1 b--hl-aqua" %>
+     <%= link "Consent", to: account_path(@conn, :consent), class: "link w-33 dib fl black tc pv1 bg-white" %>
+   <%= @conn.request_path == "/account/consent" -> %>
+     <%= link "Profile", to: account_path(@conn, :index), class: "link w-33 dib fl black tc pv1 bg-white" %>
+     <%= link "Security", to: account_path(@conn, :security), class: "link w-33 dib fl black tc pv1 bg-white" %>
+     <%= link "Consent", to: account_path(@conn, :consent), class: "link w-33 bb dib fl black tc pv1 b--hl-aqua" %>
+   <%= true -> %>
+     <%= link "Profile", to: account_path(@conn, :index), class: "link w-33 bb b--black-30 dib fl black tc pv1 bg-white" %>
+     <%= link "Security", to: account_path(@conn, :security), class: "link w-33 bb b--black-30 dib fl black tc pv1 bg-white" %>
+     <%= link "Consent", to: account_path(@conn, :consent), class: "link w-33 bb b--black-30 dib fl black tc pv1 bg-white" %>
+ <% end %>
 </div>

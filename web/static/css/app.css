@@ -11,8 +11,9 @@ button {
 }
 
 /*elements*/
-a:hover {
-  color: #25bdc3;
+
+a {
+  outline: none!important;
 }
 
 input {
@@ -113,4 +114,9 @@ select:focus {
 
 .hl-bg-error {
   background-color: #25BDC3;
+}
+
+.b--hl-aqua {
+  border-width: medium;
+  border-color: #25bdc3;
 }
