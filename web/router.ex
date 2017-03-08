@@ -17,10 +17,7 @@ defmodule Healthlocker.Router do
   scope "/", Healthlocker do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-    get "/about", PageController, :about
-    get "/privacy", PageController, :privacy
-    get "/terms-and-conditions", PageController, :terms
+    resources "/pages", PageController, only: [:index, :show]
 
     resources "/posts", PostController, only: [:show, :new, :create, :index] do
       post "/likes", PostController, :likes

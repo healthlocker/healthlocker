@@ -13,15 +13,7 @@ defmodule Healthlocker.PageController do
     render conn, "index.html", story: featured_story, tip: featured_tip
   end
 
-  def about(conn, _params) do
-    render conn, "about.html"
-  end
-
-  def privacy(conn, _params) do
-    render conn, "privacy.html"
-  end
-
-  def terms(conn, _params) do
-    render conn, "terms.html"
+  def show(conn, %{"id" => id}) do
+    render conn, String.to_atom(id)
   end
 end
