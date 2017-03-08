@@ -12,4 +12,16 @@ defmodule Healthlocker.PageController do
                    |> Repo.one
     render conn, "index.html", story: featured_story, tip: featured_tip
   end
+
+  def about(conn, _params) do
+    render conn, "about.html"
+  end
+
+  def privacy(conn, _params) do
+    render conn, "privacy.html"
+  end
+
+  def terms(conn, _params) do
+    render conn, "terms.html"
+  end
 end
