@@ -59,6 +59,12 @@
         </section>
       </section>
     </main>
+
+    <footer class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
+      <a href="#" class="db">About</a>
+      <a href="/terms-and-conditions" class="db">Terms and conditions</a>
+      <a href="/privacy" class="db">Privacy Statement</a>
+    </footer>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
