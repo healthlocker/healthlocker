@@ -18,6 +18,9 @@ defmodule Healthlocker.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/about", PageController, :about
+    get "/privacy", PageController, :privacy
+    get "/terms-and-conditions", PageController, :terms
 
     resources "/posts", PostController, only: [:show, :new, :create, :index] do
       post "/likes", PostController, :likes
@@ -47,8 +50,6 @@ defmodule Healthlocker.Router do
     get "/account/slam", AccountController, :slam
     get "/account/slam-help", AccountController, :slam_help
     get "/account/nhs-help", AccountController, :nhs_help
-    resources "/privacy", PrivacyController, only: [:index]
-    resources "/terms-and-conditions", TermController, only: [:index]
     resources "/components", ComponentController, only: [:index]
   end
 
