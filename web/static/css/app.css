@@ -79,6 +79,10 @@ select:focus {
   background-color: #25BDC3;
 }
 
+.bg-beta-yellow {
+  background-color: #FFED66;
+}
+
 .hl-pink {
   color: #EC4067;
 }
