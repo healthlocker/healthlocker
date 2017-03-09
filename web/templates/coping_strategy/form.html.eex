@@ -3,9 +3,9 @@ Something can you do, or avoid doing when you notice a change in your feelings, 
 For example, practice relaxation techniques, leave the room if things are too tense, take a break or tell someone you trust.</p>
 <%= form_for @changeset, @action, fn f -> %>
   <div class="center">
-    <div class="mh4">
-      <%= textarea f, :content, placeholder: "Content", class: "w-100 h4 mb2 b--light-blue f4 pa2" %>
-      <%= submit "Submit", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+    <div class="mh3">
+      <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" %>
+      <%= submit "Submit", class: "fr mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
     </div>
   </div>
 <% end %>
