@@ -6,6 +6,7 @@ defmodule Healthlocker.Repo.Migrations.CreateGoals do
       add :content, :string, null: false
       add :completed, :boolean
       add :notes, :string
+      add :user_id, references(:users)
 
       timestamps()
     end
