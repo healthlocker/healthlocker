@@ -1,6 +1,5 @@
 defmodule Healthlocker.GoalView do
   use Healthlocker.Web, :view
-  use Timex
 
   def markdown(body) do
     body
