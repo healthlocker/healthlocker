@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Healthlocker!</title>
+    <title>Healthlocker</title>
     <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
     <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
@@ -18,6 +18,11 @@
 
   <body class="w-100 bg-white">
 
+    <div class="bg-beta-yellow pa2">
+      <div class="pa1">
+        <p class="di">Beta</p> - <small>Improvements and features are in progress. Give feedback</small>
+      </div>
+    </div>
     <header class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
       <nav class="f4 fw3 tracked">
         <i id="open-nav" class="fa fa-bars dim white dib fl" aria-hidden="true"></i>
