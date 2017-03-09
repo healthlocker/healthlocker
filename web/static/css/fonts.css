@@ -1,0 +1,35 @@
+/*century-gothic*/
+@font-face {
+    font-family: "century-gothic";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/century-gothic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "century-gothic";
+    font-style: normal;
+    font-weight: bold;
+    src: url("/fonts/century-gothic-bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "century-gothic";
+    font-style: normal;
+    font-weight: bold;
+    src: url("/fonts/century-gothic-bold1.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "century-gothic";
+    font-style: italic;
+    font-weight: bold;
+    src: url("/fonts/century-gothic-bold-italic.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "century-gothic";
+    font-style: italic;
+    font-weight: normal;
+    src: url("/fonts/century-gothic-italic.ttf") format("truetype");
+}
