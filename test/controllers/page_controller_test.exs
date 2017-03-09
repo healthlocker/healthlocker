@@ -13,4 +13,19 @@ defmodule Healthlocker.PageControllerTest do
     conn = get conn, page_path(conn, :index)
     assert html_response(conn, 200) =~ "Home"
   end
+
+  test "renders about.html on /pages/about", %{conn: conn} do
+    conn = get conn, page_path(conn, :show, "about")
+    assert html_response(conn, 200) =~ "About"
+  end
+
+  test "renders privacy.html on /pages/privacy", %{conn: conn} do
+    conn = get conn, page_path(conn, :show, "privacy")
+    assert html_response(conn, 200) =~ "Privacy Statement"
+  end
+
+  test "renders terms.html on /pages/terms-and-conditions", %{conn: conn} do
+    conn = get conn, page_path(conn, :show, "terms")
+    assert html_response(conn, 200) =~ "Terms and conditions"
+  end
 end

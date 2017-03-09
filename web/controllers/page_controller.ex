@@ -12,4 +12,8 @@ defmodule Healthlocker.PageController do
                    |> Repo.one
     render conn, "index.html", story: featured_story, tip: featured_tip
   end
+
+  def show(conn, %{"id" => id}) do
+    render conn, String.to_atom(id)
+  end
 end
