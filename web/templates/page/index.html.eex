@@ -1,4 +1,16 @@
 <section class="bb b--black-20 pa3 center">
+  <p class="b tc bb pb1 b--hl-aqua">Welcome to Healthlocker</p>
+  <p>Healthlocker is a secure platform powered by South London and Maudsley
+    Trust that promotes supported self-management and opportunities to improve
+    communication between service users, carers and clinicians.</p>
+  <p>It is currently in development and this is the Beta version. Lots more
+    features will be added in the coming months.</p>
+  <p><%= link "Sign up", to: user_path(@conn, :new) %>,
+     <%= link "Log in", to: login_path(@conn, :index) %>, or
+     <%= link "read more here", to: page_path(@conn, :show, "about") %>.</p>
+</section>
+
+<section class="bb b--black-20 pa3 center">
   <h2 class="pa2 ph3 ph0-l ma0">Stories</h2>
   <article class="ph3">
       <%= if @story do %>
