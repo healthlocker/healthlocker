@@ -31,9 +31,31 @@ defmodule Healthlocker.GoalControllerTest do
     end
 
     test "shows chosen goal", %{conn: conn} do
-      goal = Repo.insert! %Goal{content: "some content",  user_id: 123456}
+      goal = Repo.insert! %Goal{content: "some content #Goal", user_id: 123456}
       conn = get conn, goal_path(conn, :show, goal)
       assert html_response(conn, 200) =~ "Toolkit"
+    end
+
+    test "marks goal as important if important is false", %{conn: conn} do
+      goal = Repo.insert! %Goal{
+        content: "some content #Goal",
+        user_id: 123456,
+        important: false}
+      conn = put conn, goal_path(conn, :mark_important, goal.id)
+      important = Repo.get!(Goal, goal.id).important
+      assert redirected_to(conn) == goal_path(conn, :show, goal)
+      assert important
+    end
+
+    test "marks goal as not important if important is true", %{conn: conn} do
+      goal = Repo.insert! %Goal{
+        content: "some content #Goal",
+        user_id: 123456,
+        important: true}
+      conn = put conn, goal_path(conn, :mark_important, goal.id)
+      important = Repo.get!(Goal, goal.id).important
+      assert redirected_to(conn) == goal_path(conn, :show, goal)
+      refute important
     end
 
     test "renders page not found when goal id is nonexistent", %{conn: conn} do
