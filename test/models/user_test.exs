@@ -20,7 +20,7 @@ defmodule Healthlocker.UserTest do
     name: "MyName",
     email: "me@example.com",
     phone_number: "07512345678",
-    slam_user: true
+    slam: true
   }
   @security_question_attrs %{
      security_answer: "B658H",

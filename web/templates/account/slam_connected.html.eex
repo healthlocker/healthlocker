@@ -16,6 +16,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, "Date of birth", class: "control-label" %>
+    <%= text_input f, :date_of_birth, class: "form-control" %>
+    <%= error_tag f, :date_of_birth %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :email, class: "control-label" %>
     <%= text_input f, :email, class: "form-control" %>
     <span class="bg-red"><%= error_tag f, :email%></span>
@@ -23,8 +29,8 @@
 
   <div class="form-group">
     <%= label f, "NHS number", class: "control-label" %>
-    <%= text_input f, :nhs, class: "form-control" %>
-    <%= error_tag f, :nhs %>
+    <%= text_input f, :nhs_number, class: "form-control" %>
+    <%= error_tag f, :nhs_number %>
   </div>
 
   <div class="form-group">
@@ -37,24 +43,27 @@
 <!-- address as an embedded schema or association -->
 <!-- https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#module-nested-inputs -->
   <div class="form-group">
-    <%= label f, "Address", class: "control-label" %>
-    <%= text_input f, :flat_number, class: "form-control" %>
-    <%= text_input f, :street_name, class: "form-control mt2" %>
-    <%= text_input f, :other, class: "form-control mt2" %>
-    <%= error_tag f, :address %>
+    <%= inputs_for f, :address, fn fa -> %>
+      <%= label fa, "Address" %>
+      <%= text_input fa, :flat_number, placeholder: "Flat number" %>
+      <%= text_input fa, :building_name, placeholder: "Building name" %>
+      <%= text_input fa, :street_name, placeholder: "Street name" %>
+
+      <div class="form-group">
+        <%= label fa, "Postcode", class: "control-label" %>
+        <%= text_input fa, :post_code, class: "form-control" %>
+        <%= error_tag fa, :post_code %>
+      </div>
+
+      <div class="form-group">
+        <%= label fa, "City", class: "control-label" %>
+        <%= text_input fa, :city, class: "form-control" %>
+        <%= error_tag fa, :city %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-group">
-    <%= label f, "Postcode", class: "control-label" %>
-    <%= text_input f, :postcode, class: "form-control" %>
-    <%= error_tag f, :postcode %>
-  </div>
 
-  <div class="form-group">
-    <%= label f, "City", class: "control-label" %>
-    <%= text_input f, :city, class: "form-control" %>
-    <%= error_tag f, :city %>
-  </div>
 
   <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
 <% end %>

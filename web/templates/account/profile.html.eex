@@ -1,14 +1,24 @@
 <%= form_for @changeset, @action, fn f -> %>
   <input name="_method" type="hidden" value="put" />
 
+<!-- <<<<<<< HEAD
+  <div class="form-group">
+    <%= label f, :slam, class: "control-label" do %>
+      I am a South London and Maudsley service user.
+    <% end %>
+    <%= checkbox f, :slam, class: "form-control" %>
+    <%= error_tag f, :slam %>
+======= -->
   <div class="form-group pv3">
-    <%= checkbox f, :slam_user, class: "checkbox " %>
-    <%= label f, "I am a South London and Maudsley service user.",
-        class: "control-label" %>
-    <%= error_tag f, :slam_user %>
+    <%= checkbox f, :slam, class: "checkbox" %>
+    <%= label f, :slam, class: "control-label" do %>
+      I am a South London and Maudsley service user.
+    <% end %>
+    <%= error_tag f, :slam %>
+<!-- >>>>>>> master -->
   </div>
 
-  <%= if @user.slam_user do %>
+  <%= if @user.slam do %>
     <%= link "Connect with my SLaM care team and health record ", to: account_path(@conn, :slam) %>
     <%= link "(?)", to: account_path(@conn, :slam_help) %>
   <% end %>

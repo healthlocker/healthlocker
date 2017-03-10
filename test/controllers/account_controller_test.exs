@@ -2,6 +2,7 @@ defmodule Healthlocker.AccountControllerTest do
   use Healthlocker.ConnCase
 
   alias Healthlocker.User
+  alias Healthlocker.SlamUser
 
   @valid_attrs %{
     name: "NewName",
@@ -11,6 +12,12 @@ defmodule Healthlocker.AccountControllerTest do
     password_check: "password",
     password: "New password",
     password_confirmation: "New password"
+  }
+  @slam_attrs %{
+    first_name: "Kat",
+    last_name: "Bow",
+    nhs_number: "1234567890",
+    date_of_birth: "01/01/2000"
   }
   @invalid_attrs %{
     name: "",
@@ -40,6 +47,13 @@ defmodule Healthlocker.AccountControllerTest do
 
   describe "current_user is assigned in the session" do
     setup do
+      %SlamUser{
+        id: 1,
+        first_name: "Kat",
+        last_name: "Bow",
+        nhs_number: "1234567890",
+        date_of_birth: "01/01/2000"
+      } |> Repo.insert
       %User{
         id: 123456,
         name: "MyName",
@@ -135,6 +149,12 @@ defmodule Healthlocker.AccountControllerTest do
       assert html_response(conn, 200) =~ "Current password"
     end
 
+    test "adds slam_user_id to user and render index", %{conn: conn} do
+      conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
+      assert html_response(conn, 200) =~ "Address"
+      assert Repo.get(User, 123456).slam_user_id
+    end
+
     test "renders connecting slam info", %{conn: conn} do
       conn = get conn, account_path(conn, :slam_help)
       assert html_response(conn, 200) =~ "To connect you will need to enter"
@@ -143,6 +163,41 @@ defmodule Healthlocker.AccountControllerTest do
     test "render nhs_help.html", %{conn: conn} do
       conn = get conn, account_path(conn, :nhs_help)
       assert html_response(conn, 200) =~ "Your NHS number will be on any letter"
+    end
+  end
+
+  describe "current_user is a slam user" do
+    setup do
+      %SlamUser{
+        id: 1,
+        first_name: "Kat",
+        last_name: "Bow",
+        nhs_number: "1234567890",
+        date_of_birth: "01/01/2000"
+      } |> Repo.insert
+      %User{
+        id: 123456,
+        name: "MyName",
+        email: "abc@gmail.com",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        security_question: "Question?",
+        security_answer: "Answer",
+        slam_user_id: 1
+      } |> Repo.insert
+
+      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
+    end
+
+    test "renders slam_connected if there is a slam user on :index", %{conn: conn} do
+      id = conn.assigns.current_user.slam_user_id
+      conn = get conn, account_path(conn, :index)
+      assert html_response(conn, 200) =~ "Address"
+    end
+
+    test "slam_update updates slam_users table", %{conn: conn} do
+      conn = put conn, account_path(conn, :slam_update), slam_user: %{last_name: "Smith"}
+      assert redirected_to(conn) == account_path(conn, :index)
+      assert Repo.get_by(SlamUser, last_name: "Smith")
     end
   end
 
