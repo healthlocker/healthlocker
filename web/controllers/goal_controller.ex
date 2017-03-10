@@ -3,12 +3,12 @@ defmodule Healthlocker.GoalController do
 
   plug :authenticate
 
-  alias Healthlocker.Post
+  alias Healthlocker.Goal
 
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
-    goals = Post
-           |> Post.get_goals(user_id)
+    goals = Goal
+           |> Goal.get_goals(user_id)
            |> Repo.all
     if Kernel.length(goals) == 0 do
       conn
@@ -19,26 +19,26 @@ defmodule Healthlocker.GoalController do
   end
 
   def new(conn, _params) do
-    changeset =  Post.changeset(%Post{})
+    changeset =  Goal.changeset(%Goal{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def show(conn, %{"id" => id}) do
     user_id = conn.assigns.current_user.id
-    goal = Post
-          |> Post.get_goal_by_user(id, user_id)
+    goal = Goal
+          |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one!
     render conn, "show.html", goal: goal
   end
 
-  def create(conn, %{"post" => goal_params}) do
+  def create(conn, %{"goal" => goal_params}) do
     content = get_content(goal_params)
     user_id = get_session(conn, :user_id)
-    changeset = Post.changeset(%Post{}, content)
-    changeset = Ecto.Changeset.put_change(changeset, :user_id, user_id)
+    changeset = Goal.changeset(%Goal{}, content)
+              |> Ecto.Changeset.put_change(:user_id, user_id)
 
     case Repo.insert(changeset) do
-      {:ok, _post} ->
+      {:ok, _goal} ->
         conn
         |> put_flash(:info, "Goal added!")
         |> redirect(to: goal_path(conn, :index))
@@ -49,18 +49,18 @@ defmodule Healthlocker.GoalController do
 
   def edit(conn, %{"id" => id}) do
     user_id = conn.assigns.current_user.id
-    goal = Post
-          |> Post.get_goal_by_user(id, user_id)
+    goal = Goal
+          |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one
           |> Map.update!(:content, &(String.trim_trailing(&1, " #Goal")))
-    changeset = Post.changeset(goal)
+    changeset = Goal.changeset(goal)
     render(conn, "edit.html", goal: goal, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "post" => goal_params}) do
-    goal = Repo.get!(Post, id)
+  def update(conn, %{"id" => id, "goal" => goal_params}) do
+    goal = Repo.get!(Goal, id)
     content = get_content(goal_params)
-    changeset = Post.changeset(goal, content)
+    changeset = Goal.changeset(goal, content)
 
     case Repo.update(changeset) do
       {:ok, goal} ->
@@ -74,8 +74,8 @@ defmodule Healthlocker.GoalController do
 
   def delete(conn, %{"id" => id}) do
     user_id = conn.assigns.current_user.id
-    goal = Post
-          |> Post.get_goal_by_user(id, user_id)
+    goal = Goal
+          |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one
 
     Repo.delete!(goal)
