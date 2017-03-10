@@ -6,4 +6,8 @@ defmodule Healthlocker.CopingStrategyView do
     |> Earmark.as_html!
     |> raw
   end
+
+  def pretty_date(date) do
+    Date.to_iso8601(date)
+  end
 end
