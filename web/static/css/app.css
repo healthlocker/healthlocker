@@ -56,14 +56,13 @@ select:focus {
     display: block;
 }
 
-#container {
-  min-height:100%;
+.container {
+  min-height:100vh;
   position:relative;
 }
 
 #body {
-  height: 100vh;
-  padding-bottom:60px;
+  padding-bottom: 80px;
 }
 
 #footer {

@@ -1,9 +1,10 @@
-<p class="tc"><b>What do you want to achieve? Describe a personal goal.</b></p>
+<p class="tc b">What do you want to achieve?</p>
+<p class="tc">Describe a personal goal.</p>
 <%= form_for @changeset, @action, fn f -> %>
   <div class="center">
     <div class="mh4">
       <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 measure ba b--black-20 pa2 br2 mb2" %>
-      <%= submit "Submit", class: "fr mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+      <%= submit "Save", class: "fr mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
     </div>
   </div>
 <% end %>
