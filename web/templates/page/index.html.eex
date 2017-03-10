@@ -25,5 +25,5 @@
       <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy">No tips found</p>
     <%= end %>
   </article>
-  <a class="pa0 fr" href="/posts">See more tips</a><br/><br/>
+  <a class="pa0 fr" href="/tips">See more tips</a><br/><br/>
 </section>
