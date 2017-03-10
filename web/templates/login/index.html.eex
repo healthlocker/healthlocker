@@ -3,7 +3,7 @@
   <section class="mw7 center">
     <div class="bb b--black-20 pb4 mt4">
       <span class="fl mt0">Not an existing user?</span>
-      <a class="link dim fr mt0 db" href="/users/new">Sign up</a>
+      <%= link "Sign up", to: user_path(@conn, :new), class: "link dim fr mt0 db" %>
     </div>
     <%= form_for @conn, login_path(@conn, :create), [as: :login, class: "mw6 br2 mv3 center"], fn f -> %>
       <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
