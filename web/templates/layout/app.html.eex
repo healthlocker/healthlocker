@@ -24,7 +24,7 @@
         </div>
       </div>
 
-      <div id="container">
+      <div class="container">
         <header id="header" class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
           <nav class="f4 fw3 tracked">
             <i id="open-nav" class="fa fa-bars dim white dib fl" aria-hidden="true"></i>
@@ -66,12 +66,12 @@
             </section>
           </main>
 
-          <footer id="footer" class="hl-bg-aqua tc mt4 w-100">
-            <a href="#" class="f6 pt3 link dim white-80 db mr3 mr4-ns">About</a>
-            <a href="/terms-and-conditions" class="f6 link dim white-80 db mr3 mr4-ns">Terms and conditions</a>
-            <a href="/privacy" class="f6 link dim white-80 db">Privacy Statement</a>
+          <footer id="footer" class="db hl-bg-aqua tc mt4 w-100">
+            <a href="#" class="f6 pt3 link dim white-80 dib mr3 mr4-ns">About</a>
+            <a href="/terms-and-conditions" class="f6 link dim white-80 dib mr3 mr4-ns">Terms and conditions</a>
+            <a href="/privacy" class="f6 link dim white-80 dib">Privacy Statement</a>
           </footer>
-          
+
         </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
