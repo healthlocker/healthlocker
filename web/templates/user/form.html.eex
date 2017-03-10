@@ -1,4 +1,9 @@
-<%= form_for @changeset, @action, fn f -> %>
+<div class="bb b--black-20 pb4 mt4">
+  <span class="fl mt0">Already an existing user?</span>
+  <%= link "Log in", to: login_path(@conn, :index), class: "link dim fr mt0 db" %>
+</div>
+<div class="br2 mv3 center">
+  <%= form_for @changeset, @action, fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
@@ -14,10 +19,12 @@
   <div class="form-group">
     <%= label f, :email, class: "f5 b db mb2 mt4" %>
     <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100" %>
-    <span style="color: red;"><%= error_tag f, :email%></span>
+    <%= error_tag f, :email%>
   </div>
 
   <div class="form-group">
     <%= submit "Submit", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
   </div>
+
+</div>
 <% end %>
