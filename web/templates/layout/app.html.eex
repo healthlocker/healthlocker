@@ -68,9 +68,9 @@
             </section>
           </main>
 
-          <footer id="footer" class="db hl-bg-aqua tc mt4 w-100">
-            <a href="#" class="f6 pt3 link dim white-80 dib mr3 mr4-ns">About</a>
-            <a href="/terms-and-conditions" class="f6 link dim white-80 dib mr3 mr4-ns">Terms and conditions</a>
+          <footer id="footer" class="pa3 db hl-bg-aqua tc mt4 w-100">
+            <a href="#" class="f6 pt3 link dim white-80 dib mr2 mr4-ns">About</a>
+            <a href="/terms-and-conditions" class="f6 link dim white-80 dib mr2 mr4-ns">Terms and conditions</a>
             <a href="/privacy" class="f6 link dim white-80 dib">Privacy Statement</a>
           </footer>
 
