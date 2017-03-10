@@ -28,7 +28,16 @@ defmodule Healthlocker.GoalController do
     goal = Goal
           |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one!
-    render conn, "show.html", goal: goal
+    mark_important_changeset = Goal.mark_important_changeset(goal)
+    render conn, "show.html", goal: goal,
+           mark_important_changeset: mark_important_changeset
+  end
+
+  def mark_important(conn, %{"id" => id}) do
+    IO.inspect id
+    # changeset = Goal.mark_important_changeset()
+    render conn, "index.html"
+    
   end
 
   def create(conn, %{"goal" => goal_params}) do
