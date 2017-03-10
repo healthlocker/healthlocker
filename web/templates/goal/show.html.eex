@@ -7,5 +7,6 @@
     <%= link "Delete goal",
     to: goal_path(@conn, :delete, @goal),
     method: "delete"%>
+    <%= link "Mark as important", to: goal_path(@conn, :mark_important, @goal.id) %>
   </div>
 </div>
