@@ -7,6 +7,12 @@
     <%= link "Delete goal",
     to: goal_path(@conn, :delete, @goal),
     method: "delete"%>
-    <%= link "Mark as important", to: goal_path(@conn, :mark_important, @goal.id) %>
+    <%= if !@goal.important do %>
+      <%= link "Mark as important", to: goal_path(@conn, :mark_important, @goal.id),
+      method: "put", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"%>
+    <%= else %>
+      <%= link "Mark as unimportant", to: goal_path(@conn, :mark_important, @goal.id),
+      method: "put", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"%>
+    <% end %>
   </div>
 </div>
