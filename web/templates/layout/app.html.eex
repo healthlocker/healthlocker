@@ -67,9 +67,9 @@
     </main>
 
     <footer class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
-      <a href="#" class="db">About</a>
-      <a href="/terms-and-conditions" class="db">Terms and conditions</a>
-      <a href="/privacy" class="db">Privacy Statement</a>
+      <%= link "About", to: page_path(@conn, :show, "about"), class: "db" %>
+      <%= link "Terms and conditions", to: page_path(@conn, :show, "terms"), class: "db" %>
+      <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy"), class: "db" %>
     </footer>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
