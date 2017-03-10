@@ -5,6 +5,7 @@ defmodule Healthlocker.Goal do
     field :content, :string
     field :completed, :boolean
     field :notes, :string
+    field :important, :boolean
     belongs_to :user, Healthlocker.User
 
     timestamps()
@@ -14,6 +15,11 @@ defmodule Healthlocker.Goal do
     struct
     |> cast(params, [:content])
     |> validate_required(:content)
+  end
+
+  def mark_important_changeset(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:important])
   end
 
   def get_goals(query, user_id) do
