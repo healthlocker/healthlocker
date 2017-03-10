@@ -1,20 +1,14 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <h3 class="tc">Toolkit</h3>
   <div class="goals-strategies">
-    <a href="/goal">
-      <div class="goals-container bg-light-gray ma3">
-        <img src="https://cloud.githubusercontent.com/assets/1287388/23158827/69c4926e-f818-11e6-950c-8f475065da7f.png"
-        alt="trophy">
-        <h4 class="black">Goals</h4>
+      <div class="tc goals-container ma3">
+        <%= img_tag("/images/goals-icn.png", class: "w-60") %>
+        <a href="/goal"><span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40">Goals</span></a>
       </div>
-    </a>
 
-    <a href="/coping-strategy">
-      <div class="bg-light-gray ma3">
-        <img src="https://cloud.githubusercontent.com/assets/1287388/23158828/69ce54ca-f818-11e6-94b3-b35f9f18b0e0.png"
-        alt="thumbs-up">
-        <h4 class="black">Strategies</h4>
+      <div class="tc ma3 pt2">
+        <%= img_tag("/images/strategies-icn.png", class: "w-60") %>
+        <a href="/coping-strategy"><span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40">Strategies</span></a>
       </div>
-    </a>
   </div>
 </div>
