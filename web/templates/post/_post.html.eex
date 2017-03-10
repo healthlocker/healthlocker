@@ -5,31 +5,4 @@
       <%= p %>
     </p>
   <% end %>
-
-  <div class="dt w-100 mv3">
-    <div class="dtc w2 v-mid">
-      <img src="http://i.pravatar.cc/128?img=54" class="ba b--black-10 db br-100 w2 h2"/>
-    </div>
-    <div class="dtc v-mid pl3">
-      <h1 class="f6 f5-ns fw6 lh-title black mv0">Tony Daly</h1>
-      <h2 class="f6 fw4 mt0 mb0 black-60">Healthlocker</h2>
-    </div>
-    <div class="dtc v-mid tr">
-      <a class="f6 fw1 link dim br1 ph3 pv2 dib white bg-sky-blue" href="#0">#tip</a>
-    </div>
-  </div>
-  <footer class="dt w-100 black-40 f6 fw7">
-    <div class="dtc fl">
-      <i class="fa fa-heart" aria-hidden="true"></i>
-      <span class="pl1">10</span>
-    </div>
-    <div class="dtc fl pl3">
-      <i class="fa fa-comment-o" aria-hidden="true"></i>
-      <span class="pl1">2</span>
-    </div>
-    <div class="dtc fr">
-      <i class="fa fa-clock-o" aria-hidden="true"></i>
-      <span class="pl1"><%= time_ago_in_words(@post.inserted_at) %></span>
-    </div>
-  </footer>
 </article>
