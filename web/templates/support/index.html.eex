@@ -14,27 +14,15 @@
   </div>
 
   <ul>
-    <li class="mb3 ml3 mr5">Follow your care plan, if you have one or call your care co-ordinator.</li>
+    <li class="mb3 ml3 mr5">Follow your care plan, if you have one or call your
+      care co-ordinator.</li>
     <li class="mb3 ml3 mr5">If you feel unsafe and need immediate help
       <a href="tel:999">call 999</a> or
-      <a href="http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428">
+      <a href="http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428" target="_blank">
         find your nearest A&E</a>, open 24/7.
     </li>
-    <li class="mb3 ml3 mr5">If you can wait for an appointment, your GP can help you find the best service for you.</li>
+    <li class="mb3 ml3 mr5">If you can wait for an appointment, your GP can help
+      you find the best service for you.</li>
   </ul>
 
-  <div class="">
-    <h5>App support</h5>
-    <p>Something about problems on the website</p>
-  </div>
-
-  <div class="bg-black-10 pt3 pb4 mh0">
-    <div class="fl w3 ml4 mt3">
-      <img src="https://cloud.githubusercontent.com/assets/1287388/22470204/6a59808e-e7c6-11e6-82ef-b92478978281.png" alt="at symbol">
-    </div>
-    <div class="mh6">
-      <h5>Healthlocker support</h5>
-      <a href="mailto:itsupport@healthlocker.nhs.uk">itsupport@healthlocker.nhs.uk</a>
-    </div>
-  </div>
 </div>
