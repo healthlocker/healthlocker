@@ -2,5 +2,6 @@
   <h3 class="tc">Sign up</h3>
 
   <%= render "form.html", changeset: @changeset,
-                          action: user_path(@conn, :create) %>
+                          action: user_path(@conn, :create),
+                          conn: @conn %>
 </div>

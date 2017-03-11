@@ -6,10 +6,12 @@ defmodule Healthlocker.UserControllerTest do
     email: "me@example.com",
     name: "MyName"
   }
-  @step2_attrs %{password: "abc123",
-   password_confirmation: "abc123",
-   security_answer: "B658H",
-   security_question: "4"}
+  @step2_attrs %{
+    password: "abc123",
+    password_confirmation: "abc123",
+    security_answer: "B658H",
+    security_question: "4"
+  }
   @step3_attrs %{
     terms_conditions: true,
     privacy: true,
@@ -79,7 +81,7 @@ defmodule Healthlocker.UserControllerTest do
   end
 
   test "does not create duplicate resource and redirects when user has completed step1 & 2 of signup", %{conn: conn} do
-    Repo.insert %User{email: "me@example.com", password_hash: Comeonin.Bcrypt.hashpwsalt("password")}
+    Repo.insert %User{email: "me@example.com", password_hash: Comeonin.Bcrypt.hashpwsalt("password"), data_access: nil}
     conn = post conn, user_path(conn, :create), user: @step1_attrs
     user = Repo.get_by(User, email: "me@example.com")
     assert redirected_to(conn) == "/users/#{user.id}/signup3"
@@ -88,13 +90,13 @@ defmodule Healthlocker.UserControllerTest do
   test "does not create duplicate resource and redirects when user has previously signed up with false data_access", %{conn: conn} do
     Repo.insert %User{email: "me@example.com", password_hash: Comeonin.Bcrypt.hashpwsalt("password"), data_access: false}
     conn = post conn, user_path(conn, :create), user: @step1_attrs
-    assert redirected_to(conn) == login_path(conn, :index)
+    assert html_response(conn, 200) =~ "Sign up"
   end
 
   test "does not create duplicate resource and redirects when user has previously signed up with true data_access", %{conn: conn} do
     Repo.insert %User{email: "me@example.com", password_hash: Comeonin.Bcrypt.hashpwsalt("password"), data_access: true}
     conn = post conn, user_path(conn, :create), user: @step1_attrs
-    assert redirected_to(conn) == login_path(conn, :index)
+    assert html_response(conn, 200) =~ "Sign up"
   end
 
   test "creates resource and redirects when only email is input", %{conn: conn} do

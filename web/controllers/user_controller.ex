@@ -23,7 +23,8 @@ defmodule Healthlocker.UserController do
         |> redirect(to: "/users/#{user.id}/signup2", action: :signup2,
                                                      user: user)
       {:error, changeset} ->
-        if elem(changeset.errors[:email], 0) == "has already been taken" do
+        if String.contains?(elem(changeset.errors[:email], 0),
+        "Sorry you cannot create an account") do
           user = Repo.get_by(User, email: changeset.changes[:email])
           cond do
             user.password_hash && user.data_access == nil ->
@@ -32,8 +33,7 @@ defmodule Healthlocker.UserController do
                                                            user: user)
             user.password_hash ->
               conn
-              |> put_flash(:error, "You already have an account. Please log in")
-              |> redirect(to: login_path(conn, :index))
+              |> render("new.html", changeset: changeset)
             !user.password_hash ->
               conn
               |> redirect(to: "/users/#{user.id}/signup2", action: :signup2,
