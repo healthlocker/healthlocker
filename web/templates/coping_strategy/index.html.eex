@@ -10,4 +10,5 @@
     </div>
   </a>
   <% end %>
+  <%= link "Back to Toolkit", to: toolkit_path(@conn, :index), class: "mt4 dim ph3 fr" %>
 </div>
