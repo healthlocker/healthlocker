@@ -1,13 +1,13 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">Goals</h3>
-  <%= link "Add new", to: goal_path(@conn, :new) %>
+  <%= link "Add new", to: goal_path(@conn, :new), class: "link mv3 f5 tc dim br-pill ph3 pv2 dib black-60 hl-bg-grey w-50" %>
   <%= for goal <- @goals do %>
-  <a href="/goal/<%= goal.id %>">
-    <div class="bg-light-silver black">
-      <h4 class="pv2 ph2 ph3-m ph4-l f5 f4-m f4-l lh-copy black">
+  <a href="/goal/<%= goal.id %>" class="link">
+    <section class="bb b--black-10">
+      <h4 class="ma2 pv2 ph3-m ph4-l f5 lh-copy hl-dark-blue">
         <%= markdown String.trim_trailing(goal.content, " #Goal") %>
       </h4>
-    </div>
+    </section>
   </a>
   <% end %>
   <%= link "Back to Toolkit", to: toolkit_path(@conn, :index), class: "mt4 dim ph3 fr" %>

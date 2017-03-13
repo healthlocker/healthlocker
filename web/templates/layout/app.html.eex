@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/fonts.css") %>">
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
     <link rel="icon" type="image/png" href="/images/favicon-hl-32x32.png">
+    <link rel=”apple-touch-icon” href=”/images/apple-touch-icon.png”/>
+    <link rel=”apple-touch-icon-precomposed” href=”/images/apple-touch-icon.png”/>
   </head>
 
   <body class="w-100 bg-white">
@@ -65,15 +67,14 @@
               </section>
             </section>
           </main>
-
           <footer id="footer" class="db hl-bg-aqua tc mt4 w-100">
-            <a href="#" class="f6 pt3 link dim white-80 dib mr3 mr4-ns">About</a>
-            <a href="/terms-and-conditions" class="f6 link dim white-80 dib mr3 mr4-ns">Terms and conditions</a>
-            <a href="/privacy" class="f6 link dim white-80 dib">Privacy Statement</a>
+            <%= link "About", to: page_path(@conn, :show, "about"), class: "f6 pt3 link dim white-80 dib mr3 mr4-ns" %>
+            <%= link "Terms and conditions", to: page_path(@conn, :show, "terms"), class: "f6 link dim white-80 dib mr3 mr4-ns" %>
+            <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy"), class: "f6 link dim white-80 dib" %>
           </footer>
 
         </div>
-
+        
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
