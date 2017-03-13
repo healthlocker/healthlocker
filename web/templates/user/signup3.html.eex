@@ -1,7 +1,18 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <h3 class="tc">Sign up</h3>
 
-  <p>By Signing to Healthlocker, I agree that...</p>
+  <p class="b">By creating an account and accessing Healthlocker, I agree:</p>
+  <ul>
+    <li>that creating a Healthlocker account is voluntary</li>
+    <li>I will use this as a self-management tool, not a tool to be used in
+      a crisis
+    </li>
+    <li>I will provide accurate information during registration</li>
+    <li>I am responsible for maintaining the confidentiality of my log in
+      details
+    </li>
+    <li>I will respect other users at all times</li>
+  </ul>
 
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />
@@ -14,7 +25,7 @@
     <div class="form-group">
       <%= checkbox f, :terms_conditions, class: "checkbox" %>
       <%= label f, :terms_conditions do %>
-        I accept <%= link "terms and conditions.", to: page_path(@conn, :show, "terms") %>
+        I accept the <%= link "terms of service.", to: page_path(@conn, :show, "terms") %>
       <% end %>
       <%= error_tag f, :terms_conditions %>
     </div>
@@ -27,14 +38,13 @@
       <%= error_tag f, :privacy %>
     </div>
 
-    <p class="mt3">I also hereby allow...</p>
-
     <div class="mt3">
       <%= checkbox f, :data_access, class: "checkbox" %>
-      <%= label f, "My anonymous data to be accessed by researchers to
-                    drive forward the future of mental health and care.",
-                    class: "control-label"%>
-
+      <%= label f, :data_access do %>
+        I agree to my anonymous Healthlocker usage data being used by the
+        Healthlocker team to improve the service and for researchers to use to
+        drive forward the future of health care.
+      <% end %>
       <%= error_tag f, :data_access %>
     </div>
 

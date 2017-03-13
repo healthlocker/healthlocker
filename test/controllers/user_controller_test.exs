@@ -63,7 +63,7 @@ defmodule Healthlocker.UserControllerTest do
         {:ok, user} ->
           get conn, "/users/#{user.id}/signup3"
       end
-    assert html_response(conn, 200) =~ "terms and conditions"
+    assert html_response(conn, 200) =~ "terms of service"
   end
 
   test "creates resource and redirects when data is valid and not duplicate", %{conn: conn} do
@@ -141,6 +141,6 @@ defmodule Healthlocker.UserControllerTest do
     Repo.insert %User{email: "me@example.com"}
     user = Repo.get_by(User, email: "me@example.com")
     conn = put conn, "/users/#{user.id}/#{:create3}", user: @invalid_attrs
-    assert html_response(conn, 200) =~ "terms and conditions"
+    assert html_response(conn, 200) =~ "terms of service"
   end
 end
