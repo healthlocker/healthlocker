@@ -1,5 +1,5 @@
 <%= form_for @changeset, post_path(@conn, :create), fn f -> %>
-  <div class="center mh2 mt2 mh5-m mh7-l">
+  <div class="center">
     <h3 class="tc bg-near-white pv2 mh3 black-70">Post a story or tip</h3>
     <div class="mh4">
       <%= textarea f, :content, placeholder: "Content", class: "w-100 h4 mb2 b--light-blue f4 pa2" %>

@@ -14,7 +14,12 @@ defmodule Healthlocker.GoalController do
       conn
       |> redirect(to: goal_path(conn, :new))
     else
-      render conn, "index.html", goals: goals
+      important_goals =  Enum.filter(goals, fn(g) -> g.important end)
+      |> Enum.sort(&(&1.updated_at > &2.updated_at))
+      unimportant_goals = Enum.filter(goals, fn(g) -> !g.important end)
+      |> Enum.sort(&(&1.updated_at > &2.updated_at))
+      all_goals = Enum.concat(important_goals, unimportant_goals)
+      render conn, "index.html", goals: all_goals
     end
   end
 
@@ -29,6 +34,21 @@ defmodule Healthlocker.GoalController do
           |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one!
     render conn, "show.html", goal: goal
+  end
+
+  def mark_important(conn, %{"id" => id}) do
+    goal = Repo.get!(Goal, id)
+    changeset = Goal.mark_important_changeset(goal, %{important: !goal.important})
+
+    case Repo.update(changeset) do
+      {:ok, goal} ->
+        conn
+        |> redirect(to: goal_path(conn, :show, goal))
+      {:error, _changeset} ->
+        conn
+        |> put_flash(:info, "Could not mark as important. Try again later.")
+        |> render("show.html", goal: goal)
+    end
   end
 
   def create(conn, %{"goal" => goal_params}) do
@@ -87,7 +107,7 @@ defmodule Healthlocker.GoalController do
 
   def get_content(params) do
     if Map.has_key?(params, "content") && params["content"] != "" do
-      %{"content" => params["content"] <> " #Goal"}
+      Map.update(params, "content", params["content"], &(&1 <> " #Goal"))
     else
       params
     end
