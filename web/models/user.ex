@@ -28,7 +28,7 @@ defmodule Healthlocker.User do
     |> cast(params, [:email, :name])
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
-    |> unique_constraint(:email, message: "Sorry you cannot create an account at 
+    |> unique_constraint(:email, message: "Sorry you cannot create an account at
     this time, try again later or with different details.")
   end
 
@@ -37,7 +37,8 @@ defmodule Healthlocker.User do
     |> cast(params, [:email, :name, :phone_number, :slam_user])
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
-    |> unique_constraint(:email)
+    |> unique_constraint(:email, message: "Sorry you cannot create an account at
+    this time, try again later or with different details.")
   end
 
   def security_question(struct, params \\ :invalid) do
