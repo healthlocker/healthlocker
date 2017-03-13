@@ -25,7 +25,7 @@
     <div class="form-group">
       <%= checkbox f, :terms_conditions, class: "checkbox" %>
       <%= label f, :terms_conditions do %>
-        I accept <%= link "terms and conditions.", to: page_path(@conn, :show, "terms") %>
+        I accept the <%= link "terms of service.", to: page_path(@conn, :show, "terms") %>
       <% end %>
       <%= error_tag f, :terms_conditions %>
     </div>
