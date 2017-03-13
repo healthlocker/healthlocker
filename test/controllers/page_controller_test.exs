@@ -26,6 +26,6 @@ defmodule Healthlocker.PageControllerTest do
 
   test "renders terms.html on /pages/terms-and-conditions", %{conn: conn} do
     conn = get conn, page_path(conn, :show, "terms")
-    assert html_response(conn, 200) =~ "Terms and conditions"
+    assert html_response(conn, 200) =~ "Terms of Service"
   end
 end
