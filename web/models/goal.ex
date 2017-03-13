@@ -13,6 +13,7 @@ defmodule Healthlocker.Goal do
 
   def changeset(struct, params \\ :invalid) do
     struct
+    |> mark_important_changeset(params)
     |> cast(params, [:content])
     |> validate_required(:content)
   end
