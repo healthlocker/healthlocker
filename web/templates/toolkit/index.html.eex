@@ -3,14 +3,14 @@
   <div class="goals-strategies">
       <div class="tc goals-container ma3">
         <a href="/goal">
-        <%= img_tag("/images/goals-icn.png", class: "w-60") %>
+        <%= img_tag("/images/HL_icons_Goals.svg", class: "w-60") %>
         <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40">Goals</span>
         </a>
       </div>
 
       <div class="tc ma3 pt2">
         <a href="/coping-strategy">
-        <%= img_tag("/images/strategies-icn.png", class: "w-60") %>
+        <%= img_tag("/images/HL_icons_Strategies.svg", class: "w-60") %>
         <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40">Strategies</span>
         </a>
       </div>
