@@ -107,7 +107,7 @@ defmodule Healthlocker.GoalController do
 
   def get_content(params) do
     if Map.has_key?(params, "content") && params["content"] != "" do
-      %{"content" => params["content"] <> " #Goal"}
+      Map.update(params, "content", params["content"], &(&1 <> " #Goal"))
     else
       params
     end
