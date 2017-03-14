@@ -1,7 +1,7 @@
-defmodule Healthlocker.Email do
-  use Bamboo.Phoenix, view: Healthlocker.EmailView
+defmodule Healthlocker.Feedback do
+  use Bamboo.Phoenix, view: Healthlocker.FeedbackView
 
-  def send_email(subject, message) do
+  def send_feedback(subject, message) do
     new_email()
     |> to("my_email@gmail.com")
     |> from("my_email@gmail.com")

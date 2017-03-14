@@ -1,4 +1,4 @@
-<%= form_for @conn, email_path(@conn, :create), [as: :email], fn f -> %>
+<%= form_for @conn, feedback_path(@conn, :create), [as: :feedback], fn f -> %>
   <p class="b">Tell us about your experience with Healthlocker</p>
   <div class="form-group">
     <%= label f, :subject, class: "f5 b db mb2" %>
