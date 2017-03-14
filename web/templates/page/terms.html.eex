@@ -6,25 +6,25 @@
 
   <p class="b">Privacy</p>
   <p>Your privacy is important to us, for this reason we have designed a
-    privacy statement which will outline how we protect your privacy. We ask
-    you to read this statement so that you can make an informed decision
-    regarding creating your account
+    <%= link "privacy statement", to: page_path(@conn, :show, "privacy") %>
+    which will outline how we protect your privacy. We ask you to read this
+    statement so that you can make an informed decision regarding creating your
+    account.
   </p>
 
   <p class="b">Sharing of Information</p>
   <p>Healthlocker is designed so you, as the user, have complete control over
-    who you add to your friend circle and what information you share with each
-    person.
+    who you connect with and what information you share with them.
   </p>
 
-  <p class="b">Safety</p>
+  <p class="b">Security</p>
   <p>Whilst Healthlocker sits on a secure platform, and the chance of a data
     breach is very unlikely, we cannot absolutely guarantee the safety of
     Healthlocker. As the user you will need to make sure your login in details
     are kept confidential and not shared with anyone. You will also need to be
     aware of your surroundings, and we advise you only login to your account
     when you are in a private space. You as the user will need to ensure that
-    you only add people to your circle of friends that you know, and that you
+    you only connect to other Healthlocker users that you know, and that you
     want to be part of your ongoing healthcare.
   </p>
 
@@ -43,13 +43,13 @@
     will receive a notification the next time you try to enter your account.
   </p>
   <p>You do have the option of deleting your account. At which time, all
-    information on your account will not be accessible to any user in your
-    circle of friends but will be retained in case you would like to reactive
-    your account at a later date.
+    information you have previously shared with others will still be available
+    to them. Your account will be safely retained in case you would like to
+    reactivate your account at a later date.
   </p>
 
   <p class="b">Other Applications</p>
-  <p>Healthlocker does contain links to other application which are not owned
+  <p>Healthlocker does contain links to other applications which are not owned
     or controlled by South London and Maudsley NHS Foundation Trust. SLaM
     cannot take responsibility for the content or general practices of these
     applications.
