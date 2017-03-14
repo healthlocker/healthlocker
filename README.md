@@ -54,4 +54,5 @@ or phone number
 * Users can update their password and security Q&A in their account
 * Terms of service can be accessed from the footer and is linked in sign up
 * Privacy statement can be accessed from the footer and is linked in sign up
-* Feedback can be sent about the site from a form
+* Feedback can be sent about the site from a form. This is done
+[using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
