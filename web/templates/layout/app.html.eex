@@ -22,7 +22,8 @@
   <body class="w-100 bg-white">
       <div class="bg-beta-yellow pa1">
         <div class="pa1">
-          <p class="di">Beta</p> - <small>Improvements and features are in progress. Give feedback</small>
+          <p class="di">Beta</p> - <small>Improvements and features are in progress.
+            <%= link "Give feedback", to: feedback_path(@conn, :index) %></small>
         </div>
       </div>
 
@@ -74,7 +75,7 @@
           </footer>
 
         </div>
-        
+
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
