@@ -50,6 +50,7 @@ defmodule Healthlocker.Router do
     get "/account/slam-help", AccountController, :slam_help
     get "/account/nhs-help", AccountController, :nhs_help
     resources "/components", ComponentController, only: [:index]
+    resources "/feedback", FeedbackController, only: [:index, :create]
   end
 
   # Other scopes may use custom stacks.
