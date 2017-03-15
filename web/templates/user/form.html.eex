@@ -22,8 +22,8 @@
     <%= error_tag f, :email%>
   </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
+  <div class="tr">
+    <%= submit "Submit", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
   </div>
 
 </div>
