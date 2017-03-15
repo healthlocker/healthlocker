@@ -56,7 +56,7 @@
                                 to: login_path(@conn, :delete, @current_user),
                                 method: "delete" %>
           <% end %>
-          <%= link "Get support", to: support_path(@conn, :index), class: "mt3 mh6 hl-bg-pink pv2 f3 white-80 db hover-white" %>
+          <%= link "Get support", to: support_path(@conn, :index), class: "mt3 mh5 mh6-m mh7-l hl-bg-pink pv2 f3 white-80 db hover-white" %>
         </nav>
 
           <main id="body">
