@@ -20,8 +20,8 @@
       <div class="lh-copy">
         <a href="#0" class="f5 link dim db">Forgotten your password?</a>
       </div>
-      <div>
-        <%= submit "Log in", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
+      <div class="tr">
+        <%= submit "Log in", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
       </div>
     <% end %>
   </section>

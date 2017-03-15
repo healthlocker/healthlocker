@@ -7,7 +7,9 @@
   <div class="center">
     <div class="mh3 center measure">
       <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2" %>
-      <%= submit "Save", class: "fr mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+      <div class="tr">
+        <%= submit "Save", class: "mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+      </div>
     </div>
   </div>
 <% end %>
