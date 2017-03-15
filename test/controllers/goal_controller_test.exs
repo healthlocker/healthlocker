@@ -25,7 +25,7 @@ defmodule Healthlocker.GoalControllerTest do
     end
 
     test "renders index.html on /goals", %{conn: conn} do
-      Repo.insert %Goal{content: "some content #Goal", user_id: 123456}
+      Repo.insert %Goal{content: "some content #Goal", user_id: 123456, important: true}
       conn = get conn, goal_path(conn, :index)
       assert html_response(conn, 200) =~ "Goals"
     end

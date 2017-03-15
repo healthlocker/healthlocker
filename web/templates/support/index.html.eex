@@ -1,6 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h3 class="tc">Support</h3>
-  <h5>What to do in a crisis</h5>
+  <h3 class="tc">What to do in a crisis</h3>
   <p>If you need urgent help or advice: </p>
   <div class="bg-black-10 pv3">
     <div class="fl pv4 ph1 w3 ml4 mt2">
@@ -19,7 +18,7 @@
     <li class="mb3 ml3 mr5">If you feel unsafe and need immediate help
       <a href="tel:999">call 999</a> or
       <a href="http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428" target="_blank">
-        find your nearest A&E</a>, open 24/7.
+        find your nearest A&amp;E</a>, open 24/7.
     </li>
     <li class="mb3 ml3 mr5">If you can wait for an appointment, your GP can help
       you find the best service for you.</li>
