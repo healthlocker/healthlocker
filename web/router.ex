@@ -51,6 +51,7 @@ defmodule Healthlocker.Router do
     get "/account/nhs-help", AccountController, :nhs_help
     resources "/components", ComponentController, only: [:index]
     resources "/feedback", FeedbackController, only: [:index, :create]
+    get "/messages", MessageController, :index
   end
 
   # Other scopes may use custom stacks.
