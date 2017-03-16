@@ -2,7 +2,7 @@ defmodule Healthlocker.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Healthlocker.RoomChannel
+  channel "room:general", Healthlocker.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000
