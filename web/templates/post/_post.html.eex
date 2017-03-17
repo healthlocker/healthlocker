@@ -2,7 +2,7 @@
   <h1 class="f3 lh-title"><%= heading(@post) %></h1>
   <%= for p <- paragraphs(@post) do %>
     <p class="lh-copy measure measure-wide-ns center f6 black-70">
-      <%= p %>
+      <%= markdown p %>
     </p>
   <% end %>
 </article>
