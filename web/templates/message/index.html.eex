@@ -1,6 +1,7 @@
 <div>
-  <span class="f5 b db mb2 mt4">@</span>
-  <input id="username" type="text" placeholder="username" class="pa3 input-reset bn hl-bg-grey w-50">
+  <p class="di">Welcome</p>
+  <p class="di" id="username"><%= @conn.assigns.current_user.name %></p>
+  <p class="dn" id="user-id"><%= @conn.assigns.current_user.id %></p>
   <label for="message-input" class="f5 b db mb2 mt4">Enter a message</label>
   <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-75"/>
 </div>
