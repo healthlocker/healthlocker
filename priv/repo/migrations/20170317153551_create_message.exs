@@ -4,6 +4,7 @@ defmodule Healthlocker.Repo.Migrations.CreateMessage do
   def change do
     create table(:messages) do
       add :body, :string
+      add :name, :string
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()
