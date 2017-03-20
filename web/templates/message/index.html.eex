@@ -1,6 +1,4 @@
 <div>
-  <p class="di">Welcome</p>
-  <p class="di" id="username"><%= @conn.assigns.current_user.name %></p>
   <label for="message-input" class="f5 b db mb2 mt4">Enter a message</label>
   <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-75"/>
 </div>
