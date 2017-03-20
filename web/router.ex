@@ -25,7 +25,7 @@ defmodule Healthlocker.Router do
     end
 
     resources "/tips", TipController, only: [:index]
-    get "/support", SupportController, :index
+    resources "/support", SupportController, only: [:index]
     resources "/users", UserController, only: [:index, :new, :create, :update] do
       get "/signup2", UserController, :signup2
       put "/create2", UserController, :create2
@@ -51,7 +51,7 @@ defmodule Healthlocker.Router do
     get "/account/nhs-help", AccountController, :nhs_help
     resources "/components", ComponentController, only: [:index]
     resources "/feedback", FeedbackController, only: [:index, :create]
-    get "/messages", MessageController, :index
+    resources "/messages", MessageController, only: [:index]
   end
 
   # Other scopes may use custom stacks.
