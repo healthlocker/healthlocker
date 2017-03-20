@@ -20,13 +20,13 @@ defmodule Healthlocker.RoomChannel do
   def handle_in("new:msg", msg, user, socket) do
     changeset = Message.changeset(%Message{
         body: msg["body"],
-        name: msg["name"],
+        name: user.name,
         user_id: user.id
       })
     case Repo.insert(changeset) do
       {:ok, _message} ->
         broadcast! socket, "new:msg", %{
-          name: msg["name"],
+          name: user.name,
           body: msg["body"]
         }
         {:reply, {:ok, %{msg: msg["body"]}}, socket}
