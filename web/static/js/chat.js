@@ -29,7 +29,7 @@ var Chat = {
     })
 
     function renderMessages (container, msg) {
-      container.innerHTML = `<p>${msg.name}&nbsp; ${msg.body}</p>` + container.innerHTML
+      container.innerHTML = `<p class="text-wrap">${msg.name}&nbsp; ${msg.body}</p>` + container.innerHTML
     }
   }
 }
