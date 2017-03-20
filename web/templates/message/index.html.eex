@@ -3,4 +3,4 @@
   <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-75"/>
 </div>
 
-<div id="messages" class="ba mt3"></div>
+<div id="messages" class="ba b--hl-aqua br3 mt3 h5 overflow-scroll w-75 mh3"></div>
