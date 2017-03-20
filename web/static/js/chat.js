@@ -1,6 +1,5 @@
 var Chat = {
   init (socket) {
-    var username = document.getElementById('username').innerHTML
     var input = document.getElementById('message-input')
     var msgContainer = document.getElementById('messages')
     socket.onOpen(e => console.log('Open', e))
@@ -20,7 +19,7 @@ var Chat = {
 
     input.addEventListener('keypress', e => {
       if (e.keyCode === 13) {
-        channel.push('new:msg', {name: username, body: input.value}, 10000)
+        channel.push('new:msg', {body: input.value}, 10000)
         input.value = ''
       }
     }, false)
