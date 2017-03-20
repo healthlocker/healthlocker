@@ -19,7 +19,7 @@ defmodule Healthlocker.RoomChannelTest do
   end
 
   test "new:msg replies with status ok", %{socket: socket} do
-    ref = push socket, "new:msg", %{"name" => "Me", "body" => "hello there"}
+    ref = push socket, "new:msg", %{"body" => "hello there"}
     assert_reply ref, :ok, %{msg: "hello there"}
   end
 
@@ -29,12 +29,12 @@ defmodule Healthlocker.RoomChannelTest do
   end
 
   test "new:msg broadcasts to room:general", %{socket: socket} do
-    push socket, "new:msg", %{"name" => "Me", "body" => "hello there"}
-    assert_broadcast "new:msg", %{name: "Me", body: "hello there"}
+    push socket, "new:msg", %{"body" => "hello there"}
+    assert_broadcast "new:msg", %{name: "MyName", body: "hello there"}
   end
 
   test "broadcasts are pushed to the client", %{socket: socket} do
-    broadcast_from! socket, "new:msg", %{"name" => "Me", "body" => "hello there"}
-    assert_push "new:msg", %{"name" => "Me", "body" => "hello there"}
+    broadcast_from! socket, "new:msg", %{"body" => "hello there"}
+    assert_push "new:msg", %{"body" => "hello there"}
   end
 end
