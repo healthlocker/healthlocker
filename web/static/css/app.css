@@ -61,6 +61,14 @@ select:focus {
   position:relative;
 }
 
+.text-wrap {
+  word-wrap:break-word;
+}
+
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
 #body {
   padding-bottom: 80px;
 }
