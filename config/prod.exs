@@ -28,6 +28,8 @@ config :healthlocker, Healthlocker.Repo,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :healthlocker, :analytics, Healthlocker.Analytics.Segment
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
