@@ -18,7 +18,7 @@
       <%= if @story do %>
           <%= markdown String.slice(@story.content, 0, 325) <> "..." %>
         <a href="/posts/<%= @story.id %>" class="pa0 f5 f4-l lh-copy">Read this story</a>
-        <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: @story,
+        <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: @story,
           current_user: @current_user %>
       <%= else %>
         <p class="pv2 ph2 f5 f4-l lh-copy">No stories found</p>
@@ -33,7 +33,7 @@
     <%= if @tip do %>
       <%= markdown @tip.content %></p>
       <a href="/tips?tag=<%= tip_tag(@tip.content) %>">See more "<%= tip_tag(@tip.content) %>" tips</a>
-      <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: @tip,
+      <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: @tip,
         current_user: @current_user %>
     <%= else %>
       <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy">No tips found</p>
