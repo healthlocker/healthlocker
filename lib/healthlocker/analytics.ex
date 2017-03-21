@@ -9,7 +9,6 @@ defmodule Healthlocker.Analytics do
   @type traits :: map
   @type properties :: map
 
-
   @callback identify(user_id, traits) :: {:ok, term} | {:error, term}
 
   @doc """
