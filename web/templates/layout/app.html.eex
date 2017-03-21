@@ -57,23 +57,23 @@
           <%= link "Get support", to: support_path(@conn, :index), class: "mt3 mh5 mh6-m mh7-l hl-bg-pink pv2 f3 white-80 db hover-white" %>
         </nav>
 
-          <main id="body">
-            <section class="h-100 pa3 pa5-ns bt b--black-10 bg-white">
-              <section class="mw7 center">
-                <p class="" role="alert"><%= get_flash(@conn, :info) %></p>
-                <p class="ma3 ma4-m ma4-l" role="alert"><%= get_flash(@conn, :error) %></p>
-                <%= render @view_module, @view_template, assigns %>
-              </section>
+        <main id="body">
+          <section class="h-100 pa3 pa5-ns bt b--black-10 bg-white">
+            <section class="mw7 center">
+              <p class="" role="alert"><%= get_flash(@conn, :info) %></p>
+              <p class="ma3 ma4-m ma4-l" role="alert"><%= get_flash(@conn, :error) %></p>
+              <%= render @view_module, @view_template, assigns %>
             </section>
-          </main>
-          <footer id="footer" class="db hl-bg-aqua tc mt4 w-100">
-            <%= link "About", to: page_path(@conn, :show, "about"), class: "f6 pt3 link dim white-80 dib mr3 mr4-ns" %>
-            <%= link "Terms and conditions", to: page_path(@conn, :show, "terms"), class: "f6 link dim white-80 dib mr3 mr4-ns" %>
-            <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy"), class: "f6 link dim white-80 dib" %>
-          </footer>
+          </section>
+        </main>
+        <footer id="footer" class="db hl-bg-aqua tc mt4 w-100">
+          <%= link "About", to: page_path(@conn, :show, "about"), class: "f6 pt3 link dim white-80 dib mr3 mr4-ns" %>
+          <%= link "Terms and conditions", to: page_path(@conn, :show, "terms"), class: "f6 link dim white-80 dib mr3 mr4-ns" %>
+          <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy"), class: "f6 link dim white-80 dib" %>
+        </footer>
 
-        </div>
-
+      </div>
+    <script>window.userToken = "<%= assigns[:user_token] %>"</script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
   </body>
