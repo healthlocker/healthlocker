@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-group">
-      <%= label f, :repeat_password, class: "f5 b db mb2 mt4" %>
+      <%= label f, "Confirm password", class: "f5 b db mb2 mt4" %>
       <%= text_input f, :password_confirmation, class: "pa3 input-reset bn hl-bg-grey w-100",
                         type: :password%>
       <%= error_tag f, :password_confirmation %>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="tr">
-      <%= submit "Submit", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+      <%= submit "Next", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
     </div>
   <% end %>
 </div>
