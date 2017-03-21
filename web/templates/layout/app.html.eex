@@ -8,7 +8,6 @@
     <meta name="author" content="">
 
     <title>Healthlocker</title>
-    <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
     <link rel=stylesheet href="https://s3-us-west-2.amazonaws.com/colors-css/2.2.0/colors.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
@@ -76,5 +75,6 @@
         </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
   </body>
 </html>
