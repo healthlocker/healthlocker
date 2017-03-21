@@ -1,7 +1,7 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h4>Please confirm your security details and enter new ones.</h4>
+  <h4>Update security question</h4>
 
-  <p>Current security question : </p>
+  <p class="b">Current security question</p>
   <%= @user.security_question %>
 
 
