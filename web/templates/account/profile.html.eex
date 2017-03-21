@@ -3,8 +3,9 @@
 
   <div class="form-group pv3">
     <%= checkbox f, :slam_user, class: "checkbox " %>
-    <%= label f, "I am a South London and Maudsley service user.",
-        class: "control-label" %>
+    <%= label f, :slam_user do %>
+      I am a South London and Maudsley service user.
+    <% end %>
     <%= error_tag f, :slam_user %>
   </div>
 
