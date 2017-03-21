@@ -7,7 +7,7 @@ use Mix.Config
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
 config :healthlocker, Healthlocker.Endpoint,
-  http: [port: 4000],
+  http: [port: 4001],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -41,3 +41,5 @@ config :healthlocker, Healthlocker.Repo,
   database: "healthlocker_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :healthlocker, :analytics, Healthlocker.Analytics.Local
