@@ -41,3 +41,5 @@ config :healthlocker, Healthlocker.Repo,
   database: "healthlocker_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :healthlocker, :analytics, Healthlocker.Analytics.Segment

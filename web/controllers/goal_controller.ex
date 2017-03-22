@@ -58,7 +58,9 @@ defmodule Healthlocker.GoalController do
               |> Ecto.Changeset.put_change(:user_id, user_id)
 
     case Repo.insert(changeset) do
-      {:ok, _goal} ->
+      {:ok, goal} ->
+        conn |> track_created(goal)
+
         conn
         |> put_flash(:info, "Goal added!")
         |> redirect(to: goal_path(conn, :index))
@@ -122,5 +124,9 @@ defmodule Healthlocker.GoalController do
       |> redirect(to: login_path(conn, :index))
       |> halt()
     end
+  end
+
+  defp track_created(conn, %Goal{} = goal) do
+    Healthlocker.Analytics.track(conn.assigns.current_user, :create, goal)
   end
 end

@@ -15,6 +15,8 @@
     <link rel="icon" type="image/png" href="/images/favicon-hl-32x32.png">
     <link rel=”apple-touch-icon” href=”/images/apple-touch-icon.png”/>
     <link rel=”apple-touch-icon-precomposed” href=”/images/apple-touch-icon.png”/>
+
+    <%= segment_snippet %>
   </head>
 
   <body class="w-100 bg-white">
@@ -76,5 +78,10 @@
     <script>window.userToken = "<%= assigns[:user_token] %>"</script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
+    <%= if @current_user do %>
+      <script type="text/javascript">
+        require("web/static/js/segment").Segment.identify("<%= @current_user.id %>", "<%= @current_user.name %>", "<%= @current_user.email %>")
+      </script>
+    <% end %>
   </body>
 </html>

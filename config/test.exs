@@ -17,3 +17,5 @@ config :healthlocker, Healthlocker.Repo,
   database: "healthlocker_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :healthlocker, :analytics, Healthlocker.Analytics.Local
