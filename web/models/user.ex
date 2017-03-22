@@ -26,6 +26,7 @@ defmodule Healthlocker.User do
   def changeset(struct, params \\ :invalid) do
     struct
     |> cast(params, [:email, :name])
+    |> update_change(:email, &(String.downcase(&1)))
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
     |> unique_constraint(:email, message: "Sorry you cannot create an account at
@@ -35,6 +36,7 @@ defmodule Healthlocker.User do
   def update_changeset(struct, params \\ :invalid) do
     struct
     |> cast(params, [:email, :name, :phone_number, :slam_user])
+    |> update_change(:email, &(String.downcase(&1)))
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
     |> unique_constraint(:email, message: "Sorry you cannot create an account at
