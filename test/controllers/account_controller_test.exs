@@ -14,7 +14,7 @@ defmodule Healthlocker.AccountControllerTest do
   }
   @invalid_attrs %{
     name: "",
-    email: "",
+    email: "a",
     phone_number: "",
     security_check: "Answer",
     security_question: "",
