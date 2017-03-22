@@ -6,6 +6,10 @@ defmodule Healthlocker.UserControllerTest do
     email: "me@example.com",
     name: "MyName"
   }
+  @step1_caps_attrs %{
+    email: "User@example.com",
+    name: "MyName"
+  }
   @step2_attrs %{
     password: "abc123",
     password_confirmation: "abc123",
@@ -51,7 +55,6 @@ defmodule Healthlocker.UserControllerTest do
     assert html_response(conn, 200) =~ "Password"
   end
 
-
   test "renders form for accepting T&Cs, privacy, and data access request", %{conn: conn} do
     conn =
       case Repo.insert %User{
@@ -69,6 +72,13 @@ defmodule Healthlocker.UserControllerTest do
   test "creates resource and redirects when data is valid and not duplicate", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @step1_attrs
     user = Repo.get_by(User, email: "me@example.com")
+    assert redirected_to(conn) == "/users/#{user.id}/signup2"
+    assert user
+  end
+
+  test "converts email to lowercase, creates resource and redirects with valid non-duplicate data", %{conn: conn} do
+    conn = post conn, user_path(conn, :create), user: @step1_caps_attrs
+    user = Repo.get_by(User, email: "user@example.com")
     assert redirected_to(conn) == "/users/#{user.id}/signup2"
     assert user
   end
