@@ -10,18 +10,16 @@ defmodule Healthlocker.ComponentView do
     # split on line breaks to separate the questions:
     questions_array = String.split(questions, "\n")
 
-    # create a map from the questions array
-    questions_map = %{}
-    # create an array where "question: question"
-
     # gets a map which displays in template, except there is an
     # empty string at the beginning
     map = Enum.reduce questions_array, %{}, fn x, acc ->
       Map.put(acc, x, x)
     end
 
+    # delete any empty string "" keys
+    questions_map = Map.delete(map, map[""])
     # return the questions map
-    map
+    questions_map
   end
 
 end
