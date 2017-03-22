@@ -18,7 +18,7 @@ defmodule Healthlocker.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Healthlocker, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :comeonin, :timex, :segment]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :comeonin, :timex, :bamboo, :segment]]
   end
 
   # Specifies which paths to compile per environment.
@@ -41,7 +41,10 @@ defmodule Healthlocker.Mixfile do
      {:comeonin, "~> 3.0"},
      {:credo, "~> 0.5", only: [:dev, :test]},
      {:timex, "~> 3.0"},
-     {:segment, github: "stueccles/analytics-elixir"}]
+     {:segment, github: "stueccles/analytics-elixir"},
+     {:bamboo, "~> 0.7"},
+     {:bamboo_smtp, "~> 1.2.1"},
+     {:mock, "~> 0.2.0", only: :test}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

@@ -24,12 +24,24 @@ defmodule Healthlocker.Goal do
   end
 
   def get_goals(query, user_id) do
-    from p in query,
-    where: like(p.content, "%#Goal") and p.user_id == ^user_id
+    from g in query,
+    where: like(g.content, "%#Goal") and g.user_id == ^user_id
+  end
+
+  def get_important_goals(query, user_id) do
+    from g in query,
+    where: like(g.content, "%#Goal") and g.user_id == ^user_id and g.important,
+    order_by: [desc: g.updated_at]
+  end
+
+  def get_unimportant_goals(query, user_id) do
+    from g in query,
+    where: like(g.content, "%#Goal") and g.user_id == ^user_id and not g.important,
+    order_by: [desc: g.updated_at]
   end
 
   def get_goal_by_user(query, id, user_id) do
-    from p in query,
-    where: p.id == ^id and p.user_id == ^user_id
+    from g in query,
+    where: g.id == ^id and g.user_id == ^user_id
   end
 end

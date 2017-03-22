@@ -16,7 +16,7 @@
     </div>
 
     <div class="form-group">
-      <%= label f, :repeat_password, class: "f5 b db mb2 mt4" %>
+      <%= label f, "Confirm password", class: "f5 b db mb2 mt4" %>
       <%= text_input f, :password_confirmation, class: "pa3 input-reset bn hl-bg-grey w-100",
                         type: :password%>
       <%= error_tag f, :password_confirmation %>
@@ -25,11 +25,11 @@
     <div class="form-group">
       <%= label f, :security_question, class: "f5 b db mb2 mt4" %>
       <%= select f, :security_question,
-        ["What were the last four digits of your childhood telephone number?": "What were the last four digits of your childhood telephone number?",
-        "What was the house number and street name you lived in as a child?": "What was the house number and street name you lived in as a child?",
-        "What time of the day were you born? (hh:mm)": "What time of the day were you born? (hh:mm)",
-        "What are the last five digits of your driver's licence number?": "What are the last five digits of your driver's licence number?",
-        "What is your grandmother's (on your mother's side) maiden name?": "What is your grandmother's (on your mother's side) maiden name?"
+        ["Favourite teacher's name?": "Favourite teacher's name?",
+        "First pet's name?": "First pet's name?",
+        "Town you were born in?": "Town you were born in?",
+        "Name of primary school?": "Name of primary school?",
+        "Name of your first boss?": "Name of your first boss?"
         ],
         prompt: "Choose a security question",
         class: "pa3 input-reset bn hl-bg-grey w-100" %>
@@ -42,8 +42,8 @@
       <%= error_tag f, :security_answer %>
     </div>
 
-    <div class="form-group">
-      <%= submit "Submit", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
+    <div class="tr">
+      <%= submit "Next", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
     </div>
   <% end %>
 </div>

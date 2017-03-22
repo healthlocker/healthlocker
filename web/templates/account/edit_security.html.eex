@@ -1,7 +1,7 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h4>Please confirm your security details and enter new ones.</h4>
+  <h4>Update security question</h4>
 
-  <p>Current security question : </p>
+  <p class="b">Current security question</p>
   <%= @user.security_question %>
 
 
@@ -16,11 +16,11 @@
     <div class="pb4">
       <%= label f, "New security question", class: "f5 b db mb2" %>
       <%= select f, :security_question,
-        ["What were the last four digits of your childhood telephone number?": "What were the last four digits of your childhood telephone number?",
-        "What was the house number and street name you lived in as a child?": "What was the house number and street name you lived in as a child?",
-        "What time of the day were you born? (hh:mm)": "What time of the day were you born? (hh:mm)",
-        "What are the last five digits of your driver's licence number?": "What are the last five digits of your driver's licence number?",
-        "What is your grandmother's (on your mother's side) maiden name?": "What is your grandmother's (on your mother's side) maiden name?"
+        ["Favourite teacher's name?": "Favourite teacher's name?",
+        "First pet's name?": "First pet's name?",
+        "Town you were born in?": "Town you were born in?",
+        "Name of primary school?": "Name of primary school?",
+        "Name of your first boss?": "Name of your first boss?"
         ],
         prompt: "Choose a security question",
         class: "pa2 input-reset bn hl-bg-grey w-100" %>
@@ -33,6 +33,8 @@
       <%= error_tag f, :security_answer %>
     </div>
 
-    <%= submit "Update", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
+    <div class="tr">
+      <%= submit "Update", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+    </div>
   <% end %>
 </div>

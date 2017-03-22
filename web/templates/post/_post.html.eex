@@ -1,8 +1,5 @@
 <article class="mw6 center bg-white br2 br--bottom shadow-1--bottom pa3 pa4-ns mv3 ba b--black-10">
-  <h1 class="f3 lh-title"><%= heading(@post) %></h1>
-  <%= for p <- paragraphs(@post) do %>
-    <p class="lh-copy measure measure-wide-ns center f6 black-70">
-      <%= p %>
-    </p>
-  <% end %>
+  <p class="lh-copy measure measure-wide-ns center f6 black-70">
+    <%= markdown @post.content %>
+  </p>
 </article>

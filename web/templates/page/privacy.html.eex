@@ -13,11 +13,10 @@
   <p>We collect information directly from you in a number of ways. You have a
     choice about the data we collect.  When you are asked to provide data, you
     may decline.  However, some information will need to be provided in order
-    to have a Healthlocker account.  This will include your first name, last
-    name, email and password.
+    to have a Healthlocker account. This will include your email and password.
   </p>
 
-  <p>Healthlocker also use cookies. Cookies are small text files that save and
+  <p>Healthlocker also uses cookies. Cookies are small text files that save and
     retrieve information about your visit, such as how you entered and
     navigated the app and what information was of interest to you. In addition
     to this, if you personalise any part of Healthlocker, the information is
@@ -27,24 +26,14 @@
     Settings in the 'Preferences' or 'Options' menu in your internet browser.
   </p>
 
-  <p>Data may be collected when you contribute to discussions in one of the
-    Portal forums, or when you enter data as part of your Healthlocker Personal
-    Health Record. When this data is collected, we will notify you as to why we
-    are asking you for this information, and how this information will be used.
-    It is completely up to you whether or not you provide it, and if you do not
-    feel comfortable providing this information, you are under no obligation to
-    do so. Healthlocker uses a temporary session cookie to reference the active
-    server session. The cookie is in-memory only and is not active after the
-    browser session is closed.
-  </p>
-
-  <p>The Portal also allows you to transfer your personal health information
-    from your interactions with Healthlocker powered by SLaM to Microsoft®
-    HealthVault®. Once you have transferred this information to your personal
-    account, the use and disclosure of your personal and health information
-    from your Microsoft® HealthVault® account to third parties is governed by
-    the Terms and Conditions of your HealthVault® user agreement with
-    Microsoft®, including Microsoft®'s Privacy Policy.
+  <p>Data may be collected when you enter information as part of your
+    Healthlocker Personal Health Record. When this data is collected, we will
+    notify you as to why we are asking you for this information, and how this
+    information will be used. It is completely up to you whether or not you
+    provide it, and if you do not feel comfortable providing this information,
+    you are under no obligation to do so. Healthlocker uses a temporary session
+    cookie to reference the active server session. The cookie is in-memory only
+    and is not active after the browser session is closed.
   </p>
 
   <p class="b">Networks and Devices</p>

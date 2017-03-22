@@ -33,7 +33,7 @@
     <div class="mt3">
       <%= checkbox f, :privacy, class: "checkbox" %>
       <%= label f, :privacy do %>
-        I accept the terms of our <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy") %>
+        I accept the terms of the <%= link "privacy s tatement", to: page_path(@conn, :show, "privacy") %>
       <% end %>
       <%= error_tag f, :privacy %>
     </div>
@@ -42,14 +42,14 @@
       <%= checkbox f, :data_access, class: "checkbox" %>
       <%= label f, :data_access do %>
         I agree to my anonymous Healthlocker usage data being used by the
-        Healthlocker team to improve the service and for researchers to use to
-        drive forward the future of health care.
+        Healthlocker team to improve the service and for researchers to
+        use to drive forward the future of health care.
       <% end %>
       <%= error_tag f, :data_access %>
     </div>
 
-    <div class="form-group">
-      <%= submit "Submit", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
+    <div class="tr">
+      <%= submit "Create account", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
     </div>
   <% end %>
 </div>

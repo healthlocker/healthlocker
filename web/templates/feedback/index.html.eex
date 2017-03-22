@@ -1,0 +1,13 @@
+<%= form_for @conn, feedback_path(@conn, :create), [as: :feedback], fn f -> %>
+  <p class="b">Tell us about your experience with Healthlocker</p>
+  <div class="form-group">
+    <%= label f, :subject, class: "f5 b db mb2" %>
+    <%= text_input f, :subject, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+  </div>
+
+  <div class="mt3">
+    <%= label f, :content, class: "f5 b db mb2" %>
+    <%= textarea f, :content, class: "w-100 h4 mb2 b--light-blue f4 pa2" %>
+  </div>
+  <%= submit "Send", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
+<% end %>
