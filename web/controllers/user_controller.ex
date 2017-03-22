@@ -16,6 +16,7 @@ defmodule Healthlocker.UserController do
 
   def create(conn, %{"user" => user_params}) do
     changeset = User.changeset(%User{}, user_params)
+                |> Ecto.Changeset.update_change(:email, &(String.downcase(&1)))
 
     case Repo.insert(changeset) do
       {:ok, user} ->
