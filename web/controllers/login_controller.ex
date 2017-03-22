@@ -6,7 +6,7 @@ defmodule Healthlocker.LoginController do
   end
 
   def create(conn, %{"login" => %{"email" => email, "password" => pass}}) do
-    case Healthlocker.Auth.email_and_pass_login(conn, email, pass, repo: Repo) do
+    case Healthlocker.Auth.email_and_pass_login(conn, String.downcase(email), pass, repo: Repo) do
       {:ok, conn} ->
         conn
         |> put_flash(:info, "Welcome to Healthlocker!")
