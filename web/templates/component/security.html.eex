@@ -1,0 +1,3 @@
+<%= for {q,text} <- security_questions() do %>
+   <p><%= "#{q} : #{text}" %></p>
+<% end %>

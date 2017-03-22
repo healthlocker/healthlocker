@@ -15,15 +15,9 @@
 
     <div class="pb4">
       <%= label f, "New security question", class: "f5 b db mb2" %>
-      <%= select f, :security_question,
-        ["Favourite teacher's name?": "Favourite teacher's name?",
-        "First pet's name?": "First pet's name?",
-        "Town you were born in?": "Town you were born in?",
-        "Name of primary school?": "Name of primary school?",
-        "Name of your first boss?": "Name of your first boss?"
-        ],
-        prompt: "Choose a security question",
-        class: "pa2 input-reset bn hl-bg-grey w-100" %>
+      <%= select f, :security_question, Healthlocker.ComponentView.security_questions(),
+      prompt: "Choose a security question",
+      class: "pa3 input-reset bn hl-bg-grey w-100" %>
       <%= error_tag f, :security_question %>
     </div>
 

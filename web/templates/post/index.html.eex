@@ -5,7 +5,7 @@
     <article class="ph3 pb3 bb b--black-20">
           <%= markdown String.slice(post.content, 0, 325) <> "..." %>
         <a href="/posts/<%= post.id %>" class="pa0 f5 f4-l lh-copy">Read this story</a>
-        <%= render Healthlocker.LikeView, "index.html", conn: @conn, post: post,
+        <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: post,
           current_user: @current_user %>
     </article>
   <% end %>
