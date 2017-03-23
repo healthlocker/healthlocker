@@ -20,7 +20,7 @@ defmodule Healthlocker.SleepTrackerController do
     case Repo.insert(changeset) do
       {:ok, _params} ->
         conn
-        |> put_flash(info: "Sleep tracked successfully!")
+        |> put_flash(:info, "Sleep tracked successfully!")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
