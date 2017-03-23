@@ -10,15 +10,17 @@
 
   <div class="form-group">
     <%= label f, "Total hours sleep", class: "f5 b db mb2" %>
-    <%= select f, :hours_slept, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= select f, :hours_slept, 0..24,
+      class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :hours_slept %>
   </div>
 
   <div class="form-group">
-    <%= label f, class: "f5 b db mb2 mt4" do %>
+    <%= label f, :wake_count, class: "f5 b db mb2 mt4" do %>
       Times I woke up:
     <% end %>
-    <%= text_input f, :wake_count, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= select f, :wake_count, 0..10,
+      class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :wake_count%>
   </div>
 
@@ -26,7 +28,7 @@
     <%= label f, :notes, class: "f5 b db mb2 mt4" %>
     <p class="i">What affected your sleep? Did you have nightmares or terrors? Did you do
       something to try to get a better sleep?</p>
-    <%= text_input f, :notes , class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= text_input f, :notes, class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :notes %>
   </div>
 
