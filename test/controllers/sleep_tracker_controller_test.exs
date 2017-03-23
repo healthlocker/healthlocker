@@ -2,9 +2,10 @@ defmodule Healthlocker.SleepTrackerControllerTest do
   use Healthlocker.ConnCase, async: false
 
   alias Healthlocker.SleepTracker
-  @valid_attrs {
-    hours_slept: 7,
-    wake_count: 4,
+  alias Healthlocker.User
+  @valid_attrs %{
+    hours_slept: "7",
+    wake_count: "4",
     notes: "Some notes",
     user_id: 123456
   }
@@ -29,6 +30,13 @@ defmodule Healthlocker.SleepTrackerControllerTest do
     test "/sleep-tracker :: new", %{conn: conn} do
       conn = get conn, sleep_tracker_path(conn, :new)
       assert html_response(conn, 200) =~ "Sleep"
+    end
+
+    test "/sleep-tracker :: create", %{conn: conn} do
+      conn = post conn, sleep_tracker_path(conn, :create), sleep_tracker: @valid_attrs
+      sleep_tracker = Repo.get_by(SleepTracker, notes: "Some notes")
+      assert redirected_to(conn) == toolkit_path(conn, :index)
+      assert sleep_tracker
     end
   end
 end
