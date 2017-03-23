@@ -1,5 +1,6 @@
 defmodule Healthlocker.ComponentView do
   use Healthlocker.Web, :view
+
   @root_dir File.cwd!
   @questions_raw Path.join(~w(#{@root_dir} web/templates security_questions.txt))
 
@@ -21,5 +22,4 @@ defmodule Healthlocker.ComponentView do
     # return the questions map
     questions_map
   end
-
 end
