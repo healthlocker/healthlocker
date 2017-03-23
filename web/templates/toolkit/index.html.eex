@@ -1,17 +1,17 @@
-<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+<div class="ma3 ma4-m ma4-l">
   <h3 class="tc">Toolkit</h3>
-  <div class="goals-strategies">
-      <div class="tc goals-container ma3">
+  <div class="goals-strategies w-100 mw6 center">
+      <div class="tc goals-container w-40 fl">
         <a href="/goal">
-        <%= img_tag("/images/HL_icons_Goals.svg", class: "w-60") %>
-        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40">Goals</span>
+        <%= img_tag("/images/HL_icons_Goals.svg", class: "w-100") %>
+        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Goals</span>
         </a>
       </div>
 
-      <div class="tc ma3 pt2">
+      <div class="tc w-40 fr">
         <a href="/coping-strategy">
-        <%= img_tag("/images/HL_icons_Strategies.svg", class: "w-60") %>
-        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40">Strategies</span>
+        <%= img_tag("/images/HL_icons_Strategies.svg", class: "w-100") %>
+        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Strategies</span>
         </a>
       </div>
   </div>
