@@ -21,7 +21,7 @@
       <a href="/sleep-tracker/new">
         <%= img_tag("https://d30y9cdsu7xlg0.cloudfront.net/png/10297-200.png",
                     class: "w-100") %>
-        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-50">Sleep Tracker</span>
+        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Sleep Tracker</span>
       </a>
     </div>
 
