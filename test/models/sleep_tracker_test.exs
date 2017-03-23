@@ -3,7 +3,7 @@ defmodule Healthlocker.SleepTrackerTest do
 
   alias Healthlocker.SleepTracker
 
-  @valid_attrs %{hours_slept: 42, notes: "some content", wake_count: 42}
+  @valid_attrs %{hours_slept: "42", notes: "some content", wake_count: "42"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
