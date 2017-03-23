@@ -2,7 +2,7 @@ defmodule Healthlocker.SleepTracker do
   use Healthlocker.Web, :model
 
   schema "sleep_trackers" do
-    field :hours_slept, :string
+    field :hours_slept, :string, null: false
     field :wake_count, :string
     field :notes, :string
     belongs_to :user, Healthlocker.User

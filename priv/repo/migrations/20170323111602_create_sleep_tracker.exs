@@ -3,7 +3,7 @@ defmodule Healthlocker.Repo.Migrations.CreateSleepTracker do
 
   def change do
     create table(:sleep_trackers) do
-      add :hours_slept, :string
+      add :hours_slept, :string, null: false
       add :wake_count, :string
       add :notes, :string
       add :user_id, references(:users, on_delete: :delete_all)
