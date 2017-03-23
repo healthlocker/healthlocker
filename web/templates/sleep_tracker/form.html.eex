@@ -6,12 +6,12 @@
     </div>
   <% end %>
 
-  <p class="b">Sleep</p>
+  <h3>Sleep tracker</h3>
 
   <div class="form-group">
-    <%= label f, "Total hours sleep", class: "f5 b db mb2" %>
+    <%= label f, "Total hours sleep:", class: "f5 b db mb2" %>
     <%= select f, :hours_slept, 0..24,
-      prompt: "Enter number of hours you slept",
+      prompt: "Enter total hours slept",
       class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :hours_slept %>
   </div>
@@ -21,16 +21,16 @@
       Times I woke up:
     <% end %>
     <%= select f, :wake_count, 0..10,
-      prompt: "Enter number of times you woke up",
+      prompt: "Enter times woke up",
       class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :wake_count%>
   </div>
 
   <div class="form-group">
-    <%= label f, :notes, class: "f5 b db mb2 mt4" %>
+    <%= label f, "Notes:", class: "f5 b db mb2 mt4" %>
     <p class="i">What affected your sleep? Did you have nightmares or terrors? Did you do
       something to try to get a better sleep?</p>
-    <%= text_input f, :notes, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= textarea f, :notes, class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :notes %>
   </div>
 
