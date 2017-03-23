@@ -7,8 +7,23 @@ defmodule Healthlocker.SleepTrackerController do
     render(conn, "index.html")
   end
 
-  def new(conn, %{"user_params" => user_params}) do
-    changeset = SleepTracker.changeset(%User{})
+  def new(conn, _params) do
+    changeset = SleepTracker.changeset(%SleepTracker{})
     render(conn, "new.html", changeset: changeset)
+  end
+
+  def create(conn, %{"sleep_tracker" => st_params}) do
+    user = conn.assigns.current_user
+    changeset = SleepTracker.changeset(%SleepTracker{}, st_params)
+              |> Ecto.Changeset.put_assoc(:user, user)
+
+    case Repo.insert(changeset) do
+      {:ok, _params} ->
+        conn
+        |> put_flash(info: "Sleep tracked successfully!")
+        |> redirect(to: toolkit_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
   end
 end
