@@ -25,12 +25,7 @@
     <div class="form-group">
       <%= label f, :security_question, class: "f5 b db mb2 mt4" %>
       <%= select f, :security_question,
-        ["Favourite teacher's name?": "Favourite teacher's name?",
-        "First pet's name?": "First pet's name?",
-        "Town you were born in?": "Town you were born in?",
-        "Name of primary school?": "Name of primary school?",
-        "Name of your first boss?": "Name of your first boss?"
-        ],
+        Healthlocker.ComponentView.security_questions(),
         prompt: "Choose a security question",
         class: "pa3 input-reset bn hl-bg-grey w-100" %>
       <%= error_tag f, :security_question %>
