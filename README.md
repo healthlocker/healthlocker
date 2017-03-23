@@ -34,7 +34,7 @@ Ready to run in production? Please [check the deployment guides](http://www.phoe
 
 ## How?
 
-#### Updating security questions
+#### Updating select input options (e.g. security questions)
 Security questions can be updated by editing the
 [`security_questions.txt` file](web/templates/security_questions.txt).
 
@@ -79,6 +79,11 @@ If you are happy with the changes, change the label to `awaiting-review`:
 
 Then add a `Reviewer` and `Assignee` of your choice.
 
+The options for `hours_slept` and `wake_count` can be updated in the same way.
+Go to the files for [hours_slept](web/templates/hours_slept.txt) or
+[wake_count](web/templates/wake_count.txt), and follow through the instructions
+above.
+
 ## What?
 
 #### Current features
@@ -102,3 +107,4 @@ or phone number
 * Privacy statement can be accessed from the footer and is linked in sign up
 * Feedback can be sent about the site from a form. This is done
 [using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
+* Logged in users can track their sleep over time using the sleep tracker in toolkit
