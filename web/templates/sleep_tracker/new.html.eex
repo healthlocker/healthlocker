@@ -1,0 +1,7 @@
+<div class="ma3 ma4-m ma4-l">
+  <h3 class="tc">Today</h3>
+
+  <%= render "form.html", changeset: @changeset,
+                          action: sleep_tracker_path(@conn, :create),
+                          conn: @conn %>
+</div>
