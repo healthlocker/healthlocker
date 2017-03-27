@@ -9,7 +9,6 @@
   <h1>Chart goes here</h1>
 </div>
 <p>Your week</p>
-<%= date_range(7)%>
 <!-- if sleep data is today, then show sleep hours here -->
 <p class="b">Today's date here</p>
 <div class="averages">

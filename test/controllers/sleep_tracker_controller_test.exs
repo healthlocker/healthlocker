@@ -24,7 +24,7 @@ defmodule Healthlocker.SleepTrackerControllerTest do
 
     test "/sleep-tracker :: index", %{conn: conn} do
       conn = get conn, sleep_tracker_path(conn, :index)
-      assert html_response(conn, 200) =~ "Sleep Tracker"
+      assert html_response(conn, 200) =~ "Sleep"
     end
 
     test "/sleep-tracker :: new", %{conn: conn} do
