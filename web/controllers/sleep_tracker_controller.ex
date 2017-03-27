@@ -5,7 +5,11 @@ defmodule Healthlocker.SleepTrackerController do
   alias Healthlocker.SleepTracker
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    user_id = conn.assigns.current_user.id
+    sleep_data = SleepTracker
+                |> SleepTracker.get_sleep_data(user_id)
+                |> Repo.all
+    render(conn, "index.html", sleep_data: sleep_data)
   end
 
   def new(conn, _params) do
