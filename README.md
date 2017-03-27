@@ -12,6 +12,9 @@
 * Open Postgresql (if you can see the elephant symbol in your menu bar you know that it's running)
 * Get dependencies (including if they are out of date) with `mix deps.get`
 * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+* There is seed data which can be inserted into your dev database by running
+`mix run priv/repo/seeds.exs`. Note: you can see this data in
+[the seeds.exs file](priv/repo/seeds.exs).
 * If prompted by the following message, enter `y`:
 
 ` Could not find "rebar3", which is needed to build dependency :fs
