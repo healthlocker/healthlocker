@@ -18,4 +18,10 @@ defmodule Healthlocker.SleepTracker do
     |> cast(params, [:hours_slept, :wake_count, :notes])
     |> validate_required([:hours_slept])
   end
+
+  def get_sleep_data(query, user_id) do
+    from st in query,
+    where: st.user_id == ^user_id,
+    preload: [:user]
+  end
 end
