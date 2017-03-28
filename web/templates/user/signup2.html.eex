@@ -25,7 +25,7 @@
     <div class="form-group">
       <%= label f, :security_question, class: "f5 b db mb2 mt4" %>
       <%= select f, :security_question,
-        Healthlocker.ComponentView.security_questions(),
+        Healthlocker.ComponentView.get_options("security_questions"),
         prompt: "Choose a security question",
         class: "pa3 input-reset bn hl-bg-grey w-100" %>
       <%= error_tag f, :security_question %>
