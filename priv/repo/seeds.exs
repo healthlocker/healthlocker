@@ -9,9 +9,13 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+Faker.start
 alias Healthlocker.Repo
 alias Healthlocker.User
 alias Healthlocker.Post
+
+
 
 Repo.insert!(%User{
   id: 1000,
