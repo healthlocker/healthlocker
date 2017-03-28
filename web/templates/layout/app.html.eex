@@ -29,7 +29,7 @@
 
       <div class="container">
         <header id="header" class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
-          <nav class="f4 fw3 tracked">
+          <nav class="f2 fw3 tracked">
             <i id="open-nav" class="fa fa-bars dim white dib fl" aria-hidden="true"></i>
             <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
           </nav>
