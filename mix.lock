@@ -13,6 +13,7 @@
   "earmark": {:hex, :earmark, "1.1.0", "8c2bf85d725050a92042bc1edf362621004d43ca6241c756f39612084e95487f", [:mix], []},
   "ecto": {:hex, :ecto, "2.1.3", "ffb24e150b519a4c0e4c84f9eabc8587199389bc499195d5d1a93cd3b2d9a045", [:mix], [{:db_connection, "~> 1.1", [hex: :db_connection, optional: true]}, {:decimal, "~> 1.2", [hex: :decimal, optional: false]}, {:mariaex, "~> 0.8.0", [hex: :mariaex, optional: true]}, {:poison, "~> 2.2 or ~> 3.0", [hex: :poison, optional: true]}, {:poolboy, "~> 1.5", [hex: :poolboy, optional: false]}, {:postgrex, "~> 0.13.0", [hex: :postgrex, optional: true]}, {:sbroker, "~> 1.0", [hex: :sbroker, optional: true]}]},
   "elixir_make": {:hex, :elixir_make, "0.4.0", "992f38fabe705bb45821a728f20914c554b276838433349d4f2341f7a687cddf", [:mix], []},
+  "faker": {:hex, :faker, "0.7.0", "2c42deeac7be717173c78c77fb3edc749fb5d5e460e33d01fe592ae99acc2f0d", [:mix], []},
   "fs": {:hex, :fs, "2.12.0", "ad631efacc9a5683c8eaa1b274e24fa64a1b8eb30747e9595b93bec7e492e25e", [:rebar3], []},
   "gen_smtp": {:hex, :gen_smtp, "0.11.0", "d90ff2f021fc86cb2a4259b1f2b177ab6e506676265e26454bf5755855adc956", [:rebar3], []},
   "gettext": {:hex, :gettext, "0.13.0", "daafbddc5cda12738bb93b01d84105fe75b916a302f1c50ab9fb066b95ec9db4", [:mix], []},
