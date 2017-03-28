@@ -80,11 +80,11 @@ If you are happy with the changes, change the label to `awaiting-review`:
 Then add a `Reviewer` and `Assignee` of your choice.
 
 The options for `hours_slept` and `wake_count` can be updated in the same way.
-Go to the files for [hours_slept](web/templates/hours_slept.txt) or
-[wake_count](web/templates/wake_count.txt), and follow through the instructions
-above.
+Go to the files for [hours_slept](web/static/assets/hours_slept.txt) or
+[wake_count](web/static/assets/wake_count.txt), and follow through the
+instructions above.
 
-## What?
+## What?  
 
 #### Current features
 
