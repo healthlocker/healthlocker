@@ -15,7 +15,7 @@ defmodule Healthlocker.LoginController do
           conn
           |> Healthlocker.Auth.logout()
           |> put_flash(:error, "You must accept terms of service and privacy statement")
-          |> redirect(to: "/users/#{user.id}/signup3", action: :signup3, user: user)
+          |> redirect(to: user_user_path(conn, :signup3, user))
         else
           conn
           |> put_flash(:info, "Welcome to Healthlocker!")
