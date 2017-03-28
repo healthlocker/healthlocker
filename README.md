@@ -36,7 +36,7 @@ Ready to run in production? Please [check the deployment guides](http://www.phoe
 
 #### Updating select input options (e.g. security questions)
 Security questions can be updated by editing the
-[`security_questions.txt` file](web/templates/security_questions.txt).
+[`security_questions.txt` file](web/static/assets/security_questions.txt).
 
 Click on the pencil in the top right corner of the file.
 ![edit-file](https://cloud.githubusercontent.com/assets/1287388/24212494/74f767d0-0f27-11e7-95b8-2b3bff21cbc5.png)

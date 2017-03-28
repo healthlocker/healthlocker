@@ -19,3 +19,6 @@ config :healthlocker, Healthlocker.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 config :healthlocker, :analytics, Healthlocker.Analytics.Local
+
+config :comeonin, :bcrypt_log_rounds, 4
+config :comeonin, :pbkdf2_rounds, 1
