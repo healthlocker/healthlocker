@@ -13,6 +13,7 @@ defmodule Healthlocker.LoginController do
         user = Repo.get_by(User, email: email)
         if user.data_access == nil do
           conn
+          |> Healthlocker.Auth.logout()
           |> put_flash(:error, "You must accept terms of service and privacy statement")
           |> redirect(to: "/users/#{user.id}/signup3", action: :signup3, user: user)
         else
