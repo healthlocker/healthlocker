@@ -7,6 +7,11 @@ defmodule Healthlocker.LoginControllerTest do
     password: "password"
   }
 
+  @invalid_attrs %{
+    email: "abc@gmail.com",
+    password: "wrong_password"
+  }
+
   test "GET /", %{conn: conn} do
     conn = get conn, "/login"
     assert html_response(conn, 200) =~ "Email"
@@ -27,10 +32,16 @@ defmodule Healthlocker.LoginControllerTest do
       :ok
     end
 
-    test "/login :: create", %{conn: conn} do
+    test "/login :: create with valid data", %{conn: conn} do
       conn = post conn, login_path(conn, :create), login: @valid_attrs
       assert get_flash(conn, :info) == "Welcome to Healthlocker!"
       assert redirected_to(conn) == toolkit_path(conn, :index)
+    end
+
+    test "/login :: create with invalid data" do
+      conn = post conn, login_path(conn, :create), login: @invalid_attrs
+      assert get_flash(conn, :error) == "Invalid email/password combination"
+      assert html_response(conn, 200) =~ "Email"
     end
 
     test "/login :: delete", %{conn: conn} do
@@ -40,7 +51,7 @@ defmodule Healthlocker.LoginControllerTest do
     end
   end
 
-  describe "with valid data for user who has completed sign up steps 1&2" do
+  describe "with valid data for user who has only completed sign up steps 1&2" do
     setup do
       %User{
         id: 123456,
@@ -59,6 +70,12 @@ defmodule Healthlocker.LoginControllerTest do
       conn = post conn, login_path(conn, :create), login: @valid_attrs
       assert get_flash(conn, :error) == "You must accept terms of service and privacy statement"
       assert redirected_to(conn) == user_user_path(conn, :signup3, user)
+    end
+
+    test "/login :: create with invalid data" do
+      conn = post conn, login_path(conn, :create), login: @invalid_attrs
+      assert get_flash(conn, :error) == "Invalid email/password combination"
+      assert html_response(conn, 200) =~ "Email"
     end
   end
 
