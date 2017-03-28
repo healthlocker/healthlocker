@@ -1,9 +1,9 @@
 defmodule Healthlocker.ComponentView do
   use Healthlocker.Web, :view
 
-  def security_questions do
+  def get_options(option_type) do
     # load security questions from file
-    questions = "web/static/assets/security_questions.txt" |> File.read!
+    questions = "web/static/assets/#{option_type}.txt" |> File.read!
 
     # split on line breaks to separate the questions:
     questions_list = String.split(questions, "\n")
