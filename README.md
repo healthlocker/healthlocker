@@ -79,6 +79,19 @@ If you are happy with the changes, change the label to `awaiting-review`:
 
 Then add a `Reviewer` and `Assignee` of your choice.
 
+#### Writing tips & stories
+
+The stories and tips can be written using markdown. This will allow you to
+style the text as you write it.
+
+You can find a
+[guide to common things you may want to do with markdown](markdown-syntax.md)
+in this repository.
+
+In addition to formatting the text with markdown, be sure to include `#story`
+or `#tip` (with an additional *category* tag) so the story or tip displays on
+the page.
+
 ## What?
 
 #### Current features
