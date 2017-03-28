@@ -20,7 +20,7 @@
     <%= label f, :wake_count, class: "f5 b db mb2 mt4" do %>
       Times I woke up:
     <% end %>
-    <%= select f, :wake_count, wake_count(),
+    <%= select f, :wake_count, Healthlocker.ComponentView.get_options("wake_count"),
       prompt: "Enter times woke up",
       class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :wake_count%>
