@@ -41,7 +41,7 @@ defmodule Healthlocker.Mixfile do
      {:comeonin, "~> 3.0"},
      {:credo, "~> 0.5", only: [:dev, :test]},
      {:timex, "~> 3.0"},
-     {:segment, github: "stueccles/analytics-elixir"},
+     {:segment, github: "tonydaly/analytics-elixir"},
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
      {:mock, "~> 0.2.0", only: :test}]
