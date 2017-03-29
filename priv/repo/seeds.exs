@@ -76,10 +76,18 @@ defmodule DemoData do
     add_many_tips(n - 1, number_of_users)
   end
 
-      " <> Faker.paragraph(2) <> "
-
-       #Tip " <> Enum.random(["#Connect", "#BeActive", "#KeepLearning", "#TakeNotice", "#GiveToOthers"])
+  def add_user_content(user_id) do
+    Repo.insert!(%Post{
+      content: Faker.Lorem.sentence(10) <> " #CopingStrategy",
+      user_id: user_id
     })
-    add_many_tips(n - 1, number_of_users)
+
+    Repo.insert!(%Goal{
+      content: Faker.Lorem.sentence(10) <> " #Goal",
+      completed: Enum.random([true, false]),
+      notes: Faker.Lorem.paragraph(3),
+      important: Enum.random([true, false]),
+      user_id: user_id
+    })
   end
 end
