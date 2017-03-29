@@ -34,9 +34,9 @@ Ready to run in production? Please [check the deployment guides](http://www.phoe
 
 ## How?
 
-#### Updating security questions
+#### Updating select input options (e.g. security questions)
 Security questions can be updated by editing the
-[`security_questions.txt` file](web/templates/security_questions.txt).
+[`security_questions.txt` file](web/static/assets/security_questions.txt).
 
 Click on the pencil in the top right corner of the file.
 ![edit-file](https://cloud.githubusercontent.com/assets/1287388/24212494/74f767d0-0f27-11e7-95b8-2b3bff21cbc5.png)
@@ -93,6 +93,12 @@ or `#tip` (with an additional *category* tag) so the story or tip displays on
 the page.
 
 ## What?
+=======
+The options for `hours_slept` and `wake_count` can be updated in the same way.
+Go to the files for [hours_slept](web/static/assets/hours_slept.txt) or
+[wake_count](web/static/assets/wake_count.txt), and follow through the
+instructions above.
+
 
 #### Current features
 
@@ -115,3 +121,4 @@ or phone number
 * Privacy statement can be accessed from the footer and is linked in sign up
 * Feedback can be sent about the site from a form. This is done
 [using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
+* Logged in users can track their sleep over time using the sleep tracker in toolkit

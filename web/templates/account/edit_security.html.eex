@@ -15,7 +15,7 @@
 
     <div class="pb4">
       <%= label f, "New security question", class: "f5 b db mb2" %>
-      <%= select f, :security_question, Healthlocker.ComponentView.security_questions(),
+      <%= select f, :security_question, Healthlocker.ComponentView.get_options("security_questions"),
       prompt: "Choose a security question",
       class: "pa3 input-reset bn hl-bg-grey w-100" %>
       <%= error_tag f, :security_question %>
