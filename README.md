@@ -79,12 +79,26 @@ If you are happy with the changes, change the label to `awaiting-review`:
 
 Then add a `Reviewer` and `Assignee` of your choice.
 
+#### Writing tips & stories
+
+The stories and tips can be written using markdown. This will allow you to
+style the text as you write it.
+
+You can find a
+[guide to common things you may want to do with markdown](markdown-syntax.md)
+in this repository.
+
+In addition to formatting the text with markdown, be sure to include `#story`
+or `#tip` (with an additional *category* tag) so the story or tip displays on
+the page.
+
+## What?
+=======
 The options for `hours_slept` and `wake_count` can be updated in the same way.
 Go to the files for [hours_slept](web/static/assets/hours_slept.txt) or
 [wake_count](web/static/assets/wake_count.txt), and follow through the
 instructions above.
 
-## What?  
 
 #### Current features
 
