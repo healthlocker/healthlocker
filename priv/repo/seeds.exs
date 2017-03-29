@@ -40,25 +40,16 @@ defmodule Healthlocker.DemoDataSeeder do
     add_tips(user)
   end
 
-  def add_multiple_users(n) do
+  def add_clinicians do
     Repo.insert!(%User{
-      id: n,
-      email: Faker.Internet.free_email(),
+      email: Faker.Internet.email(),
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       name: Faker.Name.first_name(),
+      phone_number: Faker.Phone.EnGb.number(),
       security_question: "Name of first boss?",
       security_answer: "Betty",
-      data_access: Enum.random([true, false, nil])
-    })
-    add_user_content(n)
-    add_multiple_users(n - 1)
-  end
-
-  def add_many_stories(n, number_of_users) when n <= 1 do
-    Repo.insert!(%Post{
-      id: n,
-      content: "# " <> Faker.Lorem.sentence(6) <> "\n" <> Enum.join(Faker.Lorem.paragraphs(12), "\n") <> "\n" <> "#story",
-      user_id: 1
+      data_access: Enum.random([true, false, nil]),
+      role: "clinician"
     })
   end
 
