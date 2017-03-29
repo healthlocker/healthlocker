@@ -14,11 +14,11 @@ Faker.start
 alias Healthlocker.Repo
 alias Healthlocker.User
 alias Healthlocker.Post
+alias Healthlocker.Goal
 
 
 defmodule DemoData do
   def add_multiple_users(n) when n <= 1 do
-    # insert user into repo here
     Repo.insert!(%User{
       id: n,
       email: Faker.Internet.free_email(),
@@ -28,6 +28,7 @@ defmodule DemoData do
       security_answer: "Betty",
       data_access: Enum.random([true, false, nil])
     })
+    add_user_content(n)
   end
 
   def add_multiple_users(n) do
