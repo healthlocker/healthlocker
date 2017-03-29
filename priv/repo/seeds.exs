@@ -66,25 +66,24 @@ defmodule Healthlocker.DemoDataSeeder do
     })
   end
 
-  def add_many_tips(n, number_of_users) when n <= 1 do
+  def add_stories(user) do
     Repo.insert!(%Post{
-      content: "**" <> Faker.Lorem.sentence(8) <> "** \n" <> Faker.Lorem.paragraph(2) <> "\n #Tip " <> Enum.random(["#Connect", "#BeActive", "#KeepLearning", "#TakeNotice", "#GiveToOthers"]),
-      user_id: 1
+      content: "# " <> Faker.Lorem.sentence(6) <> "\n\n" <> Enum.join(Faker.Lorem.paragraphs(12), "\n") <> "\n\n" <> "#story",
+      user_id: user.id
     })
   end
 
-  def add_many_tips(n, number_of_users) do
+  def add_tips(user) do
     Repo.insert!(%Post{
-      content: "**" <> Faker.Lorem.sentence(8) <> "** \n" <> Faker.Lorem.paragraph(2) <> "\n #Tip " <> Enum.random(["#Connect", "#BeActive", "#KeepLearning", "#TakeNotice", "#GiveToOthers"]),
-      user_id: 1
+      content: "**" <> Faker.Lorem.sentence(8) <> "** \n\n" <> Faker.Lorem.paragraph(2) <> "\n\n #Tip " <> Enum.random(["#Connect", "#BeActive", "#KeepLearning", "#TakeNotice", "#GiveToOthers"]),
+      user_id: user.id
     })
-    add_many_tips(n - 1, number_of_users)
   end
 
-  def add_user_content(user_id) do
+  def add_user_content(user) do
     Repo.insert!(%Post{
       content: Faker.Lorem.sentence(10) <> " #CopingStrategy",
-      user_id: user_id
+      user_id: user.id
     })
 
     Repo.insert!(%Goal{
