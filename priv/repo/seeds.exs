@@ -91,7 +91,11 @@ defmodule Healthlocker.DemoDataSeeder do
       completed: Enum.random([true, false]),
       notes: Faker.Lorem.paragraph(3),
       important: Enum.random([true, false]),
-      user_id: user_id
+      user_id: user.id
     })
   end
 end
+
+(1..20) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_users end)
+(1..10) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_clinicians end)
+(1..20) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_carers end)
