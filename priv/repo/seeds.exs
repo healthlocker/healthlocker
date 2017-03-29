@@ -15,20 +15,29 @@ alias Healthlocker.Repo
 alias Healthlocker.User
 alias Healthlocker.Post
 alias Healthlocker.Goal
+import Ecto.Query
 
 
-defmodule DemoData do
-  def add_multiple_users(n) when n <= 1 do
+defmodule Healthlocker.DemoDataSeeder do
+  def add_users do
     Repo.insert!(%User{
-      id: n,
       email: Faker.Internet.free_email(),
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       name: Faker.Name.first_name(),
+      phone_number: Faker.Phone.EnGb.number(),
       security_question: "Name of first boss?",
       security_answer: "Betty",
-      data_access: Enum.random([true, false, nil])
+      data_access: Enum.random([true, false, nil]),
+      role: "slam_user",
     })
-    add_user_content(n)
+
+    query = from u in User,
+            order_by: [desc: u.id],
+            limit: 1
+    user = Repo.one(query)
+    add_user_content(user)
+    add_stories(user)
+    add_tips(user)
   end
 
   def add_multiple_users(n) do
