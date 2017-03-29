@@ -41,6 +41,7 @@ defmodule DemoData do
       security_answer: "Betty",
       data_access: Enum.random([true, false, nil])
     })
+    add_user_content(n)
     add_multiple_users(n - 1)
   end
 
