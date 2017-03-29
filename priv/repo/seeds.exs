@@ -47,44 +47,34 @@ defmodule DemoData do
 
   def add_many_stories(n, number_of_users) when n <= 1 do
     Repo.insert!(%Post{
-      content: "# " <> Faker.Lorem.sentence(5) <> "
-
-      ![alt-tag](" <> Faker.Internet.image_url() <> ")
-
-      " <> Faker.Lorem.paragraphs(12) <> "
-
-       #story",
-      user_id: Enum.random([1..number_of_users])
+      id: n,
+      content: "# " <> Faker.Lorem.sentence(6) <> "\n" <> Enum.join(Faker.Lorem.paragraphs(12), "\n") <> "\n" <> "#story",
+      user_id: 1
     })
   end
 
   def add_many_stories(n, number_of_users) do
     Repo.insert!(%Post{
-      content: "# " <> Faker.Lorem.sentence(5) <> "
-
-      ![alt-tag](" <> Faker.Internet.image_url() <> ")
-
-      " <> Faker.Lorem.paragraphs(12) <> "
-
-       #story",
-      user_id: Enum.random([1..number_of_users])
+      content: "# " <> Faker.Lorem.sentence(6) <> "\n" <> Enum.join(Faker.Lorem.paragraphs(12), "\n") <> "\n" <> "#story",
+      user_id: 1
     })
     add_many_stories(n - 1, number_of_users)
   end
 
   def add_many_tips(n, number_of_users) when n <= 1 do
-    Repo.insert(%Post{
-      content: "**" <> Faker.Lorem.sentence(5) <> "**
-
-      " <> Faker.paragraph(2) <> "
-
-       #Tip " <> Enum.random(["#Connect", "#BeActive", "#KeepLearning", "#TakeNotice", "#GiveToOthers"])
+    Repo.insert!(%Post{
+      content: "**" <> Faker.Lorem.sentence(8) <> "** \n" <> Faker.Lorem.paragraph(2) <> "\n #Tip " <> Enum.random(["#Connect", "#BeActive", "#KeepLearning", "#TakeNotice", "#GiveToOthers"]),
+      user_id: 1
     })
   end
 
   def add_many_tips(n, number_of_users) do
-    Repo.insert(%Post{
-      content: "**" <> Faker.Lorem.sentence(5) <> "**
+    Repo.insert!(%Post{
+      content: "**" <> Faker.Lorem.sentence(8) <> "** \n" <> Faker.Lorem.paragraph(2) <> "\n #Tip " <> Enum.random(["#Connect", "#BeActive", "#KeepLearning", "#TakeNotice", "#GiveToOthers"]),
+      user_id: 1
+    })
+    add_many_tips(n - 1, number_of_users)
+  end
 
       " <> Faker.paragraph(2) <> "
 
