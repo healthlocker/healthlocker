@@ -5,6 +5,7 @@ defmodule Healthlocker.SleepTracker do
     field :hours_slept, :string, null: false
     field :wake_count, :string
     field :notes, :string
+    field :for_date, :date
     belongs_to :user, Healthlocker.User
 
     timestamps()
@@ -15,8 +16,8 @@ defmodule Healthlocker.SleepTracker do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:hours_slept, :wake_count, :notes])
-    |> validate_required([:hours_slept])
+    |> cast(params, [:hours_slept, :wake_count, :notes, :for_date])
+    |> validate_required([:hours_slept, :for_date])
   end
 
   def get_sleep_data(query, user_id) do
