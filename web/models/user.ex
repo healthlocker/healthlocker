@@ -15,7 +15,8 @@ defmodule Healthlocker.User do
     field :role, :string
     field :slam_user, :boolean
     has_many :posts, Healthlocker.Post
-    many_to_many :likes, Healthlocker.Post, join_through: "posts_likes", on_replace: :delete
+    many_to_many :likes, Healthlocker.Post, join_through: "posts_likes", on_replace: :delete, on_delete: :delete_all
+    many_to_many :relationships, Healthlocker.User, join_through: Healthlocker.Relationship, on_replace: :delete, on_delete: :delete_all
 
     timestamps()
   end
