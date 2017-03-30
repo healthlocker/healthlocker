@@ -15,6 +15,7 @@ alias Healthlocker.Repo
 alias Healthlocker.User
 alias Healthlocker.Post
 alias Healthlocker.Goal
+alias Healthlocker.Relationship
 import Ecto.Query
 
 
@@ -28,7 +29,7 @@ defmodule Healthlocker.DemoDataSeeder do
       security_question: "Name of first boss?",
       security_answer: "Betty",
       data_access: Enum.random([true, false, nil]),
-      role: "slam_user",
+      role: "slam_user"
     })
 
     query = from u in User,
@@ -51,6 +52,13 @@ defmodule Healthlocker.DemoDataSeeder do
       data_access: Enum.random([true, false, nil]),
       role: "clinician"
     })
+
+    query = from u in User,
+            order_by: [desc: u.id],
+            limit: 1,
+            select: u.id
+    clinician_id = Repo.one(query)
+    add_relationships(clinician_id)
   end
 
   def add_carers do
@@ -64,6 +72,23 @@ defmodule Healthlocker.DemoDataSeeder do
       data_access: Enum.random([true, false, nil]),
       role: "support"
     })
+
+    query = from u in User,
+            order_by: [desc: u.id],
+            limit: 1,
+            select: u.id
+    carer_id = Repo.one(query)
+    add_relationships(carer_id)
+  end
+
+  def add_relationships(user_id) do
+    contact_id = Repo.all(from u in User, where: u.role == "slam_user", select: u.id)
+              |> Enum.take_random(10)
+              |> Enum.each(fn(id) ->
+                  Repo.insert!(%Relationship{
+                    user_id: user_id,
+                    contact_id: id
+                  }) end)
   end
 
   def add_stories(user) do
