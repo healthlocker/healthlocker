@@ -121,6 +121,39 @@ defmodule Healthlocker.DemoDataSeeder do
   end
 end
 
+Repo.insert!(%User{
+  email: "bob@email.co.uk",
+  password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+  name: "Bob",
+  phone_number: "07512 345 678",
+  security_question: "Name of first boss?",
+  security_answer: "Betty",
+  data_access: true,
+  role: "slam_user"
+})
+
+Repo.insert!(%User{
+  email: "sara@email.co.uk",
+  password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+  name: "Sara",
+  phone_number: "07512 678 345",
+  security_question: "Name of first boss?",
+  security_answer: "Betty",
+  data_access: false,
+  role: "slam_user"
+})
+
+Repo.insert!(%User{
+  email: "robert_macmurray@nhs.co.uk",
+  password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+  name: "Robert",
+  phone_number: "07598 765 432",
+  security_question: "Name of first boss?",
+  security_answer: "Betty",
+  data_access: true,
+  role: "clinician"
+})
+
 (1..200) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_users end)
 (1..10) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_clinicians end)
 (1..20) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_carers end)
