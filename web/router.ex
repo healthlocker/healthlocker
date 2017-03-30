@@ -53,6 +53,7 @@ defmodule Healthlocker.Router do
     resources "/feedback", FeedbackController, only: [:index, :create]
     resources "/messages", MessageController, only: [:index]
     resources "/sleep-tracker", SleepTrackerController, only: [:index, :new, :create]
+    resources "/care-plan", CarePlanController, only: [:index]
   end
 
   # Other scopes may use custom stacks.
