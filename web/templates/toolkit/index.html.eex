@@ -16,8 +16,8 @@
       </div>
   </div>
 
-  <div class="tracker-container w-100">
-    <div class="w-40 center tc">
+  <div class="tracker-container w-100 mw6 center">
+    <div class="tc w-40 dib">
       <a href="/sleep-tracker/new">
         <%= img_tag("https://d30y9cdsu7xlg0.cloudfront.net/png/10297-200.png",
                     class: "w-100") %>
@@ -25,5 +25,12 @@
       </a>
     </div>
 
+    <div class="tc w-40 dib fr">
+      <a href="/sleep-tracker">
+        <%= img_tag("https://d30y9cdsu7xlg0.cloudfront.net/png/10297-200.png",
+                    class: "w-100") %>
+        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Tracker Overview</span>
+      </a>
+    </div>
   </div>
 </div>
