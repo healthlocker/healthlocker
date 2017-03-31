@@ -6,13 +6,13 @@
 <div class="w-100">
   <p class="link w-100 bb b--black-30 dib fl black tc pv1 bg-white">7 days</p>
 </div>
-
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <h4 class="b">Your week</h4>
-<!-- if sleep data is today, then show sleep hours here -->
-<p class="b"><%= today %></p>
-<div class="averages">
+<%= get_past_week(@sleep_data, Date.utc_today()) |> get_week_average() %><p>sleep</p>
+
+<p class="b"><%= @sleep_today.for_date %></p>
+<div class="today">
   <p class="b di">Sleep</p>
   <!-- Insert today's sleep hours here --><p class="b di"> hours</p>
   <p>average sleep goes here</p>
