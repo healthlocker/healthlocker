@@ -26,6 +26,7 @@ defmodule Healthlocker.SleepTrackerController do
     user = conn.assigns.current_user
     changeset = SleepTracker.changeset(%SleepTracker{}, st_params)
               |> Ecto.Changeset.put_assoc(:user, user)
+              |> Ecto.Changeset.put_change(:for_date, Date.utc_today())
 
     case Repo.insert(changeset) do
       {:ok, _params} ->
