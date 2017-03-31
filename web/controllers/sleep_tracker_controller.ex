@@ -9,7 +9,12 @@ defmodule Healthlocker.SleepTrackerController do
     sleep_data = SleepTracker
                 |> SleepTracker.get_sleep_data(user_id)
                 |> Repo.all
-    render(conn, "index.html", sleep_data: sleep_data)
+
+    sleep_today = SleepTracker
+                |> SleepTracker.get_sleep_data_today(user_id)
+                |> Repo.all
+                |> List.first()
+    render(conn, "index.html", sleep_data: sleep_data, sleep_today: sleep_today)
   end
 
   def new(conn, _params) do
