@@ -26,4 +26,11 @@ defmodule Healthlocker.SleepTracker do
     where: st.user_id == ^user_id,
     preload: [:user]
   end
+
+  def get_sleep_data_today(query, user_id) do
+    today = Date.utc_today()
+    from st in query,
+    where: st.user_id == ^user_id and st.for_date == ^today,
+    preload: [:user]
+  end
 end
