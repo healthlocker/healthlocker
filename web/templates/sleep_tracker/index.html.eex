@@ -18,3 +18,4 @@
   <p class="di">Woke up </p><%= @sleep_today.wake_count %><p class="di"> times</p>
   <p class="i"><%= @sleep_today.notes %></p>
 </div>
+<script>window.sleep_info = <%= format_sleep_data(@sleep_data) %></script>
