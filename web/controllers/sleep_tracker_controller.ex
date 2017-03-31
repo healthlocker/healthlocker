@@ -34,7 +34,14 @@ defmodule Healthlocker.SleepTrackerController do
         |> put_flash(:info, "Sleep tracked successfully!")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        if String.contains?(elem(changeset.errors[:for_date], 0),
+          "You can only enter sleep once per day.") do
+            conn
+            |> put_flash(:error, "You can only enter sleep once per day.")
+            |> render("new.html", changeset: changeset)
+          else
+            render(conn, "new.html", changeset: changeset)
+          end
     end
   end
 
