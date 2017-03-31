@@ -1,11 +1,33 @@
 var ctx = document.getElementById('myChart');
+var sleepInfo = window.sleep_info;
+// var sleepInfo = {"4": 7.0, "5": 8.0, "6": 6.5}
+var today = new Date(Date.now()).getDay();
+var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+var daysOfWeek = [];
+var daysOfWeekHuman = [];
+
+var i = today + 1;
+for (i; i <= today + 7; i++) {
+  daysOfWeek.push((i % 7).toString());
+  daysOfWeekHuman.push(days[i % 7]);
+}
+
+var hoursSlept = [];
+daysOfWeek.map(function (day) {
+  if (sleepInfo[day]) {
+    hoursSlept.push(sleepInfo[day]);
+  } else {
+    hoursSlept.push(0);
+  }
+});
+
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    labels: daysOfWeekHuman,
     datasets: [{
       label: '7 days',
-      data: [12, 19, 3, 5, 2, 3],
+      data: hoursSlept,
       backgroundColor: [
         'rgba(37, 189, 195, 0.2)',
         'rgba(37, 189, 195, 0.2)',
