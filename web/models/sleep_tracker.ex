@@ -17,7 +17,8 @@ defmodule Healthlocker.SleepTracker do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:hours_slept, :wake_count, :notes, :for_date])
-    |> validate_required([:hours_slept, :for_date])
+    |> validate_required([:hours_slept])
+    |> unique_constraint(:for_date, message: "You can only enter sleep once per day.")
   end
 
   def get_sleep_data(query, user_id) do
