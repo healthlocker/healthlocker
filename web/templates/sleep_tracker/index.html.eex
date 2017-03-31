@@ -14,8 +14,7 @@
 <p class="b"><%= @sleep_today.for_date %></p>
 <div class="today">
   <p class="b di">Sleep</p>
-  <!-- Insert today's sleep hours here --><p class="b di"> hours</p>
-  <p>average sleep goes here</p>
-  <p class="di">Woke up</p><!-- from db  --><p class="di"> times</p>
-  <p class="i">Notes here</p>
+  <%= @sleep_today.hours_slept %><p class="b di"> hours</p>
+  <p class="di">Woke up </p><%= @sleep_today.wake_count %><p class="di"> times</p>
+  <p class="i"><%= @sleep_today.notes %></p>
 </div>
