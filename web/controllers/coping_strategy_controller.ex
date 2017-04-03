@@ -103,4 +103,7 @@ defmodule Healthlocker.CopingStrategyController do
       |> halt()
     end
   end
+  defp track_created(conn, %Post{} = strategy) do
+    Healthlocker.Analytics.track(conn.assigns.current_user, :create, strategy)
+  end
 end
