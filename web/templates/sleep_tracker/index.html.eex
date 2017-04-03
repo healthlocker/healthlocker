@@ -10,6 +10,6 @@
 
 <h4 class="b">Your week</h4>
 <%= if Kernel.length(@sleep_data) > 0 do %>
-  <%= get_week_average(@sleep_data) %><p>average hours slept</p>
-  <script>window.sleep_info = "<%= format_sleep_data(@sleep_data) %>"</script>
+  <%= get_week_average(@sleep_data, "2017-04-02") %><p>average hours slept</p>
 <% end %>
+<script>window.sleep_info = "<%= format_sleep_data(@sleep_data, "2017-04-02") %>"</script>
