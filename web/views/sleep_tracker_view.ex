@@ -2,7 +2,7 @@ defmodule Healthlocker.SleepTrackerView do
   use Healthlocker.Web, :view
   use Timex
 
-  def get_past_week(data, end_date) do
+  defp get_past_week(data, end_date) do
     Enum.filter(data, fn struct ->
       Date.compare(struct.for_date, end_date) != :gt
       and
@@ -15,9 +15,10 @@ defmodule Healthlocker.SleepTrackerView do
   end
 
   def get_week_average(data) do
-    total_slept = Enum.map(data, fn struct -> String.to_float(struct.hours_slept) end)
-    |> Enum.reduce(0, fn(x, acc) -> x + acc end)
-    total_slept / Kernel.length(data)
+    past_week = get_past_week(data, Date.utc_today)
+    total_slept = Enum.map(past_week, fn struct -> String.to_float(struct.hours_slept) end)
+      |> Enum.reduce(0, fn(x, acc) -> x + acc end)
+    total_slept / Kernel.length(past_week)
   end
 
   def format_sleep_data(data) do
