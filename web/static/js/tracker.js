@@ -1,6 +1,5 @@
 var ctx = document.getElementById('myChart');
-var sleepInfo = window.sleep_info;
-// var sleepInfo = {"4": 7.0, "5": 8.0, "6": 6.5}
+var sleepInfo = window.sleep_info.split(',');
 var today = new Date(Date.now()).getDay();
 var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var daysOfWeek = [];
