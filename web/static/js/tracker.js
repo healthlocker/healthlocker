@@ -1,5 +1,5 @@
 var ctx = document.getElementById('myChart');
-var sleepInfo = window.sleep_info.split(',');
+var sleepInfo = window.sleep_info ? window.sleep_info.split(',') : [];
 var today = new Date(Date.now()).getDay();
 var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 var daysOfWeek = [];
@@ -20,41 +20,43 @@ daysOfWeek.map(function (day) {
   }
 });
 
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: daysOfWeekHuman,
-    datasets: [{
-      label: '7 days',
-      data: hoursSlept,
-      backgroundColor: [
-        'rgba(37, 189, 195, 0.2)',
-        'rgba(37, 189, 195, 0.2)',
-        'rgba(37, 189, 195, 0.2)',
-        'rgba(37, 189, 195, 0.2)',
-        'rgba(37, 189, 195, 0.2)',
-        'rgba(37, 189, 195, 0.2)',
-        'rgba(37, 189, 195, 0.2)'
-      ],
-      borderColor: [
-        'rgba(37, 189, 195, 1)',
-        'rgba(37, 189, 195, 1)',
-        'rgba(37, 189, 195, 1)',
-        'rgba(37, 189, 195, 1)',
-        'rgba(37, 189, 195, 1)',
-        'rgba(37, 189, 195, 1)',
-        'rgba(37, 189, 195, 1)'
-      ],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
+if (ctx) {
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: daysOfWeekHuman,
+      datasets: [{
+        label: '7 days',
+        data: hoursSlept,
+        backgroundColor: [
+          'rgba(37, 189, 195, 0.2)',
+          'rgba(37, 189, 195, 0.2)',
+          'rgba(37, 189, 195, 0.2)',
+          'rgba(37, 189, 195, 0.2)',
+          'rgba(37, 189, 195, 0.2)',
+          'rgba(37, 189, 195, 0.2)',
+          'rgba(37, 189, 195, 0.2)'
+        ],
+        borderColor: [
+          'rgba(37, 189, 195, 1)',
+          'rgba(37, 189, 195, 1)',
+          'rgba(37, 189, 195, 1)',
+          'rgba(37, 189, 195, 1)',
+          'rgba(37, 189, 195, 1)',
+          'rgba(37, 189, 195, 1)',
+          'rgba(37, 189, 195, 1)'
+        ],
+        borderWidth: 1
       }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     }
-  }
-});
+  });
+}
