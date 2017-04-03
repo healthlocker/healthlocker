@@ -11,11 +11,4 @@
 <h4 class="b">Your week</h4>
 <%= get_week_average(@sleep_data) %><p>average hours slept</p>
 
-<p class="b"><%= @sleep_today.for_date %></p>
-<div class="today">
-  <p class="b di">Sleep</p>
-  <%= @sleep_today.hours_slept %><p class="b di"> hours</p>
-  <p class="di">Woke up </p><%= @sleep_today.wake_count %><p class="di"> times</p>
-  <p class="i"><%= @sleep_today.notes %></p>
-</div>
-<script>window.sleep_info = <%= format_sleep_data(@sleep_data) %></script>
+<script>window.sleep_info = "<%= format_sleep_data(@sleep_data) %>"</script>
