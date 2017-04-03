@@ -14,15 +14,17 @@ defmodule Healthlocker.SleepTrackerView do
     Timex.shift(end_date, days: -7)
   end
 
-  def get_week_average(data) do
-    past_week = get_past_week(data, Date.utc_today)
+  def get_week_average(data, from_date) do
+    {:ok, date} = Date.from_iso8601(from_date)
+    past_week = get_past_week(data, date)
     total_slept = Enum.map(past_week, fn struct -> String.to_float(struct.hours_slept) end)
       |> Enum.reduce(0, fn(x, acc) -> x + acc end)
     total_slept / Kernel.length(past_week)
   end
 
-  def format_sleep_data(data) do
-    week_data = get_past_week(data, Date.utc_today())
+  def format_sleep_data(data, from_date) do
+    {:ok, date} = Date.from_iso8601(from_date)
+    week_data = get_past_week(data, date)
     format_hours_list(week_data, [], 1)
     |> Enum.join(",")
   end
