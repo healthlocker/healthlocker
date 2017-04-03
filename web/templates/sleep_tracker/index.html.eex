@@ -9,7 +9,7 @@
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <h4 class="b">Your week</h4>
-<%= get_past_week(@sleep_data, Date.utc_today()) |> get_week_average() %><p>sleep</p>
+<%= get_week_average(@sleep_data) %><p>average hours slept</p>
 
 <p class="b"><%= @sleep_today.for_date %></p>
 <div class="today">
