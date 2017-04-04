@@ -11,13 +11,8 @@ for (i; i <= today + 7; i++) {
   daysOfWeekHuman.push(days[i % 7]);
 }
 
-var hoursSlept = [];
-daysOfWeek.map(function (day) {
-  if (sleepInfo[day]) {
-    hoursSlept.push(sleepInfo[day]);
-  } else {
-    hoursSlept.push(0);
-  }
+var hoursSlept = daysOfWeek.map(function (day) {
+  return sleepInfo[day] ? sleepInfo[day] : 0;
 });
 
 if (ctx) {
