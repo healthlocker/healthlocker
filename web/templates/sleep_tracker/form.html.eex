@@ -9,6 +9,7 @@
   <div class="form-group">
     <%= label f, "Total hours sleep:", class: "f5 b db mb2" %>
     <%= select f, :hours_slept, Healthlocker.ComponentView.get_options("hours_slept"),
+      prompt: "0",
       class: "pa3 input-reset bn hl-bg-grey w-100" %>
     <%= error_tag f, :hours_slept %>
   </div>
