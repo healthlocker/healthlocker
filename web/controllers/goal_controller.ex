@@ -5,6 +5,7 @@ defmodule Healthlocker.GoalController do
 
   alias Healthlocker.Goal
 
+#  /goal
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
     important_goals = Goal
@@ -15,6 +16,7 @@ defmodule Healthlocker.GoalController do
                      |> Repo.all
     all_goals = Enum.concat(important_goals, unimportant_goals)
 
+#  If there are no goals, display 'new goal', if there are goals, display them
     if Kernel.length(all_goals) == 0 do
       conn
       |> redirect(to: goal_path(conn, :new))
@@ -23,11 +25,13 @@ defmodule Healthlocker.GoalController do
     end
   end
 
+# /new
   def new(conn, _params) do
     changeset =  Goal.changeset(%Goal{})
     render(conn, "new.html", changeset: changeset)
   end
 
+# Goals display page?
   def show(conn, %{"id" => id}) do
     user_id = conn.assigns.current_user.id
     goal = Goal
@@ -51,6 +55,7 @@ defmodule Healthlocker.GoalController do
     end
   end
 
+# On submit do....
   def create(conn, %{"goal" => goal_params}) do
     content = get_content(goal_params)
     user_id = get_session(conn, :user_id)
@@ -69,6 +74,7 @@ defmodule Healthlocker.GoalController do
     end
   end
 
+# Edit a goal
   def edit(conn, %{"id" => id}) do
     user_id = conn.assigns.current_user.id
     goal = Goal
