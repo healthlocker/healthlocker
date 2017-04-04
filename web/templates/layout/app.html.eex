@@ -75,13 +75,14 @@
         </footer>
 
       </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <script>window.userToken = "<%= assigns[:user_token] %>"</script>
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
     <%= if @current_user do %>
       <script type="text/javascript">
         require("web/static/js/segment").Segment.identify("<%= @current_user.id %>", "<%= @current_user.name %>", "<%= @current_user.email %>")
       </script>
     <% end %>
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

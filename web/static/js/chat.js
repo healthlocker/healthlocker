@@ -17,12 +17,14 @@ var Chat = {
     channel.onError(e => console.log('Something went wrong'));
     channel.onClose(e => console.log('Channel closed'));
 
-    input.addEventListener('keypress', e => {
-      if (e.keyCode === 13) {
-        channel.push('new:msg', {body: input.value}, 10000);
-        input.value = '';
-      }
-    }, false);
+    if (input) {
+      input.addEventListener('keypress', e => {
+        if (e.keyCode === 13) {
+          channel.push('new:msg', {body: input.value}, 10000);
+          input.value = '';
+        }
+      }, false);
+    }
 
     channel.on('new:msg', msg => {
       renderMessages(msgContainer, msg);

@@ -2,19 +2,15 @@
     6months are passed in as a param instead of id. See how this was down in
     PageController and related templates. Since 7days is 'default', can
     even leave as index with month/6months as templates to pass into show. -->
+<h3 class="tc">Tracking overview</h3 class="tc">
 <div class="w-100">
   <p class="link w-100 bb b--black-30 dib fl black tc pv1 bg-white">7 days</p>
 </div>
-<div class="ba b--hl-aqua mt3 h5 overflow-hidden w-75 ph3 smooth-scroll center">
-  <h1>Chart goes here</h1>
-</div>
-<p>Your week</p>
-<!-- if sleep data is today, then show sleep hours here -->
-<p class="b">Today's date here</p>
-<div class="averages">
-  <p class="b di">Sleep</p>
-  <!-- Insert today's sleep hours here --><p class="b di"> hours</p>
-  <p>average sleep goes here</p>
-  <p class="di">Woke up</p><!-- from db  --><p class="di"> times</p>
-  <p class="i">Notes here</p>
-</div>
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<h4 class="b">Your week</h4>
+<%= if Kernel.length(@sleep_data) > 0 do %>
+  <%= get_week_average(@sleep_data, Date.to_iso8601(Date.utc_today())) %>
+  <p>average hours slept</p>
+<% end %>
+<script>window.sleep_info = "<%= format_sleep_data(@sleep_data, Date.to_iso8601(Date.utc_today())) %>"</script>
