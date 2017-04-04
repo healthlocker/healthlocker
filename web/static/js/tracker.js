@@ -26,7 +26,7 @@ if (ctx) {
     data: {
       labels: daysOfWeekHuman,
       datasets: [{
-        label: '7 days',
+        label: 'Hours slept',
         data: hoursSlept,
         backgroundColor: [
           'rgba(37, 189, 195, 0.2)',
@@ -53,7 +53,8 @@ if (ctx) {
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            suggestedMax: 8
           }
         }]
       }
