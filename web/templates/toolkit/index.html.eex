@@ -26,18 +26,18 @@
       </a>
     </div>
 
-    <div class="tc w-40 dib fr mt3">
+    <div class="tc w-40 dib fr">
       <a href="/sleep-tracker">
-        <%= img_tag("https://d30y9cdsu7xlg0.cloudfront.net/png/10297-200.png",
+        <%= img_tag("/images/Tracking_overview.svg",
                     class: "w-100") %>
         <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Tracker Overview</span>
       </a>
     </div>
   </div>
 
-  <div class="w-100 tc">
+  <div class="w-100 tc mw6 center">
     <a href="/care-plan">
-      <span class="mt4 f5 link dim br-pill ph3 pv4 dib black-60 hl-bg-grey pointer w-100">Care plan summary</span>
+      <span class="mt4 f5 link dim br-pill ph1 pv3 dib black-60 hl-bg-grey pointer w-100">Care plan summary</span>
     </a>
   </div>
 </div>
