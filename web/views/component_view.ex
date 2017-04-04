@@ -28,6 +28,6 @@ defmodule Healthlocker.ComponentView do
     end
 
     year = Integer.to_string(date.year)
-    day <> "-" <> month <> "-" <> year
+    day <> "/" <> month <> "/" <> year
   end
 end
