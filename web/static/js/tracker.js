@@ -11,13 +11,8 @@ for (i; i <= today + 7; i++) {
   daysOfWeekHuman.push(days[i % 7]);
 }
 
-var hoursSlept = [];
-daysOfWeek.map(function (day) {
-  if (sleepInfo[day]) {
-    hoursSlept.push(sleepInfo[day]);
-  } else {
-    hoursSlept.push(0);
-  }
+var hoursSlept = daysOfWeek.map(function (day) {
+  return sleepInfo[day] ? sleepInfo[day] : 0;
 });
 
 if (ctx) {
@@ -26,7 +21,7 @@ if (ctx) {
     data: {
       labels: daysOfWeekHuman,
       datasets: [{
-        label: '7 days',
+        label: 'Hours slept',
         data: hoursSlept,
         backgroundColor: [
           'rgba(37, 189, 195, 0.2)',
@@ -53,7 +48,8 @@ if (ctx) {
       scales: {
         yAxes: [{
           ticks: {
-            beginAtZero: true
+            beginAtZero: true,
+            suggestedMax: 8
           }
         }]
       }
