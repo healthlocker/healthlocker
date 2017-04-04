@@ -31,5 +31,6 @@ document.getElementById('close-nav').addEventListener('click', closeNav);
 // paths "./socket" or full ones "web/static/js/socket".
 
 import socket from './socket';
+import './tracker.js';
 import Chat from './chat';
 Chat.init(socket);
