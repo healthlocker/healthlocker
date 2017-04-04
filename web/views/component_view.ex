@@ -12,4 +12,22 @@ defmodule Healthlocker.ComponentView do
     # return the questions list
     questions_list
   end
+
+  # gives the date in the format DD-MM-YYYY
+  def pretty_date(date) do
+    day = if date.day < 10 do
+      "0" <> Integer.to_string(date.day)
+    else
+      Integer.to_string(date.day)
+    end
+
+    month = if date.month < 10 do
+      "0" <> Integer.to_string(date.month)
+    else
+      Integer.to_string(date.month)
+    end
+
+    year = Integer.to_string(date.year)
+    day <> "-" <> month <> "-" <> year
+  end
 end
