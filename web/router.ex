@@ -52,7 +52,9 @@ defmodule Healthlocker.Router do
     resources "/components", ComponentController, only: [:index]
     resources "/feedback", FeedbackController, only: [:index, :create]
     resources "/messages", MessageController, only: [:index]
-    resources "/sleep-tracker", SleepTrackerController, only: [:index, :new, :create]
+    resources "/sleep-tracker", SleepTrackerController, only: [:index, :new, :create] do
+      get "/prev-date", SleepTrackerController, :prev_date
+    end
     resources "/care-plan", CarePlanController, only: [:index]
   end
 
