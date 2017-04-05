@@ -17,4 +17,6 @@ class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc fr w-
 <h4 class="b">Your week</h4>
 <%= get_week_average(@sleep_data, @date) %>
 <p>average hours slept</p>
-<script>window.sleep_info = "<%= format_sleep_data(@sleep_data, @date) %>"</script>
+
+<script>window.sleep_hours = "<%= format_sleep_hours(@sleep_data, @date) %>"</script>
+<script>window.sleep_dates = "<%= format_sleep_dates(@date) %>"</script>
