@@ -8,7 +8,10 @@
 </div>
 
 <%= link "< Previous", to: sleep_tracker_sleep_tracker_path(@conn, :prev_date, @date),
-method: "put", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"%>
+class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"%>
+
+<%= link "Next >", to: sleep_tracker_sleep_tracker_path(@conn, :next_date, @date),
+class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc fr w-40"%>
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <h4 class="b">Your week</h4>
