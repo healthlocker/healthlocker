@@ -23,7 +23,7 @@ nightmare
   .type('input#user_security_answer', '123')
   .click('main#body > section.h-100.pa3.pa5-ns.bt.b--black-10.bg-white:nth-child(1) > section.mw7.center:nth-child(1) > div.ma3.ma4-m.ma4-l:nth-child(3) > form:nth-child(2) > div.tr:nth-child(8) > button.mt4.f5.link.dim.br-pill.ph3.pv2.dib.black-60.hl-bg-grey.pointer.w-40:nth-child(1)')
   .wait(1000)
-  .screenshot('./test/acceptance_tests/screenshots/password_too_short_test.png')
+  .screenshot('./test/acceptance_tests/screenshots/SU_short_password.png')
   .evaluate(function(){
     return document.getElementsByTagName('span')[0].innerHTML;
   })
