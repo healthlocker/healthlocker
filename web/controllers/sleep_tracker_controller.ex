@@ -3,6 +3,7 @@ defmodule Healthlocker.SleepTrackerController do
 
   plug :authenticate
   alias Healthlocker.SleepTracker
+  use Timex
 
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
@@ -10,11 +11,25 @@ defmodule Healthlocker.SleepTrackerController do
                 |> SleepTracker.get_sleep_data(user_id)
                 |> Repo.all
 
-    sleep_today = SleepTracker
-                |> SleepTracker.get_sleep_data_today(user_id)
+    date = Date.to_iso8601(Date.utc_today())
+
+    render(conn, "index.html", sleep_data: sleep_data, date: date)
+  end
+
+  def prev_date(conn, %{"sleep_tracker_id" => end_date}) do
+
+    user_id = conn.assigns.current_user.id
+    sleep_data = SleepTracker
+                |> SleepTracker.get_sleep_data(user_id)
                 |> Repo.all
-                |> List.first()
-    render(conn, "index.html", sleep_data: sleep_data, sleep_today: sleep_today)
+
+    # need to go back & forth with iso dates for display purposes. An elixir
+    # date won't render on the page, and iso dates can't be used with timex for
+    # shifting back 7 days
+    {:ok, iex_date} = Date.from_iso8601(end_date)
+    date = Date.to_iso8601(Timex.shift(iex_date, days: -7))
+
+    render(conn, "index.html", sleep_data: sleep_data, date: date)
   end
 
   def new(conn, _params) do
