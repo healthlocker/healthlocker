@@ -5,11 +5,15 @@ defmodule Healthlocker.SleepTrackerController do
   alias Healthlocker.SleepTracker
   use Timex
 
-  def index(conn, _params) do
+  def get_sleep(conn) do
     user_id = conn.assigns.current_user.id
-    sleep_data = SleepTracker
-                |> SleepTracker.get_sleep_data(user_id)
-                |> Repo.all
+    SleepTracker
+      |> SleepTracker.get_sleep_data(user_id)
+      |> Repo.all
+  end
+
+  def index(conn, _params) do
+    sleep_data = get_sleep(conn)
 
     date = Date.to_iso8601(Date.utc_today())
 
@@ -17,10 +21,7 @@ defmodule Healthlocker.SleepTrackerController do
   end
 
   def prev_date(conn, %{"sleep_tracker_id" => end_date}) do
-    user_id = conn.assigns.current_user.id
-    sleep_data = SleepTracker
-                |> SleepTracker.get_sleep_data(user_id)
-                |> Repo.all
+    sleep_data = get_sleep(conn)
 
     # need to go back & forth with iso dates for display purposes. An elixir
     # date won't render on the page, and iso dates can't be used with timex for
@@ -32,10 +33,7 @@ defmodule Healthlocker.SleepTrackerController do
   end
 
   def next_date(conn, %{"sleep_tracker_id" => end_date}) do
-    user_id = conn.assigns.current_user.id
-    sleep_data = SleepTracker
-                |> SleepTracker.get_sleep_data(user_id)
-                |> Repo.all
+    sleep_data = get_sleep(conn)
 
     # need to go back & forth with iso dates for display purposes. An elixir
     # date won't render on the page, and iso dates can't be used with timex for
