@@ -6,7 +6,7 @@ defmodule Healthlocker.SleepTrackerView do
     Enum.filter(data, fn struct ->
       Date.compare(struct.for_date, end_date) != :gt
       and
-      Date.compare(struct.for_date, last_week(end_date)) != :lt
+      Date.compare(struct.for_date, last_week(end_date)) == :gt
     end)
   end
 
