@@ -92,10 +92,25 @@ defmodule Healthlocker.SleepTrackerView do
 
   defp insert_hours_slept(data, list, n) do
     hours_slept = Enum.filter(data, fn struct ->
-                  Date.day_of_week(struct.for_date) == n end)
-                  |> Enum.at(0)
-                  |> Map.get(:hours_slept)
+                Date.day_of_week(struct.for_date) == n end)
+                |> Enum.at(0)
+                |> Map.get(:hours_slept)
 
     List.insert_at(list, n - 1, hours_slept)
+  end
+
+  defp day_month(date) do
+    day = if date.day < 10 do
+      "0" <> Integer.to_string(date.day)
+    else
+      Integer.to_string(date.day)
+    end
+
+    month = if date.month < 10 do
+      "0" <> Integer.to_string(date.month)
+    else
+      Integer.to_string(date.month)
+    end
+    day <> "/" <>month
   end
 end
