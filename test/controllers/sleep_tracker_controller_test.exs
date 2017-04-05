@@ -44,6 +44,12 @@ defmodule Healthlocker.SleepTrackerControllerTest do
       conn = get conn, sleep_tracker_sleep_tracker_path(conn, :prev_date, date)
       assert html_response(conn, 200) =~ "Tracking overview"
     end
+
+    test "/sleep-tracker :: next-date", %{conn: conn} do
+      date = Date.to_iso8601(Date.utc_today())
+      conn = get conn, sleep_tracker_sleep_tracker_path(conn, :next_date, date)
+      assert html_response(conn, 200) =~ "Tracking overview"
+    end
   end
 
   describe "without current user" do
@@ -81,6 +87,13 @@ defmodule Healthlocker.SleepTrackerControllerTest do
       conn = get conn, sleep_tracker_sleep_tracker_path(conn, :prev_date, date)
       assert html_response(conn, 302)
       assert conn.halted
+    end
+
+    test "conn is halted fo next-date", %{conn: conn} do
+      date = Date.to_iso8601(Date.utc_today())
+      conn = get conn, sleep_tracker_sleep_tracker_path(conn, :next_date, date)
+      assert html_response(conn, 302)
+      # assert conn.halted
     end
   end
 end
