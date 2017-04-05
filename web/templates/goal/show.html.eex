@@ -2,7 +2,7 @@
   <h3 class="tc">Toolkit</h3>
   <p class="di b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></p>
   <%= link "Edit", to: goal_path(@conn, :edit, @goal), class: "di" %>
-  <p class="mv3">Created <%= pretty_date(@goal.inserted_at) %></p>
+  <p class="mv3">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
   <%= link "Delete goal",
   to: goal_path(@conn, :delete, @goal),
   method: "delete"%>
