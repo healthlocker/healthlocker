@@ -19,7 +19,11 @@ defmodule Healthlocker.SleepTrackerView do
     past_week = get_past_week(data, date)
     total_slept = Enum.map(past_week, fn struct -> String.to_float(struct.hours_slept) end)
       |> Enum.reduce(0, fn(x, acc) -> x + acc end)
-    total_slept / Kernel.length(past_week)
+    if Kernel.length(past_week) == 0 do
+      0
+    else
+      total_slept / Kernel.length(past_week)
+    end
   end
 
   def format_sleep_data(data, from_date) do
