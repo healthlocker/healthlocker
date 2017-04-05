@@ -6,12 +6,12 @@ defmodule Healthlocker.SleepTrackerView do
     Enum.filter(data, fn struct ->
       Date.compare(struct.for_date, end_date) != :gt
       and
-      Date.compare(struct.for_date, last_week(end_date)) == :gt
+      Date.compare(struct.for_date, last_week(end_date)) != :lt
     end)
   end
 
   defp last_week(end_date) do
-    Timex.shift(end_date, days: -7)
+    Timex.shift(end_date, days: -6)
   end
 
   def get_week_average(data, from_date) do
@@ -26,12 +26,42 @@ defmodule Healthlocker.SleepTrackerView do
     end
   end
 
-  def format_sleep_data(data, from_date) do
+  def format_sleep_hours(data, from_date) do
     {:ok, date} = Date.from_iso8601(from_date)
     week_data = get_past_week(data, date)
     format_hours_list(week_data, [], 1)
     |> Enum.join(",")
   end
+
+  def format_sleep_dates(end_date) do
+   {:ok, date} = Date.from_iso8601(end_date)
+   start_date = last_week(date)
+   format_dates_list(start_date, [], 1)
+   |> Enum.join(",")
+ end
+
+ defp format_dates_list(date, list, 7) do
+   day_of_week = if Date.day_of_week(date) == 7 do
+     0
+   else
+     Date.day_of_week(date)
+   end
+   day_month = day_month(date)
+   List.insert_at(list, day_of_week, day_month)
+ end
+
+ defp format_dates_list(date, list, n) do
+   # add start date to list at index == day of week_data
+   day_of_week = if Date.day_of_week(date) == 7 do
+     0
+   else
+     Date.day_of_week(date)
+   end
+   day_month = day_month(date)
+   new_list = List.insert_at(list, day_of_week, day_month)
+   new_date = Timex.shift(date, days: 1)
+   format_dates_list(new_date, new_list, n + 1)
+ end
 
   defp format_hours_list(data, list, 7) do
     # add hours to front of list
