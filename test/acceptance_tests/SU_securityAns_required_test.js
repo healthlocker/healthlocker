@@ -1,7 +1,7 @@
 const Nightmare = require('nightmare')
 const nightmare = Nightmare({ show: true })
 
-// Homepage > Sign up > do not choose security question - should receive 'can't be blank' error message
+// Homepage > Sign up > do not choose security answer - should receive 'can't be blank' error message
 
 nightmare
   .goto('https://www.healthlocker.uk/')
