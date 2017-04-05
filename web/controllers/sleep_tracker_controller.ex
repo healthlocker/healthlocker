@@ -40,7 +40,7 @@ defmodule Healthlocker.SleepTrackerController do
     # shifting back 7 days
     {:ok, iex_date} = Date.from_iso8601(end_date)
     date = Date.to_iso8601(Timex.shift(iex_date, days: 7))
-    IO.inspect date
+  
     render(conn, "index.html", sleep_data: sleep_data, date: date)
   end
 
