@@ -54,6 +54,7 @@ defmodule Healthlocker.Router do
     resources "/messages", MessageController, only: [:index]
     resources "/sleep-tracker", SleepTrackerController, only: [:index, :new, :create] do
       get "/prev-date", SleepTrackerController, :prev_date
+      get "/next-date", SleepTrackerController, :next_date
     end
     resources "/care-plan", CarePlanController, only: [:index]
   end
