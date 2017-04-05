@@ -12,7 +12,7 @@ nightmare
   })
   .end()
     .then(function (result) {
-      result == 'posts' ? console.log(`Test passed: ${result} received in the page url`) : console.log(`Test failed: ${result} received, 'posts' not found in the page url`);
+      result == 'posts' ? console.log(`PASS: ${result} received in the page url`) : console.log(`FAIL: ${result} received, 'posts' not found in the page url`);
     })
     .catch(function (error) {
       console.error('First Story Test Error:', error);

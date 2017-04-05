@@ -12,7 +12,7 @@ nightmare
 })
 .end()
 .then(function (result) {
-  result == "Home" ? console.log(`Test passed: ${result} received`) : console.log(`Test failed: ${result} received, expected "Home"`);
+  result == "Home" ? console.log(`PASS: ${result} received`) : console.log(`FAIL: ${result} received, expected "Home"`);
 })
 .catch(function (error) {
   console.error('Menu Test Error:', error);

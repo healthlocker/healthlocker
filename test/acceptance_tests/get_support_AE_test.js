@@ -13,7 +13,7 @@ nightmare
   })
   .end()
     .then(function (result) {
-      result == nhsLink ? console.log(`Test passed: navigated home > menu > get support > NHS A&E finder`) : console.log(`Test failed: finished at ${result}`);
+      result == nhsLink ? console.log(`PASS: navigated home > menu > get support > NHS A&E finder`) : console.log(`FAIL: finished at ${result}`);
     })
     .catch(function (error) {
       console.error('Error:', error);

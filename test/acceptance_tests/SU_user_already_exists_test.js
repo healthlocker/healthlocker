@@ -19,7 +19,7 @@ nightmare
   })
   .end()
     .then(function (result) {
-      result == 'Sorry you cannot create an ' ? console.log(`Test passed: existing user sign up successfully rejected with error message`) : console.log(`Test failed: did not correctly give error message for already existing user`);
+      result == 'Sorry you cannot create an ' ? console.log(`PASS: existing user sign up successfully rejected with error message`) : console.log(`FAIL: did not correctly give error message for already existing user`);
     })
     .catch(function (error) {
       console.error('Error:', error);

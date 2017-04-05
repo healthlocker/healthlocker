@@ -29,7 +29,7 @@ nightmare
   })
   .end()
     .then(function (result) {
-      result == 'should be at least 6 character(s)' ? console.log(`Test passed: sign up with too short password successfully rejected with error message`) : console.log(`Test failed: did not correctly give error message for too short password`);
+      result == 'should be at least 6 character(s)' ? console.log(`PASS: sign up with too short password successfully rejected with error message`) : console.log(`FAIL: did not correctly give error message for too short password`);
     })
     .catch(function (error) {
       console.error('Error:', error);

@@ -18,7 +18,7 @@ nightmare
   .end()
   // Alter the .then method to log what a passing test should look like and a failing test using if/else
     .then(function (result) {
-      result[0] == 'Stories' && result[1] == 'https://www.healthlocker.uk/posts' ? console.log(`Test passed: /posts url and 'Stories' title located`) : console.log(`Test failed: url:${result[1]} and title:${result[0]} received`);
+      result[0] == 'Stories' && result[1] == 'https://www.healthlocker.uk/posts' ? console.log(`PASS: /posts url and 'Stories' title located`) : console.log(`FAIL: url:${result[1]} and title:${result[0]} received`);
     })
     .catch(function (error) {
       console.error('Error:', error);

@@ -29,7 +29,7 @@ nightmare
   })
   .end()
     .then(function (result) {
-      result == `can't be blank` ? console.log(`Test passed: error message given for sign up without security question`) : console.log(`Test failed: did not correctly give error message for missing security question`);
+      result == `can't be blank` ? console.log(`PASS: error message given for sign up without security question`) : console.log(`FAIL: did not correctly give error message for missing security question`);
     })
     .catch(function (error) {
       console.error('Error:', error);
