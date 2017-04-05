@@ -38,13 +38,7 @@ defmodule Healthlocker.SleepTrackerView do
     new_list = if Enum.any?(data, fn(struct) ->
                 Date.day_of_week(struct.for_date) == 7
               end) do
-                List.insert_at(
-                  list,
-                  0,
-                  Enum.at(Enum.filter(data, fn struct ->
-                    Date.day_of_week(struct.for_date) == 7
-                  end), 0).hours_slept
-                )
+                insert_hours_slept(data, list, 7)
               else
                 List.insert_at(list, 0, 0)
               end
@@ -55,16 +49,19 @@ defmodule Healthlocker.SleepTrackerView do
     new_list = if Enum.any?(data, fn(struct) ->
                   Date.day_of_week(struct.for_date) == n
                 end) do
-                  List.insert_at(
-                    list,
-                    n - 1,
-                    Enum.at(Enum.filter(data, fn struct ->
-                      Date.day_of_week(struct.for_date) == n
-                    end), 0).hours_slept
-                  )
+                  insert_hours_slept(data, list, n)
                 else
                   List.insert_at(list, n - 1, 0)
                 end
     format_hours_list(data, new_list, n + 1)
+  end
+
+  defp insert_hours_slept(data, list, n) do
+    hours_slept = Enum.filter(data, fn struct ->
+                  Date.day_of_week(struct.for_date) == n end)
+                  |> Enum.at(0)
+                  |> Map.get(:hours_slept)
+
+    List.insert_at(list, n - 1, hours_slept)
   end
 end
