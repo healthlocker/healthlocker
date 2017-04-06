@@ -9,6 +9,11 @@ defmodule Healthlocker.Mixfile do
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: ["coveralls": :test,
+                         "coveralls.detail": :test,
+                         "coveralls.post": :test,
+                         "coveralls.html": :test],
      aliases: aliases(),
      deps: deps()]
   end
@@ -45,7 +50,8 @@ defmodule Healthlocker.Mixfile do
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
      {:mock, "~> 0.2.0", only: :test},
-     {:faker, "~> 0.7"}]
+     {:faker, "~> 0.7"},
+     {:excoveralls, "~> 0.6.2"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

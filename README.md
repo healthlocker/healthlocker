@@ -1,5 +1,8 @@
 # Healthlocker
 
+[![Build Status](https://travis-ci.org/healthlocker/healthlocker.svg?branch=master)](https://travis-ci.org/healthlocker/healthlocker)
+[![codecov.io](https://codecov.io/github/healthlocker/healthlocker/coverage.svg?branch=master)](https://codecov.io/github/healthlocker/healthlocker?branch=master)
+
 ## Getting started
 
 #### Install the following:
