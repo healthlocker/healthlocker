@@ -32,7 +32,6 @@
   <article class="ph3">
     <%= if @tip do %>
       <%= markdown @tip.content %></p>
-      <a href="/tips?tag=<%= tip_tag(@tip.content) %>">See more "<%= tip_tag(@tip.content) %>" tips</a>
       <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: @tip,
         current_user: @current_user %>
     <%= else %>
