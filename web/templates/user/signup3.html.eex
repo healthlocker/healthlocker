@@ -27,7 +27,7 @@
       <%= label f, :terms_conditions do %>
         I accept the <%= link "terms of service", to: page_path(@conn, :show, "terms") %>
       <% end %>
-      <%= error_tag f, :terms_conditions %>
+      <span class="hl-pink"><%= error_tag f, :terms_conditions %></span>
     </div>
 
     <div class="mt3">
@@ -35,7 +35,7 @@
       <%= label f, :privacy do %>
         I accept the terms of the <%= link "privacy statement", to: page_path(@conn, :show, "privacy") %>
       <% end %>
-      <%= error_tag f, :privacy %>
+      <span class="hl-pink"><%= error_tag f, :privacy %></span>
     </div>
 
     <div class="mt3">
@@ -45,7 +45,7 @@
         Healthlocker team to improve the service and for researchers to
         use to drive forward the future of health care.
       <% end %>
-      <%= error_tag f, :data_access %>
+      <span class="hl-pink"><%= error_tag f, :data_access %></span>
     </div>
 
     <div class="tr">

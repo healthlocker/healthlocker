@@ -12,14 +12,14 @@
       <%= label f, :password, class: "f5 b db mb2" %>
       <%= text_input f, :password, class: "pa3 input-reset bn hl-bg-grey w-100",
                         type: :password %>
-      <%= error_tag f, :password %>
+      <span class="hl-pink"><%= error_tag f, :password %></span>
     </div>
 
     <div class="form-group">
       <%= label f, "Confirm password", class: "f5 b db mb2 mt4" %>
       <%= text_input f, :password_confirmation, class: "pa3 input-reset bn hl-bg-grey w-100",
                         type: :password%>
-      <%= error_tag f, :password_confirmation %>
+      <span class="hl-pink"><%= error_tag f, :password_confirmation %></span>
     </div>
 
     <div class="form-group">
@@ -28,13 +28,13 @@
         Healthlocker.ComponentView.get_options("security_questions"),
         prompt: "Choose a security question",
         class: "pa3 input-reset bn hl-bg-grey w-100" %>
-      <%= error_tag f, :security_question %>
+      <span class="hl-pink"><%= error_tag f, :security_question %></span>
     </div>
 
     <div class="form-group">
       <%= label f, :security_answer, class: "f5 b db mb2 mt4" %>
       <%= text_input f, :security_answer, class: "pa3 input-reset bn hl-bg-grey w-100" %>
-      <%= error_tag f, :security_answer %>
+      <span class="hl-pink"><%= error_tag f, :security_answer %></span>
     </div>
 
     <div class="tr">
