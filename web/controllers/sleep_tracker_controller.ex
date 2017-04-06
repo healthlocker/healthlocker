@@ -40,7 +40,7 @@ defmodule Healthlocker.SleepTrackerController do
     # shifting back 7 days
     {:ok, iex_date} = Date.from_iso8601(end_date)
     date = Date.to_iso8601(Timex.shift(iex_date, days: 7))
-  
+
     render(conn, "index.html", sleep_data: sleep_data, date: date)
   end
 
@@ -54,21 +54,24 @@ defmodule Healthlocker.SleepTrackerController do
     changeset = SleepTracker.changeset(%SleepTracker{}, st_params)
               |> Ecto.Changeset.put_assoc(:user, user)
               |> Ecto.Changeset.put_change(:for_date, Date.utc_today())
+    # if user has for_date already, put_flash & redirect for Can only enter data once per day
 
-    case Repo.insert(changeset) do
-      {:ok, _params} ->
-        conn
-        |> put_flash(:info, "Sleep tracked successfully!")
-        |> redirect(to: toolkit_path(conn, :index))
-      {:error, changeset} ->
-        if String.contains?(elem(changeset.errors[:for_date], 0),
-          "You can only enter sleep once per day.") do
-            conn
-            |> put_flash(:error, "You can only enter sleep once per day.")
-            |> render("new.html", changeset: changeset)
-          else
-            render(conn, "new.html", changeset: changeset)
-          end
+    sleep_data = SleepTracker
+                |> SleepTracker.get_sleep_data_today(user.id)
+                |> Repo.one 
+    if sleep_data do
+      conn
+      |> put_flash(:error, "You can only enter sleep once per day.")
+      |> redirect(to: toolkit_path(conn, :index))
+    else
+      case Repo.insert(changeset) do
+        {:ok, _params} ->
+          conn
+          |> put_flash(:info, "Sleep tracked successfully!")
+          |> redirect(to: toolkit_path(conn, :index))
+        {:error, changeset} ->
+          render(conn, "new.html", changeset: changeset)
+      end
     end
   end
 
