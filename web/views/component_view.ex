@@ -30,4 +30,12 @@ defmodule Healthlocker.ComponentView do
     year = Integer.to_string(date.year)
     day <> "/" <> month <> "/" <> year
   end
+
+  def highlight_errors(changeset, field) do
+    if Keyword.has_key?(changeset.errors, field) do
+      "hl-input-error"
+    else
+      ""
+    end
+  end
 end
