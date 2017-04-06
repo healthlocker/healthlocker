@@ -49,7 +49,7 @@
     </div>
 
     <div class="tr">
-      <%= submit "Create account", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+      <%= submit "Create account", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
     </div>
   <% end %>
 </div>

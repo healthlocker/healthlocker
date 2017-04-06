@@ -56,5 +56,5 @@
     <span class="hl-pink"><%= error_tag f, :city %></span>
   </div>
 
-  <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+  <%= submit "Update", class: "fr bg-near-white b--black-10 hl-dark-blue b pv1 hl-bg-yellow" %>
 <% end %>
