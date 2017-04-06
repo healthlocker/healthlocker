@@ -116,22 +116,30 @@ select:focus {
   background-color: #FDC300;
 }
 
+.hl-bg-success {
+  background-color: #FEF3CC;
+}
+
 .hl-dark-grey {
   color: #242F4F;
   opacity: 50%;
 }
 
-.hl-error {
-  color: #25BDC3;
-}
-
 .hl-bg-error {
-  background-color: #25BDC3;
+  background-color: #FBD9E1;
 }
 
 .b--hl-aqua {
   border-width: medium;
   border-color: #25bdc3;
+}
+
+.b--hl-yellow {
+  border: medium solid #FDC300;
+}
+
+.b--hl-pink {
+  border: medium solid #EC4067;
 }
 
 .hl-input-error {
