@@ -112,6 +112,10 @@ select:focus {
   background-color: #EBEBEB;
 }
 
+.hl-bg-yellow {
+  background-color: #FDC300;
+}
+
 .hl-dark-grey {
   color: #242F4F;
   opacity: 50%;
