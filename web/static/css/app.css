@@ -24,12 +24,7 @@ input {
   border-radius: 5px;
 }
 
-input:focus {
-  outline: none !important;
-  border:1px solid #25bdc3;
-}
-
-textarea:focus {
+input:focus, textarea:focus {
   outline: none !important;
   border:1px solid #25bdc3;
 }
@@ -133,4 +128,9 @@ select:focus {
 .b--hl-aqua {
   border-width: medium;
   border-color: #25bdc3;
+}
+
+.hl-input-error {
+  outline: none !important;
+  border: 1px solid #EC4067;
 }
