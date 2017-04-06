@@ -12,13 +12,15 @@
 
   <div class="form-group">
     <%= label f, "Name (optional)", class: "f5 b db mb2" %>
-    <%= text_input f, :name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= text_input f, :name, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+    Healthlocker.ComponentView.highlight_errors(@changeset, :name) %>
     <span class="hl-pink"><%= error_tag f, :name %></span>
   </div>
 
   <div class="form-group">
     <%= label f, :email, class: "f5 b db mb2 mt4" %>
-    <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+    Healthlocker.ComponentView.highlight_errors(@changeset, :email) %>
     <span class="hl-pink"><%= error_tag f, :email%></span>
   </div>
 

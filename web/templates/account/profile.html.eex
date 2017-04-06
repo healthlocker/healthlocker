@@ -16,7 +16,8 @@
 
   <div class="form-group mt3">
     <%= label f, "Name (optional)", class: "f5 b db mb2" %>
-    <%= text_input f, :name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= text_input f, :name, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+    Healthlocker.ComponentView.highlight_errors(@changeset, :name) %>
     <span class="hl-pink"><%= error_tag f, :name %></span>
   </div>
 
@@ -27,7 +28,9 @@
 
   <div class="form-group mt4">
     <%= label f, "Phone number (optional)", class: "f5 b db mb2" %>
-    <%= text_input f, :phone_number, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= text_input f, :phone_number,
+    class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+    Healthlocker.ComponentView.highlight_errors(@changeset, :phone_number) %>
     <span class="hl-pink"><%= error_tag f, :email%></span>
   </div>
 
