@@ -82,6 +82,11 @@ If you are happy with the changes, change the label to `awaiting-review`:
 
 Then add a `Reviewer` and `Assignee` of your choice.
 
+The options for `hours_slept` and `wake_count` can be updated in the same way.
+Go to the files for [hours_slept](web/static/assets/hours_slept.txt) or
+[wake_count](web/static/assets/wake_count.txt), and follow through the
+instructions above.
+
 #### Writing tips & stories
 
 The stories and tips can be written using markdown. This will allow you to
@@ -95,15 +100,9 @@ In addition to formatting the text with markdown, be sure to include `#story`
 or `#tip` (with an additional *category* tag) so the story or tip displays on
 the page.
 
-## What?
-=======
-The options for `hours_slept` and `wake_count` can be updated in the same way.
-Go to the files for [hours_slept](web/static/assets/hours_slept.txt) or
-[wake_count](web/static/assets/wake_count.txt), and follow through the
-instructions above.
-
-
 #### Current features
+
+![style-guide](https://cloud.githubusercontent.com/assets/25007700/24720714/f1c77f70-1a35-11e7-808c-b1f1596ea0ae.png)
 
 * Tips can be added in, and can be viewed either in full or filtered by tag
 * Story content can be input by users, and are displayed in cards with a
@@ -125,3 +124,6 @@ or phone number
 * Feedback can be sent about the site from a form. This is done
 [using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
 * Logged in users can track their sleep over time using the sleep tracker in toolkit
+* Users who have tracked sleep can view their hours slept over the past 7 days,
+including the weekly average.
+* Users can view the previous 7 days sleep data, or go forward once they've gone back.
