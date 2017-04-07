@@ -12,3 +12,6 @@
   <% end %>
   <%= link "Back to Toolkit", to: toolkit_path(@conn, :index), class: "mt4 dim ph3 fr" %>
 </div>
+<script type="text/javascript">
+  require("web/static/js/segment").Segment.page("Loaded coping strategies")
+</script>
