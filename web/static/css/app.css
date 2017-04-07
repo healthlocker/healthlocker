@@ -14,7 +14,7 @@ button {
 
 /*elements*/
 a {
-  outline: none!important;
+  outline: none;
 }
 
 input {
@@ -25,7 +25,7 @@ input {
 }
 
 input:focus, textarea:focus {
-  outline: none !important;
+  outline: none;
   border:1px solid #25bdc3;
 }
 
@@ -35,7 +35,7 @@ input:focus, textarea:focus {
 }
 
 select:focus {
-  outline: none !important;
+  outline: none;
   border:1px solid #25bdc3;
 }
 
@@ -143,6 +143,6 @@ select:focus {
 }
 
 .hl-input-error {
-  outline: none !important;
+  outline: none;
   border: 1px solid #EC4067;
 }
