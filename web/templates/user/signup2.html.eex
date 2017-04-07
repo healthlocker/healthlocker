@@ -3,23 +3,27 @@
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />
     <%= if @changeset.action do %>
-      <div style="color: red;">
-        <p>Oops, something went wrong! Please check the errors below.</p>
+      <div class="b--hl-pink br3 hl-bg-error center tc pv2 pv3-l mh4-l">
+        <p>Oops, something went wrong! Please check the errors.</p>
       </div>
     <% end %>
 
     <div class="form-group">
       <%= label f, :password, class: "f5 b db mb2" %>
-      <%= text_input f, :password, class: "pa3 input-reset bn hl-bg-grey w-100",
-                        type: :password %>
-      <%= error_tag f, :password %>
+      <%= text_input f, :password,
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      Healthlocker.ComponentView.highlight_errors(@changeset, :password),
+      type: :password %>
+      <span class="hl-pink"><%= error_tag f, :password %></span>
     </div>
 
     <div class="form-group">
       <%= label f, "Confirm password", class: "f5 b db mb2 mt4" %>
-      <%= text_input f, :password_confirmation, class: "pa3 input-reset bn hl-bg-grey w-100",
-                        type: :password%>
-      <%= error_tag f, :password_confirmation %>
+      <%= text_input f, :password_confirmation,
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      Healthlocker.ComponentView.highlight_errors(@changeset, :password_confirmation),
+      type: :password%>
+      <span class="hl-pink"><%= error_tag f, :password_confirmation %></span>
     </div>
 
     <div class="form-group">
@@ -27,18 +31,21 @@
       <%= select f, :security_question,
         Healthlocker.ComponentView.get_options("security_questions"),
         prompt: "Choose a security question",
-        class: "pa3 input-reset bn hl-bg-grey w-100" %>
-      <%= error_tag f, :security_question %>
+        class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+        Healthlocker.ComponentView.highlight_errors(@changeset, :security_question) %>
+      <span class="hl-pink"><%= error_tag f, :security_question %></span>
     </div>
 
     <div class="form-group">
       <%= label f, :security_answer, class: "f5 b db mb2 mt4" %>
-      <%= text_input f, :security_answer, class: "pa3 input-reset bn hl-bg-grey w-100" %>
-      <%= error_tag f, :security_answer %>
+      <%= text_input f, :security_answer,
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      Healthlocker.ComponentView.highlight_errors(@changeset, :security_answer) %>
+      <span class="hl-pink"><%= error_tag f, :security_answer %></span>
     </div>
 
     <div class="tr">
-      <%= submit "Next", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+      <%= submit "Next", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
     </div>
   <% end %>
 </div>

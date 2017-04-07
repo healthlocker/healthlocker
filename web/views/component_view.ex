@@ -69,4 +69,12 @@ defmodule Healthlocker.ComponentView do
     |> Enum.reverse
     |> Enum.join("\n")
   end
+
+  def highlight_errors(changeset, field) do
+    if Keyword.has_key?(changeset.errors, field) do
+      "hl-input-error"
+    else
+      ""
+    end
+  end
 end

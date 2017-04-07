@@ -5,12 +5,11 @@
     <div class="form-group">
       <%= checkbox f, :data_access, class: "checkbox" %>
       <%= label f, "I allow my anonymous data to be accessed by researchers to
-      drive forward the future of mental health and care",
-      class: "control-label"%>
-      <%= error_tag f, :data_access %>
+      drive forward the future of mental health and care" %>
+      <span class="hl-pink"><%= error_tag f, :data_access %></span>
     </div>
 
-    <%= submit "Update", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer fr w-40" %>
+    <%= submit "Update", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer fr w-40" %>
     <% end %>
   </div>
 </div>

@@ -10,7 +10,7 @@
     <%= label f, "Total hours sleep:", class: "f5 b db mb2" %>
     <%= select f, :hours_slept, Healthlocker.ComponentView.get_options("hours_slept"),
       class: "pa3 input-reset bn hl-bg-grey w-100" %>
-    <%= error_tag f, :hours_slept %>
+    <span class="hl-pink"><%= error_tag f, :hours_slept %></span>
   </div>
 
   <div class="form-group">
@@ -18,20 +18,22 @@
       Times I woke up:
     <% end %>
     <%= select f, :wake_count, Healthlocker.ComponentView.get_options("wake_count"),
-      class: "pa3 input-reset bn hl-bg-grey w-100" %>
-    <%= error_tag f, :wake_count%>
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      Healthlocker.ComponentView.highlight_errors(@changeset, :wake_count) %>
+    <span class="hl-pink"><%= error_tag f, :wake_count%></span>
   </div>
 
   <div class="form-group">
     <%= label f, "Notes:", class: "f5 b db mb2 mt4" %>
     <p class="i">What affected your sleep? Did you have nightmares or terrors? Did you do
       something to try to get a better sleep?</p>
-    <%= textarea f, :notes, class: "pa3 input-reset bn hl-bg-grey w-100" %>
-    <%= error_tag f, :notes %>
+    <%= textarea f, :notes, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+    Healthlocker.ComponentView.highlight_errors(@changeset, :notes) %>
+    <span class="hl-pink"><%= error_tag f, :notes %></span>
   </div>
 
   <div class="tr">
-    <%= submit "Save", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+    <%= submit "Save", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
   </div>
 
   <% end %>
