@@ -38,7 +38,8 @@ defmodule Healthlocker.CopingStrategyController do
     changeset = Ecto.Changeset.put_change(changeset, :user_id, user_id)
 
     case Repo.insert(changeset) do
-      {:ok, _post} ->
+      {:ok, post} ->
+        conn |> track_created(post)
         conn
         |> put_flash(:info, "Coping strategy added!")
         |> redirect(to: coping_strategy_path(conn, :index))
@@ -102,5 +103,8 @@ defmodule Healthlocker.CopingStrategyController do
       |> redirect(to: login_path(conn, :index))
       |> halt()
     end
+  end
+  defp track_created(conn, %Post{} = coping_strategy) do
+    Healthlocker.Analytics.track(conn.assigns.current_user, :create, coping_strategy)
   end
 end
