@@ -22,8 +22,17 @@ defmodule Healthlocker.SleepTrackerView do
     if Kernel.length(past_week) == 0 do
       0
     else
-      total_slept / Kernel.length(past_week)
+      format_average_sleep(total_slept / Kernel.length(past_week))
     end
+  end
+
+  # > format_average_sleep(7.375)
+  # > "7h 23m"
+  defp format_average_sleep(num) do
+    [hours, hour_portion] = num |> Float.to_string |> String.split(".")
+    {after_decimal, _} = "0.#{hour_portion}" |> Float.parse
+    mins = round(after_decimal * 60)
+    "#{hours}h #{mins}mins"
   end
 
   def format_sleep_hours(data, from_date) do
