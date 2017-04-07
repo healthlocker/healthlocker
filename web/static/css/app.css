@@ -14,7 +14,7 @@ button {
 
 /*elements*/
 a {
-  outline: none!important;
+  outline: none;
 }
 
 input {
@@ -24,13 +24,8 @@ input {
   border-radius: 5px;
 }
 
-input:focus {
-  outline: none !important;
-  border:1px solid #25bdc3;
-}
-
-textarea:focus {
-  outline: none !important;
+input:focus, textarea:focus {
+  outline: none;
   border:1px solid #25bdc3;
 }
 
@@ -40,7 +35,7 @@ textarea:focus {
 }
 
 select:focus {
-  outline: none !important;
+  outline: none;
   border:1px solid #25bdc3;
 }
 
@@ -117,20 +112,37 @@ select:focus {
   background-color: #EBEBEB;
 }
 
+.hl-bg-yellow {
+  background-color: #FDC300;
+}
+
+.hl-bg-success {
+  background-color: #FEF3CC;
+}
+
 .hl-dark-grey {
   color: #242F4F;
   opacity: 50%;
 }
 
-.hl-error {
-  color: #25BDC3;
-}
-
 .hl-bg-error {
-  background-color: #25BDC3;
+  background-color: #FBD9E1;
 }
 
 .b--hl-aqua {
   border-width: medium;
   border-color: #25bdc3;
+}
+
+.b--hl-yellow {
+  border: medium solid #FDC300;
+}
+
+.b--hl-pink {
+  border: medium solid #EC4067;
+}
+
+.hl-input-error {
+  outline: none;
+  border: 1px solid #EC4067;
 }

@@ -9,26 +9,31 @@
     <input name="_method" type="hidden" value="put" />
     <div class="pb4 mt2">
       <%= label :user, "Current answer", class: "f5 b db mb2" %>
-      <%= text_input :user, :security_check, class: "pa3 input-reset bn hl-bg-grey w-100" %>
-      <%= error_tag f, :security_check %>
+      <%= text_input :user, :security_check,
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      Healthlocker.ComponentView.highlight_errors(@changeset, :security_check) %>
+      <span class="hl-pink"><%= error_tag f, :security_check %></span>
     </div>
 
     <div class="pb4">
       <%= label f, "New security question", class: "f5 b db mb2" %>
       <%= select f, :security_question, Healthlocker.ComponentView.get_options("security_questions"),
       prompt: "Choose a security question",
-      class: "pa3 input-reset bn hl-bg-grey w-100" %>
-      <%= error_tag f, :security_question %>
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      Healthlocker.ComponentView.highlight_errors(@changeset, :security_question) %>
+      <span class="hl-pink"><%= error_tag f, :security_question %></span>
     </div>
 
     <div class="form-group">
       <%= label f, "New security answer", class: "f5 b db mb2" %>
-      <%= text_input f, :security_answer, class: "pa3 input-reset bn hl-bg-grey w-100" %>
-      <%= error_tag f, :security_answer %>
+      <%= text_input f, :security_answer,
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      Healthlocker.ComponentView.highlight_errors(@changeset, :security_answer) %>
+      <span class="hl-pink"><%= error_tag f, :security_answer %></span>
     </div>
 
     <div class="tr">
-      <%= submit "Update", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-40" %>
+      <%= submit "Update", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
     </div>
   <% end %>
 </div>

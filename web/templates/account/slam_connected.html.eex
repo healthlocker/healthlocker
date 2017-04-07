@@ -5,32 +5,32 @@
 
   <div class="form-group w-50 fl">
     <%= label f, "First name", class: "control-label" %>
-    <%= text_input f, :first_name, class: "form-control" %>
-    <%= error_tag f, :first_name %>
+    <%= text_input f, :first_name, class: Healthlocker.ComponentView.highlight_errors(@changeset, :first_name) %>
+    <span class="hl-pink"><%= error_tag f, :first_name %></span>
   </div>
 
   <div class="form-group w-50 fl">
     <%= label f, "Last name", class: "control-label" %>
-    <%= text_input f, :last_name, class: "form-control" %>
-    <%= error_tag f, :last_name %>
+    <%= text_input f, :last_name, class: Healthlocker.ComponentView.highlight_errors(@changeset, :last_name) %>
+    <span class="hl-pink"><%= error_tag f, :last_name %></span>
   </div>
 
   <div class="form-group">
     <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
-    <span class="bg-red"><%= error_tag f, :email%></span>
+    <%= text_input f, :email, class: Healthlocker.ComponentView.highlight_errors(@changeset, :email) %>
+    <span class="hl-pink"><%= error_tag f, :email%></span>
   </div>
 
   <div class="form-group">
     <%= label f, "NHS number", class: "control-label" %>
-    <%= text_input f, :nhs, class: "form-control" %>
-    <%= error_tag f, :nhs %>
+    <%= text_input f, :nhs, class: Healthlocker.ComponentView.highlight_errors(@changeset, :nhs) %>
+    <span class="hl-pink"><%= error_tag f, :nhs %></span>
   </div>
 
   <div class="form-group">
     <%= label f, "Phone number (optional)", class: "control-label" %>
-    <%= text_input f, :phone_number, class: "form-control" %>
-    <%= error_tag f, :phone_number%>
+    <%= text_input f, :phone_number, class: Healthlocker.ComponentView.highlight_errors(@changeset, :phone_number) %>
+    <span class="hl-pink"><%= error_tag f, :phone_number%></span>
   </div>
 
 <!-- I think the below will need to be a nested input with -->
@@ -38,23 +38,23 @@
 <!-- https://hexdocs.pm/phoenix_html/Phoenix.HTML.Form.html#module-nested-inputs -->
   <div class="form-group">
     <%= label f, "Address", class: "control-label" %>
-    <%= text_input f, :flat_number, class: "form-control" %>
-    <%= text_input f, :street_name, class: "form-control mt2" %>
-    <%= text_input f, :other, class: "form-control mt2" %>
-    <%= error_tag f, :address %>
+    <%= text_input f, :flat_number, class: Healthlocker.ComponentView.highlight_errors(@changeset, :flat_number) %>
+    <%= text_input f, :street_name, class: Healthlocker.ComponentView.highlight_errors(@changeset, :street_name) %>
+    <%= text_input f, :other, class: Healthlocker.ComponentView.highlight_errors(@changeset, :other) %>
+    <span class="hl-pink"><%= error_tag f, :address %></span>
   </div>
 
   <div class="form-group">
     <%= label f, "Postcode", class: "control-label" %>
-    <%= text_input f, :postcode, class: "form-control" %>
-    <%= error_tag f, :postcode %>
+    <%= text_input f, :postcode, class: Healthlocker.ComponentView.highlight_errors(@changeset, :postcode) %>
+    <span class="hl-pink"><%= error_tag f, :postcode %></span>
   </div>
 
   <div class="form-group">
     <%= label f, "City", class: "control-label" %>
-    <%= text_input f, :city, class: "form-control" %>
-    <%= error_tag f, :city %>
+    <%= text_input f, :city, class: Healthlocker.ComponentView.highlight_errors(@changeset, :city) %>
+    <span class="hl-pink"><%= error_tag f, :city %></span>
   </div>
 
-  <%= submit "Update", class: "fr bg-near-white b--black-10 black-50 b pv1" %>
+  <%= submit "Update", class: "fr bg-near-white b--black-10 hl-dark-blue b pv1 hl-bg-yellow" %>
 <% end %>
