@@ -12,4 +12,9 @@ defmodule Healthlocker.Analytics.PropertiesBuilder do
 
   defp properties(%Healthlocker.Post{} = coping_strategy), do: %{}
 
+  defp properties(%Healthlocker.SleepTracker{} = sleep_data) do
+    %{
+      notes: String.length(sleep_data.notes) > 0
+    }
+  end
 end
