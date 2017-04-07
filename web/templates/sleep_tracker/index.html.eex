@@ -6,11 +6,17 @@
 <div class="w-100">
   <p class="link w-100 bb b--black-30 dib fl black tc pv1 bg-white">7 days</p>
 </div>
+
+<%= link "< Previous", to: sleep_tracker_sleep_tracker_path(@conn, :prev_date, @date),
+class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"%>
+
+<%= link "Next >", to: sleep_tracker_sleep_tracker_path(@conn, :next_date, @date),
+class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc fr w-40"%>
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <h4 class="b">Your week</h4>
-<%= if Kernel.length(@sleep_data) > 0 do %>
-  <%= get_week_average(@sleep_data, Date.to_iso8601(Date.utc_today())) %>
-  <p>average hours slept</p>
-<% end %>
-<script>window.sleep_info = "<%= format_sleep_data(@sleep_data, Date.to_iso8601(Date.utc_today())) %>"</script>
+<%= get_week_average(@sleep_data, @date) %>
+<p>average hours slept</p>
+
+<script>window.sleep_hours = "<%= format_sleep_hours(@sleep_data, @date) %>"</script>
+<script>window.sleep_dates = "<%= format_sleep_dates(@date) %>"</script>
