@@ -9,4 +9,7 @@ defmodule Healthlocker.Analytics.PropertiesBuilder do
       important: goal.important
     }
   end
+
+  defp properties(%Healthlocker.Post{} = coping_strategy), do: %{}
+
 end
