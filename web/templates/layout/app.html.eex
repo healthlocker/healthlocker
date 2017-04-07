@@ -67,10 +67,10 @@
                 error = get_flash(@conn, :error)
               %>
               <%= if info do %>
-                <div class="b--hl-yellow br3 hl-bg-success center tc pv2" role="alert"><%= get_flash(@conn, :info) %></div>
+                <div class="b--hl-yellow br3 hl-bg-success center tc pv2 pv3-l mh4-l" role="alert"><%= get_flash(@conn, :info) %></div>
               <% end %>
               <%= if error do %>
-                <div class="b--hl-pink br3 hl-bg-error center tc pv2" role="alert"><%= get_flash(@conn, :error) %></div>
+                <div class="b--hl-pink br3 hl-bg-error center tc pv2 pv3-l mh4-l" role="alert"><%= get_flash(@conn, :error) %></div>
               <% end %>
               <%= render @view_module, @view_template, assigns %>
             </section>
