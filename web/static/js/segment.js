@@ -4,5 +4,8 @@ export var Segment = {
       name: name,
       email: email
     });
+  },
+  page: function(name){
+    analytics.page(name);
   }
 }
