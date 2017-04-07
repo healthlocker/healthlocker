@@ -1,27 +1,27 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">What to do in a crisis</h3>
-  <p>If you need urgent help or advice: </p>
-  <div class="bg-black-10 pv3">
-    <div class="fl pv4 ph1 w3 ml4 mt2">
-      <img class="mw-100" src="https://cloud.githubusercontent.com/assets/1287388/22465297/e859151c-e7b2-11e6-9b23-fcd59b4c51ca.png" alt="phone-icon">
-    </div>
-    <div class="mh6">
-      <h5>SLaM crisis support</h5>
-      <p>24-hour mental health support line</p>
-      <a href="tel:08007312864">0800 731 2864</a>
-    </div>
-  </div>
-
+  <p class="b">If you need urgent help you have lots of options:</p>
   <ul>
-    <li class="mb3 ml3 mr5">Follow your care plan, if you have one or call your
-      care co-ordinator.</li>
-    <li class="mb3 ml3 mr5">If you feel unsafe and need immediate help
-      <a href="tel:999">call 999</a> or
-      <a href="http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428" target="_blank">
-        find your nearest A&amp;E</a>, open 24/7.
+    <li class="mb3 mr5">
+      If you can wait to see your GP they can help you find the best service for you
     </li>
-    <li class="mb3 ml3 mr5">If you can wait for an appointment, your GP can help
-      you find the best service for you.</li>
+    <li class="mb3 mr5">
+      If you are under a mental health team follow your care plan if you have one,
+      and call your care co-ordinator (or speak to a duty worker) during office hours.
+    </li>
   </ul>
 
+  <div class="hl-bg-grey pa3">
+    <h3>Free 24-hour phone support</h3>
+    <div class="tc">
+      <%= img_tag("/images/Crisis_line_Strategies.svg", class: "w-20") %>
+    </div>
+    <p><span class="b">SLaM mental health support line:</span> 0800 731 2864 for anyone in Southwark, Lambeth, Lewisham or Croydon. Calls will be answered by a nurse who can give advice on mental health, medication and accessing appropriate services</p>
+
+    <p><span class="b">The Samaritans:</span> 116 123 is a national service (and you don't have to be suicidal to call for support)</p>
+
+    <p><span class="b">NHS:</span> 111 for urgent, but non-emergency, medical advice</p>
+
+    <p><span class="b">Emergency services:</span> 999 or find your nearest A&E</p>
+  </div>
 </div>
