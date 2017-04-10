@@ -106,9 +106,9 @@ defmodule Healthlocker.AccountController do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
 
+    changeset = User.update_password(user, user_params)
     case Healthlocker.Auth.check_password(conn, user_id, user_params["password_check"], repo: Repo) do
       {:ok, conn} ->
-        changeset = User.update_password(user, user_params)
 
         case Repo.update(changeset) do
           {:ok, _params} ->
@@ -120,9 +120,13 @@ defmodule Healthlocker.AccountController do
                          action: account_path(conn, :update_password)
         end
       {:error, _reason, conn} ->
+        changeset = changeset
+        |> Ecto.Changeset.add_error(:password_check, "Does not match")
+        
         conn
         |> put_flash(:error, "Incorrect current password")
-        |> redirect(to: account_path(conn, :edit_password))
+        |> render("edit_password.html", changeset: %{changeset | action: :update},
+                user: user, action: account_path(conn, :update_password))
     end
   end
 
