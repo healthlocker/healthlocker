@@ -1,7 +1,7 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">What to do in a crisis</h3>
   <p class="b">If you need urgent help you have lots of options:</p>
-  <ul class="pl1rem">
+  <ul class="pl3">
     <li class="mb3">
       If you can wait to see your GP they can help you find the best service for you
     </li>
@@ -20,8 +20,8 @@
 
     <p><span class="b">The Samaritans:</span> <a href="tel:116123">116 123</a> is a national service (and you don't have to be suicidal to call for support)</p>
 
-    <p><span class="b">NHS:</span> <a href="111">111</a> for urgent, but non-emergency, medical advice</p>
+    <p><span class="b">NHS:</span> <a href="tel:111">111</a> for urgent, but non-emergency, medical advice</p>
 
-    <p><span class="b">Emergency services:</span> <a href="999">999</a> or find your nearest <a href="http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428" target="_blank">A&E</a></p>
+    <p><span class="b">Emergency services:</span> <a href="tel:999">999</a> or find your nearest <a href="http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428" target="_blank">A&amp;E</a></p>
   </div>
 </div>
