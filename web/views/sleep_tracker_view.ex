@@ -18,7 +18,7 @@ defmodule Healthlocker.SleepTrackerView do
     {:ok, date} = Date.from_iso8601(from_date)
     past_week = get_past_week(data, date)
     total_slept = Enum.map(past_week, fn struct -> String.to_float(struct.hours_slept) end)
-      |> Enum.reduce(0, fn(x, acc) -> x + acc end)
+      |> Enum.sum
     if Kernel.length(past_week) == 0 do
       0
     else
