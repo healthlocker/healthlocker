@@ -18,12 +18,37 @@ defmodule Healthlocker.SleepTrackerView do
     {:ok, date} = Date.from_iso8601(from_date)
     past_week = get_past_week(data, date)
     total_slept = Enum.map(past_week, fn struct -> String.to_float(struct.hours_slept) end)
-      |> Enum.reduce(0, fn(x, acc) -> x + acc end)
+      |> Enum.sum
     if Kernel.length(past_week) == 0 do
       0
     else
-      total_slept / Kernel.length(past_week)
+      format_average_sleep(total_slept / Kernel.length(past_week))
     end
+  end
+
+  defp hours_mins(humanized_str) do
+    humanized_str
+      |> String.replace(" hours,", "h")
+      |> String.replace(" minutes", "m")
+      |> String.split(",")
+      |> List.first
+  end
+
+  @doc """
+  format_average_sleep
+
+  ## Example
+
+      iex> import Healthlocker.SleepTrackerView
+      iex> format_average_sleep(7.375)
+      "7h 22m"
+
+  """
+
+  def format_average_sleep(num) do
+    Duration.from_hours(num)
+      |> Timex.Format.Duration.Formatter.format(:humanized)
+      |> hours_mins()
   end
 
   def format_sleep_hours(data, from_date) do
