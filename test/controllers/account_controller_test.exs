@@ -99,7 +99,7 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "does not update when security answer is incorrect", %{conn: conn} do
       conn = put conn, account_path(conn, :update_security), user: @wrong_security_answer
-      assert redirected_to(conn) == account_path(conn, :edit_security)
+      assert html_response(conn, 200) =~ "Current security question"
       assert get_flash(conn, :error) == "Security answer does not match"
     end
 
@@ -115,7 +115,7 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "does not update when current password is incorrect", %{conn: conn} do
       conn = put conn, account_path(conn, :update_password), user: @wrong_password
-      assert redirected_to(conn) == account_path(conn, :edit_password)
+      assert html_response(conn, 200) =~ "Current password"
       assert get_flash(conn, :error) == "Incorrect current password"
     end
 
