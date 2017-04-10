@@ -26,13 +26,29 @@ defmodule Healthlocker.SleepTrackerView do
     end
   end
 
-  # > format_average_sleep(7.375)
-  # > "7h 23m"
-  defp format_average_sleep(num) do
-    [hours, hour_portion] = num |> Float.to_string |> String.split(".")
-    {after_decimal, _} = "0.#{hour_portion}" |> Float.parse
-    mins = round(after_decimal * 60)
-    "#{hours}h #{mins}mins"
+  defp hours_mins(humanized_str) do
+    humanized_str
+      |> String.replace(" hours,", "h")
+      |> String.replace(" minutes", "m")
+      |> String.split(",")
+      |> List.first
+  end
+
+  @doc """
+  format_average_sleep
+
+  ## Example
+
+      iex> import Healthlocker.SleepTrackerView
+      iex> format_average_sleep(7.375)
+      "7h 22m"
+
+  """
+
+  def format_average_sleep(num) do
+    Duration.from_hours(num)
+      |> Timex.Format.Duration.Formatter.format(:humanized)
+      |> hours_mins()
   end
 
   def format_sleep_hours(data, from_date) do
