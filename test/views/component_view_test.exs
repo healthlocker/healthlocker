@@ -1,4 +1,4 @@
-defmodule Healthlocker.AccountViewTest do
+defmodule Healthlocker.ComponentViewTest do
   use Healthlocker.ConnCase, async: true
   alias Healthlocker.ComponentView
 
