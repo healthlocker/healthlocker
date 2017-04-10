@@ -1,11 +1,11 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">What to do in a crisis</h3>
   <p class="b">If you need urgent help you have lots of options:</p>
-  <ul>
-    <li class="mb3 mr5">
+  <ul class="pl3">
+    <li class="mb3">
       If you can wait to see your GP they can help you find the best service for you
     </li>
-    <li class="mb3 mr5">
+    <li class="mb3">
       If you are under a mental health team follow your care plan if you have one,
       and call your care co-ordinator (or speak to a duty worker) during office hours.
     </li>
@@ -16,12 +16,12 @@
     <div class="tc">
       <%= img_tag("/images/Crisis_line_Strategies.svg", class: "w-20") %>
     </div>
-    <p><span class="b">SLaM mental health support line:</span> 0800 731 2864 for anyone in Southwark, Lambeth, Lewisham or Croydon. Calls will be answered by a nurse who can give advice on mental health, medication and accessing appropriate services</p>
+    <p><span class="b">SLaM mental health support line:</span> <a href="tel:08007312864">0800 731 2864</a> for anyone in Southwark, Lambeth, Lewisham or Croydon. Calls will be answered by a nurse who can give advice on mental health, medication and accessing appropriate services</p>
 
-    <p><span class="b">The Samaritans:</span> 116 123 is a national service (and you don't have to be suicidal to call for support)</p>
+    <p><span class="b">The Samaritans:</span> <a href="tel:116123">116 123</a> is a national service (and you don't have to be suicidal to call for support)</p>
 
-    <p><span class="b">NHS:</span> 111 for urgent, but non-emergency, medical advice</p>
+    <p><span class="b">NHS:</span> <a href="tel:111">111</a> for urgent, but non-emergency, medical advice</p>
 
-    <p><span class="b">Emergency services:</span> 999 or find your nearest A&E</p>
+    <p><span class="b">Emergency services:</span> <a href="tel:999">999</a> or find your nearest <a href="http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428" target="_blank">A&amp;E</a></p>
   </div>
 </div>
