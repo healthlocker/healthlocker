@@ -71,8 +71,8 @@ defmodule Healthlocker.ComponentView do
   end
 
   def highlight_errors(changeset, field) do
-    if Keyword.has_key?(changeset.errors, field) do
-      "hl-input-error"
+    if Keyword.has_key?(changeset.errors, field) && changeset.action do
+      "hl-input-error hl-bg-error"
     else
       ""
     end
