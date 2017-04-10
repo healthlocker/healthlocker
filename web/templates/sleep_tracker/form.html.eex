@@ -1,15 +1,11 @@
 <div class="br2 mv4 center">
   <%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors.</p>
-    </div>
-  <% end %>
 
   <div class="form-group">
     <%= label f, "Total hours sleep:", class: "f5 b db mb2" %>
     <%= select f, :hours_slept, Healthlocker.ComponentView.get_options("hours_slept"),
-      class: "pa3 input-reset bn hl-bg-grey w-100" %>
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      Healthlocker.ComponentView.highlight_errors(@changeset, :hours_slept) %>
     <span class="hl-pink"><%= error_tag f, :hours_slept %></span>
   </div>
 
