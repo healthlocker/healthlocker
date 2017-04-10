@@ -71,8 +71,8 @@ defmodule Healthlocker.AccountController do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
 
+    changeset = User.security_question(user, user_params)
     if user_params["security_check"] == user.security_answer do
-      changeset = User.security_question(user, user_params)
 
       case Repo.update(changeset) do
         {:ok, _params} ->
@@ -84,9 +84,13 @@ defmodule Healthlocker.AccountController do
                     action: account_path(conn, :update_security))
       end
     else
+      changeset = changeset
+      |> Ecto.Changeset.add_error(:security_check, "Does not match")
+
       conn
       |> put_flash(:error, "Security answer does not match")
-      |> redirect(to: account_path(conn, :edit_security))
+      |> render("edit_security.html", changeset: %{changeset | action: :update}, user: user,
+                action: account_path(conn, :update_security))
     end
   end
 
