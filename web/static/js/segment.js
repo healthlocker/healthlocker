@@ -5,7 +5,7 @@ export var Segment = {
       email: email
     });
   },
-  page: function(name){
+  page: function(name) {
     analytics.page(name);
   }
 }
