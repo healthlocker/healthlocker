@@ -8,4 +8,7 @@ defmodule Healthlocker.Analytics.EventNameBuilder do
   defp event_name(:create, %Healthlocker.Goal{}), do: "Goal Created"
 
   defp event_name(:create, %Healthlocker.Post{}), do: "Strategy Created"
+
+  defp event_name(:create, %Healthlocker.SleepTracker{}), do: "Night's Sleep Tracked"
+
 end

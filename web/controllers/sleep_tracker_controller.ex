@@ -65,7 +65,8 @@ defmodule Healthlocker.SleepTrackerController do
       |> redirect(to: toolkit_path(conn, :index))
     else
       case Repo.insert(changeset) do
-        {:ok, _params} ->
+        {:ok, params} ->
+          conn |> track_created(params)
           conn
           |> put_flash(:info, "Sleep tracked successfully!")
           |> redirect(to: toolkit_path(conn, :index))
@@ -84,5 +85,8 @@ defmodule Healthlocker.SleepTrackerController do
       |> redirect(to: login_path(conn, :index))
       |> halt()
     end
+  end
+  defp track_created(conn, %SleepTracker{} = sleep_data) do
+    Healthlocker.Analytics.track(conn.assigns.current_user, :create, sleep_data)
   end
 end
