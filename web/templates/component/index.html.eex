@@ -1,3 +1,38 @@
+<section class="flex-auto flex flex-column flex-row-ns">
+  <div class="fl w-100 w-70-ns pa2">
+    <div class="bg-white pv4">
+      <div>
+        <h1>Buttons</h1>
+        <h2>Button tags</h2>
+        <p>Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
+
+        <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
+          <%= link("Primary", to: "#", class: button_primary) %>
+          <%= link("Secondary", to: "#", class: button_secondary) %>
+          <%= link("Inactive", to: "#", class: button_inactive) %>
+          <%= button("Button", to: "#", class: button_primary) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="fl w-100 w-30-ns pa2">
+    <div class="outline bg-white pv4">
+      <nav>
+        <ul>
+          <li>
+            <a href="#btn-groups">Button</a>
+            <ul>
+              <li>
+                <a href="#btn-groups-single">Button tags</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+
 <%= render Healthlocker.PostView, "_post.html", post: @post %>
 
 <article class="mw6 center bg-white br2 br--bottom shadow-1--bottom pa3 pa4-ns mv3 ba b--black-10">
