@@ -1,6 +1,11 @@
 defmodule Healthlocker.ComponentView do
   use Healthlocker.Web, :view
 
+  def button_base, do: "f5 link dim dib mb4 ph3 pv2 br-pill hl-dark-blue"
+  def button_primary, do: button_base() <> " " <> "hl-bg-yellow"
+  def button_secondary, do: button_base() <> " " <> "ba bw1 b--hl-yellow bg-white"
+  def button_inactive, do: button_base() <> " " <> "hl-bg-grey"
+
   def get_options(option_type) do
     # load security questions from file
     options = "web/static/assets/#{option_type}.txt" |> File.read!

@@ -135,7 +135,7 @@ select:focus {
 }
 
 .b--hl-yellow {
-  border: medium solid #FDC300;
+  border-color: #FDC300;
 }
 
 .b--hl-pink {
@@ -147,3 +147,12 @@ select:focus {
   border: 1px solid #EC4067;
 }
 
+/* Styleguide */
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
