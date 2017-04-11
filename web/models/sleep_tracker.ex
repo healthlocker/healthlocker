@@ -21,9 +21,9 @@ defmodule Healthlocker.SleepTracker do
   end
 
   def get_sleep_data(query, user_id, date) do
-    start_date = last_week(date)
     from st in query,
-    where: st.user_id == ^user_id and st.for_date <= ^date and st.for_date > ^start_date,
+    where: st.user_id == ^user_id and st.for_date <= ^date and st.for_date > ^last_week(date),
+    order_by: [desc: :for_date],
     preload: [:user]
   end
 
