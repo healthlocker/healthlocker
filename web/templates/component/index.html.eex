@@ -7,9 +7,10 @@
         <p>Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
 
         <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
-          <%= link("Primary", to: "#", class: button_primary) %>
-          <%= link("Secondary", to: "#", class: button_secondary) %>
-          <%= link("Inactive", to: "#", class: button_inactive) %>
+          <%= link_primary("Primary", to: "#somewhere") %>
+          <%= link_secondary("Secondary", to: "#") %>
+          <%= link_inactive("Inactive", to: "#") %>
+
           <%= button("Button", to: "#", class: button_primary) %>
         </div>
       </div>
