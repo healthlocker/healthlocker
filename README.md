@@ -2,12 +2,12 @@
 
 ## Getting started
 
-#### Install the following:
+### Install the following:
 * [Elixir](https://github.com/dwyl/learn-elixir#how)
 * [Postgresql](https://github.com/dwyl/learn-postgresql) (and ensure you create a user)
 * [Node.js](https://nodejs.org/en/)
 
-#### Once everything is installed:
+### Once everything is installed:
 * Enter `brew link autoconf automake` into your terminal
 * Open Postgresql (if you can see the elephant symbol in your menu bar you know that it's running)
 * Get dependencies (including if they are out of date) with `mix deps.get`
@@ -37,7 +37,7 @@ Ready to run in production? Please [check the deployment guides](http://www.phoe
 
 ## How?
 
-#### Updating select input options (e.g. security questions)
+### Updating select input options (e.g. security questions)
 Security questions can be updated by editing the
 [`security_questions.txt` file](web/static/assets/security_questions.txt).
 
@@ -87,7 +87,7 @@ Go to the files for [hours_slept](web/static/assets/hours_slept.txt) or
 [wake_count](web/static/assets/wake_count.txt), and follow through the
 instructions above.
 
-#### Writing tips & stories
+### Writing tips & stories
 
 The stories and tips can be written using markdown. This will allow you to
 style the text as you write it.
@@ -100,7 +100,7 @@ In addition to formatting the text with markdown, be sure to include `#story`
 or `#tip` (with an additional *category* tag) so the story or tip displays on
 the page.
 
-#### Current features
+### Current features
 
 ![style-guide](https://cloud.githubusercontent.com/assets/25007700/24720714/f1c77f70-1a35-11e7-808c-b1f1596ea0ae.png)
 
