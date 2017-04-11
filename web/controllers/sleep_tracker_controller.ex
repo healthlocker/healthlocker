@@ -5,15 +5,16 @@ defmodule Healthlocker.SleepTrackerController do
   alias Healthlocker.SleepTracker
   use Timex
 
-  def get_sleep(conn) do
+  def get_sleep(conn, date) do
     user_id = conn.assigns.current_user.id
     SleepTracker
-      |> SleepTracker.get_sleep_data(user_id)
+      |> SleepTracker.get_sleep_data(user_id, date)
       |> Repo.all
   end
 
   def index(conn, _params) do
-    sleep_data = get_sleep(conn)
+
+    sleep_data = get_sleep(conn, Date.utc_today())
 
     date = Date.to_iso8601(Date.utc_today())
 
@@ -21,25 +22,27 @@ defmodule Healthlocker.SleepTrackerController do
   end
 
   def prev_date(conn, %{"sleep_tracker_id" => end_date}) do
-    sleep_data = get_sleep(conn)
-
     # need to go back & forth with iso dates for display purposes. An elixir
     # date won't render on the page, and iso dates can't be used with timex for
     # shifting back 7 days
     {:ok, iex_date} = Date.from_iso8601(end_date)
-    date = Date.to_iso8601(Timex.shift(iex_date, days: -7))
+    shifted_date = Timex.shift(iex_date, days: -7)
+    date = Date.to_iso8601(shifted_date)
+
+    sleep_data = get_sleep(conn, shifted_date)
 
     render(conn, "index.html", sleep_data: sleep_data, date: date)
   end
 
   def next_date(conn, %{"sleep_tracker_id" => end_date}) do
-    sleep_data = get_sleep(conn)
-
     # need to go back & forth with iso dates for display purposes. An elixir
     # date won't render on the page, and iso dates can't be used with timex for
     # shifting back 7 days
     {:ok, iex_date} = Date.from_iso8601(end_date)
-    date = Date.to_iso8601(Timex.shift(iex_date, days: 7))
+    shifted_date = Timex.shift(iex_date, days: 7)
+    date = Date.to_iso8601(shifted_date)
+
+    sleep_data = get_sleep(conn, shifted_date)
 
     render(conn, "index.html", sleep_data: sleep_data, date: date)
   end
@@ -58,7 +61,8 @@ defmodule Healthlocker.SleepTrackerController do
 
     sleep_data = SleepTracker
                 |> SleepTracker.get_sleep_data_today(user.id)
-                |> Repo.one 
+                |> Repo.one
+                
     if sleep_data do
       conn
       |> put_flash(:error, "You can only enter sleep once per day.")
