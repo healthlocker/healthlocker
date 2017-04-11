@@ -14,9 +14,8 @@ class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"
 class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc fr w-40"%>
 <canvas id="myChart" width="400" height="400"></canvas>
 
-<h4 class="b">Your week</h4>
-<%= get_week_average(@sleep_data, @date) %>
-<p>average hours slept</p>
+<h4 class="b">7 day average</h4>
+<p><p class="b di">Sleep </p><%= get_week_average(@sleep_data, @date) %></p>
 
 <script>window.sleep_hours = "<%= format_sleep_hours(@sleep_data, @date) %>"</script>
 <script>window.sleep_dates = "<%= format_sleep_dates(@date) %>"</script>
