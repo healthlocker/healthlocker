@@ -1,6 +1,67 @@
 <section class="flex-auto flex flex-column flex-row-ns">
-  <div class="fl w-100 w-70-ns pa2">
+  <div class="fl w-100 w-100-ns pa2">
     <div class="bg-white pv4">
+      <div class="">
+        <h2 class="f3">Color Palette</h1>
+        <ul class="list pl0 ml0 cf">
+          <li class="fl w-100 w-50-m w-25-l mb1">
+            <div class="fl w-40 pv4 hl-bg-grey"></div>
+            <div class="fl w-60 lh-copy pl2 pt2">
+              <b class="db">grey</b>
+              <code class="f6">#EBEBEB</code>
+            </div>
+          </li>
+          <li class="fl w-100 w-50-m w-25-l mb1">
+            <div class="fl w-40 pv4 hl-bg-dark-blue"></div>
+            <div class="fl w-60 lh-copy pl2 pt2">
+              <b class="db">dark blue</b>
+              <code class="f6">#242F4F</code>
+            </div>
+          </li>
+          <li class="fl w-100 w-50-m w-25-l mb1">
+            <div class="fl w-40 pv4 hl-bg-dark-grey"></div>
+            <div class="fl w-60 lh-copy pl2 pt2">
+              <b class="db">dark grey</b>
+              <code class="f6">#242F4F</code>
+            </div>
+          </li>
+          <li class="fl w-100 w-50-m w-25-l mb1">
+            <div class="fl w-40 pv4 hl-bg-pink"></div>
+            <div class="fl w-60 lh-copy pl2 pt2">
+              <b class="db">pink</b>
+              <code class="f6">#EC4067</code>
+            </div>
+          </li>
+          <li class="fl w-100 w-50-m w-25-l mb1">
+            <div class="fl w-40 pv4 bg-white"></div>
+            <div class="fl w-60 lh-copy pl2 pt2">
+              <b class="db">white</b>
+              <code class="f6">#FFFFFF</code>
+            </div>
+          </li>
+          <li class="fl w-100 w-50-m w-25-l mb1">
+            <div class="fl w-40 pv4 hl-bg-aqua"></div>
+            <div class="fl w-60 lh-copy pl2 pt2">
+              <b class="db">aqua</b>
+              <code class="f6">#25BDC3</code>
+            </div>
+          </li>
+          <li class="fl w-100 w-50-m w-25-l mb1">
+            <div class="fl w-40 pv4 hl-bg-yellow"></div>
+            <div class="fl w-60 lh-copy pl2 pt2">
+              <b class="db">yellow</b>
+              <code class="f6">#FDC300</code>
+            </div>
+          </li>
+          <li class="fl w-100 w-50-m w-25-l mb1">
+            <div class="fl w-40 pv4 hl-bg-terracotta"></div>
+            <div class="fl w-60 lh-copy pl2 pt2">
+              <b class="db">terracotta</b>
+              <code class="f6">#ED6A5A</code>
+            </div>
+          </li>
+        </ul>
+      </div>
       <div>
         <h1>Buttons</h1>
         <h2>Button tags</h2>
@@ -14,22 +75,6 @@
           <%= button("Button", to: "#", class: button_primary) %>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="fl w-100 w-30-ns pa2">
-    <div class="outline bg-white pv4">
-      <nav>
-        <ul>
-          <li>
-            <a href="#btn-groups">Button</a>
-            <ul>
-              <li>
-                <a href="#btn-groups-single">Button tags</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </nav>
     </div>
   </div>
 </section>

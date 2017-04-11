@@ -75,7 +75,7 @@ select:focus {
    height:80px;
  }
 
-/*color palette*/
+/* color palette */
 .hl-aqua {
   color: #25bdc3;
 }
@@ -123,6 +123,18 @@ select:focus {
 .hl-dark-grey {
   color: #242F4F;
   opacity: 50%;
+}
+
+.hl-bg-dark-grey {
+  background-color: #3D3D3D;
+}
+
+.hl-terracotta {
+  color: #ED6A5A;
+}
+
+.hl-bg-terracotta {
+  background-color: #ED6A5A;
 }
 
 .hl-bg-error {
