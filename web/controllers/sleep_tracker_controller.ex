@@ -13,7 +13,6 @@ defmodule Healthlocker.SleepTrackerController do
   end
 
   def index(conn, _params) do
-
     sleep_data = get_sleep(conn, Date.utc_today())
 
     date = Date.to_iso8601(Date.utc_today())
@@ -62,7 +61,7 @@ defmodule Healthlocker.SleepTrackerController do
     sleep_data = SleepTracker
                 |> SleepTracker.get_sleep_data_today(user.id)
                 |> Repo.one
-                
+
     if sleep_data do
       conn
       |> put_flash(:error, "You can only enter sleep once per day.")
@@ -90,6 +89,7 @@ defmodule Healthlocker.SleepTrackerController do
       |> halt()
     end
   end
+
   defp track_created(conn, %SleepTracker{} = sleep_data) do
     Healthlocker.Analytics.track(conn.assigns.current_user, :create, sleep_data)
   end
