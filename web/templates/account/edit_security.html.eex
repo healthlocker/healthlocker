@@ -4,7 +4,6 @@
   <p class="b mt3">Current security question</p>
   <%= @user.security_question %>
 
-
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />
     <div class="pb4 mt2">

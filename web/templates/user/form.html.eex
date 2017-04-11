@@ -4,11 +4,6 @@
 </div>
 <div class="br2 mv3 center">
   <%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="b--hl-pink br3 hl-bg-error center tc pv2 pv3-l mh4-l">
-      <p>Oops, something went wrong! Please check the errors.</p>
-    </div>
-  <% end %>
 
   <div class="form-group">
     <%= label f, "Name (optional)", class: "f5 b db mb2" %>

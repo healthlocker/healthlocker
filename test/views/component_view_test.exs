@@ -1,6 +1,36 @@
 defmodule Healthlocker.ComponentViewTest do
   use Healthlocker.ConnCase, async: true
-  alias Healthlocker.ComponentView
+  alias Healthlocker.{ComponentView,User}
+
+  # @valid_changeset <action: nil, changes: %{}, errors: [], valid?: false>
+  describe "changeset with and without errors" do
+    setup do
+      start_changeset = User.password_changeset(%User{})
+      error_changeset = start_changeset
+                      |> Ecto.Changeset.add_error(:password_check, "Does not match")
+
+      {:ok, start_changeset: start_changeset, error_changeset: error_changeset,
+    full_changeset: %{error_changeset | action: :update}}
+    end
+
+    test "highlight_errors gives new class when there are errors & action", %{full_changeset: full_changeset} do
+      actual = ComponentView.highlight_errors(full_changeset, :password_check)
+      expected = "hl-input-error hl-bg-error"
+      assert actual == expected
+    end
+
+    test "highlight_errors gives empty string when no errors or action", %{start_changeset: start_changeset} do
+      actual = ComponentView.highlight_errors(start_changeset, :password)
+      expected = ""
+      assert actual == expected
+    end
+
+    test "highlight_errors gives empty string when errors but no action", %{error_changeset: error_changeset} do
+      actual = ComponentView.highlight_errors(error_changeset, :password)
+      expected = ""
+      assert actual == expected
+    end
+  end
 
   test "get_options returns a list of questions" do
     actual = ComponentView.get_options("security_questions")
