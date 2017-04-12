@@ -69,7 +69,7 @@
       <p class="measure f5 lh-copy sans-serif">Our basic anchor components.</p>
 
       <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
-
+        <%= link_to("Link", to: coping_strategy_path(@conn, :new)) %>
       </div>
 
       <h2 class="f3">Buttons</h1>
