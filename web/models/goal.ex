@@ -16,6 +16,7 @@ defmodule Healthlocker.Goal do
     struct
     |> mark_important_changeset(params)
     |> cast(params, [:content])
+    |> cast_assoc(:steps)
     |> validate_required(:content)
   end
 
