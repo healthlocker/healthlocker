@@ -14,8 +14,8 @@ config :healthlocker, Healthlocker.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "ea7BnffOt5Z35L3NrzDAoCrR9eakAXLVfFEDgw3tpuynIEnF9meMlqGZP1bWT4kI",
   render_errors: [view: Healthlocker.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Healthlocker.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Healthlocker.PubSub, adapter: Phoenix.PubSub.PG2],
+  instrumenters: [Appsignal.Phoenix.Instrumenter]
 
 # Configure mailing
 config :healthlocker, Healthlocker.Mailer,
@@ -35,6 +35,13 @@ config :logger, :console,
 
 config :segment,
   write_key: System.get_env("SEGMENT_WRITE_KEY")
+
+config :phoenix, :template_engines,
+  eex: Appsignal.Phoenix.Template.EExEngine,
+  exs: Appsignal.Phoenix.Template.ExsEngine
+
+config :healthlocker, Healthlocker.Repo,
+  loggers: [Appsignal.Ecto, Ecto.LogEntry]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
