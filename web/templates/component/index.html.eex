@@ -76,11 +76,11 @@
       <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
 
       <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
-        <%= button_primary("Primary", to: "#somewhere") %>
-        <%= button_secondary("Secondary", to: "#") %>
-        <%= button_inactive("Inactive", to: "#") %>
+        <%= link_primary("Primary", to: "#somewhere") %>
+        <%= link_secondary("Secondary", to: "#") %>
+        <%= link_inactive("Inactive", to: "#") %>
 
-        <%= button("Button", to: "#", class: primary_classes) %>
+        <%#= button("Button", to: "#", class: primary_classes) %>
       </div>
     </div>
   </div>

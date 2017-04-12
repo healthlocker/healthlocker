@@ -1,6 +1,6 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">Goals</h3>
-  <%= link "Add new", to: goal_path(@conn, :new), class: "link mv3 f5 tc dim br-pill ph3 pv2 dib black-60 hl-bg-grey w-50" %>
+  <%= link_primary "Add new", to: goal_path(@conn, :new) %>
   <%= for goal <- @goals do %>
   <a href="/goal/<%= goal.id %>" class="link">
     <section class="bb b--black-10">
