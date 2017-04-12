@@ -20,9 +20,10 @@ defmodule Healthlocker.SleepTracker do
     |> validate_required([:hours_slept])
   end
 
-  def get_sleep_data(query, user_id) do
+  def get_sleep_data(query, user_id, date) do
     from st in query,
-    where: st.user_id == ^user_id,
+    where: st.user_id == ^user_id and st.for_date <= ^date and st.for_date > ^last_week(date),
+    order_by: [desc: :for_date],
     preload: [:user]
   end
 
@@ -31,5 +32,9 @@ defmodule Healthlocker.SleepTracker do
     from st in query,
     where: st.user_id == ^user_id and st.for_date == ^today,
     preload: [:user]
+  end
+
+  defp last_week(end_date) do
+    Timex.shift(end_date, days: -6)
   end
 end

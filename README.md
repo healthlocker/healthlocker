@@ -2,12 +2,12 @@
 
 ## Getting started
 
-#### Install the following:
+### Install the following:
 * [Elixir](https://github.com/dwyl/learn-elixir#how)
 * [Postgresql](https://github.com/dwyl/learn-postgresql) (and ensure you create a user)
 * [Node.js](https://nodejs.org/en/)
 
-#### Once everything is installed:
+### Once everything is installed:
 * Enter `brew link autoconf automake` into your terminal
 * Open Postgresql (if you can see the elephant symbol in your menu bar you know that it's running)
 * Get dependencies (including if they are out of date) with `mix deps.get`
@@ -37,9 +37,15 @@ Ready to run in production? Please [check the deployment guides](http://www.phoe
 
 ## How?
 
-#### Updating select input options (e.g. security questions)
-Security questions can be updated by editing the
-[`security_questions.txt` file](web/static/assets/security_questions.txt).
+### Updating select input options
+
+The options for `hours_slept`, `wake_count` and `security_questions` can be
+updated by editing the corresponding `.txt` file. Go to the file(s) that you
+want to edit for  
+[hours_slept](web/static/assets/hours_slept.txt),
+[wake_count](web/static/assets/wake_count.txt), or
+[security_questions](web/static/assets/security_questions.txt) and follow
+through the instructions below.
 
 Click on the pencil in the top right corner of the file.
 ![edit-file](https://cloud.githubusercontent.com/assets/1287388/24212494/74f767d0-0f27-11e7-95b8-2b3bff21cbc5.png)
@@ -50,9 +56,9 @@ in the file on it's own line. Do not use commas or anything besides a new line
 to separate questions.
 
 ```
-Question 1?
-Question 2?
-Question 3?
+Option 1
+Option 2
+Option 3
 ```
 
 After you are done making changes, you can find a box underneath the file that
@@ -61,7 +67,7 @@ says `Commit changes`.
 ![commit-changes](https://cloud.githubusercontent.com/assets/1287388/24213604/fb238f2a-0f2a-11e7-8a60-251e40e3251c.png)
 
 In here, you can write a short message in the box that says `Update` describing
-the change e.g. Add new security question, Reword security question, etc.
+the change e.g. Add new option, Reword security question, etc.
 
 Ensure the bottom option ("*Create a new branch for this commit and start a
 pull request.*") is ticked as in the image above.
@@ -87,7 +93,7 @@ Go to the files for [hours_slept](web/static/assets/hours_slept.txt) or
 [wake_count](web/static/assets/wake_count.txt), and follow through the
 instructions above.
 
-#### Writing tips & stories
+### Writing tips & stories
 
 The stories and tips can be written using markdown. This will allow you to
 style the text as you write it.
@@ -100,7 +106,7 @@ In addition to formatting the text with markdown, be sure to include `#story`
 or `#tip` (with an additional *category* tag) so the story or tip displays on
 the page.
 
-#### Current features
+### Current features
 
 ![style-guide](https://cloud.githubusercontent.com/assets/25007700/24720714/f1c77f70-1a35-11e7-808c-b1f1596ea0ae.png)
 
@@ -124,6 +130,9 @@ or phone number
 * Feedback can be sent about the site from a form. This is done
 [using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
 * Logged in users can track their sleep over time using the sleep tracker in toolkit
-* Users who have tracked sleep can view their hours slept over the past 7 days,
-including the weekly average.
+* Users who have tracked sleep can view:
+  * hours slept each night over the past week
+  * average number of hours slept over the past week
+  * times they woke up each night for the past week
+  * notes they made about their sleep from the past week
 * Users can view the previous 7 days sleep data, or go forward once they've gone back.

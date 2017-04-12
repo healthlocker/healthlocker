@@ -17,5 +17,12 @@ class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc fr w-
 <h4 class="b">7 day average</h4>
 <p><p class="b di">Sleep </p><%= get_week_average(@sleep_data, @date) %></p>
 
-<script>window.sleep_hours = "<%= format_sleep_hours(@sleep_data, @date) %>"</script>
+<%= for sleep_day <- @sleep_data do %>
+  <h4 class="b"><%= day_of_week(sleep_day.for_date, 0) %></h4>
+  <p class="di"><p class="b di">Sleep </p><%= format_average_sleep(String.to_float(sleep_day.hours_slept)) %></p>
+  <p>Woke up <%= sleep_day.wake_count %> times</p>
+  <p class="i"><%= sleep_day.notes %></p>
+<% end %>
+
+<script>window.sleep_hours = "<%= format_sleep_hours(@sleep_data) %>"</script>
 <script>window.sleep_dates = "<%= format_sleep_dates(@date) %>"</script>

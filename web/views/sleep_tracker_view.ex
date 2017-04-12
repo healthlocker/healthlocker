@@ -2,27 +2,17 @@ defmodule Healthlocker.SleepTrackerView do
   use Healthlocker.Web, :view
   use Timex
 
-  defp get_past_week(data, end_date) do
-    Enum.filter(data, fn struct ->
-      Date.compare(struct.for_date, end_date) != :gt
-      and
-      Date.compare(struct.for_date, last_week(end_date)) != :lt
-    end)
-  end
-
   defp last_week(end_date) do
     Timex.shift(end_date, days: -6)
   end
 
   def get_week_average(data, from_date) do
-    {:ok, date} = Date.from_iso8601(from_date)
-    past_week = get_past_week(data, date)
-    total_slept = Enum.map(past_week, fn struct -> String.to_float(struct.hours_slept) end)
+    total_slept = Enum.map(data, fn struct -> String.to_float(struct.hours_slept) end)
       |> Enum.sum
-    if Kernel.length(past_week) == 0 do
+    if Kernel.length(data) == 0 do
       0
     else
-      format_average_sleep(total_slept / Kernel.length(past_week))
+      format_average_sleep(total_slept / Kernel.length(data))
     end
   end
 
@@ -51,10 +41,8 @@ defmodule Healthlocker.SleepTrackerView do
       |> hours_mins()
   end
 
-  def format_sleep_hours(data, from_date) do
-    {:ok, date} = Date.from_iso8601(from_date)
-    week_data = get_past_week(data, date)
-    format_hours_list(week_data, [], 1)
+  def format_sleep_hours(data) do
+    format_hours_list(data, [], 1)
     |> Enum.join(",")
   end
 
@@ -137,5 +125,18 @@ defmodule Healthlocker.SleepTrackerView do
       Integer.to_string(date.month)
     end
     day <> "/" <>month
+  end
+
+  @days_of_week ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+  def day_of_week(date, 6) do
+    @days_of_week |> Enum.at(6)
+  end
+
+  def day_of_week(date, n) do
+    if Date.day_of_week(date) == n do
+      @days_of_week |> Enum.at(n - 1)
+    else
+      day_of_week(date, n + 1)
+    end
   end
 end
