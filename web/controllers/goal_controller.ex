@@ -37,6 +37,7 @@ defmodule Healthlocker.GoalController do
     goal = Goal
           |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one!
+          |> Repo.preload(:steps)
     render conn, "show.html", goal: goal
   end
 
