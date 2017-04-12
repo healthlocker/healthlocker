@@ -4,6 +4,7 @@
 /deps
 /*.ez
 .DS_Store
+cover
 
 # Generated on crash by the VM
 erl_crash.dump
