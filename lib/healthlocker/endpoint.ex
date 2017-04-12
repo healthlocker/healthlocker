@@ -38,5 +38,6 @@ defmodule Healthlocker.Endpoint do
     key: "_healthlocker_key",
     signing_salt: "ftUT7zkc"
 
+  use Appsignal.Phoenix
   plug Healthlocker.Router
 end
