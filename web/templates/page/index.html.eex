@@ -21,10 +21,13 @@
           current_user: @current_user %>
         <a href="/posts/<%= @story.id %>" class="fr">Read this story</a>
       <%= else %>
-        <p class="pv2 ph2 lh-copy">No stories found</p>
+        <p class="pv2 lh-copy">No stories found</p>
       <%= end %>
   </article>
-  <a class="pa0 fr mt3" href="/posts">See more stories</a><br/><br/>
+  <div class="tr">
+    <%= link_to "See more stories", to: post_path(@conn, :index) %>
+  </div>
+
 </section>
 
 <section class="bb b--black-20 pa3 center">
@@ -35,8 +38,10 @@
       <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: @tip,
         current_user: @current_user %>
     <%= else %>
-      <p class="pv2 ph2 ph3-m ph4-l f5 f4-l lh-copy">No tips found</p>
+      <p class="pv2 lh-copy">No tips found</p>
     <%= end %>
   </article>
-  <a class="pa0 fr" href="/tips">See more tips</a><br/><br/>
+  <div class="tr">
+    <%= link_to "See more tips", to: tip_path(@conn, :index) %>
+  </div>
 </section>

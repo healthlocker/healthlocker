@@ -10,7 +10,7 @@
       <% end %>
       <p>Important goals will be at the top of the list</p>
       <div class="tr">
-        <%= submit "Save", class: "mt3 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
+        <%= submit_primary "Save" %>
       </div>
     </div>
   </div>

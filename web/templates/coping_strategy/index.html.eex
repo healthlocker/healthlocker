@@ -1,6 +1,6 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">Coping strategies</h3>
-  <%= link "Add new", to: coping_strategy_path(@conn, :new), class: "link mv3 f5 tc dim br-pill ph3 pv2 dib black-60 hl-bg-grey w-50" %>
+  <%= link_primary "Add new", to: coping_strategy_path(@conn, :new) %>
   <%= for coping_strategy <- @coping_strategies do %>
   <a href="/coping-strategy/<%= coping_strategy.id %>" class="link">
     <section class="bb b--black-10">
