@@ -4,6 +4,15 @@
   <div class="center">
     <div class="mh4 measure center">
       <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2" %>
+      <%= inputs_for f, :steps, fn s -> %>
+        <p class="b">Steps to take:</p>
+        <p>List the things you could do to achieve this goal.</p>
+        <div class="">
+          <%= checkbox s, :complete, class: "checkbox" %>
+          <%= text_input s, :details, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+            Healthlocker.ComponentView.highlight_errors(@changeset, :security_check) %>
+        </div>
+      <% end %>
       <%= checkbox f, :important, class: "checkbox" %>
       <%= label f, :important do %>
         Label as important
