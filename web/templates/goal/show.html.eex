@@ -24,7 +24,7 @@
     method: "put", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"%>
   <%= else %>
     <%= link "Mark as unimportant", to: goal_path(@conn, :mark_important, @goal.id),
-    method: "put", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"%>
+    method: "put", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-50"%>
   <% end %>
   <div class="tr">
     <%= link "Delete goal", to: goal_path(@conn, :delete, @goal), method: "delete",
