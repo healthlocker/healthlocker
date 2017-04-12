@@ -6,7 +6,7 @@ defmodule Healthlocker.Goal do
     field :completed, :boolean
     field :notes, :string
     field :important, :boolean
-    has_many :steps, Healthlocker.Step
+    has_many :steps, Healthlocker.Step, on_delete: :delete_all, on_replace: :delete
     belongs_to :user, Healthlocker.User
 
     timestamps()
