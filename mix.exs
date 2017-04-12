@@ -18,7 +18,7 @@ defmodule Healthlocker.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Healthlocker, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :comeonin, :timex, :bamboo, :segment, :faker]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :comeonin, :timex, :bamboo, :segment, :faker, :appsignal]]
   end
 
   # Specifies which paths to compile per environment.
@@ -45,7 +45,8 @@ defmodule Healthlocker.Mixfile do
      {:bamboo, "~> 0.7"},
      {:bamboo_smtp, "~> 1.2.1"},
      {:mock, "~> 0.2.0", only: :test},
-     {:faker, "~> 0.7"}]
+     {:faker, "~> 0.7"},
+     {:appsignal, "~> 1.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
