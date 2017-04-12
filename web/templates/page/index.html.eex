@@ -17,9 +17,9 @@
   <article class="ph3">
       <%= if @story do %>
           <%= markdown String.slice(@story.content, 0, 325) <> "..." %>
-        <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: @story,
-          current_user: @current_user %>
-        <a href="/posts/<%= @story.id %>" class="fr">Read this story</a>
+
+          <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: @story, current_user: @current_user %>
+          <%= link_to "Read", to: post_path(@conn, :show, @story.id) %>
       <%= else %>
         <p class="pv2 lh-copy">No stories found</p>
       <%= end %>
@@ -27,7 +27,6 @@
   <div class="tr">
     <%= link_to "See more stories", to: post_path(@conn, :index) %>
   </div>
-
 </section>
 
 <section class="bb b--black-20 pa3 center">
