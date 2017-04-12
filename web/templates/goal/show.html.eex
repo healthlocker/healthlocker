@@ -1,7 +1,7 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">Toolkit</h3>
-  <p class="di b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></p>
-  <%= link "Edit", to: goal_path(@conn, :edit, @goal), class: "di" %>
+  <%= link "Edit", to: goal_path(@conn, :edit, @goal), class: "mb3 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer fr w-40" %>
+  <span class="b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></span>
   <p class="mv3">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
   <%= link "Delete goal",
   to: goal_path(@conn, :delete, @goal),
@@ -13,5 +13,6 @@
     <%= link "Mark as unimportant", to: goal_path(@conn, :mark_important, @goal.id),
     method: "put", class: "mt4 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer tc w-40"%>
   <% end %>
-  <%= link "Back to Toolkit", to: toolkit_path(@conn, :index), class: "mt4 dim ph3 fr" %>
+  <%= link "Delete goal", to: goal_path(@conn, :delete, @goal), method: "delete",
+  class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer fr w-40"%>
 </div>
