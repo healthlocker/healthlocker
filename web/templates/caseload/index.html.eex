@@ -1,0 +1,16 @@
+<h3 class="tc">Caseload</h3>
+<%= for patient <- @hl_patients do %>
+  <div class="w-100 hl-bg-grey pa3 mv2">
+    <p class="b di"><%= patient %></p><span class="fr">></span>
+  </div>
+<% end %>
+
+<%= for patient <- @non_hl_patients do %>
+  <div class="w-100 ph3 pv2">
+    <p>
+      <p class="b di"><%= patient %> </p>
+      <span class="i">Not signed up to Healthlocker</span>
+      <span class="fr">></span>
+    </p>
+  </div>
+<% end %>
