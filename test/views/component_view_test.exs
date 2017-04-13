@@ -32,37 +32,28 @@ defmodule Healthlocker.ComponentViewTest do
     end
   end
 
-  test "get_options returns a list of questions" do
+  test "get_options returns a list of strings for security_questions" do
     actual = ComponentView.get_options("security_questions")
-    expected = ["Favourite teacher's name?", "First pet's name?",
-    "Town you were born in?", "Name of primary school?",
-    "Name of your first boss?"]
-    assert actual == expected
+    expected_list = is_list(actual)
+    expect_strings_in_list = Enum.all?(actual, fn x -> is_bitstring(x) end)
+    assert expected_list
+    assert expect_strings_in_list
   end
 
-  test "get_options returns a list of hours" do
+  test "get_options returns a list of strings for hours_slept" do
     actual = ComponentView.get_options("hours_slept")
-    expected = Enum.to_list(0..48)
-              |> Enum.map(&(&1/2))
-              |> Enum.map(fn num -> if num == 0.0 do
-                  "0"
-                else
-                  Float.to_string(num)
-                end
-              end)
-    assert actual == expected
+    expected_list = is_list(actual)
+    expect_strings_in_list = Enum.all?(actual, fn x -> is_bitstring(x) end)
+    assert expected_list
+    assert expect_strings_in_list
   end
 
-  test "get_options returns a list of wake counts" do
+  test "get_options returns a list of strings for wake_count" do
     actual = ComponentView.get_options("wake_count")
-    expected = Enum.to_list(0..10)
-              |> Enum.map(fn num -> if num == 10 do
-                  "10+"
-                else
-                  Integer.to_string(num)
-                end
-              end)
-    assert actual == expected
+    expected_list = is_list(actual)
+    expect_strings_in_list = Enum.all?(actual, fn x -> is_bitstring(x) end)
+    assert expected_list  
+    assert expect_strings_in_list
   end
 
   test "pretty_date returns date in the format DD/MM/YYYY" do

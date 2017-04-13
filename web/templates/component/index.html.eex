@@ -82,6 +82,21 @@
 
         <%#= button("Button", to: "#", class: primary_classes) %>
       </div>
+
+      <h2 class="f3">Flash messages</h2>
+      <p class="lh-copy measure f5 sans-serif">
+        We use flash messages to show success and error messages after some action has taken place.
+      </p>
+
+      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
+        <div class="ba bw2 br3 b--hl-yellow hl-bg-success center tc pv2 pv3-l mh4-l mb3" role="alert">
+          Woo! 🎉
+        </div>
+
+        <div class="ba bw2 br3 b--hl-pink hl-bg-error center tc pv2 pv3-l mh4-l" role="alert">
+          Boo ☹️
+        </div>
+      </div>
     </div>
   </div>
 </section>

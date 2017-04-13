@@ -20,7 +20,7 @@ defmodule Healthlocker.SleepTrackerViewTest do
   end
 
   test "format_sleep_hours returns a comma separated string of hours" do
-    actual = SleepTrackerView.format_sleep_hours(@data, "2017-04-10")
+    actual = SleepTrackerView.format_sleep_hours(@data)
     expected = "7.0,0,0,0,0,8.0,0"
     assert actual == expected
   end
@@ -28,6 +28,12 @@ defmodule Healthlocker.SleepTrackerViewTest do
   test "format_sleep_dates returns a comma separated string of dates" do
     actual = SleepTrackerView.format_sleep_dates("2017-04-10")
     expected = "09/04,10/04,04/04,05/04,06/04,07/04,08/04"
+    assert actual == expected
+  end
+
+  test "days_of_week returns the correct day string of the week" do
+    actual = SleepTrackerView.day_of_week(~D[2017-04-07], 0)
+    expected = "Friday"
     assert actual == expected
   end
 end
