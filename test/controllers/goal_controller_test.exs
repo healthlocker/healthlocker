@@ -82,7 +82,7 @@ defmodule Healthlocker.GoalControllerTest do
     test "renders form for editing goal", %{conn: conn} do
       {:ok, goal} = Repo.insert %Goal{
         content: "some content #Goal",
-        user_id: 123456,
+        user_id: 123_456,
       }
       conn = get conn, goal_path(conn, :edit, goal)
       assert html_response(conn, 200) =~ "Edit goal"
