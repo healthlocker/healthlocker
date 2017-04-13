@@ -29,6 +29,10 @@ input:focus, textarea:focus {
   border:1px solid #25bdc3;
 }
 
+.link {
+  display: inline-block;
+}
+
 .checkbox {
   width:20px;
   height:20px;
@@ -75,7 +79,7 @@ select:focus {
    height:80px;
  }
 
-/*color palette*/
+/* color palette */
 .hl-aqua {
   color: #25bdc3;
 }
@@ -125,6 +129,18 @@ select:focus {
   opacity: 50%;
 }
 
+.hl-bg-dark-grey {
+  background-color: #3D3D3D;
+}
+
+.hl-terracotta {
+  color: #ED6A5A;
+}
+
+.hl-bg-terracotta {
+  background-color: #ED6A5A;
+}
+
 .hl-bg-error {
   background-color: #FBD9E1;
 }
@@ -135,11 +151,11 @@ select:focus {
 }
 
 .b--hl-yellow {
-  border: medium solid #FDC300;
+  border-color: #FDC300;
 }
 
 .b--hl-pink {
-  border: medium solid #EC4067;
+  border-color: #EC4067;
 }
 
 .hl-input-error {
@@ -147,3 +163,12 @@ select:focus {
   border: 1px solid #EC4067;
 }
 
+/* Styleguide */
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}

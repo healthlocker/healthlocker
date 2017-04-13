@@ -2,18 +2,16 @@
   <%= if Enum.member?(@current_user.likes |> Enum.map(fn(p) -> p.id end), @post.id) do %>
     <p class="pt3 hl-pink di">Liked!</p>
   <%= else %>
-    <%= link "Like", class: "pt3 hl-aqua link",
+    <%= link_primary "Like", class: "pt3 hl-aqua link",
                     to: post_post_path(@conn, :likes, @post.id),
                     method: "post" %>
 
   <%= end %>
 <%= else %>
   <p class="mt3">
-    <%= link "Log in", class: "f3 blue hover-faded-blue",
-    to: login_path(@conn, :index) %>
+    <%= link_to "Log in", to: login_path(@conn, :index) %>
     or
-    <%= link "Sign up", class: "f3 blue hover-faded-blue",
-    to: user_path(@conn, :new) %>
+    <%= link_to "Sign up", to: user_path(@conn, :new) %>
     to like this!
   </p>
 <%= end %>
