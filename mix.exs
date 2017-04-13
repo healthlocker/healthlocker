@@ -39,7 +39,7 @@ defmodule Healthlocker.Mixfile do
      {:cowboy, "~> 1.0"},
      {:earmark, "~> 1.1"},
      {:comeonin, "~> 3.0"},
-     {:credo, "~> 0.5", only: [:dev, :test]},
+     {:credo, "~> 0.7.2", only: [:dev, :test]},
      {:timex, "~> 3.0"},
      {:segment, github: "tonydaly/analytics-elixir"},
      {:bamboo, "~> 0.7"},
