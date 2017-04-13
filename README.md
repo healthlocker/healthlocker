@@ -1,4 +1,4 @@
-# Healthlocker
+# Healthlocker [![Build Status](https://travis-ci.org/healthlocker/healthlocker.svg?branch=master)](https://travis-ci.org/healthlocker/healthlocker)
 
 ## Getting started
 
