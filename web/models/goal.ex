@@ -6,7 +6,8 @@ defmodule Healthlocker.Goal do
     field :completed, :boolean
     field :notes, :string
     field :important, :boolean
-    has_many :steps, Healthlocker.Step, on_delete: :delete_all, on_replace: :delete
+    has_many :steps, Healthlocker.Step, on_delete: :delete_all,
+                                        on_replace: :delete
     belongs_to :user, Healthlocker.User
 
     timestamps()
@@ -28,6 +29,7 @@ defmodule Healthlocker.Goal do
   def get_goals(query, user_id) do
     from g in query,
     where: like(g.content, "%#Goal") and g.user_id == ^user_id
+    preload: [:steps]
   end
 
   def get_important_goals(query, user_id) do
