@@ -3,7 +3,7 @@ defmodule Healthlocker.GoalController do
 
   plug :authenticate
 
-  alias Healthlocker.Goal
+  alias Healthlocker.{Goal, Step}
 
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
@@ -26,9 +26,11 @@ defmodule Healthlocker.GoalController do
   end
 
   def new(conn, _params) do
-    changeset =  Goal.changeset(%Goal{steps: [
-        %Healthlocker.Step{}
-      ]})
+    # Build up a collection of 5 associated steps.
+    changeset = Goal.changeset(%Goal{
+      steps: Enum.map(1..5, fn _ -> Step.changeset(%Step{}) end)
+    })
+
     render(conn, "new.html", changeset: changeset)
   end
 
