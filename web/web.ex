@@ -52,6 +52,8 @@ defmodule Healthlocker.Web do
       import Healthlocker.Router.Helpers
       import Healthlocker.ErrorHelpers
       import Healthlocker.Gettext
+
+      use Healthlocker.ComponentHelpers
     end
   end
 

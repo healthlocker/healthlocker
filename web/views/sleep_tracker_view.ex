@@ -124,7 +124,7 @@ defmodule Healthlocker.SleepTrackerView do
     else
       Integer.to_string(date.month)
     end
-    day <> "/" <>month
+    day <> "/" <> month
   end
 
   @days_of_week ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
