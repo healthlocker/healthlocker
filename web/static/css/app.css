@@ -155,7 +155,7 @@ select:focus {
 }
 
 .b--hl-pink {
-  border: medium solid #EC4067;
+  border-color: #EC4067;
 }
 
 .hl-input-error {
