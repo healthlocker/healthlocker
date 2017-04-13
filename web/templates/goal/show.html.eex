@@ -7,16 +7,18 @@
   <p class="mv3 f6">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
 
   <%= for step <- @goal.steps do %>
-    <div class="w-100 flex items-center mb1">
-      <div class="w2">
-        <%= if step.complete do %>
-            <%= img_tag("/images/Checkmark.svg", class: "w-100 dib fl") %>
-        <%= else %>
-            <%= img_tag("/images/unchecked.svg", class: "w-100 dib fl") %>
-        <% end %>
+    <%= if is_bitstring(step.details) do %>
+      <div class="w-100 flex items-center mb1">
+        <div class="w2">
+          <%= if step.complete do %>
+              <%= img_tag("/images/Checkmark.svg", class: "w-100 dib fl") %>
+          <%= else %>
+              <%= img_tag("/images/unchecked.svg", class: "w-100 dib fl") %>
+          <% end %>
+        </div>
+        <p class="ml2"><%= step.details %></p>
       </div>
-      <p class="ml2"><%= step.details %></p>
-    </div>
+    <% end %>
   <% end %>
 
   <%= if !@goal.important do %>
