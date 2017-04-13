@@ -1,4 +1,9 @@
 defmodule Healthlocker.Step do
+
+  @moduledoc """
+  Defines steps schema and defines methods for interacting with it 
+  """
+
   use Healthlocker.Web, :model
 
   schema "steps" do
