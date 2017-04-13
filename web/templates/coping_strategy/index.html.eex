@@ -1,14 +1,20 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">Coping strategies</h3>
-  <%= link_primary "Add new", to: coping_strategy_path(@conn, :new) %>
+  <div class="db">
+    <%= link_primary "Add new", to: coping_strategy_path(@conn, :new) %>
+  </div>
+
   <%= for coping_strategy <- @coping_strategies do %>
-  <a href="/coping-strategy/<%= coping_strategy.id %>" class="link">
-    <section class="bb b--black-10">
-      <h4 class="ma2 pv2 ph3-m ph4-l f5 lh-copy hl-dark-blue">
-        <%= markdown String.trim_trailing(coping_strategy.content, " #CopingStrategy") %>
-      </h4>
-    </section>
-  </a>
+    <a href="/coping-strategy/<%= coping_strategy.id %>" class="link w-100 mv3">
+      <section class="db bb b--black-10">
+        <h4 class="ma2 pv2 ph3-m ph4-l f5 lh-copy hl-dark-blue">
+          <%= markdown String.trim_trailing(coping_strategy.content, " #CopingStrategy") %>
+        </h4>
+      </section>
+    </a>
   <% end %>
-  <%= link "Back to Toolkit", to: toolkit_path(@conn, :index), class: "mt4 dim ph3 fr" %>
+
+  <div class="tr">
+    <%= link_to "Back to Toolkit", to: toolkit_path(@conn, :index) %>
+  </div>
 </div>
