@@ -10,11 +10,9 @@ defmodule Healthlocker.GoalController do
     important_goals = Goal
                      |> Goal.get_important_goals(user_id)
                      |> Repo.all
-                     |> Repo.preload(:steps)
     unimportant_goals = Goal
                      |> Goal.get_unimportant_goals(user_id)
                      |> Repo.all
-                     |> Repo.preload(:steps)
     all_goals = Enum.concat(important_goals, unimportant_goals)
 
     if Kernel.length(all_goals) == 0 do
@@ -39,7 +37,6 @@ defmodule Healthlocker.GoalController do
     goal = Goal
           |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one!
-          |> Repo.preload(:steps)
     render conn, "show.html", goal: goal
   end
 
