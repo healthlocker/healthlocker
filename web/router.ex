@@ -57,6 +57,7 @@ defmodule Healthlocker.Router do
       get "/next-date", SleepTrackerController, :next_date
     end
     resources "/care-plan", CarePlanController, only: [:index]
+    resources "/caseload", CaseloadController, only: [:index]
   end
 
   # Other scopes may use custom stacks.
