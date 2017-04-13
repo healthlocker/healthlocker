@@ -1,4 +1,10 @@
 defmodule Healthlocker.ComponentHelpers.Button do
+  @moduledoc """
+  Convenience methods for generating styled `<a>`, `<button>` and `<input>`
+  elements in HTML. This enforces our styleguide, explicity primary, secondary
+  and inactive styles.
+  """
+
   use Phoenix.HTML
 
   @base_classes "f5 link dim dib ph3 pv2 br-pill hl-dark-blue pointer"
