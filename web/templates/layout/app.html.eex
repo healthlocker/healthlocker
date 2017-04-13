@@ -32,6 +32,16 @@
           <nav class="f2 fw3 tracked">
             <i id="open-nav" class="fa fa-bars dim white dib fl" aria-hidden="true"></i>
             <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
+            <%= if @current_user do %>
+              <%= if @current_user.role == "clinician" do %>
+              <div class="fr">
+
+                <%= link "Caseload", to: caseload_path(@conn, :index), class: "pa3 f6 white-80 db hover-white link" %>
+                <a class="pa3 f6 white-80 db hover-white link" href="#">Resources</a>
+                <a class="pa3 f6 white-80 db hover-white link" href="#">My profile</a>
+              </div>
+              <% end %>
+            <% end %>
           </nav>
         </header>
 
