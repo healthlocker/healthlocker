@@ -33,17 +33,21 @@ defmodule Healthlocker.Goal do
   def get_important_goals(query, user_id) do
     from g in query,
     where: like(g.content, "%#Goal") and g.user_id == ^user_id and g.important,
-    order_by: [desc: g.updated_at]
+    order_by: [desc: g.updated_at],
+    preload: [:steps]
   end
 
   def get_unimportant_goals(query, user_id) do
     from g in query,
     where: like(g.content, "%#Goal") and g.user_id == ^user_id and not g.important,
-    order_by: [desc: g.updated_at]
+    order_by: [desc: g.updated_at],
+    preload: [:steps]
   end
 
   def get_goal_by_user(query, id, user_id) do
+    steps_query = from s in Healthlocker.Step, order_by: s.inserted_at
     from g in query,
-    where: g.id == ^id and g.user_id == ^user_id
+    where: g.id == ^id and g.user_id == ^user_id,
+    preload: [steps: ^steps_query]
   end
 end
