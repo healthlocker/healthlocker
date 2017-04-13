@@ -78,14 +78,14 @@ defmodule Healthlocker.GoalController do
     goal = Goal
           |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one
-          |> Repo.preload(:steps)
           |> Map.update!(:content, &(String.trim_trailing(&1, " #Goal")))
     changeset = Goal.changeset(goal)
     render(conn, "edit.html", goal: goal, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "goal" => goal_params}) do
-    goal = Repo.get!(Goal, id)
+    goal = Goal
+      |> Repo.get!(id)
       |> Repo.preload(:steps)
     content = get_content(goal_params)
     changeset = Goal.changeset(goal, content)
@@ -105,7 +105,6 @@ defmodule Healthlocker.GoalController do
     goal = Goal
           |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one
-          |> Repo.preload(:steps)
 
     Repo.delete!(goal)
 
