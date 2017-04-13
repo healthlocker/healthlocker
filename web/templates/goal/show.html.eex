@@ -8,7 +8,7 @@
   <p class="mv3 f6">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
 
   <%= for step <- @goal.steps do %>
-    <div class="w-100 flex items-center">
+    <div class="w-100 flex items-center mb1">
       <div class="w2">
         <%= if step.complete do %>
             <%= img_tag("/images/Checkmark.svg", class: "w-100 dib fl") %>
