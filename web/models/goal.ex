@@ -6,6 +6,8 @@ defmodule Healthlocker.Goal do
     field :completed, :boolean
     field :notes, :string
     field :important, :boolean
+    has_many :steps, Healthlocker.Step, on_delete: :delete_all,
+                                        on_replace: :delete
     belongs_to :user, Healthlocker.User
 
     timestamps()
@@ -15,6 +17,7 @@ defmodule Healthlocker.Goal do
     struct
     |> mark_important_changeset(params)
     |> cast(params, [:content])
+    |> cast_assoc(:steps)
     |> validate_required(:content)
   end
 
@@ -25,23 +28,28 @@ defmodule Healthlocker.Goal do
 
   def get_goals(query, user_id) do
     from g in query,
-    where: like(g.content, "%#Goal") and g.user_id == ^user_id
+    where: like(g.content, "%#Goal") and g.user_id == ^user_id,
+    preload: [:steps]
   end
 
   def get_important_goals(query, user_id) do
     from g in query,
     where: like(g.content, "%#Goal") and g.user_id == ^user_id and g.important,
-    order_by: [desc: g.updated_at]
+    order_by: [desc: g.updated_at],
+    preload: [:steps]
   end
 
   def get_unimportant_goals(query, user_id) do
     from g in query,
     where: like(g.content, "%#Goal") and g.user_id == ^user_id and not g.important,
-    order_by: [desc: g.updated_at]
+    order_by: [desc: g.updated_at],
+    preload: [:steps]
   end
 
   def get_goal_by_user(query, id, user_id) do
+    steps_query = from s in Healthlocker.Step, order_by: s.inserted_at
     from g in query,
-    where: g.id == ^id and g.user_id == ^user_id
+    where: g.id == ^id and g.user_id == ^user_id,
+    preload: [steps: ^steps_query]
   end
 end
