@@ -1,8 +1,7 @@
 defmodule Healthlocker.GoalControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.Goal
-  alias Healthlocker.User
+  alias Healthlocker.{Goal, User, Step}
 
   @valid_attrs %{content: "some content"}
   @invalid_attrs %{content: ""}
@@ -81,8 +80,11 @@ defmodule Healthlocker.GoalControllerTest do
     end
 
     test "renders form for editing goal", %{conn: conn} do
-      goal = Repo.insert %Goal{content: "some content #Goal", user_id: 123456}
-      conn = get conn, goal_path(conn, :edit, elem(goal, 1))
+      {:ok, goal} = Repo.insert %Goal{
+        content: "some content #Goal",
+        user_id: 123_456,
+      }
+      conn = get conn, goal_path(conn, :edit, goal)
       assert html_response(conn, 200) =~ "Edit goal"
     end
 
