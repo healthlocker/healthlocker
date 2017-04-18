@@ -163,6 +163,10 @@ select:focus {
   border: 1px solid #EC4067;
 }
 
+.hl-link:visited {
+  color: #242F4F;
+}
+
 /* Styleguide */
 
 code {
