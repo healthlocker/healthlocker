@@ -23,7 +23,7 @@ Shall I install rebar3? (if running non-interactively, use: "mix local.rebar --f
 * Install Node.js dependencies with `npm install`
 * Start Phoenix endpoint with `mix phoenix.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser and checkout the [styleguide](http://localhost:4000/components).
 
 Ready to run in production? Please [check the deployment guides](http://www.phoenixframework.org/docs/deployment).
 
@@ -136,3 +136,4 @@ or phone number
   * times they woke up each night for the past week
   * notes they made about their sleep from the past week
 * Users can view the previous 7 days sleep data, or go forward once they've gone back.
+* [Styleguide](https://www.healthlocker.uk/components)
