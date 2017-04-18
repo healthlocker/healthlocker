@@ -1,16 +1,36 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">Toolkit</h3>
-  <p class="di b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></p>
-  <%= link_primary "Edit", to: goal_path(@conn, :edit, @goal) %>
-  <p class="mv3">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
-  <%= link_secondary "Delete goal", to: goal_path(@conn, :delete, @goal), method: "delete" %>
-  <%= if !@goal.important do %>
-    <%= link_secondary "Mark as important", to: goal_path(@conn, :mark_important, @goal.id), method: "put" %>
-  <%= else %>
-    <%= link_secondary "Mark as unimportant", to: goal_path(@conn, :mark_important, @goal.id), method: "put" %>
+  <div class="tr">
+    <%= link_secondary "Edit", to: goal_path(@conn, :edit, @goal) %>
+  </div>
+  <span class="b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></span>
+  <p class="mv3 f6">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
+
+  <%= for step <- @goal.steps do %>
+    <%= if is_bitstring(step.details) do %>
+      <div class="w-100 flex items-center mb1">
+        <div class="w2">
+          <%= if step.complete do %>
+              <%= img_tag("/images/Checkmark.svg", class: "w-100 dib fl") %>
+          <%= else %>
+              <%= img_tag("/images/unchecked.svg", class: "w-100 dib fl") %>
+          <% end %>
+        </div>
+        <p class="ml2"><%= step.details %></p>
+      </div>
+    <% end %>
   <% end %>
 
-  <div class="tr">
+  <%= if !@goal.important do %>
+    <%= link_primary "Mark as important", to: goal_path(@conn, :mark_important, @goal.id), method: "put" %>
+  <%= else %>
+    <%= link_primary "Mark as unimportant", to: goal_path(@conn, :mark_important, @goal.id), method: "put" %>
+  <% end %>
+  <div class="tr mt4">
+    <%= link_secondary "Delete goal", to: goal_path(@conn, :delete, @goal), method: "delete" %>
+  </div>
+
+  <div class="tr mt3">
     <%= link_to "Back to Toolkit", to: toolkit_path(@conn, :index) %>
   </div>
 </div>

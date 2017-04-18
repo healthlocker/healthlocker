@@ -1,15 +1,18 @@
 <div class="ma3 ma4-m ma4-l">
   <h3 class="tc">Toolkit</h3>
-    <p class="di b">
-      <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
-    </p>
+  <div class="tr">
     <%= link "Edit", to: coping_strategy_path(@conn, :edit, @coping_strategy),
-                     class: "di"%>
-   <p class="mv3">Created
-     <%= Healthlocker.ComponentView.pretty_date(@coping_strategy.inserted_at) %>
-   </p>
-   <%= link "Delete coping strategy",
-   to: coping_strategy_path(@conn, :delete, @coping_strategy),
-   method: "delete"%>
-   <%= link "Back to Toolkit", to: toolkit_path(@conn, :index), class: "mt4 dim ph3 fr" %>
+    class: "mb3 f5 link dim br-pill ph3 pv2 hl-dark-blue hl-bg-yellow tc pointer w-40 dib" %>
+  </div>
+  <span class="b">
+    <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
+  </span>
+  <p class="mv3 f6">Created
+    <%= Healthlocker.ComponentView.pretty_date(@coping_strategy.inserted_at) %>
+  </p>
+  <div class="tr">
+    <%= link "Delete strategy",
+    to: coping_strategy_path(@conn, :delete, @coping_strategy), method: "delete",
+    class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer tc w-40" %>
+  </div>
 </div>
