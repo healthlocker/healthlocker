@@ -42,4 +42,12 @@ config :healthlocker, Healthlocker.Repo,
   hostname: "localhost",
   pool_size: 10
 
+config :healthlocker, Healthlocker.ReadOnlyRepo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "healthlocker_read_only",
+  hostname: "localhost",
+  pool_size: 10
+
 config :healthlocker, :analytics, Healthlocker.Analytics.Segment
