@@ -6,6 +6,7 @@
 
     <div class="bg-white pv4">
       <h2 class="f3">Color Palette</h1>
+      <p class="f5 lh-copy sans-serif">The naming convention for color classes: <code>.hl-dark-blue</code> or <code>.hl-bg-terracotta</code> (for background colours)</p>
       <ul class="list pl0 ml0 cf">
         <li class="fl w-100 w-50-m w-25-l mb1">
           <div class="fl w-40 pv4 hl-bg-grey"></div>
