@@ -46,7 +46,7 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",
-  database: "healthlocker_read_only",
+  database: "healthlocker_dev",
   hostname: "localhost",
   pool_size: 10
 
