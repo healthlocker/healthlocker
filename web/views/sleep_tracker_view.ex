@@ -128,15 +128,19 @@ defmodule Healthlocker.SleepTrackerView do
   end
 
   @days_of_week ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-  def day_of_week(date, 6) do
+  defp day_of_week(date, 6) do
     @days_of_week |> Enum.at(6)
   end
 
-  def day_of_week(date, n) do
+  defp day_of_week(date, n) do
     if Date.day_of_week(date) == n do
       @days_of_week |> Enum.at(n - 1)
     else
       day_of_week(date, n + 1)
     end
+  end
+
+  def date_with_day_and_month(date) do
+    day_of_week(date, 0) <> " " <> Integer.to_string(date.day) <> "th " <> Timex.month_name(date.month)
   end
 end
