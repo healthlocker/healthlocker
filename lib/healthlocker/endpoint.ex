@@ -1,6 +1,10 @@
 defmodule Healthlocker.Endpoint do
   use Phoenix.Endpoint, otp_app: :healthlocker
 
+  if Application.get_env(:healthlocker, :sql_sandbox) do
+    plug Phoenix.Ecto.SQL.Sandbox
+  end
+
   socket "/socket", Healthlocker.UserSocket
 
   # Serve at "/" the static files from "priv/static" directory.
