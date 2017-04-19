@@ -6,7 +6,7 @@
 
   <p class="b">Privacy</p>
   <p>Your privacy is important to us, for this reason we have designed a
-    <%= link "privacy statement", to: page_path(@conn, :show, "privacy") %>
+    <%= link_to("privacy statement", to: page_path(@conn, :show, "privacy")) %>
     which will outline how we protect your privacy. We ask you to read this
     statement so that you can make an informed decision regarding creating your
     account.
