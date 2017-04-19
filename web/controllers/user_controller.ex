@@ -2,6 +2,7 @@ defmodule Healthlocker.UserController do
   use Healthlocker.Web, :controller
 
   alias Healthlocker.User
+  alias Healthlocker.Plugs.Auth
 
   plug :authenticate when action in [:index]
 
@@ -86,7 +87,7 @@ defmodule Healthlocker.UserController do
     case Repo.update(changeset) do
       {:ok, user} ->
         conn
-        |> Healthlocker.Auth.login(user)
+        |> Auth.login(user)
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->

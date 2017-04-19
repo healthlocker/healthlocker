@@ -7,7 +7,7 @@ defmodule Healthlocker.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Healthlocker.Auth, repo: Healthlocker.Repo
+    plug Healthlocker.Plugs.Auth, repo: Healthlocker.Repo
   end
 
   pipeline :api do

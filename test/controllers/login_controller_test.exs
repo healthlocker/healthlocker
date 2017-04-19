@@ -39,7 +39,7 @@ defmodule Healthlocker.LoginControllerTest do
     end
 
     test "/login :: create with invalid data" do
-      conn = post conn, login_path(conn, :create), login: @invalid_attrs
+      conn = post build_conn(), login_path(build_conn(), :create), login: @invalid_attrs
       assert get_flash(conn, :error) == "Invalid email/password combination"
       assert html_response(conn, 200) =~ "Email"
     end
@@ -73,7 +73,7 @@ defmodule Healthlocker.LoginControllerTest do
     end
 
     test "/login :: create with invalid data" do
-      conn = post conn, login_path(conn, :create), login: @invalid_attrs
+      conn = post build_conn(), login_path(build_conn(), :create), login: @invalid_attrs
       assert get_flash(conn, :error) == "Invalid email/password combination"
       assert html_response(conn, 200) =~ "Email"
     end
