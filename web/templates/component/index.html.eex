@@ -2,7 +2,7 @@
   <div class="fl w-100 w-100-ns pa2">
     <h3 class="f6 ttu tracked mt0">Styleguide</h3>
     <p class="measure f5 lh-copy sans-serif">Welcome to the Healthlocker styleguide. This is where we document the components that make up the Healthlocker application.</p>
-    <p class="measure f5 lh-copy sans-serif">If you're looking to build any front-end pages look here for which components to use, and then use the corresponding helper to correctly generate the markup (with Tachyons classes).</p>
+    <p class="measure f5 lh-copy sans-serif">If you're looking to build any front-end pages look here for which components to use, and then use the corresponding helper or partial to correctly generate the markup (with Tachyons classes).</p>
 
     <div class="bg-white pv4">
       <h2 class="f3">Color Palette</h1>
@@ -65,6 +65,14 @@
         </li>
       </ul>
 
+      <h2 class="f3">Helper Function - Standard Components</h1>
+      <p class="f5 lh-copy sans-serif">Helper functions are used for individual standard components e.g. a link or a button. They're used for a component that should consistently look the same but that may be used in multiple different contexts.</p>
+      <p class="f5 lh-copy sans-serif">To use a helper standard component you need to do 3 things:</p>
+      <ul class="f5 lh-copy sans-serif">
+        <li>Find an existing component in <code>web/views/component_helpers</code> or create/amend your own</li>
+        <li>Check your component_helper file is imported in <code>web/views/component_helpers.ex</code></li>
+        <li>Call the function in your html where you wish to position your component.</li>
+      </ul>
       <h2 class="f3">Links</h2>
       <p class="measure f5 lh-copy sans-serif">Our basic anchor components.</p>
 
@@ -87,6 +95,10 @@
       <p class="lh-copy measure f5 sans-serif">
         We use flash messages to show success and error messages after some action has taken place.
       </p>
+      <h2 class="f3 mt6 pt4">Partials - Standard Components</h1>
+      <p class="measure f5 lh-copy sans-serif">Partials are small templates.
+        They are used to contain a collection of elements that always used together.
+        Partials can contain helper standard components.</p>
 
       <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
         <div class="ba bw2 br3 b--hl-yellow hl-bg-success center tc pv2 pv3-l mh4-l mb3" role="alert">
