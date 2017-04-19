@@ -74,22 +74,37 @@
         <li>Check your component_helper file is imported in <code>web/views/component_helpers.ex</code></li>
         <li>Call the function in your html where you wish to position your component.</li>
       </ul>
+      <p class="f5 lh-copy sans-serif">Take this button for example: <%= link_primary("Click me!", to: "#somewhere") %></p>
+      <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
+      <img src="https://cloud.githubusercontent.com/assets/16775804/25175681/a7134716-24f3-11e7-9d8f-da1eb057c3fa.png" width= 380px/>
+      <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/views/component_helpers/button.ex</code>:</p>
+      <img src="https://cloud.githubusercontent.com/assets/16775804/25175893/5565244c-24f4-11e7-9dd4-a43e1a332e14.png" width= 600px/>
+      <p class="f5 lh-copy sans-serif">Which you can see has been imported in <code>web/views/component_helpers.ex</code>:</p>
+      <img src="https://cloud.githubusercontent.com/assets/16775804/25179744/1226413e-2503-11e7-8b0e-52fad14d89ed.png" width= 380px/>
+
+      <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
+
       <h2 class="f3">Links</h2>
       <p class="measure f5 lh-copy sans-serif">Our basic anchor components.</p>
 
-      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
+      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4 w-40-l fl">
         <%= link_to("Link", to: coping_strategy_path(@conn, :new)) %>
+      </div>
+      <div class="pa3 mv4 w-60-l fl">
+        <img src="https://cloud.githubusercontent.com/assets/16775804/25176140/1bebd9d0-24f5-11e7-96b6-37c51a367d87.png" />
       </div>
 
       <h2 class="f3">Buttons</h1>
       <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
 
-      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
+      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4 w-50-l fl">
         <%= link_primary("Primary", to: "#somewhere") %>
-        <%= link_secondary("Secondary", to: "#") %>
+        <%= link_secondary("Secondary", to: "/contact-us") %>
         <%= link_inactive("Inactive", to: "#") %>
-
         <%#= button("Button", to: "#", class: primary_classes) %>
+      </div>
+      <div class="pa3 mv4 w-50-l fl">
+        <img src="https://cloud.githubusercontent.com/assets/16775804/25179121/6a987b82-2500-11e7-8745-9769a604f595.png" />
       </div>
 
       <h2 class="f3 mt6 pt4">Partials - Standard Components</h1>
