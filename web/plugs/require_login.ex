@@ -1,6 +1,5 @@
 defmodule Healthlocker.Plugs.RequireLogin do
   import Plug.Conn
-  use Healthlocker.Web, :controller
 
   def init(opts), do: opts
   def call(conn, _) do
@@ -13,8 +12,8 @@ defmodule Healthlocker.Plugs.RequireLogin do
 
   defp redirect_to_login(conn) do
     conn
-    |> put_flash(:error,  "You must be logged in to access that page!")
-    |> redirect(to: login_path(conn, :index))
+    |> Phoenix.Controller.put_flash(:error,  "You must be logged in to access that page!")
+    |> Phoenix.Controller.redirect(to: Healthlocker.Router.Helpers.login_path(conn, :index))
     |> halt
   end
 end
