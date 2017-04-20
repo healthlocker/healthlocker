@@ -1,6 +1,8 @@
 <div class="bb b--black-20 pb4 mt4">
   <span class="fl mt0">Already an existing user?</span>
-  <%= link "Log in", to: login_path(@conn, :index), class: "link dim fr mt0 db" %>
+  <div class="tr">
+    <%= link_to("Log in", to: login_path(@conn, :index)) %>
+  </div>
 </div>
 <div class="br2 mv3 center">
   <%= form_for @changeset, @action, fn f -> %>

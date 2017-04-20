@@ -1,9 +1,7 @@
 defmodule Healthlocker.SleepTrackerController do
   use Healthlocker.Web, :controller
-
-  plug :authenticate
-  alias Healthlocker.SleepTracker
   use Timex
+  alias Healthlocker.SleepTracker
 
   def get_sleep(conn, date) do
     user_id = conn.assigns.current_user.id
@@ -76,17 +74,6 @@ defmodule Healthlocker.SleepTrackerController do
         {:error, changeset} ->
           render(conn, "new.html", changeset: changeset)
       end
-    end
-  end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error,  "You must be logged in to access that page!")
-      |> redirect(to: login_path(conn, :index))
-      |> halt()
     end
   end
 

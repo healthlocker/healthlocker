@@ -43,6 +43,11 @@ config :phoenix, :template_engines,
 config :healthlocker, Healthlocker.Repo,
   loggers: [Appsignal.Ecto, Ecto.LogEntry]
 
+config :ecto_factory, repo: Healthlocker.Repo
+config :ecto_factory, factories: [
+  user: Healthlocker.User
+]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

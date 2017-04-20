@@ -2,8 +2,7 @@ defmodule Healthlocker.UserController do
   use Healthlocker.Web, :controller
 
   alias Healthlocker.User
-
-  plug :authenticate when action in [:index]
+  alias Healthlocker.Plugs.Auth
 
   def index(conn, _params) do
     render conn, "index.html"
@@ -86,24 +85,13 @@ defmodule Healthlocker.UserController do
     case Repo.update(changeset) do
       {:ok, user} ->
         conn
-        |> Healthlocker.Auth.login(user)
+        |> Auth.login(user)
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render(conn, "signup3.html", changeset: changeset,
                                      action: "/users/#{user.id}/#{:create3}",
                                      user: user)
-    end
-  end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error,  "You must be logged in to access that page!")
-      |> redirect(to: login_path(conn, :index))
-      |> halt()
     end
   end
 end

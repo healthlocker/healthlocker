@@ -26,7 +26,7 @@ defmodule Healthlocker.Analytics do
   @api Application.get_env(:healthlocker, :analytics)
 
   def identify(%Healthlocker.User{} = user) do
-    @api.identify(user.id)
+    @api.identify(user.id, {})
   end
 
   def track(%Healthlocker.User{} = user, action, model) do
