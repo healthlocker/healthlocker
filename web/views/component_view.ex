@@ -37,6 +37,7 @@ defmodule Healthlocker.ComponentView do
   end
 
   defp handle_url(tip) do
+    IO.inspect tip
     cond do
       String.downcase(tip) == "#tip" -> ""
       true -> "?tag=#{tip}"
@@ -46,7 +47,7 @@ defmodule Healthlocker.ComponentView do
   defp add_link(tip, html) do
     html
     |> String.split(tip)
-    |> Enum.join("<a href=\"/tips#{handle_url(tip)}\" class=\"link hl-aqua underline hl-link\">#{tip}</a>")
+    |> Enum.join("<a href=\"/tips#{handle_url(tip)}\" class=\"link hl-aqua underline\">#{tip}</a>")
   end
 
   defp add_links(html) do
