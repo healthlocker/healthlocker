@@ -2,22 +2,22 @@ defmodule Healthlocker.EPJSUser do
   use Healthlocker.Web, :model
 
   schema "epjs_users" do
-    field :patient_id, :integer
-    field :surname, :string
-    field :forename, :string
-    field :title, :string
-    field :patient_name, :string
-    field :trust_id, :string
-    field :nhs_number, :string
-    field :dob, :utc_datetime
-    field :spell_number, :integer
-    field :spell_start_date, :utc_datetime
-    field :spell_end_date, :utc_datetime
+    field :Patient_ID, :integer
+    field :Surname, :string
+    field :Forename, :string
+    field :Title, :string
+    field :Patient_Name, :string
+    field :Trust_ID, :string
+    field :NHS_Number, :string
+    field :DOB, :utc_datetime
+    field :Spell_Number, :integer
+    field :Spell_Start_Date, :utc_datetime
+    field :Spell_End_Date, :utc_datetime
   end
 
   def changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:patient_id, :surname, :forename, :nhs_number, :dob])
-    |> validate_required([:surname, :forename, :nhs_number, :dob])
+    |> cast(params, [:Patient_ID, :Surname, :Forename, :NHS_Number, :DOB])
+    |> validate_required([:Surname, :Forename, :NHS_Number, :DOB])
   end
 end

@@ -3,17 +3,17 @@ defmodule Healthlocker.ReadOnlyRepo.Migrations.CreateEpjsUsers do
 
   def change do
     create table(:epjs_users) do
-      add :patient_id, :integer, null: false
-      add :surname, :string
-      add :forename, :string
-      add :title, :string
-      add :patient_name, :string
-      add :trust_id, :string
-      add :nhs_number, :string
-      add :dob, :utc_datetime
-      add :spell_number, :integer
-      add :spell_start_date, :utc_datetime
-      add :spell_end_date, :utc_datetime
+      add :Patient_ID, :integer, null: false
+      add :Surname, :string
+      add :Forename, :string
+      add :Title, :string
+      add :Patient_Name, :string
+      add :Trust_ID, :string
+      add :NHS_Number, :string
+      add :DOB, :utc_datetime
+      add :Spell_Number, :integer
+      add :Spell_Start_Date, :utc_datetime
+      add :Spell_End_Date, :utc_datetime
     end
   end
 end

@@ -19,17 +19,17 @@ defmodule Healthlocker.EPJSSeeder do
     {:ok, dob_datetime} = DateTime.from_naive(~N[1988-05-24 13:26:08.003], "Etc/UTC")
     {:ok, start_datetime} = DateTime.from_naive(~N[2008-08-16 13:26:08.003], "Etc/UTC")
     ReadOnlyRepo.insert!(%EPJSUser{
-      patient_id: 200,
-      surname: Faker.Name.last_name(),
-      forename: Faker.Name.first_name(),
-      title: Faker.Name.title(),
-      patient_name: Faker.Name.name(),
-      trust_id: to_string(Faker.Lorem.characters(10)),
-      nhs_number: to_string(Faker.Lorem.characters(20)),
-      dob: dob_datetime,
-      spell_number: Enum.random(1..5),
-      spell_start_date: start_datetime,
-      spell_end_date: nil
+      Patient_ID: 200,
+      Surname: Faker.Name.last_name(),
+      Forename: Faker.Name.first_name(),
+      Title: Faker.Name.title(),
+      Patient_Name: Faker.Name.name(),
+      Trust_ID: to_string(Faker.Lorem.characters(10)),
+      NHS_Number: to_string(Faker.Lorem.characters(20)),
+      DOB: dob_datetime,
+      Spell_Number: Enum.random(1..5),
+      Spell_Start_Date: start_datetime,
+      Spell_End_Date: nil
     })
   end
 
@@ -37,17 +37,17 @@ defmodule Healthlocker.EPJSSeeder do
     {:ok, dob_datetime} = DateTime.from_naive(~N[1988-05-24 13:26:08.003], "Etc/UTC")
     {:ok, start_datetime} = DateTime.from_naive(~N[2008-08-16 13:26:08.003], "Etc/UTC")
     ReadOnlyRepo.insert!(%EPJSUser{
-      patient_id: n,
-      surname: Faker.Name.last_name(),
-      forename: Faker.Name.first_name(),
-      title: Faker.Name.title(),
-      patient_name: Faker.Name.name(),
-      trust_id: to_string(Faker.Lorem.characters(10)),
-      nhs_number: to_string(Faker.Lorem.characters(20)),
-      dob: dob_datetime,
-      spell_number: Enum.random(1..5),
-      spell_start_date: start_datetime,
-      spell_end_date: nil
+      Patient_ID: n,
+      Surname: Faker.Name.last_name(),
+      Forename: Faker.Name.first_name(),
+      Title: Faker.Name.title(),
+      Patient_Name: Faker.Name.name(),
+      Trust_ID: to_string(Faker.Lorem.characters(10)),
+      NHS_Number: to_string(Faker.Lorem.characters(20)),
+      DOB: dob_datetime,
+      Spell_Number: Enum.random(1..5),
+      Spell_Start_Date: start_datetime,
+      Spell_End_Date: nil
     })
 
     add_epjs_users(n + 1)
@@ -63,45 +63,45 @@ end
 {:ok, start3} = DateTime.from_naive(~N[2011-07-01 13:26:08.003], "Etc/UTC")
 
 ReadOnlyRepo.insert!(%EPJSUser{
-  patient_id: 201,
-  surname: "Hernandez",
-  forename: "Angela",
-  title: "Ms.",
-  patient_name: "Angela Hernandez",
-  trust_id: "fYXSryfK7N",
-  nhs_number: "LbweJ2oXsNl14ayv37d7",
-  dob: dob1,
-  spell_number: 2,
-  spell_start_date: start1,
-  spell_end_date: nil
+  Patient_ID: 201,
+  Surname: "Hernandez",
+  Forename: "Angela",
+  Title: "Ms.",
+  Patient_Name: "Angela Hernandez",
+  Trust_ID: "fYXSryfK7N",
+  NHS_Number: "LbweJ2oXsNl14ayv37d7",
+  DOB: dob1,
+  Spell_Number: 2,
+  Spell_Start_Date: start1,
+  Spell_End_Date: nil
 })
 
 ReadOnlyRepo.insert!(%EPJSUser{
-  patient_id: 202,
-  surname: "Burns",
-  forename: "Evan",
-  title: "Mr.",
-  patient_name: "Evan Burns",
-  trust_id: "uG0lDAx0S8",
-  nhs_number: "gLiyI9gsgoHjQc6pMcaT",
-  dob: dob2,
-  spell_number: 3,
-  spell_start_date: start2,
-  spell_end_date: nil
+  Patient_ID: 202,
+  Surname: "Burns",
+  Forename: "Evan",
+  Title: "Mr.",
+  Patient_Name: "Evan Burns",
+  Trust_ID: "uG0lDAx0S8",
+  NHS_Number: "gLiyI9gsgoHjQc6pMcaT",
+  DOB: dob2,
+  Spell_Number: 3,
+  Spell_Start_Date: start2,
+  Spell_End_Date: nil
 })
 
 ReadOnlyRepo.insert!(%EPJSUser{
-  patient_id: 203,
-  surname: "Sandoval",
-  forename: "Lisa",
-  title: "Mrs.",
-  patient_name: "Lisa Sandoval",
-  trust_id: "cJY6pckGwh",
-  nhs_number: "E8zCRgZ4ByGzKqCMnBKD",
-  dob: dob3,
-  spell_number: 1,
-  spell_start_date: start3,
-  spell_end_date: nil
+  Patient_ID: 203,
+  Surname: "Sandoval",
+  Forename: "Lisa",
+  Title: "Mrs.",
+  Patient_Name: "Lisa Sandoval",
+  Trust_ID: "cJY6pckGwh",
+  NHS_Number: "E8zCRgZ4ByGzKqCMnBKD",
+  DOB: dob3,
+  Spell_Number: 1,
+  Spell_Start_Date: start3,
+  Spell_End_Date: nil
 })
 
 Healthlocker.EPJSSeeder.add_epjs_users(1)
