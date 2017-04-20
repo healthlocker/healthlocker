@@ -36,7 +36,7 @@
         </header>
 
         <nav class="sidenav h-100 absolute z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc" id="my-sidenav">
-            <img id="close-nav" class="w2" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
+          <%= img_tag("/images/x_icon.svg", id: "close-nav", class: "w2") %>
           <%= link "Home", to: page_path(@conn, :index), class: "pa3 f3 white-80 db hover-white" %>
           <%= link "About", to: page_path(@conn, :show, "about"), class: "pa3 f3 white-80 db hover-white" %>
           <%= if @current_user do %>
@@ -87,7 +87,7 @@
     <script>window.userToken = "<%= assigns[:user_token] %>"</script>
     <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <%= if @current_user do %>
+    <%= if @current_user && segment?() do %>
       <script type="text/javascript">
         require("web/static/js/segment").Segment.identify("<%= @current_user.id %>", "<%= @current_user.name %>", "<%= @current_user.email %>")
       </script>
