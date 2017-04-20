@@ -38,6 +38,7 @@
         <nav class="sidenav h-100 absolute z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc" id="my-sidenav">
           <%= img_tag("/images/x_icon.svg", id: "close-nav", class: "w2") %>
           <%= link "Home", to: page_path(@conn, :index), class: "pa3 f3 white-80 db hover-white" %>
+          <%= img_tag("/images/x_icon.svg", id: "close-nav", class: "w2 mt5") %>
           <%= link "Home", to: page_path(@conn, :index), class: "pa3 pt5-l f3 white-80 db hover-white" %>
           <%= link "About", to: page_path(@conn, :show, "about"), class: "pa3 f3 white-80 db hover-white" %>
           <%= if @current_user do %>
