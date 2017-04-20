@@ -23,7 +23,7 @@
 
     <div class="form-group">
       <label for="nhs-number" class="f5 b db mt2 mb2">
-        NHS number <%= link "(?)", to: account_path(@conn, :nhs_help)%></label>
+        NHS number <%= link_to("(?)", to: account_path(@conn, :nhs_help))%></label>
       <input type="text" name="nhs-number" value="" class="pa3 input-reset bn hl-bg-grey w-100">
     </div>
 

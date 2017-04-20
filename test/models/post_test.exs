@@ -16,30 +16,6 @@ defmodule Healthlocker.PostTest do
     refute changeset.valid?
   end
 
-  test "find_single_story returns a story" do
-    fixture(:post)
-    story = Post |> Post.find_single_story |> Repo.one
-    assert String.contains? story.content, "#story"
-  end
-
-  test "find_single_story does not return any tips" do
-    fixture(:post)
-    story = Post |> Post.find_single_story |> Repo.one
-    refute String.contains? story.content, "#tip"
-  end
-
-  test "find_single_tip returns a tip" do
-    fixture(:post)
-    tip = Post |> Post.find_single_tip |> Repo.one
-    assert String.contains? tip.content, "#tip"
-  end
-
-  test "find_single_tip does not return any stories" do
-    fixture(:post)
-    tip = Post |> Post.find_single_tip |> Repo.one
-    refute String.contains? tip.content, "#story"
-  end
-
   test "find_tips returns all tips" do
     fixture(:post)
     tips = Post |> Post.find_tips |> Repo.all
