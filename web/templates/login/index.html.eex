@@ -8,12 +8,12 @@
     <%= form_for @conn, login_path(@conn, :create), [as: :login, class: "mw6 br2 mv3 center"], fn f -> %>
       <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
         <div>
-          <label for="name" class="f5 b db mb2">Email address</label>
+          <%= label f, :email, "Email address", class: "f5 b db mb2" %>
           <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100" %>
         </div>
 
         <div class="mt4">
-          <label for="name" class="f5 b db mb2">Password</label>
+          <%= label f, :password, "Password", class: "f5 b db mb2" %>
           <%= text_input f, :password, class: "pa3 input-reset bn hl-bg-grey w-100", type: :password %>
         </div>
       </fieldset>
