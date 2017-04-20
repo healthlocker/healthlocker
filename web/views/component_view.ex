@@ -37,7 +37,6 @@ defmodule Healthlocker.ComponentView do
   end
 
   defp handle_url(tip) do
-    IO.inspect tip
     cond do
       String.downcase(tip) == "#tip" -> ""
       true -> "?tag=#{tip}"
