@@ -1,4 +1,4 @@
-defmodule Healthlocker.EPJS_User do
+defmodule Healthlocker.EPJSUser do
   use Healthlocker.Web, :model
 
   schema "epjs_users" do
@@ -13,5 +13,11 @@ defmodule Healthlocker.EPJS_User do
     field :spell_number, :integer
     field :spell_start_date, :utc_datetime
     field :spell_end_date, :utc_datetime
+  end
+
+  def changeset(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:patient_id, :surname, :forename, :nhs_number, :dob])
+    |> validate_required([:surname, :forename, :nhs_number, :dob])
   end
 end
