@@ -6,7 +6,7 @@
 
     <div class="bg-white pv4">
       <h2 class="f3">Color Palette</h1>
-      <p class="f5 lh-copy sans-serif">The naming convention for color classes: <code>.hl-dark-blue</code> or <code>.hl-bg-terracotta</code> (for background colours)</p>
+      <p class="f5 lh-copy sans-serif">The naming convention for color classes: <code>.hl-dark-blue</code> or <code>.hl-bg-terracotta</code> (for background colours).</p>
       <ul class="list pl0 ml0 cf">
         <li class="fl w-100 w-50-m w-25-l mb1">
           <div class="fl w-40 pv4 hl-bg-grey"></div>
@@ -67,7 +67,7 @@
       </ul>
 
       <h2 class="f3">Helper Function - Standard Components</h1>
-      <p class="f5 lh-copy sans-serif">Helper functions are used for individual standard components e.g. a link or a button. They're used for a component that should consistently look the same but that may be used in multiple different contexts.</p>
+      <p class="f5 lh-copy sans-serif">Helper functions are used to generate individual standard components e.g. a link or a button. They're used for a component that should consistently look the same but that may be used in multiple different contexts.</p>
       <p class="f5 lh-copy sans-serif">To use a helper standard component you need to do 3 things:</p>
       <ul class="f5 lh-copy sans-serif">
         <li>Find an existing component in <code>web/views/component_helpers</code> or create/amend your own</li>
