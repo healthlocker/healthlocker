@@ -76,9 +76,9 @@
             </section>
           </section>
         </main>
-        <footer id="footer" class="db hl-bg-aqua tc mt4 w-100">
+        <footer id="footer" class="db hl-bg-dark-blue tc mt4 w-100">
           <%= link "About", to: page_path(@conn, :show, "about"), class: "f6 pt3 link dim white-80 dib mr3 mr4-ns" %>
-          <%= link "Terms and conditions", to: page_path(@conn, :show, "terms"), class: "f6 link dim white-80 dib mr3 mr4-ns" %>
+          <%= link "Terms of Service", to: page_path(@conn, :show, "terms"), class: "f6 link dim white-80 dib mr3 mr4-ns" %>
           <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy"), class: "f6 link dim white-80 dib" %>
         </footer>
 
