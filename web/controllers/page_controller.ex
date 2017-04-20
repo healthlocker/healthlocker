@@ -5,12 +5,23 @@ defmodule Healthlocker.PageController do
 
   def index(conn, _params) do
     featured_story = Post
-                     |> Post.find_single_story
-                     |> Repo.one
+                     |> Post.find_stories
+                     |> Repo.all
     featured_tip = Post
-                   |> Post.find_single_tip
-                   |> Repo.one
-    render conn, "index.html", story: featured_story, tip: featured_tip
+                   |> Post.find_tips
+                   |> Repo.all
+    story = if Kernel.length(featured_story) < 1 do
+      nil
+    else
+      featured_story |> Enum.random
+    end
+
+    tip = if Kernel.length(featured_tip) < 1 do
+      nil
+    else
+      featured_tip |> Enum.random
+    end
+    render conn, "index.html", story: story, tip: tip
   end
 
   def show(conn, %{"id" => id}) do

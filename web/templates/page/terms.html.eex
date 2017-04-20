@@ -1,12 +1,12 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h3 class="tc">Terms of Service</h3>
+  <h2 class="tc">Terms of Service</h2>
   <p>This statement governs the terms of service between you, the user and
     Healthlocker. By using Healthlocker you agree to the following statement:
   </p>
 
   <p class="b">Privacy</p>
   <p>Your privacy is important to us, for this reason we have designed a
-    <%= link "privacy statement", to: page_path(@conn, :show, "privacy") %>
+    <%= link_to("privacy statement", to: page_path(@conn, :show, "privacy")) %>
     which will outline how we protect your privacy. We ask you to read this
     statement so that you can make an informed decision regarding creating your
     account.

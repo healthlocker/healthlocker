@@ -3,7 +3,9 @@
   <section class="mw7 center">
     <div class="bb b--black-20 pb4 mt4">
       <span class="fl mt0">Not an existing user?</span>
-      <%= link "Sign up", to: user_path(@conn, :new), class: "link dim fr mt0 db" %>
+      <div class="tr">
+        <%= link_to("Sign up", to: user_path(@conn, :new)) %>
+      </div>
     </div>
     <%= form_for @conn, login_path(@conn, :create), [as: :login, class: "mw6 br2 mv3 center"], fn f -> %>
       <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
@@ -18,7 +20,7 @@
         </div>
       </fieldset>
       <div class="lh-copy">
-        <a href="#0" class="f5 link dim db">Forgotten your password?</a>
+        <a href="#0" class="link hl-aqua underline hl-link">Forgotten your password?</a>
       </div>
       <div class="tr">
         <%= submit "Log in", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>

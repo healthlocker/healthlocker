@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h3 class="tc">Sign up</h3>
+  <h2 class="tc">Sign up</h2>
 
   <p class="b">By creating an account and accessing Healthlocker, I agree:</p>
   <ul>
@@ -20,7 +20,8 @@
     <div class="form-group">
       <%= checkbox f, :terms_conditions, class: "checkbox" %>
       <%= label f, :terms_conditions do %>
-        I accept the <%= link "terms of service", to: page_path(@conn, :show, "terms") %>
+        I accept the
+        <%= link_to("terms of service", to: page_path(@conn, :show, "terms")) %>
       <% end %>
       <span class="hl-pink"><%= error_tag f, :terms_conditions %></span>
     </div>
@@ -28,7 +29,8 @@
     <div class="mt3">
       <%= checkbox f, :privacy, class: "checkbox" %>
       <%= label f, :privacy do %>
-        I accept the terms of the <%= link "privacy statement", to: page_path(@conn, :show, "privacy") %>
+        I accept the terms of the 
+        <%= link_to("privacy statement", to: page_path(@conn, :show, "privacy")) %>
       <% end %>
       <span class="hl-pink"><%= error_tag f, :privacy %></span>
     </div>

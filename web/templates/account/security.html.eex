@@ -1,7 +1,11 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <%= render "menu.html", conn: @conn %>
     <section class="w-100 h-100 tc">
-      <%= link "Update password", to: account_path(@conn, :edit_password), class: "mt6 f5 tc link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-80 " %>
-      <%= link "Update security question", to: account_path(@conn, :edit_security), class: "mt4 f5 tc link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-80"%>
+      <div class="mt6">
+        <%= link_secondary "Update password", to: account_path(@conn, :edit_password) %>
+      </div>
+      <div class="mt4">
+        <%= link_secondary "Update security question", to: account_path(@conn, :edit_security) %>
+      </div>
     </section>
 </div>

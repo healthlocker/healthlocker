@@ -1,4 +1,4 @@
-<h3 class="tc">Account</h3>
+<h2 class="tc">Account</h2>
 <div class="w-100">
   <%= cond do %>
    <%= @conn.request_path == "/account" -> %>

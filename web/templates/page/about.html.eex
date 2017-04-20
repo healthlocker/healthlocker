@@ -1,9 +1,9 @@
 <div class="ma3 ma4-m ma4-l">
-  <h3 class="tc">About</h3>
+  <h2 class="tc">About</h2>
   <p class="b">What is Healthlocker?</p>
 
   <p>Healthlocker is a secure platform powered by the
-    <%= link_to "South London and Maudsley Trust", to: "http://www.slam.nhs.uk/", target: "_blank" %>
+    <%= link_to("South London and Maudsley Trust", to: "http://www.slam.nhs.uk/", target: "_blank") %>
     that promotes supported self-management and opportunities to improve
     communication between service users, carers and clinicians.</p>
 
@@ -12,7 +12,7 @@
 
   <p class="b">Who is Healthlocker for?</p>
 
-  <p>Anyone can <%= link_to "sign up to Healthlocker", to: user_path(@conn, :new) %>
+  <p>Anyone can <%= link_to("sign up to Healthlocker", to: user_path(@conn, :new)) %>
     to explore wellbeing tips and recovery stories and create goals and coping
     strategies.</p>
 
@@ -54,6 +54,6 @@
 
   <p>If you are interested in using Healthlocker in your Trust or organisation
     or have ideas for how to add to the platform, contact:
-    <%= link_to "DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk" %>
+    <%= link_to("DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk") %>
   </p>
 </div>
