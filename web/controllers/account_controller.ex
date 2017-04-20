@@ -1,8 +1,5 @@
 defmodule Healthlocker.AccountController do
   use Healthlocker.Web, :controller
-
-  plug :authenticate
-
   alias Healthlocker.User
   alias Healthlocker.Plugs.Auth
 
@@ -143,16 +140,5 @@ defmodule Healthlocker.AccountController do
 
   def nhs_help(conn, _params) do
     render conn, "nhs_help.html"
-  end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error,  "You must be logged in to access that page!")
-      |> redirect(to: login_path(conn, :index))
-      |> halt()
-    end
   end
 end
