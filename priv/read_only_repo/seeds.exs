@@ -30,7 +30,7 @@ defmodule Healthlocker.EPJSSeeder do
       spell_number: Enum.random(1..5),
       spell_start_date: start_datetime,
       spell_end_date: nil
-      })
+    })
   end
 
   def add_epjs_users(n) do
@@ -48,7 +48,7 @@ defmodule Healthlocker.EPJSSeeder do
       spell_number: Enum.random(1..5),
       spell_start_date: start_datetime,
       spell_end_date: nil
-      })
+    })
 
     add_epjs_users(n + 1)
   end
@@ -74,7 +74,7 @@ ReadOnlyRepo.insert!(%EPJSUser{
   spell_number: 2,
   spell_start_date: start1,
   spell_end_date: nil
-  })
+})
 
 ReadOnlyRepo.insert!(%EPJSUser{
   patient_id: 202,
@@ -88,7 +88,7 @@ ReadOnlyRepo.insert!(%EPJSUser{
   spell_number: 3,
   spell_start_date: start2,
   spell_end_date: nil
-  })
+})
 
 ReadOnlyRepo.insert!(%EPJSUser{
   patient_id: 203,
@@ -102,6 +102,6 @@ ReadOnlyRepo.insert!(%EPJSUser{
   spell_number: 1,
   spell_start_date: start3,
   spell_end_date: nil
-  })
+})
 
 Healthlocker.EPJSSeeder.add_epjs_users(1)
