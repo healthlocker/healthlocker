@@ -7,7 +7,7 @@ use Mix.Config
 
 # General application configuration
 config :healthlocker,
-  ecto_repos: [Healthlocker.Repo]
+  ecto_repos: [Healthlocker.Repo, Healthlocker.ReadOnlyRepo]
 
 # Configures the endpoint
 config :healthlocker, Healthlocker.Endpoint,
