@@ -2,18 +2,19 @@ defmodule Healthlocker.LoginController do
   use Healthlocker.Web, :controller
 
   alias Healthlocker.User
+  alias Healthlocker.Plugs.Auth
 
   def index(conn, _) do
     render conn, "index.html"
   end
 
   def create(conn, %{"login" => %{"email" => email, "password" => pass}}) do
-    case Healthlocker.Auth.email_and_pass_login(conn, String.downcase(email), pass, repo: Repo) do
+    case Auth.email_and_pass_login(conn, String.downcase(email), pass, repo: Repo) do
       {:ok, conn} ->
         user = Repo.get_by(User, email: email)
         if user.data_access == nil do
           conn
-          |> Healthlocker.Auth.logout()
+          |> Auth.logout()
           |> put_flash(:error, "You must accept terms of service and privacy statement")
           |> redirect(to: user_user_path(conn, :signup3, user))
         else
@@ -30,7 +31,7 @@ defmodule Healthlocker.LoginController do
 
   def delete(conn, _) do
     conn
-    |> Healthlocker.Auth.logout()
+    |> Auth.logout()
     |> redirect(to: page_path(conn, :index))
   end
 end
