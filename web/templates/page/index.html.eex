@@ -17,11 +17,8 @@
   <article class="ph3">
     <p>Small improvements in our wellbeing can help to decrease some mental
       health problems and also help us to get more out of life.</p>
-
     <p>These 5 actions are proven to improve personal wellbeing.</p>
-    <%= link_to "Read the full document", to: tip_path(@conn, :index) %>
-    <!--Insert link: https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing  -->
-
+    <%= link_to "Read the full document", to: "https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing" %>
   </article>
   <div class="tr">
   </div>
