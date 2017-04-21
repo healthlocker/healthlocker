@@ -133,21 +133,20 @@ defmodule Healthlocker.AccountController do
   end
 
   def check_slam(conn, %{"user" => %{"Forename" => forename, "Surname" => surname, "NHS_Number" => nhs, "DOB" => dob}}) do
-    slam_user = ReadOnlyRepo.one(from su in EPJSUser,
-                where: su.forename == ^forename
-                and su.surname == ^surname
-                and su.nhs_number == ^nhs
-                and su.dob == ^dob)
-                |> Repo.preload(:address)
-                |> Repo.preload(:user)
+    slam_user = ReadOnlyRepo.one(from e in EPJSUser,
+                where: e."Forename" == ^forename
+                and e."Surname" == ^surname
+                and e."NHS_Number" == ^nhs)
+    # TODO DOB input doesn't match type in db. Removed for now, but need to fix
     if slam_user do
       user = Repo.get!(User, conn.assigns.current_user.id)
-      User.connect_slam(user, %{"slam_id" => slam_user.patient_id})
+      User.connect_slam(user, %{"slam_id" => slam_user."Patient_ID"})
           |> Repo.update!
       slam_changeset = EPJSUser.changeset(slam_user)
       conn
       |> put_flash(:info, "SLaM account connected!")
-      |> render("index.html", changeset: slam_changeset, user: slam_user, slam_id: slam_user.id)
+      |> render("index.html", changeset: slam_changeset, user: slam_user,
+                slam_id: slam_user.id, action: account_path(conn, :update))
     else
       conn
       |> put_flash(:error, "Details do not match. Please try again later")
