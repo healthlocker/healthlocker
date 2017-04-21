@@ -53,10 +53,6 @@ defmodule Healthlocker.AccountController do
     end
   end
 
-  def security(conn, _params) do
-    render conn, "security.html"
-  end
-
   def edit_security(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
@@ -132,13 +128,5 @@ defmodule Healthlocker.AccountController do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
     render conn, "slam.html", user: user
-  end
-
-  def slam_help(conn, _params) do
-    render conn, "slam_help.html"
-  end
-
-  def nhs_help(conn, _params) do
-    render conn, "nhs_help.html"
   end
 end
