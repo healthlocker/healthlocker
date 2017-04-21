@@ -18,7 +18,6 @@
       </div>
     </div>
 
-
     <div>
       <%= label f, "Date of birth", class: "f5 b db mt2 mb2" %>
       <%= text_input f, :DOB, class: "pa3 input-reset bn hl-bg-grey w-40" %>
