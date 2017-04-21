@@ -156,12 +156,6 @@ defmodule Healthlocker.AccountControllerTest do
       assert conn.halted
     end
 
-    test "security is redirected and conn halted", %{conn: conn} do
-      conn = get conn, account_path(conn, :security)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
     test "edit_security is redirected and conn halted", %{conn: conn} do
       conn = get conn, account_path(conn, :edit_security)
       assert html_response(conn, 302)
@@ -188,18 +182,6 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "slam is redirected and conn halted", %{conn: conn} do
       conn = get conn, account_path(conn, :slam)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
-    test "slam_help is redirected and conn halted", %{conn: conn} do
-      conn = get conn, account_path(conn, :slam_help)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
-    test "nhs_help is redirected and conn halted", %{conn: conn} do
-      conn = get conn, account_path(conn, :nhs_help)
       assert html_response(conn, 302)
       assert conn.halted
     end
