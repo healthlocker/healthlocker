@@ -86,6 +86,11 @@ defmodule Healthlocker.User do
     |> put_pass_hash()
   end
 
+  def connect_slam(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:slam_user_id])
+  end
+
   def put_pass_hash(changeset) do
     case changeset do
       %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
