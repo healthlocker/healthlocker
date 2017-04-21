@@ -46,7 +46,9 @@ defmodule Healthlocker.Mixfile do
      {:bamboo_smtp, "~> 1.2.1"},
      {:mock, "~> 0.2.0", only: :test},
      {:faker, "~> 0.7"},
-     {:appsignal, "~> 1.0"}]
+     {:appsignal, "~> 1.0"},
+     {:wallaby, "~> 0.16.1"},
+     {:ecto_factory, "~> 0.0.6"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
