@@ -13,6 +13,7 @@ defmodule Healthlocker.User do
     field :security_answer, :string
     field :data_access, :boolean
     field :role, :string
+    field :slam_user, :boolean
     field :slam_id, :integer
     has_many :posts, Healthlocker.Post
     many_to_many :likes, Healthlocker.Post, join_through: "posts_likes", on_replace: :delete, on_delete: :delete_all
