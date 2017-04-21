@@ -82,11 +82,6 @@ defmodule Healthlocker.AccountControllerTest do
       assert redirected_to(conn) == account_path(conn, :consent)
     end
 
-    test "render security.html", %{conn: conn} do
-      conn = get conn, account_path(conn, :security)
-      assert html_response(conn, 200) =~ "Update security question"
-    end
-
     test "render edit_security.html", %{conn: conn} do
       conn = get conn, account_path(conn, :edit_security)
       assert html_response(conn, 200) =~ "Current security question"
@@ -133,16 +128,6 @@ defmodule Healthlocker.AccountControllerTest do
     test "does not update password when confirmation does not match", %{conn: conn} do
       conn = put conn, account_path(conn, :update_password), user: @wrong_confirmation
       assert html_response(conn, 200) =~ "Current password"
-    end
-
-    test "renders connecting slam info", %{conn: conn} do
-      conn = get conn, account_path(conn, :slam_help)
-      assert html_response(conn, 200) =~ "To connect you will need to enter"
-    end
-
-    test "render nhs_help.html", %{conn: conn} do
-      conn = get conn, account_path(conn, :nhs_help)
-      assert html_response(conn, 200) =~ "Your NHS number will be on any letter"
     end
   end
 
