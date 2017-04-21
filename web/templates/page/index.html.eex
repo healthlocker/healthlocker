@@ -13,7 +13,7 @@
 <%= end %>
 
 <section class="bb b--black-20 pa3 center">
-  <h2 class="pa2 ph3 ph0-l ma0">Stories</h2>
+  <h3 class="pa2 ph3 ph0-l ma0 b tc">Stories</h3>
   <article class="ph3">
       <%= if @story do %>
           <%= markdown String.slice(@story.content, 0, 325) <> "..." %>
