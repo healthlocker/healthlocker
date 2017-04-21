@@ -20,6 +20,14 @@ config :healthlocker, Healthlocker.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
+config :healthlocker, Healthlocker.ReadOnlyRepo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "postgres",
+  password: "postgres",
+  database: "epjs_test",
+  hostname: "localhost",
+  pool_size: Ecto.Adapters.SQL.Sandbox
+
 config :healthlocker, :analytics, Healthlocker.Analytics.Local
 
 config :comeonin, :bcrypt_log_rounds, 4
