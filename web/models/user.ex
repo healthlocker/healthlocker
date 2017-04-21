@@ -88,7 +88,7 @@ defmodule Healthlocker.User do
 
   def connect_slam(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:slam_user_id])
+    |> cast(params, [:slam_id])
   end
 
   def put_pass_hash(changeset) do
