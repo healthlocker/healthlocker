@@ -3,7 +3,6 @@ defmodule Healthlocker.Repo.Migrations.AddSlamId do
 
   def change do
     alter table(:users) do
-      add :slam_user, :boolean
       add :slam_id, :integer
     end
   end
