@@ -30,19 +30,3 @@
     <%= link_to "See more stories", to: post_path(@conn, :index) %>
   </div>
 </section>
-
-<section class="bb b--black-20 pa3 center">
-  <h2 class="pa2 ph3 ph0-l ma0">Tips</h2>
-  <article class="ph3">
-    <%= if @tip do %>
-      <%= markdown @tip.content %></p>
-      <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: @tip,
-        current_user: @current_user %>
-    <%= else %>
-      <p class="pv2 lh-copy">No tips found</p>
-    <%= end %>
-  </article>
-  <div class="tr">
-    <%= link_to "See more tips", to: tip_path(@conn, :index) %>
-  </div>
-</section>
