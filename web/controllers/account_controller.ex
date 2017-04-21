@@ -8,7 +8,7 @@ defmodule Healthlocker.AccountController do
     user = Repo.get!(User, user_id)
     changeset = User.update_changeset(user)
     render conn, "index.html", changeset: changeset, user: user,
-              slam_user: nil, action: account_path(conn, :update)
+              slam_id: user.slam_id, action: account_path(conn, :update)
   end
 
   def update(conn, %{"user" => user_params}) do
@@ -24,7 +24,7 @@ defmodule Healthlocker.AccountController do
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         render(conn, "index.html", changeset: changeset, user: user,
-                slam_user: nil, action: account_path(conn, :update))
+                slam_id: user.slam_id, action: account_path(conn, :update))
     end
   end
 
