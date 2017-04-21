@@ -1,6 +1,6 @@
 <%= if !@current_user do %>
   <section class="bb b--black-20 pb3 ph3 center">
-    <p class="b tc bb pb1 b--hl-aqua">Welcome to Healthlocker</p>
+    <h3 class="b tc bb pb2 b--hl-aqua hl-aqua">Welcome to Healthlocker</h3>
     <p>Healthlocker is a secure platform powered by South London and Maudsley
       Trust that promotes supported self-management and opportunities to improve
       communication between service users, carers and clinicians.</p>
