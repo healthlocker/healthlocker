@@ -2,6 +2,7 @@ defmodule Healthlocker.AccountController do
   use Healthlocker.Web, :controller
   alias Healthlocker.{User, EPJSUser, ReadOnlyRepo}
   alias Healthlocker.Plugs.Auth
+  use Timex
 
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
@@ -152,5 +153,11 @@ defmodule Healthlocker.AccountController do
       |> put_flash(:error, "Details do not match. Please try again later")
       |> redirect(to: account_path(conn, :slam))
     end
+  end
+
+  def datetime_birthday(date_string) do
+    date_string
+    |> Timex.parse!("%d/%m/%Y", :strftime)
+    |> DateTime.from_naive!("Etc/UTC")
   end
 end
