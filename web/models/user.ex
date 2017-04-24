@@ -18,6 +18,14 @@ defmodule Healthlocker.User do
     many_to_many :likes, Healthlocker.Post, join_through: "posts_likes", on_replace: :delete, on_delete: :delete_all
     many_to_many :relationships, Healthlocker.User, join_through: Healthlocker.Relationship, on_replace: :delete, on_delete: :delete_all
 
+    # user_carers
+    has_many :user_carers, Healthlocker.Carer, foreign_key: :caring_id
+    has_many :carers, through: [:user_carers, :carer]
+
+    # user_carings
+    has_many :user_carings, Healthlocker.Carer, foreign_key: :carer_id
+    has_many :caring, through: [:user_carings, :caring]
+
     timestamps()
   end
 
