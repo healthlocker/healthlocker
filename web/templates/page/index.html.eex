@@ -23,7 +23,7 @@
   </div>
 
   <!-- CONNECT -->
-  <section class="bb bw-2 b--hl-grey bw2 di">
+  <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
     <div class="w-100">
       <a class="dib w-10-l mr3" href="/tips?tag=Connect">
         <%= img_tag("/images/Connect.svg",
@@ -45,7 +45,7 @@
   </section>
 
   <!-- BE ACTIVE-->
-  <section class="bb bw-2 b--hl-grey bw2 di">
+  <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
     <div class="w-100">
       <a class="dib w-10-l mr3" href="/tips?tag=BeActive">
         <%= img_tag("/images/Be_Active.svg",
@@ -73,7 +73,7 @@
   </section>
 
   <!-- KEEP LEARNING -->
-  <section class="bb bw-2 b--hl-grey bw2">
+  <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
 
     <div class="w-100">
       <a class="dib w-10-l mr3" href="/tips?tag=KeepLearning">
@@ -99,7 +99,7 @@
   </section>
 
   <!-- GIVE TO OTHERS -->
-  <section class="bb bw-2 b--hl-grey bw2">
+  <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
 
     <div class="w-100">
       <a class="dib w-10-l mr3" href="/tips?tag=GiveToOthers">
@@ -126,7 +126,7 @@
   </section>
 
   <!-- TAKE NOTICE -->
-  <section>
+  <section class="mt3">
 
     <div class="w-100">
       <a class="dib w-10-l mr3" href="/tips?tag=TakeNotice">
