@@ -3,8 +3,8 @@ defmodule Healthlocker.ReadOnlyRepo.Migrations.CreateEpjsClinicianUserJoin do
 
   def change do
     create table(:epjs_team_members) do
-      add :Patient_ID, references(:epjs_users)
-      add :Staff_ID, references(:epjs_clinicians)
+      add :Patient_ID, :integer
+      add :Staff_ID, :integer
     end
   end
 end
