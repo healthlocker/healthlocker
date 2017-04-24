@@ -2,8 +2,8 @@ defmodule Healthlocker.EPJSUserTest do
   use Healthlocker.ModelCase, async: true
   alias Healthlocker.EPJSUser
 
-  {:ok, dob} = DateTime.from_naive(~N[1975-01-14 13:26:08.003], "Etc/UTC")
-  {:ok, start} = DateTime.from_naive(~N[1997-01-14 13:26:08.003], "Etc/UTC")
+  dob = DateTime.from_naive!(~N[1975-01-14 00:00:00.00], "Etc/UTC")
+  start = DateTime.from_naive!(~N[1997-01-14 00:00:00.00], "Etc/UTC")
 
   @valid_attrs %{
     Patient_ID: 202,
