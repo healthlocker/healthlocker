@@ -1,14 +1,15 @@
 defmodule Healthlocker.AccountController do
   use Healthlocker.Web, :controller
-  alias Healthlocker.User
+  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo}
   alias Healthlocker.Plugs.Auth
+  use Timex
 
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
     changeset = User.update_changeset(user)
     render conn, "index.html", changeset: changeset, user: user,
-              slam_user: nil, action: account_path(conn, :update)
+              slam_id: user.slam_id, action: account_path(conn, :update)
   end
 
   def update(conn, %{"user" => user_params}) do
@@ -24,7 +25,7 @@ defmodule Healthlocker.AccountController do
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         render(conn, "index.html", changeset: changeset, user: user,
-                slam_user: nil, action: account_path(conn, :update))
+                slam_id: user.slam_id, action: account_path(conn, :update))
     end
   end
 
@@ -51,10 +52,6 @@ defmodule Healthlocker.AccountController do
         render(conn, "consent.html", changeset: changeset, user: user,
                   action: account_path(conn, :update_consent))
     end
-  end
-
-  def security(conn, _params) do
-    render conn, "security.html"
   end
 
   def edit_security(conn, _params) do
@@ -131,14 +128,39 @@ defmodule Healthlocker.AccountController do
   def slam(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
-    render conn, "slam.html", user: user
+    changeset = User.connect_slam(%User{})
+    render conn, "slam.html", user: user, changeset: changeset,
+                  action: account_path(conn, :check_slam)
   end
 
-  def slam_help(conn, _params) do
-    render conn, "slam_help.html"
+  def check_slam(conn, %{"user" => %{"Forename" => forename, "Surname" => surname, "NHS_Number" => nhs, "DOB" => dob}}) do
+    birthday = datetime_birthday(dob)
+    slam_user = ReadOnlyRepo.one(from e in EPJSUser,
+                where: e."Forename" == ^forename
+                and e."Surname" == ^surname
+                and e."NHS_Number" == ^nhs
+                and e."DOB" == ^birthday
+                )
+    # TODO DOB input doesn't match type in db. Removed for now, but need to fix
+    if slam_user do
+      user = Repo.get!(User, conn.assigns.current_user.id)
+      User.connect_slam(user, %{"slam_id" => slam_user."Patient_ID"})
+          |> Repo.update!
+      slam_changeset = EPJSUser.changeset(slam_user)
+      conn
+      |> put_flash(:info, "SLaM account connected!")
+      |> render("index.html", changeset: slam_changeset, user: user,
+                slam_id: slam_user.id, action: account_path(conn, :update))
+    else
+      conn
+      |> put_flash(:error, "Details do not match. Please try again later")
+      |> redirect(to: account_path(conn, :slam))
+    end
   end
 
-  def nhs_help(conn, _params) do
-    render conn, "nhs_help.html"
+  def datetime_birthday(date_string) do
+    date_string
+    |> Timex.parse!("%d/%m/%Y", :strftime)
+    |> DateTime.from_naive!("Etc/UTC")
   end
 end
