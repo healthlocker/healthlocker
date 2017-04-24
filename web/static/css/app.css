@@ -46,7 +46,6 @@ select:focus {
 .sidenav {
     width: 0;
     transition: 0.5s;
-    padding-top: 60px;
 }
 
 .sidenav a {
