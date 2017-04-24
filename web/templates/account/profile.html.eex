@@ -11,7 +11,7 @@
 
   <%= if @user.slam_user do %>
     <%= link_to("Connect with my SLaM care team and health record ", to: account_path(@conn, :slam)) %>
-    <%= link_to("(?)", to: account_path(@conn, :slam_help)) %></span>
+    <%= link_to("(?)", to: page_path(@conn, :show, "slam_help")) %></span>
   <% end %>
 
   <div class="form-group mt3">

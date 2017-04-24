@@ -18,6 +18,7 @@ defmodule Healthlocker.EPJSSeeder do
   def add_epjs_users(200) do
     dob = DateTime.from_naive!(~N[1988-05-24 13:26:08.003], "Etc/UTC")
     start = DateTime.from_naive!(~N[2008-08-16 13:26:08.003], "Etc/UTC")
+
     ReadOnlyRepo.insert!(%EPJSUser{
       Patient_ID: 200,
       Surname: Faker.Name.last_name(),
@@ -36,6 +37,7 @@ defmodule Healthlocker.EPJSSeeder do
   def add_epjs_users(n) do
     dob = DateTime.from_naive!(~N[1988-05-24 13:26:08.003], "Etc/UTC")
     start = DateTime.from_naive!(~N[2008-08-16 13:26:08.003], "Etc/UTC")
+
     ReadOnlyRepo.insert!(%EPJSUser{
       Patient_ID: n,
       Surname: Faker.Name.last_name(),
@@ -74,13 +76,13 @@ defmodule Healthlocker.EPJSSeeder do
   end
 end
 
-{:ok, dob1} = DateTime.from_naive(~N[1988-05-24 13:26:08.003], "Etc/UTC")
-{:ok, dob2} = DateTime.from_naive(~N[1975-01-14 13:26:08.003], "Etc/UTC")
-{:ok, dob3} = DateTime.from_naive(~N[1997-07-01 13:26:08.003], "Etc/UTC")
+dob1 = DateTime.from_naive!(~N[1988-05-24 00:00:00.00], "Etc/UTC")
+dob2 = DateTime.from_naive!(~N[1975-01-14 00:00:00.00], "Etc/UTC")
+dob3 = DateTime.from_naive!(~N[1997-07-01 00:00:00.00], "Etc/UTC")
 
-{:ok, start1} = DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
-{:ok, start2} = DateTime.from_naive(~N[1997-01-14 13:26:08.003], "Etc/UTC")
-{:ok, start3} = DateTime.from_naive(~N[2011-07-01 13:26:08.003], "Etc/UTC")
+start1 = DateTime.from_naive!(~N[2016-05-24 00:00:00.00], "Etc/UTC")
+start2 = DateTime.from_naive!(~N[1997-01-14 00:00:00.00], "Etc/UTC")
+start3 = DateTime.from_naive!(~N[2011-07-01 00:00:00.00], "Etc/UTC")
 
 ReadOnlyRepo.insert!(%EPJSUser{
   Patient_ID: 201,

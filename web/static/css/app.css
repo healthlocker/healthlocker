@@ -157,6 +157,14 @@ select:focus {
   border-color: #EC4067;
 }
 
+.b--hl-dark-blue {
+  border-color: #242F4F;
+}
+
+.b--hl-grey {
+  border-color: #EBEBEB;
+}
+
 .hl-input-error {
   outline: none;
   border: 1px solid #EC4067;
