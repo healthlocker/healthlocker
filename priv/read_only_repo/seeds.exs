@@ -52,6 +52,26 @@ defmodule Healthlocker.EPJSSeeder do
 
     add_epjs_users(n + 1)
   end
+
+  def add_clinicians do
+    clinician = ReadOnlyRepo.insert!(%EPJSClinician{
+      GP_Code: to_string(Faker.Lorem.characters(16)),
+      First_Name: Faker.Name.first_name(),
+      Last_Name: Faker.Name.last_name()
+    })
+
+    (1..5)
+    |> Enum.take_random(20)
+    |> add_team_members(clinician.id)
+  end
+
+  def add_team_members(patient_list, clinician_id) do
+    patient_list
+    |> Enum.each(fn patient_id -> ReadOnlyRepo.insert!(%EPJSTeamMember{
+      Patient_ID: patient_id,
+      Staff_ID: clinician_id
+    }) end)
+  end
 end
 
 {:ok, dob1} = DateTime.from_naive(~N[1988-05-24 13:26:08.003], "Etc/UTC")
@@ -104,4 +124,12 @@ ReadOnlyRepo.insert!(%EPJSUser{
   Spell_End_Date: nil
 })
 
+clinician = ReadOnlyRepo.insert!(%EPJSClinician{
+  GP_Code: "NyNsn50mPQPFZYn7",
+  First_Name: "Robert",
+  Last_Name: "MacMurray"
+})
+
+Healthlocker.EPJSSeeder.add_team_members((183..203), clinician.id)
 Healthlocker.EPJSSeeder.add_epjs_users(1)
+(1..50) |> Enum.each(fn _ -> Healthlocker.EPJSSeeder.add_clinicians() end)
