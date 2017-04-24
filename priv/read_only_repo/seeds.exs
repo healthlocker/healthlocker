@@ -12,12 +12,13 @@
 
 Faker.start
 
-alias Healthlocker.{ReadOnlyRepo, EPJSUser}
+alias Healthlocker.{ReadOnlyRepo, EPJSUser, EPJSClinician, EPJSTeamMember}
 
 defmodule Healthlocker.EPJSSeeder do
   def add_epjs_users(200) do
-    {:ok, dob_datetime} = DateTime.from_naive(~N[1988-05-24 00:00:00.00], "Etc/UTC")
-    {:ok, start_datetime} = DateTime.from_naive(~N[2008-08-16 00:00:00.00], "Etc/UTC")
+    dob = DateTime.from_naive!(~N[1988-05-24 13:26:08.003], "Etc/UTC")
+    start = DateTime.from_naive!(~N[2008-08-16 13:26:08.003], "Etc/UTC")
+
     ReadOnlyRepo.insert!(%EPJSUser{
       Patient_ID: 200,
       Surname: Faker.Name.last_name(),
@@ -26,16 +27,17 @@ defmodule Healthlocker.EPJSSeeder do
       Patient_Name: Faker.Name.name(),
       Trust_ID: to_string(Faker.Lorem.characters(10)),
       NHS_Number: to_string(Faker.Lorem.characters(20)),
-      DOB: dob_datetime,
+      DOB: dob,
       Spell_Number: Enum.random(1..5),
-      Spell_Start_Date: start_datetime,
+      Spell_Start_Date: start,
       Spell_End_Date: nil
     })
   end
 
   def add_epjs_users(n) do
-    {:ok, dob_datetime} = DateTime.from_naive(~N[1988-05-24 00:00:00.00], "Etc/UTC")
-    {:ok, start_datetime} = DateTime.from_naive(~N[2008-08-16 00:00:00.00], "Etc/UTC")
+    dob = DateTime.from_naive!(~N[1988-05-24 13:26:08.003], "Etc/UTC")
+    start = DateTime.from_naive!(~N[2008-08-16 13:26:08.003], "Etc/UTC")
+
     ReadOnlyRepo.insert!(%EPJSUser{
       Patient_ID: n,
       Surname: Faker.Name.last_name(),
@@ -44,13 +46,33 @@ defmodule Healthlocker.EPJSSeeder do
       Patient_Name: Faker.Name.name(),
       Trust_ID: to_string(Faker.Lorem.characters(10)),
       NHS_Number: to_string(Faker.Lorem.characters(20)),
-      DOB: dob_datetime,
+      DOB: dob,
       Spell_Number: Enum.random(1..5),
-      Spell_Start_Date: start_datetime,
+      Spell_Start_Date: start,
       Spell_End_Date: nil
     })
 
     add_epjs_users(n + 1)
+  end
+
+  def add_clinicians do
+    clinician = ReadOnlyRepo.insert!(%EPJSClinician{
+      GP_Code: to_string(Faker.Lorem.characters(16)),
+      First_Name: Faker.Name.first_name(),
+      Last_Name: Faker.Name.last_name()
+    })
+
+    (1..5)
+    |> Enum.take_random(20)
+    |> add_team_members(clinician.id)
+  end
+
+  def add_team_members(patient_list, clinician_id) do
+    patient_list
+    |> Enum.each(fn patient_id -> ReadOnlyRepo.insert!(%EPJSTeamMember{
+      Patient_ID: patient_id,
+      Staff_ID: clinician_id
+    }) end)
   end
 end
 
@@ -104,4 +126,12 @@ ReadOnlyRepo.insert!(%EPJSUser{
   Spell_End_Date: nil
 })
 
+clinician = ReadOnlyRepo.insert!(%EPJSClinician{
+  GP_Code: "NyNsn50mPQPFZYn7",
+  First_Name: "Robert",
+  Last_Name: "MacMurray"
+})
+
+Healthlocker.EPJSSeeder.add_team_members((183..203), clinician.id)
 Healthlocker.EPJSSeeder.add_epjs_users(1)
+(1..50) |> Enum.each(fn _ -> Healthlocker.EPJSSeeder.add_clinicians() end)
