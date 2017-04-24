@@ -26,7 +26,7 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   password: "postgres",
   database: "epjs_test",
   hostname: "localhost",
-  pool_size: Ecto.Adapters.SQL.Sandbox
+  pool: Ecto.Adapters.SQL.Sandbox
 
 config :healthlocker, :analytics, Healthlocker.Analytics.Local
 
