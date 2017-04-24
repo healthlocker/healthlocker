@@ -150,6 +150,21 @@ defmodule Healthlocker.AccountControllerTest do
       conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
       assert html_response(conn, 200) =~ "Account connected with SLaM"
     end
+
+    test "check_slam redirects to slam with incorrect details", %{conn: conn} do
+      dob = DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC")
+      ReadOnlyRepo.insert!(%EPJSUser{
+        id: 789,
+        Patient_ID: 200,
+        Surname: "Bow",
+        Forename: "Kat",
+        NHS_Number: "uvhjbfjkm534re9ch",
+        DOB: dob,
+      })
+      conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
+      assert html_response(conn, 302)
+      assert get_flash(conn, :error) == "Details do not match. Please try again later"
+    end
   end
 
   describe "current_user is not assigned in the session" do
