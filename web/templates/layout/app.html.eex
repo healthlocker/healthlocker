@@ -30,13 +30,13 @@
       <div class="container">
         <header id="header" class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
           <nav class="f2 fw3 tracked">
-            <i id="open-nav" class="fa fa-bars dim white dib fl" aria-hidden="true"></i>
+            <i id="open-nav" class="fa fa-bars dim white dib fl pointer" aria-hidden="true"></i>
             <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
           </nav>
         </header>
 
-        <nav class="sidenav h-100 absolute z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc measure-narrow-l br-l b--white" id="my-sidenav">
-          <%= img_tag("/images/x_icon.svg", id: "close-nav", class: "w2 mt5") %>
+        <nav class="sidenav h-100 absolute z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc" id="my-sidenav">
+          <%= img_tag("/images/x_icon.svg", id: "close-nav", class: "w2 mt5 pointer") %>
           <%= link "Home", to: page_path(@conn, :index), class: "pa3 pt5-l f3 white-80 db hover-white" %>
           <%= link "About", to: page_path(@conn, :show, "about"), class: "pa3 f3 white-80 db hover-white" %>
           <%= if @current_user do %>
