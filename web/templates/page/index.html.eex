@@ -14,13 +14,12 @@
 
 <section class="bb bw2 bb--hl-dark-blue pv3 center">
   <h3 class="pa2 ph3 ph0-l ma0 tc">Tips: 5 Ways to Wellbeing</h3>
-  <article class="ph3">
+  <div>
     <p>Small improvements in our wellbeing can help to decrease some mental
       health problems and also help us to get more out of life.</p>
-    <p>These 5 actions are proven to improve personal wellbeing.</p>
-    <%= link_to "Read the full document", to: "https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing" %>
-  </article>
-  <div class="tr">
+    <p>These 5 actions are proven to improve personal wellbeing. <br>
+      <%= link_to "Read the full document", to: "https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing" %>
+    </p>
   </div>
 </section>
 
