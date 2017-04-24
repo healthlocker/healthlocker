@@ -134,10 +134,13 @@ defmodule Healthlocker.AccountController do
   end
 
   def check_slam(conn, %{"user" => %{"Forename" => forename, "Surname" => surname, "NHS_Number" => nhs, "DOB" => dob}}) do
+    birthday = datetime_birthday(dob)
     slam_user = ReadOnlyRepo.one(from e in EPJSUser,
                 where: e."Forename" == ^forename
                 and e."Surname" == ^surname
-                and e."NHS_Number" == ^nhs)
+                and e."NHS_Number" == ^nhs
+                and e."DOB" == ^birthday
+                )
     # TODO DOB input doesn't match type in db. Removed for now, but need to fix
     if slam_user do
       user = Repo.get!(User, conn.assigns.current_user.id)
