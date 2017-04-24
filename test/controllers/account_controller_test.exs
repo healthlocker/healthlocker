@@ -1,7 +1,7 @@
 defmodule Healthlocker.AccountControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.User
+  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo}
 
   @valid_attrs %{
     name: "NewName",
@@ -36,6 +36,13 @@ defmodule Healthlocker.AccountControllerTest do
     password_check: "password",
     password: "New password",
     password_confirmation: "not new password"
+  }
+
+  @slam_attrs %{
+    "Forename" => "Kat",
+    "Surname" => "Bow",
+    "NHS_Number" => "uvhjbfnwqoekhfg8y9i",
+    "DOB" => "01/01/1989"
   }
 
   describe "current_user is assigned in the session" do
@@ -128,6 +135,20 @@ defmodule Healthlocker.AccountControllerTest do
     test "does not update password when confirmation does not match", %{conn: conn} do
       conn = put conn, account_path(conn, :update_password), user: @wrong_confirmation
       assert html_response(conn, 200) =~ "Current password"
+    end
+
+    test "check_slam renders index with correct details", %{conn: conn} do
+      dob = DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC")
+      ReadOnlyRepo.insert!(%EPJSUser{
+        id: 789,
+        Patient_ID: 200,
+        Surname: "Bow",
+        Forename: "Kat",
+        NHS_Number: "uvhjbfnwqoekhfg8y9i",
+        DOB: dob,
+      })
+      conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
+      assert html_response(conn, 200) =~ "Account connected with SLaM"
     end
   end
 
