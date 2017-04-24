@@ -1,6 +1,6 @@
 defmodule Healthlocker.CarerTest do
   use Healthlocker.ModelCase
-  alias Healthlocker.{Carer, User}
+  alias Healthlocker.{Carer}
 
   test "no carers" do
     user = EctoFactory.insert(:user, email: "bob@healthlocker.uk")
@@ -14,7 +14,7 @@ defmodule Healthlocker.CarerTest do
     carer = EctoFactory.insert(:user, email: "mary@healthlocker.uk")
 
     relationship = %Carer{caring: user, carer: carer}
-    {:ok, inserted_relationship} = Repo.insert(relationship)
+    Repo.insert(relationship)
 
     carers = Repo.all(Ecto.assoc(user, :carers))
     carer_ids = Enum.map(carers, fn(carer) -> carer.id end)
