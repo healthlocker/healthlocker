@@ -25,11 +25,11 @@
   <!-- CONNECT -->
   <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
     <div class="w-100">
-      <a class="dib w-10-l mr3" href="/tips?tag=Connect">
+      <a class="dib w-10 mr3" href="/tips?tag=Connect">
         <%= img_tag("/images/Connect.svg",
-        class: "h3 mb3-l mb5 mb2-m") %>
+        class: "h3 pb1-l mb3-l mb5 pb4 mb2-m pb3-m") %>
       </a>
-      <div class="w-80-l w-70 dib">
+      <div class="w-80 dib">
         <p><strong><%= link_to "#Connect", to: "/tips?tag=Connect"%></strong> with the people around us. Building stronger, wider social connections can help us feel happier and more secure, and give us a greater sense of purpose. </p>
         <p class="i mv1">Who might you want to connect more with?</p>
       </div>
@@ -47,11 +47,11 @@
   <!-- BE ACTIVE-->
   <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
     <div class="w-100">
-      <a class="dib w-10-l mr3" href="/tips?tag=BeActive">
+      <a class="dib w-10 mr3" href="/tips?tag=BeActive">
         <%= img_tag("/images/Be_Active.svg",
-        class: "h3 mb5-l pb2-l mb5 pb6 pb5-m mb3-m mb2-m") %>
+        class: "h3 mb5-l pb2-l mb6 pb5 pb5-m mb4-m") %>
       </a>
-      <div class="w-80-l w-70 dib">
+      <div class="w-80 dib">
         <p><strong><%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
         </strong> There’s an activity out there for all of us, suited to our level of fitness and mobility.</p>
         <p>
@@ -76,11 +76,11 @@
   <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
 
     <div class="w-100">
-      <a class="dib w-10-l mr3" href="/tips?tag=KeepLearning">
+      <a class="dib w-10 mr3" href="/tips?tag=KeepLearning">
         <%= img_tag("/images/Keep_Learning.svg",
-        class: "h3 mb4-l pb0-l mb6 pb4 mb2-m") %>
+        class: "h3 mb4-l pb0-l mb6 pb4 mb0-m") %>
       </a>
-      <div class="w-80-l w-70 dib">
+      <div class="w-80 dib">
         <p><strong><%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%></strong>
           Learning can boost self-confidence and self-esteem, help build a sense of purpose, and help us connect with others.
           Research shows that learning throughout life is associated with greater satisfaction and optimism, and improved ability to get the most from life.
@@ -102,11 +102,11 @@
   <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
 
     <div class="w-100">
-      <a class="dib w-10-l mr3" href="/tips?tag=GiveToOthers">
+      <a class="dib w-10 mr3" href="/tips?tag=GiveToOthers">
         <%= img_tag("/images/Give_To_Others.svg",
         class: "h3 mb4-l pb3-l mb6 pb5 mb4-m pb4-m") %>
       </a>
-      <div class="w-80-l w-70 dib">
+      <div class="w-80 dib">
         <p><strong><%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%></strong>
           Doing even little things for others can give us a sense of purpose and self-worth.
           It can make us feel happier and more satisfied with life. Being kind to others can stimulate the reward areas in our brain, creating positive feelings.
@@ -129,11 +129,11 @@
   <section class="mt3">
 
     <div class="w-100">
-      <a class="dib w-10-l mr3" href="/tips?tag=TakeNotice">
+      <a class="dib w-10 mr3" href="/tips?tag=TakeNotice">
         <%= img_tag("/images/Take_Notice.svg",
-        class: "h3 mb4-l pb1-l mb6 pb4 mb4-m") %>
+        class: "h3 mb4-l pb1-l mb6 pb3 mb4-m pb4-m") %>
       </a>
-      <div class="w-80-l w-70 dib">
+      <div class="w-80 dib">
         <p><strong><%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%></strong>
           Being in the moment, including just being aware of our thoughts, feelings, body and the world around us, can help us appreciate the little things, understand ourselves more and get the most out of being alive.
         </p>
