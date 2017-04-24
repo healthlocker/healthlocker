@@ -27,7 +27,7 @@
       <%= end %>
   </article>
   <div class="tr">
-    <%= link_to "See more stories", to: post_path(@conn, :index) %>
+    <%= link_secondary "See more stories", to: post_path(@conn, :index) %>
   </div>
 </section>
 
@@ -43,6 +43,6 @@
     <%= end %>
   </article>
   <div class="tr">
-    <%= link_to "See more tips", to: tip_path(@conn, :index) %>
+    <%= link_secondary "See more tips", to: tip_path(@conn, :index) %>
   </div>
 </section>
