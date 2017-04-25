@@ -67,6 +67,14 @@ select:focus {
   -webkit-overflow-scrolling: touch;
 }
 
+.miniIcon {
+  width: 25px;
+  right: -15px;
+  top: -15px;
+  border: white solid;
+  border-radius: 50%;
+}
+
 #body {
   padding-bottom: 80px;
 }
