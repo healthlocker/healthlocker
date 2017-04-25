@@ -1,12 +1,14 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Toolkit</h2>
+  <h2 class="tc">View Coping Strategy</h2>
   <div class="tr">
-    <%= link_secondary "Edit", to: coping_strategy_path(@conn, :edit, @coping_strategy) %>
+    <%= link_to "Edit", to: coping_strategy_path(@conn, :edit, @coping_strategy) %>
   </div>
-  <span class="b">
-    <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
-  </span>
-  <p class="mv3 f6">Created
+  <div class="hl-bg-grey pv1 ph3 mt2">
+    <span class="b">
+      <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
+    </span>
+  </div>
+  <p class="mv3 f6 i">Created
     <%= Healthlocker.ComponentView.pretty_date(@coping_strategy.inserted_at) %>
   </p>
   <div class="tr">
