@@ -33,12 +33,18 @@
             <i id="open-nav" class="fa fa-bars dim white dib fl pointer" aria-hidden="true"></i>
             <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
             <div class="fr dim dn dib-m dib-l">
-              <%= if !@current_user do %>
-              <%= link_primary "Log in", to: login_path(@conn, :index) %>
-              <%= else %>
-              <%= link_primary "Log out", to: login_path(@conn, :delete, @current_user),
-              method: "delete"%>
-              <%= end %>
+              <%= cond do %>
+                <%= !@current_user -> %>
+                  <%= link_primary "Log in", to: login_path(@conn, :index) %>
+                <%= @current_user && @current_user.role != "clinician" -> %>
+                  <%= link_primary "Log out", to: login_path(@conn, :delete, @current_user),
+                      method: "delete"%>
+                <%= @current_user && @current_user.role == "clinician" -> %>
+                  <%= link "Caseload", to: caseload_path(@conn, :index),
+                      class: "f5 white-80 dib hover-white pointer" %>
+                <%= true -> %>
+                  <%= link_primary "Log in", to: login_path(@conn, :index) %>
+              <% end %>
             </div>
           </nav>
         </header>
@@ -50,20 +56,18 @@
           <%= if @current_user do %>
             <%= link "Toolkit",  class: "pa3 f3 white-80 db hover-white",
                                  to: toolkit_path(@conn, :index) %>
-           <p class="pa3 f3 white-80 db">------------</p>
+            <p class="pa3 f3 white-80 db">------------</p>
+            <%= link "Account", to: account_path(@conn, :index),
+                     class: "pa3 f4 white-60 db hover-white" %>
+            <%= link "Log out", class: "pa3 f4 white-60 db hover-white",
+                               to: login_path(@conn, :delete, @current_user),
+                               method: "delete" %>
           <%= else %>
             <%= link "Sign up", class: "pa3 f3 white-80 db hover-white",
                 to: user_path(@conn, :new) %>
             <%= link "Log in", class: "pa3 f3 white-80 db hover-white",
                 to: login_path(@conn, :index) %>
           <%= end %>
-          <%= if @current_user do %>
-            <%= link "Account", to: account_path(@conn, :index),
-                      class: "pa3 f4 white-60 db hover-white" %>
-            <%= link "Log out", class: "pa3 f4 white-60 db hover-white",
-                                to: login_path(@conn, :delete, @current_user),
-                                method: "delete" %>
-          <% end %>
           <%= link "Get support", to: support_path(@conn, :index), class: "mt3 mh5 mh6-m hl-bg-pink pv2 f3 white-80 db hover-white" %>
         </nav>
 
