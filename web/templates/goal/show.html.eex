@@ -10,11 +10,9 @@
   <%= for step <- @goal.steps do %>
     <%= if is_bitstring(step.details) do %>
       <div class="w-100 flex items-center mb1">
-        <div class="w2">
+        <div class="w2 b--hl-yellow hl-bg-white ba br2 pa1 min-checkbox-height">
           <%= if step.complete do %>
-              <%= img_tag("/images/Checkmark.svg", class: "w-100 dib fl") %>
-          <%= else %>
-              <%= img_tag("/images/unchecked.svg", class: "w-100 dib fl") %>
+              <%= img_tag("/images/tick.svg", class: "w-100 dib fl") %>
           <% end %>
         </div>
         <p class="ml2"><%= step.details %></p>
