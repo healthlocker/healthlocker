@@ -10,4 +10,10 @@ defmodule Healthlocker.EPJSTeamMember do
     struct
     |> cast(params, [:Patient_ID, :Staff_ID])
   end
+
+  def patient_ids(query, clinician_id) do
+    from e in query,
+    where: e."Staff_ID" == ^clinician_id,
+    select: e."Patient_ID"
+  end
 end

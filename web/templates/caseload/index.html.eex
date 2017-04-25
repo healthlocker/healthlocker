@@ -1,0 +1,17 @@
+<h2 class="tc">Caseload</h3>
+
+<%= for user <- @hl_users do %>
+  <div class="w-100 hl-bg-grey pa3 mv2">
+    <p class="b di"><%= user.name %></p><span class="fr">></span>
+  </div>
+<% end %>
+
+<%= for user <- @non_hl do %>
+  <div class="w-100 ph3 pv2">
+    <p>
+       <p class="b di"><%= user."Forename" %> <%= user."Surname" %></p>
+       <span class="i">Not signed up to Healthlocker</span>
+       <span class="fr">></span>
+     </p>
+   </div>
+<% end %>
