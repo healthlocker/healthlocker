@@ -11,6 +11,7 @@ defmodule Healthlocker.FeatureCase do
       import Ecto.Query
 
       import Healthlocker.Router.Helpers
+      import Healthlocker.LoginHelpers
     end
   end
 
