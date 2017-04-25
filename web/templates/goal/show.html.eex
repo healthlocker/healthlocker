@@ -7,22 +7,23 @@
   <div class="hl-bg-grey pv1 ph3 mt2">
     <span class="b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></span>
 
-  <%= for step <- @goal.steps do %>
-    <%= if is_bitstring(step.details) do %>
-      <div class="w-100 flex items-center mb1">
-        <div class="w2 b--hl-yellow hl-bg-white ba br2 pa1 min-checkbox-height">
-          <%= if step.complete do %>
+    <%= for step <- @goal.steps do %>
+      <%= if is_bitstring(step.details) do %>
+        <div class="w-100 flex items-center mb1">
+          <div class="w2 b--hl-yellow hl-bg-white ba br2 pa1 min-checkbox-height">
+            <%= if step.complete do %>
               <%= img_tag("/images/tick.svg", class: "w-100 dib fl") %>
-          <% end %>
+            <% end %>
+          </div>
+          <p class="ml2"><%= step.details %></p>
         </div>
-        <p class="ml2"><%= step.details %></p>
-      </div>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 
-</div>
-
-  <p class="mv3 f6 i">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
+  <p class="mv3 f6 i">
+    Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %>
+  </p>
 
   <div class="tr mt3">
     <%= link_to "Back to Toolkit", to: toolkit_path(@conn, :index) %>
