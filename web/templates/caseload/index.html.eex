@@ -1,0 +1,7 @@
+<h2 class="tc">Caseload</h3>
+  
+<%= for patient <- @all_patients do %>
+  <div class="w-100 hl-bg-grey pa3 mv2">
+    <p class="b di"><%= patient."Forename" %> <%= patient."Surname" %></p><span class="fr">></span>
+  </div>
+<% end %>
