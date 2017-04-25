@@ -140,6 +140,10 @@ select:focus {
   background-color: #3D3D3D;
 }
 
+.hl-bg-white {
+  background-color: white;
+}
+
 .hl-terracotta {
   color: #ED6A5A;
 }
