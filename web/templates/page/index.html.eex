@@ -6,8 +6,8 @@
       communication between service users, carers and clinicians.</p>
     <p>It is currently in development and this is the Beta version. Lots more
       features will be added in the coming months.</p>
-    <p><%= link_to "Sign up", to: user_path(@conn, :new) %>,
-       <%= link_to "read more here", to: page_path(@conn, :show, "about") %>.</p>
+    <div class="w-50 dib mr3-m mr1"><%= link_to "Read more", to: page_path(@conn, :show, "about") %></div>
+    <div class="w-40 dib tr ml5-l ml4-m ml3"><%= link_primary "Sign up", to: user_path(@conn, :new) %></div>
   </section>
 <%= end %>
 
