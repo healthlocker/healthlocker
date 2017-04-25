@@ -14,6 +14,8 @@
     <%= link_to("(?)", to: page_path(@conn, :show, "slam_help")) %></span>
   <% end %>
 
+  <%= link_to("Connect with the SLaM care team of someone I care for", to: slam_path(@conn, :new)) %>
+
   <div class="form-group mt3">
     <%= label f, "Name (optional)", class: "f5 b db mb2" %>
     <%= text_input f, :name, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
