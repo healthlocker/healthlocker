@@ -1,10 +1,11 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Toolkit</h2>
+  <h2 class="tc">View Goal</h2>
   <div class="tr">
-    <%= link_secondary "Edit", to: goal_path(@conn, :edit, @goal) %>
+    <%= link_to "Edit", to: goal_path(@conn, :edit, @goal) %>
   </div>
-  <span class="b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></span>
-  <p class="mv3 f6">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
+
+  <div class="hl-bg-grey pv1 ph3 mt2">
+    <span class="b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></span>
 
   <%= for step <- @goal.steps do %>
     <%= if is_bitstring(step.details) do %>
@@ -21,14 +22,9 @@
     <% end %>
   <% end %>
 
-  <%= if !@goal.important do %>
-    <%= link_primary "Mark as important", to: goal_path(@conn, :mark_important, @goal.id), method: "put" %>
-  <%= else %>
-    <%= link_primary "Mark as unimportant", to: goal_path(@conn, :mark_important, @goal.id), method: "put" %>
-  <% end %>
-  <div class="tr mt4">
-    <%= link_secondary "Delete goal", to: goal_path(@conn, :delete, @goal), method: "delete" %>
-  </div>
+</div>
+
+  <p class="mv3 f6 i">Created <%= Healthlocker.ComponentView.pretty_date(@goal.inserted_at) %></p>
 
   <div class="tr mt3">
     <%= link_to "Back to Toolkit", to: toolkit_path(@conn, :index) %>
