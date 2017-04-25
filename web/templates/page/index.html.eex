@@ -36,7 +36,9 @@
     </div>
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
-      <div class="pt1 pb3 ph3 bg-near-white b--black-10">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/Connect_Mini.svg",
+        class: "miniIcon absolute") %>
         <p class="b">Have you considered telling a friend about a goal you want to reach?</p>
         <p>See if they can help you get there. By allowing others to help not only increases the likelihood of you succeeding but can also strengthen your relationship.</p>
         <%= link_to "#Tip", to: "/tips"%> <%= link_to "#Connect", to: "/tips?tag=Connect"%>
@@ -64,7 +66,9 @@
     </div>
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
-      <div class="pt1 pb3 ph3 bg-near-white b--black-10">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/Be_Active_Mini.svg",
+        class: "miniIcon absolute") %>
         <p class="b">Today, how about walking a bit more than you usually would.</p>
         <p>Evidence shows moods can improve after 10 minutes of exercise.</p>
         <%= link_to "#Tip", to: "/tips"%> <%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
@@ -90,7 +94,9 @@
     </div>
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
-      <div class="pt1 pb3 ph3 bg-near-white b--black-10">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/Keep_Learning_Mini.svg",
+        class: "miniIcon absolute") %>
         <p class="b">Why not cook something different today.</p>
         <p>Learning can boost your self confidence.</p>
         <%= link_to "#Tip", to: "/tips"%> <%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%>
@@ -117,7 +123,9 @@
     </div>
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
-      <div class="pt1 pb3 ph3 bg-near-white b--black-10">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/Give_To_Others_Mini.svg",
+        class: "miniIcon absolute") %>
         <p class="b">You could find opportunities to volunteer.</p>
         <p>Small acts of kindness towards other people can make you feel happier and more fulfilled.</p>
         <%= link_to "#Tip", to: "/tips"%> <%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%>
@@ -142,7 +150,9 @@
     </div>
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
-      <div class="pt1 pb3 ph3 bg-near-white b--black-10">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/Take_Notice_Mini.svg",
+        class: "miniIcon absolute") %>
         <p class="b">Where possible try to remove distractions from your bedroom.</p>
         <p>It is better to watch TV, play computer games and eat in another room. This will allow you to relax with no distractions in your bedroom.</p>
         <%= link_to "#Tip", to: "/tips"%> <%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%>
