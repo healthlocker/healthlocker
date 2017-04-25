@@ -32,6 +32,8 @@
           <nav class="f2 fw3 tracked">
             <i id="open-nav" class="fa fa-bars dim white dib fl pointer" aria-hidden="true"></i>
             <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
+              <%= link_primary "Log in", to: login_path(@conn, :index) %>
+              <%= link_primary "Log out", to: login_path(@conn, :delete, @current_user),
           </nav>
         </header>
 
