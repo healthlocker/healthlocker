@@ -1,5 +1,5 @@
 <%= if !@current_user do %>
-  <section class="bb bw2 b--hl-dark-blue pb3 center">
+  <section class="bb bw2 b--hl-dark-blue pb3 center pb4">
     <h3 class="b tc bb pb2 b--hl-aqua hl-aqua">Welcome to Healthlocker</h3>
     <p>Healthlocker is a secure platform powered by South London and Maudsley
       Trust that promotes supported self-management and opportunities to improve
@@ -11,8 +11,8 @@
   </section>
 <%= end %>
 
-<section class="bb bw2 bb--hl-dark-blue pv3 center">
-  <h3 class="pa2 ph3 ph0-l ma0 tc">Tips: 5 Ways to Wellbeing</h3>
+<section class="bb bw2 bb--hl-dark-blue pb3 pt4 center">
+  <h3 class="pb2 ph3 ph0-l ma0 tc">Tips: 5 Ways to Wellbeing</h3>
   <div>
     <p>Small improvements in our wellbeing can help to decrease some mental
       health problems and also help us to get more out of life.</p>
