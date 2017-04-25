@@ -141,7 +141,6 @@ defmodule Healthlocker.AccountController do
                 and e."NHS_Number" == ^nhs
                 and e."DOB" == ^birthday
                 )
-    # TODO DOB input doesn't match type in db. Removed for now, but need to fix
     if slam_user do
       user = Repo.get!(User, conn.assigns.current_user.id)
       User.connect_slam(user, %{"slam_id" => slam_user."Patient_ID"})
