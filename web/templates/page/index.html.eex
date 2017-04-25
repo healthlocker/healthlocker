@@ -169,7 +169,6 @@
       <div class="tl">
         <%= link_to "Read this story", to: post_path(@conn, :show, @story.id) %>
       </div>
-      <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: @story, current_user: @current_user %>
     <%= else %>
       <p class="pv2 lh-copy">No stories found</p>
     <%= end %>
