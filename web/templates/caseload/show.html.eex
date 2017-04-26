@@ -1,0 +1,6 @@
+<h2><%= @slam_user."Forename" %> <%= @slam_user."Surname" %></h2>
+<p class="b tc">Details and contacts</p>
+<span class="b">Date of Birth: </span><p><%= @slam_user."DOB" %></p>
+<span class="b">NHS Number: </span><p><%= @slam_user."NHS_Number" %></p>
+<span class="b">Email: </span><p><%= @user.email %></p>
+<span class="b">Phone Number: </span><p><%= @user.phone_number %></p>
