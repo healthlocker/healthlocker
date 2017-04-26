@@ -18,6 +18,14 @@ defmodule Healthlocker.CarerConnectSlam do
       data_access: true
     )
 
+    Healthlocker.ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{id: 789,
+      Patient_ID: 200,
+      Surname: "Bow",
+      Forename: "Kat",
+      NHS_Number: "943 476 5919",
+      DOB: DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC"),
+    })
+
     session = session |> log_in
     {:ok, %{session: session}}
   end
@@ -27,7 +35,7 @@ defmodule Healthlocker.CarerConnectSlam do
   @last_name_field      Query.text_field("Last name")
   @date_of_birth_field  Query.text_field("Date of birth")
   @nhs_number_field     Query.text_field("NHS number")
-  @connect_button        Query.button("Connect")
+  @connect_button       Query.button("Connect")
 
   test "successfully connect with SLaM", %{session: session} do
     session
@@ -37,9 +45,9 @@ defmodule Healthlocker.CarerConnectSlam do
     |> click(Query.link("Connect with the SLaM care team of someone I care for"))
     |> find(@form, fn(form) ->
       form
-      |> fill_in(@first_name_field, with: "Mary")
-      |> fill_in(@last_name_field, with: "Jane")
-      |> fill_in(@date_of_birth_field, with: "08/05/1980")
+      |> fill_in(@first_name_field, with: "Kat")
+      |> fill_in(@last_name_field, with: "Bow")
+      |> fill_in(@date_of_birth_field, with: "01/01/1989")
       |> fill_in(@nhs_number_field, with: "943 476 5919")
       |> click(@connect_button)
     end)

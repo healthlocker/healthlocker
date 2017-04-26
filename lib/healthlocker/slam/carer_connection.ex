@@ -7,13 +7,14 @@ defmodule Healthlocker.Slam.CarerConnection do
   embedded_schema do
     field :first_name
     field :last_name
-    field :date_of_birth, :utc_datetime
+    field :date_of_birth
     field :nhs_number # should this be a string or int? Any other particulars?
   end
 
   def changeset(connection, params \\ %{}) do
     connection
     |> cast(params, [:first_name, :last_name, :date_of_birth, :nhs_number])
+    |> cast_datetime(:date_of_birth)
     |> validate_required([:first_name, :last_name, :date_of_birth, :nhs_number])
     |> validate_slam()
   end
@@ -37,5 +38,14 @@ defmodule Healthlocker.Slam.CarerConnection do
       EPJSUser |> ReadOnlyRepo.all
       if valid?, do: [], else: [{:nhs_number, options[:message] || "details do not match"}]
     end)
+  end
+
+  defp cast_datetime(changeset, field) do
+    if value = get_change(changeset, field) do
+      datetime = value |> Timex.parse!("%d/%m/%Y", :strftime) |> DateTime.from_naive!("Etc/UTC")
+      put_change(changeset, field, datetime)
+    else
+      changeset
+    end
   end
 end
