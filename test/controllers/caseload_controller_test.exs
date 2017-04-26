@@ -17,9 +17,14 @@ defmodule Healthlocker.CaseloadControllerTest do
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
     end
 
-    test "/caseload :: index", %{conn: conn} do
+    test "GET /caseload", %{conn: conn} do
       conn = get conn, caseload_path(conn, :index)
       assert html_response(conn, 200) =~ "Caseload"
+    end
+
+    test "GET /caseload/:id/show", %{conn: conn} do
+      conn = get conn, caseload_path(conn, :show, conn.assigns.current_user)
+      assert html_response(conn, 200) =~ "Details and contacts"
     end
   end
 end
