@@ -16,12 +16,23 @@
               Healthlocker.ComponentView.highlight_errors(@changeset, :details) %>
           </div>
         <% end %>
+
         <!--Insert star here rather than checkbox -->
-        Mark as important
-        <%= checkbox f, :important, class: "checkbox" %>
-        <%= label f, :important do %>
-        <% end %>
-        <p class="i">Important goals will be at the top of the list.</p>
+        <div class="relative mt4">
+          Mark as important
+
+          <!--Hard coded show empty star-->
+          <%= img_tag("/images/star_unselected.svg",
+          class: "w2 absolute star") %>
+
+          <!-- Old checkbox code -->
+          <!--If important show full star -->
+          <!-- <%= checkbox f, :important, class: "checkbox" %>
+          <%= label f, :important do %> -->
+          
+          <% end %>
+          <p class="i">Important goals will be at the top of the list.</p>
+        </div>
         <div class="tr">
           <%= submit_primary "Save" %>
         </div>
