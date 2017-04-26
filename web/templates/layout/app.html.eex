@@ -72,7 +72,7 @@
         </nav>
 
         <main id="body">
-          <section class="h-100 pa3 pa5-ns bt b--black-10 bg-white">
+          <section class="h-100 ph3 ph5-ns pb3 bt b--black-10 bg-white">
             <section class="mw7 center">
               <%
                 info = get_flash(@conn, :info)
