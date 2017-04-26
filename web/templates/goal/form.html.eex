@@ -8,7 +8,8 @@
       <p>List the things you could do to achieve this goal.</p>
       <%= inputs_for f, :steps, fn s -> %>
         <div class="mb3">
-          <%= checkbox s, :complete, class: "checkbox" %>
+          <%= checkbox s, :complete, class: "checkbox", id: "goalStep1" %>
+          <label for="goalStep1"></label>
           <%= text_input s, :details, class: "pa3 input-reset bn hl-bg-grey w-90 " <>
             Healthlocker.ComponentView.highlight_errors(@changeset, :details) %>
         </div>

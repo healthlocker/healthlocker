@@ -2,7 +2,8 @@
   <input name="_method" type="hidden" value="put" />
 
   <div class="form-group pv3">
-    <%= checkbox f, :slam_user, class: "checkbox " %>
+    <%= checkbox f, :slam_user, class: "checkbox", id: "slam_user" %>
+    <label for="slam_user"></label>
     <%= label f, :slam_user do %>
       I am a South London and Maudsley service user.
     <% end %>

@@ -34,8 +34,29 @@ input:focus, textarea:focus {
 }
 
 .checkbox {
+  visibility: hidden;
   width:20px;
   height:20px;
+}
+
+label::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width:20px;
+  height:20px;
+  border: 2px solid #FDC300;
+  border-radius: 25%;
+}
+
+.checkbox:checked~label::before {
+  content: url(/images/tick.svg);
+  display: block;
+  position: absolute;
+  width:20px;
+  height:20px;
+  border: 2px solid #FDC300;
+  border-radius: 25%;
 }
 
 select:focus {
