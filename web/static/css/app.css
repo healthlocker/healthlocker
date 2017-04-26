@@ -186,8 +186,14 @@ select:focus {
   box-shadow:0px 2px 3px 1px rgba( 0, 0, 0, 0.2 )
 }
 
+
 .s-top {
   top: 2.3rem;
+}
+
+.bm-top {
+  top: 1rem;
+
 }
 
 /* Styleguide */
