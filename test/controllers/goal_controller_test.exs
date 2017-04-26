@@ -85,7 +85,7 @@ defmodule Healthlocker.GoalControllerTest do
         user_id: 123_456,
       }
       conn = get conn, goal_path(conn, :edit, goal)
-      assert html_response(conn, 200) =~ "Edit goal"
+      assert html_response(conn, 200) =~ "Edit Goal"
     end
 
     test "updates goal with valid data", %{conn: conn} do
