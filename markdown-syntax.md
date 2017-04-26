@@ -34,32 +34,27 @@ You can have a link with text to display by using:
 
 #### Images
 
-Images are similar to links but with `!` before the square brackets
+Instead of using markdown images for this, we will be using `html` with inline
+styles.
 
+This is so that we can get a centered, round image without having to grab all
+the content, manipulate, then put it back together.
+
+The images will now be added as below.
+
+```html
+<div class="w4 h4 bg-center cover br-100 center"
+  style="background-image:url(http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg)">
+</div>
 ```
-![kitten on keyboard](http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg)
-![this will show if the image doesn't load](http://www.google.com/non-existent-image.jpg)
+
+To change the image, the only part that needs to change is the link in the `()`.
+
+```html
+<div class="w4 h4 bg-center cover br-100 center"
+  style="background-image:url(http://change_this)">
+</div>
 ```
-![kitten on keyboard](http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg)
-![this text will show if the image doesn't load - describe the image here](http://www.google.com/non-existent-image.jpg)
-
-One possible issue with using markdown images is when the original image being
-linked is very large, the image posted in stories will also be very large.
-
-The image size can be changed by writing the image in an `html img` tag. The
-`src` contains the link in quotes, `alt` contains the image description in
-quotes, and `width` contains the size of the image in quotes.
-
-The size of the image can be changed by changing the `width`.
-
-`<img src="http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg" alt="kitten on keyboard" width="300">`
-
-<img src="http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg" alt="kitten on keyboard" width="300">
-
-You may not want to use this to make small images larger, as they may look
-stretched or blurry, as below.
-
-<img src="http://68.media.tumblr.com/avatar_995d57aef8ef_128.png" width="300">
 
 #### Paragraphs
 
