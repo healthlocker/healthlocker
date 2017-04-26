@@ -43,6 +43,22 @@ input:focus, textarea:focus {
   height:20px;
 }
 
+label.star::before {
+  top: 1px;
+  left: 150px;
+  content: url(/images/star_unselected.svg);
+  display: block;
+  position: absolute;
+  width:20px;
+  height:20px;
+}
+
+.checkbox.star:checked~label::before {
+  content: url(/images/star_selected.svg);
+  display: block;
+  position: absolute;
+ }
+
 select:focus {
   outline: none;
   border:1px solid #25bdc3;
@@ -78,11 +94,6 @@ select:focus {
   top: -15px;
   border: white solid;
   border-radius: 50%;
-}
-
-.star {
-  top: -8px;
-  left: 150px;
 }
 
 #body {
