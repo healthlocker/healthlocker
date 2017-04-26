@@ -140,6 +140,10 @@ select:focus {
   background-color: #3D3D3D;
 }
 
+.hl-bg-white {
+  background-color: white;
+}
+
 .hl-terracotta {
   color: #ED6A5A;
 }
@@ -194,4 +198,8 @@ code {
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
+}
+
+.min-checkbox-height {
+  min-height: 33.5px;
 }

@@ -29,10 +29,10 @@
 
       <div class="container">
         <header id="header" class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
-          <nav class="f2 fw3 tracked">
-            <i id="open-nav" class="fa fa-bars dim white dib fl pointer" aria-hidden="true"></i>
+          <nav class="f2 fw3">
+            <i id="open-nav" class="fa fa-bars white dib fl pointer" aria-hidden="true"></i>
             <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
-            <div class="fr dim dn dib-m dib-l">
+            <div class="fr dn dib-m dib-l">
               <%= cond do %>
                 <%= !@current_user -> %>
                   <%= link_primary "Log in", to: login_path(@conn, :index) %>

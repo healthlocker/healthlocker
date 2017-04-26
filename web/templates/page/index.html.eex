@@ -1,5 +1,5 @@
 <%= if !@current_user do %>
-  <section class="bb bw2 b--hl-dark-blue pb3 center">
+  <section class="bb bw2 b--hl-dark-blue pb3 center pb4">
     <h3 class="b tc bb pb2 b--hl-aqua hl-aqua">Welcome to Healthlocker</h3>
     <p>Healthlocker is a secure platform powered by South London and Maudsley
       Trust that promotes supported self-management and opportunities to improve
@@ -11,8 +11,8 @@
   </section>
 <%= end %>
 
-<section class="bb bw2 bb--hl-dark-blue pv3 center">
-  <h3 class="pa2 ph3 ph0-l ma0 tc">Tips: 5 Ways to Wellbeing</h3>
+<section class="bb bw2 bb--hl-dark-blue pb3 pt4 center">
+  <h3 class="pb2 ph3 ph0-l ma0 tc">Tips: 5 Ways to Wellbeing</h3>
   <div>
     <p>Small improvements in our wellbeing can help to decrease some mental
       health problems and also help us to get more out of life.</p>
@@ -66,7 +66,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/Be_Active_Mini.svg",
+        <%= img_tag("/images/BeActive_Mini.svg",
         class: "miniIcon absolute") %>
         <p class="b">Today, how about walking a bit more than you usually would.</p>
         <p>Evidence shows moods can improve after 10 minutes of exercise.</p>
@@ -94,7 +94,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/Keep_Learning_Mini.svg",
+        <%= img_tag("/images/KeepLearning_Mini.svg",
         class: "miniIcon absolute") %>
         <p class="b">Why not cook something different today.</p>
         <p>Learning can boost your self confidence.</p>
@@ -123,7 +123,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/Give_To_Others_Mini.svg",
+        <%= img_tag("/images/GiveToOthers_Mini.svg",
         class: "miniIcon absolute") %>
         <p class="b">You could find opportunities to volunteer.</p>
         <p>Small acts of kindness towards other people can make you feel happier and more fulfilled.</p>
@@ -150,7 +150,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/Take_Notice_Mini.svg",
+        <%= img_tag("/images/TakeNotice_Mini.svg",
         class: "miniIcon absolute") %>
         <p class="b">Where possible try to remove distractions from your bedroom.</p>
         <p>It is better to watch TV, play computer games and eat in another room. This will allow you to relax with no distractions in your bedroom.</p>
