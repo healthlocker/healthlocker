@@ -1,10 +1,12 @@
 <%= if @current_user do %>
-  <%= if Enum.member?(@current_user.likes |> Enum.map(fn(p) -> p.id end), @post.id) do %>
-    <%= img_tag("/images/Bookmark_selected.svg", class: "w1 h1") %>
+  <%= if Enum.member?(@current_user.likes |> Enum.map(fn(p) ->
+      p.id
+    end), @post.id) do %>
+    <%= img_tag("/images/Bookmark_selected.svg", class: "w1 h2 relative bm-top mb-2") %>
   <%= else %>
     <%= link to: post_post_path(@conn, :likes, @post.id),
-            method: "post", class: "db w1 h1" do %>
-      <%= img_tag("/images/Bookmark_unselected.svg") %>
+            method: "post" do %>
+      <%= img_tag("/images/Bookmark_unselected.svg", class: "w1 h2 relative bm-top") %>
     <% end %>
   <%= end %>
 <%= end %>
