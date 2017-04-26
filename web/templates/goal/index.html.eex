@@ -15,7 +15,4 @@
     <% end %>
   <% end %>
 
-  <div class="tr">
-    <%= link_to "Back to Toolkit", to: toolkit_path(@conn, :index) %>
-  </div>
 </div>
