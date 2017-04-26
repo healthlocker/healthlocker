@@ -8,9 +8,17 @@
   <%= for goal <- @goals do %>
     <%= link to: goal_path(@conn, :show, goal), class: "link w-100 mv3" do %>
       <section class="bb b--black-10">
-        <h4 class="ma2 pv2 ph3-m ph4-l f5 lh-copy hl-dark-blue">
-          <%= markdown String.trim_trailing(goal.content, " #Goal") %>
-        </h4>
+        <div class="w-90 dib fl">
+          <h4 class="ma2 ph3-m ph4-l f5 lh-copy hl-dark-blue di w-100">
+            <%= markdown String.trim_trailing(goal.content, " #Goal") %>
+          </h4>
+        </div>
+        <%= if goal.important do %>
+          <div class="w-10 dib fr">
+            <%= img_tag("/images/star_selected.svg",
+                class: "w2 fr relative s-top") %>
+          </div>
+        <% end %>
       </section>
     <% end %>
   <% end %>
