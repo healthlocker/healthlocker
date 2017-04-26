@@ -8,6 +8,10 @@ body {
   height: 100%;
 }
 
+.default-font {
+  font-family: 'century-gothic', sans-serif;
+}
+
 button {
   border: none;
 }
@@ -22,6 +26,7 @@ input {
   background-color: #3D3D3D;
   opacity: 10%;
   border-radius: 5px;
+  font-family: 'century-gothic', sans-serif;
 }
 
 input:focus, textarea:focus {
