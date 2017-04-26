@@ -3,17 +3,16 @@ defmodule Healthlocker.Slam.CarerConnectionTest do
   alias Healthlocker.Slam.CarerConnection
   alias Healthlocker.{EPJSUser, ReadOnlyRepo}
 
-  @date_of_birth DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC")
   @valid_attrs %{
     first_name: "Kat",
     last_name: "Bow",
-    date_of_birth: @date_of_birth,
+    date_of_birth: "01/01/1989",
     nhs_number: "uvhjbfnwqoekhfg8y9i"
   }
   @invalid_attrs %{
     first_name: "Tony",
     last_name: "Daly",
-    date_of_birth: @date_of_birth,
+    date_of_birth: "01/01/1989",
     nhs_number: "943 476 0000"
   }
 
