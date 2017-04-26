@@ -161,6 +161,17 @@ Repo.insert!(%User{
   role: "clinician"
 })
 
+Repo.insert!(%User{
+  email: "katherine@email.com",
+  password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+  name: "Kat Bow",
+  phone_number: "07598 123 789",
+  security_question: "Name of first boss?",
+  security_answer: "Betty",
+  data_access: false,
+  role: "admin"
+})
+
 (1..200) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_users end)
 (1..10) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_clinicians end)
 (1..20) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_carers end)
