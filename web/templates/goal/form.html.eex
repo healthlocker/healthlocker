@@ -17,19 +17,9 @@
           </div>
         <% end %>
 
-        <!--Insert star here rather than checkbox -->
         <div class="relative mt4">
           Mark as important
 
-          <!--Hard coded show empty star-->
-          <%= img_tag("/images/star_unselected.svg",
-          class: "w2 absolute star") %>
-
-          <!-- Old checkbox code -->
-          <!--If important show full star -->
-          <!-- <%= checkbox f, :important, class: "checkbox" %>
-          <%= label f, :important do %> -->
-          
           <% end %>
           <p class="i">Important goals will be at the top of the list.</p>
         </div>
