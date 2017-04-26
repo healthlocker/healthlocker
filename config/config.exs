@@ -45,7 +45,10 @@ config :healthlocker, Healthlocker.Repo,
 
 config :ecto_factory, repo: Healthlocker.Repo
 config :ecto_factory, factories: [
-  user: Healthlocker.User
+  user: Healthlocker.User,
+  user_with_defaults: { Healthlocker.User, [
+    email: "bob@healthlocker.uk"
+  ]}
 ]
 
 # Import environment specific config. This must remain at the bottom

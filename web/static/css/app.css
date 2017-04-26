@@ -67,7 +67,6 @@ select:focus {
 .sidenav {
     width: 0;
     transition: 0.5s;
-    padding-top: 60px;
 }
 
 .sidenav a {
@@ -87,6 +86,14 @@ select:focus {
 
 .smooth-scroll {
   -webkit-overflow-scrolling: touch;
+}
+
+.miniIcon {
+  width: 25px;
+  right: -15px;
+  top: -15px;
+  border: white solid;
+  border-radius: 50%;
 }
 
 #body {
@@ -154,6 +161,10 @@ select:focus {
   background-color: #3D3D3D;
 }
 
+.hl-bg-white {
+  background-color: white;
+}
+
 .hl-terracotta {
   color: #ED6A5A;
 }
@@ -179,6 +190,14 @@ select:focus {
   border-color: #EC4067;
 }
 
+.b--hl-dark-blue {
+  border-color: #242F4F;
+}
+
+.b--hl-grey {
+  border-color: #EBEBEB;
+}
+
 .hl-input-error {
   outline: none;
   border: 1px solid #EC4067;
@@ -196,4 +215,8 @@ code {
   color: #c7254e;
   background-color: #f9f2f4;
   border-radius: 4px;
+}
+
+.min-checkbox-height {
+  min-height: 33.5px;
 }

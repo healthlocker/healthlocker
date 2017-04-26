@@ -27,6 +27,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser an
 
 Ready to run in production? Please [check the deployment guides](http://www.phoenixframework.org/docs/deployment).
 
+### Testing
+
+We use [`ExUnit`](http://elixir-lang.org/docs/stable/ex_unit/) and [`wallaby`](https://github.com/keathley/wallaby) for testing. Wallaby has a dependency on phantomjs, you can follow their [instructions](https://github.com/keathley/wallaby#phantomjs) to install it.
+
+After that you should be able to run `mix test` and see lots of green!
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/

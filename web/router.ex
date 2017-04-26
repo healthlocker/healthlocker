@@ -30,14 +30,12 @@ defmodule Healthlocker.Router do
     put "/account/update", AccountController, :update
     get "/account/consent", AccountController, :consent
     put "/account/consent/update", AccountController, :update_consent
-    get "/account/security", AccountController, :security
     get "/account/security/edit", AccountController, :edit_security
     put "/account/security/update", AccountController, :update_security
     get "/account/password/edit", AccountController, :edit_password
     put "/account/password/update", AccountController, :update_password
     get "/account/slam", AccountController, :slam
-    get "/account/slam-help", AccountController, :slam_help
-    get "/account/nhs-help", AccountController, :nhs_help
+    put "/account/check-slam", AccountController, :check_slam
     resources "/components", ComponentController, only: [:index]
     resources "/messages", MessageController, only: [:index]
     resources "/sleep-tracker", SleepTrackerController, only: [:index, :new, :create] do
@@ -45,6 +43,7 @@ defmodule Healthlocker.Router do
       get "/next-date", SleepTrackerController, :next_date
     end
     resources "/care-plan", CarePlanController, only: [:index]
+    resources "/caseload", CaseloadController, only: [:index]
   end
 
   # endpoints not requiring a logged in user
