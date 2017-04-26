@@ -8,4 +8,14 @@
     </div>
   </article>
   <% end %>
+
+  <p class="mt4 mb1">Explore more tips:</p>
+  <%= link_to "#Connect", to: "/tips?tag=Connect"%>
+  <%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
+  <%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%>
+  <%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%>
+  <%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%>
+
+  <p class="mt4"><%= link_to "Create a goal", to: "/goal/new"%> for yourself based on one of the 5 ways to wellbeing.</p>
+
 </div>
