@@ -33,6 +33,34 @@ defmodule Healthlocker.PostController do
     render(conn, "index.html", posts: posts)
   end
 
+  def edit(conn, %{"id" => id}) do
+    if conn.assigns.current_user.role == "admin" do
+      post = Repo.get!(Post, id)
+      changeset = Post.changeset(post)
+      render(conn, "edit.html", post: post, changeset: changeset)
+    else
+      conn
+      |> put_flash(:error, "You don't have permission to access that page")
+      |> redirect(to: page_path(conn, :index))
+    end
+  end
+
+  def update(conn, %{"id" => id, "post" => post_params}) do
+    post = Post
+          |> Repo.get!(id)
+          |> Repo.preload(:likes)
+    changeset = Post.changeset(post, post_params)
+
+    case Repo.update(changeset) do
+      {:ok, post} ->
+        conn
+        |> put_flash(:info, "Post updated successfully.")
+        |> redirect(to: post_path(conn, :show, post))
+      {:error, changeset} ->
+        render(conn, "edit.html", post: post, changeset: changeset)
+    end
+  end
+
   def likes(conn, %{"post_id" => id}) do
     user = conn.assigns.current_user
     post = Repo.get!(Post, id)
