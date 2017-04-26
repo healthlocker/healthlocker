@@ -80,6 +80,11 @@ select:focus {
   border-radius: 50%;
 }
 
+.star {
+  top: -8px;
+  left: 150px;
+}
+
 #body {
   padding-bottom: 80px;
 }
