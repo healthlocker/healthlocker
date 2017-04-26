@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Goals</h2>
+  <h2 class="tc">My Goals</h2>
 
   <div class="db tr">
     <%= link_primary "Add new", to: goal_path(@conn, :new) %>
