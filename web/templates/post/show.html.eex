@@ -1,1 +1,4 @@
+<div class="tr">
+  <%= link_to "Edit", to: post_path(@conn, :edit, @post) %>
+</div>
 <%= render "_post.html", post: @post %>
