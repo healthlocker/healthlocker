@@ -1,4 +1,6 @@
-<div class="tr">
-  <%= link_to "Edit", to: post_path(@conn, :edit, @post) %>
-</div>
+<%= if @current_user.role == "admin" do %>
+  <div class="tr">
+    <%= link_to "Edit", to: post_path(@conn, :edit, @post) %>
+  </div>
+<% end %>
 <%= render "_post.html", post: @post %>
