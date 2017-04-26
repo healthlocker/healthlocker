@@ -1,9 +1,11 @@
 <h2 class="tc">Caseload</h3>
 
 <%= for user <- @hl_users do %>
-  <div class="w-100 hl-bg-grey pa3 mv2">
-    <p class="b di"><%= user.name %></p><span class="fr">></span>
-  </div>
+  <%= link to: caseload_path(@conn, :show, user) do %>
+    <div class="w-100 hl-bg-grey pa3 mv2">
+      <p class="b di"><%= user.name %></p><span class="fr">></span>
+    </div>
+  <% end %>
 <% end %>
 
 <%= for user <- @non_hl do %>
