@@ -1,19 +1,33 @@
 defmodule Healthlocker.Slam.CarerConnectionTest do
-  use ExUnit.Case, async: true
+  use Healthlocker.ModelCase, async: true
   alias Healthlocker.Slam.CarerConnection
+  alias Healthlocker.{EPJSUser, ReadOnlyRepo}
 
+  @date_of_birth DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC")
   @valid_attrs %{
-    first_name: "Tony",
-    last_name: "Daly",
-    date_of_birth: DateTime.from_unix(1464096368),
-    nhs_number: "943 476 5919"
+    first_name: "Kat",
+    last_name: "Bow",
+    date_of_birth: @date_of_birth,
+    nhs_number: "uvhjbfnwqoekhfg8y9i"
   }
   @invalid_attrs %{
     first_name: "Tony",
     last_name: "Daly",
-    date_of_birth: DateTime.from_unix(1464096368),
+    date_of_birth: @date_of_birth,
     nhs_number: "943 476 0000"
   }
+
+  setup %{} do
+    ReadOnlyRepo.insert!(%EPJSUser{id: 789,
+      Patient_ID: 200,
+      Surname: "Bow",
+      Forename: "Kat",
+      NHS_Number: "uvhjbfnwqoekhfg8y9i",
+      DOB: DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC"),
+    })
+
+    :ok
+  end
 
   describe "changeset" do
     test "is valid when all details match" do

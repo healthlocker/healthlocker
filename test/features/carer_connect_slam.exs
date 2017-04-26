@@ -37,8 +37,10 @@ defmodule Healthlocker.CarerConnectSlam do
     |> click(Query.link("Connect with the SLaM care team of someone I care for"))
     |> find(@form, fn(form) ->
       form
-      |> fill_in(@first_name_field, with: "Tony")
-      |> fill_in(@last_name_field, with: "Daly")
+      |> fill_in(@first_name_field, with: "Mary")
+      |> fill_in(@last_name_field, with: "Jane")
+      |> fill_in(@date_of_birth_field, with: "08/05/1980")
+      |> fill_in(@nhs_number_field, with: "943 476 5919")
       |> click(@connect_button)
     end)
 
