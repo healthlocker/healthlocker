@@ -3,12 +3,12 @@
   <h2 class="tc pb3">Stories</h2>
   <%= for post <- @posts do %>
     <article class="ph3 pb3 bb b--black-20">
+        <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: post,
+            current_user: @current_user %>
         <%= markdown String.slice(post.content, 0, 325) <> "..." %>
         <div class="tl">
           <%= link_to "Read this story", to: post_path(@conn, :show, post)%>
         </div>
-        <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: post,
-          current_user: @current_user %>
     </article>
   <% end %>
 </section>
