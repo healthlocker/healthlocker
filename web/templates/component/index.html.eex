@@ -1,11 +1,12 @@
 <section class="flex-auto flex flex-column flex-row-ns bg-white black-70">
   <div class="fl w-100 w-100-ns pa2">
-    <h3 class="f6 ttu tracked mt0">Styleguide</h3>
+    <h3 class="f6 ttu tracked mt5">Styleguide</h3>
     <p class="measure f5 lh-copy sans-serif">Welcome to the Healthlocker styleguide. This is where we document the components that make up the Healthlocker application.</p>
-    <p class="measure f5 lh-copy sans-serif">If you're looking to build any front-end pages look here for which components to use, and then use the corresponding helper to correctly generate the markup (with Tachyons classes).</p>
+    <p class="measure f5 lh-copy sans-serif">If you're looking to build any front-end pages look here for which components to use, and then use the corresponding helper or partial to correctly generate the markup (with Tachyons classes).</p>
 
     <div class="bg-white pv4">
       <h2 class="f3">Color Palette</h1>
+      <p class="f5 lh-copy sans-serif">The naming convention for color classes: <code>.hl-dark-blue</code>, <code>.hl-bg-terracotta</code> (background colours) or <code>.b--hl-grey</code> (border colours).</p>
       <ul class="list pl0 ml0 cf">
         <li class="fl w-100 w-50-m w-25-l mb1">
           <div class="fl w-40 pv4 hl-bg-grey"></div>
@@ -65,44 +66,76 @@
         </li>
       </ul>
 
+      <h2 class="f3">Helper Function Standard Components</h1>
+      <p class="f5 lh-copy sans-serif">Helper functions are used to generate individual standard components e.g. a link or a button.
+         They're used for a component that should consistently look the same but that may be used in multiple different contexts e.g. a styled button. </p>
+      <p class="f5 lh-copy sans-serif">To use a helper standard component you need to do 3 things:</p>
+      <ul class="f5 lh-copy sans-serif">
+        <li>Find an existing component in <code>web/views/component_helpers</code> or create/amend your own</li>
+        <li>Check your component_helper file is imported in <code>web/views/component_helpers.ex</code></li>
+        <li>Call the function in your html where you wish to position the component.</li>
+      </ul>
+      <p class="f5 lh-copy sans-serif">Take this button for example: <%= link_primary("Click me!", to: "#somewhere") %></p>
+      <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
+      <img src="https://cloud.githubusercontent.com/assets/16775804/25175681/a7134716-24f3-11e7-9d8f-da1eb057c3fa.png" width= 380px/>
+      <p class="f5 lh-copy sans-serif">It will call the existing function which is found in <code>web/views/component_helpers/button.ex</code>:</p>
+      <img src="https://cloud.githubusercontent.com/assets/16775804/25175893/5565244c-24f4-11e7-9dd4-a43e1a332e14.png" width= 600px/>
+      <p class="f5 lh-copy sans-serif">Which you can see has been imported in <code>web/views/component_helpers.ex</code>:</p>
+      <img src="https://cloud.githubusercontent.com/assets/16775804/25179744/1226413e-2503-11e7-8b0e-52fad14d89ed.png" width= 380px/>
+
+      <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use helpers and the code used to create a new instance of them:</p>
+
       <h2 class="f3">Links</h2>
       <p class="measure f5 lh-copy sans-serif">Our basic anchor components.</p>
 
-      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
+      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4 w-40-l fl">
         <%= link_to("Link", to: coping_strategy_path(@conn, :new)) %>
+      </div>
+      <div class="pa3 mv4 w-60-l fl">
+        <img src="https://cloud.githubusercontent.com/assets/16775804/25176140/1bebd9d0-24f5-11e7-96b6-37c51a367d87.png" />
       </div>
 
       <h2 class="f3">Buttons</h1>
       <p class="measure f5 lh-copy sans-serif">Used to create a styled <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, or <code>&lt;input&gt;</code> element.</p>
 
-      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
+      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4 w-50-l fl">
         <%= link_primary("Primary", to: "#somewhere") %>
-        <%= link_secondary("Secondary", to: "#") %>
+        <%= link_secondary("Secondary", to: "/contact-us") %>
         <%= link_inactive("Inactive", to: "#") %>
-
         <%#= button("Button", to: "#", class: primary_classes) %>
       </div>
-
-      <h2 class="f3">Flash messages</h2>
-      <p class="lh-copy measure f5 sans-serif">
-        We use flash messages to show success and error messages after some action has taken place.
-      </p>
-
-      <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
-        <div class="ba bw2 br3 b--hl-yellow hl-bg-success center tc pv2 pv3-l mh4-l mb3" role="alert">
-          Woo! 🎉
-        </div>
-
-        <div class="ba bw2 br3 b--hl-pink hl-bg-error center tc pv2 pv3-l mh4-l" role="alert">
-          Boo ☹️
-        </div>
+      <div class="pa3 mv4 w-50-l fl">
+        <img src="https://cloud.githubusercontent.com/assets/16775804/25179121/6a987b82-2500-11e7-8745-9769a604f595.png" />
       </div>
+
+      <h2 class="f3 mt6 pt4">Partials Standard Components</h1>
+      <p class="f5 lh-copy sans-serif">Partials are small templates.
+        They are used to contain a collection of elements that are always used together.
+        Partials can contain helper standard components. In the context of standard components,
+         we are interested in partials that are reused and inserted in numerous places across a project.</p>
+      <p class="measure f5 lh-copy sans-serif">To use a partial you need to do 3 things:</p>
+
+      <ul class="f5 lh-copy sans-serif">
+        <li>Find or create a new partial within <code>web/templates/tip/index.html.eex</code></li>
+        <li>Define your partial inside your views:<code>web/views/tip_view.ex</code></li>
+        <li>Create any functions needed in <code>web/views/component_view.ex</code></li>
+        <li>Render the partial in your html where you wish to position it.</li>
+      </ul>
+
     </div>
+    <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use partials:</p>
   </div>
 </section>
 
+<div class="tl dib">
+<h2 class="f3 tl">Posts</h2>
+<p class="f5 lh-copy sans-serif">There are multiple types of 'posts' derived from the underlying component type:</p>
+<h2 class="f4 tl">Tips</h2>
 <%= render Healthlocker.PostView, "_post.html", post: @post %>
+<img src="https://cloud.githubusercontent.com/assets/16775804/25189183/581d3324-2520-11e7-8033-551d05fec739.png" width= "500px"/>
+</div>
 
+<h2 class="f4 tl">Stories</h2>
 <article class="mw6 center bg-white br2 br--bottom shadow-1--bottom pa3 pa4-ns mv3 ba b--black-10">
   <h1 class="f3 lh-title">Why can’t men talk about mental health in the pub?</h1>
   <img src="http://placekitten.com/g/600/300" class="db w-100 br2" alt="Photo of a kitten looking menacing.">
@@ -136,3 +169,31 @@
     </div>
   </footer>
 </article>
+
+<h2 class="f3">Flash messages</h2>
+<p class="lh-copy measure f5 sans-serif">
+  We use flash messages to show success and error messages after some action has taken place.
+</p>
+
+<div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
+  <div class="ba bw2 br3 b--hl-yellow hl-bg-success center tc pv2 pv3-l mh4-l mb3" role="alert">
+    Woo! 🎉
+  </div>
+
+  <div class="ba bw2 br3 b--hl-pink hl-bg-error center tc pv2 pv3-l mh4-l" role="alert">
+    Boo ☹️
+  </div>
+</div>
+
+<h2 class="f3">Still to add...</h2>
+<ul class="f5 lh-copy sans-serif">
+  <li>Give code e.g. of how to implement a partials standard component</li>
+  <li>Finish tips</li>
+  <li>Flash message description</li>
+  <li>Input boxes</li>
+  <li>Burger menu?</li>
+  <li>Footer?</li>
+  <li>Stories? Bookmarks?</li>
+  <li>Graph components?</li>
+  <li>Class limitations for extra styling - have to currently put in a div</li>
+</ul>
