@@ -44,6 +44,7 @@ defmodule Healthlocker.Router do
     end
     resources "/care-plan", CarePlanController, only: [:index]
     resources "/caseload", CaseloadController, only: [:index]
+    resources "/slam", SlamController, only: [:new, :create]
   end
 
   # endpoints not requiring a logged in user
