@@ -116,21 +116,26 @@
       <p class="measure f5 lh-copy sans-serif">To use a partial you need to do 3 things:</p>
 
       <ul class="f5 lh-copy sans-serif">
-        <li>Find or create a new partial within <code>web/templates/ for your components</code></li>
-        <li>Define your partial inside your views:<code>web/views/post_view.ex</code></li>
+        <li>Find or create a new partial within <code>web/templates/tip/index.html.eex</code></li>
+        <li>Define your partial inside your views:<code>web/views/tip_view.ex</code></li>
+        <li>Create any functions needed in <code>web/views/component_view.ex</code></li>
         <li>Render the partial in your html where you wish to position it.</li>
       </ul>
-
-<code>web/templates/post/_post.html.eex</code>
 
     </div>
     <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use partials:</p>
   </div>
 </section>
 
+<div class="tl dib">
+<h2 class="f3 tl">Posts</h2>
+<p class="f5 lh-copy sans-serif">There are multiple types of 'posts' derived from the underlying component type:</p>
+<h2 class="f4 tl">Tips</h2>
 <%= render Healthlocker.PostView, "_post.html", post: @post %>
-
 <img src="https://cloud.githubusercontent.com/assets/16775804/25189183/581d3324-2520-11e7-8033-551d05fec739.png" width= "500px"/>
+</div>
+
+<h2 class="f4 tl">Stories</h2>
 <article class="mw6 center bg-white br2 br--bottom shadow-1--bottom pa3 pa4-ns mv3 ba b--black-10">
   <h1 class="f3 lh-title">Why can’t men talk about mental health in the pub?</h1>
   <img src="http://placekitten.com/g/600/300" class="db w-100 br2" alt="Photo of a kitten looking menacing.">
