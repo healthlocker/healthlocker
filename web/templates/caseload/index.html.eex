@@ -4,7 +4,7 @@
 
 <%= for user <- @hl_users do %>
   <div class="w-100 hl-bg-grey pa3 mv3 br3">
-    <p class="b di"><%= user.name %></p><span class="fr">></span>
+    <p class="b di"><%= user.name %></p><span class="fr hl-yellow fw9">></span>
   </div>
 <% end %>
 
