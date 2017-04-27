@@ -18,7 +18,7 @@ defmodule Healthlocker.Router do
   scope "/", Healthlocker do
     pipe_through [:browser, Healthlocker.Plugs.RequireLogin]
 
-    resources "/posts", PostController, only: [:new, :create] do
+    resources "/posts", PostController, only: [:new, :create, :edit, :update] do
       post "/likes", PostController, :likes
     end
 

@@ -28,13 +28,13 @@
       </div>
 
       <div class="container">
-        <header id="header" class="hl-bg-aqua w-100 pv3 pv4-ns ph3 ph4-m ph4-l tc">
-          <nav class="f2 fw3 tracked relative">
+        <header id="header" class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph4-l tc">
+          <nav class="f2 fw3 relative">
             <div class="tc">
               <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
             </div>
             <i id="open-nav" class="fa fa-bars dim white dib fl pointer absolute top-0 left-0" aria-hidden="true"></i>
-            <div class="fr dim dn dib-m dib-l absolute top-0 right-0">
+            <div class="fr dn dib-m dib-l absolute top-0 right-0">
               <%= cond do %>
                 <%= !@current_user -> %>
                   <%= link_primary "Log in", to: login_path(@conn, :index) %>
@@ -74,7 +74,7 @@
         </nav>
 
         <main id="body">
-          <section class="h-100 pa3 pa5-ns bt b--black-10 bg-white">
+          <section class="h-100 ph3 ph5-ns pb3 bt b--black-10 bg-white">
             <section class="mw7 center">
               <%
                 info = get_flash(@conn, :info)
