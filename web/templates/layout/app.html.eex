@@ -33,7 +33,7 @@
             <div class="tc">
               <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
             </div>
-            <i id="open-nav" class="fa fa-bars dim white dib fl pointer absolute top-0 left-0" aria-hidden="true"></i>
+            <i id="open-nav" class="fa fa-bars dim white dib fl pointer absolute top-0 left-0"></i>
             <div class="fr dn dib-m dib-l absolute top-0 right-0">
               <%= cond do %>
                 <%= !@current_user -> %>
