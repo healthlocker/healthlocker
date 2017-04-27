@@ -85,7 +85,7 @@ defmodule Healthlocker.GoalControllerTest do
         user_id: 123_456,
       }
       conn = get conn, goal_path(conn, :edit, goal)
-      assert html_response(conn, 200) =~ "Edit goal"
+      assert html_response(conn, 200) =~ "Edit Goal"
     end
 
     test "updates goal with valid data", %{conn: conn} do
@@ -97,7 +97,7 @@ defmodule Healthlocker.GoalControllerTest do
     test "does not update goal when data is invalid", %{conn: conn} do
       goal = Repo.insert! %Goal{content: "some stuff"}
       conn = put conn, goal_path(conn, :update, goal), goal: @invalid_attrs
-      assert html_response(conn, 200) =~ "Edit goal"
+      assert html_response(conn, 200) =~ "Edit Goal"
     end
 
     test "delete chosen goal", %{conn: conn} do

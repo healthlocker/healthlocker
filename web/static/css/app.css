@@ -8,6 +8,10 @@ body {
   height: 100%;
 }
 
+.default-font {
+  font-family: 'century-gothic', sans-serif;
+}
+
 button {
   border: none;
 }
@@ -22,6 +26,7 @@ input {
   background-color: #3D3D3D;
   opacity: 10%;
   border-radius: 5px;
+  font-family: 'century-gothic', sans-serif;
 }
 
 input:focus, textarea:focus {
@@ -37,6 +42,22 @@ input:focus, textarea:focus {
   width:20px;
   height:20px;
 }
+
+label.star::before {
+  top: 1px;
+  left: 150px;
+  content: url(/images/star_unselected.svg);
+  display: block;
+  position: absolute;
+  width:20px;
+  height:20px;
+}
+
+.checkbox.star:checked~label::before {
+  content: url(/images/star_selected.svg);
+  display: block;
+  position: absolute;
+ }
 
 select:focus {
   outline: none;

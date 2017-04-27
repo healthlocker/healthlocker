@@ -1,26 +1,34 @@
-<p class="tc b">What do you want to achieve?</p>
-<p class="tc">Describe a personal goal.</p>
-<%= form_for @changeset, @action, fn f -> %>
-  <div class="center">
-    <div class="mh4 measure center">
-      <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2" %>
-      <p class="b">Steps to take:</p>
-      <p>List the things you could do to achieve this goal.</p>
-      <%= inputs_for f, :steps, fn s -> %>
-        <div class="mb3">
-          <%= checkbox s, :complete, class: "checkbox" %>
-          <%= text_input s, :details, class: "pa3 input-reset bn hl-bg-grey w-90 " <>
-            Healthlocker.ComponentView.highlight_errors(@changeset, :details) %>
+<section class="mw6 center">
+
+  <p class="tl b">What do you want to achieve?</p>
+  <p class="tl">Describe a personal goal.</p>
+  <%= form_for @changeset, @action, fn f -> %>
+    <div class="tl measure">
+        <div class=" mb3 pb3 bb b--hl-grey bw2">
+          <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
         </div>
-      <% end %>
-      <%= checkbox f, :important, class: "checkbox" %>
-      <%= label f, :important do %>
-        Label as important
-      <% end %>
-      <p>Important goals will be at the top of the list</p>
-      <div class="tr">
-        <%= submit_primary "Save" %>
-      </div>
+        <p class="b pt2 mb0">Steps to take:</p>
+        <p class="mt1">List the things you could do to achieve this goal.</p>
+        <%= inputs_for f, :steps, fn s -> %>
+          <div class="mb3">
+            <%= checkbox s, :complete, class: "checkbox" %>
+            <%= text_input s, :details, class: "pa3 input-reset bn hl-bg-grey w-90 " <>
+              Healthlocker.ComponentView.highlight_errors(@changeset, :details) %>
+          </div>
+        <% end %>
+
+        <div class="relative mt4">
+          Mark as important
+
+          <%= checkbox f, :important, class: "o-0 checkbox star" %>
+            <%= label f, :important, class: "star" do %>
+          <% end %>
+          <p class="i">Important goals will be at the top of the list.</p>
+        </div>
+        <div class="tr">
+          <%= submit_primary "Save" %>
+        </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+
+</section>
