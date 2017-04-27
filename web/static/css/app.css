@@ -144,6 +144,10 @@ select:focus {
   background-color: #EBEBEB;
 }
 
+.hl-yellow {
+  color: #FDC300;
+}
+
 .hl-bg-yellow {
   background-color: #FDC300;
 }
