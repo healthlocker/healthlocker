@@ -21,7 +21,13 @@ defmodule Healthlocker.CareTeamController do
 
   defp care_team_for(service_user) do
     query = from e in Healthlocker.EPJSTeamMember,
-      where: e."Patient_ID" == ^service_user.slam_id
+      where: e."Patient_ID" == ^service_user.slam_id,
+      select: e."Staff_ID"
+
+    clinician_ids = Healthlocker.ReadOnlyRepo.all(query)
+
+    query = from c in Healthlocker.EPJSClinician,
+      where: c.id in ^clinician_ids
 
     Healthlocker.ReadOnlyRepo.all(query)
   end

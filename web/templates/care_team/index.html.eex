@@ -3,7 +3,11 @@
 
   <h3><%= @service_user.name <> "'s care team" %></h3>
 
+  <h2 class="mv4">SLaM care team</h2>
+
   <%= for member <- @care_team do %>
-    <%= member."Staff_ID" %>
+    <div class="w-100 hl-bg-grey pa3 mv3 br3">
+      <p class="b di"><%= member."First_Name" <> " " <> member."Last_Name" %></p>
+    </div>
   <% end %>
 </div>
