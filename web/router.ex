@@ -7,32 +7,21 @@ defmodule Healthlocker.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Healthlocker.Auth, repo: Healthlocker.Repo
+    plug Healthlocker.Plugs.Auth, repo: Healthlocker.Repo
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  # endpoints requiring a logged in user
   scope "/", Healthlocker do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, Healthlocker.Plugs.RequireLogin]
 
-    get "/", PageController, :index
-    resources "/pages", PageController, only: [:index, :show]
-
-    resources "/posts", PostController, only: [:show, :new, :create, :index] do
+    resources "/posts", PostController, only: [:new, :create, :edit, :update] do
       post "/likes", PostController, :likes
     end
 
-    resources "/tips", TipController, only: [:index]
-    resources "/support", SupportController, only: [:index]
-    resources "/users", UserController, only: [:index, :new, :create, :update] do
-      get "/signup2", UserController, :signup2
-      put "/create2", UserController, :create2
-      get "/signup3", UserController, :signup3
-      put "/create3", UserController, :create3
-    end
-    resources "/login", LoginController, only: [:index, :create, :delete]
     resources "/coping-strategy", CopingStrategyController
     resources "/goal", GoalController
     put "/goal/:id/important", GoalController, :mark_important
@@ -41,26 +30,38 @@ defmodule Healthlocker.Router do
     put "/account/update", AccountController, :update
     get "/account/consent", AccountController, :consent
     put "/account/consent/update", AccountController, :update_consent
-    get "/account/security", AccountController, :security
     get "/account/security/edit", AccountController, :edit_security
     put "/account/security/update", AccountController, :update_security
     get "/account/password/edit", AccountController, :edit_password
     put "/account/password/update", AccountController, :update_password
     get "/account/slam", AccountController, :slam
-    get "/account/slam-help", AccountController, :slam_help
-    get "/account/nhs-help", AccountController, :nhs_help
+    put "/account/check-slam", AccountController, :check_slam
     resources "/components", ComponentController, only: [:index]
-    resources "/feedback", FeedbackController, only: [:index, :create]
     resources "/messages", MessageController, only: [:index]
     resources "/sleep-tracker", SleepTrackerController, only: [:index, :new, :create] do
       get "/prev-date", SleepTrackerController, :prev_date
       get "/next-date", SleepTrackerController, :next_date
     end
     resources "/care-plan", CarePlanController, only: [:index]
+    resources "/caseload", CaseloadController, only: [:index]
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Healthlocker do
-  #   pipe_through :api
-  # end
+  # endpoints not requiring a logged in user
+  scope "/", Healthlocker do
+    pipe_through :browser
+
+    get "/", PageController, :index
+    resources "/feedback", FeedbackController, only: [:index, :create]
+    resources "/login", LoginController, only: [:index, :create, :delete]
+    resources "/users", UserController, only: [:index, :new, :create, :update] do
+      get "/signup2", UserController, :signup2
+      put "/create2", UserController, :create2
+      get "/signup3", UserController, :signup3
+      put "/create3", UserController, :create3
+    end
+    resources "/pages", PageController, only: [:index, :show]
+    resources "/posts", PostController, only: [:show, :index]
+    resources "/support", SupportController, only: [:index]
+    resources "/tips", TipController, only: [:index]
+  end
 end

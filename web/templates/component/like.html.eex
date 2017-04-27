@@ -1,17 +1,12 @@
 <%= if @current_user do %>
-  <%= if Enum.member?(@current_user.likes |> Enum.map(fn(p) -> p.id end), @post.id) do %>
-    <p class="pt3 hl-pink di">Liked!</p>
+  <%= if Enum.member?(@current_user.likes |> Enum.map(fn(p) ->
+      p.id
+    end), @post.id) do %>
+    <%= img_tag("/images/Bookmark_selected.svg", class: "w1 h2 relative bm-top mb-2") %>
   <%= else %>
-    <%= link_primary "Like", class: "pt3 hl-aqua link",
-                    to: post_post_path(@conn, :likes, @post.id),
-                    method: "post" %>
-
+    <%= link to: post_post_path(@conn, :likes, @post.id),
+            method: "post" do %>
+      <%= img_tag("/images/Bookmark_unselected.svg", class: "w1 h2 relative bm-top") %>
+    <% end %>
   <%= end %>
-<%= else %>
-  <p class="mt3">
-    <%= link_to "Log in", to: login_path(@conn, :index) %>
-    or
-    <%= link_to "Sign up", to: user_path(@conn, :new) %>
-    to like this!
-  </p>
 <%= end %>

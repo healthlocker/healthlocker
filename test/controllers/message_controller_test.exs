@@ -12,7 +12,7 @@ defmodule Healthlocker.MessageControllerTest do
         password_hash: Comeonin.Bcrypt.hashpwsalt("password")
       } |> Repo.insert
 
-      {:ok, conn: build_conn |> assign(:current_user, Repo.get(User, 123456))}
+      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456))}
     end
 
     test "GET /messages", %{conn: conn} do

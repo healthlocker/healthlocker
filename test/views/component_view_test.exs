@@ -52,7 +52,7 @@ defmodule Healthlocker.ComponentViewTest do
     actual = ComponentView.get_options("wake_count")
     expected_list = is_list(actual)
     expect_strings_in_list = Enum.all?(actual, fn x -> is_bitstring(x) end)
-    assert expected_list  
+    assert expected_list
     assert expect_strings_in_list
   end
 
@@ -64,9 +64,10 @@ defmodule Healthlocker.ComponentViewTest do
   end
 
   test "markdown converts markdown to html" do
-    actual = ComponentView.markdown("**tip title**\n\ntip body\n\n#Tip #Connect")
-    expected = {:safe,
-    "<p><strong>tip title</strong></p>\n<p>tip body</p>\n<p>#<a href=\"/tips?tag=Tip\">Tip</a> #<a href=\"/tips?tag=Connect\">Connect</a></p>\n"}
-    assert actual == expected
+    {:safe, actual} = ComponentView.markdown("**tip title**\n\ntip body\n\n#Tip #Connect")
+    bold_title = "<p><strong>tip title</strong></p>"
+    link = "<a href=\"/tips?tag=Tip\""
+    assert String.contains?(actual, bold_title)
+    assert String.contains?(actual, link)
   end
 end

@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h3 class="tc">Sign up</h3>
+  <h2 class="tc">Sign up</h2>
 
   <%= render "form.html", changeset: @changeset,
                           action: user_path(@conn, :create),

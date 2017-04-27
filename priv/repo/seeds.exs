@@ -11,11 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 Faker.start
-alias Healthlocker.Repo
-alias Healthlocker.User
-alias Healthlocker.Post
-alias Healthlocker.Goal
-alias Healthlocker.Relationship
+alias Healthlocker.{Repo, User, Post, Goal, Relationship}
 import Ecto.Query
 
 
@@ -122,9 +118,9 @@ defmodule Healthlocker.DemoDataSeeder do
 end
 
 Repo.insert!(%User{
-  email: "bob@email.co.uk",
+  email: "evan@email.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-  name: "Bob",
+  name: "Evan",
   phone_number: "07512 345 678",
   security_question: "Name of first boss?",
   security_answer: "Betty",
@@ -133,10 +129,21 @@ Repo.insert!(%User{
 })
 
 Repo.insert!(%User{
-  email: "sara@email.co.uk",
+  email: "lisa@email.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-  name: "Sara",
+  name: "Lisa",
   phone_number: "07512 678 345",
+  security_question: "Name of first boss?",
+  security_answer: "Betty",
+  data_access: false,
+  role: "slam_user"
+})
+
+Repo.insert!(%User{
+  email: "angela@email.com",
+  password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+  name: "Angela",
+  phone_number: "07519 283 475",
   security_question: "Name of first boss?",
   security_answer: "Betty",
   data_access: false,
@@ -152,6 +159,17 @@ Repo.insert!(%User{
   security_answer: "Betty",
   data_access: true,
   role: "clinician"
+})
+
+Repo.insert!(%User{
+  email: "katherine@email.com",
+  password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+  name: "Kat Bow",
+  phone_number: "07598 123 789",
+  security_question: "Name of first boss?",
+  security_answer: "Betty",
+  data_access: false,
+  role: "admin"
 })
 
 (1..200) |> Enum.each(fn _ -> Healthlocker.DemoDataSeeder.add_users end)

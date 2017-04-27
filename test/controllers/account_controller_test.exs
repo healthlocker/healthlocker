@@ -1,7 +1,7 @@
 defmodule Healthlocker.AccountControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.User
+  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo}
 
   @valid_attrs %{
     name: "NewName",
@@ -36,6 +36,13 @@ defmodule Healthlocker.AccountControllerTest do
     password_check: "password",
     password: "New password",
     password_confirmation: "not new password"
+  }
+
+  @slam_attrs %{
+    "Forename" => "Kat",
+    "Surname" => "Bow",
+    "NHS_Number" => "uvhjbfnwqoekhfg8y9i",
+    "DOB" => "01/01/1989"
   }
 
   describe "current_user is assigned in the session" do
@@ -80,11 +87,6 @@ defmodule Healthlocker.AccountControllerTest do
     test "updates user data_access with valid data", %{conn: conn} do
       conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
       assert redirected_to(conn) == account_path(conn, :consent)
-    end
-
-    test "render security.html", %{conn: conn} do
-      conn = get conn, account_path(conn, :security)
-      assert html_response(conn, 200) =~ "Update security question"
     end
 
     test "render edit_security.html", %{conn: conn} do
@@ -135,14 +137,33 @@ defmodule Healthlocker.AccountControllerTest do
       assert html_response(conn, 200) =~ "Current password"
     end
 
-    test "renders connecting slam info", %{conn: conn} do
-      conn = get conn, account_path(conn, :slam_help)
-      assert html_response(conn, 200) =~ "To connect you will need to enter"
+    test "check_slam renders index with correct details", %{conn: conn} do
+      dob = DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC")
+      ReadOnlyRepo.insert!(%EPJSUser{
+        id: 789,
+        Patient_ID: 200,
+        Surname: "Bow",
+        Forename: "Kat",
+        NHS_Number: "uvhjbfnwqoekhfg8y9i",
+        DOB: dob,
+      })
+      conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
+      assert html_response(conn, 200) =~ "Account connected with SLaM"
     end
 
-    test "render nhs_help.html", %{conn: conn} do
-      conn = get conn, account_path(conn, :nhs_help)
-      assert html_response(conn, 200) =~ "Your NHS number will be on any letter"
+    test "check_slam redirects to slam with incorrect details", %{conn: conn} do
+      dob = DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC")
+      ReadOnlyRepo.insert!(%EPJSUser{
+        id: 789,
+        Patient_ID: 200,
+        Surname: "Bow",
+        Forename: "Kat",
+        NHS_Number: "uvhjbfjkm534re9ch",
+        DOB: dob,
+      })
+      conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
+      assert html_response(conn, 302)
+      assert get_flash(conn, :error) == "Details do not match. Please try again later"
     end
   end
 
@@ -167,12 +188,6 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "update_consent is redirected and conn halted", %{conn: conn} do
       conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
-    test "security is redirected and conn halted", %{conn: conn} do
-      conn = get conn, account_path(conn, :security)
       assert html_response(conn, 302)
       assert conn.halted
     end
@@ -203,18 +218,6 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "slam is redirected and conn halted", %{conn: conn} do
       conn = get conn, account_path(conn, :slam)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
-    test "slam_help is redirected and conn halted", %{conn: conn} do
-      conn = get conn, account_path(conn, :slam_help)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
-    test "nhs_help is redirected and conn halted", %{conn: conn} do
-      conn = get conn, account_path(conn, :nhs_help)
       assert html_response(conn, 302)
       assert conn.halted
     end

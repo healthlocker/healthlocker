@@ -13,10 +13,41 @@ defmodule Healthlocker.PostControllerTest do
         id: 123456,
         name: "MyName",
         email: "abc@gmail.com",
-        password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        role: "admin"
       } |> Repo.insert
 
-      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
+      post = Repo.insert!(%Post{
+        content: "# title \n\n more stuff \n\n #story",
+        user_id: 123_456
+      })
+
+      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)),
+            post: post}
+    end
+
+    test "renders edit form", %{conn: conn, post: post} do
+      conn = get conn, post_path(conn, :edit, post)
+      assert html_response(conn, 200) =~ "Edit post"
+    end
+
+    test "updates post with valid data", %{conn: conn, post: post} do
+      conn = put conn, post_path(conn, :update, post), post: %{
+        content: "**title** \n\n more stuff \n\n #story"
+      }
+      updated = Post
+              |> Repo.get_by!(content: "**title** \n\n more stuff \n\n #story")
+      assert redirected_to(conn) == post_path(conn, :show, post)
+      assert updated
+    end
+
+    test "does not update post with invalid data", %{conn: conn, post: post} do
+      conn = put conn, post_path(conn, :update, post), post: %{
+        content: ""
+      }
+      updated = Repo.get_by(Post, content: "")
+      assert html_response(conn, 200) =~ "Edit post"
+      refute updated
     end
 
     test "renders form for new resources", %{conn: conn} do

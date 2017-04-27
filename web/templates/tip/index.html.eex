@@ -1,12 +1,12 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h3 class="tc">Tips</h3>
+  <h2 class="tc">Tips</h2>
 
   <%= for post <- @posts do %>
   <article class="ba b--black-05 mv2 mv3-m mv4-l">
-    <div class="pa3 bg-near-white b--black-10">
-      <p class="pv2 ph2 ph3-m ph4-l f5 f4-ns f3-m f2-l lh-copy"><%= markdown post.content %></p>
-      <%= render Healthlocker.ComponentView, "like.html", conn: @conn, post: post,
-        current_user: @current_user %>
+    <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+      <%= img_tag("#{image_url(post.content)}",
+        class: "miniIcon absolute") %>
+      <%= markdown post.content %>
     </div>
   </article>
   <% end %>

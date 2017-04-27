@@ -14,9 +14,13 @@ defmodule Healthlocker.User do
     field :data_access, :boolean
     field :role, :string
     field :slam_user, :boolean
+    field :slam_id, :integer
     has_many :posts, Healthlocker.Post
     many_to_many :likes, Healthlocker.Post, join_through: "posts_likes", on_replace: :delete, on_delete: :delete_all
     many_to_many :relationships, Healthlocker.User, join_through: Healthlocker.Relationship, on_replace: :delete, on_delete: :delete_all
+
+    many_to_many :carers, Healthlocker.User, join_through: Healthlocker.Carer, join_keys: [caring_id: :id, carer_id: :id]
+    many_to_many :caring, Healthlocker.User, join_through: Healthlocker.Carer, join_keys: [carer_id: :id, caring_id: :id]
 
     timestamps()
   end
@@ -83,6 +87,11 @@ defmodule Healthlocker.User do
     |> validate_length(:password, min: 6, max: 100)
     |> validate_confirmation(:password, message: "New passwords do not match")
     |> put_pass_hash()
+  end
+
+  def connect_slam(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:slam_id])
   end
 
   def put_pass_hash(changeset) do

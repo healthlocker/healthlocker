@@ -29,38 +29,50 @@
 
       <div class="container">
         <header id="header" class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph5-l tc">
-          <nav class="f2 fw3 tracked">
-            <i id="open-nav" class="fa fa-bars dim white dib fl" aria-hidden="true"></i>
+          <nav class="f2 fw3">
+            <i id="open-nav" class="fa fa-bars white dib fl pointer" aria-hidden="true"></i>
             <a href="/"><%= img_tag("/images/logo.png", class: "w-60 w-50-m mw5") %></a>
+            <div class="fr dn dib-m dib-l">
+              <%= cond do %>
+                <%= !@current_user -> %>
+                  <%= link_primary "Log in", to: login_path(@conn, :index) %>
+                <%= @current_user && @current_user.role != "clinician" -> %>
+                  <%= link_primary "Log out", to: login_path(@conn, :delete, @current_user),
+                      method: "delete"%>
+                <%= @current_user && @current_user.role == "clinician" -> %>
+                  <%= link "Caseload", to: caseload_path(@conn, :index),
+                      class: "f5 white-80 dib hover-white pointer" %>
+                <%= true -> %>
+                  <%= link_primary "Log in", to: login_path(@conn, :index) %>
+              <% end %>
+            </div>
           </nav>
         </header>
 
-        <nav class="sidenav h-100 absolute z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc" id="my-sidenav">
-            <img id="close-nav" class="w2" src="https://cloud.githubusercontent.com/assets/1287388/22516970/75a7e0e6-e89f-11e6-89e0-ea0e57ddfede.png" alt="close nav">
-          <%= link "Home", to: page_path(@conn, :index), class: "pa3 f3 white-80 db hover-white" %>
+        <nav class="sidenav h-100 absolute z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc measure-narrow-l br-l b--white" id="my-sidenav">
+          <%= img_tag("/images/x_icon.svg", id: "close-nav", class: "w2 mt5 pointer") %>
+          <%= link "Home", to: page_path(@conn, :index), class: "pa3 pt5-l f3 white-80 db hover-white" %>
           <%= link "About", to: page_path(@conn, :show, "about"), class: "pa3 f3 white-80 db hover-white" %>
           <%= if @current_user do %>
             <%= link "Toolkit",  class: "pa3 f3 white-80 db hover-white",
                                  to: toolkit_path(@conn, :index) %>
-           <p class="pa3 f3 white-80 db">------------</p>
+            <p class="pa3 f3 white-80 db">------------</p>
+            <%= link "Account", to: account_path(@conn, :index),
+                     class: "pa3 f4 white-60 db hover-white" %>
+            <%= link "Log out", class: "pa3 f4 white-60 db hover-white",
+                               to: login_path(@conn, :delete, @current_user),
+                               method: "delete" %>
           <%= else %>
             <%= link "Sign up", class: "pa3 f3 white-80 db hover-white",
                 to: user_path(@conn, :new) %>
             <%= link "Log in", class: "pa3 f3 white-80 db hover-white",
                 to: login_path(@conn, :index) %>
           <%= end %>
-          <%= if @current_user do %>
-            <%= link "Account", to: account_path(@conn, :index),
-                      class: "pa3 f4 white-60 db hover-white" %>
-            <%= link "Log out", class: "pa3 f4 white-60 db hover-white",
-                                to: login_path(@conn, :delete, @current_user),
-                                method: "delete" %>
-          <% end %>
-          <%= link "Get support", to: support_path(@conn, :index), class: "mt3 mh5 mh6-m mh7-l hl-bg-pink pv2 f3 white-80 db hover-white" %>
+          <%= link "Get support", to: support_path(@conn, :index), class: "mt3 mh5 mh6-m hl-bg-pink pv2 f3 white-80 db hover-white" %>
         </nav>
 
         <main id="body">
-          <section class="h-100 pa3 pa5-ns bt b--black-10 bg-white">
+          <section class="h-100 ph3 ph5-ns pb3 bt b--black-10 bg-white">
             <section class="mw7 center">
               <%
                 info = get_flash(@conn, :info)
@@ -76,9 +88,9 @@
             </section>
           </section>
         </main>
-        <footer id="footer" class="db hl-bg-aqua tc mt4 w-100">
+        <footer id="footer" class="db hl-bg-dark-blue tc mt4 w-100">
           <%= link "About", to: page_path(@conn, :show, "about"), class: "f6 pt3 link dim white-80 dib mr3 mr4-ns" %>
-          <%= link "Terms and conditions", to: page_path(@conn, :show, "terms"), class: "f6 link dim white-80 dib mr3 mr4-ns" %>
+          <%= link "Terms of Service", to: page_path(@conn, :show, "terms"), class: "f6 link dim white-80 dib mr3 mr4-ns" %>
           <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy"), class: "f6 link dim white-80 dib" %>
         </footer>
 
@@ -87,7 +99,7 @@
     <script>window.userToken = "<%= assigns[:user_token] %>"</script>
     <script src="https://use.fontawesome.com/6a9dd6f59e.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <%= if @current_user do %>
+    <%= if @current_user && segment?() do %>
       <script type="text/javascript">
         require("web/static/js/segment").Segment.identify("<%= @current_user.id %>", "<%= @current_user.name %>", "<%= @current_user.email %>")
       </script>

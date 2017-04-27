@@ -31,9 +31,9 @@ defmodule Healthlocker.SleepTrackerViewTest do
     assert actual == expected
   end
 
-  test "days_of_week returns the correct day string of the week" do
-    actual = SleepTrackerView.day_of_week(~D[2017-04-07], 0)
-    expected = "Friday"
+  test "date_with_day_and_month returns the correct date string" do
+    actual = SleepTrackerView.date_with_day_and_month(~D[2017-04-07])
+    expected = "Friday 7th April"
     assert actual == expected
   end
 end
