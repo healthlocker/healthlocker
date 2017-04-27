@@ -1,12 +1,12 @@
 <section class="flex-auto flex flex-column flex-row-ns bg-white black-70">
   <div class="fl w-100 w-100-ns pa2">
-    <h3 class="f6 ttu tracked mt0">Styleguide</h3>
+    <h3 class="f6 ttu tracked mt5">Styleguide</h3>
     <p class="measure f5 lh-copy sans-serif">Welcome to the Healthlocker styleguide. This is where we document the components that make up the Healthlocker application.</p>
     <p class="measure f5 lh-copy sans-serif">If you're looking to build any front-end pages look here for which components to use, and then use the corresponding helper or partial to correctly generate the markup (with Tachyons classes).</p>
 
     <div class="bg-white pv4">
       <h2 class="f3">Color Palette</h1>
-      <p class="f5 lh-copy sans-serif">The naming convention for color classes: <code>.hl-dark-blue</code> or <code>.hl-bg-terracotta</code> (for background colours).</p>
+      <p class="f5 lh-copy sans-serif">The naming convention for color classes: <code>.hl-dark-blue</code>, <code>.hl-bg-terracotta</code> (background colours) or <code>.b--hl-grey</code> (border colours).</p>
       <ul class="list pl0 ml0 cf">
         <li class="fl w-100 w-50-m w-25-l mb1">
           <div class="fl w-40 pv4 hl-bg-grey"></div>
