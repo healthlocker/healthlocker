@@ -66,13 +66,14 @@
         </li>
       </ul>
 
-      <h2 class="f3">Helper Function - Standard Components</h1>
-      <p class="f5 lh-copy sans-serif">Helper functions are used to generate individual standard components e.g. a link or a button. They're used for a component that should consistently look the same but that may be used in multiple different contexts.</p>
+      <h2 class="f3">Helper Function Standard Components</h1>
+      <p class="f5 lh-copy sans-serif">Helper functions are used to generate individual standard components e.g. a link or a button.
+         They're used for a component that should consistently look the same but that may be used in multiple different contexts e.g. a styled button. </p>
       <p class="f5 lh-copy sans-serif">To use a helper standard component you need to do 3 things:</p>
       <ul class="f5 lh-copy sans-serif">
         <li>Find an existing component in <code>web/views/component_helpers</code> or create/amend your own</li>
         <li>Check your component_helper file is imported in <code>web/views/component_helpers.ex</code></li>
-        <li>Call the function in your html where you wish to position your component.</li>
+        <li>Call the function in your html where you wish to position the component.</li>
       </ul>
       <p class="f5 lh-copy sans-serif">Take this button for example: <%= link_primary("Click me!", to: "#somewhere") %></p>
       <p class="f5 lh-copy sans-serif">Include the following code where you want it to render:</p>
