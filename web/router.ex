@@ -43,6 +43,7 @@ defmodule Healthlocker.Router do
       get "/next-date", SleepTrackerController, :next_date
     end
     resources "/care-plan", CarePlanController, only: [:index]
+    resources "/care-team", CareTeamController, only: [:index]
     resources "/caseload", CaseloadController, only: [:index]
     resources "/slam", SlamController, only: [:new, :create]
   end

@@ -1,0 +1,5 @@
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+  <h2 class="tc">Contacts</h2>
+
+  <h3><%= service_user_for(@current_user).name <> "'s care team" %></h3>
+</div>
