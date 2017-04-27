@@ -9,12 +9,12 @@ defmodule Healthlocker.Slam.CarerConnection do
     field :last_name
     field :date_of_birth
     field :nhs_number # should this be a string or int? Any other particulars?
-    field :epjs_user_id, :integer
+    field :epjs_patient_id, :integer
   end
 
   def changeset(changeset, params \\ %{}) do
     changeset
-    |> cast(params, [:first_name, :last_name, :date_of_birth, :nhs_number, :epjs_user_id])
+    |> cast(params, [:first_name, :last_name, :date_of_birth, :nhs_number])
     |> cast_datetime(:date_of_birth)
     |> validate_required([:first_name, :last_name, :date_of_birth, :nhs_number])
     |> validate_slam()
@@ -27,7 +27,7 @@ defmodule Healthlocker.Slam.CarerConnection do
       if epjs_user, do: [], else: [{:nhs_number, options[:message] || "details do not match"}]
     end)
 
-    if epjs_user, do: put_change(changeset, :epjs_user_id, epjs_user.id), else: changeset
+    if epjs_user, do: put_change(changeset, :epjs_patient_id, epjs_user."Patient_ID"), else: changeset
   end
 
   defp find_epjs_user(%{changes: changes}) when changes == %{} do
