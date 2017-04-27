@@ -108,10 +108,11 @@
         <img src="https://cloud.githubusercontent.com/assets/16775804/25179121/6a987b82-2500-11e7-8745-9769a604f595.png" />
       </div>
 
-      <h2 class="f3 mt6 pt4">Partials - Standard Components</h1>
-      <p class="measure f5 lh-copy sans-serif">Partials are small templates.
-        They are used to contain a collection of elements that always used together.
-        Partials can contain helper standard components.</p>
+      <h2 class="f3 mt6 pt4">Partials Standard Components</h1>
+      <p class="f5 lh-copy sans-serif">Partials are small templates.
+        They are used to contain a collection of elements that are always used together.
+        Partials can contain helper standard components. In the context of standard components,
+         we are interested in partials that are reused and inserted in numerous places across a project.</p>
       <p class="measure f5 lh-copy sans-serif">To use a partial you need to do 3 things:</p>
 
       <ul class="f5 lh-copy sans-serif">
