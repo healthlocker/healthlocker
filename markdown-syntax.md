@@ -43,7 +43,7 @@ the content, manipulate, then put it back together.
 The images will now be added as below.
 
 ```html
-<div class="w4 h4 bg-center cover br-100 center"
+<div class="w4 h4 bg-center cover br-100 center mt1"
   style="background-image:url(http://www.rd.com/wp-content/uploads/sites/2/2016/04/01-cat-wants-to-tell-you-laptop.jpg)">
 </div>
 ```
@@ -51,7 +51,7 @@ The images will now be added as below.
 To change the image, the only part that needs to change is the link in the `()`.
 
 ```html
-<div class="w4 h4 bg-center cover br-100 center"
+<div class="w4 h4 bg-center cover br-100 center mt1"
   style="background-image:url(http://change_this)">
 </div>
 ```
