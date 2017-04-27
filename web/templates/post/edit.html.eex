@@ -1,0 +1,5 @@
+<div class="center">
+  <h3 class="tc bg-near-white pv2 mh3 black-70">Edit post</h3>
+  <%= render "form.html", changeset: @changeset,
+                          action: post_path(@conn, :update, @post) %>
+</div>

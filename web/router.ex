@@ -18,7 +18,7 @@ defmodule Healthlocker.Router do
   scope "/", Healthlocker do
     pipe_through [:browser, Healthlocker.Plugs.RequireLogin]
 
-    resources "/posts", PostController, only: [:new, :create] do
+    resources "/posts", PostController, only: [:new, :create, :edit, :update] do
       post "/likes", PostController, :likes
     end
 
@@ -44,6 +44,7 @@ defmodule Healthlocker.Router do
     end
     resources "/care-plan", CarePlanController, only: [:index]
     resources "/caseload", CaseloadController, only: [:index, :show]
+    resources "/slam", SlamController, only: [:new, :create]
   end
 
   # endpoints not requiring a logged in user

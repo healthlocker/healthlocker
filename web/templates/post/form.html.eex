@@ -1,0 +1,8 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="mh4">
+    <%= textarea f, :content, placeholder: "Content", class: "w-100 h4 mb2 b--light-blue f4 pa2" %>
+    <div class="tr">
+      <%= submit_primary "Submit" %>
+    </div>
+  </div>
+<% end %>

@@ -1,7 +1,7 @@
 defmodule Healthlocker.CaseloadControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, ReadOnlyRepo, User}
+  alias Healthlocker.{EPJSClinician, ReadOnlyRepo, User}
 
   describe "current_user is assigned in the session" do
     setup do
@@ -13,6 +13,12 @@ defmodule Healthlocker.CaseloadControllerTest do
         security_question: "Question?",
         security_answer: "Answer"
       } |> Repo.insert
+
+      %EPJSClinician{
+        GP_Code: "NyNsn50mPQPFZYn7",
+        First_Name: "Robert",
+        Last_Name: "MacMurray"
+      } |> ReadOnlyRepo.insert
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
     end
