@@ -3,7 +3,7 @@ defmodule Healthlocker.Carer do
 
   @primary_key false
   schema "carers" do
-    belongs_to :carer, Healthlocker.User, foreign_key: :carer_id
-    belongs_to :caring, Healthlocker.User, foreign_key: :caring_id
+    belongs_to :carer, Healthlocker.User
+    belongs_to :caring, Healthlocker.User
   end
 end
