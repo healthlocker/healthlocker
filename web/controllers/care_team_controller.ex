@@ -8,10 +8,8 @@ defmodule Healthlocker.CareTeamController do
     conn
     |> assign(:service_user, service_user)
     |> assign(:care_team, care_team_for(service_user))
-    |> assign(:name, "Dweezil")
     |> render("index.html")
   end
-
 
   defp service_user_for(carer) do
     carer = carer |> Repo.preload(:caring)
