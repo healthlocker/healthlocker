@@ -145,10 +145,10 @@ defmodule Healthlocker.AccountController do
       user = Repo.get!(User, conn.assigns.current_user.id)
       User.connect_slam(user, %{"slam_id" => slam_user."Patient_ID"})
           |> Repo.update!
-      slam_changeset = EPJSUser.changeset(slam_user)
+      changeset = User.update_changeset(user)
       conn
       |> put_flash(:info, "SLaM account connected!")
-      |> render("index.html", changeset: slam_changeset, user: user,
+      |> render("index.html", changeset: changeset, user: user,
                 slam_id: slam_user.id, action: account_path(conn, :update))
     else
       conn
