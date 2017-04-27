@@ -15,7 +15,8 @@ defmodule Healthlocker.CarerConnectSlam do
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
       privacy: true,
-      data_access: true
+      data_access: true,
+      slam_id: 200
     )
 
     Healthlocker.ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{id: 789,
