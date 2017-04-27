@@ -184,3 +184,16 @@
     Boo ☹️
   </div>
 </div>
+
+<h2 class="f3">Still to add...</h2>
+<ul class="f5 lh-copy sans-serif">
+  <li>Give code e.g. of how to implement a partials standard component</li>
+  <li>Finish tips</li>
+  <li>Flash message description</li>
+  <li>Input boxes</li>
+  <li>Burger menu?</li>
+  <li>Footer?</li>
+  <li>Stories? Bookmarks?</li>
+  <li>Graph components?</li>
+  <li>Class limitations for extra styling - have to currently put in a div</li>
+</ul>
