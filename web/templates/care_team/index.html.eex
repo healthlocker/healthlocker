@@ -2,4 +2,8 @@
   <h2 class="tc">Contacts</h2>
 
   <h3><%= @service_user.name <> "'s care team" %></h3>
+
+  <%= for member <- @care_team do %>
+    <%= member."Staff_ID" %>
+  <% end %>
 </div>
