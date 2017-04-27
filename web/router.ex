@@ -18,7 +18,7 @@ defmodule Healthlocker.Router do
   scope "/", Healthlocker do
     pipe_through [:browser, Healthlocker.Plugs.RequireLogin]
 
-    resources "/posts", PostController, only: [:new, :create] do
+    resources "/posts", PostController, only: [:new, :create, :edit, :update] do
       post "/likes", PostController, :likes
     end
 
@@ -43,6 +43,7 @@ defmodule Healthlocker.Router do
       get "/next-date", SleepTrackerController, :next_date
     end
     resources "/care-plan", CarePlanController, only: [:index]
+    resources "/caseload", CaseloadController, only: [:index]
     resources "/slam", SlamController, only: [:new, :create]
   end
 
