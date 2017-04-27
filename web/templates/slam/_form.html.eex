@@ -1,0 +1,35 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="w-100">
+    <div class="dib w-40">
+      <%= label f, :first_name, "First name", class: "f5 b db mt2 mb2" %>
+      <%= text_input f, :first_name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+      <%= error_tag f, :first_name %>
+    </div>
+
+    <div class="dib w-50 fr">
+      <%= label f, :last_name,  "Last name", class: "f5 b db mt2 mb2" %>
+      <%= text_input f, :last_name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+      <%= error_tag f, :last_name %>
+    </div>
+  </div>
+
+  <div>
+    <%= label f, :date_of_birth, "Date of birth", class: "f5 b db mt2 mb2" %>
+    <%= text_input f, :date_of_birth, class: "pa3 input-reset bn hl-bg-grey w-40" %>
+    <p class="di gray">DD/MM/YYYY</p>
+    <%= error_tag f, :date_of_birth %>
+  </div>
+
+  <div>
+    <%= label f, :nhs_number, class: "f5 b db mt2 mb2" do %>
+      NHS number <%= link_to("(?)", to: page_path(@conn, :show, "nhs_help")) %>
+    <% end %>
+    <%= text_input f, :nhs_number,
+        class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= error_tag f, :nhs_number %>
+  </div>
+
+  <div class="tr mt4">
+    <%= submit_primary "Connect" %>
+  </div>
+<% end %>

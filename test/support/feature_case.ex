@@ -11,6 +11,7 @@ defmodule Healthlocker.FeatureCase do
       import Ecto.Query
 
       import Healthlocker.Router.Helpers
+      import Healthlocker.LoginHelpers
     end
   end
 
@@ -20,6 +21,7 @@ defmodule Healthlocker.FeatureCase do
 
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(Healthlocker.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Healthlocker.ReadOnlyRepo, {:shared, self()})
     end
 
     metadata = Phoenix.Ecto.SQL.Sandbox.metadata_for(Healthlocker.Repo, self())

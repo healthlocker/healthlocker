@@ -18,7 +18,7 @@
         <% end %>
 
         <div class="relative mt4">
-          Mark as important
+          Star as important
 
           <%= checkbox f, :important, class: "o-0 checkbox star" %>
             <%= label f, :important, class: "star" do %>
