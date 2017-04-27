@@ -5,4 +5,9 @@
   <span class="b">NHS Number: </span><p><%= @slam_user."NHS_Number" %></p>
   <span class="b">Email: </span><p><%= @user.email %></p>
   <span class="b">Phone Number: </span><p><%= @user.phone_number %></p>
+  <span class="b">Address Details: </span>
+  <p><%= @address."Address1" %></p>
+  <p><%= @address."Address2" %></p>
+  <p><%= @address."Address3" %></p>
+  <p><%= @address."Post_Code" %></p>
 </div>
