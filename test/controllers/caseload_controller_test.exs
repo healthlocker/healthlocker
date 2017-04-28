@@ -16,6 +16,16 @@ defmodule Healthlocker.CaseloadControllerTest do
         slam_id: 201
       } |> Repo.insert
 
+      %User{
+        id: 123457,
+        name: "Robert MacMurray",
+        email: "robert_macmurray@nhs.co.uk",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        security_question: "Question?",
+        security_answer: "Answer",
+        role: "clinician"
+      } |> Repo.insert
+
       %EPJSClinician{
         GP_Code: "NyNsn50mPQPFZYn7",
         First_Name: "Robert",
@@ -43,7 +53,7 @@ defmodule Healthlocker.CaseloadControllerTest do
         Tel_home: "02085 123 456"
       } |> ReadOnlyRepo.insert
 
-      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
+      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123457)) }
     end
 
     test "GET /caseload", %{conn: conn} do
@@ -52,7 +62,8 @@ defmodule Healthlocker.CaseloadControllerTest do
     end
 
     test "GET /caseload/:id/show", %{conn: conn} do
-      conn = get conn, caseload_path(conn, :show, conn.assigns.current_user)
+      user = Repo.get!(User, 123456)
+      conn = get conn, caseload_path(conn, :show, user)
       assert html_response(conn, 200) =~ "Details and contacts"
     end
   end

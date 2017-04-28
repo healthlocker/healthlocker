@@ -5,8 +5,14 @@ defmodule Healthlocker.CaseloadController do
                       EPJSClinician, ReadOnlyRepo, User}
 
   def index(conn, _params) do
-    clinician = ReadOnlyRepo.one(from c in EPJSClinician,
-                where: c."GP_Code" == "NyNsn50mPQPFZYn7")
+    clinician = if conn.assigns.current_user.email == "robert_macmurray@nhs.co.uk" do
+                  ReadOnlyRepo.one(from c in EPJSClinician,
+                              where: c."GP_Code" == "NyNsn50mPQPFZYn7")
+                else
+                  ReadOnlyRepo.one(from c in EPJSClinician,
+                              where: c."GP_Code" == "yr68Dobil7yD40Ag")
+                end
+
     patient_ids = EPJSTeamMember
                   |> EPJSTeamMember.patient_ids(clinician.id)
                   |> ReadOnlyRepo.all

@@ -1,7 +1,10 @@
 <h2 class="hl-dark-blue"><%= @slam_user."Forename" %> <%= @slam_user."Surname" %></h2>
 <p class="b tc hl-dark-blue">Details and contacts</p>
 <div class="hl-bg-grey pa3 br3 mt2 hl-dark-blue">
-  <span class="b">Date of Birth: </span><p><%= @slam_user."DOB" %></p>
+  <span class="b">Date of Birth: </span>
+  <p>
+    <%= Healthlocker.ComponentView.pretty_date(@slam_user."DOB") %>
+  </p>
   <span class="b">NHS Number: </span><p><%= @slam_user."NHS_Number" %></p>
   <span class="b">Email: </span><p><%= @user.email %></p>
   <span class="b">Phone Number: </span><p><%= @user.phone_number %></p>
