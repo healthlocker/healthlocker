@@ -5,9 +5,6 @@ defmodule Healthlocker.CaseloadController do
                       EPJSClinician, ReadOnlyRepo, User}
 
   def index(conn, _params) do
-    # only have one known clinician right now, so using this to get info
-    # will need to grab the clinician_id from the token used to go from
-    # epjs to HL
     clinician = ReadOnlyRepo.one(from c in EPJSClinician,
                 where: c."GP_Code" == "NyNsn50mPQPFZYn7")
     patient_ids = EPJSTeamMember
