@@ -28,7 +28,7 @@
 
     <div class="tc w-40 dib fr">
       <a href="/sleep-tracker">
-        <%= img_tag("/images/Tracking_overview.svg",
+        <%= img_tag("/images/Toolkit_Tracking_overview.png",
                     class: "w-100") %>
         <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Tracker Overview</span>
       </a>
