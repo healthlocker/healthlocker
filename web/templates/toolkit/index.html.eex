@@ -1,9 +1,9 @@
 <div class="ma3 ma4-m ma4-l">
   <h2 class="tc">Toolkit</h2>
-  <div class="goals-strategies w-100 mw6 center">
+  <div class="goals-strategies w-100 mw6 center flex items-end justify-between">
       <div class="tc w-40 dib">
         <a href="/goal">
-        <%= img_tag("/images/HL_icons_Goals.svg", class: "w-100") %>
+        <%= img_tag("/images/Toolkit_goals.png", class: "w-100") %>
         <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Goals</span>
         </a>
       </div>
