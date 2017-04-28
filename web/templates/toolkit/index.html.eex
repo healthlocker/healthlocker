@@ -17,10 +17,10 @@
   </div>
 
 
-  <div class="tracker-container w-100 mw6 center mt3">
+  <div class="tracker-container w-100 mw6 center mt3 flex items-end justify-between">
     <div class="w-40 tc dib">
       <a href="/sleep-tracker/new">
-        <%= img_tag("/images/Sleep_tracker.svg",
+        <%= img_tag("/images/Toolkit_sleep.png",
                     class: "w-100") %>
         <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Sleep Tracker</span>
       </a>
