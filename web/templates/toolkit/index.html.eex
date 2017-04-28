@@ -10,7 +10,7 @@
 
       <div class="tc w-40 dib fr">
         <a href="/coping-strategy">
-        <%= img_tag("/images/HL_icons_Strategies.svg", class: "w-100") %>
+        <%= img_tag("/images/Toolkit_coping_strategies.png", class: "w-100") %>
         <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Strategies</span>
         </a>
       </div>
