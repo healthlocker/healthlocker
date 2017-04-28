@@ -1,15 +1,14 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, ReadOnlyRepo, User}
+  alias Healthlocker.{EPJSTeamMember, EPJSUser, EPJSPatientAddressDetails,
+                      EPJSClinician, ReadOnlyRepo, User}
 
   def index(conn, _params) do
-    # only have one known clinician right now, so using this to get info
-    # will need to grab the clinician_id from the token used to go from
-    # epjs to HL
-    clinician_id = 63
+    clinician = ReadOnlyRepo.one(from c in EPJSClinician,
+                where: c."GP_Code" == "NyNsn50mPQPFZYn7")
     patient_ids = EPJSTeamMember
-                  |> EPJSTeamMember.patient_ids(clinician_id)
+                  |> EPJSTeamMember.patient_ids(clinician.id)
                   |> ReadOnlyRepo.all
 
     hl_users = patient_ids
@@ -31,5 +30,14 @@ defmodule Healthlocker.CaseloadController do
                 end)
               end)
     render(conn, "index.html", hl_users: hl_users, non_hl: non_hl)
+  end
+
+  def show(conn, %{"id" => id}) do
+    user = Repo.get!(User, id)
+    slam_user = ReadOnlyRepo.one(from e in EPJSUser,
+                where: e."Patient_ID" == ^user.slam_id)
+    address = ReadOnlyRepo.one(from e in EPJSPatientAddressDetails,
+                    where: e."Patient_ID" == ^user.slam_id)
+    render(conn, "show.html", user: user, slam_user: slam_user, address: address)
   end
 end

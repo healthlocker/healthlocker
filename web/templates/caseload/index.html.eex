@@ -3,17 +3,20 @@
 <h2 class="mv4">Healthlocker users</h2>
 
 <%= for user <- @hl_users do %>
-  <div class="w-100 hl-bg-grey pa3 mv3 br3">
-    <p class="b di"><%= user.name %></p><span class="fr">></span>
-  </div>
+  <%= link to: caseload_path(@conn, :show, user),
+          class: "no-underline hl-dark-blue" do %>
+    <div class="w-100 hl-bg-grey pa3 mv3 br3 hl-dark-blue">
+      <p class="b di"><%= user.name %></p><span class="fr hl-yellow fw9">></span>
+    </div>
+  <% end %>
 <% end %>
 
 <h2 class="mv4">Inactive users</h2>
 
 <%= for user <- @non_hl do %>
-  <div class="w-100 hl-bg-grey pa3 mv3 br3">
+  <div class="w-100 hl-bg-grey pa3 mv3 br3 hl-dark-blue">
        <p class="b di"><%= user."Forename" %> <%= user."Surname" %></p>
        <span class="i">Not signed up to Healthlocker</span>
-       <span class="fr">></span>
+       <span class="fr hl-yellow fw9">></span>
    </div>
 <% end %>

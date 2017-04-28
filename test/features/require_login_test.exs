@@ -32,20 +32,4 @@ defmodule Healthlocker.RequireLoginTest do
       assert has_text?(login_page, "You must be logged in to access that page!")
     end
   end
-
-  @login_form     Query.css("form")
-  @email_field    Query.text_field("Email address")
-  @password_field Query.text_field("Password")
-  @login_button   Query.button("Log in")
-
-  defp log_in(session) do
-    page = session |> visit("/login")
-
-    find(page, @login_form, fn(form) ->
-      form
-      |> fill_in(@email_field, with: "tony@dwyl.io")
-      |> fill_in(@password_field, with: "password")
-      |> click(@login_button)
-    end)
-  end
 end
