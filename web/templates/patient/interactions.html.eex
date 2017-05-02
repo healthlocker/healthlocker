@@ -1,0 +1,3 @@
+<%= render "menu.html", assigns %>
+<div class="mt5"></div>
+<h1>goals and coping strategies</h1>
