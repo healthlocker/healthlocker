@@ -5,10 +5,9 @@
   <%= for goal <- @goals do %>
     <p class="b di"><%= String.trim_trailing(goal.content, " #Goal") %></p>
     <%= if goal.important do %>
-    <div class="w-10 di">
-      <%= img_tag("/images/star_selected.svg",
-      class: "w2") %>
-    </div>
+      <div class="w-10 di">
+        <%= img_tag("/images/star_selected.svg", class: "w2") %>
+      </div>
     <% end %>
 
     <%= for step <- goal.steps do %>
