@@ -17,7 +17,7 @@ defmodule Healthlocker.MessageControllerTest do
 
     test "GET /messages", %{conn: conn} do
       conn = get conn, message_path(conn, :index)
-      assert html_response(conn, 200) =~ "Enter a message"
+      assert html_response(conn, 200) =~ "Messaging coming soon."
     end
   end
 
