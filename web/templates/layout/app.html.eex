@@ -58,7 +58,10 @@
           <%= if @current_user do %>
             <%= link "Toolkit",  class: "pa3 f3 white-80 db hover-white",
                                  to: toolkit_path(@conn, :index) %>
-            <%= if care_team?(@current_user), do: link "Care team", class: "pa3 f3 white-80 db hover-white", to: care_team_path(@conn, :index) %>
+            <%= if care_team?(@current_user) or @current_user.slam_id do %>
+             <%= link "Care team", class: "pa3 f3 white-80 db hover-white",
+                                  to: care_team_path(@conn, :index) %>
+            <% end %>
             <p class="pa3 f3 white-80 db">------------</p>
             <%= link "Account", to: account_path(@conn, :index),
                      class: "pa3 f4 white-60 db hover-white" %>
