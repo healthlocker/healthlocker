@@ -5,7 +5,7 @@
      <%= link "Profile", to: account_path(@conn, :index), class: "link w-33 bb dib fl black tc pv1 b--hl-aqua" %>
      <%= link "Security", to: page_path(@conn, :show, "security"), class: "link w-33 dib fl black tc pv1 bg-white" %>
      <%= link "Consent", to: account_path(@conn, :consent), class: "link w-33 dib fl black tc pv1 bg-white" %>
-   <%= @conn.request_path == "/account/security" -> %>
+   <%= @conn.request_path == "/pages/security" -> %>
      <%= link "Profile", to: account_path(@conn, :index), class: "link w-33 dib fl black tc pv1 bg-white" %>
      <%= link "Security", to: page_path(@conn, :show, "security"), class: "link w-33 bb dib fl black tc pv1 b--hl-aqua" %>
      <%= link "Consent", to: account_path(@conn, :consent), class: "link w-33 dib fl black tc pv1 bg-white" %>
