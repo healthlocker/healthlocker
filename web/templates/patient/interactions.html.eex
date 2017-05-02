@@ -1,0 +1,26 @@
+<%= render "menu.html", assigns %>
+<div class="mt5"></div>
+<div class="hl-bg-grey pa3 br3 mt2 hl-dark-blue">
+  <h3>Goals</h3>
+  <%= for goal <- @goals do %>
+    <p class="b di"><%= String.trim_trailing(goal.content, " #Goal") %></p>
+    <%= if goal.important do %>
+      <div class="w-10 di">
+        <%= img_tag("/images/star_selected.svg", class: "w2") %>
+      </div>
+    <% end %>
+
+    <%= for step <- goal.steps do %>
+      <%= if is_bitstring(step.details) do %>
+        <ul>
+          <li><%= step.details %></li>
+        </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <h3>Coping Strategies</h3>
+  <%= for strategy <- @strategies do %>
+    <p><%= String.trim_trailing(strategy.content, " #CopingStrategy") %></p>
+  <% end %>
+</div>
