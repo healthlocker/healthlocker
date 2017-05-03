@@ -1,0 +1,4 @@
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+  <%= render "menu.html", assigns %>
+  <p class="hl-dark-blue pa3">Messaging coming soon.</p>
+</div>

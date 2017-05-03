@@ -10,7 +10,7 @@
     <%= textarea f, :content, class: "w-100 h4 mb2 b--light-blue f4 pa2" %>
   </div>
 
-  <div class="tr">
-    <%= submit "Send", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
+  <div class="tr mt4">
+    <%= submit_primary "Send" %>
   </div>
 <% end %>
