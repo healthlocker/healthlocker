@@ -1,0 +1,7 @@
+<div class="tc">
+  <label for="message-input" class="f5 b db mb2 mt4">Enter a message</label>
+  <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-75"/>
+</div>
+
+<%= content_tag :div, id: "messages", class: "ba b--hl-aqua br3 mt3 h5 overflow-y-scroll overflow-x-hidden w-75 ph3 smooth-scroll center" do %>
+<% end %>
