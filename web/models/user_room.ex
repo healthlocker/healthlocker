@@ -12,6 +12,6 @@ defmodule Healthlocker.UserRoom do
     struct
     |> cast(params, [:user_id, :room_id])
     |> validate_required([:user_id, :room_id])
-    |> unique_constraint(:user_id)
+    |> unique_constraint(:user_id, name: :user_rooms_user_id_room_id_index)
   end
 end
