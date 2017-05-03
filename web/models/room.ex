@@ -4,7 +4,7 @@ defmodule Healthlocker.Room do
   schema "rooms" do
     field :name, :string
     many_to_many :users, Healthlocker.User, join_through: "user_rooms", on_delete: :delete_all
-    many_to_many :clinicians, Healthlocker.EPJSClinician, join_through: "clinician_rooms"
+    # many_to_many :clinicians, Healthlocker.EPJSClinician, join_through: "clinician_rooms"
     has_many :messages, Healthlocker.Message
 
     timestamps()

@@ -44,7 +44,10 @@ defmodule Healthlocker.Router do
     end
     resources "/care-plan", CarePlanController, only: [:index]
 
-    resources "/care-team", CareTeamController, only: [:index]
+    resources "/care-team", CareTeamController, only: [:show], singleton: true do
+      resources "/messages", RoomController, only: [:show], singleton: true
+    end
+
     resources "/caseload", CaseloadController, only: [:index, :show] do
       resources "/patient", PatientController, only: [:show]
     end

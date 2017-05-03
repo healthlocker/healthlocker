@@ -2,7 +2,7 @@ defmodule Healthlocker.CareTeamController do
   use Healthlocker.Web, :controller
   import Ecto.Query
 
-  def index(conn, _params) do
+  def show(conn, _params) do
     service_user = service_user_for(conn.assigns.current_user)
 
     conn

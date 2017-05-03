@@ -1,7 +1,26 @@
-<div class="tc">
-  <label for="message-input" class="f5 b db mb2 mt4">Enter a message</label>
-  <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-75"/>
-</div>
+<div class="cf">
+  <div class="fl w-70">
+    <div class="tc">
+      <label for="message-input" class="f5 b db mb2 mt4">Enter a message</label>
+      <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-75"/>
+    </div>
 
-<%= content_tag :div, id: "messages", class: "ba b--hl-aqua br3 mt3 h5 overflow-y-scroll overflow-x-hidden w-75 ph3 smooth-scroll center" do %>
-<% end %>
+    <%= content_tag :div, id: "messages", class: "ba b--hl-aqua br3 mt3 h5 overflow-y-scroll overflow-x-hidden w-75 ph3 smooth-scroll center" do %>
+    <% end %>
+  </div>
+  <div class="fl w-30">
+    <h4>Carers</h4>
+    <ul class="f5 lh-copy sans-serif">
+      <%= for user <- @users do %>
+        <li><%= user.name %></li>
+      <% end %>
+    </ul>
+
+    <h4>Care team</h2>
+    <ul class="f5 lh-copy sans-serif">
+      <%= for clinician <- @clinicians do %>
+        <li><%= clinician."First_Name" <> " " <> clinician."Last_Name" %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
