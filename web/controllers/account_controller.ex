@@ -134,11 +134,14 @@ defmodule Healthlocker.AccountController do
   end
 
   def check_slam(conn, %{"user" => %{"Forename" => forename, "Surname" => surname, "NHS_Number" => nhs, "DOB" => dob}}) do
+    # converts birthday string to datetime
     birthday = datetime_birthday(dob)
+    # removes spaces from nhs number if present
+    nhs_no = String.split(nhs, " ") |> List.to_string
     slam_user = ReadOnlyRepo.one(from e in EPJSUser,
                 where: e."Forename" == ^forename
                 and e."Surname" == ^surname
-                and e."NHS_Number" == ^nhs
+                and e."NHS_Number" == ^nhs_no
                 and e."DOB" == ^birthday
                 )
     if slam_user do
