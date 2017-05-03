@@ -39,8 +39,8 @@
       <span class="hl-pink"><%= error_tag f, :security_answer %></span>
     </div>
 
-    <div class="tr">
-      <%= submit "Next", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
+    <div class="tr mt4">
+      <%= submit_primary "Next" %>
     </div>
   <% end %>
 </div>

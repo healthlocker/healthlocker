@@ -29,7 +29,7 @@
     <div class="mt3">
       <%= checkbox f, :privacy, class: "checkbox" %>
       <%= label f, :privacy do %>
-        I accept the terms of the 
+        I accept the terms of the
         <%= link_to("privacy statement", to: page_path(@conn, :show, "privacy")) %>
       <% end %>
       <span class="hl-pink"><%= error_tag f, :privacy %></span>
@@ -45,8 +45,8 @@
       <span class="hl-pink"><%= error_tag f, :data_access %></span>
     </div>
 
-    <div class="tr">
-      <%= submit "Create account", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
+    <div class="tr mt4">
+      <%= submit_primary "Create account" %>
     </div>
   <% end %>
 </div>
