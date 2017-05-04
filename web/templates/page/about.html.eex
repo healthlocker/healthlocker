@@ -1,4 +1,4 @@
-<div class="ma3 ma4-m ma4-l">
+<div class="mv3 mv4-m mv4-l mh2 mh3-m mh6-l">
   <h2 class="tc">About</h2>
   <div class="bb bw2 bb--hl-dark-blue pb3 pt4">
     <p class="b">What is Healthlocker?</p>
@@ -15,7 +15,7 @@
       features and improvements will be added in the coming months.
     </p>
 
-    <div class="tc mb3">
+    <div class="tc mv3">
       <%= img_tag("/images/About_Clinician.png", class: "w4") %>
     </div>
   </div>
@@ -30,14 +30,18 @@
       strategies.
     </p>
 
-    <%= img_tag("/images/About_Service_user.png") %>
+    <div class="flex items-start justify-between">
+      <div class="w-10">
+        <%= img_tag("/images/About_Service_user.png") %>
+      </div>
 
-    <p>
-      If you are a South London and Maudsley (SLaM) service user, you can choose
-      to connect your Healthlocker account with your SLaM health record and care
-      team. Soon you will be able to communicate with your care team and access
-      your care plan, to interact with your goals and coping strategies.
-    </p>
+      <p class="w-80 mv0">
+        If you are a South London and Maudsley (SLaM) service user, you can choose
+        to connect your Healthlocker account with your SLaM health record and care
+        team. Soon you will be able to communicate with your care team and access
+        your care plan, to interact with your goals and coping strategies.
+      </p>
+    </div>
 
     <%= img_tag("/images/About_Carers.png") %>
 
