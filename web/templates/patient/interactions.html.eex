@@ -1,26 +1,43 @@
 <%= render "menu.html", assigns %>
 <div class="mt5"></div>
-<div class="hl-bg-grey pa3 br3 mt2 hl-dark-blue">
-  <h3>Goals</h3>
-  <%= for goal <- @goals do %>
-    <p class="b di"><%= String.trim_trailing(goal.content, " #Goal") %></p>
-    <%= if goal.important do %>
-      <div class="w-10 di">
-        <%= img_tag("/images/star_selected.svg", class: "w2") %>
+<div class="pa3 mt2 hl-dark-blue w-100">
+  <div class="w-60 fl">
+    <h3>Goals</h3>
+    <%= for goal <- @goals do %>
+      <div class="bb bw2 b--black-10 dib w-100 pv3">
+        <p class="b di">
+          <%= String.trim_trailing(goal.content, " #Goal") %>
+        </p>
+
+      <%= for step <- goal.steps do %>
+        <%= if is_bitstring(step.details) do %>
+          <ul>
+            <li><%= step.details %></li>
+          </ul>
+        <% end %>
+      <% end %>
+      <%= if goal.important do %>
+        <div class="w-10 di">
+          <%= img_tag("/images/star_selected.svg", class: "w2") %>
+        </div>
+        <p class="di">Important</p>
+      <% end %>
+      <p class="mv3 f6 i fr">
+        Created <%= Healthlocker.ComponentView.pretty_date(goal.inserted_at) %>
+      </p>
       </div>
     <% end %>
+  </div>
 
-    <%= for step <- goal.steps do %>
-      <%= if is_bitstring(step.details) do %>
-        <ul>
-          <li><%= step.details %></li>
-        </ul>
-      <% end %>
+  <div class="w-30 fr">
+    <h3>Coping Strategies</h3>
+    <%= for strategy <- @strategies do %>
+    <div class="bb bw2 b--black-10 dib w-100 pv3">
+      <p class="b"><%= String.trim_trailing(strategy.content, " #CopingStrategy") %></p>
+      <p class="mv3 f6 i">
+        Created <%= Healthlocker.ComponentView.pretty_date(strategy.inserted_at) %>
+      </p>
+    </div>
     <% end %>
-  <% end %>
-
-  <h3>Coping Strategies</h3>
-  <%= for strategy <- @strategies do %>
-    <p><%= String.trim_trailing(strategy.content, " #CopingStrategy") %></p>
-  <% end %>
+  </div>
 </div>
