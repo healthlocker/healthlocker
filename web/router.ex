@@ -49,6 +49,7 @@ defmodule Healthlocker.Router do
     end
 
     resources "/caseload", CaseloadController, only: [:index, :show] do
+      resources "/messages", Caseload.MessageController, only: [:show]
       resources "/patient", PatientController, only: [:show]
     end
 

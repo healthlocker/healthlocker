@@ -1,0 +1,1 @@
+<%= render Healthlocker.RoomView, "show.html", assigns %>

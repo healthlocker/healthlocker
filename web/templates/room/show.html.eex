@@ -1,27 +1,4 @@
-<div class="cf">
-  <div class="fl w-70">
-    <%= content_tag :div, id: "messages", data: [room_id: @room.id], class: "ba b--hl-aqua br3 h5 overflow-y-scroll overflow-x-hidden w-90 smooth-scroll mv3" do %>
-    <% end %>
+<%= content_tag :div, id: "messages", data: [room_id: @room.id], class: "ba b--hl-aqua br3 h5 overflow-y-scroll overflow-x-hidden smooth-scroll mv3 ph3" do %>
+<% end %>
 
-    <div class="">
-      <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-90" placeholder="Type a message"/>
-    </div>
-  </div>
-  <% if false do %>
-    <div class="fl w-30">
-      <h4>Carers</h4>
-      <ul class="f5 lh-copy sans-serif">
-        <%= for user <- @users do %>
-          <li><%= user.name %></li>
-        <% end %>
-      </ul>
-
-      <h4>Care team</h2>
-      <ul class="f5 lh-copy sans-serif">
-        <%= for clinician <- @clinicians do %>
-          <li><%= clinician."First_Name" <> " " <> clinician."Last_Name" %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %> 
-</div>
+<input id="message-input" class="pa3 input-reset bn hl-bg-grey w-60" placeholder="Type a message"/>
