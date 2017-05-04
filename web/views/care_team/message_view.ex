@@ -1,4 +1,4 @@
-defmodule Healthlocker.MessageView do
+defmodule Healthlocker.CareTeam.MessageView do
   use Healthlocker.Web, :view
 
   def render("message.json", %{message: message}) do

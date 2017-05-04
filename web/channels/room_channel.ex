@@ -1,7 +1,7 @@
 defmodule Healthlocker.RoomChannel do
   use Healthlocker.Web, :channel
 
-  alias Healthlocker.{Message, MessageView, Room}
+  alias Healthlocker.{Message, CareTeam.MessageView, Room}
 
   def join("room:" <> room_id, _params, socket) do
     room = Repo.get!(Room, room_id)

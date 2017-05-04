@@ -1,6 +1,5 @@
-defmodule Healthlocker.CareTeamController do
+defmodule Healthlocker.CareTeam.ContactController do
   use Healthlocker.Web, :controller
-  import Ecto.Query
 
   def show(conn, _params) do
     service_user = service_user_for(conn.assigns.current_user)
@@ -8,7 +7,7 @@ defmodule Healthlocker.CareTeamController do
     conn
     |> assign(:service_user, service_user)
     |> assign(:care_team, care_team_for(service_user))
-    |> render("index.html")
+    |> render("show.html")
   end
 
   defp service_user_for(carer) do
