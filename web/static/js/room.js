@@ -29,7 +29,9 @@ let Room = {
     })
 
     roomChannel.join()
-      .receive("ok", resp => console.log("joined the room channel", resp) )
+      .receive("ok", ({messages}) =>
+        messages.forEach(msg => this.renderMessage(msgContainer, msg))
+      )
       .receive("error", reason => console.log("join failed", reason) )
   },
 

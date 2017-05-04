@@ -7,6 +7,7 @@ defmodule Healthlocker.RoomChannel do
     room = Repo.get!(Room, room_id)
     messages = Repo.all from m in Message,
       where: m.room_id == ^room.id,
+      order_by: [asc: :inserted_at, asc: :id],
       preload: [:user]
 
     resp = %{messages: Phoenix.View.render_many(messages, MessageView, "message.json")}
