@@ -110,5 +110,7 @@
     </p>
   </div>
 
-  <%= img_tag("/images/SLaM_logo.png") %>
+  <div class="tc">
+    <%= img_tag("/images/SLaM_logo.png", class: "w-50") %>
+  </div>
 </div>
