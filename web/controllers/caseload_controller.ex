@@ -20,7 +20,8 @@ defmodule Healthlocker.CaseloadController do
     hl_users = patient_ids
               |> Enum.map(fn x ->
                 Repo.all(from u in User,
-                where: u.slam_id == ^x)
+                where: u.slam_id == ^x,
+                preload: [:carers])
               end)
               |> Enum.concat
 
