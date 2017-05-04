@@ -1,4 +1,4 @@
-<h3 class="tc pv2 mh3 black-70">Edit coping strategy</h3>
+<h3 class="tc pv2 mh3 hl-dark-blue">Edit coping strategy</h3>
 
 <%= render "form.html", changeset: @changeset,
                         action: coping_strategy_path(@conn, :update, @coping_strategy) %>
