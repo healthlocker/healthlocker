@@ -1,4 +1,4 @@
-<div class="mv3 mv4-m mv4-l mh2 mh3-m mh6-l">
+<div class="ma3 ma4-m ma4-l">
   <h2 class="tc">About</h2>
   <div class="bb bw2 bb--hl-dark-blue pb3 pt4">
     <p class="b">What is Healthlocker?</p>
@@ -51,18 +51,22 @@
       </p>
 
       <div class="w-10">
-        <%= img_tag("/images/About_Carers.png") %>
+        <%= img_tag("/images/About_Carers.png", class: "w-100") %>
       </div>
     </div>
 
-    <%= img_tag("/images/About_Researchers.png") %>
+    <div class="flex items-start justify-between mv5">
+      <div class="w-10">
+        <%= img_tag("/images/About_Researchers.png", class: "w-100") %>
+      </div>
 
-    <p>
-      If you are staff at SLaM, you can access Healthlocker via the icon in the
-      top panel in ePJS. Soon you will be able to share information, resources
-      and messages with service users and their carers and view updates that
-      your caseload has chosen to share with you.
-    </p>
+      <p class="w-80 mv0">
+        If you are staff at SLaM, you can access Healthlocker via the icon in the
+        top panel in ePJS. Soon you will be able to share information, resources
+        and messages with service users and their carers and view updates that
+        your caseload has chosen to share with you.
+      </p>
+    </div>
 
     <p>
       Healthlocker is powered by South London and Maudsley NHS Foundation Trust
