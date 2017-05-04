@@ -22,7 +22,9 @@ defmodule Healthlocker.TipView do
       creating positive feelings. Even doing something small for someone else can
       give us a buzz.",
     TakeNotice: "Being in the moment, including just being aware of our
-      thoughts, feelings, body and the world around us, can help us appreciate the little things, understand ourselves more and get the most out of being alive."
+      thoughts, feelings, body and the world around us, can help us appreciate
+      the little things, understand ourselves more and get the most out of
+      being alive."
   }
   @questions %{
     Connect: "Who might you want to connect more with?",
