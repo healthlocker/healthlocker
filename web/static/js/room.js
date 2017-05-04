@@ -18,14 +18,13 @@ let Room = {
         let payload = {
           body: msgInput.value
         }
-        roomChannel.push("new:msg", payload, 10000)
+        roomChannel.push("msg:new", payload, 10000)
           .receive("error", e => console.log(e))
         msgInput.value = ""
       }
     })
 
     roomChannel.on("msg:created", (resp) => {
-      console.log("Hello, world!!!");
       this.renderMessage(msgContainer, resp)
     })
 

@@ -15,7 +15,7 @@ defmodule Healthlocker.RoomChannel do
     {:ok, resp, assign(socket, :room, room)}
   end
 
-  def handle_in("new:msg", params, socket) do
+  def handle_in("msg:new", params, socket) do
     changeset =
       socket.assigns.room
       |> build_assoc(:messages, user_id: socket.assigns.user_id)
