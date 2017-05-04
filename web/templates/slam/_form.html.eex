@@ -22,7 +22,10 @@
 
   <div>
     <%= label f, :nhs_number, class: "f5 b db mt2 mb2" do %>
-      NHS number <%= link_to("(?)", to: page_path(@conn, :show, "nhs_help")) %>
+      NHS number
+      <%= link to: page_path(@conn, :show, "nhs_help") do %>
+        <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+      <% end %>
     <% end %>
     <%= text_input f, :nhs_number,
         class: "pa3 input-reset bn hl-bg-grey w-100" %>
