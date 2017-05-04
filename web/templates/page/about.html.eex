@@ -30,7 +30,7 @@
       strategies.
     </p>
 
-    <div class="flex items-start justify-between">
+    <div class="flex items-start justify-between mt4">
       <div class="w-10">
         <%= img_tag("/images/About_Service_user.png") %>
       </div>
@@ -43,13 +43,17 @@
       </p>
     </div>
 
-    <%= img_tag("/images/About_Carers.png") %>
+    <div class="flex items-start justify-between mv5">
+      <p class="w-80 mv0">
+        If you are a close family member, friend or carer of someone at SLaM, soon
+        you will be able to sign up and connect with their care team so that you can
+        let them know how the person you support is doing.
+      </p>
 
-    <p>
-      If you are a close family member, friend or carer of someone at SLaM, soon
-      you will be able to sign up and connect with their care team so that you can
-      let them know how the person you support is doing.
-    </p>
+      <div class="w-10">
+        <%= img_tag("/images/About_Carers.png") %>
+      </div>
+    </div>
 
     <%= img_tag("/images/About_Researchers.png") %>
 
