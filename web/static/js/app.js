@@ -12,6 +12,9 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import 'phoenix_html';
+import socket from './socket';
+import Room from "./room"
+import './tracker.js';
 
 var nav = document.getElementById('my-sidenav');
 
@@ -25,12 +28,5 @@ function closeNav () {
 
 document.getElementById('open-nav').addEventListener('click', openNav);
 document.getElementById('close-nav').addEventListener('click', closeNav);
-// Import local files
-//
-// Local files can be imported directly using relative
-// paths "./socket" or full ones "web/static/js/socket".
 
-import socket from './socket';
-import './tracker.js';
-import Chat from './chat';
-Chat.init(socket);
+Room.init(socket, document.getElementById("messages"))

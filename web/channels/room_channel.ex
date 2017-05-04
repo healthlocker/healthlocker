@@ -1,37 +1,38 @@
 defmodule Healthlocker.RoomChannel do
   use Healthlocker.Web, :channel
 
-  alias Healthlocker.Message
-  alias Healthlocker.MessageView
+  alias Healthlocker.{Message, MessageView, Room}
 
-  def join("room:general", message, socket) do
-    Process.flag(:trap_exit, true)
-    send(self, {:after_join, message})
-    messages = Repo.all(Message)
+  def join("room:" <> room_id, _params, socket) do
+    room = Repo.get!(Room, room_id)
+    messages = Repo.all from m in Message,
+      where: m.room_id == ^room.id,
+      preload: [:user]
+
     resp = %{messages: Phoenix.View.render_many(messages, MessageView, "message.json")}
-    {:ok, resp, socket}
+
+    send(self, :after_join)
+    {:ok, resp, assign(socket, :room, room)}
   end
 
-  def handle_in(event, params, socket) do
-    user = Repo.get(Healthlocker.User, socket.assigns.user_id)
-    handle_in(event, params, user, socket)
-  end
+  def handle_in("new:msg", params, socket) do
+    changeset =
+      socket.assigns.room
+      |> build_assoc(:messages, user_id: socket.assigns.user_id)
+      |> Message.changeset(params)
 
-  def handle_in("new:msg", msg, user, socket) do
-    changeset = Message.changeset(%Message{
-        body: msg["body"],
-        name: user.name,
-        user_id: user.id
-      })
     case Repo.insert(changeset) do
-      {:ok, _message} ->
-        broadcast! socket, "new:msg", %{
-          name: user.name,
-          body: msg["body"]
-        }
-        {:reply, {:ok, %{msg: msg["body"]}}, socket}
+      {:ok, message} ->
+        broadcast_message(socket, message)
+        {:reply, :ok, socket}
       {:error, changeset} ->
         {:reply, {:error, %{errors: changeset}}, socket}
     end
+  end
+
+  defp broadcast_message(socket, message) do
+    message = Repo.preload(message, :user)
+    rendered_message = Phoenix.View.render_one(message, MessageView, "message.json")
+    broadcast!(socket, "msg:created", rendered_message)
   end
 end

@@ -1,10 +1,10 @@
 <div class="cf">
   <div class="fl w-70">
-    <%= content_tag :div, id: "messages", class: "ba b--hl-aqua br3 h5 overflow-y-scroll overflow-x-hidden w-90 smooth-scroll mv3" do %>
+    <%= content_tag :div, id: "messages", data: [room_id: @room.id], class: "ba b--hl-aqua br3 h5 overflow-y-scroll overflow-x-hidden w-90 smooth-scroll mv3" do %>
     <% end %>
 
     <div class="">
-      <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-90" value="Type a message"/>
+      <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-90" placeholder="Type a message"/>
     </div>
   </div>
   <div class="fl w-30">

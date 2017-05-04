@@ -1,11 +1,14 @@
 defmodule Healthlocker.MessageView do
   use Healthlocker.Web, :view
 
-  def render("message.json", %{message: msg}) do
+  def render("message.json", %{message: message}) do
     %{
-      id: msg.id,
-      body: msg.body,
-      name: msg.name
+      id: message.id,
+      body: message.body,
+      inserted_at: message.inserted_at,
+      user: %{
+        name: message.user.name
+      }
     }
   end
 end
