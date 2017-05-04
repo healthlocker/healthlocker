@@ -9,8 +9,6 @@ defmodule Healthlocker.RoomController do
 
     conn
     |> assign(:room, room)
-    |> assign(:users, room.users)
-    |> assign(:clinicians, clinicians(room))
     |> render("show.html")
   end
 

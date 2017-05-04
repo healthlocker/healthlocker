@@ -7,19 +7,21 @@
       <input id="message-input" class="pa3 input-reset bn hl-bg-grey w-90" placeholder="Type a message"/>
     </div>
   </div>
-  <div class="fl w-30">
-    <h4>Carers</h4>
-    <ul class="f5 lh-copy sans-serif">
-      <%= for user <- @users do %>
-        <li><%= user.name %></li>
-      <% end %>
-    </ul>
+  <% if false do %>
+    <div class="fl w-30">
+      <h4>Carers</h4>
+      <ul class="f5 lh-copy sans-serif">
+        <%= for user <- @users do %>
+          <li><%= user.name %></li>
+        <% end %>
+      </ul>
 
-    <h4>Care team</h2>
-    <ul class="f5 lh-copy sans-serif">
-      <%= for clinician <- @clinicians do %>
-        <li><%= clinician."First_Name" <> " " <> clinician."Last_Name" %></li>
-      <% end %>
-    </ul>
-  </div>
+      <h4>Care team</h2>
+      <ul class="f5 lh-copy sans-serif">
+        <%= for clinician <- @clinicians do %>
+          <li><%= clinician."First_Name" <> " " <> clinician."Last_Name" %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
 </div>
