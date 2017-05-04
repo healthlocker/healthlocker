@@ -85,22 +85,30 @@
     </p>
   </div>
 
-  <p class="b">How does it work / what next?</p>
+  <div class="mv5">
+    <p class="b">How does it work / what next?</p>
 
-  <p>Healthlocker is built using agile development processes which enables
-    iteration through user-centred build, test and learn cycles.</p>
+    <p>
+      Healthlocker is built using agile development processes which enables
+      iteration through user-centred build, test and learn cycles.
+    </p>
 
-  <p>Healthlocker integrates with SLaMs clinical record system (ePJS), meaning
-    that service users are able to access and interact with their care plan.</p>
+    <p>
+      Healthlocker integrates with SLaMs clinical record system (ePJS), meaning
+      that service users are able to access and interact with their care plan.
+    </p>
 
-  <p>The platform will be built open source and in a modular way that allows for
-    future integrations. Healthlocker will continue to grow and develop.</p>
+    <p>
+      The platform will be built open source and in a modular way that allows
+      for future integrations. Healthlocker will continue to grow and develop.
+    </p>
 
-  <p>
-    If you are interested in using Healthlocker in your Trust or organisation
-    or have ideas for how to add to the platform, contact:
-    <%= link_to("DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk") %>
-  </p>
+    <p>
+      If you are interested in using Healthlocker in your Trust or organisation
+      or have ideas for how to add to the platform, contact:
+      <%= link_to("DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk") %>
+    </p>
+  </div>
 
   <%= img_tag("/images/SLaM_logo.png") %>
 </div>
