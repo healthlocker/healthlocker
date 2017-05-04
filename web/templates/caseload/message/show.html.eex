@@ -1,1 +1,3 @@
+<h2 class="tc">Message feed</h3>
+
 <%= render Healthlocker.RoomView, "show.html", assigns %>
