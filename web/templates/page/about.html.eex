@@ -76,10 +76,14 @@
     </p>
   </div>
 
-  <p class="b">Why Healthlocker?</p>
+  <div class="mv5">
+    <p class="b">Why Healthlocker?</p>
 
-  <p>Healthlocker aims to demonstrate how personalised health records (PHRs)
-    could enhance NHS service delivery and support people to stay well.</p>
+    <p>
+      Healthlocker aims to demonstrate how personalised health records (PHRs)
+      could enhance NHS service delivery and support people to stay well.
+    </p>
+  </div>
 
   <p class="b">How does it work / what next?</p>
 
