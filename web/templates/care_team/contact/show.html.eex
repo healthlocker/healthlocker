@@ -1,6 +1,9 @@
-<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h2 class="tc">Contacts</h2>
+<div class="dib w-100">
+  <%= link "Messages", to: care_team_message_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4" %>
+  <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4 bb b--hl-aqua" %>
+</div>
 
+<div class="">
   <h3><%= @service_user.name <> "'s care team" %></h3>
 
   <h2 class="mv4">SLaM care team</h2>
