@@ -10,20 +10,28 @@
   <p class="b">It is currently in development and this is the Beta version. More features
     and improvements will be added in the coming months.</p>
 
+  <%= img_tag("/images/About_Clinician.png") %>
+
   <p class="b">Who is Healthlocker for?</p>
 
   <p>Anyone can <%= link_to("sign up to Healthlocker", to: user_path(@conn, :new)) %>
     to explore wellbeing tips and recovery stories and create goals and coping
     strategies.</p>
 
+  <%= img_tag("/images/About_Service_user.png") %>
+
   <p>If you are a South London and Maudsley (SLaM) service user, you can choose
     to connect your Healthlocker account with your SLaM health record and care
     team. Soon you will be able to communicate with your care team and access
     your care plan, to interact with your goals and coping strategies.</p>
 
+  <%= img_tag("/images/About_Carers.png") %>
+
   <p>If you are a close family member, friend or carer of someone at SLaM, soon
     you will be able to sign up and connect with their care team so that you can
     let them know how the person you support is doing.</p>
+
+  <%= img_tag("/images/About_Researchers.png") %>
 
   <p>If you are staff at SLaM, you can access Healthlocker via the icon in the
     top panel in ePJS. Soon you will be able to share information, resources
@@ -52,8 +60,11 @@
   <p>The platform will be built open source and in a modular way that allows for
     future integrations. Healthlocker will continue to grow and develop.</p>
 
-  <p>If you are interested in using Healthlocker in your Trust or organisation
+  <p>
+    If you are interested in using Healthlocker in your Trust or organisation
     or have ideas for how to add to the platform, contact:
     <%= link_to("DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk") %>
   </p>
+
+  <%= img_tag("/images/SLaM_logo.png") %>
 </div>
