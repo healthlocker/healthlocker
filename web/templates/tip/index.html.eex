@@ -1,10 +1,31 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <h2 class="tc">Tips</h2>
 
+  <%= if @conn.query_string != "" and @conn.query_string != "tag=Tip" do %>
+    <div class="w-100">
+      <%= link to: "/tips?tag=#{get_category(@conn.query_string)}",
+              class: "dib w-10 mr3" do %>
+        <%= img_tag("/images/#{get_category(@conn.query_string)}.svg",
+        class: "h3 pb1-l mb3-l mb5 pb4 mb2-m pb3-m") %>
+      <% end %>
+      </a>
+      <div class="w-80 dib">
+        <p>
+          <strong>
+            <%= link_to "##{get_category(@conn.query_string)}",
+                to: "/tips?tag=#{get_category(@conn.query_string)}"%>
+          </strong>
+          <%= category_description(@conn.query_string) %>
+        </p>
+        <p class="i mv1"><%= category_question(@conn.query_string) %></p>
+      </div>
+    </div>
+  <% end %>
+
   <%= for post <- @posts do %>
   <article class="ba b--black-05 mv2 mv3-m mv4-l">
     <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-      <%= img_tag("#{image_url(post.content)}",
+      <%= img_tag("/images/#{get_category(post.content)}_Mini.svg",
         class: "miniIcon absolute") %>
       <%= markdown post.content %>
     </div>
