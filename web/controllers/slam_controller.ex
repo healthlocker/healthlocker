@@ -9,7 +9,9 @@ defmodule Healthlocker.SlamController do
   end
 
   def create(conn, %{"carer_connection" => params}) do
-    changeset = CarerConnection.changeset(%CarerConnection{}, params)
+    update_params =  Map.update!(params, "nhs_number", &(String.split(&1, " ")
+                                                          |> List.to_string))
+    changeset = CarerConnection.changeset(%CarerConnection{}, update_params)
 
     if changeset.valid? do
       slam_id = Ecto.Changeset.get_field(changeset, :epjs_patient_id)
