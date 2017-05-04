@@ -1,16 +1,24 @@
 <div class="ma3 ma4-m ma4-l">
   <h2 class="tc">About</h2>
-  <p class="b">What is Healthlocker?</p>
+  <div class="bb bw2 bb--hl-dark-blue pb3 pt4">
+    <p class="b">What is Healthlocker?</p>
 
-  <p>Healthlocker is a secure platform powered by the
-    <%= link_to("South London and Maudsley Trust", to: "http://www.slam.nhs.uk/", target: "_blank") %>
-    that promotes supported self-management and opportunities to improve
-    communication between service users, carers and clinicians.</p>
+    <p>
+      Healthlocker is a secure platform powered by the
+      <%= link_to("South London and Maudsley Trust", to: "http://www.slam.nhs.uk/", target: "_blank") %>
+      that promotes supported self-management and opportunities to improve
+      communication between service users, carers and clinicians.
+    </p>
 
-  <p class="b">It is currently in development and this is the Beta version. More features
-    and improvements will be added in the coming months.</p>
+    <p class="b">
+      It is currently in development and this is the Beta version. More
+      features and improvements will be added in the coming months.
+    </p>
 
-  <%= img_tag("/images/About_Clinician.png") %>
+    <div class="tc">
+      <%= img_tag("/images/About_Clinician.png", class: "w4") %>
+    </div>
+  </div>
 
   <p class="b">Who is Healthlocker for?</p>
 
