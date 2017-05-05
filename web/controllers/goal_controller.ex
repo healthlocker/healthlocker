@@ -37,21 +37,6 @@ defmodule Healthlocker.GoalController do
     render conn, "show.html", goal: goal
   end
 
-  def mark_important(conn, %{"id" => id}) do
-    goal = Repo.get!(Goal, id)
-    changeset = Goal.mark_important_changeset(goal, %{important: !goal.important})
-
-    case Repo.update(changeset) do
-      {:ok, goal} ->
-        conn
-        |> redirect(to: goal_path(conn, :show, goal))
-      {:error, _changeset} ->
-        conn
-        |> put_flash(:info, "Could not mark as important. Try again later.")
-        |> render("show.html", goal: goal)
-    end
-  end
-
   def create(conn, %{"goal" => goal_params}) do
     content = get_content(goal_params)
     user_id = get_session(conn, :user_id)
