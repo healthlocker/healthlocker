@@ -6,7 +6,7 @@
   <p class="tl">Describe a personal goal.</p>
   <%= form_for @changeset, goal_path(@conn, :update, @goal), fn f -> %>
       <div class=" mb3 pb3 bb b--hl-grey bw2">
-        <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
+        <%= textarea f, :content, placeholder: "Content", class: "h4 db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
       </div>
       <p class="b pt2 mb0">Steps to take:</p>
       <p class="mt1">List the things you could do to achieve this goal.</p>
@@ -40,7 +40,7 @@
           What went well? What problems did you have, how did you overcome
           them? How do you feel now?
         </p>
-        <%= textarea f, :notes, class: "h3 db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
+        <%= textarea f, :notes, class: "h4 db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
       </div>
 
       <div class="tr mt3">
