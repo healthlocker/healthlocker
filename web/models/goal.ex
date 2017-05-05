@@ -15,15 +15,9 @@ defmodule Healthlocker.Goal do
 
   def changeset(struct, params \\ :invalid) do
     struct
-    |> mark_important_changeset(params)
-    |> cast(params, [:content])
+    |> cast(params, [:content, :important, :completed, :notes])
     |> cast_assoc(:steps)
     |> validate_required(:content)
-  end
-
-  def mark_important_changeset(struct, params \\ :invalid) do
-    struct
-    |> cast(params, [:important])
   end
 
   def get_goals(query, user_id) do
