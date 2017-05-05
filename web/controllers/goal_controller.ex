@@ -12,11 +12,19 @@ defmodule Healthlocker.GoalController do
                      |> Repo.all
     all_goals = Enum.concat(important_goals, unimportant_goals)
 
-    if Kernel.length(all_goals) == 0 do
+    incomplete_goals = all_goals
+                      |> Enum.filter(fn goal ->
+                        !goal.completed
+                      end)
+    completed = Goal
+              |> Goal.get_completed_goals(user_id)
+              |> Repo.all
+
+    if Kernel.length(all_goals) == 0 && Kernel.length(completed) do
       conn
       |> redirect(to: goal_path(conn, :new))
     else
-      render conn, "index.html", goals: all_goals
+      render conn, "index.html", goals: incomplete_goals, complete_goals: completed
     end
   end
 
@@ -35,21 +43,6 @@ defmodule Healthlocker.GoalController do
           |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one!
     render conn, "show.html", goal: goal
-  end
-
-  def mark_important(conn, %{"id" => id}) do
-    goal = Repo.get!(Goal, id)
-    changeset = Goal.mark_important_changeset(goal, %{important: !goal.important})
-
-    case Repo.update(changeset) do
-      {:ok, goal} ->
-        conn
-        |> redirect(to: goal_path(conn, :show, goal))
-      {:error, _changeset} ->
-        conn
-        |> put_flash(:info, "Could not mark as important. Try again later.")
-        |> render("show.html", goal: goal)
-    end
   end
 
   def create(conn, %{"goal" => goal_params}) do

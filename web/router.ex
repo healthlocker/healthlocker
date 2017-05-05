@@ -24,7 +24,6 @@ defmodule Healthlocker.Router do
 
     resources "/coping-strategy", CopingStrategyController
     resources "/goal", GoalController
-    put "/goal/:id/important", GoalController, :mark_important
     resources "/toolkit", ToolkitController, only: [:index]
     resources "/account", AccountController, only: [:index]
     put "/account/update", AccountController, :update
