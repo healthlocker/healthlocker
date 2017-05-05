@@ -2,7 +2,11 @@ defmodule Healthlocker.CareTeam.ContactController do
   use Healthlocker.Web, :controller
 
   def show(conn, _params) do
-    service_user = service_user_for(conn.assigns.current_user)
+    service_user = if conn.assigns.current_user.slam_id do
+      conn.assigns.current_user
+    else
+      service_user_for(conn.assigns.current_user)
+    end
 
     conn
     |> assign(:service_user, service_user)

@@ -31,7 +31,7 @@ defmodule Mix.Tasks.Healthlocker.Room.Create do
       # Add the clinicians as members of the room
       [service_user | _] = carer.caring
       care_team = Healthlocker.Slam.CareTeam.for(service_user)
-      
+
       changesets = Enum.map(care_team, fn(clinician) ->
         ClinicianRooms.changeset(%ClinicianRooms{}, %{room_id: room.id, clinician_id: clinician.id})
       end)

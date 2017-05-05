@@ -23,7 +23,7 @@
         <a href="#0" class="link hl-aqua underline hl-link">Forgotten your password?</a>
       </div>
       <div class="tr">
-        <%= submit "Log in", class: "mt4 f5 link dim br-pill ph3 pv2 dib hl-dark-blue hl-bg-yellow pointer w-40" %>
+        <%= submit_primary "Log in" %>
       </div>
     <% end %>
   </section>
