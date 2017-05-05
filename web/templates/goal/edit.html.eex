@@ -1,4 +1,54 @@
 <h3 class="tc pv2 mh3 hl-dark-blue">Edit Goal</h3>
 
-<%= render "form.html", changeset: @changeset,
-                        action: goal_path(@conn, :update, @goal) %>
+<section class="ma3 ma4-m ma4-l center">
+
+  <p class="tl b">What do you want to achieve?</p>
+  <p class="tl">Describe a personal goal.</p>
+  <%= form_for @changeset, goal_path(@conn, :update, @goal), fn f -> %>
+      <div class=" mb3 pb3 bb b--hl-grey bw2">
+        <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
+      </div>
+      <p class="b pt2 mb0">Steps to take:</p>
+      <p class="mt1">List the things you could do to achieve this goal.</p>
+      <%= inputs_for f, :steps, fn s -> %>
+        <div class="mb3">
+          <%= checkbox s, :complete, class: "checkbox" %>
+          <%= text_input s, :details, class: "pa3 input-reset bn hl-bg-grey w-90 " <>
+            Healthlocker.ComponentView.highlight_errors(@changeset, :details) %>
+        </div>
+      <% end %>
+
+      <div class="relative mt4">
+        Star as important
+
+        <%= checkbox f, :important, class: "o-0 checkbox star" %>
+          <%= label f, :important, class: "star" do %>
+        <% end %>
+        <p class="i">Important goals will be at the top of the list.</p>
+      </div>
+
+      <div class="relative mt4">
+        <span>Mark achieved</span>
+        <%= checkbox f, :completed, class: "dn checkbox complete" %>
+            <%= label f, :completed, class: "complete" do %>
+        <% end %>
+      </div>
+
+      <div id="notes" class="mt4 dn">
+        <%= label f, "Reflective notes:", class: "f5 b db mb2" %>
+        <p>
+          What went well? What problems did you have, how did you overcome
+          them? How do you feel now?
+        </p>
+        <%= textarea f, :notes, class: "h3 db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
+      </div>
+
+      <div class="tr mt3">
+        <%= submit_primary "Save" %>
+      </div>
+  <% end %>
+  <div class="tr mt2">
+    <%= link_to("Delete goal", to: goal_path(@conn, :delete, @goal), method: "delete") %>
+  </div>
+
+</section>
