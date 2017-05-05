@@ -12,11 +12,19 @@ defmodule Healthlocker.GoalController do
                      |> Repo.all
     all_goals = Enum.concat(important_goals, unimportant_goals)
 
-    if Kernel.length(all_goals) == 0 do
+    incomplete_goals = all_goals
+                      |> Enum.filter(fn goal ->
+                        !goal.completed
+                      end)
+    completed = Goal
+              |> Goal.get_completed_goals(user_id)
+              |> Repo.all
+
+    if Kernel.length(all_goals) == 0 && Kernel.length(completed) do
       conn
       |> redirect(to: goal_path(conn, :new))
     else
-      render conn, "index.html", goals: all_goals
+      render conn, "index.html", goals: incomplete_goals, complete_goals: completed
     end
   end
 
