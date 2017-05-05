@@ -59,6 +59,22 @@ label.star::before {
   position: absolute;
  }
 
+ label.complete::before {
+   top: 0px;
+   left: 130px;
+   content: url(/images/Goal-Pending.svg);
+   display: inline-block;
+   position: absolute;
+   width: 20px;
+   height: 20px;
+ }
+
+ .checkbox.complete:checked~label::before {
+   content: url(/images/Goal-Achieved.svg);
+   display: inline-block;
+   position: absolute;
+  }
+
 select:focus {
   outline: none;
   border:1px solid #25bdc3;
