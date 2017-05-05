@@ -25,6 +25,25 @@ function closeNav () {
 
 document.getElementById('open-nav').addEventListener('click', openNav);
 document.getElementById('close-nav').addEventListener('click', closeNav);
+
+var goalCompletion = document.getElementById('goal_completed');
+var notes = document.getElementById('notes');
+var url = window.location.href;
+
+function displayNotes () {
+  if (goalCompletion.checked) {
+    notes.classList.remove('dn');
+  } else {
+    notes.classList.add('dn');
+  }
+}
+
+if (url.search(/goal/) && goalCompletion) {
+  displayNotes();
+}
+
+goalCompletion.addEventListener('click', displayNotes);
+
 // Import local files
 //
 // Local files can be imported directly using relative
