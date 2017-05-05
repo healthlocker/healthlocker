@@ -40,9 +40,8 @@ function displayNotes () {
 
 if (url.search(/goal/) && goalCompletion) {
   displayNotes();
+  goalCompletion.addEventListener('click', displayNotes);
 }
-
-goalCompletion.addEventListener('click', displayNotes);
 
 // Import local files
 //
