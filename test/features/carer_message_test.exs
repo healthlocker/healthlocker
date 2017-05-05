@@ -27,7 +27,6 @@ defmodule Healthlocker.CarerMessageTest do
 
   @nav_button Query.css("#open-nav")
   test "view care team messages", %{session: session} do
-    # As a user, who has clicked on Care team in the burger menu, I can write and send a message to that care team. Max characters 550.
     session
     |> log_in
     |> click(@nav_button)
