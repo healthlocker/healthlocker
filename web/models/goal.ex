@@ -35,7 +35,14 @@ defmodule Healthlocker.Goal do
 
   def get_unimportant_goals(query, user_id) do
     from g in query,
-    where: like(g.content, "%#Goal") and g.user_id == ^user_id and not g.important,
+    where: g.user_id == ^user_id and not g.important,
+    order_by: [desc: g.updated_at],
+    preload: [:steps]
+  end
+
+  def get_completed_goals(query, user_id) do
+    from g in query,
+    where: like(g.content, "%#Goal") and g.user_id == ^user_id and g.completed,
     order_by: [desc: g.updated_at],
     preload: [:steps]
   end
