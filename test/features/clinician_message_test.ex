@@ -47,6 +47,8 @@ defmodule Healthlocker.ClinicianMessageTest do
       Staff_ID: clinician.id
     })
 
+    Mix.Tasks.Healthlocker.Room.Create.run("run")
+
     {:ok, %{session: session}}
   end
 
@@ -56,5 +58,16 @@ defmodule Healthlocker.ClinicianMessageTest do
     |> click(Query.link("Caseload"))
 
     assert has_text?(session, "General Kenobi (carer)")
+  end
+
+  test "message carer", %{session: session} do
+    session
+    |> resize_window(768, 1024) # The caseload link doesn't show on mobile.
+    |> click(Query.link("Caseload"))
+    |> click(Query.link("General Kenobi (carer)"))
+    |> fill_in(Query.css("#message-input"), with: "Hello there")
+    |> send_keys([:enter])
+
+    assert has_text?(session, "Mary Clinician: Hello there")
   end
 end
