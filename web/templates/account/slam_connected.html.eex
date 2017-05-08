@@ -30,5 +30,5 @@
 <% end %>
 
 <div class="bt">
-  <%= link_to("Disconnect SLaM account", to: account_path(@conn, :disconnect), method: "put") %>
+  <%= link_to("Disconnect SLaM account", to: page_path(@conn, :show, "disconnect")) %>
 </div>
