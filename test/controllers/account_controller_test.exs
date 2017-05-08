@@ -53,7 +53,8 @@ defmodule Healthlocker.AccountControllerTest do
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
-        security_answer: "Answer"
+        security_answer: "Answer",
+        slam_id: 1
       } |> Repo.insert
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
@@ -67,6 +68,13 @@ defmodule Healthlocker.AccountControllerTest do
     test "update user with valid data", %{conn: conn} do
       conn = put conn, account_path(conn, :update), user: @valid_attrs
       assert redirected_to(conn) == account_path(conn, :index)
+    end
+
+    test "removes slam_id with disconnect", %{conn: conn} do
+      conn = put conn, account_path(conn, :disconnect)
+      user = Repo.get!(User, conn.assigns.current_user.id)
+      assert redirected_to(conn) == account_path(conn, :index)
+      refute user.slam_id
     end
 
     test "does not update user when data is invalid", %{conn: conn} do
