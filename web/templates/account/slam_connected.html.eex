@@ -28,3 +28,7 @@
     <%= submit_primary "Update" %>
   </div>
 <% end %>
+
+<div class="bt">
+  <%= link_to("Disconnect SLaM account", to: account_path(@conn, :disconnect), method: "put") %>
+</div>
