@@ -1,0 +1,17 @@
+<div class="ma3 ma4-m ma4-l">
+  <p>
+    Are you sure you want to disconnect your account from SLaM?
+  </p>
+
+  <div class="flex mw6 center justify-between">
+    <div class="mt4">
+      <%= link_secondary "Yes, disconnect", to: account_path(@conn, :disconnect),
+      method: "put" %>
+    </div>
+
+    <div class="mt4">
+      <%= link_primary "No, take me back", to: account_path(@conn, :index) %>
+    </div>
+  </div>
+
+</div>
