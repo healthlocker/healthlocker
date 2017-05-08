@@ -1,0 +1,9 @@
+<%= content_tag :div, id: "message-feed", data: [room_id: @room.id], class: "db ba b--hl-aqua br2 overflow-y-scroll overflow-x-hidden smooth-scroll mb3 ph3 pt3" do %>
+  <%= for message <- @room.messages do %>
+    <%= render Healthlocker.MessageView, "_message.html", message: message, current_user: @current_user %>
+  <% end %>
+<% end %>
+
+<div class="w-100 bn br2 hl-bg-grey pa3">
+  <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
+</div>

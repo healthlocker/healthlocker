@@ -3,7 +3,4 @@
   <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4" %>
 </div>
 
-<%= content_tag :div, id: "messages", data: [room_id: @room.id], class: "ba b--hl-aqua br3 h5 overflow-y-scroll overflow-x-hidden smooth-scroll mb3 ph3" do %>
-<% end %>
-
-<input id="message-input" class="pa3 input-reset bn hl-bg-grey w-60" placeholder="Type a message"/>
+<%= render Healthlocker.RoomView, "_room.html", assigns %> 
