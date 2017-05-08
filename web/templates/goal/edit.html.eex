@@ -47,7 +47,7 @@
         <%= submit_primary "Save" %>
       </div>
   <% end %>
-  <div class="tr mt2">
+  <div class="tr mt4">
     <%= link_to("Delete goal", to: goal_path(@conn, :delete, @goal), method: "delete") %>
   </div>
 
