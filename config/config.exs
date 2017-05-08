@@ -51,8 +51,18 @@ config :ecto_factory, factories: [
   ]}
 ]
 
+config :ex_admin,
+  repo: Healthlocker.Repo,
+  module: Healthlocker,    # MyProject.Web for phoenix >= 1.3.0-rc
+  modules: [
+    Healthlocker.ExAdmin.Dashboard,
+    Healthlocker.ExAdmin.User
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
 
 import_config "appsignal.exs"
+
+config :xain, :after_callback, {Phoenix.HTML, :raw}

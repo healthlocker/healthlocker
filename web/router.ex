@@ -1,5 +1,6 @@
 defmodule Healthlocker.Router do
   use Healthlocker.Web, :router
+  use ExAdmin.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -69,5 +70,10 @@ defmodule Healthlocker.Router do
     resources "/posts", PostController, only: [:show, :index]
     resources "/support", SupportController, only: [:index]
     resources "/tips", TipController, only: [:index]
+  end
+  
+  scope "/admin", ExAdmin do
+    pipe_through :browser
+    admin_routes()
   end
 end

@@ -48,7 +48,8 @@ defmodule Healthlocker.Mixfile do
      {:faker, "~> 0.7"},
      {:appsignal, "~> 1.0"},
      {:wallaby, "~> 0.16.1"},
-     {:ecto_factory, "~> 0.0.6"}]
+     {:ecto_factory, "~> 0.0.6"},
+     {:ex_admin, github: "smpallen99/ex_admin"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
