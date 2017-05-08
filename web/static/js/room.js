@@ -9,7 +9,7 @@ let Room = {
   },
 
   onReady(roomId, socket) {
-    let msgContainer  = document.getElementById("messages")
+    let msgContainer  = document.getElementById("message-feed")
     let msgInput      = document.getElementById("message-input")
     let roomChannel   = socket.channel("room:" + roomId)
 

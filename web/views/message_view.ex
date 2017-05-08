@@ -1,7 +1,9 @@
 defmodule Healthlocker.MessageView do
   use Healthlocker.Web, :view
 
-
+  def dom_id(message) do
+    "message-" <> Integer.to_string(message.id)
+  end
 
   def user_name(message) do
     message.user.name
@@ -16,10 +18,12 @@ defmodule Healthlocker.MessageView do
   @receiver_classes "hl-bg-aqua fl"
 
   def classes(message, current_user) do
-    if message.user.id == current_user.id do
-      @base_classes <> " " <> @sender_classes
+    communicator = if message.user.id == current_user.id do
+      @sender_classes
     else
-      @base_classes <> " " <> @receiver_classes
+      @receiver_classes
     end
+
+    @base_classes <> " " <> communicator
   end
 end
