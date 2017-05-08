@@ -18,8 +18,11 @@
   <% end %>
 
   <div class="mt2">
-    <%= link_to("Connect with the SLaM care team of someone I care for",
-        to: slam_path(@conn, :new)) %>
+    <%= link "Connect with the SLaM care team of someone I care for",
+        to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
+    <%= link to: page_path(@conn, :show, "carer_help") do %>
+      <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+    <% end %>
   </div>
 
   <div class="form-group mt3">
