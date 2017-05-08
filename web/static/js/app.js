@@ -29,4 +29,4 @@ function closeNav () {
 document.getElementById('open-nav').addEventListener('click', openNav);
 document.getElementById('close-nav').addEventListener('click', closeNav);
 
-Room.init(socket, document.getElementById("messages"))
+Room.init(socket, document.getElementById("message-feed"))
