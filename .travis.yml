@@ -1,5 +1,5 @@
 dist: trusty
-sudo: false
+sudo: required
 language: elixir
 elixir:
 - 1.4.0
