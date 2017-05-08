@@ -6,6 +6,7 @@ defmodule Healthlocker.Goal do
     field :completed, :boolean
     field :notes, :string
     field :important, :boolean
+    field :achieved_at, :date
     has_many :steps, Healthlocker.Step, on_delete: :delete_all,
                                         on_replace: :delete
     belongs_to :user, Healthlocker.User
@@ -18,6 +19,12 @@ defmodule Healthlocker.Goal do
     |> cast(params, [:content, :important, :completed, :notes])
     |> cast_assoc(:steps)
     |> validate_required(:content)
+  end
+
+  def set_achieved_at(changeset) do
+    if get_change(changeset, :completed) do
+      put_change(changeset, :achieved_at, Date.utc_today())
+    end
   end
 
   def get_goals(query, user_id) do
