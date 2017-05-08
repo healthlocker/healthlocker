@@ -24,6 +24,8 @@ defmodule Healthlocker.Goal do
   def set_achieved_at(changeset) do
     if get_change(changeset, :completed) do
       put_change(changeset, :achieved_at, Date.utc_today())
+    else
+      changeset
     end
   end
 
