@@ -18,21 +18,26 @@ defmodule Healthlocker.CaseloadController do
                   |> ReadOnlyRepo.all
 
     hl_users = patient_ids
-              |> Enum.map(fn x ->
+              |> Enum.map(fn id ->
                 Repo.all(from u in User,
-                where: u.slam_id == ^x)
+                where: u.slam_id == ^id)
+              end)
+              |> Enum.concat
+              |> Enum.map(fn user ->
+                ReadOnlyRepo.all(from e in EPJSUser,
+                where: e."Patient_ID" == ^user.slam_id)
               end)
               |> Enum.concat
 
     non_hl = patient_ids
-              |> Enum.map(fn x ->
+              |> Enum.map(fn id ->
                 ReadOnlyRepo.all(from e in EPJSUser,
-                where: e."Patient_ID" == ^x)
+                where: e."Patient_ID" == ^id)
               end)
               |> Enum.concat
-              |> Enum.reject(fn x ->
-                Enum.any?(hl_users, fn x2 ->
-                  x."Patient_ID" == x2.slam_id
+              |> Enum.reject(fn user ->
+                Enum.any?(hl_users, fn hl ->
+                  user."Patient_ID" == hl."Patient_ID"
                 end)
               end)
     render(conn, "index.html", hl_users: hl_users, non_hl: non_hl)
