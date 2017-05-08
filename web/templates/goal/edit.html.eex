@@ -28,7 +28,7 @@
       </div>
 
       <div class="relative mt4">
-        <span>Mark achieved</span>
+        <span>Mark as achieved</span>
         <%= checkbox f, :completed, class: "dn checkbox complete" %>
             <%= label f, :completed, class: "complete" do %>
         <% end %>
