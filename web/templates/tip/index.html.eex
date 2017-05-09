@@ -5,7 +5,7 @@
     <div class="w-100">
       <%= link to: "/tips?tag=#{get_category(@conn.query_string)}",
               class: "dib w-10 mr3" do %>
-        <%= img_tag("/images/#{get_category(@conn.query_string)}.svg",
+        <%= img_tag("/images/#{get_category(@conn.query_string)}.png",
         class: "h3 pb1-l mb3-l mb5 pb4 mb2-m pb3-m") %>
       <% end %>
       </a>
@@ -25,7 +25,7 @@
   <%= for post <- @posts do %>
   <article class="ba b--black-05 mv2 mv3-m mv4-l">
     <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-      <%= img_tag("/images/#{get_category(post.content)}_Mini.svg",
+      <%= img_tag("/images/#{get_category(post.content)}_Mini.png",
         class: "miniIcon absolute") %>
       <%= markdown post.content %>
     </div>
