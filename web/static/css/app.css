@@ -61,7 +61,7 @@ label.star::before {
 
  label.complete::before {
    top: 0px;
-   left: 130px;
+   left: 150px;
    content: url(/images/Goal-Pending.svg);
    display: inline-block;
    position: absolute;
@@ -227,7 +227,6 @@ select:focus {
   box-shadow:0px 2px 3px 1px rgba( 0, 0, 0, 0.2 )
 }
 
-
 .s-top {
   top: 2.3rem;
 }
@@ -237,9 +236,12 @@ select:focus {
 }
 
 .bottom-1-6 {
-  bottom: 1.6rem;
+  bottom: 2.4rem;
 }
 
+.left--1-1 {
+  left: -1.1rem;
+}
 /* Styleguide */
 
 code {

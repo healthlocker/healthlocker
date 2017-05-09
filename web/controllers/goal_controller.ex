@@ -79,6 +79,7 @@ defmodule Healthlocker.GoalController do
       |> Repo.preload(:steps)
     content = get_content(goal_params)
     changeset = Goal.changeset(goal, content)
+              |> Goal.set_achieved_at()
 
     case Repo.update(changeset) do
       {:ok, goal} ->
