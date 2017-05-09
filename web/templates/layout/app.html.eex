@@ -75,7 +75,7 @@
             <%= link "Log in", class: "pa3 f3 white-80 db hover-white",
                 to: login_path(@conn, :index) %>
           <%= end %>
-          <%= link "Get support", to: support_path(@conn, :index), class: "mt3 mh5 mh6-m hl-bg-pink pv2 f3 white-80 db hover-white mb5" %>
+          <%= link "Get support", to: support_path(@conn, :index), class: "mt3 mh5 mh6-m hl-bg-pink pv2 f3 white-80 db hover-white mb6" %>
         </nav>
 
         <main id="body">

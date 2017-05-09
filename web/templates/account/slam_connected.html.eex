@@ -24,7 +24,11 @@
     <span class="hl-pink"><%= error_tag f, :email%></span>
   </div>
 
-  <div class="tr mt4">
+  <div class="tr mv4">
     <%= submit_primary "Update" %>
   </div>
 <% end %>
+
+<div class="bt b--hl-dark-blue pt4">
+  <%= link_to("Disconnect SLaM account", to: page_path(@conn, :show, "disconnect")) %>
+</div>

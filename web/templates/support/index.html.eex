@@ -14,14 +14,14 @@
   <div class="hl-bg-grey pa3">
     <h3>Free 24-hour phone support</h3>
     <div class="tc">
-      <%= img_tag("/images/Crisis_line_Strategies.svg", class: "w-20") %>
+      <%= img_tag("/images/Get_Support.png", class: "w-20") %>
     </div>
-    <p><span class="b">SLaM mental health support line:</span> <a href="tel:08007312864">0800 731 2864</a> for anyone in Southwark, Lambeth, Lewisham or Croydon. Calls will be answered by a nurse who can give advice on mental health, medication and accessing appropriate services</p>
+    <p><span class="b">SLaM mental health support line:</span> <%= link_to("0800 731 2864", to: "tel:08007312864") %> for anyone in Southwark, Lambeth, Lewisham or Croydon. Calls will be answered by a nurse who can give advice on mental health, medication and accessing appropriate services</p>
 
-    <p><span class="b">The Samaritans:</span> <a href="tel:116123">116 123</a> is a national service (and you don't have to be suicidal to call for support)</p>
+    <p><span class="b">The Samaritans:</span> <%= link_to("116 123", to: "tel:116123") %> is a national service (and you don't have to be suicidal to call for support)</p>
 
-    <p><span class="b">NHS:</span> <a href="tel:111">111</a> for urgent, but non-emergency, medical advice</p>
+    <p><span class="b">NHS:</span> <%= link_to("111", to: "tel:111") %> for urgent, but non-emergency, medical advice</p>
 
-    <p><span class="b">Emergency services:</span> <a href="tel:999">999</a> or find your nearest <a href="http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428" target="_blank">A&amp;E</a></p>
+    <p><span class="b">Emergency services:</span> <%= link_to("999", to: "tel:999") %> or find your nearest <%= link_to("A&E", to: "http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428", target: "_blank") %></p>
   </div>
 </div>

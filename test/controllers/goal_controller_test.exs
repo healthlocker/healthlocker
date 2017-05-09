@@ -35,28 +35,6 @@ defmodule Healthlocker.GoalControllerTest do
       assert html_response(conn, 200) =~ "Toolkit"
     end
 
-    test "marks goal as important if important is false", %{conn: conn} do
-      goal = Repo.insert! %Goal{
-        content: "some content #Goal",
-        user_id: 123456,
-        important: false}
-      conn = put conn, goal_path(conn, :mark_important, goal.id)
-      important = Repo.get!(Goal, goal.id).important
-      assert redirected_to(conn) == goal_path(conn, :show, goal)
-      assert important
-    end
-
-    test "marks goal as not important if important is true", %{conn: conn} do
-      goal = Repo.insert! %Goal{
-        content: "some content #Goal",
-        user_id: 123456,
-        important: true}
-      conn = put conn, goal_path(conn, :mark_important, goal.id)
-      important = Repo.get!(Goal, goal.id).important
-      assert redirected_to(conn) == goal_path(conn, :show, goal)
-      refute important
-    end
-
     test "renders page not found when goal id is nonexistent", %{conn: conn} do
       assert_error_sent 404, fn ->
         get conn, goal_path(conn, :show, -1)
@@ -91,7 +69,7 @@ defmodule Healthlocker.GoalControllerTest do
     test "updates goal with valid data", %{conn: conn} do
       goal = Repo.insert! %Goal{content: "some stuff"}
       conn = put conn, goal_path(conn, :update, goal), goal: @valid_attrs
-      assert redirected_to(conn) == goal_path(conn, :show, goal)
+      assert redirected_to(conn) == goal_path(conn, :index)
     end
 
     test "does not update goal when data is invalid", %{conn: conn} do

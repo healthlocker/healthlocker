@@ -5,7 +5,8 @@
 
     <p>
       Healthlocker is a secure platform powered by the
-      <%= link_to("South London and Maudsley Trust", to: "http://www.slam.nhs.uk/", target: "_blank") %>
+      <%= link "South London and Maudsley Trust", to: "http://www.slam.nhs.uk/",
+          target: "_blank", class: "hl-aqua flex-wrap underline" %>
       that promotes supported self-management and opportunities to improve
       communication between service users, carers and clinicians.
     </p>
@@ -25,13 +26,14 @@
 
     <p>
       Anyone can
-      <%= link_to("sign up to Healthlocker", to: user_path(@conn, :new)) %>
+      <%= link "sign up to Healthlocker", to: user_path(@conn, :new),
+          class: "hl-aqua flex-wrap underline" %>
       to explore wellbeing tips and recovery stories and create goals and coping
       strategies.
     </p>
 
     <div class="flex items-start justify-between mt4">
-      <div class="w2">
+      <div class="w-10">
         <%= img_tag("/images/About_Service_user.png") %>
       </div>
 
@@ -50,7 +52,7 @@
         let them know how the person you support is doing.
       </p>
 
-      <div class="w2">
+      <div class="w-10">
         <%= img_tag("/images/About_Carers.png", class: "w-100") %>
       </div>
     </div>
@@ -60,7 +62,7 @@
         <%= img_tag("/images/About_Researchers.png", class: "w-100") %>
       </div>
 
-      <p class="w-80 mv0">
+      <p class="w-90 mv0">
         If you are staff at SLaM, you can access Healthlocker via the icon in the
         top panel in ePJS. Soon you will be able to share information, resources
         and messages with service users and their carers and view updates that
@@ -111,6 +113,6 @@
   </div>
 
   <div class="tc">
-    <%= img_tag("/images/SLaM_logo.png", class: "w-50") %>
+    <%= img_tag("/images/SLaM_logo.png", class: "w-90 w-50-m w-50-l") %>
   </div>
 </div>

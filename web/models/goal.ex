@@ -6,6 +6,7 @@ defmodule Healthlocker.Goal do
     field :completed, :boolean
     field :notes, :string
     field :important, :boolean
+    field :achieved_at, :date
     has_many :steps, Healthlocker.Step, on_delete: :delete_all,
                                         on_replace: :delete
     belongs_to :user, Healthlocker.User
@@ -15,15 +16,17 @@ defmodule Healthlocker.Goal do
 
   def changeset(struct, params \\ :invalid) do
     struct
-    |> mark_important_changeset(params)
-    |> cast(params, [:content])
+    |> cast(params, [:content, :important, :completed, :notes])
     |> cast_assoc(:steps)
     |> validate_required(:content)
   end
 
-  def mark_important_changeset(struct, params \\ :invalid) do
-    struct
-    |> cast(params, [:important])
+  def set_achieved_at(changeset) do
+    if get_change(changeset, :completed) do
+      put_change(changeset, :achieved_at, Date.utc_today())
+    else
+      changeset
+    end
   end
 
   def get_goals(query, user_id) do
@@ -41,7 +44,14 @@ defmodule Healthlocker.Goal do
 
   def get_unimportant_goals(query, user_id) do
     from g in query,
-    where: like(g.content, "%#Goal") and g.user_id == ^user_id and not g.important,
+    where: g.user_id == ^user_id and not g.important,
+    order_by: [desc: g.updated_at],
+    preload: [:steps]
+  end
+
+  def get_completed_goals(query, user_id) do
+    from g in query,
+    where: like(g.content, "%#Goal") and g.user_id == ^user_id and g.completed,
     order_by: [desc: g.updated_at],
     preload: [:steps]
   end

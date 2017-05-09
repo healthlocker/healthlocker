@@ -51,6 +51,11 @@ defmodule Healthlocker.User do
     this time, try again later or with different details.")
   end
 
+  def disconnect_changeset(struct) do
+    struct
+    |> change(slam_id: nil)
+  end
+
   def security_question(struct, params \\ :invalid) do
     struct
     |> cast(params, [:security_question, :security_answer])
