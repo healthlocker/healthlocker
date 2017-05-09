@@ -36,7 +36,7 @@ defmodule Healthlocker.CarerMessageTest do
   end
 
   @message_field  Query.css("#message-input")
-  @messages_list  Query.css("#messages")
+  @messages_list  Query.css("#message-feed")
   test "send care team message", %{session: session} do
     session
     |> log_in
