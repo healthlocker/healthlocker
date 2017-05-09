@@ -69,7 +69,7 @@ defmodule Healthlocker.GoalControllerTest do
     test "updates goal with valid data", %{conn: conn} do
       goal = Repo.insert! %Goal{content: "some stuff"}
       conn = put conn, goal_path(conn, :update, goal), goal: @valid_attrs
-      assert redirected_to(conn) == goal_path(conn, :show, goal)
+      assert redirected_to(conn) == goal_path(conn, :index)
     end
 
     test "does not update goal when data is invalid", %{conn: conn} do
