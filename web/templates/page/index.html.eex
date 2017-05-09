@@ -25,7 +25,7 @@
   <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
     <div class="w-100">
       <a class="dib w-10 mr3" href="/tips?tag=Connect">
-        <%= img_tag("/images/Connect.svg",
+        <%= img_tag("/images/Connect.png",
         class: "h3 pb1-l mb3-l mb5 pb4 mb2-m pb3-m") %>
       </a>
       <div class="w-80 dib">
@@ -36,7 +36,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/Connect_Mini.svg",
+        <%= img_tag("/images/Connect_Mini.png",
         class: "miniIcon absolute") %>
         <p class="b">Have you considered telling a friend about a goal you want to reach?</p>
         <p>See if they can help you get there. By allowing others to help not only increases the likelihood of you succeeding but can also strengthen your relationship.</p>
@@ -49,7 +49,7 @@
   <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
     <div class="w-100">
       <a class="dib w-10 mr3" href="/tips?tag=BeActive">
-        <%= img_tag("/images/BeActive.svg",
+        <%= img_tag("/images/BeActive.png",
         class: "h3 mb5-l pb2-l mb6 pb5 pb5-m mb4-m") %>
       </a>
       <div class="w-80 dib">
@@ -66,7 +66,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/BeActive_Mini.svg",
+        <%= img_tag("/images/BeActive_Mini.png",
         class: "miniIcon absolute") %>
         <p class="b">Today, how about walking a bit more than you usually would.</p>
         <p>Evidence shows moods can improve after 10 minutes of exercise.</p>
@@ -80,7 +80,7 @@
 
     <div class="w-100">
       <a class="dib w-10 mr3" href="/tips?tag=KeepLearning">
-        <%= img_tag("/images/KeepLearning.svg",
+        <%= img_tag("/images/KeepLearning.png",
         class: "h3 mb4-l pb0-l mb6 pb4 mb0-m") %>
       </a>
       <div class="w-80 dib">
@@ -94,7 +94,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/KeepLearning_Mini.svg",
+        <%= img_tag("/images/KeepLearning_Mini.png",
         class: "miniIcon absolute") %>
         <p class="b">Why not cook something different today.</p>
         <p>Learning can boost your self confidence.</p>
@@ -108,7 +108,7 @@
 
     <div class="w-100">
       <a class="dib w-10 mr3" href="/tips?tag=GiveToOthers">
-        <%= img_tag("/images/GiveToOthers.svg",
+        <%= img_tag("/images/GiveToOthers.png",
         class: "h3 mb4-l pb3-l mb6 pb5 mb4-m pb4-m") %>
       </a>
       <div class="w-80 dib">
@@ -123,7 +123,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/GiveToOthers_Mini.svg",
+        <%= img_tag("/images/GiveToOthers_Mini.png",
         class: "miniIcon absolute") %>
         <p class="b">You could find opportunities to volunteer.</p>
         <p>Small acts of kindness towards other people can make you feel happier and more fulfilled.</p>
@@ -137,7 +137,7 @@
 
     <div class="w-100">
       <a class="dib w-10 mr3" href="/tips?tag=TakeNotice">
-        <%= img_tag("/images/TakeNotice.svg",
+        <%= img_tag("/images/TakeNotice.png",
         class: "h3 mb4-l pb1-l mb6 pb3 mb4-m pb4-m") %>
       </a>
       <div class="w-80 dib">
@@ -150,7 +150,7 @@
 
     <article class="ba b--black-05 mv2 mv3-m mv4-l">
       <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
-        <%= img_tag("/images/TakeNotice_Mini.svg",
+        <%= img_tag("/images/TakeNotice_Mini.png",
         class: "miniIcon absolute") %>
         <p class="b">Where possible try to remove distractions from your bedroom.</p>
         <p>It is better to watch TV, play computer games and eat in another room. This will allow you to relax with no distractions in your bedroom.</p>
