@@ -5,7 +5,8 @@
 
     <p>
       Healthlocker is a secure platform powered by the
-      <%= link_to("South London and Maudsley Trust", to: "http://www.slam.nhs.uk/", target: "_blank") %>
+      <%= link "South London and Maudsley Trust", to: "http://www.slam.nhs.uk/",
+          target: "_blank", class: "hl-aqua flex-wrap underline" %>
       that promotes supported self-management and opportunities to improve
       communication between service users, carers and clinicians.
     </p>
@@ -25,7 +26,8 @@
 
     <p>
       Anyone can
-      <%= link_to("sign up to Healthlocker", to: user_path(@conn, :new)) %>
+      <%= link "sign up to Healthlocker", to: user_path(@conn, :new),
+          class: "hl-aqua flex-wrap underline" %>
       to explore wellbeing tips and recovery stories and create goals and coping
       strategies.
     </p>
@@ -111,6 +113,6 @@
   </div>
 
   <div class="tc">
-    <%= img_tag("/images/SLaM_logo.png", class: "w-50") %>
+    <%= img_tag("/images/SLaM_logo.png", class: "w-90 w-50-m w-50-l") %>
   </div>
 </div>
