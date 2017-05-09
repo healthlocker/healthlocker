@@ -37,7 +37,7 @@ defmodule Healthlocker.AccountController do
     case Repo.update(changeset) do
       {:ok, _params} ->
         conn
-        |> put_flash(:info, "Your account has been disconnect from SLaM")
+        |> put_flash(:info, "Your account has been disconnected from SLaM")
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         render(conn, "index.html", changeset: changeset, user: user,
