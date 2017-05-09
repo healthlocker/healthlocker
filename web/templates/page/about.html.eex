@@ -31,7 +31,7 @@
     </p>
 
     <div class="flex items-start justify-between mt4">
-      <div class="w2">
+      <div class="w-10">
         <%= img_tag("/images/About_Service_user.png") %>
       </div>
 
@@ -50,7 +50,7 @@
         let them know how the person you support is doing.
       </p>
 
-      <div class="w2">
+      <div class="w-10">
         <%= img_tag("/images/About_Carers.png", class: "w-100") %>
       </div>
     </div>
@@ -60,7 +60,7 @@
         <%= img_tag("/images/About_Researchers.png", class: "w-100") %>
       </div>
 
-      <p class="w-80 mv0">
+      <p class="w-90 mv0">
         If you are staff at SLaM, you can access Healthlocker via the icon in the
         top panel in ePJS. Soon you will be able to share information, resources
         and messages with service users and their carers and view updates that

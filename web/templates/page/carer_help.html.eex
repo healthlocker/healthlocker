@@ -1,0 +1,17 @@
+<div class="ma3 ma4-m ma4-l">
+  <p>
+    To connect you will need to enter your full name and relationship to the
+    person, as well as their First name, Last name, Date of Birth and NHS
+    number, these details will be matched against their SLaM record - they
+    must match perfectly.
+  </p>
+
+  <p>
+    Once the care team has reviewed and accepted your request, you will be
+    able to see the contact details of their SLaM care team and be able to
+    share notes with the care team online.
+  </p>
+
+
+  <%= link_to("Close", to: account_path(@conn, :index))%>
+</div>

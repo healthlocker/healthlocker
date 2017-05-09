@@ -27,10 +27,13 @@
   <%= for goal <- @complete_goals do %>
     <%= link to: goal_path(@conn, :show, goal), class: "link w-100" do %>
       <section class="ba bw2 b--black-10 dib pv3 w-100 mv2 relative">
-        <%= img_tag("/images/Goal_Complete.png", class: "absolute w2 left--1 bottom-1-6") %>
+        <%= img_tag("/images/Goal_Complete.png", class: "absolute w2 left--1-1 bottom-1-6") %>
           <div class="ma2 b hl-dark-blue w-80 w-90-m w-90-l center">
             <%= markdown String.trim_trailing(goal.content, " #Goal") %>
           </div>
+          <p class="i hl-dark-blue ma2 w-80 w-90-m w-90-l center">Achieved:
+            <%= Healthlocker.ComponentView.pretty_date(goal.achieved_at) %>
+          </p>
       </section>
     <% end %>
   <% end %>
