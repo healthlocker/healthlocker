@@ -14,7 +14,7 @@ defmodule Healthlocker.Caseload.MessageController do
     conn
     |> assign(:room, room)
     |> assign(:messages, messages)
-    |> assign(:current_user, conn.assigns.current_user)
+    |> assign(:current_user_id, conn.assigns.current_user.id)
     |> render("show.html")
   end
 end

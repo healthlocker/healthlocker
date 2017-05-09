@@ -17,8 +17,12 @@ defmodule Healthlocker.MessageView do
   @sender_classes "hl-bg-yellow fr"
   @receiver_classes "hl-bg-aqua fl"
 
-  def classes(message, current_user) do
-    communicator = if message.user.id == current_user.id do
+  def classes(message, nil) do
+    @base_classes
+  end
+
+  def classes(message, current_user_id) do
+    communicator = if message.user.id == current_user_id do
       @sender_classes
     else
       @receiver_classes

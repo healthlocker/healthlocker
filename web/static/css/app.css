@@ -217,10 +217,13 @@ select:focus {
 
 .bm-top {
   top: 1rem;
-
 }
 
 /* Messages */
+
+#message-feed {
+  max-height: 25rem;
+}
 
 #message-input:focus {
   outline: none;

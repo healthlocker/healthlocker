@@ -3,6 +3,7 @@ let Room = {
     if (!element) { return }
 
     let roomId = element.getAttribute("data-room-id")
+    let userId = element.getAttribute("data-user-id")
     socket.connect()
 
     this.onReady(roomId, socket)
@@ -29,21 +30,28 @@ let Room = {
     })
 
     roomChannel.join()
-      .receive("ok", ({messages}) =>
-        messages.forEach(msg => this.renderMessage(msgContainer, msg))
-      )
+      .receive("ok", resp => msgContainer.scrollTop = msgContainer.scrollHeight)
       .receive("error", reason => console.log("join failed", reason) )
   },
 
-  renderMessage(msgContainer, {user, body}) {
-    let template = document.createElement("div")
-    template.innerHTML = `
-      <p class="text-wrap">
-        <b>${user.name}:</b> ${body}
-      </p>
-    `
-    msgContainer.appendChild(template)
+  renderMessage(msgContainer, {template, id, message_user_id}) {
+    let userId = msgContainer.getAttribute("data-user-id")
+    msgContainer.insertAdjacentHTML("beforeend", template)
+    let message = document.getElementById("message-" + id)
+
+    if (message_user_id == userId) {
+      addClass(message, " hl-bg-yellow fr")
+    } else {
+      addClass(message, " hl-bg-aqua fl")
+    }
+
     msgContainer.scrollTop = msgContainer.scrollHeight
+  }
+
+  addClass(element, classString) {
+    let oldClassString = element.className
+    let newClassString = oldClassString.concat(classString)
+    element.className = newClassString
   }
 }
 

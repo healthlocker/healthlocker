@@ -1,7 +1,7 @@
 defmodule Healthlocker.RoomChannel do
   use Healthlocker.Web, :channel
 
-  alias Healthlocker.{Message, CareTeam.MessageView, Room}
+  alias Healthlocker.{Message, MessageView, Room}
 
   def join("room:" <> room_id, _params, socket) do
     room = Repo.get!(Room, room_id)
@@ -10,10 +10,8 @@ defmodule Healthlocker.RoomChannel do
       order_by: [asc: :inserted_at, asc: :id],
       preload: [:user]
 
-    resp = %{messages: Phoenix.View.render_many(messages, MessageView, "message.json")}
-
     send(self, :after_join)
-    {:ok, resp, assign(socket, :room, room)}
+    {:ok, nil, assign(socket, :room, room)}
   end
 
   def handle_in("msg:new", params, socket) do
@@ -33,7 +31,7 @@ defmodule Healthlocker.RoomChannel do
 
   defp broadcast_message(socket, message) do
     message = Repo.preload(message, :user)
-    rendered_message = Phoenix.View.render_one(message, MessageView, "message.json")
-    broadcast!(socket, "msg:created", rendered_message)
+    rendered_message = Phoenix.View.render_to_string(MessageView, "_message.html", message: message, current_user_id: nil)
+    broadcast!(socket, "msg:created", %{template: rendered_message, id: message.id, message_user_id: socket.assigns.user_id})
   end
 end
