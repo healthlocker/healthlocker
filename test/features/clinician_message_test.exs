@@ -67,7 +67,6 @@ defmodule Healthlocker.ClinicianMessageTest do
     |> click(Query.link("General Kenobi (carer)"))
     |> fill_in(Query.css("#message-input"), with: "Hello there")
     |> send_keys([:enter])
-
-    assert has_text?(session, "Hello there")
+    |> has_text?("Hello there")
   end
 end
