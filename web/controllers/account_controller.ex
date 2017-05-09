@@ -29,6 +29,22 @@ defmodule Healthlocker.AccountController do
     end
   end
 
+  def disconnect(conn, _params) do
+    user_id = conn.assigns.current_user.id
+    user = Repo.get!(User, user_id)
+
+    changeset = User.disconnect_changeset(user)
+    case Repo.update(changeset) do
+      {:ok, _params} ->
+        conn
+        |> put_flash(:info, "Your account has been disconnect from SLaM")
+        |> redirect(to: account_path(conn, :index))
+      {:error, changeset} ->
+        render(conn, "index.html", changeset: changeset, user: user,
+                slam_id: user.slam_id, action: account_path(conn, :update))
+    end
+  end
+
   def consent(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
