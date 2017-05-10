@@ -2,7 +2,7 @@
   <h2 class="tc">Connect</h2>
 
   <h3>Person you support</h3>
-  <p class="f5 measure lh-copy">These details will be matched against their SLaM record - they must match perfectly.</p>
+  <p class="f5 lh-copy">These details will be matched against their SLaM record - they must match perfectly.</p>
 
   <%= render "_form.html", changeset: @changeset, action: slam_path(@conn, :create), conn: @conn %>
 </div>
