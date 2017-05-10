@@ -40,13 +40,13 @@ let Room = {
     let message = document.getElementById("message-" + id)
 
     if (message_user_id == userId) {
-      addClass(message, " hl-bg-yellow fr")
+      this.addClass(message, " hl-bg-yellow fr")
     } else {
-      addClass(message, " hl-bg-aqua fl")
+      this.addClass(message, " hl-bg-aqua fl")
     }
 
     msgContainer.scrollTop = msgContainer.scrollHeight
-  }
+  },
 
   addClass(element, classString) {
     let oldClassString = element.className
