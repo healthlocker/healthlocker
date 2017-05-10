@@ -4,14 +4,14 @@ defmodule Healthlocker.Slam.CarerConnectionTest do
   alias Healthlocker.{EPJSUser, ReadOnlyRepo}
 
   @valid_attrs %{
-    first_name: "Kat",
-    last_name: "Bow",
+    forename: "Kat",
+    surname: "Bow",
     date_of_birth: "01/01/1989",
     nhs_number: "uvhjbfnwqoekhfg8y9i"
   }
   @invalid_attrs %{
-    first_name: "Tony",
-    last_name: "Daly",
+    forename: "Tony",
+    surname: "Daly",
     date_of_birth: "01/01/1989",
     nhs_number: "943 476 0000"
   }
