@@ -40,10 +40,11 @@ defmodule Healthlocker.CaseloadController do
   end
 
   def show(conn, %{"id" => id}) do
-    slam_user = ReadOnlyRepo.get!(EPJSUser, id)
-    user = Repo.one(from u in User,
-          where: u.slam_id == ^slam_user."Patient_ID")
-    address = ReadOnlyRepo.get!(EPJSPatientAddressDetails, id)
+    user = Repo.get!(User, id)
+    slam_user = ReadOnlyRepo.one(from e in EPJSUser,
+                where: e."Patient_ID" == ^user.slam_id)
+    address = ReadOnlyRepo.one(from e in EPJSPatientAddressDetails,
+              where: e."Patient_ID" == ^user.slam_id)
     render(conn, "show.html", user: user, slam_user: slam_user, address: address)
   end
 end
