@@ -85,7 +85,7 @@ defmodule Healthlocker.GoalController do
       {:ok, goal} ->
         conn
         |> put_flash(:info, "Goal updated successfully.")
-        |> redirect(to: goal_path(conn, :show, goal))
+        |> redirect(to: goal_path(conn, :index))
       {:error, changeset} ->
         render(conn, "edit.html", goal: goal, changeset: changeset)
     end
