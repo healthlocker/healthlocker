@@ -20,12 +20,8 @@ defmodule Healthlocker.CaseloadController do
     hl_users = patient_ids
               |> Enum.map(fn id ->
                 Repo.all(from u in User,
-                where: u.slam_id == ^id)
-              end)
-              |> Enum.concat
-              |> Enum.map(fn user ->
-                ReadOnlyRepo.all(from e in EPJSUser,
-                where: e."Patient_ID" == ^user.slam_id)
+                where: u.slam_id == ^id,
+                preload: [:carers])
               end)
               |> Enum.concat
 
@@ -37,17 +33,18 @@ defmodule Healthlocker.CaseloadController do
               |> Enum.concat
               |> Enum.reject(fn user ->
                 Enum.any?(hl_users, fn hl ->
-                  user."Patient_ID" == hl."Patient_ID"
+                  user."Patient_ID" == hl.slam_id
                 end)
               end)
     render(conn, "index.html", hl_users: hl_users, non_hl: non_hl)
   end
 
   def show(conn, %{"id" => id}) do
-    slam_user = ReadOnlyRepo.get!(EPJSUser, id)
-    user = Repo.one(from u in User,
-          where: u.slam_id == ^slam_user."Patient_ID")
-    address = ReadOnlyRepo.get!(EPJSPatientAddressDetails, id)
+    user = Repo.get!(User, id)
+    slam_user = ReadOnlyRepo.one(from e in EPJSUser,
+                where: e."Patient_ID" == ^user.slam_id)
+    address = ReadOnlyRepo.one(from e in EPJSPatientAddressDetails,
+              where: e."Patient_ID" == ^user.slam_id)
     render(conn, "show.html", user: user, slam_user: slam_user, address: address)
   end
 end

@@ -124,76 +124,112 @@
 
     </div>
     <p class="f5 lh-copy sans-serif">Here are examples of our standard components that use partials:</p>
+
+    <h2 class="f3">Messages</h2>
+    <p class="f5 lh-copy sans-serif">
+      Messages are composed of a number of different components:
+      <ul class="f5 lh-copy sans-serif">
+        <li>Message feed</li>
+        <li>Sent message</li>
+        <li>Received message</li>
+        <li>Message box</li>
+      </ul>
+    </p>
+
+    <div id="message-feed" class="db ba b--hl-aqua br2 overflow-y-scroll overflow-x-hidden smooth-scroll mb3 ph3 pt2">
+      <div id="message-1" class="w-80 br2 hl-bg-aqua mb2 pa1 pa3-ns fl">
+        <div class="sender f6 f5-ns fw6 lh-title black mv0">Emily</div>
+        <p class="message-body f5 lh-copy measure-wide ma0">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <small class="white dib"><time>6 hours ago</time></small>
+        </p>
+      </div>
+      <div id="message-2" class="w-80 br2 hl-bg-yellow mb2 pa1 pa3-ns fr">
+        <div class="sender f6 f5-ns fw6 lh-title black mv0">Tony</div>
+        <p class="message-body f5 lh-copy measure-wide ma0">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <small class="white dib"><time>6 hours ago</time></small>
+        </p>
+      </div>
+      <div id="message-2" class="w-80 br2 hl-bg-yellow mb2 pa1 pa3-ns fr">
+        <div class="sender f6 f5-ns fw6 lh-title black mv0">Kat</div>
+        <p class="message-body f5 lh-copy measure-wide ma0">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <small class="white dib"><time>6 hours ago</time></small>
+        </p>
+      </div>
+    </div>
+    <div class="w-100 bn br2 hl-bg-grey pa3">
+      <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
+    </div>
+
+    <h2 class="f3">Posts</h2>
+    <p class="f5 lh-copy sans-serif">There are multiple types of 'posts' derived from the underlying component type:</p>
+    <h2 class="f4">Tips</h2>
+    <%= render Healthlocker.PostView, "_post.html", post: @post %>
+    <img src="https://cloud.githubusercontent.com/assets/16775804/25189183/581d3324-2520-11e7-8033-551d05fec739.png" width= "500px"/>
+
+    <h2 class="f4">Stories</h2>
+    <article class="mw6 center bg-white br2 br--bottom shadow-1--bottom pa3 pa4-ns mv3 ba b--black-10">
+      <h1 class="f3 lh-title">Why can’t men talk about mental health in the pub?</h1>
+      <img src="http://placekitten.com/g/600/300" class="db w-100 br2" alt="Photo of a kitten looking menacing.">
+      <p class="lh-copy measure measure-wide-ns center f6 black-70">
+        It’s amazing what lengths men will go to in order to cover up their psychological unwellness. It’s a taboo topic in the pub. You can’t just openly admit that your anxiety has ravaged your insides till the point where you’ve questioned reality. They don’t want to know, it might lead them to question their own minds, but they’d never tell you anyway.
+      </p>
+      <div class="dt w-100 mv3">
+        <div class="dtc w2 v-mid">
+          <img src="http://i.pravatar.cc/128?img=24" class="ba b--black-10 db br-100 w2 h2"/>
+        </div>
+        <div class="dtc v-mid pl3">
+          <h1 class="f6 f5-ns fw6 lh-title black mv0">Katherine Bowler</h1>
+          <h2 class="f6 fw4 mt0 mb0 black-60">Dwyl</h2>
+        </div>
+        <div class="dtc v-mid tr">
+          <a class="f6 fw1 link dim br1 ph3 pv2 dib white bg-pink" href="#0">#story</a>
+        </div>
+      </div>
+      <footer class="dt w-100 black-40 f6 fw7">
+        <div class="dtc fl">
+          <i class="fa fa-heart" aria-hidden="true"></i>
+          <span class="pl1">23</span>
+        </div>
+        <div class="dtc fl pl3">
+          <i class="fa fa-comment-o" aria-hidden="true"></i>
+          <span class="pl1">4</span>
+        </div>
+        <div class="dtc fr">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <span class="pl1">1 week ago</span>
+        </div>
+      </footer>
+    </article>
+
+    <h2 class="f3">Flash messages</h2>
+    <p class="lh-copy measure f5 sans-serif">
+      We use flash messages to show success and error messages after some action has taken place.
+    </p>
+
+    <div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
+      <div class="ba bw2 br3 b--hl-yellow hl-bg-success center tc pv2 pv3-l mh4-l mb3" role="alert">
+        Woo! 🎉
+      </div>
+
+      <div class="ba bw2 br3 b--hl-pink hl-bg-error center tc pv2 pv3-l mh4-l" role="alert">
+        Boo ☹️
+      </div>
+    </div>
+
+    <h2 class="f3">Still to add...</h2>
+    <ul class="f5 lh-copy sans-serif">
+      <li>Give code e.g. of how to implement a partials standard component</li>
+      <li>Finish tips</li>
+      <li>Flash message description</li>
+      <li>Input boxes</li>
+      <li>Burger menu?</li>
+      <li>Footer?</li>
+      <li>Stories? Bookmarks?</li>
+      <li>Graph components?</li>
+      <li>Class limitations for extra styling - have to currently put in a div</li>
+    </ul>
   </div>
 </section>
-
-<div class="tl dib">
-<h2 class="f3 tl">Posts</h2>
-<p class="f5 lh-copy sans-serif">There are multiple types of 'posts' derived from the underlying component type:</p>
-<h2 class="f4 tl">Tips</h2>
-<%= render Healthlocker.PostView, "_post.html", post: @post %>
-<img src="https://cloud.githubusercontent.com/assets/16775804/25189183/581d3324-2520-11e7-8033-551d05fec739.png" width= "500px"/>
-</div>
-
-<h2 class="f4 tl">Stories</h2>
-<article class="mw6 center bg-white br2 br--bottom shadow-1--bottom pa3 pa4-ns mv3 ba b--black-10">
-  <h1 class="f3 lh-title">Why can’t men talk about mental health in the pub?</h1>
-  <img src="http://placekitten.com/g/600/300" class="db w-100 br2" alt="Photo of a kitten looking menacing.">
-  <p class="lh-copy measure measure-wide-ns center f6 black-70">
-    It’s amazing what lengths men will go to in order to cover up their psychological unwellness. It’s a taboo topic in the pub. You can’t just openly admit that your anxiety has ravaged your insides till the point where you’ve questioned reality. They don’t want to know, it might lead them to question their own minds, but they’d never tell you anyway.
-  </p>
-  <div class="dt w-100 mv3">
-    <div class="dtc w2 v-mid">
-      <img src="http://i.pravatar.cc/128?img=24" class="ba b--black-10 db br-100 w2 h2"/>
-    </div>
-    <div class="dtc v-mid pl3">
-      <h1 class="f6 f5-ns fw6 lh-title black mv0">Katherine Bowler</h1>
-      <h2 class="f6 fw4 mt0 mb0 black-60">Dwyl</h2>
-    </div>
-    <div class="dtc v-mid tr">
-      <a class="f6 fw1 link dim br1 ph3 pv2 dib white bg-pink" href="#0">#story</a>
-    </div>
-  </div>
-  <footer class="dt w-100 black-40 f6 fw7">
-    <div class="dtc fl">
-      <i class="fa fa-heart" aria-hidden="true"></i>
-      <span class="pl1">23</span>
-    </div>
-    <div class="dtc fl pl3">
-      <i class="fa fa-comment-o" aria-hidden="true"></i>
-      <span class="pl1">4</span>
-    </div>
-    <div class="dtc fr">
-      <i class="fa fa-clock-o" aria-hidden="true"></i>
-      <span class="pl1">1 week ago</span>
-    </div>
-  </footer>
-</article>
-
-<h2 class="f3">Flash messages</h2>
-<p class="lh-copy measure f5 sans-serif">
-  We use flash messages to show success and error messages after some action has taken place.
-</p>
-
-<div class="br2 ba bw2 dark-gray b--black-10 pa3 mv4">
-  <div class="ba bw2 br3 b--hl-yellow hl-bg-success center tc pv2 pv3-l mh4-l mb3" role="alert">
-    Woo! 🎉
-  </div>
-
-  <div class="ba bw2 br3 b--hl-pink hl-bg-error center tc pv2 pv3-l mh4-l" role="alert">
-    Boo ☹️
-  </div>
-</div>
-
-<h2 class="f3">Still to add...</h2>
-<ul class="f5 lh-copy sans-serif">
-  <li>Give code e.g. of how to implement a partials standard component</li>
-  <li>Finish tips</li>
-  <li>Flash message description</li>
-  <li>Input boxes</li>
-  <li>Burger menu?</li>
-  <li>Footer?</li>
-  <li>Stories? Bookmarks?</li>
-  <li>Graph components?</li>
-  <li>Class limitations for extra styling - have to currently put in a div</li>
-</ul>
