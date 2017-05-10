@@ -1,10 +1,12 @@
-defmodule Healthlocker.Caseload.MessageController do
-  alias Healthlocker.{Message, User}
+defmodule Healthlocker.Caseload.RoomController do
+  alias Healthlocker.{Message, Room}
   use Healthlocker.Web, :controller
 
-  def show(conn, %{"id" => carer_id, "caseload_id" => _service_user_id}) do
-    carer = Repo.get!(User, carer_id) |> Repo.preload(:rooms)
-    [room|_] = carer.rooms |> Repo.preload([messages: :user])
+  def show(conn, %{"id" => id, "user_id" => user_id}) do
+    # carer = Repo.get!(User, carer_id) |> Repo.preload(:rooms)
+    # [room|_] = carer.rooms |> Repo.preload([messages: :user])
+
+    room = Repo.get!(Room, id) |> Repo.preload([messages: :user])
 
     messages = Repo.all from m in Message,
       where: m.room_id == ^room.id,

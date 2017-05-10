@@ -21,7 +21,7 @@ defmodule Healthlocker.CaseloadController do
               |> Enum.map(fn id ->
                 Repo.all(from u in User,
                 where: u.slam_id == ^id,
-                preload: [:carers])
+                preload: [carers: :rooms])
               end)
               |> Enum.concat
 
