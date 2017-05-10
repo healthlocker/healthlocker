@@ -1,23 +1,24 @@
 <%= form_for @changeset, @action, fn f -> %>
   <input name="_method" type="hidden" value="put" />
+  <%= if Kernel.length(@user.caring) == 0 do %>
+    <div class="form-group pv3">
+      <%= checkbox f, :slam_user, class: "checkbox " %>
+      <%= label f, :slam_user do %>
+        I am a South London and Maudsley service user.
+      <% end %>
+      <span class="hl-pink"><%= error_tag f, :slam_user %></span>
+    </div>
 
-  <div class="form-group pv3">
-    <%= checkbox f, :slam_user, class: "checkbox " %>
-    <%= label f, :slam_user do %>
-      I am a South London and Maudsley service user.
-    <% end %>
-    <span class="hl-pink"><%= error_tag f, :slam_user %></span>
-  </div>
-
-  <%= if @user.slam_user do %>
-    <%= link "Connect with my SLaM care team and health record",
-        to: account_path(@conn, :slam), class: "hl-aqua underline di" %>
-    <%= link to: page_path(@conn, :show, "slam_help") do %>
-      <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+    <%= if @user.slam_user do %>
+      <%= link "Connect with my SLaM care team and health record",
+          to: account_path(@conn, :slam), class: "hl-aqua underline di" %>
+      <%= link to: page_path(@conn, :show, "slam_help") do %>
+        <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+      <% end %>
     <% end %>
   <% end %>
 
-  <div class="mt2">
+  <div class="pt3">
     <%= link "Connect with the SLaM care team of someone I care for",
         to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
     <%= link to: page_path(@conn, :show, "carer_help") do %>
