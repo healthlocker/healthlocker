@@ -49,11 +49,6 @@ defmodule Healthlocker.Router do
       resources "/contacts", ContactController, only: [:show], singleton: true
     end
 
-    # resources "/caseload", CaseloadController, only: [:index, :show] do
-    #   resources "/messages", Caseload.MessageController, only: [:show]
-    #   resources "/patient", PatientController, only: [:show]
-    # end
-
     resources "/caseload", CaseloadController, only: [:index]
     scope "/caseload", Caseload, as: :caseload do
       resources "/users", UserController, only: [:show] do
