@@ -1,0 +1,8 @@
+<div class="dib w-100">
+  <%= link "Messages", to: care_team_message_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4 bb b--hl-aqua" %>
+  <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4" %>
+</div>
+
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+  <p class="hl-dark-blue pa3">Messaging coming soon.</p>
+</div>
