@@ -1,0 +1,16 @@
+<div class="dib w-100">
+  <%= link "Messages", to: care_team_message_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4" %>
+  <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4 bb b--hl-aqua" %>
+</div>
+
+<div class="">
+  <h3><%= @service_user.name <> "'s care team" %></h3>
+
+  <h2 class="mv4">SLaM care team</h2>
+
+  <%= for member <- @care_team do %>
+    <div class="w-100 hl-bg-grey pa3 mv3 br3">
+      <p class="b di"><%= member."First_Name" <> " " <> member."Last_Name" %></p>
+    </div>
+  <% end %>
+</div>

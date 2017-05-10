@@ -3,7 +3,7 @@ defmodule Healthlocker.MessageTest do
 
   alias Healthlocker.Message
 
-  @valid_attrs %{body: "some content"}
+  @valid_attrs %{body: "some content", user_id: 1, room_id: 1}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

@@ -1,11 +1,33 @@
 defmodule Healthlocker.MessageView do
   use Healthlocker.Web, :view
 
-  def render("message.json", %{message: msg}) do
-    %{
-      id: msg.id,
-      body: msg.body,
-      name: msg.name
-    }
+  def dom_id(message) do
+    "message-" <> Integer.to_string(message.id)
+  end
+
+  def user_name(message) do
+    message.user.name
+  end
+
+  def sent_at(message) do
+    Timex.from_now(message.inserted_at)
+  end
+
+  @base_classes "w-80 br2 mb2 pa1 pa3-ns"
+  @sender_classes "hl-bg-yellow fr"
+  @receiver_classes "hl-bg-aqua fl"
+
+  def classes(message, nil) do
+    @base_classes
+  end
+
+  def classes(message, current_user_id) do
+    communicator = if message.user.id == current_user_id do
+      @sender_classes
+    else
+      @receiver_classes
+    end
+
+    @base_classes <> " " <> communicator
   end
 end
