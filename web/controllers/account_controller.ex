@@ -6,7 +6,9 @@ defmodule Healthlocker.AccountController do
 
   def index(conn, _params) do
     user_id = conn.assigns.current_user.id
-    user = Repo.get!(User, user_id)
+    user = User
+          |> Repo.get!(user_id)
+          |> Repo.preload(:caring)
     changeset = User.update_changeset(user)
     render conn, "index.html", changeset: changeset, user: user,
               slam_id: user.slam_id, action: account_path(conn, :update)
