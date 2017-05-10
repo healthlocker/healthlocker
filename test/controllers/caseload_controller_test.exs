@@ -62,8 +62,8 @@ defmodule Healthlocker.CaseloadControllerTest do
     end
 
     test "GET /caseload/:id/show", %{conn: conn} do
-      slam_user = ReadOnlyRepo.get_by!(EPJSUser, Patient_ID: 201)
-      conn = get conn, caseload_path(conn, :show, slam_user)
+      user = Repo.get!(User, 123456)
+      conn = get conn, caseload_path(conn, :show, user)
       assert html_response(conn, 200) =~ "Details and contacts"
     end
   end
