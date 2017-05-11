@@ -5,8 +5,8 @@ defmodule Healthlocker.Slam.CarerConnection do
   alias Healthlocker.{EPJSUser, ReadOnlyRepo}
 
   embedded_schema do
-    field :first_name
-    field :last_name
+    field :forename
+    field :surname
     field :date_of_birth
     field :nhs_number # should this be a string or int? Any other particulars?
     field :epjs_patient_id, :integer
@@ -14,9 +14,9 @@ defmodule Healthlocker.Slam.CarerConnection do
 
   def changeset(changeset, params \\ %{}) do
     changeset
-    |> cast(params, [:first_name, :last_name, :date_of_birth, :nhs_number])
+    |> cast(params, [:forename, :surname, :date_of_birth, :nhs_number])
     |> cast_datetime(:date_of_birth)
-    |> validate_required([:first_name, :last_name, :date_of_birth, :nhs_number])
+    |> validate_required([:forename, :surname, :date_of_birth, :nhs_number])
     |> validate_slam()
   end
 
@@ -35,11 +35,11 @@ defmodule Healthlocker.Slam.CarerConnection do
   end
 
   defp find_epjs_user(%{changes: changes}) do
-    %{first_name: first_name, last_name: last_name, date_of_birth: date_of_birth, nhs_number: nhs_number} = changes
+    %{forename: forename, surname: surname, date_of_birth: date_of_birth, nhs_number: nhs_number} = changes
 
     query = from e in EPJSUser,
-      where: e."Forename" == ^first_name
-        and e."Surname" == ^last_name
+      where: e."Forename" == ^forename
+        and e."Surname" == ^surname
         and e."DOB" == type(^date_of_birth, :utc_datetime)
         and e."NHS_Number" == ^nhs_number
 

@@ -8,6 +8,8 @@ defmodule Healthlocker.User do
     field :password, :string, virtual: true
     field :password_hash, :string
     field :name, :string
+    field :first_name, :string
+    field :last_name, :string
     field :phone_number, :string
     field :security_question, :string
     field :security_answer, :string
@@ -49,6 +51,12 @@ defmodule Healthlocker.User do
     |> validate_required(:email)
     |> unique_constraint(:email, message: "Sorry you cannot create an account at
     this time, try again later or with different details.")
+  end
+
+  def name_changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:first_name, :last_name])
+    |> validate_required([:first_name, :last_name])
   end
 
   def disconnect_changeset(struct) do
