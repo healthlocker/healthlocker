@@ -50,7 +50,7 @@ defmodule Healthlocker.AccountControllerTest do
   describe "current_user is assigned in the session" do
     setup do
       %User{
-        id: 123456,
+        id: 123_456,
         first_name: "My",
         last_name: "Name",
         email: "abc@gmail.com",
@@ -60,7 +60,9 @@ defmodule Healthlocker.AccountControllerTest do
         slam_id: 1
       } |> Repo.insert
 
-      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
+      Mix.Tasks.Healthlocker.Room.Create.run("run")
+
+      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123_456)) }
     end
 
     test "renders index.html", %{conn: conn} do
