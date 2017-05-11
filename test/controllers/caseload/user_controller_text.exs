@@ -1,4 +1,4 @@
-defmodule Healthlocker.PatientControllerTest do
+defmodule Healthlocker.Caseload.UserControllerTest do
   use Healthlocker.ConnCase
 
   alias Healthlocker.{User, ReadOnlyRepo, EPJSClinician, EPJSUser, EPJSPatientAddressDetails}
@@ -6,7 +6,7 @@ defmodule Healthlocker.PatientControllerTest do
   describe "clinician current_user is assigned" do
     setup do
       %User{
-        id: 123456,
+        id: 123_456,
         name: "MyName",
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
@@ -16,7 +16,7 @@ defmodule Healthlocker.PatientControllerTest do
       } |> Repo.insert
 
       %User{
-        id: 123457,
+        id: 123_457,
         name: "Robert MacMurray",
         email: "robert_macmurray@nhs.co.uk",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
@@ -52,18 +52,18 @@ defmodule Healthlocker.PatientControllerTest do
         Tel_home: "02085 123 456"
       } |> ReadOnlyRepo.insert
 
-      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123457)) }
+      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123_457)) }
     end
 
-    test "GET /caseload/:caseload_id/patients/:id for details", %{conn: conn} do
-      user = Repo.get(User, 123456)
-      conn = get conn, caseload_patient_path(conn, :show, user, "details")
+    test "GET /caseload/users/:id?section=details for details", %{conn: conn} do
+      user = Repo.get(User, 123_456)
+      conn = get conn, caseload_user_path(conn, :show, user, section: "details")
       assert html_response(conn, 200) =~ "Date of Birth"
     end
 
-    test "GET /caseload/:caseload_id/patients/:id for interactions", %{conn: conn} do
-      user = Repo.get(User, 123456)
-      conn = get conn, caseload_patient_path(conn, :show, user, "interactions")
+    test "GET /caseload/users/:id?section=interactions for interactions", %{conn: conn} do
+      user = Repo.get(User, 123_456)
+      conn = get conn, caseload_user_path(conn, :show, user, section: "interactions")
       assert html_response(conn, 200) =~ "Coping Strategies"
     end
   end

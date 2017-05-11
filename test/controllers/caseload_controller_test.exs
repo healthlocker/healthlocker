@@ -60,11 +60,5 @@ defmodule Healthlocker.CaseloadControllerTest do
       conn = get conn, caseload_path(conn, :index)
       assert html_response(conn, 200) =~ "Caseload"
     end
-
-    test "GET /caseload/:id/show", %{conn: conn} do
-      user = Repo.get!(User, 123456)
-      conn = get conn, caseload_path(conn, :show, user)
-      assert html_response(conn, 200) =~ "Details and contacts"
-    end
   end
 end
