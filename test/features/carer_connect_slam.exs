@@ -31,9 +31,12 @@ defmodule Healthlocker.CarerConnectSlam do
     {:ok, %{session: session}}
   end
 
+  @connect_link         Query.link("Connect with the SLaM care team of someone I care for")
   @form                 Query.css("form")
-  @first_name_field     Query.text_field("First name")
-  @last_name_field      Query.text_field("Last name")
+  @first_name_field     Query.text_field("carer_connection_first_name")
+  @last_name_field      Query.text_field("carer_connection_last_name")
+  @forename_field       Query.text_field("carer_connection_forename")
+  @surname_field        Query.text_field("carer_connection_surname")
   @date_of_birth_field  Query.text_field("Date of birth")
   @nhs_number_field     Query.text_field("NHS number")
   @connect_button       Query.button("Connect")
