@@ -35,7 +35,7 @@ defmodule Healthlocker.User do
   """
   def changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name])
+    |> cast(params, [:email, :first_name, :last_name])
     |> update_change(:email, &(String.downcase(&1)))
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
