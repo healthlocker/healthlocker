@@ -7,7 +7,8 @@ defmodule Healthlocker.Caseload.UserControllerTest do
     setup do
       %User{
         id: 123_456,
-        name: "MyName",
+        first_name: "My",
+        last_name: "Name",,
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
@@ -17,7 +18,8 @@ defmodule Healthlocker.Caseload.UserControllerTest do
 
       %User{
         id: 123_457,
-        name: "Robert MacMurray",
+        first_name: "Robert",
+        last_name: "MacMurray",
         email: "robert_macmurray@nhs.co.uk",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",

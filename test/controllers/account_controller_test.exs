@@ -4,7 +4,8 @@ defmodule Healthlocker.AccountControllerTest do
   alias Healthlocker.{User, EPJSUser, ReadOnlyRepo}
 
   @valid_attrs %{
-    name: "NewName",
+    first_name: "My",
+    last_name: "Name",
     security_check: "Answer",
     security_question: "?",
     security_answer: "yes",
@@ -13,7 +14,8 @@ defmodule Healthlocker.AccountControllerTest do
     password_confirmation: "New password"
   }
   @invalid_attrs %{
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "a",
     phone_number: "",
     security_check: "Answer",
@@ -49,7 +51,8 @@ defmodule Healthlocker.AccountControllerTest do
     setup do
       %User{
         id: 123456,
-        name: "MyName",
+        first_name: "My",
+        last_name: "Name",
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
