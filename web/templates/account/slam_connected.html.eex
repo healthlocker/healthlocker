@@ -1,6 +1,4 @@
 <p class="hl-aqua mt5 tc">Account connected with SLaM</p>
-<%= link_to("Connect with the SLaM care team of someone I care for", to: slam_path(@conn, :new)) %>
-
 <%= form_for @changeset, @action, fn f -> %>
   <input name="_method" type="hidden" value="put" />
 
