@@ -1,1 +1,0 @@
-<%= render Healthlocker.PatientView, "details.html", assigns %>

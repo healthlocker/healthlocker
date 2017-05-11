@@ -1,9 +1,9 @@
-defmodule Healthlocker.PatientController do
+defmodule Healthlocker.Caseload.UserController do
   use Healthlocker.Web, :controller
 
   alias Healthlocker.{User, ReadOnlyRepo, EPJSUser, EPJSPatientAddressDetails, Goal, Post}
 
-  def show(conn, %{"caseload_id" => id, "id" => section}) do
+  def show(conn, %{"id" => id, "section" => section}) do
     user = Repo.get!(User, id)
     slam_user = ReadOnlyRepo.one(from e in EPJSUser,
                 where: e."Patient_ID" == ^user.slam_id)
@@ -17,5 +17,9 @@ defmodule Healthlocker.PatientController do
                 |> Repo.all
     render(conn, String.to_atom(section), user: user, slam_user: slam_user,
           address: address, goals: goals, strategies: strategies)
+  end
+
+  def show(conn, %{"id" => id}) do
+    show(conn, %{"id" => id, "section" => "details"})
   end
 end
