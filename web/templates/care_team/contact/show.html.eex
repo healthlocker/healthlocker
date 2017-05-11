@@ -4,7 +4,7 @@
 </div>
 
 <div class="">
-  <h3><%= @service_user.name <> "'s care team" %></h3>
+  <h3><%= @service_user.first_name <> " " <> @service_user.last_name <> "'s care team" %></h3>
 
   <h2 class="mv4">SLaM care team</h2>
 
