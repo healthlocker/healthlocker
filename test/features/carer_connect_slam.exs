@@ -46,11 +46,13 @@ defmodule Healthlocker.CarerConnectSlam do
     |> log_in
     |> visit("/account")
     |> take_screenshot
-    |> click(Query.link("Connect with the SLaM care team of someone I care for"))
+    |> click(@connect_link)
     |> find(@form, fn(form) ->
       form
-      |> fill_in(@first_name_field, with: "Kat")
-      |> fill_in(@last_name_field, with: "Bow")
+      |> fill_in(@first_name_field, with: "Tony")
+      |> fill_in(@last_name_field, with: "Daly")
+      |> fill_in(@forename_field, with: "Kat")
+      |> fill_in(@surname_field, with: "Bow")
       |> fill_in(@date_of_birth_field, with: "01/01/1989")
       |> fill_in(@nhs_number_field, with: "943 476 5919")
       |> click(@connect_button)
@@ -65,7 +67,7 @@ defmodule Healthlocker.CarerConnectSlam do
     |> log_in
     |> visit("/account")
     |> take_screenshot
-    |> click(Query.link("Connect with the SLaM care team of someone I care for"))
+    |> click(@connect_link)
     |> find(@form, fn(form) ->
       form
       |> click(@connect_button)
