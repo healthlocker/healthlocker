@@ -1,5 +1,5 @@
 <div class="dib w-100">
-  <%= link "Messages", to: care_team_message_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4" %>
+  <%= link "Messages", to: care_team_room_path(@conn, :show, @room), class: "link w-50 dib fl black tc pv1 bg-white mv4" %>
   <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 bg-white mv4 bb b--hl-aqua" %>
 </div>
 
