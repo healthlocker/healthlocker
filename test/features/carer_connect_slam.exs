@@ -62,6 +62,24 @@ defmodule Healthlocker.CarerConnectSlam do
     assert has_text?(session, "Account connected with SLaM")
   end
 
+  test "unsuccessfully update name", %{session: session} do
+    session
+    |> log_in
+    |> visit("/account")
+    |> take_screenshot
+    |> click(@connect_link)
+    |> find(@form, fn(form) ->
+      form
+      |> fill_in(@forename_field, with: "Kat")
+      |> fill_in(@surname_field, with: "Bow")
+      |> fill_in(@date_of_birth_field, with: "01/01/1989")
+      |> fill_in(@nhs_number_field, with: "943 476 5919")
+      |> click(@connect_button)
+    end)
+
+    assert has_text?(session, "Something went wrong")
+  end
+
   test "unsuccessfully connect with SLaM", %{session: session} do
     session
     |> log_in
