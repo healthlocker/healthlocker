@@ -4,13 +4,13 @@
       <div class="dib w-40">
         <%= label f, :first_name, class: "f5 b db mt2 mb2" %>
         <%= text_input f, :first_name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
-        <%= error_tag f, :first_name %>
+        <span class="hl-pink"><%= error_tag f, :first_name %></span>
       </div>
 
       <div class="dib w-50">
         <%= label f, :last_name,  "Last name", class: "f5 b db mt2 mb2" %>
         <%= text_input f, :last_name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
-        <%= error_tag f, :last_name %>
+        <span class="hl-pink"><%= error_tag f, :last_name %></span>
       </div>
     </div>
 
