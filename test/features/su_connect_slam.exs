@@ -3,7 +3,7 @@ defmodule Healthlocker.SUConnectSlam do
 
   setup %{session: session} do
     EctoFactory.insert(:user,
-      email: "katherine@dwyl.io",
+      email: "tony@dwyl.io",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
       privacy: true,
@@ -23,10 +23,10 @@ defmodule Healthlocker.SUConnectSlam do
   end
 
   @form                 Query.css("form")
-  @first_name_field     Query.text_field("First name")
-  @last_name_field      Query.text_field("Last name")
-  @date_of_birth_field  Query.text_field("Date of birth")
-  @nhs_number_field     Query.text_field("NHS number")
+  @first_name_field     Query.text_field("user_Forename")
+  @last_name_field      Query.text_field("user_Surname")
+  @date_of_birth_field  Query.text_field("user_DOB")
+  @nhs_number_field     Query.text_field("user_NHS_Number")
   @connect_button       Query.button("Connect")
 
   test "successfully connect with SLaM", %{session: session} do
@@ -43,7 +43,6 @@ defmodule Healthlocker.SUConnectSlam do
       |> click(@connect_button)
     end)
 
-    assert current_path(session) =="/account"
     assert has_text?(session, "SLaM account connected!")
     assert has_text?(session, "Account connected with SLaM")
   end
