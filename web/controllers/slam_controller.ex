@@ -38,7 +38,11 @@ defmodule Healthlocker.SlamController do
             conn
             |> put_flash(:error, "Something went wrong")
             |> render("new.html", changeset: changeset)
-       end
+        end
+      else
+        conn
+        |> put_flash(:error, "Something went wrong")
+        |> render("new.html", changeset: changeset)
       end
     else
       conn
