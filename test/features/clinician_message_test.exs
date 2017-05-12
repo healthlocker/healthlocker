@@ -5,7 +5,8 @@ defmodule Healthlocker.ClinicianMessageTest do
   setup %{session: session} do
     service_user = EctoFactory.insert(:user,
       email: "tony@dwyl.io",
-      name: "Tony Daly",
+      first_name: "Tony",
+      last_name: "Daly",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
       privacy: true,
@@ -15,7 +16,8 @@ defmodule Healthlocker.ClinicianMessageTest do
 
     carer = EctoFactory.insert(:user,
       email: "bob@dwyl.io",
-      name: "General Kenobi",
+      first_name: "General",
+      last_name: "Kenobi",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
       privacy: true,
@@ -27,7 +29,8 @@ defmodule Healthlocker.ClinicianMessageTest do
     Repo.insert!(%User{
       email: "clinician@nhs.co.uk",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-      name: "Mary Clinician",
+      first_name: "Mary",
+      last_name: "Clinician",
       phone_number: "07598 765 432",
       security_question: "Name of first boss?",
       security_answer: "Betty",

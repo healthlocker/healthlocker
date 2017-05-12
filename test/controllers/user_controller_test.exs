@@ -4,11 +4,13 @@ defmodule Healthlocker.UserControllerTest do
   alias Healthlocker.User
   @step1_attrs %{
     email: "me@example.com",
-    name: "MyName"
+    first_name: "My",
+    last_name: "Name",
   }
   @step1_caps_attrs %{
     email: "User@example.com",
-    name: "MyName"
+    first_name: "My",
+    last_name: "Name",
   }
   @step2_attrs %{
     password: "abc123",
@@ -26,7 +28,8 @@ defmodule Healthlocker.UserControllerTest do
   test "loads index.html on /users", %{conn: conn} do
     Repo.insert %User{
       id: 123456,
-      name: "MyName",
+      first_name: "My",
+      last_name: "Name",
       email: "abc@gmail.com",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       security_question: "Question?",
@@ -47,7 +50,8 @@ defmodule Healthlocker.UserControllerTest do
     conn =
       case Repo.insert %User{
         email: "me@example.com",
-        name: "MyName"
+        first_name: "My",
+        last_name: "Name",
         } do
           {:ok, user} ->
             get conn, "/users/#{user.id}/signup2"

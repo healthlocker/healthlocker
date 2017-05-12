@@ -4,7 +4,8 @@ defmodule Healthlocker.ServiceUserMessageTest do
   setup %{session: session} do
     EctoFactory.insert(:user,
       email: "tony@dwyl.io",
-      name: "Tony Daly",
+      first_name: "Tony",
+      last_name: "Daly",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
       privacy: true,

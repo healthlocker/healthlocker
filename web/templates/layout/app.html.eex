@@ -108,7 +108,7 @@
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <%= if @current_user && segment?() do %>
       <script type="text/javascript">
-        require("web/static/js/segment").Segment.identify("<%= @current_user.id %>", "<%= @current_user.name %>", "<%= @current_user.email %>")
+        require("web/static/js/segment").Segment.identify("<%= @current_user.id %>", "<%= @current_user.first_name %> <%= @current_user.last_name %>", "<%= @current_user.email %>")
       </script>
     <% end %>
   </body>

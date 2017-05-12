@@ -5,7 +5,8 @@ defmodule Healthlocker.UserTest do
 
   @step1_attrs %{
     email: "me@example.com",
-    name: "MyName"
+    first_name: "My",
+    last_name: "Name",
   }
   @step2_attrs %{password: "abc123",
    password_confirmation: "abc123",
@@ -17,14 +18,15 @@ defmodule Healthlocker.UserTest do
     data_access: true
   }
   @update_attrs %{
-    name: "MyName",
+    first_name: "My",
+    last_name: "Name",
     email: "me@example.com",
     phone_number: "07512345678",
     slam_user: true
   }
   @security_question_attrs %{
-     security_answer: "B658H",
-     security_question: "4"
+    security_answer: "B658H",
+    security_question: "4"
   }
   @update_password_attrs %{
     password: "password",

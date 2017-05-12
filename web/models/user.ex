@@ -7,7 +7,6 @@ defmodule Healthlocker.User do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
-    field :name, :string
     field :first_name, :string
     field :last_name, :string
     field :phone_number, :string
@@ -37,7 +36,7 @@ defmodule Healthlocker.User do
   """
   def changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name])
+    |> cast(params, [:email, :first_name, :last_name])
     |> update_change(:email, &(String.downcase(&1)))
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
@@ -47,7 +46,7 @@ defmodule Healthlocker.User do
 
   def update_changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name, :phone_number, :slam_user])
+    |> cast(params, [:email, :first_name, :last_name, :phone_number, :slam_user])
     |> update_change(:email, &(String.downcase(&1)))
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
@@ -59,6 +58,12 @@ defmodule Healthlocker.User do
     struct
     |> cast(params, [:first_name, :last_name])
     |> validate_required([:first_name, :last_name])
+  end
+
+  def connect_slam(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:slam_id, :first_name, :last_name])
+    |> validate_required([:slam_id, :first_name, :last_name])
   end
 
   def disconnect_changeset(struct) do
@@ -115,11 +120,6 @@ defmodule Healthlocker.User do
     |> validate_length(:password, min: 6, max: 100)
     |> validate_confirmation(:password, message: "New passwords do not match")
     |> put_pass_hash()
-  end
-
-  def connect_slam(struct, params \\ :invalid) do
-    struct
-    |> cast(params, [:slam_id])
   end
 
   def put_pass_hash(changeset) do

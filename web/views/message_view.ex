@@ -6,7 +6,7 @@ defmodule Healthlocker.MessageView do
   end
 
   def user_name(message) do
-    message.user.name
+    message.user.first_name <> " " <> message.user.last_name
   end
 
   def sent_at(message) do

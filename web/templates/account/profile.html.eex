@@ -39,11 +39,19 @@
       </div>
     </div>
   <%= else %>
-    <div class="mt3">
-      <%= label f, "Name (optional)", class: "f5 b db mb2" %>
-      <%= text_input f, :name, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
-      Healthlocker.ComponentView.highlight_errors(@changeset, :name) %>
-      <span class="hl-pink"><%= error_tag f, :name %></span>
+    <div class="w-100 mt3 flex items-center justify-between">
+      <div class="w-40 dib">
+        <%= label f, :first_name, "First name", class: "f5 b db mb2" %>
+        <%= text_input f, :first_name, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+        Healthlocker.ComponentView.highlight_errors(@changeset, :first_name) %>
+        <span class="hl-pink"><%= error_tag f, :first_name %></span>
+      </div>
+      <div class="w-50 dib">
+        <%= label f, :last_name, "Last name", class: "f5 b db mb2" %>
+        <%= text_input f, :last_name, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+        Healthlocker.ComponentView.highlight_errors(@changeset, :last_name) %>
+        <span class="hl-pink"><%= error_tag f, :last_name %></span>
+      </div>
     </div>
   <% end %>
 

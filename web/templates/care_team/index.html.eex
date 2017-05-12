@@ -2,7 +2,7 @@
   <%= render "menu.html", assigns %>
   <div class="mt5 pt1">
     <%= if !@current_user.slam_id do %>
-      <h3><%= @service_user.name <> "'s care team" %></h3>
+      <h3><%= @service_user.first_name <> " " <> @service_user.last_name <> "'s care team" %></h3>
     <% end %>
   </div>
   <%= for member <- @care_team do %>
