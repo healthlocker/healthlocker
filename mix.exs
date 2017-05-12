@@ -18,7 +18,20 @@ defmodule Healthlocker.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Healthlocker, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :phoenix_ecto, :postgrex, :comeonin, :timex, :bamboo, :segment, :faker, :appsignal]]
+     applications: [:phoenix,
+                    :phoenix_pubsub,
+                    :phoenix_html,
+                    :cowboy,
+                    :logger,
+                    :gettext,
+                    :phoenix_ecto,
+                    :postgrex,
+                    :comeonin,
+                    :timex,
+                    :bamboo,
+                    :segment,
+                    :faker,
+                    :appsignal]]
   end
 
   # Specifies which paths to compile per environment.
