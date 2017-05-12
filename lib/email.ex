@@ -14,6 +14,6 @@ defmodule Healthlocker.Email do
     |> to(to_email)
     |> from("healthlocker.test@gmail.com")
     |> subject("Healthlocker Reset Password Instructions")
-    |> text_body("Please visit https://www.healthlocker.uk/password/#{token} to reset your password")
+    |> text_body("Please visit https://www.healthlocker.uk/password/#{token}/edit to reset your password")
   end
 end
