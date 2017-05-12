@@ -153,24 +153,34 @@ defmodule Healthlocker.AccountController do
 
   def check_slam(conn, %{"user" => %{"Forename" => forename, "Surname" => surname, "NHS_Number" => nhs, "DOB" => dob}}) do
     # converts birthday string to datetime
-    birthday = datetime_birthday(dob)
+    birthday = if dob != "", do: datetime_birthday(dob)
     # removes spaces from nhs number if present
-    nhs_no = String.split(nhs, " ") |> List.to_string
-    slam_user = ReadOnlyRepo.one(from e in EPJSUser,
-                where: e."Forename" == ^forename
-                and e."Surname" == ^surname
-                and e."NHS_Number" == ^nhs_no
-                and e."DOB" == ^birthday
-                )
+    nhs_no = if nhs != "", do: String.split(nhs, " ") |> List.to_string
+    slam_user = if forename != "" && surname != "" && nhs != "" && dob != "" do
+      slam_user = ReadOnlyRepo.one(from e in EPJSUser,
+      where: e."Forename" == ^forename
+      and e."Surname" == ^surname
+      and e."NHS_Number" == ^nhs_no
+      and e."DOB" == ^birthday
+      )
+    else
+      nil
+    end
     if slam_user do
-      user = Repo.get!(User, conn.assigns.current_user.id)
-      User.connect_slam(user, %{"slam_id" => slam_user."Patient_ID"})
-          |> Repo.update!
+      user = conn.assigns.current_user
+      slam_changeset = User.connect_slam(user, %{first_name: forename, last_name: surname, slam_id: slam_user."Patient_ID"})
       changeset = User.update_changeset(user)
-      conn
-      |> put_flash(:info, "SLaM account connected!")
-      |> render("index.html", changeset: changeset, user: user,
-                slam_id: slam_user.id, action: account_path(conn, :update))
+      case Repo.update(slam_changeset) do
+        {:ok, _user} ->
+          conn
+          |> put_flash(:info, "SLaM account connected!")
+          |> render("index.html", changeset: changeset, user: user,
+                    slam_id: slam_user.id, action: account_path(conn, :update))
+        {:error, changeset} ->
+          conn
+          |> put_flash(:error, "Something went wrong")
+          |> redirect(to: account_path(conn, :slam))
+      end
     else
       conn
       |> put_flash(:error, "Details do not match. Please try again later")
