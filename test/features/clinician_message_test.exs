@@ -1,6 +1,6 @@
 defmodule Healthlocker.ClinicianMessageTest do
   use Healthlocker.FeatureCase
-  alias Healthlocker.{Carer, EPJSClinician, EPJSTeamMember, ReadOnlyRepo, Repo, User}
+  alias Healthlocker.{Carer, EPJSPatientAddressDetails, EPJSClinician, EPJSTeamMember, ReadOnlyRepo, Repo, User}
 
   setup %{session: session} do
     service_user = EctoFactory.insert(:user,
@@ -45,6 +45,24 @@ defmodule Healthlocker.ClinicianMessageTest do
       Last_Name: "Clinician"
     })
 
+    ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{id: 789,
+      Patient_ID: 202,
+      Surname: "Bow",
+      Forename: "Kat",
+      NHS_Number: "9434765919",
+      DOB: DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC"),
+    })
+
+    ReadOnlyRepo.insert!(%EPJSPatientAddressDetails{
+      Patient_ID: 202,
+      Address_ID: 1,
+      Address1: "123 High Street",
+      Address2: "London",
+      Address3: "UK",
+      Post_Code: "E1 8UW",
+      Tel_home: "02085 123 456"
+    })
+
     ReadOnlyRepo.insert!(%EPJSTeamMember{
       Patient_ID: 202,
       Staff_ID: clinician.id
@@ -71,5 +89,17 @@ defmodule Healthlocker.ClinicianMessageTest do
     |> fill_in(Query.css("#message-input"), with: "Hello there")
     |> send_keys([:enter])
     |> has_text?("Hello there")
+  end
+
+  test "message service user", %{session: session} do
+    session
+    |> resize_window(768, 1024) # The caseload link doesn't show on mobile.
+    |> click(Query.link("Caseload"))
+    |> click(Query.link("Tony Daly"))
+    |> click(Query.link("Messages"))
+    |> fill_in(Query.css("#message-input"), with: "Sand")
+    |> send_keys([:enter])
+
+    assert has_text?(session, "Sand")
   end
 end
