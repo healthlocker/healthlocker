@@ -76,7 +76,7 @@ defmodule Healthlocker.PasswordControllerTest do
   end
 
   test "POST /password with invalid data", %{conn: conn} do
-    conn = post conn, password_path(conn, :create), user: @invalid
+    conn = post conn, password_path(conn, :create), user: @invalid_attrs
     assert redirected_to(conn) == login_path(conn, :index)
     assert get_flash(conn, :error) == "Could not send reset email. Please try again later"
   end
@@ -100,6 +100,9 @@ defmodule Healthlocker.PasswordControllerTest do
           |> Ecto.Changeset.change(reset_token_sent_at: expired_reset_date)
           |> Repo.update!
     conn = get conn, password_path(conn, :edit, user.reset_password_token)
+    user = Repo.get!(User, 123457)
+    refute user.reset_token_sent_at
+    refute user.reset_password_token
     assert redirected_to(conn) == password_path(conn, :new)
     assert get_flash(conn, :error) == "Password reset token expired"
   end
@@ -108,6 +111,9 @@ defmodule Healthlocker.PasswordControllerTest do
     user = Repo.get!(User, 123457)
     conn = put conn, password_path(conn, :update, user.reset_password_token), user: @valid_password
     assert redirected_to(conn) == login_path(conn, :index)
+    user = Repo.get!(User, 123457)
+    refute user.reset_token_sent_at
+    refute user.reset_password_token
     assert get_flash(conn, :info) == "Password reset successfully!"
   end
 
@@ -124,6 +130,9 @@ defmodule Healthlocker.PasswordControllerTest do
           |> Ecto.Changeset.change(reset_token_sent_at: expired_reset_date)
           |> Repo.update!
     conn = put conn, password_path(conn, :update, user.reset_password_token), user: @valid_password
+    user = Repo.get!(User, 123457)
+    refute user.reset_token_sent_at
+    refute user.reset_password_token
     assert redirected_to(conn) == password_path(conn, :new)
     assert get_flash(conn, :error) == "Password reset token expired"
   end
