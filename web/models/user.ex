@@ -101,7 +101,6 @@ defmodule Healthlocker.User do
   def password_token_changeset(struct, params \\ :invalid) do
     struct
     |> cast(params, [:reset_password_token, :reset_token_sent_at])
-    |> validate_required([:reset_password_token, :reset_token_sent_at])
   end
 
   def password_changeset(struct, params \\ :invalid) do
