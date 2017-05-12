@@ -53,16 +53,37 @@ defmodule Healthlocker.PasswordController do
         else
           changeset = User.password_changeset(%User{})
           conn
-          |> render("edit.html", changeset: changeset, user: user)
+          |> render("edit.html", changeset: changeset, token: token)
         end
     end
   end
 
-  def update(conn, %{"id" => id, "user" => pw_params}) do
-    user = Repo.get!(User, id)
-    changeset = User.update_password(user, pw_params)
-    conn
-    |> redirect(to: page_path(conn, :index))
+  def update(conn, %{"id" => token, "user" => pw_params}) do
+    user = User
+          |> Repo.get_by(reset_password_token: token)
+    case user do
+      nil ->
+        conn
+        |> put_flash(:error, "Invalid reset token")
+        |> redirect(to: password_path(conn, :new))
+      user ->
+        if expired?(user.reset_token_sent_at) do
+          conn
+          |> put_flash(:error, "Password reset token expired")
+          |> redirect(to: password_path(conn, :new))
+        else
+          changeset = User.update_password(user, pw_params)
+          case Repo.update(changeset) do
+            {:ok, _user} ->
+              conn
+              |> put_flash(:info, "Password reset successfully!")
+              |> redirect(to: login_path(conn, :index))
+            {:error, changeset} ->
+              conn
+              |> render("edit.html", changeset: changeset, token: token)
+          end
+        end
+    end
   end
 
   defp reset_password_token(user) do
