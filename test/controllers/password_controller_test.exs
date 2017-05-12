@@ -3,6 +3,7 @@ defmodule Healthlocker.PasswordControllerTest do
 
   alias Healthlocker.User
   import Mock
+  use Timex
 
   @existing_email %{
     email: "email@example.com"
@@ -24,6 +25,19 @@ defmodule Healthlocker.PasswordControllerTest do
       security_question: "Question?",
       security_answer: "Answer",
       slam_id: 1
+    } |> Repo.insert
+
+    %User{
+      id: 123457,
+      first_name: "My",
+      last_name: "Name",
+      email: "email2@example.com",
+      password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+      security_question: "Question?",
+      security_answer: "Answer",
+      slam_id: 1,
+      reset_password_token: "uyhjvbrw89iug3j24b298iygjk45b3trge",
+      reset_token_sent_at: DateTime.utc_now
     } |> Repo.insert
 
     :ok
@@ -55,5 +69,28 @@ defmodule Healthlocker.PasswordControllerTest do
     conn = post conn, password_path(conn, :create), user: @invalid
     assert redirected_to(conn) == login_path(conn, :index)
     assert get_flash(conn, :error) == "Could not send reset email. Please try again later"
+  end
+
+  test "GET /password/:id/edit", %{conn: conn} do
+    user = Repo.get!(User, 123457)
+    conn = get conn, password_path(conn, :edit, user.reset_password_token)
+    assert html_response(conn, 200) =~ "Password reset"
+  end
+
+  test "GET /password/:id/edit with invalid token", %{conn: conn} do
+    conn = get conn, password_path(conn, :edit, "uigwajkfhsopqwe")
+    assert redirected_to(conn) == password_path(conn, :new)
+    assert get_flash(conn, :error) == "Invalid reset token"
+  end
+
+  test "GET /password/:id/edit with expired token", %{conn: conn} do
+    user = Repo.get!(User, 123457)
+    expired_reset_date = Timex.shift(user.reset_token_sent_at, days: -1)
+    user = user
+          |> Ecto.Changeset.change(reset_token_sent_at: expired_reset_date)
+          |> Repo.update!
+    conn = get conn, password_path(conn, :edit, user.reset_password_token)
+    assert redirected_to(conn) == password_path(conn, :new)
+    assert get_flash(conn, :error) == "Password reset token expired"
   end
 end
