@@ -1,7 +1,7 @@
 <div class="ma3 ma4-m ma4-l">
   <h2 class="tc">Password reset</h2>
   <p>Please enter a new password for your account.</p>
-    <%= form_for @changeset, password_path(@conn, :update, @user), [method: "put"], fn f -> %>
+    <%= form_for @changeset, password_path(@conn, :update, @token), [method: "put"], fn f -> %>
     <div>
       <%= label f, :password, "New password", class: "f5 b db mb2 mt4" %>
       <%= text_input f, :password,
