@@ -39,6 +39,13 @@ defmodule Healthlocker.PasswordControllerTest do
     assert get_flash(conn, :info) == "Password reset sent"
   end
 
+  test "POST /password updates reset token and sent at", %{conn: conn} do
+    conn = post conn, password_path(conn, :create), user: @existing_email
+    user = Repo.get!(User, 123456)
+    assert user.reset_token_sent_at
+    assert user.reset_password_token
+  end
+
   test "POST /password with non_existent_email", %{conn: conn} do
     conn = post conn, password_path(conn, :create), user: @non_existent_email
     assert redirected_to(conn) == login_path(conn, :index)
