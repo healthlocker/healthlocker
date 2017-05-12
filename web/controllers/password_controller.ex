@@ -25,7 +25,7 @@ defmodule Healthlocker.PasswordController do
         |> put_flash(:error, "Could not send reset email. Please try again later")
         |> redirect(to: login_path(conn, :index))
       user ->
-        reset_password_token(user)
+        user = reset_password_token(user)
         # send password token to pw_params["email"]
         Healthlocker.Email.send_reset_email(email, user.reset_password_token)
         |> Healthlocker.Mailer.deliver_now()
@@ -86,6 +86,7 @@ defmodule Healthlocker.PasswordController do
     end
   end
 
+# sets the token & sent at in the database for the user
   defp reset_password_token(user) do
     token = random_string(48)
     sent_at = DateTime.utc_now
@@ -95,6 +96,7 @@ defmodule Healthlocker.PasswordController do
     |> Repo.update!
   end
 
+# sets the token to a random string or whatever length is input
   defp random_string(length) do
     length
     |> :crypto.strong_rand_bytes
@@ -102,6 +104,7 @@ defmodule Healthlocker.PasswordController do
     |> binary_part(0, length)
   end
 
+# checks if now is later than 1 day from the reset_token_sent_at
   defp expired?(datetime) do
     Timex.after?(Timex.now, Timex.shift(datetime, days: 1))
   end
