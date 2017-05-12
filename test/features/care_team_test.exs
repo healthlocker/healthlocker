@@ -8,7 +8,8 @@ defmodule Healthlocker.CareTeamTest do
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
       privacy: true,
-      data_access: true
+      data_access: true,
+      slam_id: nil
     )
 
     bob = EctoFactory.insert(:user,
@@ -21,6 +22,8 @@ defmodule Healthlocker.CareTeamTest do
 
     relationship = %Carer{caring: bob, carer: carer}
     Repo.insert(relationship)
+
+    Mix.Tasks.Healthlocker.Room.Create.run("run")
 
     session = session |> log_in
     {:ok, %{session: session}}
