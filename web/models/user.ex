@@ -91,6 +91,11 @@ defmodule Healthlocker.User do
     |> put_pass_hash()
   end
 
+  def email_changeset(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:email])
+  end
+
   def password_changeset(struct, params \\ :invalid) do
     struct
     |> cast(params, [:password])
