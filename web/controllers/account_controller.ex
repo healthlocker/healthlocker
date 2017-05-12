@@ -157,11 +157,11 @@ defmodule Healthlocker.AccountController do
     # removes spaces from nhs number if present
     nhs_no = if nhs != "", do: String.split(nhs, " ") |> List.to_string
     slam_user = if forename != "" && surname != "" && nhs != "" && dob != "" do
-      slam_user = ReadOnlyRepo.one(from e in EPJSUser,
-      where: e."Forename" == ^forename
-      and e."Surname" == ^surname
-      and e."NHS_Number" == ^nhs_no
-      and e."DOB" == ^birthday
+      ReadOnlyRepo.one(from e in EPJSUser,
+        where: e."Forename" == ^forename
+        and e."Surname" == ^surname
+        and e."NHS_Number" == ^nhs_no
+        and e."DOB" == ^birthday
       )
     else
       nil
@@ -179,7 +179,8 @@ defmodule Healthlocker.AccountController do
         {:error, changeset} ->
           conn
           |> put_flash(:error, "Something went wrong")
-          |> redirect(to: account_path(conn, :slam))
+          |> render("slam.html", user: user, changeset: changeset,
+                        action: account_path(conn, :check_slam))
       end
     else
       conn

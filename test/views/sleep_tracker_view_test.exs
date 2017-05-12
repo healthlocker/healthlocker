@@ -14,7 +14,7 @@ defmodule Healthlocker.SleepTrackerViewTest do
     wake_count: "1"}]
 
   test "get_week_average returns the correct weekly average" do
-    actual = SleepTrackerView.get_week_average(@data, "2017-04-10")
+    actual = SleepTrackerView.get_week_average(@data)
     expected = "7h 30m"
     assert actual == expected
   end

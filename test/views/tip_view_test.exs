@@ -6,7 +6,7 @@ defmodule Healthlocker.TipViewTest do
   test "get_category finds the correct category" do
     actual = TipView.get_category("tag=Connect")
     expected = "Connect"
-    assert actual = expected
+    assert actual == expected
   end
 
   test "category_description returns the correct description" do
@@ -14,12 +14,12 @@ defmodule Healthlocker.TipViewTest do
     expected = " with the people around us. Building stronger, wider social
       connections can help us feel happier and more secure, and give us a
       greater sense of purpose."
-    assert actual = expected
+    assert actual == expected
   end
 
   test "category_question finds the correct question" do
     actual = TipView.category_question("tag=Connect")
     expected = "Who might you want to connect more with?"
-    assert actual = expected
+    assert actual == expected
   end
 end

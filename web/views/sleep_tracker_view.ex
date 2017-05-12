@@ -6,7 +6,7 @@ defmodule Healthlocker.SleepTrackerView do
     Timex.shift(end_date, days: -6)
   end
 
-  def get_week_average(data, from_date) do
+  def get_week_average(data) do
     total_slept = Enum.map(data, fn struct -> String.to_float(struct.hours_slept) end)
       |> Enum.sum
     if Kernel.length(data) == 0 do
@@ -128,7 +128,7 @@ defmodule Healthlocker.SleepTrackerView do
   end
 
   @days_of_week ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-  defp day_of_week(date, 6) do
+  defp day_of_week(_date, 6) do
     @days_of_week |> Enum.at(6)
   end
 
