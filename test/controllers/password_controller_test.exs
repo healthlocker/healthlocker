@@ -62,7 +62,7 @@ defmodule Healthlocker.PasswordControllerTest do
     with_mock Healthlocker.Mailer, [deliver_now: fn(_) -> nil end] do
       conn = post conn, password_path(conn, :create), user: @existing_email
       assert redirected_to(conn) == login_path(conn, :index)
-      assert get_flash(conn, :info) == "Password reset sent"
+      assert get_flash(conn, :info) == "If your email address exists in our database, you will receive a password reset link at your email address in a few minutes."
       user = Repo.get!(User, 123456)
       assert user.reset_token_sent_at
       assert user.reset_password_token
