@@ -58,6 +58,12 @@ defmodule Healthlocker.User do
     |> validate_required([:first_name, :last_name])
   end
 
+  def connect_slam(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:slam_id, :first_name, :last_name])
+    |> validate_required([:slam_id, :first_name, :last_name])
+  end
+
   def disconnect_changeset(struct) do
     struct
     |> change(slam_id: nil)
@@ -102,11 +108,6 @@ defmodule Healthlocker.User do
     |> validate_length(:password, min: 6, max: 100)
     |> validate_confirmation(:password, message: "New passwords do not match")
     |> put_pass_hash()
-  end
-
-  def connect_slam(struct, params \\ :invalid) do
-    struct
-    |> cast(params, [:slam_id])
   end
 
   def put_pass_hash(changeset) do
