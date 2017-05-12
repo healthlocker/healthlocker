@@ -76,6 +76,6 @@ defmodule Healthlocker.Router do
     resources "/posts", PostController, only: [:show, :index]
     resources "/support", SupportController, only: [:index]
     resources "/tips", TipController, only: [:index]
-    resources "/password", PasswordController, only: [:new]
+    resources "/password", PasswordController, only: [:new, :create]
   end
 end
