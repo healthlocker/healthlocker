@@ -2,6 +2,7 @@ defmodule Healthlocker.PasswordController do
   use Healthlocker.Web, :controller
 
   alias Healthlocker.User
+  use Timex
 
   def new(conn, _params) do
     changeset = User.email_changeset(%User{})
@@ -35,6 +36,35 @@ defmodule Healthlocker.PasswordController do
     end
   end
 
+  def edit(conn, %{"id" => token}) do
+    user = User
+          |> Repo.get_by(reset_password_token: token)
+    case user do
+      nil ->
+        conn
+        |> put_flash(:error, "Invalid reset token")
+        |> redirect(to: password_path(conn, :new))
+      user ->
+        if expired?(user.reset_token_sent_at) do
+          # could set reset fields to nil here
+          conn
+          |> put_flash(:error, "Password reset token expired")
+          |> redirect(to: password_path(conn, :new))
+        else
+          changeset = User.password_changeset(%User{})
+          conn
+          |> render("edit.html", changeset: changeset, user: user)
+        end
+    end
+  end
+
+  def update(conn, %{"id" => id, "user" => pw_params}) do
+    user = Repo.get!(User, id)
+    changeset = User.update_password(user, pw_params)
+    conn
+    |> redirect(to: page_path(conn, :index))
+  end
+
   defp reset_password_token(user) do
     token = random_string(48)
     sent_at = DateTime.utc_now
@@ -49,5 +79,9 @@ defmodule Healthlocker.PasswordController do
     |> :crypto.strong_rand_bytes
     |> Base.url_encode64
     |> binary_part(0, length)
+  end
+
+  defp expired?(datetime) do
+    Timex.after?(Timex.now, Timex.shift(datetime, days: 1))
   end
 end
