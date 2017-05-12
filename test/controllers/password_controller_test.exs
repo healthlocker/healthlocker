@@ -71,13 +71,13 @@ defmodule Healthlocker.PasswordControllerTest do
 
   test "POST /password with non_existent_email", %{conn: conn} do
     conn = post conn, password_path(conn, :create), user: @non_existent_email
-    assert redirected_to(conn) == login_path(conn, :index)
+    assert redirected_to(conn) == password_path(conn, :new)
     assert get_flash(conn, :error) == "Could not send reset email. Please try again later"
   end
 
   test "POST /password with invalid data", %{conn: conn} do
     conn = post conn, password_path(conn, :create), user: @invalid_attrs
-    assert redirected_to(conn) == login_path(conn, :index)
+    assert redirected_to(conn) == password_path(conn, :new)
     assert get_flash(conn, :error) == "Could not send reset email. Please try again later"
   end
 
