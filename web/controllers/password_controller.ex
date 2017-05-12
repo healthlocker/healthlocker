@@ -31,7 +31,7 @@ defmodule Healthlocker.PasswordController do
         |> Healthlocker.Mailer.deliver_now()
 
         conn
-        |> put_flash(:info, "Password reset sent")
+        |> put_flash(:info, "If your email address exists in our database, you will receive a password reset link at your email address in a few minutes.")
         |> redirect(to: login_path(conn, :index))
     end
   end
