@@ -26,6 +26,9 @@ defmodule Healthlocker.PasswordController do
       user ->
         reset_password_token(user)
         # send password token to pw_params["email"]
+        Healthlocker.Email.send_reset_email(email, user.reset_password_token)
+        |> Healthlocker.Mailer.deliver_now()
+
         conn
         |> put_flash(:info, "Password reset sent")
         |> redirect(to: login_path(conn, :index))
