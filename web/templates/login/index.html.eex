@@ -20,7 +20,7 @@
         </div>
       </fieldset>
       <div class="lh-copy">
-        <a href="#0" class="link hl-aqua underline hl-link">Forgotten your password?</a>
+        <%= link_to("Forgotten your password?", to: password_path(@conn, :new)) %>
       </div>
       <div class="tr">
         <%= submit_primary "Log in" %>
