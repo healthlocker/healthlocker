@@ -99,6 +99,6 @@ defmodule Healthlocker.ClinicianMessageTest do
     |> click(Query.link("Messages"))
     |> fill_in(Query.css("#message-input"), with: "Sand")
     |> send_keys([:enter])
-    |> has_text?(session, "Sand")
+    |> has_text?("Sand")
   end
 end
