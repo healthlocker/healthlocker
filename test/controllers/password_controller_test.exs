@@ -2,6 +2,7 @@ defmodule Healthlocker.PasswordControllerTest do
   use Healthlocker.ConnCase
 
   alias Healthlocker.User
+  import Mock
 
   @existing_email %{
     email: "email@example.com"
@@ -33,17 +34,15 @@ defmodule Healthlocker.PasswordControllerTest do
     assert html_response(conn, 200) =~ "Password reset"
   end
 
-  test "POST /password with existing email", %{conn: conn} do
-    conn = post conn, password_path(conn, :create), user: @existing_email
-    assert redirected_to(conn) == login_path(conn, :index)
-    assert get_flash(conn, :info) == "Password reset sent"
-  end
-
-  test "POST /password updates reset token and sent at", %{conn: conn} do
-    conn = post conn, password_path(conn, :create), user: @existing_email
-    user = Repo.get!(User, 123456)
-    assert user.reset_token_sent_at
-    assert user.reset_password_token
+  test "POST /password sends password reset email", %{conn: conn} do
+    with_mock Healthlocker.Mailer, [deliver_now: fn(_) -> nil end] do
+      conn = post conn, password_path(conn, :create), user: @existing_email
+      assert redirected_to(conn) == login_path(conn, :index)
+      assert get_flash(conn, :info) == "Password reset sent"
+      user = Repo.get!(User, 123456)
+      assert user.reset_token_sent_at
+      assert user.reset_password_token
+    end
   end
 
   test "POST /password with non_existent_email", %{conn: conn} do
