@@ -21,7 +21,7 @@
     </div>
 
     <div class="tr mt4">
-      <%= submit_primary "Send reset link" %>
+      <%= submit_primary "Reset password" %>
     </div>
   <% end %>
 </div>
