@@ -8,7 +8,7 @@ defmodule Healthlocker.Plugs.FindRoom do
 
   def find_room(conn, _options) do
     current_user = conn.assigns[:current_user]
-    room = Repo.one! Ecto.assoc(current_user, :rooms)
+    room = Repo.one Ecto.assoc(current_user, :rooms)
 
     conn
     |> assign(:room, room)
