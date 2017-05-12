@@ -5,7 +5,8 @@ defmodule Healthlocker.ToolkitControllerTest do
   setup do
     %User{
       id: 123456,
-      name: "MyName",
+      first_name: "My",
+      last_name: "Name",
       email: "abc@gmail.com",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password")
     } |> Repo.insert

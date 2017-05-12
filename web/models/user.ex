@@ -7,7 +7,6 @@ defmodule Healthlocker.User do
     field :email, :string
     field :password, :string, virtual: true
     field :password_hash, :string
-    field :name, :string
     field :first_name, :string
     field :last_name, :string
     field :phone_number, :string
@@ -35,7 +34,7 @@ defmodule Healthlocker.User do
   """
   def changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name])
+    |> cast(params, [:email, :first_name, :last_name])
     |> update_change(:email, &(String.downcase(&1)))
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)
@@ -45,7 +44,7 @@ defmodule Healthlocker.User do
 
   def update_changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :name, :phone_number, :slam_user])
+    |> cast(params, [:email, :first_name, :last_name, :phone_number, :slam_user])
     |> update_change(:email, &(String.downcase(&1)))
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)

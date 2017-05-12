@@ -7,7 +7,7 @@ defmodule Healthlocker.CareTeam.MessageView do
       body: message.body,
       inserted_at: message.inserted_at,
       user: %{
-        name: message.user.name
+        name: message.user.first_name <> " " <> message.user.last_name
       }
     }
   end
