@@ -1,0 +1,14 @@
+<div class="ma3 ma4-m ma4-l">
+  <h2 class="tc">Password reset</h2>
+    <%= form_for @changeset, @action, fn f -> %>
+    <div>
+      <%= label f, :email, class: "f5 b db mb2 mt4" %>
+      <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+      <span class="hl-pink"><%= error_tag f, :email %></span>
+    </div>
+
+    <div class="tr mt4">
+      <%= submit_primary "Send reset link" %>
+    </div>
+  <% end %>
+</div>
