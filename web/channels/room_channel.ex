@@ -5,12 +5,12 @@ defmodule Healthlocker.RoomChannel do
 
   def join("room:" <> room_id, _params, socket) do
     room = Repo.get!(Room, room_id)
-    messages = Repo.all from m in Message,
+    Repo.all from m in Message,
       where: m.room_id == ^room.id,
       order_by: [asc: :inserted_at, asc: :id],
       preload: [:user]
 
-    send(self, :after_join)
+    send(self(), :after_join)
     {:ok, nil, assign(socket, :room, room)}
   end
 

@@ -9,18 +9,18 @@ defmodule Healthlocker.PostView do
   end
 
   def heading(post) do
-    if Regex.match?(header_regex, post.content)  do
-      Regex.run(header_regex, post.content) |> List.last |> String.trim
+    if Regex.match?(header_regex(), post.content)  do
+      Regex.run(header_regex(), post.content) |> List.last |> String.trim
     end
   end
 
   def paragraphs(post) do
-    String.split(body(post), paragraph_regex, trim: true)
+    String.split(body(post), paragraph_regex(), trim: true)
     |> Enum.map(fn x -> String.trim(x) end)
   end
 
   def body(post) do
-    [head | _] = String.split(post.content, header_regex, trim: true)
+    [head | _] = String.split(post.content, header_regex(), trim: true)
     head
   end
 

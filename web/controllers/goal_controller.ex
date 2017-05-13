@@ -82,7 +82,7 @@ defmodule Healthlocker.GoalController do
               |> Goal.set_achieved_at()
 
     case Repo.update(changeset) do
-      {:ok, goal} ->
+      {:ok, _goal} ->
         conn
         |> put_flash(:info, "Goal updated successfully.")
         |> redirect(to: goal_path(conn, :index))
