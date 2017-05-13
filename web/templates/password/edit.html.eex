@@ -1,0 +1,27 @@
+<div class="ma3 ma4-m ma4-l">
+  <h2 class="tc">Password reset</h2>
+  <p>Please enter a new password for your account.</p>
+    <%= form_for @changeset, password_path(@conn, :update, @token), [method: "put"], fn f -> %>
+    <div>
+      <%= label f, :password, "New password", class: "f5 b db mb2 mt4" %>
+      <%= text_input f, :password,
+          class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+          Healthlocker.ComponentView.highlight_errors(@changeset, :password),
+          type: "password" %>
+      <span class="hl-pink"><%= error_tag f, :password %></span>
+    </div>
+
+    <div>
+      <%= label f, :password_confirmation, "Confirm new password", class: "f5 b db mb2 mt4" %>
+      <%= text_input f, :password_confirmation,
+          class: "pa3 input-reset bn hl-bg-grey w-100 "
+          <> Healthlocker.ComponentView.highlight_errors(@changeset, :password_confirmation),
+          type: "password" %>
+      <span class="hl-pink"><%= error_tag f, :password_confirmation %></span>
+    </div>
+
+    <div class="tr mt4">
+      <%= submit_primary "Reset password" %>
+    </div>
+  <% end %>
+</div>
