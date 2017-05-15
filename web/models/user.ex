@@ -16,6 +16,8 @@ defmodule Healthlocker.User do
     field :role, :string
     field :slam_user, :boolean
     field :slam_id, :integer
+    field :reset_password_token, :string
+    field :reset_token_sent_at, :utc_datetime
     has_many :posts, Healthlocker.Post
     many_to_many :likes, Healthlocker.Post, join_through: "posts_likes", on_replace: :delete, on_delete: :delete_all
     many_to_many :relationships, Healthlocker.User, join_through: Healthlocker.Relationship, on_replace: :delete, on_delete: :delete_all
@@ -94,6 +96,16 @@ defmodule Healthlocker.User do
     |> validate_length(:password, min: 6, max: 100)
     |> validate_confirmation(:password, message: "Passwords do not match")
     |> put_pass_hash()
+  end
+
+  def email_changeset(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:email])
+  end
+
+  def password_token_changeset(struct, params \\ :invalid) do
+    struct
+    |> cast(params, [:reset_password_token, :reset_token_sent_at])
   end
 
   def password_changeset(struct, params \\ :invalid) do

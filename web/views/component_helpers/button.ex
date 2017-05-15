@@ -23,10 +23,10 @@ defmodule Healthlocker.ComponentHelpers.Button do
   end
 
   def link_inactive(text, opts) do
-    link(text, [class: inactive_classes] ++ opts)
+    link(text, [class: inactive_classes()] ++ opts)
   end
 
   def submit_primary(value, opts \\ []) do
-    submit(value, [class: primary_classes] ++ opts)
+    submit(value, [class: primary_classes()] ++ opts)
   end
 end
