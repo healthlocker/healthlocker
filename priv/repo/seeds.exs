@@ -130,7 +130,7 @@ Repo.insert!(%User{
   security_answer: "Betty",
   data_access: true,
   role: "slam_user",
-  slam_id: 200
+  slam_id: 201
 })
 
 Repo.insert!(%User{
@@ -143,7 +143,7 @@ Repo.insert!(%User{
   security_answer: "Betty",
   data_access: false,
   role: "slam_user",
-  slam_id: 201
+  slam_id: 202
 })
 
 Repo.insert!(%User{
@@ -156,7 +156,7 @@ Repo.insert!(%User{
   security_answer: "Betty",
   data_access: false,
   role: "slam_user",
-  slam_id: 202
+  slam_id: 203
 })
 
 Repo.insert!(%User{
