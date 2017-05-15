@@ -20,8 +20,12 @@ defmodule Healthlocker.CareTeam.RoomController do
   end
 
   defp service_user_for(carer) do
-    carer = carer |> Repo.preload(:caring)
-    [service_user | _] = carer.caring
-    service_user
+    if carer.slam_id do
+      carer
+    else
+      carer = carer |> Repo.preload(:caring)
+      [service_user | _] = carer.caring
+      service_user
+    end
   end
 end
