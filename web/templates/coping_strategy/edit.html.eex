@@ -1,4 +1,9 @@
 <h3 class="tc pv2 mh3 hl-dark-blue">Edit coping strategy</h3>
+<div class="ma3 ma4-m ma4-l">
 
 <%= render "form.html", changeset: @changeset,
                         action: coping_strategy_path(@conn, :update, @coping_strategy) %>
+  <div class="tr mt4">
+    <%= link_to("Delete coping strategy", to: coping_strategy_path(@conn, :delete, @coping_strategy), method: "delete") %>
+  </div>
+</div>
