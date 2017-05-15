@@ -129,7 +129,8 @@ Repo.insert!(%User{
   security_question: "Name of first boss?",
   security_answer: "Betty",
   data_access: true,
-  role: "slam_user"
+  role: "slam_user",
+  slam_id: 200
 })
 
 Repo.insert!(%User{
@@ -141,7 +142,8 @@ Repo.insert!(%User{
   security_question: "Name of first boss?",
   security_answer: "Betty",
   data_access: false,
-  role: "slam_user"
+  role: "slam_user",
+  slam_id: 201
 })
 
 Repo.insert!(%User{
@@ -153,7 +155,8 @@ Repo.insert!(%User{
   security_question: "Name of first boss?",
   security_answer: "Betty",
   data_access: false,
-  role: "slam_user"
+  role: "slam_user",
+  slam_id: 202
 })
 
 Repo.insert!(%User{
