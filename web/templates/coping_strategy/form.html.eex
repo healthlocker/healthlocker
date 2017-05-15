@@ -1,17 +1,15 @@
-<div class="ma3 ma4-m ma4-l">
-  <p class="b">Note down an action you can take to stay well.
-  <p>Something can you do, or avoid doing when you notice a change in your
-    feelings, thoughts or behaviour.</p>
-  <p>For example, practice relaxation techniques, leave the room if things are
-    too tense, take a break or tell someone you trust.</p>
-  <%= form_for @changeset, @action, fn f -> %>
+<p class="b">Note down an action you can take to stay well.
+<p>Something can you do, or avoid doing when you notice a change in your
+  feelings, thoughts or behaviour.</p>
+<p>For example, practice relaxation techniques, leave the room if things are
+  too tense, take a break or tell someone you trust.</p>
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="center">
     <div class="center">
-      <div class="center">
-        <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 h4 ba b--black-20 pa2 br2 mb2 default-font" %>
-        <div class="tr mt4">
-          <%= submit_primary "Save" %>
-        </div>
+      <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 h4 ba b--black-20 pa2 br2 mb2 default-font" %>
+      <div class="tr mt4">
+        <%= submit_primary "Save" %>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>
