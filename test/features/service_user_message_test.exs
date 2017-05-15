@@ -12,18 +12,18 @@ defmodule Healthlocker.ServiceUserMessageTest do
       data_access: true,
       slam_id: 202
     )
+    Mix.Tasks.Healthlocker.Room.Create.run("run")
 
     {:ok, %{session: session}}
   end
 
-  test "coming soon", %{session: session} do
+  test "view messages", %{session: session} do
     session
     |> log_in("tony@dwyl.io")
     |> click(Query.css("#open-nav"))
     |> click(Query.link("Care team"))
 
-    assert current_path(session) == "/care-team/messages"
-    take_screenshot(session)
-    assert has_text?(session, "Messaging coming soon.")
+    assert current_path(session) =~ "/care-team/rooms/"
+    assert has_text?(session, "Messages")
   end
 end

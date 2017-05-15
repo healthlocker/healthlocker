@@ -61,6 +61,7 @@ defmodule Healthlocker.Web do
   def router do
     quote do
       use Phoenix.Router
+      import Healthlocker.Plugs.FindRoom
     end
   end
 

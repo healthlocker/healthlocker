@@ -20,7 +20,8 @@ defmodule Healthlocker.DemoDataSeeder do
     Repo.insert!(%User{
       email: Faker.Internet.free_email(),
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-      name: Faker.Name.first_name(),
+      first_name: Faker.Name.first_name(),
+      last_name: Faker.Name.last_name(),
       phone_number: Faker.Phone.EnGb.number(),
       security_question: "Name of first boss?",
       security_answer: "Betty",
@@ -41,7 +42,8 @@ defmodule Healthlocker.DemoDataSeeder do
     Repo.insert!(%User{
       email: Faker.Internet.email(),
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-      name: Faker.Name.first_name(),
+      first_name: Faker.Name.first_name(),
+      last_name: Faker.Name.last_name(),
       phone_number: Faker.Phone.EnGb.number(),
       security_question: "Name of first boss?",
       security_answer: "Betty",
@@ -61,7 +63,8 @@ defmodule Healthlocker.DemoDataSeeder do
     Repo.insert!(%User{
       email: Faker.Internet.free_email(),
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-      name: Faker.Name.first_name(),
+      first_name: Faker.Name.first_name(),
+      last_name: Faker.Name.last_name(),
       phone_number: Faker.Phone.EnGb.number(),
       security_question: "Name of first boss?",
       security_answer: "Betty",
@@ -120,40 +123,47 @@ end
 Repo.insert!(%User{
   email: "evan@email.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-  name: "Evan",
+  first_name: "Evan",
+  last_name: "Email",
   phone_number: "07512 345 678",
   security_question: "Name of first boss?",
   security_answer: "Betty",
   data_access: true,
-  role: "slam_user"
+  role: "slam_user",
+  slam_id: 201
 })
 
 Repo.insert!(%User{
   email: "lisa@email.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-  name: "Lisa",
+  first_name: "Lisa",
+  last_name: "Email",
   phone_number: "07512 678 345",
   security_question: "Name of first boss?",
   security_answer: "Betty",
   data_access: false,
-  role: "slam_user"
+  role: "slam_user",
+  slam_id: 202
 })
 
 Repo.insert!(%User{
   email: "angela@email.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-  name: "Angela",
+  first_name: "Angela",
+  last_name: "Email",
   phone_number: "07519 283 475",
   security_question: "Name of first boss?",
   security_answer: "Betty",
   data_access: false,
-  role: "slam_user"
+  role: "slam_user",
+  slam_id: 203
 })
 
 Repo.insert!(%User{
   email: "robert_macmurray@nhs.co.uk",
   password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-  name: "Robert",
+  first_name: "Robert",
+  last_name: "MacMurray",
   phone_number: "07598 765 432",
   security_question: "Name of first boss?",
   security_answer: "Betty",
@@ -164,7 +174,8 @@ Repo.insert!(%User{
 Repo.insert!(%User{
   email: "katherine@email.com",
   password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
-  name: "Kat Bow",
+  first_name: "Kat",
+  last_name: "Bow",
   phone_number: "07598 123 789",
   security_question: "Name of first boss?",
   security_answer: "Betty",

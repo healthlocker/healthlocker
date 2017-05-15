@@ -10,13 +10,18 @@ defmodule Healthlocker.Router do
     plug Healthlocker.Plugs.Auth, repo: Healthlocker.Repo
   end
 
+  pipeline :logged_in do
+    plug Healthlocker.Plugs.RequireLogin
+    plug :find_room
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
   # endpoints requiring a logged in user
   scope "/", Healthlocker do
-    pipe_through [:browser, Healthlocker.Plugs.RequireLogin]
+    pipe_through [:browser, :logged_in]
 
     resources "/posts", PostController, only: [:new, :create, :edit, :update] do
       post "/likes", PostController, :likes
@@ -45,7 +50,7 @@ defmodule Healthlocker.Router do
     resources "/care-plan", CarePlanController, only: [:index]
 
     scope "/care-team", CareTeam, as: :care_team do
-      resources "/messages", MessageController, only: [:show], singleton: true
+      resources "/rooms", RoomController, only: [:show]
       resources "/contacts", ContactController, only: [:show], singleton: true
     end
 

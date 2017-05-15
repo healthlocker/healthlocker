@@ -5,6 +5,8 @@ defmodule Healthlocker.Caseload.UserController do
 
   def show(conn, %{"id" => id, "section" => section}) do
     user = Repo.get!(User, id)
+    room = Repo.one! assoc(user, :rooms)
+
     slam_user = ReadOnlyRepo.one(from e in EPJSUser,
                 where: e."Patient_ID" == ^user.slam_id)
     address = ReadOnlyRepo.one(from e in EPJSPatientAddressDetails,
@@ -16,7 +18,7 @@ defmodule Healthlocker.Caseload.UserController do
                 |> Post.get_coping_strategies(id)
                 |> Repo.all
     render(conn, String.to_atom(section), user: user, slam_user: slam_user,
-          address: address, goals: goals, strategies: strategies)
+          address: address, goals: goals, strategies: strategies, room: room)
   end
 
   def show(conn, %{"id" => id}) do
