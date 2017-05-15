@@ -160,8 +160,8 @@ defmodule Healthlocker.AccountController do
       :gt ->
         # go to error page
         conn
-        |> put_flash(:error, "Too young")
-        |> redirect(to: account_path(conn, :slam))
+        |> put_flash(:error, "We are unable to connect your account as you are under the age of 12. You can continue to use Healthlocker without this connection.")
+        |> redirect(to: page_path(conn, :index))
       _ ->
         # 12 or over, go through slam connection
         slam_user = if forename != "" && surname != "" && nhs != "" && dob != "" do
