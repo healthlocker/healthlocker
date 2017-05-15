@@ -59,6 +59,10 @@ defmodule Healthlocker.Router do
       resources "/users", UserController, only: [:show] do
         resources "/rooms", RoomController, only: [:show]
       end
+
+      resources "/messages", MessageController, only: [:show] do
+        resources "/read-receipt", ReadReceiptController, singleton: true
+      end
     end
 
     resources "/slam", SlamController, only: [:new, :create]

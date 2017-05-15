@@ -25,6 +25,22 @@ let Room = {
       }
     })
 
+    // let inputs = msgContainer.getElementsByTagName("input")
+    // for (var input in inputs) {
+    //   console.log(input);
+    // }
+    // var checkbox = document.querySelector("input[name=checkbox]");
+    let checkbox = document.getElementById("read_receipt_read")
+    checkbox.onchange = function(e) {
+      if (this.checked) {
+        console.log("Checked!");
+        checkbox.form.submit()
+      } else {
+        console.log("Unchecked!");
+      }
+    }
+
+
     roomChannel.on("msg:created", (resp) => {
       this.renderMessage(msgContainer, resp)
     })

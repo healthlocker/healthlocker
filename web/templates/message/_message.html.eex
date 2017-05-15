@@ -4,4 +4,6 @@
     <%= @message.body %>
     <small class="white dib fr"><time><%= sent_at(@message) %></time></small>
   </p>
+
+  <%= render Healthlocker.ReadReceiptView, "_read_receipt.html", message: @message, changeset: Healthlocker.ReadReceipt.changeset(%Healthlocker.ReadReceipt{}, %{}), conn: @conn %>
 </div>

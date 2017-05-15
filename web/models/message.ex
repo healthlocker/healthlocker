@@ -4,7 +4,7 @@ defmodule Healthlocker.Message do
   schema "messages" do
     field :body, :string
     field :name, :string
-    has_one :read_receipt, Healtlocker.ReadReceipt
+    has_one :read_receipt, Healthlocker.ReadReceipt
     belongs_to :user, Healthlocker.User
     belongs_to :room, Healthlocker.Room
 

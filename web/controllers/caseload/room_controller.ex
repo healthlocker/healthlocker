@@ -1,5 +1,5 @@
 defmodule Healthlocker.Caseload.RoomController do
-  alias Healthlocker.{EPJSUser, Message, Room, User}
+  alias Healthlocker.{EPJSUser, Message, ReadReceipt, Room, User}
   use Healthlocker.Web, :controller
 
   def show(conn, %{"id" => id, "user_id" => user_id}) do
@@ -10,8 +10,7 @@ defmodule Healthlocker.Caseload.RoomController do
       preload: [:user]
 
     user = Repo.get!(User, user_id)
-    slam_user = ReadOnlyRepo.one(from e in EPJSUser,
-                where: e."Patient_ID" == ^user.slam_id)
+    slam_user = find_slam_user(user)
 
     conn
     |> assign(:room, room)
@@ -20,5 +19,13 @@ defmodule Healthlocker.Caseload.RoomController do
     |> assign(:user, user)
     |> assign(:current_user_id, conn.assigns.current_user.id)
     |> render("show.html")
+  end
+
+  defp find_slam_user(user) do
+    if user.slam_id do
+      ReadOnlyRepo.one(from e in EPJSUser, where: e."Patient_ID" == ^user.slam_id)
+    else
+      nil
+    end
   end
 end

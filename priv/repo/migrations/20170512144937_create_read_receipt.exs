@@ -5,6 +5,7 @@ defmodule Healthlocker.Repo.Migrations.CreateReadReceipt do
     create table(:read_receipts) do
       add :message_id, references(:messages, on_delete: :nothing), null: false
       add :user_id, references(:users, on_delete: :nothing), null: false
+      add :read, :boolean
 
       timestamps()
     end
