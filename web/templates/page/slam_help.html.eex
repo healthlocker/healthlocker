@@ -3,11 +3,15 @@
   and Date of Birth, these details will be matched against your SLaM record -
   they must match perfectly.</p>
 
-  <p>Once your account has been connected you will
-  be able to see the contact details of the SLaM staff you see, view your
-  current care plan, interact with your goals and coping strategies from your
-  care plan, receive recommendations and resources from your care team and
-  more. What you share with your care team, is up to you.</p>
+  <p>
+    Once your account is connected you will be able to see the details of the
+    SLaM staff you see, and send / receive messages with them online.
+    <br>
+    Any interaction with your goals and coping strategies and any tracking data
+    you add will be shared with your Care team.
+    <br>
+    Once connected you are able disconnect whenever you choose.
+  </p>
 
 
   <%= link_to("Close", to: account_path(@conn, :index))%>

@@ -7,7 +7,8 @@ defmodule Healthlocker.CarerMessageTest do
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
       privacy: true,
-      data_access: true
+      data_access: true,
+      slam_id: nil
     )
 
     service_user = EctoFactory.insert(:user,
@@ -32,7 +33,7 @@ defmodule Healthlocker.CarerMessageTest do
     |> click(@nav_button)
     |> click(Query.link("Care team"))
 
-    assert current_path(session) == "/care-team/messages"
+    has_text?(session, "Message feed")
   end
 
   @message_field  Query.css("#message-input")

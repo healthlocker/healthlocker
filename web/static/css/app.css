@@ -238,6 +238,7 @@ select:focus {
 /* Messages */
 
 #message-feed {
+  min-height: 15rem;
   max-height: 25rem;
 }
 
@@ -245,7 +246,7 @@ select:focus {
   outline: none;
   border: none;
 }
-  
+
 .bottom-1-6 {
   bottom: 2.4rem;
 }
