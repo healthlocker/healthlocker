@@ -4,7 +4,11 @@
 </div>
 
 <div class="">
-  <h3><%= @service_user.first_name <> " " <> @service_user.last_name <> "'s care team" %></h3>
+  <%= if @current_user == @service_user do %>
+    <h3>Your care team</h3>
+  <%= else %>
+    <h3><%= @service_user.first_name <> " " <> @service_user.last_name <> "'s care team" %></h3>
+  <% end %>
 
   <h2 class="mv4">SLaM care team</h2>
 
