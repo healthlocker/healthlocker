@@ -7,10 +7,14 @@ defmodule Healthlocker.Plugs.FindRoom do
   alias Healthlocker.Repo
 
   def find_room(conn, _options) do
-    current_user = conn.assigns[:current_user]
-    room = Repo.one Ecto.assoc(current_user, :rooms)
+    if conn.assigns[:current_user] do
+      room = Repo.one Ecto.assoc(conn.assigns[:current_user], :rooms)
 
-    conn
-    |> assign(:room, room)
+      conn
+      |> assign(:room, room)
+    else
+      conn
+      |> assign(:room, nil)
+    end
   end
 end
