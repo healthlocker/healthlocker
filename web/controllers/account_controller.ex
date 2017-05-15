@@ -194,4 +194,10 @@ defmodule Healthlocker.AccountController do
     |> Timex.parse!("%d/%m/%Y", :strftime)
     |> DateTime.from_naive!("Etc/UTC")
   end
+
+  def check_age(birthday) do
+    twelve_years_ago = Timex.shift(DateTime.utc_now, years: -12)
+
+    DateTime.compare(birthday, twelve_years_ago)
+  end
 end
