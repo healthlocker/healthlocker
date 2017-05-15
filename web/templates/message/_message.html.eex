@@ -5,5 +5,10 @@
     <small class="white dib fr"><time><%= sent_at(@message) %></time></small>
   </p>
 
-  <%= render Healthlocker.ReadReceiptView, "_read_receipt.html", message: @message, changeset: Healthlocker.ReadReceipt.changeset(%Healthlocker.ReadReceipt{}, %{}), conn: @conn %>
+  <%= if @message.read_receipt do %>
+    <small class="white dib fr pl1">Read</small>
+    <i class="fr fa fa-check white" aria-hidden="true"></i>
+  <% else %>
+    <%= render Healthlocker.ReadReceiptView, "_read_receipt.html", message: @message, changeset: Healthlocker.ReadReceipt.changeset(%Healthlocker.ReadReceipt{}, %{}), conn: @conn %>
+  <% end %>
 </div>
