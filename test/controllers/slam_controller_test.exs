@@ -48,6 +48,8 @@ defmodule Healthlocker.SlamControllerTest do
       DOB: birthday,
     } |> ReadOnlyRepo.insert
 
+    Mix.Tasks.Healthlocker.Room.Create.run("run")
+
     {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
   end
 

@@ -1,3 +1,2 @@
-<h2 class="tc">Message feed</h3>
-
-<%= render Healthlocker.CareTeam.MessageView, "show.html", assigns %>
+<%= render Healthlocker.Caseload.UserView, "menu.html", assigns %>
+<%= render Healthlocker.RoomView, "_room.html", assigns %>

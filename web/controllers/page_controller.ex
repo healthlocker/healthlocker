@@ -1,7 +1,9 @@
 defmodule Healthlocker.PageController do
   use Healthlocker.Web, :controller
-
   alias Healthlocker.Post
+  import Healthlocker.Plugs.FindRoom
+
+  plug :find_room
 
   def index(conn, _params) do
     featured_story = Post
