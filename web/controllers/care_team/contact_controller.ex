@@ -10,7 +10,7 @@ defmodule Healthlocker.CareTeam.ContactController do
     |> render("show.html")
   end
 
-  defp service_user_for(carer) do
+  def service_user_for(carer) do
     if carer.slam_id do
       carer
     else
