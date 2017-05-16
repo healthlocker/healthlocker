@@ -3,7 +3,7 @@ defmodule Healthlocker.ReadReceiptTest do
 
   alias Healthlocker.ReadReceipt
 
-  @valid_attrs %{message_id: 1, user_id: 1}
+  @valid_attrs %{message_id: 1, user_id: 1, read: true}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
