@@ -1,12 +1,12 @@
 defmodule Healthlocker.Caseload.UserController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{User, ReadOnlyRepo, EPJSUser, EPJSPatientAddressDetails, Goal, Post}
+  alias Healthlocker.{User, ReadOnlyRepo, EPJSUser, EPJSPatientAddressDetails, Goal, Post, Slam.ServiceUser}
 
   def show(conn, %{"id" => id, "section" => section}) do
     user = Repo.get!(User, id)
     room = Repo.one! assoc(user, :rooms)
-    service_user = User.service_user_for(user)
+    service_user = ServiceUser.for(user)
     slam_user = ReadOnlyRepo.one(from e in EPJSUser,
                 where: e."Patient_ID" == ^service_user.slam_id)
     address = ReadOnlyRepo.one(from e in EPJSPatientAddressDetails,
