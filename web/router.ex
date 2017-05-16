@@ -61,7 +61,7 @@ defmodule Healthlocker.Router do
       end
 
       resources "/messages", MessageController, only: [:show] do
-        resources "/read-receipt", ReadReceiptController, singleton: true
+        resources "/read-receipt", ReadReceiptController, singleton: true, only: [:create]
       end
     end
 
