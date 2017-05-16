@@ -22,6 +22,8 @@ defmodule Healthlocker.Caseload.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    show(conn, %{"id" => id, "section" => "details"})
+    user = Repo.get!(User, id)
+    room = Repo.one! assoc(user, :rooms)
+    redirect(conn, to: caseload_user_room_path(conn, :show, user, room))
   end
 end
