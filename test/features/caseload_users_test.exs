@@ -1,6 +1,6 @@
 defmodule Healthlocker.CaseloadUsersTest do
   use Healthlocker.FeatureCase
-  alias Healthlocker.{Carer, EPJSClinician, EPJSTeamMember, ReadOnlyRepo, Repo, User}
+  alias Healthlocker.{Carer, EPJSClinician, EPJSPatientAddressDetails, EPJSTeamMember, ReadOnlyRepo, Repo, User}
 
   setup %{session: session} do
     service_user_1 = EctoFactory.insert(:user,
@@ -13,6 +13,24 @@ defmodule Healthlocker.CaseloadUsersTest do
       data_access: true,
       slam_id: 202
     )
+
+    ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{id: 789,
+      Patient_ID: 202,
+      Surname: "Tony",
+      Forename: "Daly",
+      NHS_Number: "9434765919",
+      DOB: DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC"),
+    })
+
+    ReadOnlyRepo.insert!(%EPJSPatientAddressDetails{
+      Patient_ID: 202,
+      Address_ID: 1,
+      Address1: "123 High Street",
+      Address2: "London",
+      Address3: "UK",
+      Post_Code: "E1 8UW",
+      Tel_home: "02085 123 456"
+    })
 
     service_user_2 = EctoFactory.insert(:user,
       email: "kat@dwyl.io",
@@ -79,9 +97,6 @@ defmodule Healthlocker.CaseloadUsersTest do
 
     assert session |> has_text?("Tony Daly")
     assert session |> has_text?("Kat Bow")
-
-    # |> click(Query.link("Tony Daly"))
-    # |> take_screenshot
   end
 
   test "shows carers", %{session: session} do
@@ -92,5 +107,39 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> take_screenshot
 
     assert session |> has_text?("Jimmy Smits (carer)")
+  end
+
+  test "view service user", %{session: session} do
+    session
+    |> resize_window(768, 1024)
+    |> log_in("clinician@nhs.co.uk")
+    |> click(Query.link("Caseload"))
+    |> click(Query.link("Tony Daly"))
+    |> click(Query.link("Details and contacts"))
+    |> take_screenshot
+
+    assert session |> has_text?("123 High Street")
+    assert session |> has_text?("tony@dwyl.io")
+  end
+
+  test "service user send message", %{session: session} do
+    session
+    |> resize_window(768, 1024)
+    |> log_in("clinician@nhs.co.uk")
+    |> click(Query.link("Caseload"))
+    |> click(Query.link("Tony Daly"))
+    |> click(Query.link("Messages"))
+  end
+
+  test "view carer", %{session: session} do
+    session
+    |> resize_window(768, 1024)
+    |> log_in("clinician@nhs.co.uk")
+    |> click(Query.link("Caseload"))
+    |> click(Query.link("Jimmy Smits (carer)"))
+    |> click(Query.link("Details and contacts"))
+
+    assert session |> has_text?("123 High Street")
+    assert session |> has_text?("tony@dwyl.io")
   end
 end
