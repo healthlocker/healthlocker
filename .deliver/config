@@ -1,0 +1,39 @@
+APP="healthlocker"
+
+BUILD_HOST="52.232.127.28"
+BUILD_USER="azure"
+BUILD_AT="/home/azure/healthlocker/builds"
+
+PRODUCTION_HOSTS="52.232.127.28 52.232.86.84"
+PRODUCTION_USER="azure"
+DELIVER_TO="/home/azure"
+
+pre_erlang_clean_compile() {
+  status "Installing NPM dependencies"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+
+    cd '$BUILD_AT'
+    npm install $SILENCE
+  "
+
+  status "Building static files"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+
+    cd '$BUILD_AT'
+    mkdir -p priv/static
+    npm run deploy $SILENCE
+  "
+
+  status "Running phoenix.digest"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+
+    cd '$BUILD_AT'
+    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
+  "
+}
