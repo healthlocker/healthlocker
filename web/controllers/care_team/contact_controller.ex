@@ -9,17 +9,6 @@ defmodule Healthlocker.CareTeam.ContactController do
     |> assign(:care_team, care_team_for(service_user))
     |> render("show.html")
   end
-
-  def service_user_for(carer) do
-    if carer.slam_id do
-      carer
-    else
-      carer = carer |> Repo.preload(:caring)
-      [service_user | _] = carer.caring
-      service_user
-    end
-  end
-
   defp care_team_for(service_user) do
     query = from e in Healthlocker.EPJSTeamMember,
       where: e."Patient_ID" == ^service_user.slam_id,
