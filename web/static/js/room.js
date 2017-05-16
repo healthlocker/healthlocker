@@ -25,21 +25,15 @@ let Room = {
       }
     })
 
-    // let inputs = msgContainer.getElementsByTagName("input")
-    // for (var input in inputs) {
-    //   console.log(input);
-    // }
-    // var checkbox = document.querySelector("input[name=checkbox]");
-    let checkbox = document.getElementById("read_receipt_read")
-    checkbox.onchange = function(e) {
-      if (this.checked) {
-        console.log("Checked!");
-        checkbox.form.submit()
-      } else {
-        console.log("Unchecked!");
+    // Find all the checkboxes, ticking these will mark a message as read.
+    let checkboxes = document.querySelectorAll("input[type=checkbox]")
+    for (let checkbox of checkboxes) {
+      checkbox.onchange = function(e) {
+        if (this.checked) {
+          checkbox.form.submit()
+        }
       }
     }
-
 
     roomChannel.on("msg:created", (resp) => {
       this.renderMessage(msgContainer, resp)
