@@ -4,7 +4,7 @@ defmodule Healthlocker.CareTeam.RoomController do
 
   def show(conn, %{"id" => id}) do
     room = Repo.get! assoc(conn.assigns.current_user, :rooms), id
-    service_user = Healthlocker.CareTeam.ContactController.service_user_for(conn.assigns.current_user)
+    service_user = Healthlocker.Slam.ServiceUser.for(conn.assigns.current_user)
 
     messages = Repo.all from m in Message,
       where: m.room_id == ^room.id,
