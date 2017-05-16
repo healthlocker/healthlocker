@@ -8,11 +8,11 @@ defmodule Healthlocker.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Healthlocker.Plugs.Auth, repo: Healthlocker.Repo
+    plug :find_room
   end
 
   pipeline :logged_in do
     plug Healthlocker.Plugs.RequireLogin
-    plug :find_room
   end
 
   pipeline :api do
