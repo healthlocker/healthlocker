@@ -4,7 +4,7 @@
 <div class="cf">
   <%= for user <- @hl_users do %>
     <%= link to: caseload_user_room_path(@conn, :show, user, room_for(user)),
-            class: "no-underline hl-dark-blue" do %>
+            class: "no-underline hl-dark-blue cf" do %>
       <div class="w-100 hl-bg-grey pa3 mv3 br3 hl-dark-blue">
         <p class="b di"><%= user.first_name <> " " <> user.last_name %></p><span class="fr hl-yellow fw9">></span>
       </div>
@@ -12,7 +12,7 @@
 
     <%= for carer <- user.carers do %>
       <%= link to: caseload_user_room_path(@conn, :show, carer, room_for(carer)),
-              class: "no-underline hl-dark-blue" do %>
+              class: "no-underline hl-dark-blue cf" do %>
         <div class="w-80 fr hl-bg-grey pa3 mv3 br3 hl-dark-blue">
           <p class="b di"><%= carer.first_name <> " " <> carer.last_name %> (carer)</p><span class="fr hl-yellow fw9">></span>
         </div>
