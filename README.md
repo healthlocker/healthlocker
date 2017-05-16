@@ -185,3 +185,16 @@ In the interest of _reproducibility_ we have produced a
 ***step-by-step guide*** to deploying a Phoenix Web Application to
 Microsoft Azure: <br />
 https://github.com/dwyl/learn-microsoft-azure
+
+### Capacity Building Through Documentation & Learning Resources
+
+Unlike _most_ application development Agencies, that attempt to "Lock-in"
+clients, the team building Healthlocker are _focussed_ on
+building capacity within the NHS to support and extend Healthlocker.
+
+The following learning resources are community-maintained and 100% free/open:
+
++ Continuous Integration / Deployment: https://github.com/dwyl/learn-travis
++ Elixir Programming Language: https://github.com/dwyl/learn-elixir
++ Phoenix Web Applciation Framework: https://github.com/dwyl/learn-phoenix-framework
++ Mobile-first User Interface Library: https://github.com/dwyl/learn-tachyons
