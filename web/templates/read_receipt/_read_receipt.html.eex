@@ -1,4 +1,4 @@
 <%= form_for @changeset, caseload_message_read_receipt_path(@conn, :create, @message.id), fn f -> %>
-  <label>Reminder text</label>
+  <%= label f, :read %>
   <%= checkbox f, :read %>
 <% end %>
