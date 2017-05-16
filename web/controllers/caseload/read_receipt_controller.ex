@@ -11,15 +11,22 @@ defmodule Healthlocker.Caseload.ReadReceiptController do
       read: true
     })
 
+    path =
+      conn
+      |> Plug.Conn.get_req_header("referer")
+      |> List.first
+      |> URI.parse
+      |> Map.get(:path)
+
     case Repo.insert(changeset) do
       {:ok, _read_receipt} ->
         conn
         |> put_flash(:info, "Read successful")
-        |> redirect(to: caseload_user_room_path(conn, :show, 5, 1))
+        |> redirect(to: path)
       {:error, _changeset} ->
         conn
         |> put_flash(:error, "Something went wrong")
-        |> redirect(to: caseload_user_room_path(conn, :show, 5, 1))
+        |> redirect(to: path)
     end
   end
 
