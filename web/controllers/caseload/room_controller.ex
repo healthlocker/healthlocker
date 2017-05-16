@@ -7,7 +7,7 @@ defmodule Healthlocker.Caseload.RoomController do
     messages = Repo.all from m in Message,
       where: m.room_id == ^room.id,
       order_by: [asc: :inserted_at, asc: :id],
-      preload: [:user]
+      preload: [:user, :read_receipt]
 
     user = Repo.get!(User, user_id)
     slam_user = find_slam_user(user)
