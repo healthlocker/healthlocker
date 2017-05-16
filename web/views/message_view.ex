@@ -13,6 +13,15 @@ defmodule Healthlocker.MessageView do
     Timex.from_now(message.inserted_at)
   end
 
+  def sent_by_user(message) do
+    message.user.role != "clinician"
+  end
+
+  def clinician?(user) do
+    # require IEx; IEx.pry() 
+    user.role == "clinician"
+  end
+
   @base_classes "w-80 br2 mb2 pa1 pa3-ns"
   @sender_classes "hl-bg-yellow fr"
   @receiver_classes "hl-bg-aqua fl"

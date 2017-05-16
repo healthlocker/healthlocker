@@ -5,10 +5,14 @@
     <small class="white dib fr"><time><%= sent_at(@message) %></time></small>
   </p>
 
-  <%= if @message.read_receipt do %>
-    <small class="white dib fr pl1">Read</small>
-    <i class="fr fa fa-check white" aria-hidden="true"></i>
-  <% else %>
-    <%= render Healthlocker.ReadReceiptView, "_read_receipt.html", message: @message, changeset: Healthlocker.ReadReceipt.changeset(%Healthlocker.ReadReceipt{}, %{}), conn: @conn %>
+  <%= if @current_user_id && sent_by_user(@message) do %>
+    <%= if @message.read_receipt do %>
+      <small class="white dib fr pl1">Read</small>
+      <i class="fr fa fa-check white" aria-hidden="true"></i>
+    <% else %>
+      <%= if clinician?(@conn.assigns.current_user) do %>
+        <%= render Healthlocker.ReadReceiptView, "_read_receipt.html", message: @message, changeset: Healthlocker.ReadReceipt.changeset(%Healthlocker.ReadReceipt{}, %{}), conn: @conn %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
