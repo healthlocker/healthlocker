@@ -8,7 +8,7 @@ defmodule Healthlocker.CareTeam.RoomController do
     messages = Repo.all from m in Message,
       where: m.room_id == ^room.id,
       order_by: [asc: :inserted_at, asc: :id],
-      preload: [:user]
+      preload: [:user, :read_receipt]
 
     conn
     |> assign(:room, room)

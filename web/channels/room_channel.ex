@@ -30,7 +30,7 @@ defmodule Healthlocker.RoomChannel do
   end
 
   defp broadcast_message(socket, message) do
-    message = Repo.preload(message, :user)
+    message = Repo.preload(message, [:user, :read_receipt])
     rendered_message = Phoenix.View.render_to_string(MessageView, "_message.html", message: message, current_user_id: nil)
     broadcast!(socket, "msg:created", %{template: rendered_message, id: message.id, message_user_id: socket.assigns.user_id})
   end
