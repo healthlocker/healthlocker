@@ -10,8 +10,9 @@ defmodule Healthlocker.Caseload.RoomController do
       preload: [:user]
 
     user = Repo.get!(User, user_id)
+    service_user = User.service_user_for(user)
     slam_user = ReadOnlyRepo.one(from e in EPJSUser,
-                where: e."Patient_ID" == ^user.slam_id)
+                where: e."Patient_ID" == ^service_user.slam_id)
 
     conn
     |> assign(:service_user, nil)

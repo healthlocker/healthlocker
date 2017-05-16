@@ -130,4 +130,18 @@ defmodule Healthlocker.User do
         changeset
     end
   end
+
+  @moduledoc """
+  If the User has a slam_id then they're already a service user. However, if the
+  user is a carer, then their service user is the user they care for.
+  """
+  def service_user_for(user) do
+    if user.slam_id do
+      user
+    else
+      carer = user |> Healthlocker.Repo.preload(:caring)
+      [service_user | _] = carer.caring
+      service_user
+    end
+  end
 end
