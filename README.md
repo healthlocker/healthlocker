@@ -173,29 +173,39 @@ The cluster of Web Servers is two or more Linux VMs behind a load balancer.
 
 #### Infrastructure Details
 
-+ Linux Virtual Machines (VMs):
+There are 4 pieces to the puzzle
+
++ Azure **Load Balancer**:
+https://azure.microsoft.com/en-gb/services/load-balancer -
+All web traffic is handled through the load balancer which performs
+_continous_ health checks on the application server(s) and routes
+requests in a "round-robin" to balance load.
++ **Linux Virtual Machines** (VMs):
 https://azure.microsoft.com/en-gb/services/virtual-machines - these run our
 Phoenix Web Application. The Application is _compiled_ as an _executable_
 which runs on "BEAM" (_the Erlang Virtual Machine_).
 The VMs are _actively_ monitored and can be scaled up dynamically
 dependent on request volume.
-+ Azure PostgreSQL Database-as-a-Service:
++ Azure **PostgreSQL Database-as-a-Service**:
 https://azure.microsoft.com/en-us/services/postgresql - all application data
 is stored in an Azure Database instance which is encrypted at rest,
 scales dynamically/transparently ("_built-in high availability_")
-and backed up transparently. Data is _Only_ accessible from the Production VMs.
-+ Azure Load Balancer:
-https://azure.microsoft.com/en-gb/services/load-balancer -
-All web traffic is handled through the load balancer which performs
-_continous_ health checks on the application server(s) and routes
-requests in a "round-robin" to balance load.
+and backed up transparently. Data is _Only_ accessible from the Production VMs
++ Azure **SQL Server** (_Database-as-a-Service_):
+https://azure.microsoft.com/en-gb/services/sql-database - Stores a _read-only_
+_snapshot_ of the "Care Notes" (ePJS) Database. This contains the patients
+personal health information and is controlled by the "SLaM" IT team.
+Access is restricted to the Production Healthlocker VMs and patient (_personal_)
+data is only viewable by the patient and authorized healthcare professionals.
 
 ### Continuous Integration/Testing and Deployment Pipeline
 
 
+
+
 ### Deployment Guide
 
-In the interest of reproducibility we have produced a
+In the interest of _reproducibility_ we have produced a
 ***step-by-step guide*** to deploying a Phoenix Web Application to
 Microsoft Azure: <br />
 https://github.com/dwyl/learn-microsoft-azure
