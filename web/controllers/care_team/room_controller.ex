@@ -1,5 +1,5 @@
 defmodule Healthlocker.CareTeam.RoomController do
-  alias Healthlocker.{Message, Room}
+  alias Healthlocker.{Message}
   use Healthlocker.Web, :controller
 
   def show(conn, %{"id" => id}) do

@@ -1,5 +1,5 @@
 defmodule Healthlocker.Caseload.RoomController do
-  alias Healthlocker.{EPJSUser, Message, ReadReceipt, Room, User}
+  alias Healthlocker.{EPJSUser, Message, Room, User}
   use Healthlocker.Web, :controller
 
   def show(conn, %{"id" => id, "user_id" => user_id}) do

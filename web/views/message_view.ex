@@ -18,7 +18,6 @@ defmodule Healthlocker.MessageView do
   end
 
   def clinician?(user) do
-    # require IEx; IEx.pry() 
     user.role == "clinician"
   end
 
