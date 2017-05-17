@@ -1,43 +1,47 @@
 <%= render "menu.html", assigns %>
 <div class="mt5"></div>
-<div class="pv3 mt2 hl-dark-blue w-100 center flex justify-between">
-  <div class="w-60">
-    <h3>Goals</h3>
-    <%= for goal <- @goals do %>
-      <div class="bb bw2 b--black-10 dib w-100 pv3">
-        <p class="b di">
-          <%= String.trim_trailing(goal.content, " #Goal") %>
-        </p>
+<%= if @service_user == @user do %>
+  <div class="pv3 mt2 hl-dark-blue w-100 center flex justify-between">
+    <div class="w-60">
+      <h3>Goals</h3>
+      <%= for goal <- @goals do %>
+        <div class="bb bw2 b--black-10 dib w-100 pv3">
+          <p class="b di">
+            <%= String.trim_trailing(goal.content, " #Goal") %>
+          </p>
 
-      <%= for step <- goal.steps do %>
-        <%= if is_bitstring(step.details) do %>
-          <ul>
-            <li><%= step.details %></li>
-          </ul>
+        <%= for step <- goal.steps do %>
+          <%= if is_bitstring(step.details) do %>
+            <ul>
+              <li><%= step.details %></li>
+            </ul>
+          <% end %>
         <% end %>
-      <% end %>
-      <%= if goal.important do %>
-        <div class="w-10 di">
-          <%= img_tag("/images/star_selected.svg", class: "w2") %>
+        <%= if goal.important do %>
+          <div class="w-10 di">
+            <%= img_tag("/images/star_selected.svg", class: "w2") %>
+          </div>
+          <p class="di">Important</p>
+        <% end %>
+        <p class="mv3 f6 i fr">
+          Created <%= Healthlocker.ComponentView.pretty_date(goal.inserted_at) %>
+        </p>
         </div>
-        <p class="di">Important</p>
       <% end %>
-      <p class="mv3 f6 i fr">
-        Created <%= Healthlocker.ComponentView.pretty_date(goal.inserted_at) %>
-      </p>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="w-30 fr">
-    <h3>Coping Strategies</h3>
-    <%= for strategy <- @strategies do %>
-    <div class="bb bw2 b--black-10 dib w-100 pv3">
-      <p class="b"><%= String.trim_trailing(strategy.content, " #CopingStrategy") %></p>
-      <p class="mv3 f6 i">
-        Created <%= Healthlocker.ComponentView.pretty_date(strategy.inserted_at) %>
-      </p>
     </div>
-    <% end %>
+
+    <div class="w-30 fr">
+      <h3>Coping Strategies</h3>
+      <%= for strategy <- @strategies do %>
+      <div class="bb bw2 b--black-10 dib w-100 pv3">
+        <p class="b"><%= String.trim_trailing(strategy.content, " #CopingStrategy") %></p>
+        <p class="mv3 f6 i">
+          Created <%= Healthlocker.ComponentView.pretty_date(strategy.inserted_at) %>
+        </p>
+      </div>
+      <% end %>
+    </div>
   </div>
-</div>
+<%= else %>
+  <p>Content not available for carers</p>
+<% end %>
