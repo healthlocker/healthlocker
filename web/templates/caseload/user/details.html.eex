@@ -1,6 +1,5 @@
-<%= render "menu.html", assigns %>
-<div class="mt5"></div>
 <%= if @service_user == @user do %>
+  <%= render "menu.html", assigns %>
   <div class="pa3 br3 mt2 hl-dark-blue w-100">
     <table>
       <tr>
@@ -31,5 +30,7 @@
     </table>
   </div>
 <%= else %>
-  <p><%= Healthlocker.ComponentView.full_name(@user) %></p>
+  <%= render "carer_menu.html", assigns %>
+  <p><strong>Name: </strong> <%= Healthlocker.ComponentView.full_name(@user) %></p>
+  <p><strong>Cares for: </strong> <%= Healthlocker.ComponentView.full_name(@service_user) %></p>
 <% end %>
