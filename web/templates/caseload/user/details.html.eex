@@ -1,5 +1,4 @@
 <%= render "menu.html", assigns %>
-<div class="mt5"></div>
 <div class="pa3 br3 mt2 hl-dark-blue w-100">
   <table>
     <tr>
