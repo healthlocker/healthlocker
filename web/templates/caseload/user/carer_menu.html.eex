@@ -1,0 +1,14 @@
+<h2 class="hl-dark-blue"><%= Healthlocker.ComponentView.full_name(@user) %> (carer)</h2>
+<div class="w-100 h3">
+  <%= cond do %>
+   <%= String.contains?(@conn.request_path, "rooms") -> %>
+     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
+     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white" %>
+   <%= String.contains?(@conn.query_string, "details") -> %>
+     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white" %>
+     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
+   <%= true -> %>
+     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
+     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white" %>
+<% end %>
+</div>
