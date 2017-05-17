@@ -3,7 +3,7 @@
 <h2 class="mv4">Healthlocker users</h2>
 <div class="cf">
   <%= for user <- @hl_users do %>
-    <%= link to: caseload_user_path(@conn, :show, user),
+    <%= link to: caseload_user_room_path(@conn, :show, user, room_for(user)),
             class: "no-underline hl-dark-blue cf" do %>
       <div class="w-100 hl-bg-grey pa3 mv3 br3 hl-dark-blue">
         <p class="b di"><%= user.first_name <> " " <> user.last_name %></p><span class="fr hl-yellow fw9">></span>
