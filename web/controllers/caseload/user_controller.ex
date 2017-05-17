@@ -1,9 +1,11 @@
 defmodule Healthlocker.Caseload.UserController do
   use Healthlocker.Web, :controller
+  alias Healthlocker.SleepTracker
 
   alias Healthlocker.{User, ReadOnlyRepo, EPJSUser, EPJSPatientAddressDetails, Goal, Post, Slam.ServiceUser}
 
   def show(conn, %{"id" => id, "section" => section}) do
+    date = Date.to_iso8601(Date.utc_today())
     user = Repo.get!(User, id)
     room = Repo.one! assoc(user, :rooms)
     service_user = ServiceUser.for(user)
@@ -17,9 +19,14 @@ defmodule Healthlocker.Caseload.UserController do
     strategies = Post
                 |> Post.get_coping_strategies(id)
                 |> Repo.all
+
+    sleep_data = SleepTracker
+      |> SleepTracker.get_sleep_data(service_user.id, Date.utc_today())
+      |> Repo.all
+
     render(conn, String.to_atom(section), user: user, slam_user: slam_user,
           address: address, goals: goals, strategies: strategies, room: room,
-          service_user: service_user)
+          service_user: service_user, sleep_data: sleep_data, date: date)
   end
 
   def show(conn, %{"id" => id}) do

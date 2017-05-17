@@ -9,6 +9,7 @@
             <%= String.trim_trailing(goal.content, " #Goal") %>
           </p>
 
+
         <%= for step <- goal.steps do %>
           <%= if is_bitstring(step.details) do %>
             <ul>
