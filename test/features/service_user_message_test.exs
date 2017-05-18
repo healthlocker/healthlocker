@@ -39,8 +39,7 @@ defmodule Healthlocker.ServiceUserMessageTest do
     |> click(@care_team_link)
     |> fill_in(@message_input, with: "Hi there")
     |> send_keys([:enter])
-
-    assert has_text?(session, "Hi there")
+    |> has_text?("Hi there")
   end
 
   test "can click on contacts", %{session: session} do
