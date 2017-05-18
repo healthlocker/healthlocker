@@ -3,7 +3,7 @@ defmodule Healthlocker.SymptomTracker do
 
   schema "symptom_trackers" do
     field :affected_scale, :string, null: false
-    field :note, :string
+    field :notes, :string
     belongs_to :symptom, Healthlocker.Symptom
 
     timestamps()
