@@ -9,7 +9,7 @@
   <%= @service_user == @current_user -> %>
     <p class="b">Write a message to your care team.</p>
   <%= @service_user != @current_user -> %>
-    <p class="b">Write a message to <%= @service_user.first_name <> " " <> @service_user.last_name %>'s care team.</p>
+    <p class="b">Write a message to <%= Healthlocker.ComponentView.full_name(@service_user) %>'s care team.</p>
     <p> Share your thoughts, observations and reflections. </p>
 <% end %>
 
