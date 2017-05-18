@@ -73,4 +73,12 @@ defmodule Healthlocker.ComponentView do
       ""
     end
   end
+
+  def full_name(user) do
+    if user.first_name && user.last_name do
+      user.first_name <> " " <> user.last_name
+    else
+      ""
+    end
+  end
 end
