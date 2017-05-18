@@ -36,6 +36,12 @@
   </div>
 
   <div class="w-100 tc mw6 center">
+    <%= link to: symptom_tracker_path(@conn, :new) do %>
+      <span class="mt4 f5 link dim br-pill ph1 pv3 dib black-60 hl-bg-grey pointer w-100">Problem tracker</span>
+    <% end %>
+  </div>
+  
+  <div class="w-100 tc mw6 center">
     <a href="/care-plan">
       <span class="mt4 f5 link dim br-pill ph1 pv3 dib black-60 hl-bg-grey pointer w-100">Care plan summary</span>
     </a>
