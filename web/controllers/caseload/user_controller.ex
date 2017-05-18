@@ -19,13 +19,14 @@ defmodule Healthlocker.Caseload.UserController do
     strategies = Post
                 |> Post.get_coping_strategies(id)
                 |> Repo.all
+
     sleep_data = SleepTracker
       |> SleepTracker.get_sleep_data(service_user.id, Date.utc_today())
       |> Repo.all
 
-    render(conn, String.to_atom(section), user: service_user, slam_user: slam_user,
+    render(conn, String.to_atom(section), user: user, slam_user: slam_user,
           address: address, goals: goals, strategies: strategies, room: room,
-          sleep_data: sleep_data, date: date)
+          service_user: service_user, sleep_data: sleep_data, date: date)
   end
 
   def show(conn, %{"id" => id}) do

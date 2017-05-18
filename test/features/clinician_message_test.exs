@@ -14,7 +14,7 @@ defmodule Healthlocker.ClinicianMessageTest do
       slam_id: 202
     )
 
-    carer = EctoFactory.insert(:user,
+    carer = EctoFactory.insert(:user_with_defaults,
       email: "bob@dwyl.io",
       first_name: "General",
       last_name: "Kenobi",

@@ -1,30 +1,36 @@
-<%= render "menu.html", assigns %>
-<div class="pa3 br3 mt2 hl-dark-blue w-100">
-  <table>
-    <tr>
-      <th class="b tl pr5 pv2">Date of Birth: </th>
-      <td class="pv2"><%= Healthlocker.ComponentView.pretty_date(@slam_user."DOB") %></td>
-    </tr>
-    <tr>
-      <th class="b tl pr5 pv2">Email: </th>
-      <td class="pv2"><%= @user.email %></td>
-    </tr>
-    <tr>
-      <th class="b tl pr5 pv2">NHS number: </th>
-      <td class="pv2"><%= format_nhs_number(@slam_user."NHS_Number") %></td>
-    </tr>
-    <tr>
-      <th class="b tl pr5 pv2">Phone number: </th>
-      <td class="pv2"><%= @user.phone_number %></td>
-    </tr>
-    <tr>
-      <th class="b tl pr5 pv2" valign="top">Home address: </th>
-      <td class="pv2">
-        <p class="ma0"><%= @address."Address1" %></p>
-        <p class="ma0"><%= @address."Address2" %></p>
-        <p class="ma0"><%= @address."Address3" %></p>
-        <p class="ma0"><%= @address."Post_Code" %></p>
-      </td>
-    </tr>
-  </table>
-</div>
+<%= if @service_user == @user do %>
+  <%= render "menu.html", assigns %>
+  <div class="pa3 br3 mt2 hl-dark-blue w-100">
+    <table>
+      <tr>
+        <th class="b tl pr5 pv2">Date of Birth: </th>
+        <td class="pv2"><%= Healthlocker.ComponentView.pretty_date(@slam_user."DOB") %></td>
+      </tr>
+      <tr>
+        <th class="b tl pr5 pv2">Email: </th>
+        <td class="pv2"><%= @user.email %></td>
+      </tr>
+      <tr>
+        <th class="b tl pr5 pv2">NHS number: </th>
+        <td class="pv2"><%= format_nhs_number(@slam_user."NHS_Number") %></td>
+      </tr>
+      <tr>
+        <th class="b tl pr5 pv2">Phone number: </th>
+        <td class="pv2"><%= @user.phone_number %></td>
+      </tr>
+      <tr>
+        <th class="b tl pr5 pv2" valign="top">Home address: </th>
+        <td class="pv2">
+          <p class="ma0"><%= @address."Address1" %></p>
+          <p class="ma0"><%= @address."Address2" %></p>
+          <p class="ma0"><%= @address."Address3" %></p>
+          <p class="ma0"><%= @address."Post_Code" %></p>
+        </td>
+      </tr>
+    </table>
+  </div>
+<%= else %>
+  <%= render "carer_menu.html", assigns %>
+  <p><strong>Name: </strong> <%= Healthlocker.ComponentView.full_name(@user) %></p>
+  <p><strong>Cares for: </strong> <%= Healthlocker.ComponentView.full_name(@service_user) %></p>
+<% end %>

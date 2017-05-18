@@ -70,4 +70,16 @@ defmodule Healthlocker.ComponentViewTest do
     assert String.contains?(actual, bold_title)
     assert String.contains?(actual, link)
   end
+
+  test "full_name gives the full name of the user" do
+    actual = ComponentView.full_name(%{first_name: "First", last_name: "Last"})
+    expected = "First Last"
+    assert actual == expected
+  end
+
+  test "full_name gives empty string with first & last name are nil" do
+    actual = ComponentView.full_name(%{first_name: nil, last_name: nil})
+    expected = ""
+    assert actual == expected
+  end
 end

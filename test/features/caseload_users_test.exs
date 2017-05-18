@@ -139,7 +139,6 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> click(Query.link("Jimmy Smits (carer)"))
     |> click(Query.link("Details and contacts"))
 
-    assert session |> has_text?("123 High Street")
-    assert session |> has_text?("tony@dwyl.io")
+    assert session |> has_text?("Jimmy Smits")
   end
 end
