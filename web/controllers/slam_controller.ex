@@ -1,7 +1,7 @@
 defmodule Healthlocker.SlamController do
   use Healthlocker.Web, :controller
   alias Healthlocker.Slam.CarerConnection
-  alias Healthlocker.{Carer, Repo, User}
+  alias Healthlocker.{Carer, Repo, User, Slam.ConnectCarer}
 
   def new(conn, _param) do
     changeset = CarerConnection.changeset(%CarerConnection{})
@@ -28,13 +28,13 @@ defmodule Healthlocker.SlamController do
       service_user = Repo.one(query)
 
       if service_user do
-        with {:ok, _user} <- Repo.update(name_changeset),
-             {:ok, _carer} <- Repo.insert(%Carer{carer: conn.assigns.current_user, caring: service_user}) do
-               conn
-               |> put_flash(:info, "Account connected with SLaM")
-               |> redirect(to: account_path(conn, :index))
-        else
-          {:error, changeset} ->
+        multi = ConnectCarer.connect_carer_and_create_rooms(conn.assigns.current_user, update_params, service_user)
+        case Repo.transaction(multi) do
+          {:ok, _user} ->
+            conn
+            |> put_flash(:info, "Account connected with SLaM")
+            |> redirect(to: account_path(conn, :index))
+          {:error, _type, changeset, _} ->
             conn
             |> put_flash(:error, "Something went wrong")
             |> render("new.html", changeset: changeset)
