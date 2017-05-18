@@ -30,18 +30,33 @@ defmodule Healthlocker.CareTeamTest do
   end
 
   @nav_button Query.css("#open-nav")
+  @care_team_link Query.link("Care team")
+  @message_input Query.css("#message-input")
+  @contacts_link Query.link("Contacts")
 
-  # describe "when the user isn't connected to SLaM" do
-  #   test "can't see Care Team menu", %{session: session} do
-  #     assert_raise Wallaby.QueryError, fn ->
-  #       session |> click(@nav_button) |> find(Query.link("Care team"))
-  #     end
-  #   end
-  # end
-
-  describe "when the user is connected to SLaM" do
+  describe "when the user is connected as a carer" do
     test "can see Care team menu", %{session: session} do
-      session |> click(@nav_button) |> find(Query.link("Care team"))
+      session |> click(@nav_button) |> find(@care_team_link)
+    end
+
+    test "can send messages", %{session: session} do
+      session
+      |> click(@nav_button)
+      |> click(@care_team_link)
+      |> fill_in(@message_input, with: "Hello")
+      |> send_keys([:enter])
+
+      assert has_text?(session, "Hello")
+    end
+
+    test "can click on contacts", %{session: session} do
+      session
+      |> click(@nav_button)
+      |> click(@care_team_link)
+      |> click(@contacts_link)
+
+      assert has_text?(session, "SLaM care team")
+      assert has_text?(session, "'s care team")
     end
   end
 end
