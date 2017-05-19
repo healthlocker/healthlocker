@@ -1,7 +1,7 @@
 <%= if @service_user == @user do %>
 <%= render "menu.html", assigns %>
-  <div class="pv3 mt2 hl-dark-blue w-100 center flex justify-between">
-    <div class="w-60">
+  <div class="pv3 hl-dark-blue w-100 center flex justify-between">
+    <div class="w-60 pt6">
       <h3>Goals</h3>
       <%= for goal <- @goals do %>
         <div class="bb bw2 b--black-10 dib w-100 pv3">
