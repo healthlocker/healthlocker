@@ -168,6 +168,10 @@ select:focus {
   background-color: #FDC300;
 }
 
+.hl-bg-light-yellow {
+  background-color: #FEECB5;
+}
+
 .hl-bg-success {
   background-color: #FEF3CC;
 }
