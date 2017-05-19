@@ -30,7 +30,7 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
     {:ok, result: result}
   end
 
-  test "dry carer connection run", %{result: result} do
+  test "dry carer connection run" do
     user = Repo.get!(User, 123456)
     service_user = Repo.get!(User, 123457)
     multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
@@ -57,5 +57,10 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
 
   test "room in multi result contains room name for carer", %{result: result} do
     assert result.room.name == "carer-care-team:123456"
+  end
+
+  test "carer_rooms in multi result contains room_id and user_id", %{result: result} do
+    assert result.carer_room.room_id == result.room.id
+    assert result.carer_room.user_id == 123456
   end
 end
