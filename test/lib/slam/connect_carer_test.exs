@@ -64,4 +64,16 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
     assert result.carer.carer.id == 123456
     assert result.carer.caring.id == 123457
   end
+
+  test "room in multi result contains room name for carer" do
+    user = Repo.get!(User, 123456)
+    service_user = Repo.get!(User, 123457)
+    multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
+      "first_name" => "Kat",
+      "last_name" => "Bow"
+    }, service_user)
+
+    {:ok, result} = Repo.transaction(multi)
+    assert result.room.name == "carer-care-team:123456"
+  end
 end
