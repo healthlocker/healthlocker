@@ -8,7 +8,7 @@ defmodule Healthlocker.Caseload.UserControllerTest do
       %User{
         id: 123_456,
         first_name: "My",
-        last_name: "Name",,
+        last_name: "Name",
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
@@ -67,6 +67,12 @@ defmodule Healthlocker.Caseload.UserControllerTest do
       user = Repo.get(User, 123_456)
       conn = get conn, caseload_user_path(conn, :show, user, section: "interactions")
       assert html_response(conn, 200) =~ "Coping Strategies"
+    end
+
+    test "caseload/users/:id?section=tracking&date=2017-05-18&shift=next", %{conn: conn} do
+      user = Repo.get(User, 123_456)
+      conn = get conn, caseload_user_path(conn, :show, user, section: "tracking", date: "2017-05-18", shift: "next")
+      assert html_response(conn, 200) =~ "Tracking overview"
     end
   end
 end
