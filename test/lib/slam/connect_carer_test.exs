@@ -1,6 +1,6 @@
 defmodule Healthlocker.Slam.ConnectCarerTest do
   use Healthlocker.ModelCase, async: true
-  alias Healthlocker.{User, Slam.ConnectCarer}
+  alias Healthlocker.{User, Slam.ConnectCarer, EPJSTeamMember, ReadOnlyRepo, EPJSClinician}
 
   setup %{} do
     user = %User{
@@ -19,6 +19,17 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
       security_answer: "Answer",
       slam_id: 203
     } |> Repo.insert!
+
+    %EPJSTeamMember{
+      Patient_ID: 203,
+      Staff_ID: 400
+    } |> ReadOnlyRepo.insert!
+
+    %EPJSClinician{
+      id: 400,
+      First_Name: "Andrew",
+      Last_Name: "Francis"
+    } |> ReadOnlyRepo.insert!
 
     multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
       "first_name" => "Kat",
