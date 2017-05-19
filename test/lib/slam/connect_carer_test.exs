@@ -88,13 +88,13 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
 
   describe "test failure for connecting carer" do
     setup %{} do
-      %User{
+      user = %User{
         id: 123456,
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password")
       } |> Repo.insert!
 
-      %User{
+      service_user = %User{
         id: 123457,
         first_name: "Lisa",
         last_name: "Sandoval",
@@ -105,7 +105,12 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
         slam_id: 203
       } |> Repo.insert!
 
-      :ok
+      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
+        "first_name" => "Kat",
+        "last_name" => "Bow"
+        }, service_user)
+
+      {:ok, multi: multi}
     end
 
     test "user response with no first or last name" do
@@ -117,30 +122,18 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
       assert type == :user
     end
 
-    test "carer response on error" do
-      user = Repo.get!(User, 123456)
-      service_user = Repo.get!(User, 123457)
-      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
-        "first_name" => "Kat",
-        "last_name" => "Bow"
-        }, service_user)
-      {:ok, success} = Repo.transaction(multi)
+    test "carer response on error", %{multi: multi} do
+      Repo.transaction(multi)
       assert {:error, type, result, _} = Repo.transaction(multi)
       assert type == :carer
       assert result.errors
     end
 
-    test "room response on error" do
-      user = Repo.get!(User, 123456)
-      service_user = Repo.get!(User, 123457)
-      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
-        "first_name" => "Kat",
-        "last_name" => "Bow"
-        }, service_user)
-        %Room{
-          id: 501,
-          name: "carer-care-team:123456"
-        } |> Repo.insert!
+    test "room response on error", %{multi: multi} do
+      %Room{
+        id: 501,
+        name: "carer-care-team:123456"
+      } |> Repo.insert!
       assert {:error, type, result, _} = Repo.transaction(multi)
       assert result == "Error in creating room"
       assert type == :room
