@@ -1,25 +1,25 @@
 <%= if @service_user == @user do %>
   <%= render "menu.html", assigns %>
-  <div class="pa3 br3 mt2 hl-dark-blue w-100">
-    <table>
+  <div class=" pt-10em hl-dark-blue w-100">
+    <table class="hl-bg-light-yellow br3 w-80 tl center pa3">
       <tr>
-        <th class="b tl pr5 pv2">Date of Birth: </th>
+        <th class="b tl pv2 mw3">Date of Birth: </th>
         <td class="pv2"><%= Healthlocker.ComponentView.pretty_date(@slam_user."DOB") %></td>
       </tr>
       <tr>
-        <th class="b tl pr5 pv2">Email: </th>
+        <th class="b tl pv2 mw3">Email: </th>
         <td class="pv2"><%= @user.email %></td>
       </tr>
       <tr>
-        <th class="b tl pr5 pv2">NHS number: </th>
+        <th class="b tl pv2 mw3">NHS number: </th>
         <td class="pv2"><%= format_nhs_number(@slam_user."NHS_Number") %></td>
       </tr>
       <tr>
-        <th class="b tl pr5 pv2">Phone number: </th>
+        <th class="b tl pv2 mw3">Phone number: </th>
         <td class="pv2"><%= @user.phone_number %></td>
       </tr>
       <tr>
-        <th class="b tl pr5 pv2" valign="top">Home address: </th>
+        <th class="b tl pv2 mw3" valign="top">Home address: </th>
         <td class="pv2">
           <p class="ma0"><%= @address."Address1" %></p>
           <p class="ma0"><%= @address."Address2" %></p>
