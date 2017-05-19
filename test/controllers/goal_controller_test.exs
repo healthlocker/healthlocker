@@ -33,7 +33,7 @@ defmodule Healthlocker.GoalControllerTest do
     test "shows chosen goal", %{conn: conn} do
       goal = Repo.insert! %Goal{content: "some content #Goal", user_id: 123456}
       conn = get conn, goal_path(conn, :show, goal)
-      assert html_response(conn, 200) =~ "Toolkit"
+      assert html_response(conn, 200) =~ "Goals and tracking"
     end
 
     test "renders page not found when goal id is nonexistent", %{conn: conn} do
