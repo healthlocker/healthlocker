@@ -7,7 +7,7 @@
   <%= if @current_user == @service_user do %>
     <h3>Your care team</h3>
   <%= else %>
-    <h3><%= Healthlocker.ComponentView.full_name(@service_user) %>"'s care team" %></h3>
+    <h3><%= Healthlocker.ComponentView.full_name(@service_user) %>'s care team</h3>
   <% end %>
 
   <h2 class="mv4">SLaM care team</h2>
