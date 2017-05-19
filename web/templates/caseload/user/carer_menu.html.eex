@@ -1,4 +1,4 @@
-<h2 class="hl-dark-blue"><%= Healthlocker.ComponentView.full_name(@user) %> (carer)</h2>
+<h2 class="hl-dark-blue"><%= Healthlocker.ComponentView.full_name(@user) %> <span class="normal">(friend/family/carer)</span></h2>
 <div class="w-100 h3">
   <%= cond do %>
    <%= String.contains?(@conn.request_path, "rooms") -> %>
