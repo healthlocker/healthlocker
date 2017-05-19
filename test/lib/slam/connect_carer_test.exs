@@ -1,6 +1,6 @@
 defmodule Healthlocker.Slam.ConnectCarerTest do
   use Healthlocker.ModelCase, async: true
-  alias Healthlocker.{User, Slam.ConnectCarer, EPJSTeamMember, ReadOnlyRepo, EPJSClinician}
+  alias Healthlocker.{User, Slam.ConnectCarer, EPJSTeamMember, ReadOnlyRepo, EPJSClinician, ClinicianRooms}
 
   setup %{} do
     user = %User{
@@ -78,5 +78,8 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
   test "clinician_room in multi result inserts_all successfully", %{result: result} do
     # clinician room uses insert_all, so it just returns 1 if successful and 0 if not
     assert result.clinician_room == 1
+    clinician_room = Repo.get_by(ClinicianRooms, clinician_id: 400)
+    assert clinician_room
+    assert clinician_room.room_id == result.room.id
   end
 end
