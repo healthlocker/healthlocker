@@ -30,21 +30,24 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
       "first_name" => "Kat",
       "last_name" => "Bow"
     }, service_user)
-    #
-    assert [user: {:update, user_changeset, []},
-            carer: {:insert, carer_changeset, []}, room: {:run, function},
-            carer_room: {:run, function},
-            clinician_room: {:run, function}] = Ecto.Multi.to_list(multi)
-    [user, carer, room, carer_room, clinician_room] = Ecto.Multi.to_list(multi)
-    IO.inspect room
-    IO.inspect carer_room
-    assert [user, carer, room, carer_room, clinician_room] = Ecto.Multi.to_list(multi)
+
+    assert [user: {:update, _, []},
+            carer: {:insert, _, []},
+            room: {:run, _},
+            carer_room: {:run, _},
+            clinician_room: {:run, _}] = Ecto.Multi.to_list(multi)
+  end
+
+  test "user in multi result contains a users with updated name" do
+    user = Repo.get!(User, 123456)
+    service_user = Repo.get!(User, 123457)
+    multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
+      "first_name" => "Kat",
+      "last_name" => "Bow"
+    }, service_user)
+
+    {:ok, result} = Repo.transaction(multi)
+    assert result.user.first_name == "Kat"
+    assert result.user.last_name == "Bow"
   end
 end
-# [user: {:update, changeset, []},
-# carer: {:insert, changeset, []},
-# room: {:run, function,
-#              carer_room: {:run,
-#               #Function<1.84387637/1 in Healthlocker.Slam.ConnectCarer.connect_carer_and_create_rooms/3>},
-#              clinician_room: {:run,
-#               #Function<2.84387637/1 in Healthlocker.Slam.ConnectCarer.connect_carer_and_create_rooms/3>}]
