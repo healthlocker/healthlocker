@@ -1,5 +1,5 @@
 <div class="pt-9em pt6-ns">
-  <%= content_tag :div, id: "message-feed", data: [room_id: @room.id, user_id: @current_user_id], class: "db ba b--hl-aqua br2 overflow-y-scroll overflow-x-hidden smooth-scroll mb3 ph3 pt2" do %>
+  <%= content_tag :div, id: "message-feed", data: [room_id: @room.id, user_id: @current_user_id], class: "db ba b--hl-grey br2 overflow-y-scroll overflow-x-hidden smooth-scroll mb3 ph3 pt2" do %>
     <%= for message <- @messages do %>
       <%= render Healthlocker.MessageView, "_message.html", message: message, current_user_id: @current_user_id %>
     <% end %>
