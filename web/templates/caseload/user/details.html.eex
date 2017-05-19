@@ -31,6 +31,5 @@
   </div>
 <%= else %>
   <%= render "carer_menu.html", assigns %>
-  <p><strong>Name: </strong> <%= Healthlocker.ComponentView.full_name(@user) %></p>
-  <p><strong>Cares for: </strong> <%= Healthlocker.ComponentView.full_name(@service_user) %></p>
+  <p><strong><%= Healthlocker.ComponentView.full_name(@user) %></strong> (friend/family/carer) of <strong><%= Healthlocker.ComponentView.full_name(@service_user) %></strong></p>
 <% end %>
