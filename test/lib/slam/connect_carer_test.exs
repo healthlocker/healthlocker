@@ -64,8 +64,8 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
     end
 
     test "carer in multi result contains carer_id and caring_id", %{result: result} do
-      assert result.carer.carer.id == 123456
-      assert result.carer.caring.id == 123457
+      assert result.carer.carer_id == 123456
+      assert result.carer.caring_id == 123457
     end
 
     test "room in multi result contains room name for carer", %{result: result} do
@@ -105,11 +105,6 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
         slam_id: 203
       } |> Repo.insert!
 
-      %Room{
-        id: 501,
-        name: "carer-care-team:123456"
-      } |> Repo.insert!
-
       :ok
     end
 
@@ -117,7 +112,7 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
       user = Repo.get!(User, 123456)
       service_user = Repo.get!(User, 123457)
       multi = ConnectCarer.connect_carer_and_create_rooms(user, %{}, service_user)
-      assert {:error, type, result, %{}} = Repo.transaction(multi)
+      assert {:error, type, result, _} = Repo.transaction(multi)
       assert result.errors
       assert type == :user
     end
@@ -129,6 +124,23 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
         "first_name" => "Kat",
         "last_name" => "Bow"
         }, service_user)
+      {:ok, success} = Repo.transaction(multi)
+      assert {:error, type, result, _} = Repo.transaction(multi)
+      assert type == :carer
+      assert result.errors
+    end
+
+    test "room response on error" do
+      user = Repo.get!(User, 123456)
+      service_user = Repo.get!(User, 123457)
+      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
+        "first_name" => "Kat",
+        "last_name" => "Bow"
+        }, service_user)
+        %Room{
+          id: 501,
+          name: "carer-care-team:123456"
+        } |> Repo.insert!
       assert {:error, type, result, _} = Repo.transaction(multi)
       assert result == "Error in creating room"
       assert type == :room
