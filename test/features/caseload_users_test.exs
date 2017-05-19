@@ -141,4 +141,15 @@ defmodule Healthlocker.CaseloadUsersTest do
 
     assert session |> has_text?("Jimmy Smits")
   end
+
+  test "view tracking overview", %{session: session} do
+    session
+    |> resize_window(768, 1024)
+    |> log_in("clinician@nhs.co.uk")
+    |> click(Query.link("Caseload"))
+    |> click(Query.link("Tony Daly"))
+    |> click(Query.link("Tracking"))
+
+    assert has_text?(session, "Tracking overview")
+  end
 end

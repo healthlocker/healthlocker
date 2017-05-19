@@ -1,22 +1,16 @@
 <%= render "menu.html", assigns %>
+
 <h2 class="tc">Tracking overview</h2>
 <div class="w-100">
   <p class="link w-100 bb b--black-30 dib fl black tc pv1 bg-white">7 days</p>
 </div>
 
-<canvas id="myChart" width="400" height="400"></canvas>
+<div class="mt4 w-40 dib">
+  <%= link_secondary "< Previous", to: caseload_user_path(@conn, :show, @user, section: "tracking", date: @date, shift: "prev") %>
+</div>
 
-<h3 class="b">7 day average</h3>
-<p class="bb bw-2 b--hl-grey bw2 mt3 pb3"><span class="b di">Sleep </span><%= Healthlocker.SleepTrackerView.get_week_average(@sleep_data) %></p>
+<div class="mt4 tr fr w-40 dib">
+  <%= link_secondary "Next >", to: caseload_user_path(@conn, :show, @user, section: "tracking", date: @date, shift: "next") %>
+</div>
 
-<%= for sleep_day <- @sleep_data do %>
-  <section class="bb b--black-10">
-    <h4 class="b"><%= Healthlocker.SleepTrackerView.date_with_day_and_month(sleep_day.for_date) %></h4>
-    <p class="di"><p class="b di">Sleep </p><%= Healthlocker.SleepTrackerView.format_average_sleep(String.to_float(sleep_day.hours_slept)) %></p>
-    <p>Woke up <%= sleep_day.wake_count %> times</p>
-    <p class="i"><%= sleep_day.notes %></p>
-  </section>
-<% end %>
-
-<script>window.sleep_hours = "<%= Healthlocker.SleepTrackerView.format_sleep_hours(@sleep_data) %>"</script>
-<script>window.sleep_dates = "<%= Healthlocker.SleepTrackerView.format_sleep_dates(@date) %>"</script>
+<%= render  Healthlocker.SleepTrackerView, "sleep_data.html", assigns %>
