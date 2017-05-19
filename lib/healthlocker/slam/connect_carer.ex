@@ -8,7 +8,7 @@ defmodule Healthlocker.Slam.ConnectCarer do
   def connect_carer_and_create_rooms(user, params, service_user) do
     Multi.new
     |> Multi.update(:user, User.name_changeset(user, %{first_name: params["first_name"], last_name: params["last_name"]}))
-    |> Multi.insert(:carer, %Carer{carer: user, caring: service_user})
+    |> Multi.insert(:carer, Carer.changeset(%Carer{carer_id: user.id, caring_id: service_user.id}))
     |> Multi.run(:room, &create_rooms/1)
     |> Multi.run(:carer_room, &add_carer_to_room/1)
     |> Multi.run(:clinician_room, &add_clinicians_to_room/1)
