@@ -50,10 +50,10 @@ defmodule Healthlocker.SymptomTrackerController do
     case Repo.insert(changeset) do
       {:ok, _symptom_tracker} ->
         conn
-        |> put_flash(:info, "updated")
+        |> put_flash(:info, "Tracked successfully")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
-        render conn, "new.html", changeset: changeset
+        render conn, "new.html", changeset: changeset, symptom: symptom
     end
   end
 end
