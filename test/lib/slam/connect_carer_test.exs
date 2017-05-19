@@ -1,6 +1,7 @@
 defmodule Healthlocker.Slam.ConnectCarerTest do
   use Healthlocker.ModelCase, async: true
-  alias Healthlocker.{User, Slam.ConnectCarer, EPJSTeamMember, ReadOnlyRepo, EPJSClinician, ClinicianRooms}
+  alias Healthlocker.{User, Slam.ConnectCarer, EPJSTeamMember, ReadOnlyRepo,
+                      EPJSClinician, ClinicianRooms, Room}
 
   describe "test success paths for connecting carer" do
     setup %{} do
@@ -87,13 +88,13 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
 
   describe "test failure for connecting carer" do
     setup %{} do
-      user = %User{
+      %User{
         id: 123456,
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password")
       } |> Repo.insert!
 
-      service_user = %User{
+      %User{
         id: 123457,
         first_name: "Lisa",
         last_name: "Sandoval",
@@ -104,16 +105,33 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
         slam_id: 203
       } |> Repo.insert!
 
-      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{}, service_user)
+      %Room{
+        id: 501,
+        name: "carer-care-team:123456"
+      } |> Repo.insert!
 
-      {:ok, multi: multi}
-
+      :ok
     end
 
-    test "testing", %{multi: multi} do
+    test "user response with no first or last name" do
+      user = Repo.get!(User, 123456)
+      service_user = Repo.get!(User, 123457)
+      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{}, service_user)
       assert {:error, type, result, %{}} = Repo.transaction(multi)
       assert result.errors
       assert type == :user
+    end
+
+    test "carer response on error" do
+      user = Repo.get!(User, 123456)
+      service_user = Repo.get!(User, 123457)
+      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
+        "first_name" => "Kat",
+        "last_name" => "Bow"
+        }, service_user)
+      assert {:error, type, result, _} = Repo.transaction(multi)
+      assert result == "Error in creating room"
+      assert type == :room
     end
   end
 end
