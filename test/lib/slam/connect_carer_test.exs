@@ -84,4 +84,31 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
       assert clinician_room.room_id == result.room.id
     end
   end
+
+  describe "test failure for connecting carer" do
+    setup %{} do
+      user = %User{
+        id: 123456,
+        email: "abc@gmail.com",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+      } |> Repo.insert!
+
+      service_user = %User{
+        id: 123457,
+        first_name: "Lisa",
+        last_name: "Sandoval",
+        email: "abc123@gmail.com",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        security_question: "Question?",
+        security_answer: "Answer",
+        slam_id: 203
+      } |> Repo.insert!
+
+      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{}, service_user)
+
+      {:ok, result} = Repo.transaction(multi)
+
+      {:ok, result: result}
+    end
+  end
 end
