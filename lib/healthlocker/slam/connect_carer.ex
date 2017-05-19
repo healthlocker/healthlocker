@@ -15,8 +15,8 @@ defmodule Healthlocker.Slam.ConnectCarer do
   end
 
   defp create_rooms(multi) do
-    room = %Room{name: "carer-care-team:" <> Integer.to_string(multi.user.id)}
-    case Repo.insert(room) do
+    changeset = Room.changeset(%Room{}, %{name: "carer-care-team:" <> Integer.to_string(multi.user.id)})
+    case Repo.insert(changeset) do
       {:ok, room} ->
         {:ok, room}
       {:error, _changeset} ->
