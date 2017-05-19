@@ -20,7 +20,5 @@ defmodule Healthlocker.SymptomController do
       {:error, changeset} ->
         render conn, "new.html", changeset: changeset
     end
-
-    conn
   end
 end
