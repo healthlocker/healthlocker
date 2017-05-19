@@ -7,19 +7,31 @@ defmodule Healthlocker.SymptomTrackerController do
     query = from s in Symptom, where: s.user_id == ^user_id
 
     case Repo.all(query) do
+      # checks if a user has a symptom
       [symptom | _] ->
-        tracker_query = from st in SymptomTracker, where: st.symptom_id == ^symptom.id, order_by: [st.inserted_at]
-        [symptom_tracker | _] = Repo.all(tracker_query)
-        case Date.compare(NaiveDateTime.to_date(symptom_tracker.inserted_at), Date.utc_today) do
-          :eq ->
-            conn
-            |> put_flash(:error, "You can only track your problem once a day")
-            |> redirect(to: toolkit_path(conn, :index))
-          _ ->
+        tracker_query = from st in SymptomTracker, where: st.symptom_id == ^symptom.id, order_by: [desc: st.inserted_at]
+        case Repo.all(tracker_query) do
+          # if so query SymptomTracker to see if they have tracked that issue yet
+          [symptom_tracker | _] ->
+            # if the have tracked a symptom check the date for when they last did
+            case Date.compare(NaiveDateTime.to_date(symptom_tracker.inserted_at), Date.utc_today) do
+              # if date is equal to today's date tell user they can only enter once per day
+              :eq ->
+                conn
+                |> put_flash(:error, "You can only track your problem once a day")
+                |> redirect(to: toolkit_path(conn, :index))
+              # else let user track symptom
+              _ ->
+                changeset = SymptomTracker.changeset(%SymptomTracker{}, %{})
+                render conn, "new.html", changeset: changeset, symptom: symptom
+            end
+          [] ->
+            # if a user has a symptom but no tracking let them track symptom
             changeset = SymptomTracker.changeset(%SymptomTracker{}, %{})
             render conn, "new.html", changeset: changeset, symptom: symptom
         end
       [] ->
+      # if a user does not have a symptom redirect to symptom
         conn
         |> redirect(to: symptom_path(conn, :new))
     end
