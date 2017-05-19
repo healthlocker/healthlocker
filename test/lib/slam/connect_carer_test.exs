@@ -3,7 +3,7 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
   alias Healthlocker.{User, Slam.ConnectCarer, EPJSTeamMember, ReadOnlyRepo,
                       EPJSClinician, ClinicianRooms, Room}
 
-  describe "test success paths for connecting carer" do
+  describe "success paths for connecting carer" do
     setup %{} do
       user = %User{
         id: 123456,
@@ -86,7 +86,7 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
     end
   end
 
-  describe "test failure for connecting carer" do
+  describe "failure for connecting carer" do
     setup %{} do
       user = %User{
         id: 123456,
