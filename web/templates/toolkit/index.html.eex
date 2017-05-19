@@ -35,12 +35,16 @@
     </div>
   </div>
 
-  <div class="w-100 tc mw6 center">
-    <%= link to: symptom_tracker_path(@conn, :new) do %>
-      <span class="mt4 f5 link dim br-pill ph1 pv3 dib black-60 hl-bg-grey pointer w-100">Problem tracker</span>
-    <% end %>
+  <div class="tracker-container w-100 mw6 center mt3 flex items-end justify-between">
+    <div class="w-40 tc dib">
+      <%= link to: symptom_tracker_path(@conn, :new) do %>
+      <%= img_tag("/images/Toolkit_problem.png",
+                  class: "w-100") %>
+      <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Problem tracker</span>
+      <% end %>
+    </div>
   </div>
-  
+
   <div class="w-100 tc mw6 center">
     <a href="/care-plan">
       <span class="mt4 f5 link dim br-pill ph1 pv3 dib black-60 hl-bg-grey pointer w-100">Care plan summary</span>
