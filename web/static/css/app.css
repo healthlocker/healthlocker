@@ -132,6 +132,10 @@ select:focus {
   background-color: #25BDC3;
 }
 
+.hl-bg-light-aqua {
+  background-color: #B8EBED
+}
+
 .bg-beta-yellow {
   background-color: #FFED66;
 }
