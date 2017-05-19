@@ -5,7 +5,7 @@ defmodule Healthlocker.Repo.Migrations.CreatePost do
     create table(:posts) do
       add :content, :text , null: false
 
-      timestamps
+      timestamps()
     end
   end
 end

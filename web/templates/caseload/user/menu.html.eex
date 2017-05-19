@@ -4,27 +4,27 @@
     <%= String.contains?(@conn.request_path, "rooms") -> %>
        <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
        <%= link "Goals and strategies", to: caseload_user_path(@conn, :show, @user, section: "interactions"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
-       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
        <%= link "Tracking", to: caseload_user_path(@conn, :show, @user, section: "tracking"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
+       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
     <%= String.contains?(@conn.query_string, "interactions") -> %>
        <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
        <%= link "Goals and strategies", to: caseload_user_path(@conn, :show, @user, section: "interactions"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
-       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
        <%= link "Tracking", to: caseload_user_path(@conn, :show, @user, section: "tracking"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
+       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
     <%= String.contains?(@conn.query_string, "details") -> %>
        <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
        <%= link "Goals and strategies", to: caseload_user_path(@conn, :show, @user, section: "interactions"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
-       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
        <%= link "Tracking", to: caseload_user_path(@conn, :show, @user, section: "tracking"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
+       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
     <%= String.contains?(@conn.query_string, "tracking") -> %>
        <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
        <%= link "Goals and strategies", to: caseload_user_path(@conn, :show, @user, section: "interactions"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
-       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
        <%= link "Tracking", to: caseload_user_path(@conn, :show, @user, section: "tracking"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
+       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
     <%= true -> %>
        <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
        <%= link "Goals and strategies", to: caseload_user_path(@conn, :show, @user, section: "interactions"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
-       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
        <%= link "Tracking", to: caseload_user_path(@conn, :show, @user, section: "tracking"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white" %>
+       <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-25 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
   <% end %>
 </div>
