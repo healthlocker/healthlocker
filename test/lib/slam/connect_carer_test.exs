@@ -106,9 +106,14 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
 
       multi = ConnectCarer.connect_carer_and_create_rooms(user, %{}, service_user)
 
-      {:ok, result} = Repo.transaction(multi)
+      {:ok, multi: multi}
 
-      {:ok, result: result}
+    end
+
+    test "testing", %{multi: multi} do
+      assert {:error, type, result, %{}} = Repo.transaction(multi)
+      assert result.errors
+      assert type == :user
     end
   end
 end
