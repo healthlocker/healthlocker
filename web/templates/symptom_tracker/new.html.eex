@@ -1,0 +1,29 @@
+<div class="br2 mv4 center">
+  <h2 class="tc">Problem tracker: <%= @symptom.symptom %></h2>
+
+  <%= form_for @changeset, symptom_tracker_path(@conn, :create), fn f -> %>
+    <div class="">
+      <%= label f, "Rate how much this problem or difficulty affected you today:", class: "f5 b db mb2" %>
+      <%= select f, :affected_scale, Healthlocker.ComponentView.get_options("symptom_tracker"),
+        class: "pa3 input-reset bn hl-bg-grey w-100 "  <>
+        Healthlocker.ComponentView.highlight_errors(@changeset, :affected_scale) %>
+      <span class="hl-pink"><%= error_tag f, :affected_scale %></span>
+    </div>
+
+    <div class="">
+      <%= label f, "Notes:", class: "f5 b db mb2 mt4" %>
+      <p>For example:</p>
+      <ul class="i">
+        <li>was there anything that may have triggered this experience?</li>
+        <li>did you notice anything that made it better or worse?</li>
+        <li>have your experiences been different in the morning, afternoon or night?</li>
+        <li>did you find anything you did was helpful or unhelpful?</li>
+      </ul>
+      <%= textarea f, :notes, class: "pa3 input-reset bn hl-bg-grey w-100 " %>
+    </div>
+
+    <div class="mt4 tr">
+      <%= submit_primary "Save" %>
+    </div>
+  <% end %>
+</div>
