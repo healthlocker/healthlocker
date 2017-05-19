@@ -70,8 +70,13 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
     assert result.room.name == "carer-care-team:123456"
   end
 
-  test "carer_rooms in multi result contains room_id and user_id", %{result: result} do
+  test "carer_room in multi result contains room_id and user_id", %{result: result} do
     assert result.carer_room.room_id == result.room.id
     assert result.carer_room.user_id == 123456
+  end
+
+  test "clinician_room in multi result inserts_all successfully", %{result: result} do
+    # clinician room uses insert_all, so it just returns 1 if successful and 0 if not
+    assert result.clinician_room == 1
   end
 end
