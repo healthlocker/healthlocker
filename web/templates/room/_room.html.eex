@@ -6,7 +6,7 @@
   <% end %>
 
   <%= cond do %>
-    <%= !@service_user -> %>
+    <%= @current_user.role == "clinician" -> %>
     <%= @service_user == @current_user -> %>
       <p class="b">Write a message to your care team.</p>
     <%= @service_user != @current_user -> %>
@@ -17,7 +17,7 @@
     <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
   </div>
 
-  <%= if @service_user do %>
+  <%= if @current_user.role != "clinician" do %>
     <p>
       Messaging should <strong>not</strong> be used in emergency situations.
       If you need urgent help or advice, go to
