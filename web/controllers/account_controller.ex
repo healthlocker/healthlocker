@@ -16,7 +16,7 @@ defmodule Healthlocker.AccountController do
 
   def update(conn, %{"user" => user_params}) do
     user_id = conn.assigns.current_user.id
-    user = Repo.get!(User, user_id)
+    user = Repo.get!(User, user_id) |> Repo.preload(:caring)
 
     changeset = User.update_changeset(user, user_params)
 
@@ -176,7 +176,7 @@ defmodule Healthlocker.AccountController do
         end
 
         if slam_user do
-          user = conn.assigns.current_user
+          user = conn.assigns.current_user |> Repo.preload(:caring)
           multi = ConnectSlam.connect_su_and_create_rooms(user, %{
             first_name: forename,
             last_name: surname,
