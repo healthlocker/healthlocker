@@ -1,31 +1,29 @@
 <h2 class="tc">Caseload</h3>
 
-<h2 class="mv4">Healthlocker users</h2>
+<h3 class="mv4">Healthlocker users</h3>
 <div class="cf">
   <%= for user <- @hl_users do %>
     <%= link to: caseload_user_room_path(@conn, :show, user, room_for(user)),
             class: "no-underline hl-dark-blue cf" do %>
-      <div class="w-100 hl-bg-grey pa3 mv3 br3 hl-dark-blue">
-        <p class="b di"><%= Healthlocker.ComponentView.full_name(user) %></p><span class="fr hl-yellow fw9">></span>
+      <div class="w-100 hl-bg-light-aqua pa3 mv3 br3 hl-dark-blue">
+        <p class="b di"><%= Healthlocker.ComponentView.full_name(user) %></p><span class="fr hl-pink fw9">></span>
       </div>
     <% end %>
 
     <%= for carer <- user.carers do %>
       <%= link to: caseload_user_room_path(@conn, :show, carer, room_for(carer)),
               class: "no-underline hl-dark-blue cf" do %>
-        <div class="w-80 fr hl-bg-grey pa3 mv3 br3 hl-dark-blue">
-          <p class="b di"><%= Healthlocker.ComponentView.full_name(carer) %> (carer)</p><span class="fr hl-yellow fw9">></span>
+        <div class="w-80 fr pa3 mv3 b--hl-yellow ba bw1 br3 hl-dark-blue">
+          <p class="b di"><%= Healthlocker.ComponentView.full_name(carer) %> <span class="normal i">(friend/family/carer)</span></p><span class="fr hl-pink fw9">></span>
         </div>
       <% end %>
     <% end %>
   <% end %>
 </div>
 
-<h2 class="mv4">Inactive users</h2>
+<h3 class="pt4 pb3 b--hl-grey bt bw1">Users not signed up to Healthlocker</h3>
 <%= for user <- @non_hl do %>
   <div class="w-100 hl-bg-grey pa3 mv3 br3 hl-dark-blue">
-       <p class="b di"><%= user."Forename" %> <%= user."Surname" %></p>
-       <span class="i">Not signed up to Healthlocker</span>
-       <span class="fr hl-yellow fw9">></span>
+       <p class="b di o-50"><%= user."Forename" %> <%= user."Surname" %></p>
    </div>
 <% end %>

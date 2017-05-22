@@ -132,6 +132,10 @@ select:focus {
   background-color: #25BDC3;
 }
 
+.hl-bg-light-aqua {
+  background-color: #B8EBED
+}
+
 .bg-beta-yellow {
   background-color: #FFED66;
 }
@@ -166,6 +170,10 @@ select:focus {
 
 .hl-bg-yellow {
   background-color: #FDC300;
+}
+
+.hl-bg-light-yellow {
+  background-color: #FEECB5;
 }
 
 .hl-bg-success {
@@ -233,6 +241,14 @@ select:focus {
 
 .bm-top {
   top: 1rem;
+}
+
+.pt-10em {
+  padding-top: 10em;
+}
+
+.pt-9em {
+  padding-top: 9em;
 }
 
 /* Messages */

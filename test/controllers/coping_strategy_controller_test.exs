@@ -35,7 +35,7 @@ defmodule Healthlocker.CopingStrategyControllerTest do
     test "shows chosen coping strategy", %{conn: conn} do
       coping_strategy = Repo.insert! %Post{content: "some content",  user_id: 123456}
       conn = get conn, coping_strategy_path(conn, :show, coping_strategy)
-      assert html_response(conn, 200) =~ "Toolkit"
+      assert html_response(conn, 200) =~ "Goals and tracking"
     end
 
     test "renders page not found when coping strategy id is nonexistent", %{conn: conn} do

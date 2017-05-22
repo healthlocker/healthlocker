@@ -26,6 +26,6 @@
   </p>
 
   <div class="tr mt3">
-    <%= link_to "Back to Toolkit", to: toolkit_path(@conn, :index) %>
+    <%= link_to "Back to Goals and tracking", to: toolkit_path(@conn, :index) %>
   </div>
 </div>

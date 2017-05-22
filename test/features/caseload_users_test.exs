@@ -106,7 +106,7 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> click(Query.link("Caseload"))
     |> take_screenshot
 
-    assert session |> has_text?("Jimmy Smits (carer)")
+    assert session |> has_text?("Jimmy Smits (friend/family/carer)")
   end
 
   test "view service user", %{session: session} do
@@ -136,7 +136,7 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> resize_window(768, 1024)
     |> log_in("clinician@nhs.co.uk")
     |> click(Query.link("Caseload"))
-    |> click(Query.link("Jimmy Smits (carer)"))
+    |> click(Query.link("Jimmy Smits (friend/family/carer)"))
     |> click(Query.link("Details and contacts"))
 
     assert session |> has_text?("Jimmy Smits")

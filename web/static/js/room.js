@@ -40,9 +40,9 @@ let Room = {
     let message = document.getElementById("message-" + id)
 
     if (message_user_id == userId) {
-      this.addClass(message, " hl-bg-yellow fr")
+      this.addClass(message, " hl-bg-light-yellow fr")
     } else {
-      this.addClass(message, " hl-bg-aqua fl")
+      this.addClass(message, " hl-bg-light-aqua fl")
     }
 
     msgContainer.scrollTop = msgContainer.scrollHeight
