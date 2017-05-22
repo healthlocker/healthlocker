@@ -1,30 +1,31 @@
-<%= content_tag :div, id: "message-feed", data: [room_id: @room.id, user_id: @current_user_id], class: "db ba b--hl-aqua br2 overflow-y-scroll overflow-x-hidden smooth-scroll mb3 ph3 pt2" do %>
-  <%= for message <- @messages do %>
-    <%= render Healthlocker.MessageView, "_message.html", message: message, current_user_id: @current_user_id %>
+<div class="pt-9em pt6-ns">
+  <%= content_tag :div, id: "message-feed", data: [room_id: @room.id, user_id: @current_user_id], class: "db ba b--hl-grey br2 overflow-y-scroll overflow-x-hidden smooth-scroll mb3 ph3 pt2" do %>
+    <%= for message <- @messages do %>
+      <%= render Healthlocker.MessageView, "_message.html", message: message, current_user_id: @current_user_id %>
+    <% end %>
   <% end %>
-<% end %>
 
-<%= cond do %>
-  <%= !@service_user -> %>
-  <%= @service_user == @current_user -> %>
-    <p class="b">Write a message to your care team.</p>
-  <%= @service_user != @current_user -> %>
-    <p class="b">Write a message to <%= @service_user.first_name <> " " <> @service_user.last_name %>'s care team.</p>
-    <p> Share your thoughts, observations and reflections. </p>
-<% end %>
+  <%= cond do %>
+    <%= @current_user.role == "clinician" -> %>
+    <%= @service_user == @current_user -> %>
+      <p class="b">Write a message to your care team.</p>
+    <%= @service_user != @current_user -> %>
+      <p class="b">Write a message to <%= Healthlocker.ComponentView.full_name(@service_user) %>'s care team.</p>
+      <p> Share your thoughts, observations and reflections. </p>
+  <% end %>
+  <div class="w-100 bn br2 hl-bg-grey pa3">
+    <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
+  </div>
 
-<div class="w-100 bn br2 hl-bg-grey pa3">
-  <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
+  <%= if @current_user.role != "clinician" do %>
+    <p>
+      Messaging should <strong>not</strong> be used in emergency situations.
+      If you need urgent help or advice, go to
+      <%= link_to("Get support", to: support_path(@conn, :index)) %>.
+      Your message will be visible to
+      <%= if @service_user == @current_user, do: "your" %>
+      <%= if @service_user != @current_user, do: "their" %> whole
+      care team. Do not expect an immediate response.
+    </p>
+  <% end %>
 </div>
-
-<%= if @service_user do %>
-  <p>
-    Messaging should <strong>not</strong> be used in emergency situations.
-    If you need urgent help or advice, go to
-    <%= link_to("Get support", to: support_path(@conn, :index)) %>.
-    Your message will be visible to
-    <%= if @service_user == @current_user, do: "your" %>
-    <%= if @service_user != @current_user, do: "their" %> whole
-    care team. Do not expect an immediate response.
-  </p>
-<% end %>

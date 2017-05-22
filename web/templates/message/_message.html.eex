@@ -1,7 +1,7 @@
 <div id="<%= dom_id(@message) %>" class="<%= classes(@message, @current_user_id) %>">
-  <div class="sender f6 f5-ns fw6 lh-title black mv0"><%= user_name(@message) %></div>
+  <small class="dib fr i"><time><%= sent_at(@message) %></time></small>
+  <div class="sender f6 f5-ns fw6 lh-title mv0"><%= user_name(@message) %></div>
   <p class="message-body f5 lh-copy measure-wide ma0">
     <%= @message.body %>
-    <small class="white dib fr"><time><%= sent_at(@message) %></time></small>
   </p>
 </div>

@@ -15,7 +15,7 @@ defmodule Healthlocker.Caseload.RoomController do
                 where: e."Patient_ID" == ^service_user.slam_id)
 
     conn
-    |> assign(:service_user, nil)
+    |> assign(:service_user, service_user)
     |> assign(:room, room)
     |> assign(:messages, messages)
     |> assign(:slam_user, slam_user)

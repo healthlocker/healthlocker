@@ -78,14 +78,14 @@ defmodule Healthlocker.ClinicianMessageTest do
     |> resize_window(768, 1024) # The caseload link doesn't show on mobile.
     |> click(Query.link("Caseload"))
 
-    assert has_text?(session, "General Kenobi (carer)")
+    assert has_text?(session, "General Kenobi (friend/family/carer)")
   end
 
   test "message carer", %{session: session} do
     session
     |> resize_window(768, 1024) # The caseload link doesn't show on mobile.
     |> click(Query.link("Caseload"))
-    |> click(Query.link("General Kenobi (carer)"))
+    |> click(Query.link("General Kenobi (friend/family/carer)"))
     |> fill_in(Query.css("#message-input"), with: "Hello there")
     |> send_keys([:enter])
     |> has_text?("Hello there")
