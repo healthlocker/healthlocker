@@ -1,7 +1,18 @@
 defmodule Healthlocker.SleepTrackerController do
   use Healthlocker.Web, :controller
   use Timex
-  alias Healthlocker.SleepTracker
+  alias Healthlocker.{SleepTracker, Symptom, SymptomTracker}
+
+  def get_symptom_tracking_data(date, user_id) do
+    case Repo.get_by(Symptom, user_id: user_id) do
+      nil ->
+        []
+      symptom ->
+        SymptomTracker
+        |> SymptomTracker.symptom_tracking_data_query(symptom, date)
+        |> Repo.all
+    end
+  end
 
   def get_sleep(conn, date) do
     user_id = conn.assigns.current_user.id
@@ -12,36 +23,47 @@ defmodule Healthlocker.SleepTrackerController do
 
   def index(conn, _params) do
     sleep_data = get_sleep(conn, Date.utc_today())
+    symptom_data = get_symptom_tracking_data(DateTime.utc_now(), conn.assigns.current_user.id)
 
     date = Date.to_iso8601(Date.utc_today())
 
-    render(conn, "index.html", sleep_data: sleep_data, date: date)
+    render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data)
   end
 
   def prev_date(conn, %{"sleep_tracker_id" => end_date}) do
     # need to go back & forth with iso dates for display purposes. An elixir
     # date won't render on the page, and iso dates can't be used with timex for
     # shifting back 7 days
+
     {:ok, iex_date} = Date.from_iso8601(end_date)
     shifted_date = Timex.shift(iex_date, days: -7)
     date = Date.to_iso8601(shifted_date)
 
-    sleep_data = get_sleep(conn, shifted_date)
+    {:ok, date_time, _} = DateTime.from_iso8601(end_date <> "T23:59:59Z")
+    shifted_date_time = Timex.shift(date_time, days: -7)
 
-    render(conn, "index.html", sleep_data: sleep_data, date: date)
+    sleep_data = get_sleep(conn, shifted_date)
+    symptom_data = get_symptom_tracking_data(shifted_date_time, conn.assigns.current_user.id)
+
+    render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data)
   end
 
   def next_date(conn, %{"sleep_tracker_id" => end_date}) do
     # need to go back & forth with iso dates for display purposes. An elixir
     # date won't render on the page, and iso dates can't be used with timex for
     # shifting back 7 days
+
     {:ok, iex_date} = Date.from_iso8601(end_date)
     shifted_date = Timex.shift(iex_date, days: 7)
     date = Date.to_iso8601(shifted_date)
 
-    sleep_data = get_sleep(conn, shifted_date)
+    {:ok, date_time, _} = DateTime.from_iso8601(end_date <> "T23:59:59Z")
+    shifted_date_time = Timex.shift(date_time, days: 7)
 
-    render(conn, "index.html", sleep_data: sleep_data, date: date)
+    sleep_data = get_sleep(conn, shifted_date)
+    symptom_data = get_symptom_tracking_data(shifted_date_time, conn.assigns.current_user.id)
+
+    render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data)
   end
 
   def new(conn, _params) do

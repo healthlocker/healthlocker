@@ -34,7 +34,7 @@ defmodule Healthlocker.SleepTracker do
     preload: [:user]
   end
 
-  defp last_week(end_date) do
+  def last_week(end_date) do
     Timex.shift(end_date, days: -6)
   end
 end
