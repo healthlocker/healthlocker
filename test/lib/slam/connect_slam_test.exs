@@ -32,13 +32,18 @@ defmodule Healthlocker.Slam.ConnectSlamTest do
                   last_name: "Sandoval",
                   slam_id: 203
                 })
-      assert [user: {:update, _, []}] = Ecto.Multi.to_list(multi)
+      assert [user: {:update, _, []},
+              room: {:insert, _, []}] = Ecto.Multi.to_list(multi)
     end
 
     test "user in multi contains a user's updated name and slam id", %{result: result} do
       assert result.user.first_name == "Lisa"
       assert result.user.last_name == "Sandoval"
       assert result.user.slam_id == 203
+    end
+
+    test "room in multi contains correct room name", %{result: result} do
+      assert result.room.name == "service-user-care-team:123456"
     end
   end
 end
