@@ -183,10 +183,10 @@ defmodule Healthlocker.AccountController do
             slam_id: slam_user."Patient_ID"})
           changeset = User.update_changeset(user)
           case Repo.transaction(multi) do
-            {:ok, _user} ->
+            {:ok, result} ->
               conn
               |> put_flash(:info, "SLaM account connected!")
-              |> render("index.html", changeset: changeset, user: user,
+              |> render("index.html", changeset: changeset, user: result.user,
                         slam_id: slam_user.id, action: account_path(conn, :update))
             {:error, _type, changeset, _} ->
               conn
