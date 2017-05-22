@@ -63,6 +63,8 @@ defmodule Healthlocker.Router do
     end
 
     resources "/slam", SlamController, only: [:new, :create]
+    resources "/symptom", SymptomController, only: [:new, :create]
+    resources "/symptom-tracker", SymptomTrackerController, only: [:new, :create]
   end
 
   # endpoints not requiring a logged in user

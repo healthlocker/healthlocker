@@ -6,7 +6,7 @@ defmodule Healthlocker.Repo.Migrations.CreateUser do
       add :email, :string, null: false
       add :password_hash, :string
 
-      timestamps
+      timestamps()
     end
 
     create unique_index(:users, [:email])
