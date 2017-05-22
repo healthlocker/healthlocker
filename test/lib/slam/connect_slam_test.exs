@@ -1,7 +1,7 @@
 defmodule Healthlocker.Slam.ConnectSlamTest do
   use Healthlocker.ModelCase, async: true
   alias Healthlocker.{User, EPJSTeamMember, EPJSClinician, ReadOnlyRepo,
-                      Slam.ConnectSlam, ClinicianRooms}
+                      Slam.ConnectSlam, ClinicianRooms, Room}
 
   describe "success paths for connecting as slam su" do
     setup %{} do
@@ -70,6 +70,53 @@ defmodule Healthlocker.Slam.ConnectSlamTest do
       clinician_room = Repo.get_by(ClinicianRooms, clinician_id: 400)
       assert clinician_room
       assert clinician_room.room_id == result.room.id
+    end
+  end
+
+  describe "failure for connecting slam" do
+    setup %{} do
+      user = %User{
+        id: 123456,
+        email: "abc@gmail.com",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+      } |> Repo.insert!
+
+      service_user = %User{
+        id: 123457,
+        first_name: "Lisa",
+        last_name: "Sandoval",
+        email: "abc123@gmail.com",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        security_question: "Question?",
+        security_answer: "Answer",
+        slam_id: 203
+      } |> Repo.insert!
+
+      multi = ConnectSlam.connect_su_and_create_rooms(user, %{
+          first_name: "Lisa",
+          last_name: "Sandoval",
+          slam_id: 203
+        })
+
+      {:ok, multi: multi}
+    end
+
+    test "user response with no data" do
+      user = Repo.get!(User, 123456)
+      multi = ConnectSlam.connect_su_and_create_rooms(user, %{})
+      assert {:error, type, result, _} = Repo.transaction(multi)
+      assert result.errors
+      assert type == :user
+    end
+
+    test "room response on error", %{multi: multi} do
+      %Room{
+        id: 501,
+        name: "service-user-care-team:123456"
+      } |> Repo.insert!
+      assert {:error, type, result, _} = Repo.transaction(multi)
+      assert result.errors
+      assert type == :room
     end
   end
 end
