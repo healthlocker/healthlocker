@@ -18,6 +18,6 @@ defmodule Healthlocker.ToolkitControllerTest do
     conn = build_conn()
         |> assign(:current_user, user)
         |> get(toolkit_path(conn, :index))
-    assert html_response(conn, 200) =~ "Toolkit"
+    assert html_response(conn, 200) =~ "Goals and tracking"
   end
 end

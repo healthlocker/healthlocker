@@ -90,7 +90,7 @@ defmodule Healthlocker.SymptomTrackerControllerTest do
 
     test "if user as already made a symptom tracker but not for today", %{conn: conn} do
       conn = get conn, symptom_tracker_path(conn, :new)
-      assert html_response(conn, 200) =~ "Toolkit"
+      assert html_response(conn, 200) =~ "Goals and tracking"
     end
   end
 end

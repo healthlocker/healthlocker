@@ -144,14 +144,14 @@
           <small class="white dib"><time>6 hours ago</time></small>
         </p>
       </div>
-      <div id="message-2" class="w-80 br2 hl-bg-yellow mb2 pa1 pa3-ns fr">
+      <div id="message-2" class="w-80 br2 hl-bg-light-yellow mb2 pa1 pa3-ns fr">
         <div class="sender f6 f5-ns fw6 lh-title black mv0">Tony</div>
         <p class="message-body f5 lh-copy measure-wide ma0">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           <small class="white dib"><time>6 hours ago</time></small>
         </p>
       </div>
-      <div id="message-2" class="w-80 br2 hl-bg-yellow mb2 pa1 pa3-ns fr">
+      <div id="message-2" class="w-80 br2 hl-bg-light-yellow mb2 pa1 pa3-ns fr">
         <div class="sender f6 f5-ns fw6 lh-title black mv0">Kat</div>
         <p class="message-body f5 lh-copy measure-wide ma0">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

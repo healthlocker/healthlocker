@@ -14,8 +14,8 @@ defmodule Healthlocker.MessageView do
   end
 
   @base_classes "w-80 br2 mb2 pa1 pa3-ns"
-  @sender_classes "hl-bg-yellow fr"
-  @receiver_classes "hl-bg-aqua fl"
+  @sender_classes "hl-bg-light-yellow fr"
+  @receiver_classes "hl-bg-light-aqua fl"
 
   def classes(_message, nil) do
     @base_classes

@@ -1,16 +1,18 @@
 <%= render "menu.html", assigns %>
 
-<h2 class="tc">Tracking overview</h2>
-<div class="w-100">
-  <p class="link w-100 bb b--black-30 dib fl black tc pv1 bg-white">7 days</p>
-</div>
+<section class="pt6">
+  <h2 class="tc">Tracking overview</h2>
+  <div class="w-100">
+    <p class="link w-100 bb b--black-30 dib fl black tc pv1 bg-white">7 days</p>
+  </div>
 
-<div class="mt4 w-40 dib">
-  <%= link_secondary "< Previous", to: caseload_user_path(@conn, :show, @user, section: "tracking", date: @date, shift: "prev") %>
-</div>
+  <div class="mt4 w-40 dib">
+    <%= link_secondary "< Previous", to: caseload_user_path(@conn, :show, @user, section: "tracking", date: @date, shift: "prev") %>
+  </div>
 
-<div class="mt4 tr fr w-40 dib">
-  <%= link_secondary "Next >", to: caseload_user_path(@conn, :show, @user, section: "tracking", date: @date, shift: "next") %>
-</div>
+  <div class="mt4 tr fr w-40 dib">
+    <%= link_secondary "Next >", to: caseload_user_path(@conn, :show, @user, section: "tracking", date: @date, shift: "next") %>
+  </div>
 
-<%= render  Healthlocker.SleepTrackerView, "sleep_data.html", assigns %>
+  <%= render  Healthlocker.SleepTrackerView, "sleep_data.html", assigns %>
+</section>
