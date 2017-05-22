@@ -2,6 +2,15 @@ defmodule Healthlocker.SleepTrackerView do
   use Healthlocker.Web, :view
   use Timex
 
+  def get_symptom(data) do
+    case data do
+      [data | _tail] ->
+        data.symptom.symptom
+      _ ->
+        data
+    end
+  end
+
   defp last_week(end_date) do
     Timex.shift(end_date, days: -6)
   end
@@ -47,10 +56,26 @@ defmodule Healthlocker.SleepTrackerView do
   end
 
   def format_sleep_dates(end_date) do
-   {:ok, date} = Date.from_iso8601(end_date)
-   start_date = last_week(date)
-   format_dates_list(start_date, [], 1)
-   |> Enum.join(",")
+    {:ok, date} = Date.from_iso8601(end_date)
+    start_date = last_week(date)
+    format_dates_list(start_date, [], 1)
+    |> Enum.join(",")
+  end
+
+  def format_symptom_scale(symptom_data) do
+    symptom_data
+      |> format_scale_list([], 1)
+      |> Enum.map(fn score ->
+        case score do
+          "10 - Major effect " ->
+            10
+          "0 -  Very little effect" ->
+            0
+          _ ->
+            score
+        end
+      end)
+      |> Enum.join(",")
  end
 
  defp format_dates_list(date, list, 7) do
@@ -103,6 +128,31 @@ defmodule Healthlocker.SleepTrackerView do
     format_hours_list(data, new_list, n + 1)
   end
 
+  defp format_scale_list(data, list, 7) do
+    if Enum.any?(data, fn(struct) ->
+      Date.day_of_week(struct.inserted_at) == 7
+    end) do
+      scale = Enum.filter(data, fn struct ->
+                  Date.day_of_week(struct.inserted_at) == 7 end)
+                  |> Enum.at(0)
+                  |> Map.get(:affected_scale)
+      List.insert_at(list, 0, scale)
+    else
+      List.insert_at(list, 0, 0)
+    end
+  end
+
+  defp format_scale_list(data, list, n) do
+    new_list = if Enum.any?(data, fn(struct) ->
+                  Date.day_of_week(struct.inserted_at) == n
+                end) do
+                  insert_scale(data, list, n)
+                else
+                  List.insert_at(list, n - 1, 0)
+                end
+    format_scale_list(data, new_list, n + 1)
+  end
+
   defp insert_hours_slept(data, list, n) do
     hours_slept = Enum.filter(data, fn struct ->
                 Date.day_of_week(struct.for_date) == n end)
@@ -110,6 +160,15 @@ defmodule Healthlocker.SleepTrackerView do
                 |> Map.get(:hours_slept)
 
     List.insert_at(list, n - 1, hours_slept)
+  end
+
+  defp insert_scale(data, list, n) do
+    scale = Enum.filter(data, fn struct ->
+      Date.day_of_week(struct.inserted_at) == n end)
+      |> Enum.at(0)
+      |> Map.get(:affected_scale)
+
+    List.insert_at(list, n - 1, scale)
   end
 
   defp day_month(date) do
