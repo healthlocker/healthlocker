@@ -57,10 +57,7 @@ defmodule Healthlocker.AccountControllerTest do
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
         security_answer: "Answer",
-        slam_id: 1
       } |> Repo.insert
-
-      Mix.Tasks.Healthlocker.Room.Create.run("run")
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123_456)) }
     end
