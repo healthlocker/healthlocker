@@ -17,7 +17,7 @@ defmodule Healthlocker.SymptomTracker do
   end
 
   def symptom_tracking_data_query(query, symptom, date) do
-    from st in SymptomTracker,
+    from st in query,
     where: st.symptom_id == ^symptom.id and
     st.inserted_at <= ^date and
     st.inserted_at > ^SleepTracker.last_week(date),
