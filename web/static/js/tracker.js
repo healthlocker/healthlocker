@@ -1,6 +1,8 @@
 var ctx = document.getElementById('myChart');
 var sleepHours = window.sleep_hours ? window.sleep_hours.split(',') : [];
 var sleepDates = window.sleep_dates ? window.sleep_dates.split(',') : [];
+var scale = window.symptom_scale ? window.symptom_scale.split(",") : [];
+var symptom = window.symptom ? window.symptom : "Problem";
 var today = new Date(Date.now()).getDay();
 var days = ['Sun ', 'Mon ', 'Tue ', 'Wed ', 'Thu ', 'Fri ', 'Sat '];
 var daysOfWeek = [];
@@ -14,6 +16,10 @@ for (i; i <= today + 7; i++) {
 
 var hoursSlept = daysOfWeek.map(function (day) {
   return sleepHours[day] ? sleepHours[day] : 0;
+});
+
+var symptomScale = daysOfWeek.map(function (day) {
+  return scale[day] ? scale[day] : 0;
 });
 
 if (ctx) {
@@ -43,7 +49,21 @@ if (ctx) {
           'rgba(37, 189, 195, 1)'
         ],
         borderWidth: 1
-      }]
+      },
+      {
+        type: 'line',
+        label: symptom,
+        data: symptomScale,
+        fill: false,
+        borderColor: [
+          'rgba(236, 64, 103, 1)'
+        ],
+        backgroundColor: [
+          'rgba(236, 64, 103, 0.2)'
+        ],
+        borderWidth: 1
+      }
+    ]
     },
     options: {
       scales: {
