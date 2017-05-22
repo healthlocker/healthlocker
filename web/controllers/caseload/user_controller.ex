@@ -7,18 +7,19 @@ defmodule Healthlocker.Caseload.UserController do
 
   def show(conn, %{"id" => id, "section" => section, "date" => date, "shift" => shift}) do
     date = Date.from_iso8601!(date)
-    case shift do
+    shifted_date = case shift do
       "prev" ->
-        shifted_date = Timex.shift(date, days: -7)
+        Timex.shift(date, days: -7)
       "next" ->
-        shifted_date = Timex.shift(date, days: 7)
+        Timex.shift(date, days: 7)
     end
 
     details = get_details(id, shifted_date)
 
     render(conn, String.to_atom(section), user: details.user, slam_user: details.slam_user,
           address: details.address, goals: details.goals, strategies: details.strategies, room: details.room,
-          service_user: details.service_user, sleep_data: details.sleep_data, date: details.date)
+          service_user: details.service_user, sleep_data: details.sleep_data, date: details.date,
+          symptom_data: details.symptom_data)
   end
 
   def show(conn, %{"id" => id, "section" => section}) do
@@ -26,7 +27,7 @@ defmodule Healthlocker.Caseload.UserController do
 
     render(conn, String.to_atom(section), user: details.user, slam_user: details.slam_user,
           address: details.address, goals: details.goals, strategies: details.strategies, room: details.room,
-          service_user: details.service_user, sleep_data: details.sleep_data, date: details.date)
+          service_user: details.service_user, sleep_data: details.sleep_data, date: details.date, symptom_data: details.symptom_data)
   end
 
   defp get_details(id, date) do
@@ -50,7 +51,10 @@ defmodule Healthlocker.Caseload.UserController do
 
     date = Date.to_iso8601(date)
 
+    symptom_data = Healthlocker.SleepTrackerController.get_symptom_tracking_data(DateTime.utc_now(), service_user.id)
+
     %{user: user, room: room, service_user: service_user, slam_user: slam_user,
-    address: address, goals: goals, strategies: strategies, sleep_data: sleep_data, date: date}
+    address: address, goals: goals, strategies: strategies, sleep_data: sleep_data,
+    date: date, symptom_data: symptom_data}
   end
 end
