@@ -1,7 +1,18 @@
 defmodule Healthlocker.SleepTrackerController do
   use Healthlocker.Web, :controller
   use Timex
-  alias Healthlocker.SleepTracker
+  alias Healthlocker.{SleepTracker, Symptom, SymptomTracker}
+
+  def get_symptom_tracking_data(date, user_id) do
+    case Repo.get_by(Symptom, user_id: user_id) do
+      nil ->
+        []
+      symptom ->
+        SymptomTracker
+        |> SymptomTracker.symptom_tracking_data_query(symptom, date)
+        |> Repo.all
+    end
+  end
 
   def get_sleep(conn, date) do
     user_id = conn.assigns.current_user.id
@@ -12,10 +23,11 @@ defmodule Healthlocker.SleepTrackerController do
 
   def index(conn, _params) do
     sleep_data = get_sleep(conn, Date.utc_today())
+    symptom_data = get_symptom_tracking_data(DateTime.utc_now(), conn.assigns.current_user.id)
 
     date = Date.to_iso8601(Date.utc_today())
 
-    render(conn, "index.html", sleep_data: sleep_data, date: date)
+    render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data)
   end
 
   def prev_date(conn, %{"sleep_tracker_id" => end_date}) do
