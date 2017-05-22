@@ -1,6 +1,6 @@
 defmodule Healthlocker.AccountController do
   use Healthlocker.Web, :controller
-  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo}
+  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo, Slam.ConnectSlam}
   alias Healthlocker.Plugs.Auth
   use Timex
 
@@ -177,15 +177,18 @@ defmodule Healthlocker.AccountController do
 
         if slam_user do
           user = conn.assigns.current_user
-          slam_changeset = User.connect_slam(user, %{first_name: forename, last_name: surname, slam_id: slam_user."Patient_ID"})
+          multi = ConnectSlam.connect_su_and_create_rooms(user, %{
+            first_name: forename,
+            last_name: surname,
+            slam_id: slam_user."Patient_ID"})
           changeset = User.update_changeset(user)
-          case Repo.update(slam_changeset) do
+          case Repo.transaction(multi) do
             {:ok, _user} ->
               conn
               |> put_flash(:info, "SLaM account connected!")
               |> render("index.html", changeset: changeset, user: user,
                         slam_id: slam_user.id, action: account_path(conn, :update))
-            {:error, changeset} ->
+            {:error, _type, changeset, _} ->
               conn
               |> put_flash(:error, "Something went wrong")
               |> render("slam.html", user: user, changeset: changeset,
