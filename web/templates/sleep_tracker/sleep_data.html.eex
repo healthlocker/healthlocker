@@ -14,3 +14,5 @@
 
 <script>window.sleep_hours = "<%= format_sleep_hours(@sleep_data) %>"</script>
 <script>window.sleep_dates = "<%= format_sleep_dates(@date) %>"</script>
+<script>window.symptom_scale = "<%= format_symptom_scale(@symptom_data) %>"</script>
+<script>window.symptom = "<%= get_symptom(@symptom_data) %>"</script>
