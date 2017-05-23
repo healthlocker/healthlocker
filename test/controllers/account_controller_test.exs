@@ -181,7 +181,7 @@ defmodule Healthlocker.AccountControllerTest do
         DOB: dob,
       })
       conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
-      assert html_response(conn, 200) =~ "Account connected with SLaM"
+      assert redirected_to(conn) == account_path(conn, :index)
     end
 
     test "check_slam redirects to slam with incorrect details", %{conn: conn} do
