@@ -1,14 +1,18 @@
-<h2 class="hl-dark-blue"><%= Healthlocker.ComponentView.full_name(@user) %> <span class="normal">(friend/family/carer) of </span><%= Healthlocker.ComponentView.full_name(@service_user) %></h2>
-<div class="w-100 h3">
+<section class="absolute w-100 left-0 hl-bg-grey">
+  <div class="hl-bg-grey w-100 pa3 mw7 center">
+    <h2 class="hl-dark-blue ma0 tc"><%= Healthlocker.ComponentView.full_name(@user) %> <span class="normal">(friend/family/carer) of </span><%= Healthlocker.ComponentView.full_name(@service_user) %></h2>
+  </div>
+<div class="w-100 mw7 center">
   <%= cond do %>
    <%= String.contains?(@conn.request_path, "rooms") -> %>
-     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
-     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white" %>
+     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
+     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 hl-bg-grey" %>
    <%= String.contains?(@conn.query_string, "details") -> %>
-     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white" %>
-     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
+     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 hl-bg-grey" %>
+     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
    <%= true -> %>
-     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white bb b--hl-aqua" %>
-     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 bg-white" %>
+     <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
+     <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 hl-bg-grey" %>
 <% end %>
 </div>
+</section>
