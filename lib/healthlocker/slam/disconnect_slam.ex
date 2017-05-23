@@ -1,7 +1,7 @@
 defmodule Healthlocker.Slam.DisconnectSlam do
   alias Ecto.Multi
   import Ecto.Query
-  alias Healthlocker.{User, Repo, UserRoom, ClinicianRooms, Message}
+  alias Healthlocker.{User, Repo, UserRoom, ClinicianRooms, Message, Room}
 
   def disconnect_su(user) do
     Multi.new
@@ -9,6 +9,7 @@ defmodule Healthlocker.Slam.DisconnectSlam do
     |> Multi.run(:user_room, &delete_user_room/1)
     |> Multi.run(:clinician_room, &delete_clinician_room/1)
     |> Multi.run(:messages, &delete_messages/1)
+    |> Multi.run(:room, &delete_room/1)
   end
 
   def delete_user_room(multi) do
@@ -38,6 +39,16 @@ defmodule Healthlocker.Slam.DisconnectSlam do
         {:ok, n}
       _err ->
         {:error, "Error deleting messages"}
+    end
+  end
+
+  def delete_room(multi) do
+    room = Repo.get!(Room, multi.user_room.room_id)
+    case Repo.delete(room) do
+      {:ok, room} ->
+        {:ok, room}
+      {:error, changeset} ->
+        {:error, changeset, "Error deleting room"}
     end
   end
 end
