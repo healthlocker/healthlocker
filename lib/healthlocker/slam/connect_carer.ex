@@ -1,7 +1,5 @@
 defmodule Healthlocker.Slam.ConnectCarer do
   use Ecto.Schema
-  import Ecto.Changeset
-  import Ecto.Query
   alias Ecto.Multi
   alias Healthlocker.{User, Carer, Room, UserRoom, ClinicianRooms, Repo}
 
@@ -43,7 +41,7 @@ defmodule Healthlocker.Slam.ConnectCarer do
     case Repo.insert_all(ClinicianRooms, clinicians) do
       {n, nil} ->
         {:ok, n}
-      err ->
+      _err ->
         {:error, "Error adding clinician to room"}
     end
   end

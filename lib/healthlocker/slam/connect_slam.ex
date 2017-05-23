@@ -32,7 +32,7 @@ defmodule Healthlocker.Slam.ConnectSlam do
     case Repo.insert_all(ClinicianRooms, clinicians) do
       {n, nil} ->
         {:ok, n}
-      err ->
+      _err ->
         {:error, "Error adding clinician to room"}
     end
   end
