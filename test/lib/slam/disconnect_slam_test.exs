@@ -11,6 +11,16 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
         security_answer: "Answer",
+        slam_id: 200
+      } |> Repo.insert!
+
+      %User{
+        id: 654321,
+        email: "123abc@gmail.com",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        security_question: "Question?",
+        security_answer: "Answer",
+        slam_id: 201
       } |> Repo.insert!
 
       %Room{
@@ -18,9 +28,20 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
         name: "service-user-care-team:123456"
         } |> Repo.insert!
 
+      %Room{
+        id: 4322,
+        name: "service-user-care-team:654321"
+        } |> Repo.insert!
+
       %UserRoom{
         user_id: 123456,
         room_id: 4321
+      } |> Repo.insert!
+
+      %UserRoom{
+        id: 900,
+        user_id: 654321,
+        room_id: 4322
       } |> Repo.insert!
 
       %ClinicianRooms{
@@ -28,11 +49,25 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
         room_id: 4321
       } |> Repo.insert!
 
+      %ClinicianRooms{
+        id: 900,
+        clinician_id: 400,
+        room_id: 4322
+      } |> Repo.insert!
+
       %Message{
         body: "Hello",
         name: "Katherine",
         user_id: 123456,
         room_id: 4321
+      } |> Repo.insert!
+
+      %Message{
+        id: 900,
+        body: "Hi",
+        name: "Rob",
+        user_id: 654321,
+        room_id: 4322
       } |> Repo.insert!
 
       multi = DisconnectSlam.disconnect_su(user)
@@ -53,17 +88,23 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
     end
 
     test "user in multi sets slam_id to nil", %{result: result} do
+      other_user = Repo.get!(User, 654321)
       assert result.user.slam_id == nil
+      assert other_user
     end
 
     test "deletes user_room for user", %{result: result} do
+      other_user_room = Repo.get!(UserRoom, 900)
       user_room = Repo.get(UserRoom, result.user_room.id)
       refute user_room
+      assert other_user_room
     end
 
     test "deletes clinician_room for room", %{result: result} do
+      other_clinician_room = Repo.get!(ClinicianRooms, 900)
       clinician_room = Repo.get(ClinicianRooms, result.clinician_room.id)
       refute clinician_room
+      assert other_clinician_room
     end
 
     test "deletes messages for room", %{result: result} do
