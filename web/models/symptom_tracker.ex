@@ -1,11 +1,11 @@
 defmodule Healthlocker.SymptomTracker do
   use Healthlocker.Web, :model
-  alias Healthlocker.{SymptomTracker, SleepTracker}
+  alias Healthlocker.{Symptom, SleepTracker}
 
   schema "symptom_trackers" do
     field :affected_scale, :string, null: false
     field :notes, :string
-    belongs_to :symptom, Healthlocker.Symptom
+    belongs_to :symptom, Symptom
 
     timestamps()
   end
