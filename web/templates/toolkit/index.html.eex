@@ -11,7 +11,7 @@
       <div class="tc w-40 dib fr">
         <%= link to: coping_strategy_path(@conn, :index) do %>
           <%= img_tag("/images/Toolkit_coping_strategies.png", class: "w-100") %>
-          <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Strategies</span>
+          <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Coping Strategies</span>
         <% end %>
       </div>
   </div>
@@ -40,14 +40,14 @@
       <%= link to: symptom_tracker_path(@conn, :new) do %>
         <%= img_tag("/images/Toolkit_problem.png",
                     class: "w-100") %>
-        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Problem tracker</span>
+        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Problem Tracker</span>
       <% end %>
     </div>
   </div>
 
   <div class="w-100 tc mw6 center">
     <%= link to: care_plan_path(@conn, :index) do %>
-      <span class="mt4 f5 link dim br-pill ph1 pv3 dib black-60 hl-bg-grey pointer w-100">Care plan summary</span>
+      <span class="mt4 f5 link dim br-pill ph1 pv3 dib black-60 hl-bg-grey pointer w-100">Care Plan Summary</span>
     <% end %>
   </div>
 </div>
