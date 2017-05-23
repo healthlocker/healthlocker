@@ -3,12 +3,29 @@
 <h3 class="b">7 day average</h3>
 <p class="bb bw-2 b--hl-grey bw2 mt3 pb3"><span class="b di">Sleep </span><%= get_week_average(@sleep_data) %></p>
 
-<%= for sleep_day <- @sleep_data do %>
-  <section class="bb b--black-10">
-    <h4 class="b"><%= date_with_day_and_month(sleep_day.for_date) %></h4>
-    <p class="di"><p class="b di">Sleep </p><%= format_average_sleep(String.to_float(sleep_day.hours_slept)) %></p>
-    <p>Woke up <%= sleep_day.wake_count %> times</p>
-    <p class="i"><%= sleep_day.notes %></p>
+<%= for data <- @merged_data do %>
+  <section>
+    <%= if Map.has_key?(data.sleep_data, :hours_slept) or Map.has_key?(data.symptom_data, :affected_scale) do %>
+      <h4 class="b"><%= date_with_day_and_month(data.inserted_at) %></h4>
+
+      <%= if Map.has_key?(data.sleep_data, :hours_slept) do %>
+        <p class="di">
+          <strong>Sleep </strong>
+          <%= format_average_sleep(String.to_float(data.sleep_data.hours_slept)) %>
+        </p>
+        <p>Woke up <%= data.sleep_data.wake_count %> times</p>
+        <p class="i"><%= data.sleep_data.notes %></p>
+      <% end %>
+
+      <%= if Map.has_key?(data.symptom_data, :affected_scale) do %>
+        <p class="di">
+          <strong><%= data.symptom_data.symptom.symptom %>:</strong>
+          <%= data.symptom_data.affected_scale %>
+        </p>
+        <p class="i"><%= data.symptom_data.notes %></p>
+      <% end %>
+
+    <% end %>
   </section>
 <% end %>
 
