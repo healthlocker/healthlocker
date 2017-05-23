@@ -82,7 +82,7 @@ defmodule Healthlocker.TrackerController do
           merged_data: merged_data)
   end
 
-  def prev_date(conn, %{"sleep_tracker_id" => end_date}) do
+  def prev_date(conn, %{"tracker_id" => end_date}) do
     # need to go back & forth with iso dates for display purposes. An elixir
     # date won't render on the page, and iso dates can't be used with timex for
     # shifting back 7 days
@@ -96,11 +96,13 @@ defmodule Healthlocker.TrackerController do
 
     sleep_data = get_sleep(conn, shifted_date)
     symptom_data = get_symptom_tracking_data(shifted_date_time, conn.assigns.current_user.id)
+    merged_data = merge_tracking_data([], sleep_data, symptom_data, Timex.shift(NaiveDateTime.utc_now(), days: -7))
 
-    render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data)
+    render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
+          merged_data: merged_data)
   end
 
-  def next_date(conn, %{"sleep_tracker_id" => end_date}) do
+  def next_date(conn, %{"tracker_id" => end_date}) do
     # need to go back & forth with iso dates for display purposes. An elixir
     # date won't render on the page, and iso dates can't be used with timex for
     # shifting back 7 days
@@ -114,7 +116,9 @@ defmodule Healthlocker.TrackerController do
 
     sleep_data = get_sleep(conn, shifted_date)
     symptom_data = get_symptom_tracking_data(shifted_date_time, conn.assigns.current_user.id)
+    merged_data = merge_tracking_data([], sleep_data, symptom_data, Timex.shift(NaiveDateTime.utc_now(), days: 7))
 
-    render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data)
+    render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
+          merged_data: merged_data)
   end
 end
