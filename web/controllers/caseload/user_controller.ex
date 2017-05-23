@@ -19,15 +19,16 @@ defmodule Healthlocker.Caseload.UserController do
     render(conn, String.to_atom(section), user: details.user, slam_user: details.slam_user,
           address: details.address, goals: details.goals, strategies: details.strategies, room: details.room,
           service_user: details.service_user, sleep_data: details.sleep_data, date: details.date,
-          symptom_data: details.symptom_data)
+          symptom_data: details.symptom_data, merged_data: details.merged_data)
   end
 
   def show(conn, %{"id" => id, "section" => section}) do
     details = get_details(id, Date.utc_today())
 
     render(conn, String.to_atom(section), user: details.user, slam_user: details.slam_user,
-          address: details.address, goals: details.goals, strategies: details.strategies, room: details.room,
-          service_user: details.service_user, sleep_data: details.sleep_data, date: details.date, symptom_data: details.symptom_data)
+          address: details.address, goals: details.goals, strategies: details.strategies,
+          room: details.room, service_user: details.service_user, sleep_data: details.sleep_data,
+          date: details.date, symptom_data: details.symptom_data, merged_data: details.merged_data)
   end
 
   defp get_details(id, date) do
@@ -53,9 +54,10 @@ defmodule Healthlocker.Caseload.UserController do
     {:ok, date_time, _} = DateTime.from_iso8601(date <> "T23:59:59Z")
 
     symptom_data = Healthlocker.TrackerController.get_symptom_tracking_data(date_time, service_user.id)
+    merged_data = Healthlocker.TrackerController.merge_tracking_data([], sleep_data, symptom_data, NaiveDateTime.utc_now())
 
     %{user: user, room: room, service_user: service_user, slam_user: slam_user,
     address: address, goals: goals, strategies: strategies, sleep_data: sleep_data,
-    date: date, symptom_data: symptom_data}
+    date: date, symptom_data: symptom_data, merged_data: merged_data}
   end
 end
