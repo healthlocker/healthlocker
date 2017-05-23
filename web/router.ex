@@ -44,7 +44,7 @@ defmodule Healthlocker.Router do
     put "/account/check-slam", AccountController, :check_slam
     resources "/components", ComponentController, only: [:index]
     resources "/messages", MessageController, only: [:index]
-    resources "/sleep-tracker", SleepTrackerController, only: [:index, :new, :create] do
+    resources "/sleep-tracker", SleepTrackerController, only: [:new, :create] do
       get "/prev-date", SleepTrackerController, :prev_date
       get "/next-date", SleepTrackerController, :next_date
     end
@@ -65,6 +65,7 @@ defmodule Healthlocker.Router do
     resources "/slam", SlamController, only: [:new, :create]
     resources "/symptom", SymptomController, only: [:new, :create]
     resources "/symptom-tracker", SymptomTrackerController, only: [:new, :create]
+    resources "/tracking-overview", TrackerController, only: [:index]
   end
 
   # endpoints not requiring a logged in user
