@@ -4,7 +4,6 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
 
   describe "success paths for disconnecting from slam" do
     setup %{} do
-      # needs slam connected user, user_room, clinician_room, messages, and room set up
       user = %User{
         id: 123456,
         email: "abc123@gmail.com",
@@ -38,7 +37,17 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
       multi = User
             |> Repo.get!(123456)
             |> DisconnectSlam.disconnect_su
-      assert [user: {:update, _, []}] = Ecto.Multi.to_list(multi)
+      assert [user: {:update, _, []},
+              user_room: {:run, _}] = Ecto.Multi.to_list(multi)
+    end
+
+    test "user in multi sets slam_id to nil", %{result: result} do
+      assert result.user.slam_id == nil
+    end
+
+    test "deletes user_room for user", %{result: result} do
+      user_room = Repo.get(UserRoom, result.user_room.id)
+      refute user_room
     end
   end
 end
