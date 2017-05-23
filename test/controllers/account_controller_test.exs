@@ -1,7 +1,8 @@
 defmodule Healthlocker.AccountControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo}
+  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo, Room, UserRoom,
+                      ClinicianRooms, Message, Room}
 
   @valid_attrs %{
     first_name: "My",
@@ -73,6 +74,28 @@ defmodule Healthlocker.AccountControllerTest do
     end
 
     test "removes slam_id with disconnect", %{conn: conn} do
+      %Room{
+        id: 4321,
+        name: "service-user-care-team:123456"
+      } |> Repo.insert!
+
+      %UserRoom{
+        user_id: 123456,
+        room_id: 4321
+      } |> Repo.insert!
+
+      %ClinicianRooms{
+        clinician_id: 400,
+        room_id: 4321
+      } |> Repo.insert!
+
+      %Message{
+        body: "Hello",
+        name: "Katherine",
+        user_id: 123456,
+        room_id: 4321
+      } |> Repo.insert!
+
       conn = put conn, account_path(conn, :disconnect)
       user = Repo.get!(User, conn.assigns.current_user.id)
       assert redirected_to(conn) == account_path(conn, :index)
