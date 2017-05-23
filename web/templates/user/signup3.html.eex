@@ -3,7 +3,6 @@
 
   <p class="b">By creating an account and accessing Healthlocker, I agree:</p>
   <ul>
-    <li>that creating a Healthlocker account is voluntary</li>
     <li>I will use this as a self-management tool, not a tool to be used in
       a crisis
     </li>
@@ -11,7 +10,7 @@
     <li>I am responsible for maintaining the confidentiality of my log in
       details
     </li>
-    <li>I will respect other users at all times</li>
+    <li>I will respect other users, including NHS staff, at all times.</li>
   </ul>
 
   <%= form_for @changeset, @action, fn f -> %>
