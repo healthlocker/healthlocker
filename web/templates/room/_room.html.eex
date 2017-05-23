@@ -16,12 +16,12 @@
   <div class="w-100 bn br2 hl-bg-grey pa3">
     <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
   </div>
-  <p class="b hl-pink">
-    Please note: All service users and family / friends / carers that send messages will see this statement:
-  </p>
 
   <%= cond do %>
     <%= @current_user.role == "clinician" -> %>
+      <p class="b hl-pink">
+        Please note: All service users and family / friends / carers that send messages will see this statement:
+      </p>
       <p class="i hl-pink">
         Messaging should not be used in emergency situations. If you need urgent help or advice, go to <%= link_to( "Get support", to: "/support") %>.
         Your message will be visible to the whole care team. Do not expect an immediate response.
