@@ -52,7 +52,7 @@ defmodule Healthlocker.Caseload.UserController do
     date = Date.to_iso8601(date)
     {:ok, date_time, _} = DateTime.from_iso8601(date <> "T23:59:59Z")
 
-    symptom_data = Healthlocker.SleepTrackerController.get_symptom_tracking_data(date_time, service_user.id)
+    symptom_data = Healthlocker.TrackerController.get_symptom_tracking_data(date_time, service_user.id)
 
     %{user: user, room: room, service_user: service_user, slam_user: slam_user,
     address: address, goals: goals, strategies: strategies, sleep_data: sleep_data,
