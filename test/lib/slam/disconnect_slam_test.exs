@@ -38,7 +38,8 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
             |> Repo.get!(123456)
             |> DisconnectSlam.disconnect_su
       assert [user: {:update, _, []},
-              user_room: {:run, _}] = Ecto.Multi.to_list(multi)
+              user_room: {:run, _},
+              clinician_room: {:run, _}] = Ecto.Multi.to_list(multi)
     end
 
     test "user in multi sets slam_id to nil", %{result: result} do
@@ -48,6 +49,11 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
     test "deletes user_room for user", %{result: result} do
       user_room = Repo.get(UserRoom, result.user_room.id)
       refute user_room
+    end
+
+    test "deletes clinician_room for room", %{result: result} do
+      clinician_room = Repo.get(ClinicianRooms, result.clinician_room.id)
+      refute clinician_room
     end
   end
 end
