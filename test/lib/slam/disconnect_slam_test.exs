@@ -1,6 +1,7 @@
 defmodule Healthlocker.Slam.DisconnectSlamTest do
   use Healthlocker.ModelCase, async: true
-  alias Healthlocker.{User, UserRoom, ClinicianRooms, Room, Slam.DisconnectSlam}
+  alias Healthlocker.{User, UserRoom, ClinicianRooms, Room, Slam.DisconnectSlam,
+                      Message}
 
   describe "success paths for disconnecting from slam" do
     setup %{} do
@@ -27,6 +28,13 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
         room_id: 4321
       } |> Repo.insert!
 
+      %Message{
+        body: "Hello",
+        name: "Katherine",
+        user_id: 123456,
+        room_id: 4321
+      } |> Repo.insert!
+
       multi = DisconnectSlam.disconnect_su(user)
       {:ok, result} = Repo.transaction(multi)
 
@@ -39,7 +47,8 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
             |> DisconnectSlam.disconnect_su
       assert [user: {:update, _, []},
               user_room: {:run, _},
-              clinician_room: {:run, _}] = Ecto.Multi.to_list(multi)
+              clinician_room: {:run, _},
+              messages: {:run, _}] = Ecto.Multi.to_list(multi)
     end
 
     test "user in multi sets slam_id to nil", %{result: result} do
@@ -54,6 +63,11 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
     test "deletes clinician_room for room", %{result: result} do
       clinician_room = Repo.get(ClinicianRooms, result.clinician_room.id)
       refute clinician_room
+    end
+
+    test "deletes messages for user", %{result: result} do
+      messages = Repo.all(from m in Message, where: m.room_id == ^result.user_room.room_id)
+      assert Kernel.length(messages) == 0
     end
   end
 end
