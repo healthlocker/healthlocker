@@ -34,11 +34,11 @@ defmodule Healthlocker.TrackerView do
   end
 
   @doc """
-  format_average_sleep
+    format_average_sleep
 
   ## Example
 
-      iex> import Healthlocker.SleepTrackerView
+      iex> import Healthlocker.TrackerView
       iex> format_average_sleep(7.375)
       "7h 22m"
 
