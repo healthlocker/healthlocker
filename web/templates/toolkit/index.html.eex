@@ -43,6 +43,14 @@
         <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Problem Tracker</span>
       <% end %>
     </div>
+
+    <div class="tc w-40 dib fr">
+      <%= link to: diary_path(@conn, :new) do %>
+        <%= img_tag("/images/Toolkit_diary.png",
+                    class: "w-100") %>
+        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Diary</span>
+      <% end %>
+    </div>
   </div>
 
   <div class="w-100 tc mw6 center">

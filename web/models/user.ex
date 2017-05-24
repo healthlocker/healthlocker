@@ -28,6 +28,7 @@ defmodule Healthlocker.User do
     many_to_many :rooms, Healthlocker.Room, join_through: "user_rooms"
     has_many :messages, Healthlocker.Message
     has_many :symptoms, Healthlocker.Symptom
+    has_many :diaries, Healthlocker.Diary
 
     timestamps()
   end

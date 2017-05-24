@@ -3,7 +3,7 @@ defmodule Healthlocker.SymptomController do
   alias Healthlocker.Symptom
 
   def new(conn, _params) do
-    changeset = Symptom.changeset(%Symptom{}, %{})
+    changeset = Symptom.changeset(%Symptom{})
     render conn, "new.html", changeset: changeset
   end
 
