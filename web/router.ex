@@ -66,6 +66,7 @@ defmodule Healthlocker.Router do
       get "/prev-date", TrackerController, :prev_date
       get "/next-date", TrackerController, :next_date
     end
+    resources "/diary", DiaryController, only: [:new, :create, :edit, :update]
   end
 
   # endpoints not requiring a logged in user
