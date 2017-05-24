@@ -15,5 +15,6 @@
   <%= link_secondary "Next >", to: tracker_tracker_path(@conn, :next_date, @date) %>
 </div>
 
-
 <%= render "sleep_data.html", assigns %>
+
+<p class="hl-pink" >Your Care team will also be able to see your tracking overview.</p>
