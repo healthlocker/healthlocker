@@ -1,0 +1,4 @@
+<div class="br2 mv4 center">
+  <h2 class="tc">Edit Diary</h2>
+  <%= render "form.html", changeset: @changeset, action: diary_path(@conn, :update, @diary), method: [method: "put"] %>
+</div>
