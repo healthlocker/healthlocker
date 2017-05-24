@@ -60,17 +60,18 @@
               <%= link "Care team", class: "pa3 f3 white-80 db hover-white",
                   to: care_team_room_path(@conn, :show, @room) %>
             <% end %>
-            <%= link "Tips", to: tip_path(@conn, :index), class: "pa3 f3 white-80 db hover-white" %>
           <%= else %>
-            <%= link "Tips", to: tip_path(@conn, :index), class: "pb3 pt4 pt5-l f3 white-80 db hover-white" %>
+            <%= link "Home", to: page_path(@conn, :index), class: "pb3 pt4 pt5-l f3 white-80 db hover-white" %>
+            <%= link "About", to: page_path(@conn, :show, "about"), class: "pa3 f3 white-80 db hover-white" %>
           <% end %>
+          <%= link "Tips", to: tip_path(@conn, :index), class: "pa3 f3 white-80 db hover-white" %>
           <%= link "Stories", to: post_path(@conn, :index), class: "pa3 f3 white-80 db hover-white" %>
           <%= link "Get support", to: support_path(@conn, :index), class: "mv3 mh5 mh6-m hl-bg-pink pv2 f3 white-80 db hover-white" %>
           <%= if @current_user do %>
             <%= link "Account", to: account_path(@conn, :index),
-                     class: "pa3 f4 white-60 db hover-white" %>
+                     class: "pa3 f3 white-80 db hover-white" %>
 
-            <%= link "Log out", class: "pa3 f4 white-60 db hover-white mb6",
+            <%= link "Log out", class: "pa3 f3 white-80 db hover-white mb6",
                                to: login_path(@conn, :delete, @current_user),
                                method: "delete" %>
           <%= else %>
