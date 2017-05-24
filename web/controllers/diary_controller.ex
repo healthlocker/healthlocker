@@ -51,7 +51,7 @@ defmodule Healthlocker.DiaryController do
     case Repo.update(changeset) do
       {:ok, _entry} ->
         conn
-        |> put_flash(:info, "Updated diary diary diary entry")
+        |> put_flash(:info, "Updated diary entry")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render conn, "edit.html", changeset: changeset, diary: old_diary
