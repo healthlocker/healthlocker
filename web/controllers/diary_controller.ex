@@ -40,7 +40,7 @@ defmodule Healthlocker.DiaryController do
 
   def edit(conn, %{"id" => diary_id}) do
     diary = Repo.get(Diary, diary_id)
-    changeset = Diary.changeset(%Diary{})
+    changeset = Diary.changeset(diary)
     render conn, "edit.html", changeset: changeset, diary: diary
   end
 
