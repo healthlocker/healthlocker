@@ -23,11 +23,6 @@ defmodule Healthlocker.SleepTrackerControllerTest do
         {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
     end
 
-    test "/sleep-tracker :: index", %{conn: conn} do
-      conn = get conn, sleep_tracker_path(conn, :index)
-      assert html_response(conn, 200) =~ "Tracking overview"
-    end
-
     test "/sleep-tracker :: new", %{conn: conn} do
       conn = get conn, sleep_tracker_path(conn, :new)
       assert html_response(conn, 200) =~ "Sleep"
@@ -38,18 +33,6 @@ defmodule Healthlocker.SleepTrackerControllerTest do
       sleep_tracker = Repo.get_by(SleepTracker, notes: "Some notes")
       assert redirected_to(conn) == toolkit_path(conn, :index)
       assert sleep_tracker
-    end
-
-    test "/sleep-tracker :: prev-date", %{conn: conn} do
-      date = Date.to_iso8601(Date.utc_today())
-      conn = get conn, sleep_tracker_sleep_tracker_path(conn, :prev_date, date)
-      assert html_response(conn, 200) =~ "Tracking overview"
-    end
-
-    test "/sleep-tracker :: next-date", %{conn: conn} do
-      date = Date.to_iso8601(Date.utc_today())
-      conn = get conn, sleep_tracker_sleep_tracker_path(conn, :next_date, date)
-      assert html_response(conn, 200) =~ "Tracking overview"
     end
   end
 
@@ -66,12 +49,6 @@ defmodule Healthlocker.SleepTrackerControllerTest do
       :ok
     end
 
-    test "conn is halted for index", %{conn: conn} do
-      conn = get conn, sleep_tracker_path(conn, :index)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
     test "conn is halted for new", %{conn: conn} do
       conn = get conn, sleep_tracker_path(conn, :new)
       assert html_response(conn, 302)
@@ -82,20 +59,6 @@ defmodule Healthlocker.SleepTrackerControllerTest do
       conn = post conn, sleep_tracker_path(conn, :create)
       assert html_response(conn, 302)
       assert conn.halted
-    end
-
-    test "conn is halted for prev-date",%{conn: conn}  do
-      date = Date.to_iso8601(Date.utc_today())
-      conn = get conn, sleep_tracker_sleep_tracker_path(conn, :prev_date, date)
-      assert html_response(conn, 302)
-      assert conn.halted
-    end
-
-    test "conn is halted fo next-date", %{conn: conn} do
-      date = Date.to_iso8601(Date.utc_today())
-      conn = get conn, sleep_tracker_sleep_tracker_path(conn, :next_date, date)
-      assert html_response(conn, 302)
-      # assert conn.halted
     end
   end
 end
