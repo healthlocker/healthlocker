@@ -21,7 +21,7 @@ defmodule Healthlocker.TrackerViewTest do
 
   test "format_sleep_hours returns a comma separated string of hours" do
     actual = TrackerView.format_sleep_hours(@data)
-    expected = "7.0,0,0,0,0,8.0,0"
+    expected = "7.0,null,null,null,null,8.0,null"
     assert actual == expected
   end
 

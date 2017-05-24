@@ -10,7 +10,7 @@ defmodule Healthlocker.PageControllerTest do
   test "GET /", %{conn: conn} do
     fixture(:post)
     conn = get conn, page_path(conn, :index)
-    assert html_response(conn, 200) =~ "Home"
+    assert html_response(conn, 200) =~ "Tips: 5 Ways to Wellbeing"
   end
 
   test "renders about.html on /pages/about", %{conn: conn} do
