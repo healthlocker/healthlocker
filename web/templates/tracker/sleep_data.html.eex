@@ -14,13 +14,31 @@
         <%= if Map.has_key?(data.symptom_data, :affected_scale) do %>
           <div class="bb b--black-30">
         <% end %>
+        <div class="tracker-icon flex items-start justify-between mt4">
+          <%= img_tag("/images/Toolkit_sleep.png", class: "mw3 w-10 db tracker-icon mb2") %>
+          <div class="di w-90">
+            <p class="">
+              <strong>Sleep: </strong>
+              <%= format_average_sleep(String.to_float(data.sleep_data.hours_slept)) %>
+            </p>
+            <p><strong>Woke up:</strong> <%= data.sleep_data.wake_count %> times</p>
+            <p class="i"><%= data.sleep_data.notes %></p>
             <%= if Map.has_key?(data.symptom_data, :affected_scale) do %>
           </div>
           <% end %>
           </div>
+        </div>
       <% end %>
 
       <%= if Map.has_key?(data.symptom_data, :affected_scale) do %>
+        <div class="tracker-icon flex items-start justify-between mt4">
+          <%= img_tag("/images/Toolkit_problem.png", class: "mw3 db mv2 w-10 pr3 tracker-icon") %>
+          <p class="di w-90">
+            <strong><%= data.symptom_data.symptom.symptom %>:</strong>
+            <%= data.symptom_data.affected_scale %>
+          </p>
+          <p class="i"><%= data.symptom_data.notes %></p>
+        </div>
       <% end %>
 
     <% end %>
