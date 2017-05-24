@@ -1,15 +1,18 @@
-<h2 class="mv4 tc">Care team</h2>
-<div class="w-100">
-  <%= cond do %>
-    <%= String.contains?(@conn.request_path, "care-team") -> %>
-      <%= link "Messages", to: message_path(@conn, :index), class: "link w-50 dib fl black tc pv1 bg-white" %>
-      <%= link "Contacts", to: care_team_path(@conn, :index), class: "link w-50 dib fl black tc pv1 bg-white bb b--hl-aqua" %>
-    <%= String.contains?(@conn.request_path, "messages") -> %>
-      <%= link "Messages", to: message_path(@conn, :index), class: "link w-50 dib fl black tc pv1 bg-white bb b--hl-aqua" %>
-      <%= link "Contacts", to: care_team_path(@conn, :index), class: "link w-50 dib fl black tc pv1 bg-white" %>
-    <%= true -> %>
-      <%= link "Messages", to: message_path(@conn, :index), class: "link w-50 dib fl black tc pv1 bg-white" %>
-      <%= link "Contacts", to: care_team_path(@conn, :index), class: "link w-50 dib fl black tc pv1 bg-white bb b--hl-aqua" %>
-  <% end %>
-</div>
-<div class="mt5"></div>
+<section class="absolute w-100 left-0 hl-bg-grey">
+  <div class="hl-bg-grey w-100 pa3 mw7 center">
+    <h2 class="ma0 tc">Care team</h2>
+  </div>
+  <div class="w-100 mw7 center">
+    <%= cond do %>
+      <%= String.contains?(@conn.request_path, "rooms") -> %>
+        <%= link "Messages", to: care_team_room_path(@conn, :show, @room), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
+        <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 hl-bg-grey" %>
+      <%= String.contains?(@conn.request_path, "contacts") -> %>
+        <%= link "Messages", to: care_team_room_path(@conn, :show, @room), class: "link w-50 dib fl black tc pv1 hl-bg-grey" %>
+        <%= link "Contacts", to: care_team_contact_path(@conn, :show, section: "contacts"), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
+      <%= true -> %>
+        <%= link "Messages", to: care_team_room_path(@conn, :show, @room), class: "link w-50 dib fl black tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
+        <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 hl-bg-grey" %>
+    <% end %>
+  </div>
+</section>
