@@ -54,7 +54,9 @@ if (ctx) {
         type: 'line',
         label: symptom,
         data: symptomScale,
+        pointRadius: 5,
         fill: false,
+        showLine: false,
         borderColor: [
           'rgba(236, 64, 103, 1)'
         ],
