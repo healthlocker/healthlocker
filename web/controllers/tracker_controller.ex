@@ -110,7 +110,7 @@ defmodule Healthlocker.TrackerController do
     sleep_data = get_sleep(conn, shifted_date)
     symptom_data = get_symptom_tracking_data(shifted_date_time, conn.assigns.current_user.id)
     diary_data = get_diary_data(DateTime.utc_now(), conn.assigns.current_user.id)
-    merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, Timex.shift(NaiveDateTime.utc_now(), days: -7))
+    merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(shifted_date_time))
 
     render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
           merged_data: merged_data)
@@ -131,7 +131,7 @@ defmodule Healthlocker.TrackerController do
     sleep_data = get_sleep(conn, shifted_date)
     symptom_data = get_symptom_tracking_data(shifted_date_time, conn.assigns.current_user.id)
     diary_data = get_diary_data(DateTime.utc_now(), conn.assigns.current_user.id)
-    merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, Timex.shift(NaiveDateTime.utc_now(), days: 7))
+    merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(shifted_date_time))
 
     render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
           merged_data: merged_data)

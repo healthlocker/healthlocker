@@ -112,7 +112,7 @@ defmodule Healthlocker.TrackerView do
                   |> Map.get(:hours_slept)
       List.insert_at(list, 0, hours_slept)
     else
-      List.insert_at(list, 0, 0)
+      List.insert_at(list, 0, "null")
     end
   end
 
@@ -123,7 +123,7 @@ defmodule Healthlocker.TrackerView do
                 end) do
                   insert_hours_slept(data, list, n)
                 else
-                  List.insert_at(list, n - 1, 0)
+                  List.insert_at(list, n - 1, "null")
                 end
     format_hours_list(data, new_list, n + 1)
   end
@@ -138,7 +138,7 @@ defmodule Healthlocker.TrackerView do
                   |> Map.get(:affected_scale)
       List.insert_at(list, 0, scale)
     else
-      List.insert_at(list, 0, 0)
+      List.insert_at(list, 0, "null")
     end
   end
 
@@ -148,7 +148,7 @@ defmodule Healthlocker.TrackerView do
                 end) do
                   insert_scale(data, list, n)
                 else
-                  List.insert_at(list, n - 1, 0)
+                  List.insert_at(list, n - 1, "null")
                 end
     format_scale_list(data, new_list, n + 1)
   end
