@@ -1,6 +1,7 @@
 defmodule Healthlocker.AccountController do
   use Healthlocker.Web, :controller
-  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo, Slam.ConnectSlam}
+  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo, Slam.ConnectSlam,
+                      Slam.DisconnectSlam}
   alias Healthlocker.Plugs.Auth
   use Timex
 
@@ -35,8 +36,8 @@ defmodule Healthlocker.AccountController do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
 
-    changeset = User.disconnect_changeset(user)
-    case Repo.update(changeset) do
+    multi = DisconnectSlam.disconnect_su(user)
+    case Repo.transaction(multi) do
       {:ok, _params} ->
         conn
         |> put_flash(:info, "Your account has been disconnected from SLaM")
@@ -183,10 +184,10 @@ defmodule Healthlocker.AccountController do
             slam_id: slam_user."Patient_ID"})
           changeset = User.update_changeset(user)
           case Repo.transaction(multi) do
-            {:ok, _user} ->
+            {:ok, result} ->
               conn
               |> put_flash(:info, "SLaM account connected!")
-              |> render("index.html", changeset: changeset, user: user,
+              |> redirect(to: account_path(conn, :index), changeset: changeset, user: result.user,
                         slam_id: slam_user.id, action: account_path(conn, :update))
             {:error, _type, changeset, _} ->
               conn

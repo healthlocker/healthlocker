@@ -37,4 +37,5 @@
       </section>
     <% end %>
   <% end %>
+  <p class="hl-pink">Your Care team will also be able to see your Goals.</p>
 </div>
