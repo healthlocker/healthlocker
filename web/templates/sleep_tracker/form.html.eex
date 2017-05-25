@@ -31,4 +31,68 @@
       <%= submit_primary "Save" %>
     </div>
   <% end %>
+
+  <div class="hl-bg-grey pa3 mt4 br2">
+    <h2>Sleep tips</h2>
+    <p>Good sleep helps promote both mental and physical wellbeing. Here are some ideas to try.</p>
+    <p>
+      <strong>Ensure you go outside in natural daylight every day and try
+      regular exercise</strong>This can regulate your internal body clock and
+      help you concentrate, sleep, look and feel better.
+    </p>
+    <p>
+      <strong>Avoid daytime napping even if you have not slept well the night
+      before</strong>If you have to have a nap, limit it to 20 minutes and
+      avoid napping after 5pm.
+    </p>
+    <p>
+      <strong>Avoid caffeine, nicotine and alcohol 4 hours before bed and avoid
+      late meals or snacking</strong>These can all be stimulating for your
+      body and mind.
+    </p>
+    <p>
+      <strong>Avoid using your phone, iPad or laptop an hour before going to
+      bed, and avoid using them in bed. Remove digital distractions like TV
+      from your bedroom.</strong>The backlight on devices suppresses melatonin
+      - the hormone that helps you sleep. If you do need to use them change
+      the display settings to reduce the brightness (blue light exposure).
+    </p>
+    <p>
+      <strong>Take a warm bath or shower at least an hour before bedtime</strong>
+      The rise and fall in body temperature supports the release of sleep
+      enhancing hormone melatonin.
+    </p>
+    <p>
+      <strong>Do some gentle stretching or
+      <%= link_to("progressive muscle relaxation",
+      to: "https://www.youtube.com/watch?v=9x3tl81NW3w") %></strong>
+      This will encourage your whole body to relax and help you sleep.
+    </p>
+    <p>
+      <strong>Have pen and paper by your bed to jot down worrying thoughts or
+      ideas</strong>This may help stop you going over and over them.
+    </p>
+    <p>
+      <strong>If you can’t sleep within 15 minutes of going to bed -
+      stop trying: go to another room or sit in a chair and read a book.
+      Return to bed when you feel sleepy again</strong>
+      This will strengthen the association of bed with sleep rather
+      than being awake.
+    </p>
+    <p>
+      <strong>Try the Mindfulness course at the
+      <%= link_to("Recovery College",
+      to: "http://www.slamrecoverycollege.co.uk/courses.html") %></strong>
+      Mindfulness has been shown to improve our emotional regulation, which
+      can help sleep.
+    </p>
+    <p>
+      For more information and tips on sleep visit the
+      <%= link_to("Sleep Foundation", to: "https://sleepfoundation.org/") %>.
+    </p>
+    <p>
+      Or explore
+      <%= link_to("more tips", to: tip_path(@conn, :index)) %> on Healthlocker.
+    </p>
+  </div>
 </div>
