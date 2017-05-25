@@ -204,9 +204,11 @@ defmodule Healthlocker.TrackerView do
   end
 
   def printed_time(naive_date_time) do
-    time = naive_date_time
+    [hours, minutes | _] = naive_date_time
     |> NaiveDateTime.to_time()
+    |> Time.to_string
+    |> String.split(":")
 
-    Enum.join([time.hour, ":" ,time.minute])
+    Enum.join([hours, ":" , minutes])
   end
 end
