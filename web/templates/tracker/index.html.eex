@@ -16,4 +16,6 @@
 </div>
 
 <%= render "tracking_data.html", assigns %>
-<p class="hl-pink" >Your Care team will also be able to see your tracking overview.</p>
+<%= if @current_user.slam_id do %>
+  <p class="hl-pink" >Your Care team will also be able to see your tracking overview.</p>
+<% end %>
