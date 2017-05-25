@@ -38,6 +38,11 @@
       Good sleep helps promote both mental and physical wellbeing.
       Here are some ideas to try.
     </p>
+
+    <div class="tc">
+      <%= img_tag("/images/Toolkit_sleep.png", class: "w4") %>
+    </div>
+
     <p>
       <strong>Ensure you go outside in natural daylight every day and try
       regular exercise</strong><br>This can regulate your internal body clock and
@@ -66,9 +71,11 @@
       enhancing hormone melatonin.
     </p>
     <p>
-      <strong>Do some gentle stretching or
-      <%= link_to("progressive muscle relaxation",
-      to: "https://www.youtube.com/watch?v=9x3tl81NW3w") %></strong><br>
+      <strong>
+        Do some gentle stretching or
+        <%= link_to("progressive muscle relaxation",
+        to: "https://www.youtube.com/watch?v=9x3tl81NW3w", target: "_blank") %>
+      </strong><br>
       This will encourage your whole body to relax and help you sleep.
     </p>
     <p>
@@ -85,17 +92,19 @@
     <p>
       <strong>Try the Mindfulness course at the
       <%= link_to("Recovery College",
-      to: "http://www.slamrecoverycollege.co.uk/courses.html") %></strong><br>
+      to: "http://www.slamrecoverycollege.co.uk/courses.html",
+      target: "_blank") %></strong><br>
       Mindfulness has been shown to improve our emotional regulation, which
       can help sleep.
     </p>
     <p>
       For more information and tips on sleep visit the
-      <%= link_to("Sleep Foundation", to: "https://sleepfoundation.org/") %>.
+      <%= link_to("Sleep Foundation", to: "https://sleepfoundation.org/", target: "_blank") %>.
     </p>
     <p>
       Or explore
-      <%= link_to("more tips", to: tip_path(@conn, :index)) %> on Healthlocker.
+      <%= link_to("more tips", to: tip_path(@conn, :index), target: "_blank") %>
+      on Healthlocker.
     </p>
   </div>
 </div>
