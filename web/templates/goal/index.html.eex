@@ -37,5 +37,7 @@
       </section>
     <% end %>
   <% end %>
-  <p class="hl-pink">Your Care team will also be able to see your Goals.</p>
+  <%= if @current_user.slam_id do %>
+    <p class="hl-pink">Your Care team will also be able to see your Goals.</p>
+  <% end %>
 </div>
