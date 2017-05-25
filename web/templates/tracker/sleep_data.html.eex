@@ -1,4 +1,4 @@
-<canvas id="myChart" width="400" height="400"></canvas>
+<canvas id="myChart" class="mw6 center" width="400" height="400"></canvas>
 
 <div class="hl-bg-light-aqua br3 mw6 center mv4">
   <h3 class="pl3 dib b">7 day average</h3>
