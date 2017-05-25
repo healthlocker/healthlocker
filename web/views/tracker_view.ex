@@ -202,4 +202,13 @@ defmodule Healthlocker.TrackerView do
   def date_with_day_and_month(date) do
     day_of_week(date, 0) <> " " <> Integer.to_string(date.day) <> "th " <> Timex.month_name(date.month)
   end
+
+  def printed_time(naive_date_time) do
+    [hours, minutes | _] = naive_date_time
+    |> NaiveDateTime.to_time()
+    |> Time.to_string
+    |> String.split(":")
+
+    Enum.join([hours, ":" , minutes])
+  end
 end

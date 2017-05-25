@@ -1,16 +1,16 @@
 defmodule Healthlocker.TrackerController do
   use Healthlocker.Web, :controller
   use Timex
-  alias Healthlocker.{Symptom, SymptomTracker, SleepTracker}
+  alias Healthlocker.{Diary, Symptom, SymptomTracker, SleepTracker}
 
   def create_date_list(list, date, 6) do
     list
-    |> List.insert_at(7, %{inserted_at: date, sleep_data: %{}, symptom_data: %{}})
+    |> List.insert_at(7, %{inserted_at: date, sleep_data: %{}, symptom_data: %{}, diary_data: %{}})
   end
 
   def create_date_list(list, date, n) do
     list
-    |> List.insert_at(n, %{inserted_at: date, sleep_data: %{}, symptom_data: %{}})
+    |> List.insert_at(n, %{inserted_at: date, sleep_data: %{}, symptom_data: %{}, diary_data: %{}})
     |> create_date_list(Timex.shift(date, days: -1), n + 1)
   end
 
@@ -46,11 +46,12 @@ defmodule Healthlocker.TrackerController do
     |> merge_map_data(data_list, atom, n + 1)
   end
 
-  def merge_tracking_data(list, sleep_data, symptom_data, date_time) do
+  def merge_tracking_data(list, sleep_data, symptom_data, diary_data, date_time) do
     list
     |> create_date_list(date_time, 0)
     |> merge_map_data(sleep_data, :sleep_data, 0)
     |> merge_map_data(symptom_data, :symptom_data, 0)
+    |> merge_map_data(diary_data, :diary_data, 0)
   end
 
 
@@ -65,6 +66,17 @@ defmodule Healthlocker.TrackerController do
     end
   end
 
+  def get_diary_data(date, user_id) do
+    query = from d in Diary, where: d.user_id == ^user_id and d.inserted_at <= ^date and d.inserted_at > ^SleepTracker.last_week(date),
+            order_by: [desc: d.inserted_at]
+    case Repo.all(query) do
+      nil ->
+        []
+      diary ->
+        diary
+    end
+  end
+
   def get_sleep(conn, date) do
     user_id = conn.assigns.current_user.id
     SleepTracker
@@ -75,7 +87,8 @@ defmodule Healthlocker.TrackerController do
   def index(conn, _params) do
     sleep_data = get_sleep(conn, Date.utc_today())
     symptom_data = get_symptom_tracking_data(DateTime.utc_now(), conn.assigns.current_user.id)
-    merged_data = merge_tracking_data([], sleep_data, symptom_data, NaiveDateTime.utc_now())
+    diary_data = get_diary_data(DateTime.utc_now(), conn.assigns.current_user.id)
+    merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, NaiveDateTime.utc_now())
     date = Date.to_iso8601(Date.utc_today())
 
     render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
@@ -96,7 +109,8 @@ defmodule Healthlocker.TrackerController do
 
     sleep_data = get_sleep(conn, shifted_date)
     symptom_data = get_symptom_tracking_data(shifted_date_time, conn.assigns.current_user.id)
-    merged_data = merge_tracking_data([], sleep_data, symptom_data, DateTime.to_naive(shifted_date_time))
+    diary_data = get_diary_data(DateTime.utc_now(), conn.assigns.current_user.id)
+    merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(shifted_date_time))
 
     render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
           merged_data: merged_data)
@@ -116,7 +130,8 @@ defmodule Healthlocker.TrackerController do
 
     sleep_data = get_sleep(conn, shifted_date)
     symptom_data = get_symptom_tracking_data(shifted_date_time, conn.assigns.current_user.id)
-    merged_data = merge_tracking_data([], sleep_data, symptom_data, DateTime.to_naive(shifted_date_time))
+    diary_data = get_diary_data(DateTime.utc_now(), conn.assigns.current_user.id)
+    merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(shifted_date_time))
 
     render(conn, "index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
           merged_data: merged_data)
