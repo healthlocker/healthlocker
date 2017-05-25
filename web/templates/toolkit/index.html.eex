@@ -1,61 +1,61 @@
 <div class="ma3 ma4-m ma4-l">
   <h2 class="tc">Goals and tracking</h2>
-  <div class="goals-strategies w-100 mw6 center flex items-end justify-between">
+  <div class="w-100 mw6 center flex items-end justify-between">
       <div class="tc w-40 dib">
         <%= link to: goal_path(@conn, :index) do %>
           <%= img_tag("/images/Toolkit_goals.png", class: "w-100") %>
-          <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Goals</span>
+          <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Goals</span>
         <% end %>
       </div>
 
       <div class="tc w-40 dib fr">
         <%= link to: coping_strategy_path(@conn, :index) do %>
           <%= img_tag("/images/Toolkit_coping_strategies.png", class: "w-100") %>
-          <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Coping Strategies</span>
+          <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Coping Strategies</span>
         <% end %>
       </div>
   </div>
 
+  <div class="w-100 tc mw6 center">
+    <%= link to: care_plan_path(@conn, :index) do %>
+    <span class="mt4 mb3 f5 link dib ph1 pv3 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-100">Care Plan Summary</span>
+    <% end %>
+  </div>
 
-  <div class="tracker-container w-100 mw6 center mt3 flex items-end justify-between">
+  <div class="w-100 mw6 center flex items-end justify-between">
     <div class="w-40 tc dib">
       <%= link to: sleep_tracker_path(@conn, :new) do %>
-        <%= img_tag("/images/Toolkit_sleep.png",
-                    class: "w-100") %>
-        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Sleep Tracker</span>
+      <%= img_tag("/images/Toolkit_sleep.png",
+      class: "w-100") %>
+      <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Sleep Tracker</span>
+      <% end %>
+    </div>
+
+    <div class="w-40 tc dib">
+      <%= link to: symptom_tracker_path(@conn, :new) do %>
+      <%= img_tag("/images/Toolkit_problem.png",
+      class: "w-100") %>
+      <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Problem Tracker</span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="w-100 mw6 center mt3 flex items-end justify-between">
+    <div class="tc w-40 dib fr">
+      <%= link to: diary_path(@conn, :new) do %>
+      <%= img_tag("/images/Toolkit_diary.png",
+      class: "w-100") %>
+      <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Diary</span>
       <% end %>
     </div>
 
     <div class="tc w-40 dib fr">
       <%= link to: tracker_path(@conn, :index) do %>
-        <%= img_tag("/images/Toolkit_Tracking_overview.png",
-                    class: "w-100") %>
-        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Tracker Overview</span>
+      <%= img_tag("/images/Toolkit_Tracking_overview.png",
+      class: "w-100") %>
+      <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Tracker Overview</span>
       <% end %>
     </div>
   </div>
 
-  <div class="tracker-container w-100 mw6 center mt3 flex items-end justify-between">
-    <div class="w-40 tc dib">
-      <%= link to: symptom_tracker_path(@conn, :new) do %>
-        <%= img_tag("/images/Toolkit_problem.png",
-                    class: "w-100") %>
-        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Problem Tracker</span>
-      <% end %>
-    </div>
-
-    <div class="tc w-40 dib fr">
-      <%= link to: diary_path(@conn, :new) do %>
-        <%= img_tag("/images/Toolkit_diary.png",
-                    class: "w-100") %>
-        <span class="mt3 f5 link dim br-pill ph3 pv2 dib black-60 hl-bg-grey pointer w-75">Diary</span>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="w-100 tc mw6 center">
-    <%= link to: care_plan_path(@conn, :index) do %>
-      <span class="mt4 f5 link dim br-pill ph1 pv3 dib black-60 hl-bg-grey pointer w-100">Care Plan Summary</span>
-    <% end %>
-  </div>
 </div>
