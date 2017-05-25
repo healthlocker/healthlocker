@@ -11,7 +11,7 @@
       <h4 class="b"><%= date_with_day_and_month(data.inserted_at) %></h4>
 
       <%= if Map.has_key?(data.sleep_data, :hours_slept) do %>
-        <div class="tracker-icon flex items-start justify-end mt2">
+        <div class="tracker-icon flex items-start mt2">
           <div class="di w-20 w-10-m w-10-l">
             <%= img_tag("/images/Toolkit_sleep.png", class: "w-90 tracker-icon") %>
           </div>
@@ -31,7 +31,7 @@
         <% end %>
 
       <%= if Map.has_key?(data.symptom_data, :affected_scale) do %>
-        <div class="tracker-icon flex items-start justify-end mt2">
+        <div class="tracker-icon flex items-startd mt2">
           <div class="di w-20 w-10-m w-10-l self-end">
             <%= img_tag("/images/Toolkit_problem.png", class: "w-90 tracker-icon") %>
           </div>
