@@ -3,7 +3,7 @@
   <div class="tr">
     <%= link_to "Edit", to: coping_strategy_path(@conn, :edit, @coping_strategy) %>
   </div>
-  <div class="hl-bg-grey pv1 ph3 mt2">
+  <div class="hl-bg-grey pv1 ph3 mt2 word-wrap">
     <span class="b">
       <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
     </span>
