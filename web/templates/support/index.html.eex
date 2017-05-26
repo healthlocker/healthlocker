@@ -12,16 +12,37 @@
   </ul>
 
   <div class="hl-bg-grey pa3">
-    <h3>Free 24-hour phone support</h3>
+    <h3 class="tc">Free 24-hour support services</h3>
     <div class="tc">
-      <%= img_tag("/images/Get_Support.png", class: "w-20") %>
+      <%= img_tag("/images/Get_Support.png", class: "w-20 tc") %>
     </div>
-    <p><span class="b">SLaM mental health support line:</span> <%= link_to("0800 731 2864", to: "tel:08007312864") %> for anyone in Southwark, Lambeth, Lewisham or Croydon. Calls will be answered by a nurse who can give advice on mental health, medication and accessing appropriate services</p>
 
-    <p><span class="b">The Samaritans:</span> <%= link_to("116 123", to: "tel:116123") %> is a national service (and you don't have to be suicidal to call for support)</p>
+    <h4>Local support</h4>
+    <p><strong>South London and Maudsley NHS Foundation Trust mental health support line </strong>
+    <%= link_to("0800 731 2864", to: "tel:08007312864") %> for anyone in Southwark, Lambeth, Lewisham or Croydon.
+    Calls will be answered by a nurse who can give advice on mental health, medication and accessing services.</p>
 
-    <p><span class="b">NHS:</span> <%= link_to("111", to: "tel:111") %> for urgent, but non-emergency, medical advice</p>
+    <p><strong>Solidarity in a crisis</strong> <%= link_to("0300 123 1922", to: "tel:03001231922") %>
+      , or text 07595864103 or email <%= link_to("outofhours-solidarity@certitude.org.uk", to: "mailto:outofhours-solidarity@certitude.org.uk") %>.
+      Free emotional support for people living in Lambeth, Southwark and Lewisham.
+      The service is run by peer supporters who have their own experience of facing and overcoming crisis.
+      Mon to Fri 6pm – 12 midnight, and Sat &amp Sun 12 midday – 12 midnight.</p>
 
-    <p><span class="b">Emergency services:</span> <%= link_to("999", to: "tel:999") %> or find your nearest <%= link_to("A&E", to: "http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428", target: "_blank") %></p>
+    <h4>National support</h4>
+    <p><strong>The Samaritans</strong> <%= link_to("116 123", to: "tel:116123") %>
+      is a national service (and you don't have to be suicidal to call for support).</p>
+
+    <p><strong>Childline</strong> <%= link_to("0800 1111", to: "tel:0800 1111") %> or
+      <%= link_to("chat online to a counsellor", to: "https://www.childline.org.uk/get-support/1-2-1-counsellor-chat/") %>.
+      A free confidential line for children &amp young people (you don’t have to give your name if you don’t want to).</p>
+
+    <p><strong>FRANK</strong> <%= link_to("0300 123 6600", to: "tel:0300 123 6600") %>
+      A free confidential helpline for anyone concerned about drug use.
+      <%= link_to("Chat online 2-6pm", to: "http://www.talktofrank.com/emergency-help") %> or read <%= link_to("what to do", to: "http://www.talktofrank.com/emergency-help") %> if a friend or relative is having a bad reaction to a drug.</p>
+
+    <p><strong>NHS</strong> <%= link_to("111", to: "tel:111") %> call for urgent, but non-emergency advice.</p>
+
+    <p><strong>Emergency services</strong> <%= link_to("999", to: "tel:999") %>
+      or find your nearest <%= link_to("A&E", to: "http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428", target: "_blank") %>.</p>
   </div>
 </div>
