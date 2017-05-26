@@ -22,7 +22,7 @@
 
     <%= if !@current_user && @conn.request_path == "/" do %>
       <div class="pa1 w-100 w-70-m w-70-l">
-        <%= img_tag("/images/nhs-logo.png", class: "w-60 w-40-m w-25-l") %>
+        <%= img_tag("/images/nhs-logo.png", class: "w-60 w-40-m w-40-l mw7") %>
       </div>
     <% end %>
 
