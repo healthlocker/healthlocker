@@ -57,12 +57,8 @@ if (ctx) {
         pointRadius: 5,
         fill: false,
         showLine: false,
-        borderColor: [
-          'rgba(236, 64, 103, 1)'
-        ],
-        backgroundColor: [
-          'rgba(236, 64, 103, 0.2)'
-        ],
+        borderColor: 'rgba(236, 64, 103, 1)',
+        backgroundColor: 'rgba(236, 64, 103, 0.2)',
         borderWidth: 1
       }
     ]
