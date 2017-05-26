@@ -283,3 +283,11 @@ code {
 .min-checkbox-height {
   min-height: 33.5px;
 }
+
+.pt-10em {
+  padding-top: 10em;
+}
+
+.ml-20 {
+  margin-left: 20%;
+}
