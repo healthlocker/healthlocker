@@ -13,6 +13,7 @@ defmodule Healthlocker.User do
     field :security_question, :string
     field :security_answer, :string
     field :data_access, :boolean
+    field :c4c, :boolean
     field :role, :string
     field :slam_user, :boolean
     field :slam_id, :integer
@@ -64,8 +65,8 @@ defmodule Healthlocker.User do
 
   def connect_slam(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:slam_id, :first_name, :last_name])
-    |> validate_required([:slam_id, :first_name, :last_name])
+    |> cast(params, [:slam_id, :first_name, :last_name, :c4c])
+    |> validate_required([:slam_id, :first_name, :last_name, :c4c])
   end
 
   def disconnect_changeset(struct) do
