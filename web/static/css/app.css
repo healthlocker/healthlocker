@@ -291,3 +291,7 @@ code {
 .ml-20 {
   margin-left: 20%;
 }
+
+.word-wrap {
+  overflow-wrap: break-word;
+}
