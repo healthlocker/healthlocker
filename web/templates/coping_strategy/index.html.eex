@@ -9,7 +9,7 @@
     <%= link to: coping_strategy_path(@conn, :show, coping_strategy), class: "link w-100" do %>
       <section class="bb bw2 b--black-10 dib w-100">
         <div class="w-90 dib fl">
-          <h4 class="ma2 ph3-m ph4-l f5 lh-copy hl-dark-blue di w-100">
+          <h4 class="ma2 ph3-m ph4-l f5 lh-copy hl-dark-blue di w-100 word-wrap">
             <%= markdown String.trim_trailing(coping_strategy.content, " #CopingStrategy") %>
           </h4>
         </div>

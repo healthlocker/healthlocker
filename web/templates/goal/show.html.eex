@@ -4,7 +4,7 @@
     <%= link_to "Edit", to: goal_path(@conn, :edit, @goal) %>
   </div>
 
-  <div class="hl-bg-grey pv1 ph3 mt2">
+  <div class="hl-bg-grey pv1 ph3 mt2 word-wrap">
     <span class="b"><%= markdown String.trim_trailing(@goal.content, " #Goal") %></span>
 
     <%= for step <- @goal.steps do %>
