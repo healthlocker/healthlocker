@@ -19,12 +19,6 @@
     <%= segment_snippet() %>
   </head>
   <body class="w-100 bg-white">
-    <%= if !@current_user && @conn.request_path == "/" do %>
-      <div class="pa1">
-        <%= img_tag("/images/nhs-logo.png") %>
-      </div>
-    <% end %>
-    
     <div class="hl-bg-pink pa1">
       <div class="pa1">
         <p class="di b white">Healthlocker is in progress -</p>
@@ -34,6 +28,12 @@
         </small>
       </div>
     </div>
+
+    <%= if !@current_user && @conn.request_path == "/" do %>
+      <div class="pa1 w-100 w-70-m w-70-l">
+        <%= img_tag("/images/nhs-logo.png", class: "w-60 w-40-m w-25-l") %>
+      </div>
+    <% end %>
 
     <div class="container">
       <header id="header" class="hl-bg-aqua w-100 ph3 pv3 pv4-ns ph4-m ph4-l tc">
