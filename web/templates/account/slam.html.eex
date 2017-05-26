@@ -48,11 +48,11 @@
     </p>
 
     <div>
-    <%= checkbox f, :c4c, class: "checkbox" %>
-    <%= label f, :c4c do %>
-      I agree to join the
-      <%= link_to("C4C register", to: "http://www.slam.nhs.uk/research/patient-involvement/current-opportunities/consent-for-contact") %>
-    <% end %>
+      <%= checkbox f, :c4c, class: "checkbox" %>
+      <%= label f, :c4c do %>
+        I agree to join the
+        <%= link_to("C4C register", to: "http://www.slam.nhs.uk/research/patient-involvement/current-opportunities/consent-for-contact") %>
+      <% end %>
     </div>
 
     <div class="tr mt4">
