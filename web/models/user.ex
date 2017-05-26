@@ -89,7 +89,7 @@ defmodule Healthlocker.User do
 
   def update_data_access(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:data_access])
+    |> cast(params, [:data_access, :c4c])
   end
 
   def registration_changeset(model, params) do
