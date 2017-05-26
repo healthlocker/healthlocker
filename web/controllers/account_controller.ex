@@ -152,7 +152,12 @@ defmodule Healthlocker.AccountController do
                   action: account_path(conn, :check_slam)
   end
 
-  def check_slam(conn, %{"user" => %{"Forename" => forename, "Surname" => surname, "NHS_Number" => nhs, "DOB" => dob}}) do
+  def check_slam(conn, %{"user" => %{
+    "Forename" => forename,
+    "Surname" => surname,
+    "NHS_Number" => nhs,
+    "DOB" => dob,
+    "c4c" => c4c}}) do
     # converts birthday string to datetime
     birthday = if dob != "", do: datetime_birthday(dob)
     # removes spaces from nhs number if present
@@ -181,7 +186,8 @@ defmodule Healthlocker.AccountController do
           multi = ConnectSlam.connect_su_and_create_rooms(user, %{
             first_name: forename,
             last_name: surname,
-            slam_id: slam_user."Patient_ID"})
+            slam_id: slam_user."Patient_ID",
+            c4c: c4c})
           changeset = User.update_changeset(user)
           case Repo.transaction(multi) do
             {:ok, result} ->
