@@ -45,4 +45,52 @@
     <p><strong>Emergency services</strong> <%= link_to("999", to: "tel:999") %>
       or find your nearest <%= link_to("A&E", to: "http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428", target: "_blank") %>.</p>
   </div>
+
+  <div class="hl-bg-grey pa3 mt4">
+    <h3 class="tc">For family, friends and carers</h3>
+    <div class="tc">
+      <%= img_tag("/images/Family,friends,carers_hand.png", class: "w-20 tc") %>
+    </div>
+
+    <h4>Local support</h4>
+
+    <p><strong><%= link_to("South London and Maudsley NHS Foundation Trust", to: "http://www.slam.nhs.uk/") %></strong>
+      have a <%= link_to("Carer FAQs", to: "http://www.slam.nhs.uk/patients-and-carers/carer-information/frequently-asked-questions") %>
+      resource, a <%= link_to("handbook for families", to: "http://www.slam.nhs.uk/media/176078/CARERS%20HANDBOOK%204TH%20DESIGN%20WEBSITE.pdf") %>
+      <%= link_to("confidentiality and sharing information with carers", to: "http://www.slam.nhs.uk/media/425250/slam_carers_confidentiality.pdf") %>
+      on their website.
+    </p>
+
+    <p><strong><%= link_to("Southwark Carers", to: "http://www.southwarkcarers.org.uk/") %></strong>
+      offer 1:1 support, counselling, information on carers’ rights, leisure, educational and vocational activities.
+      Call <%= link_to("020 7708 4497", to: "tel:020 7708 4497") %>, email
+      <%= link_to("info@southwarkcarers.org.uk", to: "mailto:info@southwarkcarers.org.uk") %>.</p>
+
+    <p><strong><%= link_to("Carers Hub Lambeth", to: "http://carershub.org.uk") %></strong>
+    provide advice, information, emotional support, groups and events, and have a specialist team for young carers (under 18).
+    Call <%= link_to("0207 501 8974", to: "tel:0207 501 8974") %>, email
+    <%= link_to("connect@carershub.org.uk", to: "mailto:connect@carershub.org.uk") %></p>
+
+    <p><strong><%= link_to("Carers Lewisham", to: "http://www.carerslewisham.org.uk") %></strong>
+    offer 1-1 support &amp advocacy, counselling, monthly drop-ins, groups on coping strategies and recovery,
+    services for young carers and carers of people with dementia. Call
+    <%= link_to("020 8699 8686", to: "tel:020 8699 8686") %>, email
+    <%= link_to("info@carerslewisham.org.uk", to: "mailto:info@carerslewisham.org.uk") %>.</p>
+
+    <p><strong><%= link_to("Croydon Carers' Information Service", to: "http://carerssupportcentrecroydon.org.uk") %></strong>
+    provide information, advice and run sessions and activities including benefits, pilates, employment, craft and social meetings.
+    Call <%= link_to("020 8649 9339", to: "tel:020 8649 9339") %>, email
+    <%= link_to("info@carersinfo.org.uk", to: "mailto:info@carersinfo.org.uk") %>.</p>
+
+    <h4>National support</h4>
+
+    <p><strong><%= link_to("Carers UK", to: "http://www.carersuk.org") %></strong>
+    are a national charity creating a supportive community and movement for change.</p>
+
+    <p><strong><%= link_to("Carers Trust", to: "https://carers.org") %></strong>
+    are a national charity working to improve support, services and recognition for unpaid carers.</p>
+
+    <p><strong><%= link_to("Kidstime Foundation", to: "http://www.kidstimefoundation.org") %></strong>
+    is a UK charity supporting children and young people affected by the mental health problems of a parent or sibling.</p>
+  </div>
 </div>
