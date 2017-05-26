@@ -20,10 +20,13 @@
   </head>
 
   <body class="w-100 bg-white">
-      <div class="bg-beta-yellow pa1">
+      <div class="hl-bg-pink pa1">
         <div class="pa1">
-          <p class="di">Beta</p> - <small>Improvements and features are in progress.
-            <%= link_to "Give feedback", to: feedback_path(@conn, :index) %></small>
+          <p class="di b white">Healthlocker is in progress -</p>
+          <small>
+            <%= link "share feedback and suggestions",
+            to: feedback_path(@conn, :index), class: "white" %>
+          </small>
         </div>
       </div>
 
