@@ -18,8 +18,13 @@
 
     <%= segment_snippet() %>
   </head>
-
   <body class="w-100 bg-white">
+    <%= if !@current_user && @conn.request_path == "/" do %>
+      <div class="pa1">
+        <%= img_tag("/images/nhs-logo.png") %>
+      </div>
+    <% end %>
+    
     <div class="hl-bg-pink pa1">
       <div class="pa1">
         <p class="di b white">Healthlocker is in progress -</p>
