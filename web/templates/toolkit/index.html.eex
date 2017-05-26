@@ -16,11 +16,13 @@
       </div>
   </div>
 
-  <div class="w-100 tc mw6 center">
-    <%= link to: care_plan_path(@conn, :index) do %>
-    <span class="mt4 mb3 f5 link dib ph1 pv3 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-100">Care Plan Summary</span>
-    <% end %>
-  </div>
+  <%= if @current_user.slam_id do %>
+    <div class="w-100 tc mw6 center">
+      <%= link to: care_plan_path(@conn, :index) do %>
+      <span class="mt4 mb3 f5 link dib ph1 pv3 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-100">Care Plan Summary</span>
+      <% end %>
+    </div>
+  <% end %>
 
   <div class="w-100 mw6 center flex items-end justify-between">
     <div class="w-40 tc dib">
