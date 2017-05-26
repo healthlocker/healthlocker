@@ -51,7 +51,7 @@ defmodule Healthlocker.AccountController do
   def consent(conn, _params) do
     user_id = conn.assigns.current_user.id
     user = Repo.get!(User, user_id)
-    changeset = User.update_changeset(user)
+    changeset = User.update_data_access(user)
     render conn, "consent.html", changeset: changeset, user: user,
                         action: account_path(conn, :update_consent)
   end
