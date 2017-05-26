@@ -2,7 +2,27 @@
   <%= render "menu.html", conn: @conn %>
   <div class="mt6">
     <%= form_for @changeset, @action, fn f -> %>
-      <div class="form-group">
+    <%= if @current_user.slam_id do %>
+      <p>
+        Are you interested in being contacted if you are eligible to take part
+        in research that contributes to better health for people with mental
+        health related problems? If so you can sign up to a register called
+        <%= link_to("Consent for Contact (C4C)",
+        to: "http://www.slam.nhs.uk/research/patient-involvement/current-opportunities/consent-for-contact") %>.
+        All researchers work for or are approved by
+        South London and Maudsley NHS Foundation Trust.
+      </p>
+
+      <div>
+        <%= checkbox f, :c4c, class: "checkbox" %>
+        <%= label f, :c4c do %>
+        I agree to join the
+        <%= link_to("C4C register", to: "http://www.slam.nhs.uk/research/patient-involvement/current-opportunities/consent-for-contact") %>
+        <% end %>
+      </div>
+    <% end %>
+
+      <div class="mt3">
         <%= checkbox f, :data_access, class: "checkbox" %>
         <%= label f, "I allow my anonymous data to be accessed by researchers to
         drive forward the future of mental health and care" %>
