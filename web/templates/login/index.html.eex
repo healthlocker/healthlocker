@@ -16,7 +16,7 @@
 
         <div class="mt4">
           <%= label f, :password, "Password", class: "f5 b db mb2" %>
-          <%= text_input f, :password, class: "pa3 input-reset bn hl-bg-grey w-100", type: :password %>
+          <%= text_input f, :password, class: "ph3 input-reset bn hl-bg-grey w-100", type: :password %>
         </div>
       </fieldset>
       <div class="lh-copy">
