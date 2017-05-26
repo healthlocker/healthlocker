@@ -8,12 +8,14 @@
 </div>
 
 <div class="mt4 w-40 dib">
-  <%= link_secondary "< Previous", to: sleep_tracker_sleep_tracker_path(@conn, :prev_date, @date) %>
+  <%= link_secondary "< Previous", to: tracker_tracker_path(@conn, :prev_date, @date) %>
 </div>
 
 <div class="mt4 tr fr w-40 dib">
-  <%= link_secondary "Next >", to: sleep_tracker_sleep_tracker_path(@conn, :next_date, @date) %>
+  <%= link_secondary "Next >", to: tracker_tracker_path(@conn, :next_date, @date) %>
 </div>
 
-
-<%= render "sleep_data.html", assigns %>
+<%= render "tracking_data.html", assigns %>
+<%= if @current_user.slam_id do %>
+  <p class="hl-pink" >Your Care team will also be able to see your tracking overview.</p>
+<% end %>

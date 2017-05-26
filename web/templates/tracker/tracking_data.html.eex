@@ -1,0 +1,72 @@
+<canvas id="myChart" class="mw6 center" width="400" height="400"></canvas>
+
+<div class="hl-bg-light-aqua br3 mw6 center mv4 flex items-center justify-between">
+  <h3 class="ml4 b">7 day average</h3>
+  <p class="mr4"><span class="b di">Sleep: </span><%= get_week_average(@sleep_data) %></p>
+</div>
+
+<%= for data <- @merged_data do %>
+  <%= if Map.has_key?(data.sleep_data, :hours_slept) or Map.has_key?(data.symptom_data, :affected_scale) or Map.has_key?(data.diary_data, :entry) do %>
+    <section class=" bg-near-white br3 pa3 mb3 center w-70-m w-70-l">
+      <h4 class="b"><%= date_with_day_and_month(data.inserted_at) %></h4>
+
+      <%= if Map.has_key?(data.sleep_data, :hours_slept) do %>
+        <div class="tracker-icon flex items-start mt2">
+          <div class="di w-20 w-10-m w-10-l">
+            <%= img_tag("/images/Toolkit_sleep.png", class: "w-90 tracker-icon") %>
+          </div>
+          <div class="di w-80 w-90-m w-90-l self-end pb2-m pb2-l pl3-m pl3-l">
+            <p class="mb0 pr3-m pr3-l di-m di-l">
+              <strong>Sleep: </strong>
+              <%= format_average_sleep(String.to_float(data.sleep_data.hours_slept)) %>
+            </p>
+            <p class="mt0 di-m di-l"><strong>Woke up:</strong> <%= data.sleep_data.wake_count %> times</p>
+          </div>
+        </div>
+        <p class="i ml5-m ml5-l"><%= data.sleep_data.notes %></p>
+      <% end %>
+
+        <%= if Map.has_key?(data.sleep_data, :hours_slept) and (Map.has_key?(data.symptom_data, :affected_scale) or Map.has_key?(data.diary_data, :entry)) do %>
+          <div class="bb b--black-30"></div>
+        <% end %>
+
+      <%= if Map.has_key?(data.symptom_data, :affected_scale) do %>
+        <div class="tracker-icon flex items-startd mt2">
+          <div class="di w-20 w-10-m w-10-l self-end">
+            <%= img_tag("/images/Toolkit_problem.png", class: "w-90 tracker-icon") %>
+          </div>
+          <p class="di w-80 w-90-m w-90-l mb0 pl3-m pl3-l pb2">
+            <strong><%= data.symptom_data.symptom.symptom %>:</strong>
+            <%= data.symptom_data.affected_scale %>
+          </p>
+        </div>
+        <p class="i ml5-m ml5-l"><%= data.symptom_data.notes %></p>
+      <% end %>
+
+      <%= if Map.has_key?(data.symptom_data, :affected_scale) and Map.has_key?(data.diary_data, :entry) do %>
+        <div class="bb b--black-30"></div>
+      <% end %>
+
+      <%= if Map.has_key?(data.diary_data, :entry) do %>
+        <div class="tracker-icon flex justify-between mt2">
+          <div class="di w-20 w-10-m w-10-l">
+            <%= img_tag("/images/Toolkit_diary.png", class: "h3 tracker-icon") %>
+          </div>
+          <div class="di w-80 w-90-m w-90-l pl3-m pl3-l">
+            <p class="mt1">
+              <strong>Diary </strong>
+              <%= printed_time(data.diary_data.updated_at) %>
+            </p>
+            <p class=""><%= data.diary_data.entry %></p>
+          </div>
+        </div>
+      <% end %>
+
+    </section>
+  <% end %>
+<% end %>
+
+<script>window.sleep_hours = "<%= format_sleep_hours(@sleep_data) %>"</script>
+<script>window.sleep_dates = "<%= format_sleep_dates(@date) %>"</script>
+<script>window.symptom_scale = "<%= format_symptom_scale(@symptom_data) %>"</script>
+<script>window.symptom = "<%= get_symptom(@symptom_data) %>"</script>

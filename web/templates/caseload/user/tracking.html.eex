@@ -14,5 +14,5 @@
     <%= link_secondary "Next >", to: caseload_user_path(@conn, :show, @user, section: "tracking", date: @date, shift: "next") %>
   </div>
 
-  <%= render  Healthlocker.SleepTrackerView, "sleep_data.html", assigns %>
+  <%= render  Healthlocker.TrackerView, "tracking_data.html", assigns %>
 </section>
