@@ -5,7 +5,7 @@
       <%= img_tag("/images/Toolkit_goals.png", class: "w3") %>
       <h3 class="tc mt0">Goals</h3>
       <%= for goal <- @goals do %>
-        <div class="bw2 br3 pv3 ph3 mv1 hl-bg-light-aqua dib w-100 tl">
+        <div class="bw2 br3 pv3 ph3 mv1 hl-bg-light-aqua dib w-100 tl word-wrap">
           <p class="b di">
             <%= String.trim_trailing(goal.content, " #Goal") %>
           </p>
@@ -41,7 +41,7 @@
       <%= img_tag("/images/Toolkit_coping_strategies.png", class: "w3") %>
       <h3 class="tc mt0">Coping Strategies</h3>
       <%= for strategy <- @strategies do %>
-      <div class="bw2 br3 dib w-100 pv1 ph3 mv1 hl-bg-light-yellow tl">
+      <div class="bw2 br3 dib w-100 pv1 ph3 mv1 hl-bg-light-yellow tl word-wrap">
         <p><%= markdown String.trim_trailing(strategy.content, " #CopingStrategy") %></p>
         <p class="mv3 f6 i tr">
           Created <%= Healthlocker.ComponentView.pretty_date(strategy.inserted_at) %>
