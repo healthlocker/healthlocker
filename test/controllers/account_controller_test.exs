@@ -179,7 +179,8 @@ defmodule Healthlocker.AccountControllerTest do
         Surname: "Bow",
         Forename: "Kat",
         NHS_Number: "uvhjbfnwqoekhfg8y9i",
-        DOB: dob      })
+        DOB: dob
+      })
       conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
       assert redirected_to(conn) == account_path(conn, :index)
     end
