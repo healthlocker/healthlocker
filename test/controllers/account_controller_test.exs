@@ -45,7 +45,8 @@ defmodule Healthlocker.AccountControllerTest do
     "Forename" => "Kat",
     "Surname" => "Bow",
     "NHS_Number" => "uvhjbfnwqoekhfg8y9i",
-    "DOB" => "01/01/1989"
+    "DOB" => "01/01/1989",
+    "c4c" => "true"
   }
 
   describe "current_user is assigned in the session" do
@@ -178,7 +179,7 @@ defmodule Healthlocker.AccountControllerTest do
         Surname: "Bow",
         Forename: "Kat",
         NHS_Number: "uvhjbfnwqoekhfg8y9i",
-        DOB: dob,
+        DOB: dob
       })
       conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
       assert redirected_to(conn) == account_path(conn, :index)
@@ -192,7 +193,7 @@ defmodule Healthlocker.AccountControllerTest do
         Surname: "Bow",
         Forename: "Kat",
         NHS_Number: "uvhjbfjkm534re9ch",
-        DOB: dob,
+        DOB: dob
       })
       conn = put conn, account_path(conn, :check_slam), user: @slam_attrs
       assert html_response(conn, 302)

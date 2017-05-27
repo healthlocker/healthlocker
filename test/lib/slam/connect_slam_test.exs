@@ -27,7 +27,8 @@ defmodule Healthlocker.Slam.ConnectSlamTest do
       multi = ConnectSlam.connect_su_and_create_rooms(user, %{
           first_name: "Lisa",
           last_name: "Sandoval",
-          slam_id: 203
+          slam_id: 203,
+          c4c: true
         })
 
       {:ok, result} = Repo.transaction(multi)
@@ -41,7 +42,8 @@ defmodule Healthlocker.Slam.ConnectSlamTest do
               |> ConnectSlam.connect_su_and_create_rooms(%{
                   first_name: "Lisa",
                   last_name: "Sandoval",
-                  slam_id: 203
+                  slam_id: 203,
+                  c4c: true
                 })
 
       assert [user: {:update, _, []},
@@ -53,6 +55,7 @@ defmodule Healthlocker.Slam.ConnectSlamTest do
     test "user in multi contains a user's updated name and slam id", %{result: result} do
       assert result.user.first_name == "Lisa"
       assert result.user.last_name == "Sandoval"
+      assert result.user.c4c
       assert result.user.slam_id == 203
     end
 
@@ -95,7 +98,8 @@ defmodule Healthlocker.Slam.ConnectSlamTest do
       multi = ConnectSlam.connect_su_and_create_rooms(user, %{
           first_name: "Lisa",
           last_name: "Sandoval",
-          slam_id: 203
+          slam_id: 203,
+          c4c: false
         })
 
       {:ok, multi: multi}
