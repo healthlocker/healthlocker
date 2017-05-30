@@ -13,7 +13,7 @@
       <p class="b">Write a message to <%= Healthlocker.ComponentView.full_name(@service_user) %>'s care team.</p>
       <p> Share your thoughts, observations and reflections. </p>
   <% end %>
-  <div class="w-100 bn br2 hl-bg-grey pa3">
+  <div class="w-100 bn br2 hl-bg-grey ph3">
     <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
   </div>
 
