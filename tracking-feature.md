@@ -40,7 +40,9 @@ in users.
 
 ![goals-and-tracking](https://cloud.githubusercontent.com/assets/1287388/26594866/4c04ec92-4561-11e7-823e-dc52f37840fe.png)
 
-Once tracking data has been entered, all of it can be viewed in the [tracking overview](https://www.healthlocker.uk/tracking-overview)
+Once tracking data has been entered, all of it can be viewed in the [tracking overview](https://www.healthlocker.uk/tracking-overview). The default is to
+view the last seven days. The previous seven days can be view by clicking the
+`previous` button, and can go back forward by clicking `next`.
 
 This includes a graph, where you can toggle to see hours slept or the problem
 scale.
@@ -51,7 +53,6 @@ It also has other details entered by the user when tracking (notes, diary
 entries) underneath the graph.
 
 ![tracking-overview-details](https://cloud.githubusercontent.com/assets/1287388/26594970/b6274ce6-4561-11e7-894e-6562010cad66.png)
-
 
 The clinician has the same view of the tracking overview in their caseload for
 patients who have chosen to connect their Healthlocker account with their NHS
