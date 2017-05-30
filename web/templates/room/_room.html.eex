@@ -27,7 +27,7 @@
         Your message will be visible to the whole care team. Do not expect an immediate response.
       </p>
     <%= @current_user.role != "clinician" -> %>
-      <p>
+      <p class="hl-pink">
         Messaging should <strong>not</strong> be used in emergency situations.
         If you need urgent help or advice, go to
         <%= link_to("Get support", to: support_path(@conn, :index)) %>.
