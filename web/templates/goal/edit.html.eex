@@ -19,7 +19,7 @@
       <% end %>
 
       <div class="relative mt4">
-        Star as important
+        <span class="b">Star as important</span>
 
         <%= checkbox f, :important, class: "o-0 checkbox star" %>
           <%= label f, :important, class: "star" do %>
@@ -28,7 +28,7 @@
       </div>
 
       <div class="relative mt4">
-        <span>Mark as achieved</span>
+        <span class="b">Mark as achieved</span>
         <%= checkbox f, :completed, class: "dn checkbox complete" %>
             <%= label f, :completed, class: "complete" do %>
         <% end %>
