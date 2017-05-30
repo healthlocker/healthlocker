@@ -288,6 +288,10 @@ code {
   padding-top: 10em;
 }
 
+.mt-3rem {
+  margin-top: 3rem;
+}
+
 .ml-20 {
   margin-left: 20%;
 }

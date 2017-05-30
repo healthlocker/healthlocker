@@ -27,7 +27,7 @@
       <span class="hl-pink"><%= error_tag f, :data_access %></span>
     </div>
 
-    <div class="form-group">
+    <div class="mt3">
       <%= checkbox f, :terms_conditions, class: "checkbox" %>
       <%= label f, :terms_conditions do %>
         I accept the
