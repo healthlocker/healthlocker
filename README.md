@@ -4,32 +4,46 @@
 
 ### Install the following:
 * [Elixir](https://github.com/dwyl/learn-elixir#how)
-* [Postgresql](https://github.com/dwyl/learn-postgresql) (and ensure you create a user)
+* [Postgresql](https://github.com/dwyl/learn-postgresql) (and ensure you create a `postgres` user)
 * [Node.js](https://nodejs.org/en/)
 
 ### Once everything is installed:
 * Enter `brew link autoconf automake` into your terminal
-* Open Postgresql (if you can see the elephant symbol in your menu bar you know that it's running)
+* Start Postgresql server
 * Get dependencies (including if they are out of date) with `mix deps.get`
 * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-* There is seed data which can be inserted into your dev database by running
-`mix run priv/repo/seeds.exs`. Note: you can see this data in
-[the seeds.exs file](priv/repo/seeds.exs).
 * If prompted by the following message, enter `y`:
 
-` Could not find "rebar3", which is needed to build dependency :fs
+```
+Could not find "rebar3", which is needed to build dependency :fs
 I can install a local copy which is just used by Mix
-Shall I install rebar3? (if running non-interactively, use: "mix local.rebar --force") [Yn] `
+Shall I install rebar3? (if running non-interactively, use: "mix local.rebar --force") [Yn]
+```
+* Insert seed data for ePJS patients & clinicians by running the following
+commands
+  * `mix run priv/read_only_repo/seeds.exs`
+  * `mix run priv/read_only_repo/address_seed.exs`
+  * `mix run priv/read_only_repo/under_12s_seeds.exs`
+* Insert healthlocker demo data by running  `mix run priv/repo/seeds.exs`
+* There are other optional seeds which are not necessary for using all the
+project features, but can be helpful for demoing a patient having more than one
+clinician and for demoing sleep tracking data
+  * `mix run priv/read_only_repo/clinician_seeds.exs`
+  * `mix run priv/read_only_repo/sleep_data_seeds.exs`
 * Install Node.js dependencies with `npm install`
 * Start Phoenix endpoint with `mix phoenix.server`
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser and checkout the [styleguide](http://localhost:4000/components).
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser
+and checkout the [styleguide](http://localhost:4000/components).
 
 Ready to run in production? Please [check the deployment guides](http://www.phoenixframework.org/docs/deployment).
 
 ### Testing
 
-We use [`ExUnit`](http://elixir-lang.org/docs/stable/ex_unit/) and [`wallaby`](https://github.com/keathley/wallaby) for testing. Wallaby has a dependency on phantomjs, you can follow their [instructions](https://github.com/keathley/wallaby#phantomjs) to install it.
+We use [`ExUnit`](http://elixir-lang.org/docs/stable/ex_unit/) and
+[`wallaby`](https://github.com/keathley/wallaby) for testing. Wallaby has a
+dependency on phantomjs. You can follow their
+[instructions](https://github.com/keathley/wallaby#phantomjs) to install it.
 
 After that you should be able to run `mix test` and see lots of green!
 
@@ -37,9 +51,8 @@ After that you should be able to run `mix test` and see lots of green!
 
   * Official website: http://www.phoenixframework.org/
   * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+  * Phoenix Docs: https://hexdocs.pm/phoenix
+  * Ecto Docs: https://hexdocs.pm/ecto/Ecto.html
 
 ## How?
 
@@ -60,7 +73,7 @@ in this repository.
 
 In addition to formatting the text with markdown, be sure to include `#story`
 or `#tip` (with an additional *category* tag) so the story or tip displays on
-the page.
+the correct page.
 
 ### Current features
 
