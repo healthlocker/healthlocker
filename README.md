@@ -113,4 +113,6 @@ or phone number
 * Feedback can be sent about the site from a form. This is done
 [using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
 * [Track sleep, a custom problem, or input daily diary entries](tracking-feature.md)
+* [Reset forgotten password](https://www.healthlocker.uk/password/new). Uses a
+custom made [forgotten password controller](https://github.com/dwyl/learn-phoenix-framework/blob/master/forgot-password.md)
 * [Styleguide](https://www.healthlocker.uk/components)
