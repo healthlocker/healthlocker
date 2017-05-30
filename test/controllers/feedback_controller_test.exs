@@ -5,7 +5,7 @@ defmodule Healthlocker.FeedbackControllerTest do
 
   test "/feedback :: index", %{conn: conn} do
     conn = get conn, feedback_path(conn, :index)
-    assert html_response(conn, 200) =~ "Tell us about your experience with Healthlocker"
+    assert html_response(conn, 200) =~ "Work in progress!"
   end
 
   test "/feedback :: create", %{conn: conn} do
