@@ -1,7 +1,7 @@
 defmodule Healthlocker.TrackerView do
   use Healthlocker.Web, :view
   use Timex
-  import Healthlocker.ComponentView, only: [markdown: 1]
+  import Healthlocker.PostView, only: [markdown: 1]
 
   def get_symptom(data) do
     case data do
