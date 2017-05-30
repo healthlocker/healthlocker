@@ -94,7 +94,7 @@ the correct page.
 ![style-guide](https://cloud.githubusercontent.com/assets/25007700/24720714/f1c77f70-1a35-11e7-808c-b1f1596ea0ae.png)
 
 * Tips can be added in, and can be viewed either in full or filtered by tag
-* Story content can be input by users, and are displayed in cards with a
+* Story content can be input by admin users, and are displayed in cards with a
 story preview
 * Stories can be expanded to view the full individual story
 * Support page is available in full
@@ -112,11 +112,5 @@ or phone number
 * Privacy statement can be accessed from the footer and is linked in sign up
 * Feedback can be sent about the site from a form. This is done
 [using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
-* Logged in users can track their sleep over time using the sleep tracker in toolkit
-* Users who have tracked sleep can view:
-  * hours slept each night over the past week
-  * average number of hours slept over the past week
-  * times they woke up each night for the past week
-  * notes they made about their sleep from the past week
-* Users can view the previous 7 days sleep data, or go forward once they've gone back.
+* [Track sleep, a custom problem, or input daily diary entries](tracking-feature.md)
 * [Styleguide](https://www.healthlocker.uk/components)
