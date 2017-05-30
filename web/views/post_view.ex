@@ -35,4 +35,20 @@ defmodule Healthlocker.PostView do
   defp paragraph_regex do
     ~r/\n([^\n]+)\n/
   end
+
+  def first_50_string(string) do
+    case first_50_words(string) do
+      nil ->
+        string
+      list ->
+        Enum.join(list, " ")
+    end
+  end
+
+  def first_50_words(string) do
+    string
+    |> String.split(" ")
+    |> Enum.chunk(50)
+    |> List.first
+  end
 end
