@@ -65,7 +65,7 @@
 
       <p class="w-80 w-90-m w-90-l mv0">
         If you are staff at the trust, you can access Healthlocker via the icon
-        in the top panel in ePJS. you can send and receive messages with service
+        in the top panel in ePJS. You can send and receive messages with service
         users and their carers and view updates that your caseload has chosen
         to share with you.
       </p>
@@ -109,7 +109,7 @@
     <p>
       Healthlocker will continue to grow and develop. If you are interested in
       using Healthlocker in your trust or organisation or have ideas for how to
-      add to the platform, contact: 
+      add to the platform, contact:
       <%= link_to("DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk") %>
     </p>
   </div>

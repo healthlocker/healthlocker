@@ -32,7 +32,7 @@
   <ul>
     <li>that you will not provide false information when setting up your account;</li>
     <li>that you will keep all your information updated;</li>
-    <li>hat you will not share your login details with anyone;</li>
+    <li>that you will not share your login details with anyone;</li>
     <li>that you will respect other users, including NHS staff, at all times.</li>
   </ul>
 
@@ -41,6 +41,15 @@
     If you violate the spirit of this agreement Healthlocker can suspend or
     terminate your account. This decision will be sent to you via email or you
     will receive a notification the next time you try to enter your account.
+  </p>
+  <p>
+    You have the option to disconnect your HL account from your SLaM ePJS
+    health record at any time. When your HL account is disconnected from your
+    health record, all information you have previously shared with your care
+    team will no longer be available to them. You will no longer be able to
+    view information from your care team and send them messages. Your HL
+    account will be remain active for your personal use and you will be able
+    to reconnect to your ePJS health record at a later time if you choose to.
   </p>
 
   <p class="b">Other Applications</p>

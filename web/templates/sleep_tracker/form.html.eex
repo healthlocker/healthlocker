@@ -20,8 +20,12 @@
 
     <div class="form-group">
       <%= label f, "Notes:", class: "f5 b db mb2 mt4" %>
-      <p class="i">What affected your sleep? Did you have nightmares or terrors? Did you do
-        something to try to get a better sleep?</p>
+      <p>For example:</p>
+      <ul>
+        <li class="i">what affected your sleep?</li>
+        <li class="i">did you have nightmares or terrors?</li>
+        <li class="i">did you do something to try to get a better sleep?</li>
+      </ul>
       <%= textarea f, :notes, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
       Healthlocker.ComponentView.highlight_errors(@changeset, :notes) %>
       <span class="hl-pink"><%= error_tag f, :notes %></span>

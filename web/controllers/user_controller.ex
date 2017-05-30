@@ -86,7 +86,7 @@ defmodule Healthlocker.UserController do
       {:ok, user} ->
         conn
         |> Auth.login(user)
-        |> put_flash(:info, "User created successfully.")
+        |> put_flash(:info, "Account created successfully - Welcome to Healthlocker!")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render(conn, "signup3.html", changeset: changeset,
