@@ -1,6 +1,32 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <h2 class="tc">Tips</h2>
 
+  <h3 class="pb2 ph3 ph0-l ma0 tc">Tips: 5 Ways to Wellbeing</h3>
+  <div>
+    <p>Small improvements in our wellbeing can help to decrease some mental
+      health problems and also help us to get more out of life.</p>
+    <p>These 5 actions are proven to improve personal wellbeing. <br>
+      <%= link_to "Read the full document", to: "https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing" %>
+    </p>
+  </div>
+
+  <p class="mt3 mb1 dib b">Explore more tips: </p>
+  <div class="dib ph1">
+    <%= link_to "#Connect", to: "/tips?tag=Connect"%>
+  </div>
+  <div class="dib ph1">
+    <%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
+  </div>
+  <div class="dib ph1">
+    <%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%>
+  </div>
+  <div class="dib ph1">
+    <%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%>
+  </div>
+  <div class="dib ph1">
+    <%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%>
+  </div>
+
   <%= if @conn.query_string != "" and @conn.query_string != "tag=Tip" do %>
     <div class="w-100">
       <%= link to: "/tips?tag=#{get_category(@conn.query_string)}",
@@ -33,22 +59,5 @@
   <% end %>
 
   <p class="mt4"><%= link_to "Create a goal", to: "/goal/new"%> for yourself based on one of the 5 ways to wellbeing.</p>
-
-  <p class="mt3 mb1 dib b">Explore more tips: </p>
-  <div class="dib ph1">
-    <%= link_to "#Connect", to: "/tips?tag=Connect"%>
-  </div>
-  <div class="dib ph1">
-    <%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
-  </div>
-  <div class="dib ph1">
-    <%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%>
-  </div>
-  <div class="dib ph1">
-    <%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%>
-  </div>
-  <div class="dib ph1">
-    <%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%>
-  </div>
 
 </div>
