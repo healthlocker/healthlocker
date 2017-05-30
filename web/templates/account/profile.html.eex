@@ -27,8 +27,8 @@
         <% end %>
       </div>
     <%= else %>
-      <div class="pt3">
-        <p class="hl-aqua di">Account connect to SLaM</p>
+      <div class="pt3 tc">
+        <p class="hl-aqua di">Account connected to SLaM</p>
       </div>
     <% end %>
 
