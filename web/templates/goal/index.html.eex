@@ -6,7 +6,7 @@
   </div>
 
   <%= for goal <- @goals do %>
-    <%= link to: goal_path(@conn, :show, goal), class: "link w-100" do %>
+    <%= link to: goal_path(@conn, :edit, goal), class: "link w-100" do %>
       <section class="bb bw2 b--black-10 dib w-100 word-wrap">
         <div class="w-90 dib fl">
           <h4 class="ma2 ph3-m ph4-l f5 lh-copy hl-dark-blue di w-100">
@@ -25,7 +25,7 @@
 
   <h3 class="mt5 mb3">Achieved goals</h3>
   <%= for goal <- @complete_goals do %>
-    <%= link to: goal_path(@conn, :show, goal), class: "link w-100" do %>
+    <%= link to: goal_path(@conn, :edit, goal), class: "link w-100" do %>
       <section class="ba bw2 b--black-10 dib pv3 w-100 mv2 relative">
         <%= img_tag("/images/Goal_Complete.png", class: "absolute w2 left--1-1 bottom-1-6") %>
           <div class="ma2 b hl-dark-blue w-80 w-90-m w-90-l center">
