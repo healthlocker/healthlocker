@@ -1,12 +1,15 @@
 <%= form_for @conn, feedback_path(@conn, :create), [as: :feedback], fn f -> %>
-  <p class="b">Tell us about your experience with Healthlocker</p>
+  <p class="b">Work in progress!</p>
+  <p class="">Healthlocker is an ongoing colllaboration between service users, staff and family, friends and carers at South London and Maudsley NHS Foundation Trust.</p>
+  <p class="">Please send us your feedback and ideas to improve it.</p>
+  <p class="">If you would like us to follow up to discuss, please leave your contact details.</p>
   <div class="form-group">
     <%= label f, :subject, class: "f5 b db mb2" %>
     <%= text_input f, :subject, class: "pa3 input-reset bn hl-bg-grey w-100" %>
   </div>
 
   <div class="mt3">
-    <%= label f, :content, class: "f5 b db mb2" %>
+    <%= label f, "Your feedback", class: "f5 b db mb2" %>
     <%= textarea f, :content, class: "w-100 h4 mb2 b--light-blue f4 pa2" %>
   </div>
 
