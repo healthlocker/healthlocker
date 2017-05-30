@@ -1,6 +1,6 @@
 <%= form_for @conn, feedback_path(@conn, :create), [as: :feedback], fn f -> %>
   <p class="b">Work in progress!</p>
-  <p class="">Healthlocker is an ongoing colllaboration between service users, staff and family, friends and carers at South London and Maudsley NHS Foundation Trust.</p>
+  <p class="">Healthlocker is an ongoing collaboration between service users, staff and family, friends and carers at South London and Maudsley NHS Foundation Trust.</p>
   <p class="">Please send us your feedback and ideas to improve it.</p>
   <p class="">If you would like us to follow up to discuss, please leave your contact details.</p>
   <div class="form-group">
