@@ -1,19 +1,30 @@
 <div class="ma3 ma4-m ma4-l">
   <h2 class="tc">Goals and tracking</h2>
   <div class="w-100 mw6 center flex items-end justify-between">
-      <div class="tc w-40 dib">
-        <%= link to: goal_path(@conn, :index) do %>
-          <%= img_tag("/images/Toolkit_goals.png", class: "w-100") %>
-          <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Goals</span>
-        <% end %>
-      </div>
+    <div class="tc w-40 dib">
+      <%= link to: goal_path(@conn, :index) do %>
+        <%= img_tag("/images/Toolkit_goals.png", class: "w-100") %>
+      <% end %>
+    </div>
 
-      <div class="tc w-40 dib fr">
-        <%= link to: coping_strategy_path(@conn, :index) do %>
-          <%= img_tag("/images/Toolkit_coping_strategies.png", class: "w-100") %>
-          <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Coping Strategies</span>
-        <% end %>
-      </div>
+    <div class="tc w-40 dib fr">
+      <%= link to: coping_strategy_path(@conn, :index) do %>
+        <%= img_tag("/images/Toolkit_coping_strategies.png", class: "w-100") %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="w-100 mw6 center flex items-start justify-between">
+    <div class="tc w-40 dib">
+      <%= link to: goal_path(@conn, :index) do %>
+        <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Goals</span>
+      <% end %>
+    </div>
+    <div class="tc w-40 dib fr">
+      <%= link to: coping_strategy_path(@conn, :index) do %>
+        <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Coping Strategies</span>
+      <% end %>
+    </div>
   </div>
 
   <%= if @current_user.slam_id do %>
@@ -45,17 +56,28 @@
   <div class="w-100 mw6 center mt3 flex items-end justify-between">
     <div class="tc w-40 dib fr">
       <%= link to: diary_path(@conn, :new) do %>
-      <%= img_tag("/images/Toolkit_diary.png",
+        <%= img_tag("/images/Toolkit_diary.png",
       class: "w-100") %>
-      <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Diary</span>
       <% end %>
     </div>
 
     <div class="tc w-40 dib fr">
       <%= link to: tracker_path(@conn, :index) do %>
-      <%= img_tag("/images/Toolkit_Tracking_overview.png",
+        <%= img_tag("/images/Toolkit_Tracking_overview.png",
       class: "w-100") %>
-      <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Tracker Overview</span>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="w-100 mw6 center flex items-start justify-between">
+    <div class="tc w-40 dib">
+      <%= link to: diary_path(@conn, :new) do %>
+        <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Diary</span>
+      <% end %>
+    </div>
+    <div class="tc w-40 dib fr">
+      <%= link to: tracker_path(@conn, :index) do %>
+        <span class="f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow bg-white w-75">Tracker Overview</span>
       <% end %>
     </div>
   </div>
