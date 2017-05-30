@@ -93,23 +93,33 @@ the correct page.
 
 ![style-guide](https://cloud.githubusercontent.com/assets/25007700/24720714/f1c77f70-1a35-11e7-808c-b1f1596ea0ae.png)
 
-* Tips can be added in, and can be viewed either in full or filtered by tag
-* Story content can be input by admin users, and are displayed in cards with a
-story preview
+* Tips can be added in by admin users, and
+[can be viewed either in full or filtered by tag](https://www.healthlocker.uk/tips)
+* Story content can be input by admin users, and are displayed in
+[cards with a story preview](https://www.healthlocker.uk/posts)
 * Stories can be expanded to view the full individual story
-* Support page is available in full
-* Three-step sign up process
-* Login
-* Users can only post content when logged in
-* Users can create, view, update and delete coping strategies they have made
-* Users can create, view, update, and delete goals they have made
-* Goals can be marked as important and are displayed at the top of the goals page
-* Users can visit their account page where they can update their name, email,
-or phone number
-* Users can update their consent for sharing data with researchers in their account
-* Users can update their password and security Q&A in their account
-* Terms of service can be accessed from the footer and is linked in sign up
-* Privacy statement can be accessed from the footer and is linked in sign up
+* [Three-step sign up process](https://www.healthlocker.uk/users/new)
+* [Login](https://www.healthlocker.uk/login)
+* [Coping strategies](https://www.healthlocker.uk/coping-strategy)
+  * view full list they have made
+  * view individual coping strategies
+  * edit and delete coping strategies
+* [Goals](https://www.healthlocker.uk/goal)
+  * view full list they have made
+  * view individual goals
+  * edit and delete goals
+  * mark as important to display at the top of the goals page
+  * mark as achieved once a goal is completed
+* Static info pages:
+  * [Support page](https://www.healthlocker.uk/support)
+  * [Terms of service](https://www.healthlocker.uk/pages/terms) (also linked in sign up)
+  * [Privacy statement](https://www.healthlocker.uk/pages/privacy) (also linked in sign up)
+  * [About](https://www.healthlocker.uk/pages/about)
+* [Account](https://www.healthlocker.uk/account)
+  * update their name (only if not a carer or service user), and phone number
+  * [update consent](https://www.healthlocker.uk/account/consent) for sharing
+  data with researchers, and consent to be contacted
+  * [update password and security Q&A](https://www.healthlocker.uk/pages/security)
 * Feedback can be sent about the site from a form. This is done
 [using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
 * [Track sleep, a custom problem, or input daily diary entries](tracking-feature.md)
