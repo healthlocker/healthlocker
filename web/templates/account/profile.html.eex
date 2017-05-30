@@ -18,13 +18,19 @@
     <% end %>
   <% end %>
 
-  <div class="pt3">
-    <%= link "Connect with the SLaM care team of someone I care for",
-        to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
-    <%= link to: page_path(@conn, :show, "carer_help") do %>
-      <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+    <%= if Kernel.length(@user.caring) == 0 do %>
+      <div class="pt3">
+        <%= link "Connect with the SLaM care team of someone I care for",
+            to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
+        <%= link to: page_path(@conn, :show, "carer_help") do %>
+          <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+        <% end %>
+      </div>
+    <%= else %>
+      <div class="pt3">
+        <p class="hl-aqua di">Account connect to SLaM</p>
+      </div>
     <% end %>
-  </div>
 
   <%= if Kernel.length(@user.caring) > 0 do %>
     <div class="w-100 mt4 flex items-center justify-between">
