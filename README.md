@@ -120,9 +120,16 @@ the correct page.
   * [update consent](https://www.healthlocker.uk/account/consent) for sharing
   data with researchers, and consent to be contacted
   * [update password and security Q&A](https://www.healthlocker.uk/pages/security)
+  * [connect to their NHS health record](https://www.healthlocker.uk/account/slam)
+  * [connect as a carer for a service user](https://www.healthlocker.uk/slam/new)
+  * [disconnect from their NHS health record](https://www.healthlocker.uk/pages/disconnect)
 * Feedback can be sent about the site from a form. This is done
 [using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
 * [Track sleep, a custom problem, or input daily diary entries](tracking-feature.md)
 * [Reset forgotten password](https://www.healthlocker.uk/password/new). Uses a
 custom made [forgotten password controller](https://github.com/dwyl/learn-phoenix-framework/blob/master/forgot-password.md)
+* [Clinician caseload](https://www.healthlocker.uk/caseload)
+  * Clinicians can click on Healthlocker connected users to view
+  goals and coping strategies, tracking data, contact details, and messaging
+  * Clinicians can click on carers to message or get contact details
 * [Styleguide](https://www.healthlocker.uk/components)
