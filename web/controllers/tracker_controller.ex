@@ -21,9 +21,8 @@ defmodule Healthlocker.TrackerController do
         Date.compare(NaiveDateTime.to_date(map.inserted_at), NaiveDateTime.to_date(data_map.inserted_at)) == :eq
       end) do
         [head | _] ->
-          head
-          |> Map.from_struct
-          |> Map.merge(map[atom])
+          map
+          |> Map.put(atom, head)
         [] ->
           map
       end
