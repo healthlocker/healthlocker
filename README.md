@@ -47,6 +47,10 @@ dependency on phantomjs. You can follow their
 
 After that you should be able to run `mix test` and see lots of green!
 
+### Routes
+
+You can view all of the routes by running `mix phoenix.routes` in your terminal.
+
 ## Learn more
 
   * Official website: http://www.phoenixframework.org/
