@@ -4,6 +4,9 @@
     <div class="w-60 pt6 pr3 br b--hl-dark-blue bw2 tc">
       <%= img_tag("/images/Toolkit_goals.png", class: "w3") %>
       <h3 class="tc mt0">Goals</h3>
+      <%= if Kernel.length(@goals) == 0 do %>
+        <p>No goals yet created</p>
+      <% end %>
       <%= for goal <- @goals do %>
         <div class="bw2 br3 pv3 ph3 mv1 hl-bg-light-aqua dib w-100 tl word-wrap">
           <p class="b di">
@@ -40,6 +43,9 @@
     <div class="w-40 pt6 fr pl3 tc">
       <%= img_tag("/images/Toolkit_coping_strategies.png", class: "w3") %>
       <h3 class="tc mt0">Coping Strategies</h3>
+      <%= if Kernel.length(@strategies) == 0 do %>
+        <p>No coping strategies yet created</p>
+      <% end %>
       <%= for strategy <- @strategies do %>
       <div class="bw2 br3 dib w-100 pv1 ph3 mv1 hl-bg-light-yellow tl word-wrap">
         <p><%= markdown String.trim_trailing(strategy.content, " #CopingStrategy") %></p>
