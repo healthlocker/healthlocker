@@ -7,20 +7,20 @@
     <div class="w-100">
       <div class="dib w-40">
         <%= label f, "First name", class: "f5 b db mt2 mb2" %>
-        <%= text_input f, :Forename, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+        <%= text_input f, :Forename, class: "ph3 input-reset bn hl-bg-grey w-100" %>
         <%= error_tag f, :Forename %>
       </div>
 
       <div class="dib w-50 fr">
         <%= label f, "Last name", class: "f5 b db mt2 mb2" %>
-        <%= text_input f, :Surname, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+        <%= text_input f, :Surname, class: "ph3 input-reset bn hl-bg-grey w-100" %>
         <%= error_tag f, :Surname %>
       </div>
     </div>
 
     <div>
       <%= label f, "Date of birth", class: "f5 b db mt2 mb2" %>
-      <%= text_input f, :DOB, class: "pa3 input-reset bn hl-bg-grey w-40" %>
+      <%= text_input f, :DOB, class: "ph3 input-reset bn hl-bg-grey w-40" %>
       <p class="di gray">DD/MM/YYYY</p>
       <%= error_tag f, :DOB %>
     </div>
@@ -33,7 +33,7 @@
         <% end %>
       <% end %>
       <%= text_input f, :NHS_Number,
-          class: "pa3 input-reset bn hl-bg-grey w-100" %>
+          class: "ph3 input-reset bn hl-bg-grey w-100" %>
       <%= error_tag f, :NHS_Number %>
     </div>
 
