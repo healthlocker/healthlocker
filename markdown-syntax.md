@@ -37,7 +37,7 @@ You can have a link with text to display by using:
 Instead of using markdown images for this, we will be using `html` with inline
 styles.
 
-This is so that we can get a centered, round image without having to grab all
+This is so that we can get a centred, round image without having to grab all
 the content, manipulate, then put it back together.
 
 The images will now be added as below.

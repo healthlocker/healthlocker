@@ -13,7 +13,7 @@
       <p class="b">Write a message to <%= Healthlocker.ComponentView.full_name(@service_user) %>'s care team.</p>
       <p> Share your thoughts, observations and reflections. </p>
   <% end %>
-  <div class="w-100 bn br2 hl-bg-grey pa3">
+  <div class="w-100 bn br2 hl-bg-grey ph3">
     <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
   </div>
 
@@ -27,7 +27,7 @@
         Your message will be visible to the whole care team. Do not expect an immediate response.
       </p>
     <%= @current_user.role != "clinician" -> %>
-      <p>
+      <p class="hl-pink">
         Messaging should <strong>not</strong> be used in emergency situations.
         If you need urgent help or advice, go to
         <%= link_to("Get support", to: support_path(@conn, :index)) %>.

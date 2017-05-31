@@ -18,13 +18,19 @@
     <% end %>
   <% end %>
 
-  <div class="pt3">
-    <%= link "Connect with the SLaM care team of someone I care for",
-        to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
-    <%= link to: page_path(@conn, :show, "carer_help") do %>
-      <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+    <%= if Kernel.length(@user.caring) == 0 do %>
+      <div class="pt3">
+        <%= link "Connect with the SLaM care team of someone I care for",
+            to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
+        <%= link to: page_path(@conn, :show, "carer_help") do %>
+          <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+        <% end %>
+      </div>
+    <%= else %>
+      <div class="pt3 tc">
+        <p class="hl-aqua di">Account connected to SLaM</p>
+      </div>
     <% end %>
-  </div>
 
   <%= if Kernel.length(@user.caring) > 0 do %>
     <div class="w-100 mt4 flex items-center justify-between">
@@ -42,13 +48,13 @@
     <div class="w-100 mt3 flex items-center justify-between">
       <div class="w-40 dib">
         <%= label f, :first_name, "First name", class: "f5 b db mb2" %>
-        <%= text_input f, :first_name, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+        <%= text_input f, :first_name, class: "ph3 input-reset bn hl-bg-grey w-100 " <>
         Healthlocker.ComponentView.highlight_errors(@changeset, :first_name) %>
         <span class="hl-pink"><%= error_tag f, :first_name %></span>
       </div>
       <div class="w-50 dib">
         <%= label f, :last_name, "Last name", class: "f5 b db mb2" %>
-        <%= text_input f, :last_name, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+        <%= text_input f, :last_name, class: "ph3 input-reset bn hl-bg-grey w-100 " <>
         Healthlocker.ComponentView.highlight_errors(@changeset, :last_name) %>
         <span class="hl-pink"><%= error_tag f, :last_name %></span>
       </div>
@@ -63,7 +69,7 @@
   <div class="mt4">
     <%= label f, "Phone number (optional)", class: "f5 b db mb2" %>
     <%= text_input f, :phone_number,
-    class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+    class: "ph3 input-reset bn hl-bg-grey w-100 " <>
     Healthlocker.ComponentView.highlight_errors(@changeset, :phone_number) %>
     <span class="hl-pink"><%= error_tag f, :email%></span>
   </div>

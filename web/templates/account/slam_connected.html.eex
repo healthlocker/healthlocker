@@ -5,7 +5,7 @@
   <div class="mt3 flex items-center justify-between">
     <div class="w-40">
       <p class="f5 b db mb2 mt0">First name</p>
-      <p class="pa2 br2 input-reset bn hl-bg-grey w-100"><%= @user.first_name %></p>
+      <p class="pa2 br2 input-reset bn hl-bg-grey w-100 mt0"><%= @user.first_name %></p>
     </div>
 
     <div class="w-50">
@@ -22,7 +22,7 @@
   <div class="mt4">
     <%= label f, "Phone number (optional)", class: "f5 b db mb2" %>
     <%= text_input f, :phone_number,
-    class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+    class: "ph3 input-reset bn hl-bg-grey w-100 " <>
     Healthlocker.ComponentView.highlight_errors(@changeset, :phone_number) %>
     <span class="hl-pink"><%= error_tag f, :email%></span>
   </div>
