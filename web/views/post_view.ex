@@ -58,7 +58,7 @@ defmodule Healthlocker.PostView do
 
   def get_line_break(string, regex) do
     String.split(string, regex)
-    |> Enum.chunk(2)
+    |> Enum.chunk(3)
     |> List.first
   end
 end
