@@ -41,7 +41,7 @@ defmodule Healthlocker.PostView do
       nil ->
         string
       list ->
-        Enum.join(list, " ")
+        Enum.join(list, "\n\n")
     end
   end
 
