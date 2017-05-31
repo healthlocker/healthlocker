@@ -5,7 +5,7 @@
     <article class="ph3 pb3 bb b--black-20">
         <%= render Healthlocker.ComponentView, "like.html", conn: @conn,
             post: post, current_user: @current_user %>
-        <%= markdown first_50_string(post.content) %>
+        <%= markdown return_string(post.content) %>
         <div class="tl">
           <%= link_to "Read this story", to: post_path(@conn, :show, post)%>
         </div>
