@@ -53,6 +53,8 @@ defmodule Healthlocker.PostView do
         get_line_break(string, "\r\n\r\n")
       String.contains?(string, "\n\n") ->
         get_line_break(string, "\n\n")
+      true ->
+        nil
     end
   end
 
