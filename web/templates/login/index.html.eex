@@ -22,7 +22,7 @@
       <div class="lh-copy">
         <%= link_to("Forgotten your password?", to: password_path(@conn, :new)) %>
       </div>
-      <div class="tr">
+      <div class="tr mt2">
         <%= submit_primary "Log in" %>
       </div>
     <% end %>

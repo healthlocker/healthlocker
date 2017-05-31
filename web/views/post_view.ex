@@ -36,8 +36,8 @@ defmodule Healthlocker.PostView do
     ~r/\n([^\n]+)\n/
   end
 
-  def first_50_string(string) do
-    case first_50_words(string) do
+  def return_string(string) do
+    case get_header_and_paragraph(string) do
       nil ->
         string
       list ->
@@ -45,10 +45,20 @@ defmodule Healthlocker.PostView do
     end
   end
 
-  def first_50_words(string) do
-    string
-    |> String.split(" ")
-    |> Enum.chunk(50)
+  def get_header_and_paragraph(string) do
+    cond do
+      String.contains?(string, "\r\r") ->
+        get_line_break(string, "\r\r")
+      String.contains?(string, "\r\n\r\n") ->
+        get_line_break(string, "\r\n\r\n")
+      String.contains?(string, "\n\n") ->
+        get_line_break(string, "\n\n")
+    end
+  end
+
+  def get_line_break(string, regex) do
+    String.split(string, regex)
+    |> Enum.chunk(2)
     |> List.first
   end
 end

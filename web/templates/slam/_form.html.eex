@@ -3,13 +3,13 @@
     <div class="w-100 bb b--hl-dark-blue pb4 flex items-center justify-between">
       <div class="dib w-40">
         <%= label f, :first_name, class: "f5 b db mt2 mb2" %>
-        <%= text_input f, :first_name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+        <%= text_input f, :first_name, class: "ph3 input-reset bn hl-bg-grey w-100" %>
         <span class="hl-pink"><%= error_tag f, :first_name %></span>
       </div>
 
       <div class="dib w-50">
         <%= label f, :last_name,  "Last name", class: "f5 b db mt2 mb2" %>
-        <%= text_input f, :last_name, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+        <%= text_input f, :last_name, class: "ph3 input-reset bn hl-bg-grey w-100" %>
         <span class="hl-pink"><%= error_tag f, :last_name %></span>
       </div>
     </div>
@@ -19,19 +19,19 @@
       <p class="f5 lh-copy">These details will be matched against their SLaM record - they must match perfectly.</p>
       <div class="dib w-40">
         <%= label f, :forename, "First name", class: "f5 b db mt2 mb2" %>
-        <%= text_input f, :forename, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+        <%= text_input f, :forename, class: "ph3 input-reset bn hl-bg-grey w-100" %>
         <%= error_tag f, :forename %>
       </div>
 
       <div class="dib w-50 fr">
         <%= label f, :surname,  "Last name", class: "f5 b db mt2 mb2" %>
-        <%= text_input f, :surname, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+        <%= text_input f, :surname, class: "ph3 input-reset bn hl-bg-grey w-100" %>
         <%= error_tag f, :surname %>
       </div>
 
       <div>
         <%= label f, :date_of_birth, "Date of birth", class: "f5 b db mt2 mb2" %>
-        <%= text_input f, :date_of_birth, class: "pa3 input-reset bn hl-bg-grey w-40" %>
+        <%= text_input f, :date_of_birth, class: "ph3 input-reset bn hl-bg-grey w-40" %>
         <p class="di gray">DD/MM/YYYY</p>
         <%= error_tag f, :date_of_birth %>
       </div>
