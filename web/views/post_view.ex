@@ -41,7 +41,7 @@ defmodule Healthlocker.PostView do
       nil ->
         string
       list ->
-        Enum.join(list, " ")
+        Enum.join(list, "\n\n")
     end
   end
 
@@ -53,12 +53,14 @@ defmodule Healthlocker.PostView do
         get_line_break(string, "\r\n\r\n")
       String.contains?(string, "\n\n") ->
         get_line_break(string, "\n\n")
+      true ->
+        nil
     end
   end
 
   def get_line_break(string, regex) do
     String.split(string, regex)
-    |> Enum.chunk(2)
+    |> Enum.chunk(3)
     |> List.first
   end
 end

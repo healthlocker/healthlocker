@@ -1,6 +1,6 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <%= render Healthlocker.AccountView, "menu.html", conn: @conn %>
-    <section class="w-100 h-100 tc">
+    <section class="w-100 h-100">
       <div class="mt6">
         <%= link_secondary "Update password", to: account_path(@conn, :edit_password) %>
       </div>
