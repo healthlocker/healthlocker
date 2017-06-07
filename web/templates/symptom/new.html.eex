@@ -16,7 +16,7 @@
         <li>alcohol or drug use</li>
         <li>anger</li>
       </ul>
-      <%= text_input f, :symptom, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      <%= text_input f, :symptom, class: "ph3 input-reset bn hl-bg-grey w-100 " <>
       Healthlocker.ComponentView.highlight_errors(@changeset, :symptom) %>
       <span class="hl-pink"><%= error_tag f, :symptom %></span>
     </div>

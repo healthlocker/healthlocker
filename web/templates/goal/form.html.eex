@@ -11,7 +11,7 @@
       <%= inputs_for f, :steps, fn s -> %>
         <div class="mb3">
           <%= checkbox s, :complete, class: "checkbox" %>
-          <%= text_input s, :details, class: "pa3 input-reset bn hl-bg-grey w-90 " <>
+          <%= text_input s, :details, class: "ph3 input-reset bn hl-bg-grey w-90 " <>
             Healthlocker.ComponentView.highlight_errors(@changeset, :details) %>
         </div>
       <% end %>

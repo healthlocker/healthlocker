@@ -11,7 +11,7 @@
       <fieldset id="sign_up" class="ba b--transparent ph0 mh0">
         <div>
           <%= label f, :email, "Email address", class: "f5 b db mb2" %>
-          <%= text_input f, :email, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+          <%= text_input f, :email, class: "ph3 input-reset bn hl-bg-grey w-100" %>
         </div>
 
         <div class="mt4">
