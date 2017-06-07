@@ -3,9 +3,13 @@ defmodule Healthlocker.PostView do
   use Timex
 
   def markdown(body) do
-    body
-    |> Earmark.as_html!
-    |> raw
+    if !is_nil(body) do
+      body
+      |> Earmark.as_html!
+      |> raw
+    else
+      ""
+    end
   end
 
   def heading(post) do
