@@ -22,7 +22,7 @@
         <span class="b">Star as important</span>
 
         <%= checkbox f, :important, class: "o-0 checkbox star" %>
-          <%= label f, :important, class: "star" do %>
+          <%= label f, :important, class: "star pointer" do %>
         <% end %>
         <p class="i">Important goals will be at the top of the list.</p>
       </div>
@@ -30,7 +30,7 @@
       <div class="relative mt4">
         <span class="b">Mark as achieved</span>
         <%= checkbox f, :completed, class: "dn checkbox complete" %>
-            <%= label f, :completed, class: "complete" do %>
+            <%= label f, :completed, class: "complete pointer" do %>
         <% end %>
       </div>
 

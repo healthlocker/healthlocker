@@ -66,9 +66,11 @@ defmodule Healthlocker.ComponentViewTest do
   test "markdown converts markdown to html" do
     {:safe, actual} = ComponentView.markdown("**tip title**\n\ntip body\n\n#Tip #Connect")
     bold_title = "<p><strong>tip title</strong></p>"
-    link = "<a href=\"/tips?tag=Tip\""
+    tip_link = "<a href=\"/tips\""
+    category_link = "<a href=\"/tips?tag=Connect\""
     assert String.contains?(actual, bold_title)
-    assert String.contains?(actual, link)
+    assert String.contains?(actual, tip_link)
+    assert String.contains?(actual, category_link)
   end
 
   test "full_name gives the full name of the user" do
