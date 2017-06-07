@@ -48,7 +48,7 @@
 
     <div class="flex items-start justify-between mv4">
       <p class="w-80 w-90-m w-90-l mv0">
-        If you are a close family member, friend or carer of someone at the
+        If you are a close family member, friend or carer of a service user at the
         trust, you can connect with their care team and let the team know how
         the person you support is doing.
       </p>
@@ -92,7 +92,7 @@
     <p class="b">How does it work / what next?</p>
 
     <p>
-      Healthlocker is built using agile development processes which enables
+      Healthlocker is built using agile development processes which enable
       iteration through user-centred build, test and learn cycles.
     </p>
 
@@ -103,7 +103,8 @@
     <p>
       The platform is being built open source and in a modular way that allows
       for future integrations, features and partnerships. Development of
-      Healthlocker so far has been funded by <%= link_to("Maudsley Charity", to: "http://www.maudsleycharity.org/")%>.
+      Healthlocker so far has been funded by
+      <%= link_to("Maudsley Charity", to: "http://www.maudsleycharity.org/", target: "_blank")%>.
     </p>
 
     <p>
