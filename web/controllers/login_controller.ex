@@ -11,7 +11,7 @@ defmodule Healthlocker.LoginController do
   def create(conn, %{"login" => %{"email" => email, "password" => pass}}) do
     case Auth.email_and_pass_login(conn, String.downcase(email), pass, repo: Repo) do
       {:ok, conn} ->
-        user = Repo.get_by(User, email: email)
+        user = conn.assigns.current_user
         if user.data_access == nil do
           conn
           |> Auth.logout()
