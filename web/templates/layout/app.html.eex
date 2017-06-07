@@ -80,13 +80,13 @@
           <%= link "Account", to: account_path(@conn, :index),
                    class: "pa3 f3 white-80 db hover-white" %>
 
-          <%= link "Log out", class: "pa3 f3 white-80 db hover-white mb6",
+          <%= link "Log out", class: "pa3 f3 white-80 db hover-white mb6 mb0-m mb0-l",
                              to: login_path(@conn, :delete, @current_user),
                              method: "delete" %>
         <%= else %>
           <%= link "Sign up", class: "pa3 f3 white-80 db hover-white",
               to: user_path(@conn, :new) %>
-          <%= link "Log in", class: "pa3 f3 white-80 db hover-white mb6",
+          <%= link "Log in", class: "pa3 f3 white-80 db hover-white mb6 mb0-m mb0-l",
               to: login_path(@conn, :index) %>
         <%= end %>
       </nav>
