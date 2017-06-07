@@ -37,9 +37,12 @@
       <%= textarea f, :entry, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
       Healthlocker.ComponentView.highlight_errors(@changeset, :entry) %>
       <span class="hl-pink"><%= error_tag f, :entry %></span>
-      <div class="mt4 tr">
-        <%= submit_primary "Save" %>
-      </div>
+    </div>
+
+    <p class="hl-pink">Once you have saved your entry, you can view it in the Tracking Overview page</p>
+
+    <div class="mt4 tr">
+      <%= submit_primary "Save" %>
     </div>
   <% end %>
 </section>
