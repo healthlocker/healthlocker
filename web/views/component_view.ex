@@ -27,7 +27,7 @@ defmodule Healthlocker.ComponentView do
     day <> "/" <> month <> "/" <> year
   end
 
-  @tips ["Connect", "KeepLearning", "GiveToOthers", "BeActive", "TakeNotice"]
+  @tips ["#Connect", "#KeepLearning", "#GiveToOthers", "#BeActive", "#TakeNotice"]
 
   def markdown(body) do
     body
@@ -37,8 +37,9 @@ defmodule Healthlocker.ComponentView do
   end
 
   defp handle_url(tip) do
+    tip = String.trim_leading(tip, "#")
     cond do
-      String.downcase(tip) == "#tip" -> ""
+      String.downcase(tip) == "tip" -> ""
       true -> "?tag=#{tip}"
     end
   end
@@ -50,7 +51,7 @@ defmodule Healthlocker.ComponentView do
   end
 
   defp add_links(html) do
-    ["Tip" | @tips] |> Enum.reduce(html, &add_link/2)
+    ["#Tip" | @tips] |> Enum.reduce(html, &add_link/2)
   end
 
   defp add_links_first_elem([empty_str | [head_html | tail_html]]) do
