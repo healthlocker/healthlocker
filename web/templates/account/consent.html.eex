@@ -29,6 +29,19 @@
         <span class="hl-pink"><%= error_tag f, :data_access %></span>
       </div>
 
+      <%= if care_team?(@current_user) or @current_user.slam_id do %>
+        <div class="mt3">
+          <%= checkbox f, :comms_consent, class: "checkbox" %>
+          <%= label f, :comms_consent do %>
+            I agree to be contacted with relevant newsletters and communications
+            from the trust or their partner organisation the Institute of
+            Psychiatry, Psychology & Neuroscience at King's College London
+            (IoPPN), such as the C4C newsletter. I understand that my details
+            will not be passed onto anyone else.
+          <% end %>
+        </div>
+      <% end %>
+
       <div class="tr mt4">
         <%= submit_primary "Update" %>
       </div>
