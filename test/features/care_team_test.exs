@@ -54,7 +54,6 @@ defmodule Healthlocker.CareTeamTest do
       |> click(@care_team_link)
       |> click(@contacts_link)
 
-      assert has_text?(session, "SLaM care team")
       assert has_text?(session, "'s care team")
     end
   end
