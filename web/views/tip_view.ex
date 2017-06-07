@@ -36,7 +36,10 @@ defmodule Healthlocker.TipView do
 
   def get_category(content_string) do
     @tips
-    |> Enum.filter(fn type -> String.contains?(content_string, type) end)
+    |> Enum.filter(fn type ->
+      String.downcase(content_string)
+      |> String.contains?(String.downcase(type))
+    end)
     |> List.first
   end
 

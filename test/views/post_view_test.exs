@@ -8,6 +8,11 @@ defmodule Healthlocker.PostViewTest do
     assert String.contains? result, "<strong>Hello, world!</strong>"
   end
 
+  test "markdown converts nil to empty string" do
+    result = PostView.markdown(nil)
+    assert result == ""
+  end
+
   describe "PostView.heading/1" do
     test "when heading exists it extracts the header" do
       post = %Post{content: "# I'm a markdown heading"}

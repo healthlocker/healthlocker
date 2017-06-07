@@ -18,7 +18,7 @@
       <%= label f, "New security question", class: "f5 b db mb2" %>
       <%= select f, :security_question, Healthlocker.ComponentView.get_options("security_questions"),
       prompt: "Choose a security question",
-      class: "ph3 input-reset bn hl-bg-grey w-100 " <>
+      class: "pa3 input-reset bn hl-bg-grey w-100 " <>
       Healthlocker.ComponentView.highlight_errors(@changeset, :security_question) %>
       <span class="hl-pink"><%= error_tag f, :security_question %></span>
     </div>

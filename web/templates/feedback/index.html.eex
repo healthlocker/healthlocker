@@ -5,7 +5,7 @@
   <p class="">If you would like us to follow up to discuss, please leave your contact details.</p>
   <div class="form-group">
     <%= label f, :subject, class: "f5 b db mb2" %>
-    <%= text_input f, :subject, class: "pa3 input-reset bn hl-bg-grey w-100" %>
+    <%= text_input f, :subject, class: "ph3 input-reset bn hl-bg-grey w-100" %>
   </div>
 
   <div class="mt3">
