@@ -26,6 +26,6 @@ defmodule Healthlocker.TipViewTest do
   test "get_category finds the correct category if lowercase" do
     actual = TipView.get_category("tag=connect")
     expected = "connect"
-    assert actual = expected
+    assert actual == expected
   end
 end
