@@ -59,6 +59,9 @@ defmodule Healthlocker.AccountControllerTest do
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
         security_answer: "Answer",
+        data_access: false,
+        c4c: false,
+        comms_consent: false
       } |> Repo.insert
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123_456)) }
@@ -119,7 +122,11 @@ defmodule Healthlocker.AccountControllerTest do
     end
 
     test "updates user data_access with valid data", %{conn: conn} do
-      conn = put conn, account_path(conn, :update_consent), user: %{data_access: true}
+      conn = put conn, account_path(conn, :update_consent), user: %{
+        data_access: true,
+        c4c: true,
+        comms_consent: true
+      }
       assert redirected_to(conn) == account_path(conn, :consent)
     end
 

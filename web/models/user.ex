@@ -14,6 +14,7 @@ defmodule Healthlocker.User do
     field :security_answer, :string
     field :data_access, :boolean
     field :c4c, :boolean
+    field :comms_consent, :boolean
     field :role, :string
     field :slam_id, :integer
     field :reset_password_token, :string
@@ -88,7 +89,7 @@ defmodule Healthlocker.User do
 
   def update_data_access(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:data_access, :c4c])
+    |> cast(params, [:data_access, :c4c, :comms_consent])
   end
 
   def registration_changeset(model, params) do
