@@ -32,7 +32,7 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   ssl: true
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger, level: :warn
 
 config :healthlocker, :analytics, Healthlocker.Analytics.Segment
 
