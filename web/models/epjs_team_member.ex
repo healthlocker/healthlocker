@@ -1,7 +1,7 @@
 defmodule Healthlocker.EPJSTeamMember do
   use Healthlocker.Web, :model
 
-  schema "epjs_team_members" do
+  schema "mhlTeamMembers" do
     field :Patient_ID, :integer
     field :Staff_ID, :integer
   end

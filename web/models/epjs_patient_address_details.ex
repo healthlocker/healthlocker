@@ -1,7 +1,7 @@
 defmodule Healthlocker.EPJSPatientAddressDetails do
   use Healthlocker.Web, :model
 
-  schema "epjs_patient_address_details" do
+  schema "mhlPatientAddressDetails" do
     field :Patient_ID, :integer
     field :Address_ID, :integer
     field :Address1, :string

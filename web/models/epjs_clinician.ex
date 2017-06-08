@@ -1,7 +1,7 @@
 defmodule Healthlocker.EPJSClinician do
   use Healthlocker.Web, :model
 
-  schema "epjs_clinicians" do
+  schema "mhlGPDetails" do
     field :GP_Code, :string
     field :First_Name, :string
     field :Last_Name, :string
