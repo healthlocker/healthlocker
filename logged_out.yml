@@ -21,6 +21,14 @@ scenarios:
     - get:
         url: "/login"
   - flow:
-    - post:
-        url: "/login"
-        beforeRequest: "setReqBody"
+    - get:
+        url: "/pages/about"
+  - flow:
+    - get:
+        url: "/pages/terms"
+  - flow:
+    - get:
+        url: "/pages/privacy"
+  - flow:
+    - get:
+        url: "/feedback"
