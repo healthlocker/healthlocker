@@ -1,0 +1,26 @@
+config:
+  target: "https://www.healthlocker.uk/"
+  phases:
+    - duration: 60
+      arrivalRate: 40
+  processor: "load_test.js"
+scenarios:
+  - flow:
+    - get:
+        url: "/"
+  - flow:
+    - get:
+        url: "/tips"
+  - flow:
+    - get:
+        url: "/posts"
+  - flow:
+    - get:
+        url: "/users/new"
+  - flow:
+    - get:
+        url: "/login"
+  - flow:
+    - post:
+        url: "/login"
+        beforeRequest: "setReqBody"
