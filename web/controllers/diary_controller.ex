@@ -1,6 +1,7 @@
 defmodule Healthlocker.DiaryController do
   use Healthlocker.Web, :controller
   alias Healthlocker.Diary
+  import Healthlocker.ComponentHelpers.Link
 
   def new(conn, _params) do
     user_id = conn.assigns.current_user.id
@@ -31,7 +32,7 @@ defmodule Healthlocker.DiaryController do
     case Repo.insert(changeset) do
       {:ok, _entry} ->
         conn
-        |> put_flash(:info, "Diary saved successfully!")
+        |> put_flash(:info, ["Diary saved successfully, view it in ", link_to("Tracking Overview", to: tracker_path(conn, :index))])
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render conn, "new.html", changeset: changeset
@@ -51,7 +52,7 @@ defmodule Healthlocker.DiaryController do
     case Repo.update(changeset) do
       {:ok, _entry} ->
         conn
-        |> put_flash(:info, "Updated diary entry")
+        |> put_flash(:info, ["Updated diary entry, view it in ", link_to("Tracking Overview", to: tracker_path(conn, :index))])
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         render conn, "edit.html", changeset: changeset, diary: old_diary

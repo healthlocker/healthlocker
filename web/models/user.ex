@@ -16,7 +16,6 @@ defmodule Healthlocker.User do
     field :c4c, :boolean
     field :comms_consent, :boolean
     field :role, :string
-    field :slam_user, :boolean
     field :slam_id, :integer
     field :reset_password_token, :string
     field :reset_token_sent_at, :utc_datetime
@@ -50,7 +49,7 @@ defmodule Healthlocker.User do
 
   def update_changeset(struct, params \\ :invalid) do
     struct
-    |> cast(params, [:email, :first_name, :last_name, :phone_number, :slam_user])
+    |> cast(params, [:email, :first_name, :last_name, :phone_number])
     |> update_change(:email, &(String.downcase(&1)))
     |> validate_format(:email, ~r/@/)
     |> validate_required(:email)

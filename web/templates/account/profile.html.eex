@@ -1,51 +1,28 @@
 <%= form_for @changeset, @action, fn f -> %>
   <input name="_method" type="hidden" value="put" />
   <%= if Kernel.length(@user.caring) == 0 do %>
-    <div class="form-group pv3">
-      <%= checkbox f, :slam_user, class: "checkbox " %>
-      <%= label f, :slam_user do %>
-        I am a South London and Maudsley service user.
-      <% end %>
-      <span class="hl-pink"><%= error_tag f, :slam_user %></span>
-    </div>
-
-    <%= if @user.slam_user do %>
+    <p class="pt3">
+      If you are service user or family/friend or carer of someone with the
+      South London and Maudsley NHS Foundation Trust, you can:
+    </p>
+    
+    <div class="mt4">
       <%= link "Connect with my SLaM care team and health record",
-          to: account_path(@conn, :slam), class: "hl-aqua underline di" %>
+        to: account_path(@conn, :slam), class: "hl-aqua underline di" %>
       <%= link to: page_path(@conn, :show, "slam_help") do %>
         <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
       <% end %>
-    <% end %>
-  <% end %>
-
-    <%= if Kernel.length(@user.caring) == 0 do %>
-      <div class="pt3">
-        <%= link "Connect with the SLaM care team of someone I care for",
-            to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
-        <%= link to: page_path(@conn, :show, "carer_help") do %>
-          <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
-        <% end %>
-      </div>
-    <%= else %>
-      <div class="pt3 tc">
-        <p class="hl-aqua di">Account connected to SLaM</p>
-      </div>
-    <% end %>
-
-  <%= if Kernel.length(@user.caring) > 0 do %>
-    <div class="w-100 mt4 flex items-center justify-between">
-      <div class="w-40">
-        <p class="f5 b db mb2 mt0">First name</p>
-        <p class="pa2 br2 input-reset bn hl-bg-grey w-100"><%= @user.first_name %></p>
-      </div>
-
-      <div class="w-50">
-        <p class="f5 b db mb2 mt0">Last name</p>
-        <p class="pa2 br2 input-reset bn hl-bg-grey w-100"><%= @user.last_name %></p>
-      </div>
     </div>
-  <%= else %>
-    <div class="w-100 mt3 flex items-center justify-between">
+
+    <div class="pt3">
+      <%= link "Connect with the SLaM care team of someone I care for",
+          to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
+      <%= link to: page_path(@conn, :show, "carer_help") do %>
+        <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+      <% end %>
+    </div>
+
+    <div class="w-100 mt4 flex items-center justify-between">
       <div class="w-40 dib">
         <%= label f, :first_name, "First name", class: "f5 b db mb2" %>
         <%= text_input f, :first_name, class: "ph3 input-reset bn hl-bg-grey w-100 " <>
@@ -57,6 +34,22 @@
         <%= text_input f, :last_name, class: "ph3 input-reset bn hl-bg-grey w-100 " <>
         Healthlocker.ComponentView.highlight_errors(@changeset, :last_name) %>
         <span class="hl-pink"><%= error_tag f, :last_name %></span>
+      </div>
+    </div>
+  <%= else %>
+    <div class="pt3 tc">
+      <p class="hl-aqua di">Account connected to SLaM</p>
+    </div>
+
+    <div class="w-100 mt4 flex items-center justify-between">
+      <div class="w-40">
+        <p class="f5 b db mb2 mt0">First name</p>
+        <p class="pa2 br2 input-reset bn hl-bg-grey w-100 mb0"><%= @user.first_name %></p>
+      </div>
+
+      <div class="w-50">
+        <p class="f5 b db mb2 mt0">Last name</p>
+        <p class="pa2 br2 input-reset bn hl-bg-grey w-100 mb0"><%= @user.last_name %></p>
       </div>
     </div>
   <% end %>
