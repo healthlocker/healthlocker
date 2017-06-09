@@ -26,7 +26,7 @@
     stored in a cookie and is remembered for your next visit. Cookies provide
     an anonymised label for each user. If you are uncomfortable with the use of
     cookies, you can disable cookies on your electronic device by changing the
-    Settings in the 'Preferences' or 'Options' menu in your internet browser.
+    settings in the 'Preferences' or 'Options' menu in your internet browser.
   </p>
 
   <p>
@@ -106,7 +106,7 @@
 
   <h3>How to contact us with questions or concerns</h3>
   <p>
-    If you have any additional questions regarding this Policy, please feel
+    If you have any additional questions regarding this policy, please feel
     free to contact us at:
   </p>
   <%= link_to("Healthlocker@slam.nhs.uk", to: "mailto:Healthlocker@slam.nhs.uk") %>
