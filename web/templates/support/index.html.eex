@@ -53,7 +53,7 @@
       class: "hl-aqua flex-wrap underline" %>
       A free confidential helpline for anyone concerned about drug use.
       <%= link "Chat online 2-6pm",
-      to: "http://www.talktofrank.com/emergency-help",
+      to: "http://www.talktofrank.com/livechat",
       class: "hl-aqua flex-wrap underline" %> or read
       <%= link "what to do", to: "http://www.talktofrank.com/emergency-help",
       class: "hl-aqua flex-wrap underline" %>
@@ -62,7 +62,7 @@
     <p><strong>NHS</strong> <%= link_to("111", to: "tel:111") %> call for urgent, but non-emergency advice</p>
 
     <p><strong>Emergency services</strong> <%= link_to("999", to: "tel:999") %>
-      or find your nearest <%= link_to("A&E", to: "http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428", target: "_blank") %></p>
+      or find your nearest <%= link_to("A&E", to: "http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428") %></p>
   </div>
 
   <div class="hl-bg-grey pa3 mt4">
@@ -123,8 +123,9 @@
     <h4>Clinical information and advice</h4>
     <p><strong><%= link_to("NHS choices", to: "http://www.nhs.uk/pages/home.aspx") %></strong>
     is the UK's biggest health website, with high quality and reliable information
-    and advice on most physical and <%= link_to("mental health conditions", to: "http://www.nhs.uk/livewell/mentalhealth/Pages/Mentalhealthhome.aspx") %>
-    , treatments and services. There is also information and advice about
+    and advice on most physical and
+    <%= link_to("mental health conditions", to: "http://www.nhs.uk/livewell/mentalhealth/Pages/Mentalhealthhome.aspx") %>,
+    treatments and services. There is also information and advice about
     <%= link_to("drugs", to: "http://www.nhs.uk/Livewell/drugs/Pages/Drugshome.aspx") %> and
     <%= link_to("alcohol", to: "http://www.nhs.uk/livewell/alcohol/Pages/Alcoholhome.aspx") %></p>
 
@@ -134,8 +135,8 @@
 
     <p><strong><%= link "Patient Advice and Liaison Service (PALS)",
     to: "http://www.slam.nhs.uk/patients-and-carers/advice-and-information",
-    class: "hl-aqua flex-wrap underline" %>
-    at South London and Maudsley NHS Foundation Trust</strong> provides advice and information about the trust’s services.
+    class: "hl-aqua flex-wrap underline" %></strong>
+    at South London and Maudsley NHS Foundation Trust provides advice and information about the trust’s services.
     PALS can help resolve any problems you might have, whether you are a patient, carer or member of the public.
     Freephone <%= link_to("0800 731 2864", to: "tel:0800 731 2864") %> or email <%= link_to("pals@slam.nhs.uk", to: "mailto:pals@slam.nhs.uk") %></p>
 
