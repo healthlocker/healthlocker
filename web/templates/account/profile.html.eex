@@ -5,7 +5,7 @@
       If you are service user or family/friend or carer of someone with the
       South London and Maudsley NHS Foundation Trust, you can:
     </p>
-    
+
     <div class="mt4">
       <%= link "Connect with my SLaM care team and health record",
         to: account_path(@conn, :slam), class: "hl-aqua underline di" %>
@@ -38,7 +38,9 @@
     </div>
   <%= else %>
     <div class="pt3 tc">
-      <p class="hl-aqua di">Account connected to SLaM</p>
+      <p class="hl-aqua di">
+        Account connected to South London and Maudsley NHS Foundation Trust
+      </p>
     </div>
 
     <div class="w-100 mt4 flex items-center justify-between">
