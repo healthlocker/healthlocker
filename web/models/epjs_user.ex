@@ -1,7 +1,7 @@
 defmodule Healthlocker.EPJSUser do
   use Healthlocker.Web, :model
 
-  schema "epjs_users" do
+  schema "mhlPatIndex" do
     field :Patient_ID, :integer
     field :Surname, :string
     field :Forename, :string
