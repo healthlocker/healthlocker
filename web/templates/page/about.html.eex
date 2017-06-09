@@ -6,7 +6,7 @@
     <p>
       Healthlocker is a secure platform powered by the
       <%= link "South London and Maudsley NHS Foundation Trust (the trust)", to: "http://www.slam.nhs.uk/",
-          target: "_blank", class: "hl-aqua flex-wrap underline" %>
+          class: "hl-aqua flex-wrap underline" %>
       that promotes supported self-management and opportunities to improve
       communication between service users, carers and clinicians.
     </p>
@@ -104,7 +104,7 @@
       The platform is being built open source and in a modular way that allows
       for future integrations, features and partnerships. Development of
       Healthlocker so far has been funded by
-      <%= link_to("Maudsley Charity", to: "http://www.maudsleycharity.org/", target: "_blank")%>.
+      <%= link_to("Maudsley Charity", to: "http://www.maudsleycharity.org/")%>.
     </p>
 
     <p>
