@@ -140,12 +140,12 @@
     PALS can help resolve any problems you might have, whether you are a patient, carer or member of the public.
     Freephone <%= link_to("0800 731 2864", to: "tel:0800 731 2864") %> or email <%= link_to("pals@slam.nhs.uk", to: "mailto:pals@slam.nhs.uk") %></p>
 
-    <p><strong class="hl-aqua">Advice from a pharmacist</strong> If you are currently under
+    <p><strong>Advice from a pharmacist</strong> If you are currently under
     the care of South London and Maudsley NHS Foundation Trust you can make an appointment to discuss your medication.
     Call within office hours: Maudsley: <%= link_to("020 3228 2334", to: "tel:020 3228 2334") %>,
     Lambeth: <%= link_to("020 3228 6327", to: "tel:020 3228 6327") %>, and Bethlem Royal Hospital: <%= link_to("020 3228 4196", to: "tel:020 3228 4196") %></p>
 
-    <p><strong class="hl-aqua">Self referral drug and alcohol services</strong> in
+    <p><strong>Self referral drug and alcohol services</strong> in
     <%= link_to("Lambeth", to: "http://www.lambeth-drug-alcohol.co.uk/") %>,
     <%= link_to("Croydon", to: "http://www.turning-point.co.uk/croydon-recovery-network") %> and
     <%= link_to("Lewisham", to: "https://www.changegrowlive.org/content/new-direction-lewisham") %>.
