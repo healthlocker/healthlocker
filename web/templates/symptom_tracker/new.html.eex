@@ -6,7 +6,8 @@
       <%= label f, "Rate how much this problem or difficulty affected you today:", class: "f5 b db mb2" %>
       <%= select f, :affected_scale, Healthlocker.ComponentView.get_options("symptom_tracker"),
         class: "pa3 input-reset bn hl-bg-grey w-100 "  <>
-        Healthlocker.ComponentView.highlight_errors(@changeset, :affected_scale) %>
+        Healthlocker.ComponentView.highlight_errors(@changeset, :affected_scale),
+        prompt: "" %>
       <span class="hl-pink"><%= error_tag f, :affected_scale %></span>
     </div>
 
