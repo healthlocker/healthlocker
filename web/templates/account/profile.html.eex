@@ -5,9 +5,9 @@
       If you are service user or family/friend or carer of someone with the
       South London and Maudsley NHS Foundation Trust, you can:
     </p>
-    
+
     <div class="mt4">
-      <%= link "Connect with my SLaM care team and health record",
+      <%= link "Connect with my care team and health record",
         to: account_path(@conn, :slam), class: "hl-aqua underline di" %>
       <%= link to: page_path(@conn, :show, "slam_help") do %>
         <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
@@ -15,7 +15,7 @@
     </div>
 
     <div class="pt3">
-      <%= link "Connect with the SLaM care team of someone I care for",
+      <%= link "Connect with the care team of someone I care for",
           to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
       <%= link to: page_path(@conn, :show, "carer_help") do %>
         <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
@@ -38,7 +38,9 @@
     </div>
   <%= else %>
     <div class="pt3 tc">
-      <p class="hl-aqua di">Account connected to SLaM</p>
+      <p class="hl-aqua di">
+        Account connected to South London and Maudsley NHS Foundation Trust
+      </p>
     </div>
 
     <div class="w-100 mt4 flex items-center justify-between">
