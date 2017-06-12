@@ -6,24 +6,31 @@ defmodule Healthlocker.CareTeam.RoomController do
     room = Repo.get! assoc(conn.assigns.current_user, :rooms), id
     service_user = Healthlocker.Slam.ServiceUser.for(conn.assigns.current_user)
     clinicians_list = Healthlocker.Slam.CareTeam.for(service_user)
-    [clinician | _nothing] = clinicians_list
-    clinician_room = Repo.get_by(ClinicianRooms, room_id: id)
+    clinician_rooms = Repo.all(from cr in ClinicianRooms, where: cr.room_id == ^id)
 
     messages = Repo.all from m in Message,
       where: m.room_id == ^room.id,
       order_by: [asc: :inserted_at, asc: :id],
       preload: [:user]
 
-    case clinician.id == clinician_room.clinician_id do
-      true ->
+    case filter_clinicians(clinicians_list, clinician_rooms) do
+      [] ->
         conn
         |> assign(:room, room)
         |> assign(:service_user, service_user)
         |> assign(:messages, messages)
         |> assign(:current_user_id, conn.assigns.current_user.id)
         |> render("show.html")
-      _ ->
-        IO.puts "where new update function will called"
+      clinicians ->
+        rooms = filter_rooms(clinicians_list, clinician_rooms)
+        get_single_clinician_and_room(clinicians, rooms)
+
+        conn
+        |> assign(:room, room)
+        |> assign(:service_user, service_user)
+        |> assign(:messages, messages)
+        |> assign(:current_user_id, conn.assigns.current_user.id)
+        |> render("show.html")
     end
   end
 
