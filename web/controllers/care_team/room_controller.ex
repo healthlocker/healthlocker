@@ -34,8 +34,34 @@ defmodule Healthlocker.CareTeam.RoomController do
     end
   end
 
-  def update(conn, %{"id" => clinician_room_id}) do
-    clinician_room = Repo.get(ClinicianRooms, clinician_room_id)
-    changeset = ClinicianRooms.changeset(clinigian_room, %{clinician_id: })
+  def update_clinician_rooms(clinician, clinician_room) do
+    changeset = ClinicianRooms.changeset(clinician_room, %{clinician_id: clinician.id})
+    Repo.update!(changeset)
+  end
+
+  def filter_clinicians(clinl, rooml) do
+    Enum.reject(clinl, fn x ->
+      Enum.any?(rooml, fn i ->
+        x.id == i.clinician_id
+      end)
+    end)
+  end
+
+  def filter_rooms(clinl, rooml) do
+    Enum.reject(rooml, fn x ->
+      Enum.any?(clinl, fn i ->
+        x.clinician_id == i.id
+      end)
+    end)
+  end
+
+  def get_single_clinician_and_room([], _), do: :ok
+
+  def get_single_clinician_and_room(clinicians, rooms) do
+    [clinician | clinicians_tail] = clinicians
+    [room | rooms_tail] = rooms
+
+    update_clinician_rooms(clinician, room)
+    get_single_clinician_and_room(clinicians_tail, rooms_tail)
   end
 end
