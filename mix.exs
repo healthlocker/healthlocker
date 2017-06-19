@@ -31,7 +31,8 @@ defmodule Healthlocker.Mixfile do
                     :bamboo,
                     :segment,
                     :faker,
-                    :appsignal]]
+                    :appsignal,
+                    :mssqlex]]
   end
 
   # Specifies which paths to compile per environment.
