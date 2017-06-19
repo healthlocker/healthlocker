@@ -50,4 +50,8 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   hostname: "localhost",
   pool_size: 10
 
+config :healthlocker, Healthlocker.TestRepo,
+  adapter: MssqlEcto,
+  hostname: System.get_env("HOSTNAME_URL")
+
 config :healthlocker, :analytics, Healthlocker.Analytics.Segment
