@@ -1,8 +1,12 @@
 defmodule Healthlocker.PageController do
   use Healthlocker.Web, :controller
-  alias Healthlocker.Post
+  alias Healthlocker.{Post, TestRepo, Product}
 
   def index(conn, _params) do
+    query = from p in Product, where: p."ProductName" == "katbow"
+    TestRepo.all(query)
+    |> IO.inspect
+
     featured_story = Post
                      |> Post.find_stories
                      |> Repo.all

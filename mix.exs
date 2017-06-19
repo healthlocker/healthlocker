@@ -31,7 +31,8 @@ defmodule Healthlocker.Mixfile do
                     :bamboo,
                     :segment,
                     :faker,
-                    :appsignal]]
+                    :appsignal,
+                    :mssqlex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -61,7 +62,10 @@ defmodule Healthlocker.Mixfile do
      {:faker, "~> 0.7"},
      {:appsignal, "~> 1.0"},
      {:wallaby, "~> 0.16.1"},
-     {:ecto_factory, "~> 0.0.6"}]
+     {:ecto_factory, "~> 0.0.6"},
+     {:mssqlex, "~> 0.6"},
+     {:mssql_ecto, "~> 0.1"}
+   ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
