@@ -1,8 +1,8 @@
 defmodule Healthlocker.EPJSUser do
   use Healthlocker.Web, :model
 
+  @primary_key {:Patient_ID, :integer, autogenerate: false}
   schema "mhlPatIndex" do
-    field :Patient_ID, :integer
     field :Surname, :string
     field :Forename, :string
     field :Title, :string
