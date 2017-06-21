@@ -1,6 +1,5 @@
 # Healthlocker [![Build Status](https://travis-ci.org/healthlocker/healthlocker.svg?branch=master)](https://travis-ci.org/healthlocker/healthlocker) [![Deps Status](https://beta.hexfaktor.org/badge/all/github/healthlocker/healthlocker.svg)](https://beta.hexfaktor.org/github/healthlocker/healthlocker)
 
-<<<<<<< HEAD
 Healthlocker is an application which connects service users (*SU*), their clinicians
 (*care team*), and other relevant people(e.g. parent or spouse of SU,
 known as *carers*) together. It allows for open and frequent communication
@@ -10,22 +9,7 @@ communication. Clinicians can also stay updated on goals and coping strategies
 created by their SUs in Healthlocker, which keeps them up-to-date with what is
 important to their SU. A full list of features can be found
 [here](https://github.com/healthlocker/healthlocker#current-features).
-=======
-## _Why_?
 
-Healthlocker's mission is to enable people to
-
-## What?
-
-Healthlocker is a Mobile-focussed Web Application designed to help
-people improve their wellbeing.
-
-> TODO: @MollieCourtenay please update copy for "What is Healthlocker"
-so people reading the repository have a clear picture with context. thanks!
-
-
-## How?
->>>>>>> adds Application Architecture Diagram to Readme > Deployment section
 
 ## Getting started
 
