@@ -194,7 +194,7 @@ defmodule Healthlocker.AccountController do
               conn
               |> put_flash(:info, "SLaM account connected!")
               |> redirect(to: account_path(conn, :index), changeset: changeset, user: result.user,
-                        slam_id: slam_user.id, action: account_path(conn, :update))
+                        slam_id: slam_user."Patient_ID", action: account_path(conn, :update))
             {:error, _type, changeset, _} ->
               conn
               |> put_flash(:error, "Something went wrong")
