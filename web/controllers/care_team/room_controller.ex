@@ -35,14 +35,14 @@ defmodule Healthlocker.CareTeam.RoomController do
   end
 
   def update_clinician_rooms(clinician, clinician_room) do
-    changeset = ClinicianRooms.changeset(clinician_room, %{clinician_id: clinician.id})
+    changeset = ClinicianRooms.changeset(clinician_room, %{clinician_id: clinician."Staff_ID"})
     Repo.update!(changeset)
   end
 
   def filter_clinicians(clinl, rooml) do
     Enum.reject(clinl, fn x ->
       Enum.any?(rooml, fn i ->
-        x.id == i.clinician_id
+        x."Staff_ID" == i.clinician_id
       end)
     end)
   end
@@ -50,7 +50,7 @@ defmodule Healthlocker.CareTeam.RoomController do
   def filter_rooms(clinl, rooml) do
     Enum.reject(rooml, fn x ->
       Enum.any?(clinl, fn i ->
-        x.clinician_id == i.id
+        x.clinician_id == i."Staff_ID"
       end)
     end)
   end
