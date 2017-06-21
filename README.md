@@ -1,5 +1,6 @@
 # Healthlocker [![Build Status](https://travis-ci.org/healthlocker/healthlocker.svg?branch=master)](https://travis-ci.org/healthlocker/healthlocker) [![Deps Status](https://beta.hexfaktor.org/badge/all/github/healthlocker/healthlocker.svg)](https://beta.hexfaktor.org/github/healthlocker/healthlocker)
 
+<<<<<<< HEAD
 Healthlocker is an application which connects service users (*SU*), their clinicians
 (*care team*), and other relevant people(e.g. parent or spouse of SU,
 known as *carers*) together. It allows for open and frequent communication
@@ -9,6 +10,22 @@ communication. Clinicians can also stay updated on goals and coping strategies
 created by their SUs in Healthlocker, which keeps them up-to-date with what is
 important to their SU. A full list of features can be found
 [here](https://github.com/healthlocker/healthlocker#current-features).
+=======
+## _Why_?
+
+Healthlocker's mission is to enable people to
+
+## What?
+
+Healthlocker is a Mobile-focussed Web Application designed to help
+people improve their wellbeing.
+
+> TODO: @MollieCourtenay please update copy for "What is Healthlocker"
+so people reading the repository have a clear picture with context. thanks!
+
+
+## How?
+>>>>>>> adds Application Architecture Diagram to Readme > Deployment section
 
 ## Getting started
 
@@ -68,7 +85,6 @@ You can view all of the routes by running `mix phoenix.routes` in your terminal.
   * Phoenix Docs: https://hexdocs.pm/phoenix
   * Ecto Docs: https://hexdocs.pm/ecto/Ecto.html
 
-## How?
 
 ### Updating select input options
 
@@ -133,3 +149,45 @@ custom made [forgotten password controller](https://github.com/dwyl/learn-phoeni
   goals and coping strategies, tracking data, contact details, and messaging
   * Clinicians can click on carers to message or get contact details
 * [Styleguide](https://www.healthlocker.uk/components)
+
+
+## DevOps
+
+### Application Architecture
+
+The Healthlocker App is deployed to "Production" in the following configuration:
+
+![healthlocker-architecture-diagram-2](https://cloud.githubusercontent.com/assets/194400/26106766/e62c9316-3a3e-11e7-830e-96df89c4f5d7.jpg)
+> To edit this diagram, open:<br />
+https://docs.google.com/drawings/d/1VwpBVKzqSX0q81KsKSKAOS7wtYcqZqARKAFTKJUaowg
+
+The cluster of Web Servers is two or more Linux VMs behind a load balancer.
+
+#### Infrastructure Details
+
++ Linux Virtual Machines (VMs):
+https://azure.microsoft.com/en-gb/services/virtual-machines - these run our
+Phoenix Web Application. The Application is _compiled_ as an _executable_
+which runs on "BEAM" (_the Erlang Virtual Machine_).
+The VMs are _actively_ monitored and can be scaled up dynamically
+dependent on request volume.
++ Azure PostgreSQL Database-as-a-Service:
+https://azure.microsoft.com/en-us/services/postgresql - all application data
+is stored in an Azure Database instance which is encrypted at rest,
+scales dynamically/transparently ("_built-in high availability_")
+and backed up transparently. Data is _Only_ accessible from the Production VMs.
++ Azure Load Balancer:
+https://azure.microsoft.com/en-gb/services/load-balancer -
+All web traffic is handled through the load balancer which performs
+_continous_ health checks on the application server(s) and routes
+requests in a "round-robin" to balance load.
+
+### Continuous Integration/Testing and Deployment Pipeline
+
+
+### Deployment Guide
+
+In the interest of reproducibility we have produced a
+***step-by-step guide*** to deploying a Phoenix Web Application to
+Microsoft Azure: <br />
+https://github.com/dwyl/learn-microsoft-azure
