@@ -52,7 +52,7 @@ defmodule Healthlocker.Slam.ConnectCarer do
     |> Enum.map(fn(clinician) ->
       %{
         room_id: room_id,
-        clinician_id: clinician.id,
+        clinician_id: clinician."Staff_ID",
         inserted_at: DateTime.utc_now(),
         updated_at: DateTime.utc_now()
       }
