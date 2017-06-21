@@ -14,6 +14,10 @@ sudo npm install n -g
 sudo n stable
 node -v
 
+# PostgreSQL
+sudo apt-get install postgresql postgresql-contrib
+psql -u postgres postgres
+
 # elixir
 wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
 sudo apt-get update

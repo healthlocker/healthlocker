@@ -1,10 +1,10 @@
 APP="healthlocker"
 
-BUILD_HOST="52.232.127.28"
+BUILD_HOST="51.140.86.5"
 BUILD_USER="azure"
 BUILD_AT="/home/azure/healthlocker/builds"
 
-PRODUCTION_HOSTS="52.232.127.28 52.232.86.84"
+PRODUCTION_HOSTS="51.140.86.5"
 PRODUCTION_USER="azure"
 DELIVER_TO="/home/azure"
 
