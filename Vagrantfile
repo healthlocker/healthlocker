@@ -1,35 +1,36 @@
 # detailed instructions for installing
 $script = <<SCRIPT
 
+sudo -i
 # update ubuntu (security etc.)
 apt-get update
 
 # curl
 sudo apt-get install curl -y
 
-# # nodejs
-# sudo apt-get -y install g++ git git-core nodejs npm
-# sudo npm install n -g
-# sudo n stable
-# node -v
-#
-# # elixir
-# wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
-# sudo apt-get update
-# sudo apt-get install esl-erlang -y
-# sudo apt-get install elixir
-#
-# # install erlang-odbc
-# sudo apt-get install erlang-odbc -y
-#
-# # hex
-# mix local.hex --force
-#
-# # phoenix
-# mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
-#
-# sudo apt-get install inotify-tools -y
-#
+# nodejs
+sudo apt-get -y install g++ git git-core nodejs npm
+sudo npm install n -g
+sudo n stable
+node -v
+
+# elixir
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+sudo apt-get update
+sudo apt-get install esl-erlang -y
+sudo apt-get install elixir
+
+# install erlang-odbc
+sudo apt-get install erlang-odbc -y
+
+# hex
+mix local.hex --force
+
+# phoenix
+mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
+
+sudo apt-get install inotify-tools -y
+
 sudo -i
 curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list

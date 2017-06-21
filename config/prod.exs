@@ -72,3 +72,4 @@ config :healthlocker, :analytics, Healthlocker.Analytics.Segment
 #
 #     config :healthlocker, Healthlocker.Endpoint, server: true
 #
+# import_config "prod.secret.exs"

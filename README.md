@@ -147,32 +147,62 @@ https://docs.google.com/drawings/d/1VwpBVKzqSX0q81KsKSKAOS7wtYcqZqARKAFTKJUaowg
 
 The cluster of Web Servers is two or more Linux VMs behind a load balancer.
 
-#### Infrastructure Details
+### Infrastructure Overview
 
-There are 4 pieces to the puzzle
+There are 4 pieces to the puzzle:
 
 + Azure **Load Balancer**:
 https://azure.microsoft.com/en-gb/services/load-balancer -
 All web traffic is handled through the load balancer which performs
 _continous_ health checks on the application server(s) and routes
 requests in a "round-robin" to balance load.
+  + There is no "_specification_" for Load Balancers on Azure and pricing is FREE!
+
 + **Linux Virtual Machines** (VMs):
 https://azure.microsoft.com/en-gb/services/virtual-machines - these run our
 Phoenix Web Application. The Application is _compiled_ as an _executable_
 which runs on "BEAM" (_the Erlang Virtual Machine_).
 The VMs are _actively_ monitored and can be scaled up dynamically
 dependent on request volume.
+  + Production Application Servers:
+  ![Linux VM Cost](https://cloud.githubusercontent.com/assets/194400/26114633/b3b2dfe6-3a55-11e7-9bb2-795b8a0b94c2.png)
+  + Staging Application Server:
+  ![staging-vm](https://cloud.githubusercontent.com/assets/194400/26115765/e6fc29b8-3a58-11e7-8670-0d0dad85352e.png)
+
+
 + Azure **PostgreSQL Database-as-a-Service**:
 https://azure.microsoft.com/en-us/services/postgresql - all application data
 is stored in an Azure Database instance which is encrypted at rest,
 scales dynamically/transparently ("_built-in high availability_")
 and backed up transparently. Data is _Only_ accessible from the Production VMs
+  + Production Database:
+  ![PostgreSQL Pricing](https://cloud.githubusercontent.com/assets/194400/26114788/2b5afd26-3a56-11e7-8890-0933ab79f10c.png)
+  + Staging (Test) Database:
+  ![staging-database-price](https://cloud.githubusercontent.com/assets/194400/26115192/33959a68-3a57-11e7-89e7-b5c83b1bea22.png)
+
 + Azure **SQL Server** (_Database-as-a-Service_):
 https://azure.microsoft.com/en-gb/services/sql-database - Stores a _read-only_
 _snapshot_ of the "Care Notes" (ePJS) Database. This contains the patients
 personal health information and is controlled by the "SLaM" IT team.
 Access is restricted to the Production Healthlocker VMs and patient (_personal_)
 data is only viewable by the patient and authorized healthcare professionals.
++ Specification for ePJS SQL Server:
+![epjs-database](https://cloud.githubusercontent.com/assets/194400/26115612/667eb1f2-3a58-11e7-9888-a4753f9ca7ae.png)
+
+
+### _Exact_ Infrastructure Requirements for (_Production_) Azure Deployment
+
+| Resource Description | _Exact_ Specification | Resource Quantity | Estimated Monthly Cost |
+|----------------------|---------------------|-------------------|----------------------|
+| Linux VM (Prod)      | "Azure **D1 V2**" ***Linux VM***: **3.5Gb RAM**, 1CPU Core, 50GB Hard disk | 2 | £75.41 |
+| PostgreSQL Database (Prod) | "**Standard Tier**" Servers ("100 Compute Units") with 125GB SSD | 2 | £128.42 |
+| Load Balancer configured to proxy to Prod VMs | Azure Standard HTTP Load Balancer | 1 | FREE |
+| Linux VM (Build/Staging) | "Azure **A0**" ***Linux VM***: **0.75Gb RAM**, 1CPU Core, 20GB Hard disk | 1 | £11.09 |
+| PostgreSQL Database (Prod) | "**Basic Tier**" Server ("50 Compute Units") with 50GB SSD | 1 | £13.36 |
+| Load Balancer (Staging) | Azure Standard HTTP Load Balancer | 1 | FREE |
+| ePJS Snapshot MS SQL Server | 100 eDTUs, 100 GB Storage per pool, 200 DBs per pool | 1 | £166.35 |
+
+
 
 ### Continuous Integration/Testing and Deployment Pipeline
 
