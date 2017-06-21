@@ -24,7 +24,7 @@ use Mix.Releases.Config,
 environment :dev do
   set dev_mode: true
   set include_erts: false
-  set cookie: :"58iO]:)I<ftX.1m4PGeq7O32O>D$G*yhRt.MNJASyJZ>CP8Euq/[2PW(PO(,Cv?8"
+  set cookie: :"R8z}a9`)l*~,RLp*@~O$vhFO~|<]7T|d7qI*wl9w.Ctn?0|^AFuFJUVq4cfyL)Wn"
 end
 
 environment :prod do
@@ -44,4 +44,3 @@ release :healthlocker do
     :runtime_tools
   ]
 end
-

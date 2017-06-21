@@ -190,7 +190,75 @@ data is only viewable by the patient and authorized healthcare professionals.
 ![epjs-database](https://cloud.githubusercontent.com/assets/194400/26115612/667eb1f2-3a58-11e7-9888-a4753f9ca7ae.png)
 
 
-### _Exact_ Infrastructure Requirements for (_Production_) Azure Deployment
+* Tips can be added in, and can be viewed either in full or filtered by tag
+* Story content can be input by users, and are displayed in cards with a
+story preview
+* Stories can be expanded to view the full individual story
+* Support page is available in full
+* Three-step sign up process
+* Login
+* Users can only post content when logged in
+* Users can create, view, update and delete coping strategies they have made
+* Users can create, view, update, and delete goals they have made
+* Goals can be marked as important and are displayed at the top of the goals page
+* Users can visit their account page where they can update their name, email,
+or phone number
+* Users can update their consent for sharing data with researchers in their account
+* Users can update their password and security Q&A in their account
+* Terms of service can be accessed from the footer and is linked in sign up
+* Privacy statement can be accessed from the footer and is linked in sign up
+* Feedback can be sent about the site from a form. This is done
+[using Bamboo and Amazon SES](https://github.com/dwyl/learn-phoenix-framework/blob/master/sending-emails.md)
+* Logged in users can track their sleep over time using the sleep tracker in toolkit
+* Users who have tracked sleep can view:
+  * hours slept each night over the past week
+  * average number of hours slept over the past week
+  * times they woke up each night for the past week
+  * notes they made about their sleep from the past week
+* Users can view the previous 7 days sleep data, or go forward once they've gone back.
+* [Styleguide](https://www.healthlocker.uk/components)
+
+
+## DevOps
+
+### Application Architecture
+
+The Healthlocker App is deployed to "Production" in the following configuration:
+
+![healthlocker-architecture-diagram-2](https://cloud.githubusercontent.com/assets/194400/26106766/e62c9316-3a3e-11e7-830e-96df89c4f5d7.jpg)
+> To edit this diagram, open:<br />
+https://docs.google.com/drawings/d/1VwpBVKzqSX0q81KsKSKAOS7wtYcqZqARKAFTKJUaowg
+
+The cluster of Web Servers is two or more Linux VMs behind a load balancer.
+
+#### Infrastructure Details
+
+There are 4 pieces to the puzzle
+
++ Azure **Load Balancer**:
+https://azure.microsoft.com/en-gb/services/load-balancer -
+All web traffic is handled through the load balancer which performs
+_continous_ health checks on the application server(s) and routes
+requests in a "round-robin" to balance load.
++ **Linux Virtual Machines** (VMs):
+https://azure.microsoft.com/en-gb/services/virtual-machines - these run our
+Phoenix Web Application. The Application is _compiled_ as an _executable_
+which runs on "BEAM" (_the Erlang Virtual Machine_).
+The VMs are _actively_ monitored and can be scaled up dynamically
+dependent on request volume.
++ Azure **PostgreSQL Database-as-a-Service**:
+https://azure.microsoft.com/en-us/services/postgresql - all application data
+is stored in an Azure Database instance which is encrypted at rest,
+scales dynamically/transparently ("_built-in high availability_")
+and backed up transparently. Data is _Only_ accessible from the Production VMs
++ Azure **SQL Server** (_Database-as-a-Service_):
+https://azure.microsoft.com/en-gb/services/sql-database - Stores a _read-only_
+_snapshot_ of the "Care Notes" (ePJS) Database. This contains the patients
+personal health information and is controlled by the "SLaM" IT team.
+Access is restricted to the Production Healthlocker VMs and patient (_personal_)
+data is only viewable by the patient and authorized healthcare professionals.
+
+#### _Exact_ Infrastructure Requirements for (_Production_) Azure Deployment
 
 | Resource Description | _Exact_ Specification | Resource Quantity | Estimated Monthly Cost |
 |----------------------|---------------------|-------------------|----------------------|
@@ -201,7 +269,6 @@ data is only viewable by the patient and authorized healthcare professionals.
 | PostgreSQL Database (Prod) | "**Basic Tier**" Server ("50 Compute Units") with 50GB SSD | 1 | £13.36 |
 | Load Balancer (Staging) | Azure Standard HTTP Load Balancer | 1 | FREE |
 | ePJS Snapshot MS SQL Server | 100 eDTUs, 100 GB Storage per pool, 200 DBs per pool | 1 | £166.35 |
-
 
 
 ### Continuous Integration/Testing and Deployment Pipeline
