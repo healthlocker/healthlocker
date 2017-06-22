@@ -19,7 +19,7 @@ defmodule Healthlocker.CarerConnectSlam do
       slam_id: 200
     )
 
-    Healthlocker.ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{id: 789,
+    Healthlocker.ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{
       Patient_ID: 200,
       Surname: "Bow",
       Forename: "Kat",

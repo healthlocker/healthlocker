@@ -1,7 +1,7 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, EPJSClinician, ReadOnlyRepo, User}
+  alias Healthlocker.{EPJSTeamMember, EPJSUser, User}
 
   def index(conn, _params) do
     clinician = conn.assigns.current_user
