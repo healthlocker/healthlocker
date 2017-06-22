@@ -2,7 +2,7 @@ defmodule Healthlocker.CarerConnectSlam do
   use Healthlocker.FeatureCase
 
   setup %{session: session} do
-    EctoFactory.insert(:user,
+    EctoFactory.insert(:user_with_defaults,
       email: "tony@dwyl.io",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
@@ -31,7 +31,7 @@ defmodule Healthlocker.CarerConnectSlam do
     {:ok, %{session: session}}
   end
 
-  @connect_link         Query.link("Connect with the SLaM care team of someone I care for")
+  @connect_link         Query.link("Connect with the care team of someone I care for")
   @form                 Query.css("form")
   @first_name_field     Query.text_field("carer_connection_first_name")
   @last_name_field      Query.text_field("carer_connection_last_name")
@@ -45,7 +45,6 @@ defmodule Healthlocker.CarerConnectSlam do
     session
     |> log_in
     |> visit("/account")
-    |> take_screenshot
     |> click(@connect_link)
     |> find(@form, fn(form) ->
       form
@@ -56,17 +55,17 @@ defmodule Healthlocker.CarerConnectSlam do
       |> fill_in(@date_of_birth_field, with: "01/01/1989")
       |> fill_in(@nhs_number_field, with: "943 476 5919")
       |> click(@connect_button)
+      |> take_screenshot
     end)
 
     assert current_path(session) == "/account"
-    assert has_text?(session, "Account connected with SLaM")
+    assert has_text?(session, "Account connected!")
   end
 
   test "unsuccessfully update name", %{session: session} do
     session
     |> log_in
     |> visit("/account")
-    |> take_screenshot
     |> click(@connect_link)
     |> find(@form, fn(form) ->
       form
@@ -75,6 +74,7 @@ defmodule Healthlocker.CarerConnectSlam do
       |> fill_in(@date_of_birth_field, with: "01/01/1989")
       |> fill_in(@nhs_number_field, with: "943 476 5919")
       |> click(@connect_button)
+      |> take_screenshot
     end)
 
     assert has_text?(session, "Something went wrong")
@@ -84,13 +84,13 @@ defmodule Healthlocker.CarerConnectSlam do
     session
     |> log_in
     |> visit("/account")
-    |> take_screenshot
     |> click(@connect_link)
     |> find(@form, fn(form) ->
       form
       |> click(@connect_button)
+      |> take_screenshot
     end)
 
-    assert has_text?(session, "Your Healthlocker account could not be linked with your SLaM health record. Please check your details are correct and try again.")
+    assert has_text?(session, "Your Healthlocker account could not be linked with your health record. Please check your details are correct and try again.")
   end
 end
