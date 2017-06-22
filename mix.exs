@@ -3,7 +3,7 @@ defmodule Healthlocker.Mixfile do
 
   def project do
     [app: :healthlocker,
-     version: "0.0.1",
+     version: "1.0.0",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -18,22 +18,26 @@ defmodule Healthlocker.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Healthlocker, []},
-     applications: [:phoenix,
-                    :phoenix_pubsub,
-                    :phoenix_html,
-                    :cowboy,
-                    :logger,
-                    :gettext,
-                    :phoenix_ecto,
-                    :postgrex,
-                    :comeonin,
-                    :timex,
-                    :bamboo,
-                    :segment,
-                    :faker,
-                    :appsignal,
-                    :mssqlex,
-                    :mssql_ecto]]
+       applications: [
+        :phoenix,
+        :phoenix_pubsub,
+        :phoenix_html,
+        :cowboy,
+        :logger,
+        :gettext,
+        :phoenix_ecto,
+        :postgrex,
+        :comeonin,
+        :timex,
+        :bamboo,
+        :segment,
+        :faker,
+        :appsignal,
+        :mssqlex,
+        :mssql_ecto,
+        :edeliver
+      ]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -66,6 +70,8 @@ defmodule Healthlocker.Mixfile do
      {:ecto_factory, "~> 0.0.6"},
      {:mssql_ecto, "~> 0.1"},
      {:mssqlex, "~> 0.6"}
+     {:edeliver, "~> 1.4.0"},
+     {:distillery, ">= 0.8.0", warn_missing: false}
    ]
   end
 
