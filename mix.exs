@@ -69,7 +69,7 @@ defmodule Healthlocker.Mixfile do
      {:wallaby, "~> 0.16.1"},
      {:ecto_factory, "~> 0.0.6"},
      {:mssql_ecto, "~> 0.1"},
-     {:mssqlex, "~> 0.6"}
+     {:mssqlex, "~> 0.6"},
      {:edeliver, "~> 1.4.0"},
      {:distillery, ">= 0.8.0", warn_missing: false}
    ]
