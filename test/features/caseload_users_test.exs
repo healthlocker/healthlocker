@@ -1,6 +1,6 @@
 defmodule Healthlocker.CaseloadUsersTest do
   use Healthlocker.FeatureCase
-  alias Healthlocker.{Carer, EPJSClinician, EPJSPatientAddressDetails, EPJSTeamMember, ReadOnlyRepo, Repo, User}
+  alias Healthlocker.{Carer, EPJSPatientAddressDetails, EPJSTeamMember, ReadOnlyRepo, Repo, User}
 
   setup %{session: session} do
     service_user_1 = EctoFactory.insert(:user,
@@ -14,7 +14,7 @@ defmodule Healthlocker.CaseloadUsersTest do
       slam_id: 202
     )
 
-    ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{id: 789,
+    ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{
       Patient_ID: 202,
       Surname: "Tony",
       Forename: "Daly",
@@ -56,8 +56,8 @@ defmodule Healthlocker.CaseloadUsersTest do
 
     Repo.insert!(%Carer{carer: carer, caring: service_user_1})
 
-    _clinician = Repo.insert!(%User{
-      email: "clinician@nhs.co.uk",
+    Repo.insert!(%User{
+      email: "robert_macmurray@nhs.co.uk",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       first_name: "Mary",
       last_name: "Clinician",
@@ -68,21 +68,23 @@ defmodule Healthlocker.CaseloadUsersTest do
       role: "clinician"
     })
 
-    epjs_clinician = ReadOnlyRepo.insert!(%EPJSClinician{
-      GP_Code: "yr68Dobil7yD40Ag",
-      First_Name: "Mary",
-      Last_Name: "Clinician"
-    })
+    %EPJSTeamMember{
+      Staff_ID: 12345678,
+      Patient_ID: 202,
+      Staff_Name: "Robert MacMurray",
+      Job_Title: "GP",
+      Team_Member_Role_Desc: "Care team lead",
+      Email: "robert_macmurray@nhs.co.uk"
+    } |> ReadOnlyRepo.insert
 
-    ReadOnlyRepo.insert!(%EPJSTeamMember{
-      Patient_ID: service_user_1.slam_id,
-      Staff_ID: epjs_clinician.id
-    })
-
-    ReadOnlyRepo.insert!(%EPJSTeamMember{
-      Patient_ID: service_user_2.slam_id,
-      Staff_ID: epjs_clinician.id
-    })
+    %EPJSTeamMember{
+      Staff_ID: 12345678,
+      Patient_ID: 203,
+      Staff_Name: "Robert MacMurray",
+      Job_Title: "GP",
+      Team_Member_Role_Desc: "Care team lead",
+      Email: "robert_macmurray@nhs.co.uk"
+    } |> ReadOnlyRepo.insert
 
     Mix.Tasks.Healthlocker.Room.Create.run("run")
 
@@ -92,7 +94,7 @@ defmodule Healthlocker.CaseloadUsersTest do
   test "shows service users", %{session: session} do
     session
     |> resize_window(768, 1024)
-    |> log_in("clinician@nhs.co.uk")
+    |> log_in("robert_macmurray@nhs.co.uk")
     |> click(Query.link("Caseload"))
 
     assert session |> has_text?("Tony Daly")
@@ -102,7 +104,7 @@ defmodule Healthlocker.CaseloadUsersTest do
   test "shows carers", %{session: session} do
     session
     |> resize_window(768, 1024)
-    |> log_in("clinician@nhs.co.uk")
+    |> log_in("robert_macmurray@nhs.co.uk")
     |> click(Query.link("Caseload"))
     |> take_screenshot
 
@@ -112,7 +114,7 @@ defmodule Healthlocker.CaseloadUsersTest do
   test "view service user", %{session: session} do
     session
     |> resize_window(768, 1024)
-    |> log_in("clinician@nhs.co.uk")
+    |> log_in("robert_macmurray@nhs.co.uk")
     |> click(Query.link("Caseload"))
     |> click(Query.link("Tony Daly"))
     |> click(Query.link("Details and contacts"))
@@ -125,7 +127,7 @@ defmodule Healthlocker.CaseloadUsersTest do
   test "service user send message", %{session: session} do
     session
     |> resize_window(768, 1024)
-    |> log_in("clinician@nhs.co.uk")
+    |> log_in("robert_macmurray@nhs.co.uk")
     |> click(Query.link("Caseload"))
     |> click(Query.link("Tony Daly"))
     |> click(Query.link("Messages"))
@@ -134,7 +136,7 @@ defmodule Healthlocker.CaseloadUsersTest do
   test "view carer", %{session: session} do
     session
     |> resize_window(768, 1024)
-    |> log_in("clinician@nhs.co.uk")
+    |> log_in("robert_macmurray@nhs.co.uk")
     |> click(Query.link("Caseload"))
     |> click(Query.link("Jimmy Smits (friend/family/carer)"))
     |> click(Query.link("Details and contacts"))
@@ -145,7 +147,7 @@ defmodule Healthlocker.CaseloadUsersTest do
   test "view tracking overview", %{session: session} do
     session
     |> resize_window(768, 1024)
-    |> log_in("clinician@nhs.co.uk")
+    |> log_in("robert_macmurray@nhs.co.uk")
     |> click(Query.link("Caseload"))
     |> click(Query.link("Tony Daly"))
     |> click(Query.link("Tracking"))

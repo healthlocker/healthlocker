@@ -1,8 +1,9 @@
 defmodule Healthlocker.SUConnectSlam do
   use Healthlocker.FeatureCase
+  alias Healthlocker.{ReadOnlyRepo, EPJSUser, Room, UserRoom}
 
   setup %{session: session} do
-    EctoFactory.insert(:user,
+    user = EctoFactory.insert(:user_with_defaults,
       email: "tony@dwyl.io",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       terms_conditions: true,
@@ -10,7 +11,7 @@ defmodule Healthlocker.SUConnectSlam do
       data_access: true
     )
 
-    Healthlocker.ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{id: 789,
+    ReadOnlyRepo.insert!(%EPJSUser{
       Patient_ID: 200,
       Surname: "Bow",
       Forename: "Kat",
@@ -29,32 +30,32 @@ defmodule Healthlocker.SUConnectSlam do
   @nhs_number_field     Query.text_field("user_NHS_Number")
   @connect_button       Query.button("Connect")
 
-  test "successfully connect with SLaM", %{session: session} do
-    session
-    |> log_in
-    |> visit("/account/slam")
-    |> take_screenshot
-    |> find(@form, fn(form) ->
-      form
-      |> fill_in(@first_name_field, with: "Kat")
-      |> fill_in(@last_name_field, with: "Bow")
-      |> fill_in(@date_of_birth_field, with: "01/01/1989")
-      |> fill_in(@nhs_number_field, with: "9434765919")
-      |> click(@connect_button)
-    end)
+    test "successfully connect with SLaM", %{session: session} do
+      session
+      |> log_in
+      |> visit("/account/slam")
+      |> find(@form, fn(form) ->
+        form
+        |> fill_in(@first_name_field, with: "Kat")
+        |> fill_in(@last_name_field, with: "Bow")
+        |> fill_in(@date_of_birth_field, with: "01/01/1989")
+        |> fill_in(@nhs_number_field, with: "9434765919")
+        |> click(@connect_button)
+        |> take_screenshot
+      end)
 
-    assert has_text?(session, "SLaM account connected!")
-    assert has_text?(session, "Account connected with SLaM")
-  end
+      assert has_text?(session, "Account connected!")
+      assert has_text?(session, "Account connected to South London and Maudsley NHS Foundation Trust")
+    end
 
   test "unsuccessfully connect with SLaM", %{session: session} do
     session
     |> log_in
     |> visit("/account/slam")
-    |> take_screenshot
     |> find(@form, fn(form) ->
       form
       |> click(@connect_button)
+      |> take_screenshot
     end)
 
     assert has_text?(session, "Details do not match. Please try again later")
