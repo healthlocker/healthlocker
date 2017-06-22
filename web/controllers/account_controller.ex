@@ -159,7 +159,14 @@ defmodule Healthlocker.AccountController do
     "DOB" => dob,
     "c4c" => c4c}}) do
     # converts birthday string to datetime
-    birthday = if dob != "", do: datetime_birthday(dob)
+    birthday = case Regex.match?(~r/\d{2}\/\d{2}\/\d{4}/, dob) do
+      true ->
+        datetime_birthday(dob)
+      _ ->
+        conn
+        |> put_flash(:error, "Details do not match. Please try again later")
+        |> redirect(to: account_path(conn, :slam))
+    end
     # removes spaces from nhs number if present
     nhs_no = if nhs != "", do: String.split(nhs, " ") |> List.to_string
     case check_age(birthday) do
@@ -192,7 +199,7 @@ defmodule Healthlocker.AccountController do
           case Repo.transaction(multi) do
             {:ok, result} ->
               conn
-              |> put_flash(:info, "SLaM account connected!")
+              |> put_flash(:info, "Account connected!")
               |> redirect(to: account_path(conn, :index), changeset: changeset, user: result.user,
                         slam_id: slam_user."Patient_ID", action: account_path(conn, :update))
             {:error, _type, changeset, _} ->
