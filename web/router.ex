@@ -67,6 +67,7 @@ defmodule Healthlocker.Router do
       get "/next-date", TrackerController, :next_date
     end
     resources "/diary", DiaryController, only: [:new, :create, :edit, :update]
+    resources "/epjs-button", ButtonController, only: [:index]
   end
 
   # endpoints not requiring a logged in user
