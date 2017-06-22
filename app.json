@@ -9,6 +9,9 @@
     },
     "SECRET_KEY_BASE": {
       "generator": "secret"
+    },
+    "EPJS_DATABASE_URL": {
+      "required": true
     }
   },
   "formation": {
@@ -22,6 +25,9 @@
     },
     {
       "url": "https://github.com/gjaldon/heroku-buildpack-phoenix-static.git"
+    },
+    {
+      "url": "https://github.com/iFix/heroku-buildpack-odbc.git"
     }
   ]
 }
