@@ -1,0 +1,1 @@
+<img src="data:image/jpeg;base64,<%= @dog %>" alt="button" />
