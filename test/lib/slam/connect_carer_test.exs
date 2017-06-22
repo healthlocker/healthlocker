@@ -24,13 +24,11 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
 
       %EPJSTeamMember{
         Patient_ID: 203,
-        Staff_ID: 400
-      } |> ReadOnlyRepo.insert!
-
-      %EPJSClinician{
-        id: 400,
-        First_Name: "Andrew",
-        Last_Name: "Francis"
+        Staff_ID: 400,
+        Staff_Name: "Andrew Francis",
+        Job_Title: "GP",
+        Team_Member_Role_Desc: "Care team lead",
+        Email: "andrew_francis@nhs.co.uk"
       } |> ReadOnlyRepo.insert!
 
       multi = ConnectCarer.connect_carer_and_create_rooms(user, %{

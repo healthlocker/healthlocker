@@ -1,19 +1,12 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, EPJSClinician, ReadOnlyRepo, User}
+  alias Healthlocker.{EPJSTeamMember, EPJSUser, User}
 
   def index(conn, _params) do
-    clinician = if conn.assigns.current_user.email == "robert_macmurray@nhs.co.uk" do
-                  ReadOnlyRepo.one(from c in EPJSClinician,
-                              where: c."GP_Code" == "NyNsn50mPQPFZYn7")
-                else
-                  ReadOnlyRepo.one(from c in EPJSClinician,
-                              where: c."GP_Code" == "yr68Dobil7yD40Ag")
-                end
-
+    clinician = conn.assigns.current_user
     patient_ids = EPJSTeamMember
-                  |> EPJSTeamMember.patient_ids(clinician.id)
+                  |> EPJSTeamMember.patient_ids(clinician.email)
                   |> ReadOnlyRepo.all
 
     hl_users = patient_ids

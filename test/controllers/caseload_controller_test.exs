@@ -1,8 +1,8 @@
 defmodule Healthlocker.CaseloadControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.{EPJSClinician, EPJSPatientAddressDetails,
-                      EPJSUser, ReadOnlyRepo, User}
+  alias Healthlocker.{EPJSTeamMember, EPJSPatientAddressDetails,
+                      EPJSUser, ReadOnlyRepo, User, UserRoom, Room}
 
   describe "current_user is assigned in the session" do
     setup do
@@ -28,32 +28,24 @@ defmodule Healthlocker.CaseloadControllerTest do
         role: "clinician"
       } |> Repo.insert
 
-      %EPJSClinician{
-        GP_Code: "NyNsn50mPQPFZYn7",
-        First_Name: "Robert",
-        Last_Name: "MacMurray"
+      %EPJSTeamMember{
+        Staff_ID: 12345678,
+        Patient_ID: 201,
+        Staff_Name: "Robert MacMurray",
+        Job_Title: "GP",
+        Team_Member_Role_Desc: "Care team lead",
+        Email: "robert_macmurray@nhs.co.uk"
       } |> ReadOnlyRepo.insert
 
-      %EPJSUser{
-        Patient_ID: 201,
-        Surname: "Hernandez",
-        Forename: "Angela",
-        Title: "Ms.",
-        Patient_Name: "Angela Hernandez",
-        Trust_ID: "fYXSryfK7N",
-        NHS_Number: "LbweJ2oXsNl14ayv37d7",
-        DOB: DateTime.from_naive!(~N[1988-05-24 00:00:00.00], "Etc/UTC"),
-      } |> ReadOnlyRepo.insert
+      %Room{
+        id: 1,
+        name: "service-user-care-team:123456"
+      } |> Repo.insert
 
-      %EPJSPatientAddressDetails{
-        Patient_ID: 201,
-        Address_ID: 1,
-        Address1: "123 High Street",
-        Address2: "London",
-        Address3: "UK",
-        Post_Code: "E1 8UW",
-        Tel_home: "02085 123 456"
-      } |> ReadOnlyRepo.insert
+      %UserRoom{
+        user_id: 123456,
+        room_id: 1
+      } |> Repo.insert
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123457)) }
     end

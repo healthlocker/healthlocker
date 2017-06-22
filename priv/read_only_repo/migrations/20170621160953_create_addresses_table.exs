@@ -2,9 +2,9 @@ defmodule Healthlocker.ReadOnlyRepo.Migrations.CreateAddressesTable do
   use Ecto.Migration
 
   def change do
-    create table(:epjs_patient_address_details) do
-      add :Patient_ID, :integer, null: false
-      add :Address_ID, :integer, null: false
+    create table(:mhlPatientAddressDetails, primary_key: false) do
+      add :Patient_ID, :integer
+      add :Address_ID, :integer, primary_key: true
       add :Address1, :string
       add :Address2, :string
       add :Address3, :string

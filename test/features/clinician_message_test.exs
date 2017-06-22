@@ -1,6 +1,6 @@
 defmodule Healthlocker.ClinicianMessageTest do
   use Healthlocker.FeatureCase
-  alias Healthlocker.{Carer, EPJSPatientAddressDetails, EPJSClinician, EPJSTeamMember, ReadOnlyRepo, Repo, User}
+  alias Healthlocker.{Carer, EPJSPatientAddressDetails, EPJSTeamMember, ReadOnlyRepo, Repo, User}
 
   setup %{session: session} do
     service_user = EctoFactory.insert(:user,
@@ -27,7 +27,7 @@ defmodule Healthlocker.ClinicianMessageTest do
     Repo.insert!(%Carer{carer: carer, caring: service_user})
 
     Repo.insert!(%User{
-      email: "clinician@nhs.co.uk",
+      email: "robert_macmurray@nhs.co.uk",
       password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
       first_name: "Mary",
       last_name: "Clinician",
@@ -37,15 +37,9 @@ defmodule Healthlocker.ClinicianMessageTest do
       data_access: true,
       role: "clinician"
     })
-    session |> log_in("clinician@nhs.co.uk")
+    session |> log_in("robert_macmurray@nhs.co.uk")
 
-    clinician = ReadOnlyRepo.insert!(%EPJSClinician{
-      GP_Code: "yr68Dobil7yD40Ag",
-      First_Name: "Mary",
-      Last_Name: "Clinician"
-    })
-
-    ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{id: 789,
+    ReadOnlyRepo.insert!(%Healthlocker.EPJSUser{
       Patient_ID: 202,
       Surname: "Bow",
       Forename: "Kat",
@@ -65,7 +59,11 @@ defmodule Healthlocker.ClinicianMessageTest do
 
     ReadOnlyRepo.insert!(%EPJSTeamMember{
       Patient_ID: 202,
-      Staff_ID: clinician.id
+      Staff_ID: 12345678,
+      Staff_Name: "Robert MacMurray",
+      Job_Title: "GP",
+      Team_Member_Role_Desc: "Care team lead",
+      Email: "robert_macmurray@nhs.co.uk"
     })
 
     Mix.Tasks.Healthlocker.Room.Create.run("run")

@@ -18,22 +18,24 @@ defmodule Healthlocker.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {Healthlocker, []},
-     applications: [
-      :phoenix,
-      :phoenix_pubsub,
-      :phoenix_html,
-      :cowboy,
-      :logger,
-      :gettext,
-      :phoenix_ecto,
-      :postgrex,
-      :comeonin,
-      :timex,
-      :bamboo,
-      :segment,
-      :faker,
-      :appsignal,
-      :edeliver
+       applications: [
+        :phoenix,
+        :phoenix_pubsub,
+        :phoenix_html,
+        :cowboy,
+        :logger,
+        :gettext,
+        :phoenix_ecto,
+        :postgrex,
+        :comeonin,
+        :timex,
+        :bamboo,
+        :segment,
+        :faker,
+        :appsignal,
+        :mssqlex,
+        :mssql_ecto,
+        :edeliver
       ]
     ]
   end
@@ -66,6 +68,8 @@ defmodule Healthlocker.Mixfile do
      {:appsignal, "~> 1.0"},
      {:wallaby, "~> 0.16.1"},
      {:ecto_factory, "~> 0.0.6"},
+     {:mssql_ecto, "~> 0.1"},
+     {:mssqlex, "~> 0.6"},
      {:edeliver, "~> 1.4.0"},
      {:distillery, ">= 0.8.0", warn_missing: false}
    ]

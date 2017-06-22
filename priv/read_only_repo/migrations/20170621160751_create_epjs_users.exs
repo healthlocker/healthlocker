@@ -2,8 +2,8 @@ defmodule Healthlocker.ReadOnlyRepo.Migrations.CreateEpjsUsers do
   use Ecto.Migration
 
   def change do
-    create table(:epjs_users) do
-      add :Patient_ID, :integer, null: false
+    create table(:mhlPatIndex, primary_key: false) do
+      add :Patient_ID, :integer, primary_key: true
       add :Surname, :string
       add :Forename, :string
       add :Title, :string
