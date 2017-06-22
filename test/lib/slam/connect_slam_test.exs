@@ -1,6 +1,6 @@
 defmodule Healthlocker.Slam.ConnectSlamTest do
   use Healthlocker.ModelCase, async: true
-  alias Healthlocker.{User, EPJSTeamMember, EPJSClinician, ReadOnlyRepo,
+  alias Healthlocker.{User, EPJSTeamMember, ReadOnlyRepo,
                       Slam.ConnectSlam, ClinicianRooms, Room}
 
   describe "success paths for connecting as slam su" do
@@ -15,13 +15,11 @@ defmodule Healthlocker.Slam.ConnectSlamTest do
 
       %EPJSTeamMember{
         Patient_ID: 203,
-        Staff_ID: 400
-      } |> ReadOnlyRepo.insert!
-
-      %EPJSClinician{
-        id: 400,
-        First_Name: "Andrew",
-        Last_Name: "Francis"
+        Staff_ID: 400,
+        Staff_Name: "Andrew Francis",
+        Job_Title: "GP",
+        Team_Member_Role_Desc: "Care team lead",
+        Email: "andrew_francis@nhs.co.uk"
       } |> ReadOnlyRepo.insert!
 
       multi = ConnectSlam.connect_su_and_create_rooms(user, %{
