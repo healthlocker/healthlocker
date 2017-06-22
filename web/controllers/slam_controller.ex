@@ -30,7 +30,7 @@ defmodule Healthlocker.SlamController do
         case Repo.transaction(multi) do
           {:ok, _user} ->
             conn
-            |> put_flash(:info, "Account connected with SLaM")
+            |> put_flash(:info, "Account connected!")
             |> redirect(to: account_path(conn, :index))
           {:error, _type, changeset, _} ->
             conn
@@ -44,7 +44,7 @@ defmodule Healthlocker.SlamController do
       end
     else
       conn
-      |> put_flash(:error, "Your Healthlocker account could not be linked with your SLaM health record. Please check your details are correct and try again.")
+      |> put_flash(:error, "Your Healthlocker account could not be linked with your health record. Please check your details are correct and try again.")
       |> render("new.html", changeset: changeset)
     end
   end
