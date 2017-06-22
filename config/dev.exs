@@ -50,4 +50,9 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   hostname: "localhost",
   pool_size: 10
 
+config :healthlocker, Healthlocker.TestRepo,
+  adapter: MssqlEcto,
+  hostname: "tcp:hl-test-server.database.windows.net,1433;Database=test;Uid=ServerAdmin@hl-test-server;Pwd={PoLkMn09};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+
+
 config :healthlocker, :analytics, Healthlocker.Analytics.Segment

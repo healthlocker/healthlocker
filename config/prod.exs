@@ -31,6 +31,10 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
 
+config :healthlocker, Healthlocker.TestRepo,
+  adapter: MssqlEcto,
+  hostname: "tcp:hl-test-server.database.windows.net,1433;Database=test;Uid=ServerAdmin@hl-test-server;Pwd={PoLkMn09};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+
 # Do not print debug messages in production
 config :logger, level: :info
 
