@@ -1,13 +1,9 @@
 # Healthlocker [![Build Status](https://travis-ci.org/healthlocker/healthlocker.svg?branch=master)](https://travis-ci.org/healthlocker/healthlocker) [![Deps Status](https://beta.hexfaktor.org/badge/all/github/healthlocker/healthlocker.svg)](https://beta.hexfaktor.org/github/healthlocker/healthlocker)
 
-Healthlocker is an application which connects service users (*SU*), their clinicians
-(*care team*), and other relevant people(e.g. parent or spouse of SU,
-known as *carers*) together. It allows for open and frequent communication
-between a SU and their care team, or between a carer and the SU's
-care team. SUs and carers can message the care team for instant
-communication. Clinicians can also stay updated on goals and coping strategies
-created by their SUs in Healthlocker, which keeps them up-to-date with what is
-important to their SU. A full list of features can be found
+Healthlocker is a secure platform powered by the South London and Maudsley NHS
+Foundation Trust (the trust) that promotes supported self-management and
+opportunities to improve communication between service users, carers and
+clinicians. A full list of features can be found
 [here](https://github.com/healthlocker/healthlocker#current-features).
 
 
