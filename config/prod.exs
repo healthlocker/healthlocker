@@ -26,9 +26,11 @@ config :healthlocker, Healthlocker.Repo,
   ssl: true
 
 config :healthlocker, Healthlocker.ReadOnlyRepo,
-  adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("EPJS_DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  adapter: MssqlEcto,
+  hostname: System.get_env("DATABASE_HOSTNAME"),
+  username: System.get_env("DATABASE_USERNAME"),
+  password: System.get_env("DATABASE_PASSWORD"),
+  database: System.get_env("DATABASE"),
   ssl: true
 
 # Do not print debug messages in production
@@ -72,3 +74,4 @@ config :healthlocker, :analytics, Healthlocker.Analytics.Segment
 #
 #     config :healthlocker, Healthlocker.Endpoint, server: true
 #
+# import_config "prod.secret.exs"

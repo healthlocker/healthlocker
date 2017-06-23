@@ -1,5 +1,5 @@
 defmodule Healthlocker.Slam.CareTeam do
-  alias Healthlocker.{EPJSClinician, EPJSTeamMember, ReadOnlyRepo}
+  alias Healthlocker.{EPJSTeamMember, ReadOnlyRepo}
   import Ecto.Query
 
   @moduledoc """
@@ -8,13 +8,7 @@ defmodule Healthlocker.Slam.CareTeam do
   """
   def for(user) do
     query = from e in EPJSTeamMember,
-      where: e."Patient_ID" == ^user.slam_id,
-      select: e."Staff_ID"
-
-    clinician_ids = ReadOnlyRepo.all(query)
-
-    query = from c in EPJSClinician,
-      where: c.id in ^clinician_ids
+      where: e."Patient_ID" == ^user.slam_id
 
     ReadOnlyRepo.all(query)
   end

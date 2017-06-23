@@ -3,7 +3,7 @@ defmodule Healthlocker.ClinicianRooms do
 
   schema "clinician_rooms" do
     belongs_to :room, Healthlocker.Room
-    belongs_to :clinician, Healthlocker.EPJSClinician
+    field :clinician_id, :integer
 
     timestamps()
   end

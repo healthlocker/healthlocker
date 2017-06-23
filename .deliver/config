@@ -1,0 +1,39 @@
+APP="healthlocker"
+
+BUILD_HOST="51.140.86.5"
+BUILD_USER="hladmin"
+BUILD_AT="/home/hladmin/healthlocker/builds"
+
+PRODUCTION_HOSTS="51.140.86.5"
+PRODUCTION_USER="hladmin"
+DELIVER_TO="/home/hladmin"
+
+pre_erlang_clean_compile() {
+  status "Installing NPM dependencies"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+
+    cd '$BUILD_AT'
+    npm install $SILENCE
+  "
+
+  status "Building static files"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+
+    cd '$BUILD_AT'
+    mkdir -p priv/static
+    npm run deploy $SILENCE
+  "
+
+  status "Running phoenix.digest"
+  __sync_remote "
+    [ -f ~/.profile ] && source ~/.profile
+    set -e
+
+    cd '$BUILD_AT'
+    APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
+  "
+}

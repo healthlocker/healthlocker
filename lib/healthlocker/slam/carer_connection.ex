@@ -40,7 +40,7 @@ defmodule Healthlocker.Slam.CarerConnection do
     query = from e in EPJSUser,
       where: e."Forename" == ^forename
         and e."Surname" == ^surname
-        and e."DOB" == type(^date_of_birth, :utc_datetime)
+        and e."DOB" == ^date_of_birth
         and e."NHS_Number" == ^nhs_number
 
     ReadOnlyRepo.one(query)
