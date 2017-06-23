@@ -181,7 +181,6 @@ defmodule Healthlocker.AccountControllerTest do
     test "check_slam renders index with correct details", %{conn: conn} do
       dob = DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC")
       ReadOnlyRepo.insert!(%EPJSUser{
-        id: 789,
         Patient_ID: 200,
         Surname: "Bow",
         Forename: "Kat",
@@ -195,7 +194,6 @@ defmodule Healthlocker.AccountControllerTest do
     test "check_slam redirects to slam with incorrect details", %{conn: conn} do
       dob = DateTime.from_naive!(~N[1989-01-01 00:00:00.00], "Etc/UTC")
       ReadOnlyRepo.insert!(%EPJSUser{
-        id: 789,
         Patient_ID: 200,
         Surname: "Bow",
         Forename: "Kat",

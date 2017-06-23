@@ -57,7 +57,7 @@ defmodule Mix.Tasks.Healthlocker.Room.Create do
 
   defp add_clinicians_to_room(room, care_team) do
     changesets = Enum.map(care_team, fn(clinician) ->
-      ClinicianRooms.changeset(%ClinicianRooms{}, %{room_id: room.id, clinician_id: clinician.id})
+      ClinicianRooms.changeset(%ClinicianRooms{}, %{room_id: room.id, clinician_id: clinician."Staff_ID"})
     end)
     Enum.map(changesets, &Repo.insert/1)
   end

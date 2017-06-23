@@ -17,7 +17,7 @@ defmodule Healthlocker.Slam.CarerConnectionTest do
   }
 
   setup %{} do
-    ReadOnlyRepo.insert!(%EPJSUser{id: 789,
+    ReadOnlyRepo.insert!(%EPJSUser{
       Patient_ID: 200,
       Surname: "Bow",
       Forename: "Kat",

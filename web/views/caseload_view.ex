@@ -1,8 +1,8 @@
 defmodule Healthlocker.CaseloadView do
   use Healthlocker.Web, :view
 
-  def room_for(carer) do
-    [room| _] = carer.rooms
+  def room_for(user) do
+    [room| _] = user.rooms
     room
   end
 end

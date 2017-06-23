@@ -1,9 +1,9 @@
 defmodule Healthlocker.EPJSPatientAddressDetails do
   use Healthlocker.Web, :model
 
+  @primary_key {:Address_ID, :integer, autogenerate: false}
   schema "mhlPatientAddressDetails" do
     field :Patient_ID, :integer
-    field :Address_ID, :integer
     field :Address1, :string
     field :Address2, :string
     field :Address3, :string
