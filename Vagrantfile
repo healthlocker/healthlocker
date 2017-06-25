@@ -6,26 +6,26 @@ sudo -i
 apt-get update
 
 # curl
-sudo apt-get install curl -y
+apt-get install curl -y
 
 # nodejs
-sudo apt-get -y install g++ git git-core nodejs npm
-sudo npm install n -g
-sudo n stable
+apt-get -y install g++ git git-core nodejs npm
+npm install n -g
+n stable
 node -v
 
 # PostgreSQL
-sudo apt-get install postgresql postgresql-contrib
-psql -u postgres postgres
+apt-get install postgresql postgresql-contrib -y
+sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
 
 # elixir
-wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
-sudo apt-get update
-sudo apt-get install esl-erlang -y
-sudo apt-get install elixir
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && dpkg -i erlang-solutions_1.0_all.deb
+apt-get update
+apt-get install esl-erlang -y
+apt-get install elixir
 
 # install erlang-odbc
-sudo apt-get install erlang-odbc -y
+apt-get install erlang-odbc -y
 
 # hex
 mix local.hex --force
@@ -33,9 +33,8 @@ mix local.hex --force
 # phoenix
 mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez --force
 
-sudo apt-get install inotify-tools -y
+apt-get install inotify-tools -y
 
-sudo -i
 curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
 apt-get update
@@ -49,12 +48,19 @@ echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 source ~/.bashrc
 # optional: for unixODBC development headers
 apt-get install unixodbc-dev -y
-#
-# cd azure-elixir-test
-#
-# mix local.rebar --force
-# mix deps.get
-# mix phoenix.server
+
+cd /home/ubuntu/healthlocker
+
+# erlang
+apt-get install erlang -y
+
+mix local.rebar --force
+mix deps.clean --all
+mix deps.get --force
+mix deps.compile
+mix ecto.create -r Healthlocker.Repo
+mix ecto.migrate -r Healthlocker.Repo
+mix phoenix.server
 
 SCRIPT
 
@@ -70,7 +76,7 @@ Vagrant.configure("2") do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network :private_network, ip: "192.168.33.10"
-  config.vm.provision "file", source: "~/Code/azure-elixir-test", destination: "azure-elixir-test"
+  config.vm.provision "file", source: "~/Code/phoenix/healthlocker", destination: "healthlocker"
   config.vm.provision :shell, :inline => $script
 
 end
