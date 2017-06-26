@@ -7,41 +7,36 @@ clinicians. A full list of features can be found
 [here](https://github.com/healthlocker/healthlocker#current-features).
 
 
-## Getting started
+# Getting started
 
-### Install the following:
-* [Elixir](https://github.com/dwyl/learn-elixir#how)
-* [Postgresql](https://github.com/dwyl/learn-postgresql) (and ensure you create a `postgres` user)
-* [Node.js](https://nodejs.org/en/)
+The only machine that will be connected to the ePJS data will be the virtual machine.
 
-### Once everything is installed:
-* Enter `brew link autoconf automake` into your terminal
-* Start Postgresql server
-* Get dependencies (including if they are out of date) with `mix deps.get`
-* Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-* If prompted by the following message, enter `y`:
+The other set up will allow you to run healthlocker but you not be able to access the ePJS db.
 
-```
-Could not find "rebar3", which is needed to build dependency :fs
-I can install a local copy which is just used by Mix
-Shall I install rebar3? (if running non-interactively, use: "mix local.rebar --force") [Yn]
-```
-* Insert seed data for ePJS patients & clinicians by running the following
-commands
-  * `mix run priv/read_only_repo/seeds.exs`
-  * `mix run priv/read_only_repo/address_seed.exs`
-  * `mix run priv/read_only_repo/under_12s_seeds.exs`
-* Insert healthlocker demo data by running  `mix run priv/repo/seeds.exs`
-* There are other optional seeds which are not necessary for using all the
-project features, but can be helpful for demoing a patient having more than one
-clinician and for demoing sleep tracking data
-  * `mix run priv/read_only_repo/clinician_seeds.exs`
-  * `mix run priv/read_only_repo/sleep_data_seeds.exs`
-* Install Node.js dependencies with `npm install`
-* Start Phoenix endpoint with `mix phoenix.server`
+## Using the virtual machine
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser
+You will need to be given access to this VM before you will be able to use the following steps
+
+* ssh hladmin@51.140.86.5
+* sudo -i
+* source /home/hladmin/.profile
+* cd /home/hladmin/hl-app
+* mix phoenix.server
+
+## Using Vagrant
+
+* Clone the repo
+* `cd` in the repo
+* update the line in the Vagrantfile that says "Your path to healthlocker here" with the path to where you cloned the repo
+* run the command `vagrant up` in the terminal
+
+This will take a few minutes to set up but once it is complete you will be able to
+visit [`localhost:4000`](http://localhost:4000) from your browser
 and checkout the [styleguide](http://localhost:4000/components).
+
+More instructions on how to use vagrant can be found [here](https://github.com/dwyl/learn-vagrant)
+
+If you set up using the VM then you can now visit [`51.140.86.5`](http://51.140.86.5) from your browser
 
 Ready to run in production? Please [check the deployment guides](http://www.phoenixframework.org/docs/deployment).
 

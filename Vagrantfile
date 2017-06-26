@@ -60,6 +60,7 @@ mix deps.get --force
 mix deps.compile
 mix ecto.create -r Healthlocker.Repo
 mix ecto.migrate -r Healthlocker.Repo
+mix run priv/repo/seeds.exs
 mix phoenix.server
 
 SCRIPT
@@ -76,7 +77,7 @@ Vagrant.configure("2") do |config|
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   config.vm.network :private_network, ip: "192.168.33.10"
-  config.vm.provision "file", source: "~/Code/phoenix/healthlocker", destination: "healthlocker"
+  config.vm.provision "file", source: "Your path to healthlocker here", destination: "healthlocker"
   config.vm.provision :shell, :inline => $script
 
 end
