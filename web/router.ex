@@ -87,5 +87,6 @@ defmodule Healthlocker.Router do
     resources "/support", SupportController, only: [:index]
     resources "/tips", TipController, only: [:index]
     resources "/password", PasswordController, only: [:new, :create, :edit, :update]
+    resources "/epjs-button", ButtonController, only: [:index]
   end
 end

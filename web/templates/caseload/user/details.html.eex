@@ -21,10 +21,24 @@
       <tr>
         <th class="b tl pv2 mw3" valign="top">Home address: </th>
         <td class="pv2">
-          <p class="ma0"><%= @address."Address1" %></p>
-          <p class="ma0"><%= @address."Address2" %></p>
-          <p class="ma0"><%= @address."Address3" %></p>
-          <p class="ma0"><%= @address."Post_Code" %></p>
+          <%= if !is_nil(@address."Address1") do %>
+            <p class="ma0"><%= @address."Address1" %></p>
+          <% end %>
+          <%= if !is_nil(@address."Address2") do %>
+            <p class="ma0"><%= @address."Address2" %></p>
+          <% end %>
+          <%= if !is_nil(@address."Address3") do %>
+            <p class="ma0"><%= @address."Address3" %></p>
+          <% end %>
+          <%= if !is_nil(@address."Address4") do %>
+            <p class="ma0"><%= @address."Address4" %></p>
+          <% end %>
+          <%= if !is_nil(@address."Address5") do %>
+            <p class="ma0"><%= @address."Address5" %></p>
+          <% end %>
+          <%= if !is_nil(@address."Post_Code") do %>
+            <p class="ma0"><%= @address."Post_Code" %></p>
+          <% end %>
         </td>
       </tr>
     </table>
