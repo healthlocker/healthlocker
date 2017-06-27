@@ -39,6 +39,34 @@ defmodule Healthlocker.CaseloadControllerTest do
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123457)) }
     end
+
+    test "GET /caseload", %{conn: conn} do
+      conn = get conn, caseload_path(conn, :index)
+      assert html_response(conn, 200) =~ "Caseload"
+    end
+
+    test "GET /caseload?=userData without HL user", %{conn: conn} do
+      # refute before and assert after to ensure HL user has been created
+      refute Repo.get_by(User, email: "other_email@nhs.co.uk")
+      conn = get conn, "/caseload?userData=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      assert html_response(conn, 200) =~ "Caseload"
+      assert Repo.get_by(User, email: "other_email@nhs.co.uk")
+    end
+
+    test "GET /caseload?=userData with HL user", %{conn: conn} do
+      %User{
+        first_name: "Other",
+        last_name: "Person",
+        email: "other_email@nhs.co.uk",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        security_question: "Question?",
+        security_answer: "Answer",
+        user_guid: "randomstringtotestwith"
+      } |> Repo.insert
+      conn = get conn, "/caseload?userData=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      assert html_response(conn, 200) =~ "Caseload"
+    end
+  end
       %User{
         id: 123457,
         first_name: "Robert",
