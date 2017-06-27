@@ -52,7 +52,6 @@ defmodule Healthlocker.Router do
       resources "/contacts", ContactController, only: [:show], singleton: true
     end
 
-    resources "/caseload", CaseloadController, only: [:index]
     scope "/caseload", Caseload, as: :caseload do
       resources "/users", UserController, only: [:show] do
         resources "/rooms", RoomController, only: [:show]
@@ -88,5 +87,6 @@ defmodule Healthlocker.Router do
     resources "/tips", TipController, only: [:index]
     resources "/password", PasswordController, only: [:new, :create, :edit, :update]
     resources "/epjs-button", ButtonController, only: [:index]
+    resources "/caseload", CaseloadController, only: [:index]
   end
 end
