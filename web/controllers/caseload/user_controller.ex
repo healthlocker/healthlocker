@@ -6,31 +6,43 @@ defmodule Healthlocker.Caseload.UserController do
   alias Healthlocker.{User, ReadOnlyRepo, EPJSUser, EPJSPatientAddressDetails, Goal, Post, Slam.ServiceUser}
 
   def show(conn, %{"id" => id, "section" => section, "date" => date, "shift" => shift}) do
-    date = Date.from_iso8601!(date)
-    shifted_date = case shift do
-      "prev" ->
-        Timex.shift(date, days: -7)
-      "next" ->
-        Timex.shift(date, days: 7)
+    if conn.assigns.current_user.user_guid do
+      date = Date.from_iso8601!(date)
+      shifted_date = case shift do
+        "prev" ->
+          Timex.shift(date, days: -7)
+        "next" ->
+          Timex.shift(date, days: 7)
+        end
+
+      details = get_details(id, shifted_date)
+
+      render(conn, String.to_atom(section), user: details.user, slam_user: details.slam_user,
+      address: details.address, goals: details.goals, strategies: details.strategies, room: details.room,
+      service_user: details.service_user, sleep_data: details.sleep_data, date: details.date,
+      symptom_data: details.symptom_data, diary_data: details.diary_data,
+      merged_data: details.merged_data)
+    else
+      conn
+      |> put_flash(:error, "Authentication failed")
+      |> redirect(to: page_path(conn, :index))
     end
-
-    details = get_details(id, shifted_date)
-
-    render(conn, String.to_atom(section), user: details.user, slam_user: details.slam_user,
-          address: details.address, goals: details.goals, strategies: details.strategies, room: details.room,
-          service_user: details.service_user, sleep_data: details.sleep_data, date: details.date,
-          symptom_data: details.symptom_data, diary_data: details.diary_data,
-          merged_data: details.merged_data)
   end
 
   def show(conn, %{"id" => id, "section" => section}) do
-    details = get_details(id, Date.utc_today())
+    if conn.assigns.current_user.user_guid do
+      details = get_details(id, Date.utc_today())
 
-    render(conn, String.to_atom(section), user: details.user, slam_user: details.slam_user,
-          address: details.address, goals: details.goals, strategies: details.strategies,
-          room: details.room, service_user: details.service_user, sleep_data: details.sleep_data,
-          date: details.date, symptom_data: details.symptom_data, diary_data: details.diary_data,
-          merged_data: details.merged_data)
+      render(conn, String.to_atom(section), user: details.user, slam_user: details.slam_user,
+      address: details.address, goals: details.goals, strategies: details.strategies,
+      room: details.room, service_user: details.service_user, sleep_data: details.sleep_data,
+      date: details.date, symptom_data: details.symptom_data, diary_data: details.diary_data,
+      merged_data: details.merged_data)
+    else
+      conn
+      |> put_flash(:error, "Authentication failed")
+      |> redirect(to: page_path(conn, :index))
+    end
   end
 
   defp get_details(id, date) do
