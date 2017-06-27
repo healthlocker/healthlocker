@@ -112,6 +112,9 @@ defmodule Healthlocker.CaseloadControllerTest do
       assert html_response(conn, 200) =~ "Caseload"
     end
   end
+
+  describe "current_user is assigned without epjs User_Guid" do
+    setup do
       %User{
         id: 123457,
         first_name: "Robert",
@@ -129,25 +132,17 @@ defmodule Healthlocker.CaseloadControllerTest do
         Staff_Name: "Robert MacMurray",
         Job_Title: "GP",
         Team_Member_Role_Desc: "Care team lead",
-        Email: "robert_macmurray@nhs.co.uk"
+        Email: "robert_macmurray@nhs.co.uk",
+        User_Guid: "someotherrandomstring"
       } |> ReadOnlyRepo.insert
-
-      %Room{
-        id: 1,
-        name: "service-user-care-team:123456"
-      } |> Repo.insert
-
-      %UserRoom{
-        user_id: 123456,
-        room_id: 1
-      } |> Repo.insert
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123457)) }
     end
 
-    test "GET /caseload", %{conn: conn} do
-      conn = get conn, caseload_path(conn, :index)
-      assert html_response(conn, 200) =~ "Caseload"
+    test "GET /caseload?=userData", %{conn: conn} do
+      conn = get conn, "/caseload?userData=UserName=robert_macmurray@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      assert redirected_to(conn) == page_path(conn, :index)
+      assert get_flash(conn, :error) == "Authentication failed"
     end
   end
 end
