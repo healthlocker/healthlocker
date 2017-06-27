@@ -54,6 +54,14 @@ defmodule Healthlocker.User do
     name
     |> String.split(" ")
   end
+
+  def generate_random_password do
+    15
+    |> :crypto.strong_rand_bytes
+    |> Base.url_encode64
+    |> binary_part(0, 15)
+  end
+
   def update_changeset(struct, params \\ :invalid) do
     struct
     |> cast(params, [:email, :first_name, :last_name, :phone_number])
