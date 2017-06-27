@@ -14,6 +14,27 @@ defmodule Healthlocker.CaseloadController do
             conn
             |> put_flash(:error, "Authentication failed")
             |> redirect(to: page_path(conn, :index))
+          epjs_user ->
+            changeset = User.clinician_changeset(%User{}, epjs_user)
+            case Repo.insert(changeset) do
+              {:ok, user} ->
+                patients = get_patients(user)
+                conn
+                |> Auth.login(user)
+                |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+              {:error, _} ->
+                conn
+                |> put_flash(:error, "Something went wrong. Please try again.")
+                |> redirect(to: page_path(conn, :index))
+            end
+        end
+      user ->
+        patients = get_patients(user)
+        conn
+        |> Auth.login(user)
+        |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+    end
+  end
 
   def index(conn, _params) do
     clinician = conn.assigns.current_user
