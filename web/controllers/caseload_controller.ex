@@ -37,7 +37,22 @@ defmodule Healthlocker.CaseloadController do
   end
 
   def index(conn, _params) do
-    clinician = conn.assigns.current_user
+    cond do
+      !conn.assigns[:current_user] ->
+        conn
+        |> put_flash(:error,  "You must be logged in to access that page!")
+        |> redirect(to: login_path(conn, :index))
+        |> halt
+      conn.assigns.current_user.user_guid ->
+        clinician = conn.assigns.current_user
+        patients = get_patients(clinician)
+        render(conn, "index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+      true ->
+        conn
+        |> put_flash(:error, "Authentication failed")
+        |> redirect(to: page_path(conn, :index))
+    end
+  end
     patient_ids = EPJSTeamMember
                   |> EPJSTeamMember.patient_ids(clinician.email)
                   |> ReadOnlyRepo.all
