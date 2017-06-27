@@ -1,7 +1,7 @@
-defmodule Healthlocker.DecodeUser do
+defmodule Healthlocker.DecryptUser do
   alias Healthlocker.ReadOnlyRepo
 
-  def decode_user_data(user_str) do
+  def decrypt_user_data(user_str) do
     pass = System.get_env("MPass")
     query = """
       DECLARE @UserData VARBINARY(MAX), @passphrase varchar(255), @UserDataString VARCHAR(MAX);
