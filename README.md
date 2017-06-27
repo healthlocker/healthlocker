@@ -6,27 +6,7 @@ opportunities to improve communication between service users, carers and
 clinicians. A full list of features can be found
 [here](https://github.com/healthlocker/healthlocker#current-features).
 
-# Getting started
-
-The only machine that will be connected to the ePJS data will be the virtual machine.
-
-The other set up will allow you to run Healthlocker locally, but you will not be
-able to access the ePJS db.
-
-## Using the virtual machine
-
-You will need to be given access to this VM before you can perform the following steps:
-
-* `ssh hladmin@51.140.86.5`
-* `sudo -i`
-* `source /home/hladmin/.profile`
-* `cd /home/hladmin/hl-app`
-* `mix phoenix.server`
-
-If you set up using the VM, you can now visit 
-[`51.140.86.5`](http://51.140.86.5) from your browser.
-
-## Using Vagrant
+## Getting started (Using Vagrant)
 
 * Clone the repo
 * `cd` in the repo
@@ -37,6 +17,8 @@ with the path to where you cloned the repo
 This will take a few minutes to set up but once it is complete you will be able to
 visit [`localhost:4000`](http://localhost:4000) from your browser
 and checkout the [styleguide](http://localhost:4000/components).
+
+You will not be able to access any data from the ePJS database
 
 More instructions on how to use vagrant can be found [here](https://github.com/dwyl/learn-vagrant)
 
