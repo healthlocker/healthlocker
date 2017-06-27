@@ -48,6 +48,21 @@ defmodule Healthlocker.User do
     this time, try again later or with different details.")
   end
 
+  def clinician_changeset(struct, epjs_user) do
+    [first_name | last_name] = get_first_last_name(epjs_user)
+    struct
+    |> change(%{
+      email: epjs_user."Email",
+      first_name: first_name,
+      last_name: Enum.join(last_name, " "),
+      data_access: false,
+      role: "clinician",
+      user_guid: epjs_user."User_Guid",
+      password: generate_random_password()
+    })
+    |> put_pass_hash()
+  end
+
   def get_first_last_name(epjs_user) do
     %{Staff_Name: name} = epjs_user
 
