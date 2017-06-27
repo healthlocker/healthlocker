@@ -75,7 +75,8 @@ defmodule Healthlocker.CaseloadUsersTest do
       Staff_Name: "Robert MacMurray",
       Job_Title: "GP",
       Team_Member_Role_Desc: "Care team lead",
-      Email: "robert_macmurray@nhs.co.uk"
+      Email: "robert_macmurray@nhs.co.uk",
+      User_Guid: "randomstring"
     } |> ReadOnlyRepo.insert
 
     %EPJSTeamMember{
@@ -84,7 +85,8 @@ defmodule Healthlocker.CaseloadUsersTest do
       Staff_Name: "Robert MacMurray",
       Job_Title: "GP",
       Team_Member_Role_Desc: "Care team lead",
-      Email: "robert_macmurray@nhs.co.uk"
+      Email: "robert_macmurray@nhs.co.uk",
+      User_Guid: "randomstring"
     } |> ReadOnlyRepo.insert
 
     Mix.Tasks.Healthlocker.Room.Create.run("run")
@@ -141,6 +143,7 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> click(Query.link("Caseload"))
     |> click(Query.link("Jimmy Smits (friend/family/carer)"))
     |> click(Query.link("Details and contacts"))
+    |> take_screenshot
 
     assert session |> has_text?("Jimmy Smits")
   end
