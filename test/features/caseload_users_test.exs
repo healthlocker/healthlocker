@@ -155,7 +155,20 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> click(Query.link("Caseload"))
     |> click(Query.link("Tony Daly"))
     |> click(Query.link("Tracking"))
+    |> take_screenshot
 
     assert has_text?(session, "Tracking overview")
+  end
+
+  test "view goals and strategies", %{session: session} do
+    session
+    |> resize_window(768, 1024)
+    |> log_in("robert_macmurray@nhs.co.uk")
+    |> click(Query.link("Caseload"))
+    |> click(Query.link("Tony Daly"))
+    |> click(Query.link("Goals and strategies"))
+    |> take_screenshot
+
+    assert has_text?(session, "No goals yet created")
   end
 end
