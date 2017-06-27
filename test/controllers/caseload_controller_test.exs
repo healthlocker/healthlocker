@@ -67,6 +67,51 @@ defmodule Healthlocker.CaseloadControllerTest do
       assert html_response(conn, 200) =~ "Caseload"
     end
   end
+
+  describe "no current user assigned" do
+    # repeat tests with userData to ensure clinician is logged in
+    setup do
+      %EPJSTeamMember{
+        Staff_ID: 326746,
+        Patient_ID: 20,
+        Staff_Name: "Other Person",
+        Job_Title: "GP",
+        Team_Member_Role_Desc: "Care team lead",
+        Email: "other_email@nhs.co.uk",
+        User_Guid: "randomstringtotestwith"
+      } |> ReadOnlyRepo.insert
+
+      :ok
+    end
+
+    # check that index without userdata cannot be accessed without being logged in
+    test "GET /caseload", %{conn: conn} do
+      conn = get conn, caseload_path(conn, :index)
+      assert redirected_to(conn) == login_path(conn, :index)
+    end
+
+    test "GET /caseload?=userData without HL user", %{conn: conn} do
+      # refute before and assert after to ensure HL user has been created
+      refute Repo.get_by(User, email: "other_email@nhs.co.uk")
+      conn = get conn, "/caseload?userData=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      assert html_response(conn, 200) =~ "Caseload"
+      assert Repo.get_by(User, email: "other_email@nhs.co.uk")
+    end
+
+    test "GET /caseload?=userData with HL user", %{conn: conn} do
+      %User{
+        first_name: "Other",
+        last_name: "Person",
+        email: "other_email@nhs.co.uk",
+        password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
+        security_question: "Question?",
+        security_answer: "Answer",
+        user_guid: "randomstringtotestwith"
+      } |> Repo.insert
+      conn = get conn, "/caseload?userData=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      assert html_response(conn, 200) =~ "Caseload"
+    end
+  end
       %User{
         id: 123457,
         first_name: "Robert",
