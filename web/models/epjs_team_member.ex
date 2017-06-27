@@ -8,6 +8,7 @@ defmodule Healthlocker.EPJSTeamMember do
     field :Job_Title, :string
     field :Team_Member_Role_Desc, :string
     field :Email, :string
+    field :User_Guid, :string
   end
 
   def changeset(struct, params \\ :invalid) do

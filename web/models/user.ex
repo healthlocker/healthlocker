@@ -17,6 +17,7 @@ defmodule Healthlocker.User do
     field :comms_consent, :boolean
     field :role, :string
     field :slam_id, :integer
+    field :user_guid, :string
     field :reset_password_token, :string
     field :reset_token_sent_at, :utc_datetime
     has_many :posts, Healthlocker.Post
