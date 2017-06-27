@@ -48,6 +48,12 @@ defmodule Healthlocker.User do
     this time, try again later or with different details.")
   end
 
+  def get_first_last_name(epjs_user) do
+    %{Staff_Name: name} = epjs_user
+
+    name
+    |> String.split(" ")
+  end
   def update_changeset(struct, params \\ :invalid) do
     struct
     |> cast(params, [:email, :first_name, :last_name, :phone_number])
