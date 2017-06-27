@@ -1,7 +1,19 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, User}
+  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth}
+
+  def index(conn, %{"userData" => user_data}) do
+    # decrypted_user_guid = decrypt_user_data(user_data)
+    decrypted_user_guid = "randomstringtotestwith"
+
+    case Repo.get_by(User, user_guid: decrypted_user_guid) do
+      nil ->
+        case ReadOnlyRepo.get_by(EPJSTeamMember, User_Guid: decrypted_user_guid) do
+          nil ->
+            conn
+            |> put_flash(:error, "Authentication failed")
+            |> redirect(to: page_path(conn, :index))
 
   def index(conn, _params) do
     clinician = conn.assigns.current_user
