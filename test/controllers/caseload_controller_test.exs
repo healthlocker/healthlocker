@@ -1,22 +1,44 @@
 defmodule Healthlocker.CaseloadControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.{EPJSTeamMember, EPJSPatientAddressDetails,
-                      EPJSUser, ReadOnlyRepo, User, UserRoom, Room}
+  alias Healthlocker.{EPJSTeamMember, ReadOnlyRepo, User}
 
-  describe "current_user is assigned in the session" do
+  describe "current_user is assigned in the session with epjs User_Guid" do
     setup do
       %User{
-        id: 123456,
-        first_name: "My",
-        last_name: "Name",
-        email: "abc@gmail.com",
+        id: 123457,
+        first_name: "Robert",
+        last_name: "MacMurray",
+        email: "robert_macmurray@nhs.co.uk",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
         security_answer: "Answer",
-        slam_id: 201
+        role: "clinician",
+        user_guid: "someotherrandomstring"
       } |> Repo.insert
 
+      %EPJSTeamMember{
+        Staff_ID: 12345678,
+        Patient_ID: 201,
+        Staff_Name: "Robert MacMurray",
+        Job_Title: "GP",
+        Team_Member_Role_Desc: "Care team lead",
+        Email: "robert_macmurray@nhs.co.uk",
+        User_Guid: "someotherrandomstring"
+      } |> ReadOnlyRepo.insert
+
+      %EPJSTeamMember{
+        Staff_ID: 326746,
+        Patient_ID: 20,
+        Staff_Name: "Other Person",
+        Job_Title: "GP",
+        Team_Member_Role_Desc: "Care team lead",
+        Email: "other_email@nhs.co.uk",
+        User_Guid: "randomstringtotestwith"
+      } |> ReadOnlyRepo.insert
+
+      {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123457)) }
+    end
       %User{
         id: 123457,
         first_name: "Robert",
