@@ -53,6 +53,8 @@ defmodule Healthlocker.CaseloadController do
         |> redirect(to: page_path(conn, :index))
     end
   end
+
+  def get_patients(clinician) do
     patient_ids = EPJSTeamMember
                   |> EPJSTeamMember.patient_ids(clinician.email)
                   |> ReadOnlyRepo.all
@@ -77,6 +79,6 @@ defmodule Healthlocker.CaseloadController do
                   user."Patient_ID" == hl.slam_id
                 end)
               end)
-    render(conn, "index.html", hl_users: hl_users, non_hl: non_hl)
+    %{hl_users: hl_users, non_hl: non_hl}
   end
 end
