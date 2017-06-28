@@ -1,11 +1,10 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth}
+  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth, DecryptUser}
 
-  def index(conn, %{"userData" => user_data}) do
-    # decrypted_user_guid = decrypt_user_data(user_data)
-    decrypted_user_guid = "randomstringtotestwith"
+  def index(conn, %{"userdata" => user_data}) do
+    decrypted_user_guid = DecryptUser.decrypt_user_data(user_data)
 
     case Repo.get_by(User, user_guid: decrypted_user_guid) do
       nil ->
