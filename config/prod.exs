@@ -27,10 +27,10 @@ config :healthlocker, Healthlocker.Repo,
 
 config :healthlocker, Healthlocker.ReadOnlyRepo,
   adapter: MssqlEcto,
-  hostname: System.get_env("DATABASE_HOSTNAME"),
-  username: System.get_env("DATABASE_USERNAME"),
-  password: System.get_env("DATABASE_PASSWORD"),
-  database: System.get_env("DATABASE"),
+  hostname: System.get_env("READ_ONLY_HOSTNAME"),
+  username: System.get_env("READ_ONLY_USERNAME"),
+  password: System.get_env("READ_ONLY_PASSWORD"),
+  database: System.get_env("READ_ONLY_DATABASE")
   ssl: true
 
 # Do not print debug messages in production
