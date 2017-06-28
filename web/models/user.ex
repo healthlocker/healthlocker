@@ -17,6 +17,7 @@ defmodule Healthlocker.User do
     field :comms_consent, :boolean
     field :role, :string
     field :slam_id, :integer
+    field :user_guid, :string
     field :reset_password_token, :string
     field :reset_token_sent_at, :utc_datetime
     has_many :posts, Healthlocker.Post
@@ -45,6 +46,35 @@ defmodule Healthlocker.User do
     |> validate_required(:email)
     |> unique_constraint(:email, message: "Sorry you cannot create an account at
     this time, try again later or with different details.")
+  end
+
+  def clinician_changeset(struct, epjs_user) do
+    [first_name | last_name] = get_first_last_name(epjs_user)
+    struct
+    |> change(%{
+      email: epjs_user."Email",
+      first_name: first_name,
+      last_name: Enum.join(last_name, " "),
+      data_access: false,
+      role: "clinician",
+      user_guid: epjs_user."User_Guid",
+      password: generate_random_password()
+    })
+    |> put_pass_hash()
+  end
+
+  def get_first_last_name(epjs_user) do
+    %{Staff_Name: name} = epjs_user
+
+    name
+    |> String.split(" ")
+  end
+
+  def generate_random_password do
+    15
+    |> :crypto.strong_rand_bytes
+    |> Base.url_encode64
+    |> binary_part(0, 15)
   end
 
   def update_changeset(struct, params \\ :invalid) do
