@@ -15,6 +15,26 @@ defmodule Healthlocker.DecryptUser do
       SELECT CONVERT(VARCHAR(8000),DecryptByPassPhrase(@passphrase,@UserData));
     """
 
-    Ecto.Adapters.SQL.query(ReadOnlyRepo, query, [])
+    case Ecto.Adapters.SQL.query(ReadOnlyRepo, query, []) do
+      {:ok, result} ->
+        result.rows
+        |> List.flatten
+        |> List.first
+        |> get_user_guid
+      {:error, _} ->
+        nil
+    end
+  end
+
+  defp get_user_guid(str) do
+    case str do
+      nil ->
+        nil
+      str ->
+        String.split(str, "UserId=")
+        |> Enum.at(1)
+        |> String.split("&tokenexpiry")
+        |> Enum.at(0)
+    end
   end
 end
