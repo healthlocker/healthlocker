@@ -31,7 +31,6 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   username: System.get_env("READ_ONLY_USERNAME"),
   password: System.get_env("READ_ONLY_PASSWORD"),
   database: System.get_env("READ_ONLY_DATABASE")
-  ssl: true
 
 # Do not print debug messages in production
 config :logger, level: :info
