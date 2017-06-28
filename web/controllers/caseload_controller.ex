@@ -1,10 +1,60 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, User}
+  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth}
+
+  def index(conn, %{"userData" => user_data}) do
+    # decrypted_user_guid = decrypt_user_data(user_data)
+    decrypted_user_guid = "randomstringtotestwith"
+
+    case Repo.get_by(User, user_guid: decrypted_user_guid) do
+      nil ->
+        case ReadOnlyRepo.get_by(EPJSTeamMember, User_Guid: decrypted_user_guid) do
+          nil ->
+            conn
+            |> put_flash(:error, "Authentication failed")
+            |> redirect(to: page_path(conn, :index))
+          epjs_user ->
+            changeset = User.clinician_changeset(%User{}, epjs_user)
+            case Repo.insert(changeset) do
+              {:ok, user} ->
+                patients = get_patients(user)
+                conn
+                |> Auth.login(user)
+                |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+              {:error, _} ->
+                conn
+                |> put_flash(:error, "Something went wrong. Please try again.")
+                |> redirect(to: page_path(conn, :index))
+            end
+        end
+      user ->
+        patients = get_patients(user)
+        conn
+        |> Auth.login(user)
+        |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+    end
+  end
 
   def index(conn, _params) do
-    clinician = conn.assigns.current_user
+    cond do
+      !conn.assigns[:current_user] ->
+        conn
+        |> put_flash(:error,  "You must be logged in to access that page!")
+        |> redirect(to: login_path(conn, :index))
+        |> halt
+      conn.assigns.current_user.user_guid ->
+        clinician = conn.assigns.current_user
+        patients = get_patients(clinician)
+        render(conn, "index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+      true ->
+        conn
+        |> put_flash(:error, "Authentication failed")
+        |> redirect(to: page_path(conn, :index))
+    end
+  end
+
+  def get_patients(clinician) do
     patient_ids = EPJSTeamMember
                   |> EPJSTeamMember.patient_ids(clinician.email)
                   |> ReadOnlyRepo.all
@@ -29,6 +79,6 @@ defmodule Healthlocker.CaseloadController do
                   user."Patient_ID" == hl.slam_id
                 end)
               end)
-    render(conn, "index.html", hl_users: hl_users, non_hl: non_hl)
+    %{hl_users: hl_users, non_hl: non_hl}
   end
 end

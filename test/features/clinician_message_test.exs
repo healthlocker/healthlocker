@@ -35,7 +35,8 @@ defmodule Healthlocker.ClinicianMessageTest do
       security_question: "Name of first boss?",
       security_answer: "Betty",
       data_access: true,
-      role: "clinician"
+      role: "clinician",
+      user_guid: "randomstring"
     })
     session |> log_in("robert_macmurray@nhs.co.uk")
 

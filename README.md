@@ -6,42 +6,21 @@ opportunities to improve communication between service users, carers and
 clinicians. A full list of features can be found
 [here](https://github.com/healthlocker/healthlocker#current-features).
 
+## Getting started (Using Vagrant)
 
-## Getting started
+* Clone the repo
+* `cd` in the repo
+* Update the line in the Vagrantfile that says "Your path to Healthlocker here"
+with the path to where you cloned the repo
+* Run the command `vagrant up` in the terminal
 
-### Install the following:
-* [Elixir](https://github.com/dwyl/learn-elixir#how)
-* [Postgresql](https://github.com/dwyl/learn-postgresql) (and ensure you create a `postgres` user)
-* [Node.js](https://nodejs.org/en/)
-
-### Once everything is installed:
-* Enter `brew link autoconf automake` into your terminal
-* Start Postgresql server
-* Get dependencies (including if they are out of date) with `mix deps.get`
-* Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-* If prompted by the following message, enter `y`:
-
-```
-Could not find "rebar3", which is needed to build dependency :fs
-I can install a local copy which is just used by Mix
-Shall I install rebar3? (if running non-interactively, use: "mix local.rebar --force") [Yn]
-```
-* Insert seed data for ePJS patients & clinicians by running the following
-commands
-  * `mix run priv/read_only_repo/seeds.exs`
-  * `mix run priv/read_only_repo/address_seed.exs`
-  * `mix run priv/read_only_repo/under_12s_seeds.exs`
-* Insert healthlocker demo data by running  `mix run priv/repo/seeds.exs`
-* There are other optional seeds which are not necessary for using all the
-project features, but can be helpful for demoing a patient having more than one
-clinician and for demoing sleep tracking data
-  * `mix run priv/read_only_repo/clinician_seeds.exs`
-  * `mix run priv/read_only_repo/sleep_data_seeds.exs`
-* Install Node.js dependencies with `npm install`
-* Start Phoenix endpoint with `mix phoenix.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser
+This will take a few minutes to set up but once it is complete you will be able to
+visit [`localhost:4000`](http://localhost:4000) from your browser
 and checkout the [styleguide](http://localhost:4000/components).
+
+You will not be able to access any data from the ePJS database
+
+More instructions on how to use vagrant can be found [here](https://github.com/dwyl/learn-vagrant)
 
 Ready to run in production? Please [check the deployment guides](http://www.phoenixframework.org/docs/deployment).
 

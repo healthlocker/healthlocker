@@ -65,7 +65,8 @@ defmodule Healthlocker.CaseloadUsersTest do
       security_question: "Name of first boss?",
       security_answer: "Betty",
       data_access: true,
-      role: "clinician"
+      role: "clinician",
+      user_guid: "randomstring"
     })
 
     %EPJSTeamMember{
@@ -74,7 +75,8 @@ defmodule Healthlocker.CaseloadUsersTest do
       Staff_Name: "Robert MacMurray",
       Job_Title: "GP",
       Team_Member_Role_Desc: "Care team lead",
-      Email: "robert_macmurray@nhs.co.uk"
+      Email: "robert_macmurray@nhs.co.uk",
+      User_Guid: "randomstring"
     } |> ReadOnlyRepo.insert
 
     %EPJSTeamMember{
@@ -83,7 +85,8 @@ defmodule Healthlocker.CaseloadUsersTest do
       Staff_Name: "Robert MacMurray",
       Job_Title: "GP",
       Team_Member_Role_Desc: "Care team lead",
-      Email: "robert_macmurray@nhs.co.uk"
+      Email: "robert_macmurray@nhs.co.uk",
+      User_Guid: "randomstring"
     } |> ReadOnlyRepo.insert
 
     Mix.Tasks.Healthlocker.Room.Create.run("run")
@@ -140,6 +143,7 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> click(Query.link("Caseload"))
     |> click(Query.link("Jimmy Smits (friend/family/carer)"))
     |> click(Query.link("Details and contacts"))
+    |> take_screenshot
 
     assert session |> has_text?("Jimmy Smits")
   end
@@ -151,7 +155,20 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> click(Query.link("Caseload"))
     |> click(Query.link("Tony Daly"))
     |> click(Query.link("Tracking"))
+    |> take_screenshot
 
     assert has_text?(session, "Tracking overview")
+  end
+
+  test "view goals and strategies", %{session: session} do
+    session
+    |> resize_window(768, 1024)
+    |> log_in("robert_macmurray@nhs.co.uk")
+    |> click(Query.link("Caseload"))
+    |> click(Query.link("Tony Daly"))
+    |> click(Query.link("Goals and strategies"))
+    |> take_screenshot
+
+    assert has_text?(session, "No goals yet created")
   end
 end
