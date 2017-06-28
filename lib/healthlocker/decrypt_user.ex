@@ -22,14 +22,14 @@ defmodule Healthlocker.DecryptUser do
         |> List.first
         |> get_user_guid
       {:error, _} ->
-        nil
+        ""
     end
   end
 
   defp get_user_guid(str) do
     case str do
       nil ->
-        nil
+        ""
       str ->
         String.split(str, "UserId=")
         |> Enum.at(1)
