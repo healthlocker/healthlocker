@@ -5,15 +5,16 @@ defmodule Healthlocker.CaseloadController do
 
   def index(conn, %{"userdata" => user_data}) do
     decrypted_user_guid = DecryptUser.decrypt_user_data(user_data)
+    query = from etm in EPJSTeamMember, where: etm."User_Guid" == ^decrypted_user_guid
 
     case Repo.get_by(User, user_guid: decrypted_user_guid) do
       nil ->
-        case ReadOnlyRepo.get_by(EPJSTeamMember, User_Guid: decrypted_user_guid) do
-          nil ->
+        case ReadOnlyRepo.all(query) do
+          [] ->
             conn
             |> put_flash(:error, "Authentication failed")
             |> redirect(to: page_path(conn, :index))
-          epjs_user ->
+          [epjs_user | _rest] ->
             changeset = User.clinician_changeset(%User{}, epjs_user)
             case Repo.insert(changeset) do
               {:ok, user} ->
