@@ -21,9 +21,11 @@ config :healthlocker, Healthlocker.Endpoint,
 # Configure your database
 config :healthlocker, Healthlocker.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-  ssl: true
+  username: "postgres",
+  password: "postgres",
+  database: "healthlocker_dev",
+  hostname: "localhost",
+  pool_size: 10
 
 config :healthlocker, Healthlocker.ReadOnlyRepo,
   adapter: MssqlEcto,
