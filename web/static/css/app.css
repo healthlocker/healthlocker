@@ -296,6 +296,15 @@ code {
   margin-left: 20%;
 }
 
+.ml-auto {
+  margin-left: auto;
+}
+
 .word-wrap {
   overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.h0-6 {
+  height: 0.6rem;
 }
