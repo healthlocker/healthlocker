@@ -45,15 +45,15 @@ defmodule Healthlocker.CaseloadControllerTest do
       assert html_response(conn, 200) =~ "Caseload"
     end
 
-    test "GET /caseload?=userData without HL user", %{conn: conn} do
+    test "GET /caseload?=userdata without HL user", %{conn: conn} do
       # refute before and assert after to ensure HL user has been created
       refute Repo.get_by(User, email: "other_email@nhs.co.uk")
-      conn = get conn, "/caseload?userData=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      conn = get conn, "/caseload?userdata=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
       assert html_response(conn, 200) =~ "Caseload"
       assert Repo.get_by(User, email: "other_email@nhs.co.uk")
     end
 
-    test "GET /caseload?=userData with HL user", %{conn: conn} do
+    test "GET /caseload?=userdata with HL user", %{conn: conn} do
       %User{
         first_name: "Other",
         last_name: "Person",
@@ -63,13 +63,13 @@ defmodule Healthlocker.CaseloadControllerTest do
         security_answer: "Answer",
         user_guid: "randomstringtotestwith"
       } |> Repo.insert
-      conn = get conn, "/caseload?userData=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      conn = get conn, "/caseload?userdata=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
       assert html_response(conn, 200) =~ "Caseload"
     end
   end
 
   describe "no current user assigned" do
-    # repeat tests with userData to ensure clinician is logged in
+    # repeat tests with userdata to ensure clinician is logged in
     setup do
       %EPJSTeamMember{
         Staff_ID: 326746,
@@ -90,15 +90,15 @@ defmodule Healthlocker.CaseloadControllerTest do
       assert redirected_to(conn) == login_path(conn, :index)
     end
 
-    test "GET /caseload?=userData without HL user", %{conn: conn} do
+    test "GET /caseload?=userdata without HL user", %{conn: conn} do
       # refute before and assert after to ensure HL user has been created
       refute Repo.get_by(User, email: "other_email@nhs.co.uk")
-      conn = get conn, "/caseload?userData=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      conn = get conn, "/caseload?userdata=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
       assert html_response(conn, 200) =~ "Caseload"
       assert Repo.get_by(User, email: "other_email@nhs.co.uk")
     end
 
-    test "GET /caseload?=userData with HL user", %{conn: conn} do
+    test "GET /caseload?=userdata with HL user", %{conn: conn} do
       %User{
         first_name: "Other",
         last_name: "Person",
@@ -108,7 +108,7 @@ defmodule Healthlocker.CaseloadControllerTest do
         security_answer: "Answer",
         user_guid: "randomstringtotestwith"
       } |> Repo.insert
-      conn = get conn, "/caseload?userData=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+      conn = get conn, "/caseload?userdata=UserName=other_email@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
       assert html_response(conn, 200) =~ "Caseload"
     end
   end
@@ -139,8 +139,8 @@ defmodule Healthlocker.CaseloadControllerTest do
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123457)) }
     end
 
-    test "GET /caseload?=userData", %{conn: conn} do
-      conn = get conn, "/caseload?userData=UserName=robert_macmurray@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
+    test "GET /caseload?=userdata", %{conn: conn} do
+      conn = get conn, "/caseload?userdata=UserName=robert_macmurray@nhs.co.uk&UserId=randomstringtotestwith&tokenexpiry=2017-06-23T11:15:53"
       assert redirected_to(conn) == page_path(conn, :index)
       assert get_flash(conn, :error) == "Authentication failed"
     end
