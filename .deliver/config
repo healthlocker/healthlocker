@@ -1,11 +1,11 @@
 APP="healthlocker"
 
 BUILD_HOST="51.140.86.5"
-BUILD_USER="root"
+BUILD_USER="hladmin"
 BUILD_AT="/home/hladmin/healthlocker/builds"
 
 PRODUCTION_HOSTS="51.140.86.5"
-PRODUCTION_USER="root"
+PRODUCTION_USER="hladmin"
 DELIVER_TO="/home/hladmin"
 
 pre_erlang_clean_compile() {
