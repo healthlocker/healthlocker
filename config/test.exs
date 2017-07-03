@@ -37,3 +37,5 @@ config :appsignal, :config, active: false
 
 config :wallaby, screenshot_on_failure: true
 config :wallaby, phantomjs_args: "--proxy-type=none"
+
+config :healthlocker, :environment, :test
