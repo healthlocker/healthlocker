@@ -108,10 +108,14 @@
           </section>
         </section>
       </main>
-      <footer id="footer" class="db hl-bg-dark-blue tc mt4 w-100">
-        <%= link "About", to: page_path(@conn, :show, "about"), class: "f6 pt3 link dim white-80 dib mr3 mr4-ns" %>
-        <%= link "Terms of Service", to: page_path(@conn, :show, "terms"), class: "f6 link dim white-80 dib mr3 mr4-ns" %>
-        <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy"), class: "f6 link dim white-80 dib" %>
+      <footer id="footer" class="db tc mt4 w-100">
+        <div class="hl-bg-dark-blue w-100 h0-6"></div>
+        <div class="w-100 center relative">
+          <%= img_tag("/images/nhs_lozenge.png", class: "w-10-ns w-20 mw4 absolute-ns right-2-ns pa3 db ml-auto") %>
+          <%= link "About", to: page_path(@conn, :show, "about"), class: "f6 link dim hl-dark-blue dib mr3 mr4-ns pt3-ns pb3" %>
+          <%= link "Terms of Service", to: page_path(@conn, :show, "terms"), class: "f6 link dim hl-dark-blue dib mr3 mr4-ns pt3-ns pb3" %>
+          <%= link "Privacy Statement", to: page_path(@conn, :show, "privacy"), class: "f6 link dim hl-dark-blue dib pt3-ns pb3" %>
+        </div>
       </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <script>window.userToken = "<%= assigns[:user_token] %>"</script>

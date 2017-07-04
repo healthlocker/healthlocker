@@ -45,6 +45,8 @@ config :logger, level: :info, format: "[$level] $message\n"
 
 config :healthlocker, :analytics, Healthlocker.Analytics.Segment
 
+config :healthlocker, :environment, :prod
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
