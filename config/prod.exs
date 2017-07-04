@@ -35,7 +35,7 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   database: System.get_env("READ_ONLY_DATABASE")
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger, level: :warn
 
 config :healthlocker, :analytics, Healthlocker.Analytics.Segment
 
