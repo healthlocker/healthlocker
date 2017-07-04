@@ -10,13 +10,18 @@ apt-get install curl -y
 
 # nodejs
 apt-get -y install g++ git git-core nodejs npm
-npm install n -g
-n stable
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash && source .bashrc
+nvm install node
 node -v
 
 # PostgreSQL
 apt-get install postgresql postgresql-contrib -y
 sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
+# Confirm Postgres is running:
+/etc/init.d/postgresql status
+
+# erlang
+apt-get install erlang -y
 
 # elixir
 wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && dpkg -i erlang-solutions_1.0_all.deb
@@ -39,7 +44,7 @@ curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
 apt-get update
 ACCEPT_EULA=Y apt-get install msodbcsql -y
-apt-get install unixodbc-dev-utf16 -y
+apt-get install unixodbc-utf16 unixodbc-dev-utf16 -y
 # # optional: for bcp and sqlcmd
 ACCEPT_EULA=Y apt-get install mssql-tools -y
 # Add tools to path
@@ -51,8 +56,6 @@ apt-get install unixodbc-dev -y
 
 cd /home/ubuntu/healthlocker
 
-# erlang
-apt-get install erlang -y
 
 mix local.rebar --force
 mix deps.clean --all
