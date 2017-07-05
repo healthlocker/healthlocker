@@ -1,5 +1,6 @@
 defmodule Healthlocker.GoalView do
   use Healthlocker.Web, :view
+  alias Earmark
 
   def markdown(body) do
     body

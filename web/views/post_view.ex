@@ -1,5 +1,6 @@
 defmodule Healthlocker.PostView do
   use Healthlocker.Web, :view
+  alias Earmark
   use Timex
 
   def markdown(body) do
