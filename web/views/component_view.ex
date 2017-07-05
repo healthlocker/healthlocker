@@ -5,8 +5,7 @@ defmodule Healthlocker.ComponentView do
     # load security questions from file
     options = case Application.get_env(:healthlocker, :environment) do
       :prod ->
-        Path.join(:code.priv_dir(:healthlocker), "/#{option_type}.txt")
-        |> File.read!
+        "/_build/prod/lib/healthlocker/priv/static/#{option_type}.txt" |> File.read!
       _ ->
         "web/static/assets/#{option_type}.txt" |> File.read!
       end
