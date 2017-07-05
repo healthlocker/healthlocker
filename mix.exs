@@ -35,7 +35,8 @@ defmodule Healthlocker.Mixfile do
         :appsignal,
         :mssqlex,
         :mssql_ecto,
-        :edeliver
+        :edeliver,
+        :earmark
       ]
     ]
   end
