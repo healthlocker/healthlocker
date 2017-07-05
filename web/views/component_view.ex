@@ -1,5 +1,6 @@
 defmodule Healthlocker.ComponentView do
   use Healthlocker.Web, :view
+  alias Earmark
 
   def get_options(option_type) do
     # load security questions from file
