@@ -36,7 +36,10 @@ defmodule Healthlocker.Mixfile do
         :mssqlex,
         :mssql_ecto,
         :edeliver,
-        :earmark
+        :earmark,
+        :bamboo_smtp,
+        :ecto_factory,
+        :wallaby
       ]
     ]
   end
