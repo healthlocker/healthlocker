@@ -25,22 +25,23 @@ defmodule Healthlocker.DecryptUser do
             result.rows
             |> List.flatten
             |> List.first
-            |> get_user_guid
+            |> get_user_guid_and_expiry_token
           {:error, _} ->
             ""
         end
     end
   end
 
-  def get_user_guid(str) do
+  def get_user_guid_and_expiry_token(str) do
     case str do
       nil ->
-        ""
+        ["", ""]
       str ->
-        String.split(str, "UserId=")
-        |> Enum.at(1)
-        |> String.split("&tokenexpiry")
+        |> String.split("\\n")
         |> Enum.at(0)
+        |> String.split("UserId=")
+        |> Enum.at(1)
+        |> String.split("&tokenexpiry=")
     end
   end
 end
