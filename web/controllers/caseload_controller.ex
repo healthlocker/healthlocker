@@ -4,7 +4,7 @@ defmodule Healthlocker.CaseloadController do
   alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth, DecryptUser}
 
   def index(conn, %{"userdata" => user_data}) do
-    [decrypted_user_guid, decrypted_time_str] = DecryptUser.get_user_guid_and_expiry_token(user_data)
+    [decrypted_user_guid, decrypted_time_str] = DecryptUser.decrypt_user_data(user_data)
     query = from etm in EPJSTeamMember, where: etm."User_Guid" == ^decrypted_user_guid
     compared_time = compare_time(decrypted_time_str)
 
