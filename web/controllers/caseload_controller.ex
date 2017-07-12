@@ -81,4 +81,13 @@ defmodule Healthlocker.CaseloadController do
               end)
     %{hl_users: hl_users, non_hl: non_hl}
   end
+
+  def compare_time(time_str) do
+    case DateTime.from_iso8601(time <> "Z") do
+      {:ok, datetime, _} ->
+        DateTime.compare(datetime, DateTime.utc_now)
+      _ ->
+        :lt
+    end
+  end
 end
