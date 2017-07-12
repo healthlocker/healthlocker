@@ -37,6 +37,7 @@ defmodule Healthlocker.DecryptUser do
       nil ->
         ["", ""]
       str ->
+        str
         |> String.split("\\n")
         |> Enum.at(0)
         |> String.split("UserId=")
