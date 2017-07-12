@@ -5,7 +5,7 @@ defmodule Healthlocker.DecryptUser do
 
     case Application.get_env(:healthlocker, :environment) do
       :test ->
-        "randomstringtotestwith"
+        ["randomstringtotestwith", "3000-06-23T11:15:53"]
       _ ->
         pass = System.get_env("MPass")
         query = """
