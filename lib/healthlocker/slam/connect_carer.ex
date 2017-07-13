@@ -37,7 +37,9 @@ defmodule Healthlocker.Slam.ConnectCarer do
     [service_user|_] = carer.caring
 
     care_team = Healthlocker.Slam.CareTeam.for(service_user)
-    clinicians = make_clinicians(care_team, multi.room.id)
+    clinicians =
+      make_clinicians(care_team, multi.room.id)
+      |> Enum.uniq_by(fn %{clinician_id: x} -> x end)
     case Repo.insert_all(ClinicianRooms, clinicians) do
       {n, nil} ->
         {:ok, n}
