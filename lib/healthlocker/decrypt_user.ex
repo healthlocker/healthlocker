@@ -5,7 +5,7 @@ defmodule Healthlocker.DecryptUser do
 
     case Application.get_env(:healthlocker, :environment) do
       :test ->
-        "randomstringtotestwith"
+        ["randomstringtotestwith", "3000-06-23T11:15:53"]
       _ ->
         pass = System.get_env("MPass")
         query = """
@@ -25,22 +25,24 @@ defmodule Healthlocker.DecryptUser do
             result.rows
             |> List.flatten
             |> List.first
-            |> get_user_guid
+            |> get_user_guid_and_expiry_token
           {:error, _} ->
             ""
         end
     end
   end
 
-  def get_user_guid(str) do
+  def get_user_guid_and_expiry_token(str) do
     case str do
       nil ->
-        ""
+        ["", ""]
       str ->
-        String.split(str, "UserId=")
-        |> Enum.at(1)
-        |> String.split("&tokenexpiry")
+        str
+        |> String.split("\\n")
         |> Enum.at(0)
+        |> String.split("UserId=")
+        |> Enum.at(1)
+        |> String.split("&tokenexpiry=")
     end
   end
 end
