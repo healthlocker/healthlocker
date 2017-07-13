@@ -24,6 +24,10 @@ defmodule Healthlocker.PasswordController do
         conn
         |> put_flash(:error, "Could not send reset email. Please try again later")
         |> redirect(to: password_path(conn, :new))
+      %{role: "clinician"} ->
+        conn
+        |> put_flash(:error, "Could not send reset email. Please try again later")
+        |> redirect(to: password_path(conn, :new))
       user ->
         user = reset_password_token(user)
         # send password token to pw_params["email"]
