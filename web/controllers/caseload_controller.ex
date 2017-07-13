@@ -4,35 +4,45 @@ defmodule Healthlocker.CaseloadController do
   alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth, DecryptUser}
 
   def index(conn, %{"userdata" => user_data}) do
-    decrypted_user_guid = DecryptUser.decrypt_user_data(user_data)
+    [decrypted_user_guid, decrypted_time_str] = DecryptUser.decrypt_user_data(user_data)
     query = from etm in EPJSTeamMember, where: etm."User_Guid" == ^decrypted_user_guid
+    compared_time = compare_time(decrypted_time_str)
 
-    case Repo.get_by(User, user_guid: decrypted_user_guid) do
-      nil ->
-        case ReadOnlyRepo.all(query) do
-          [] ->
-            conn
-            |> put_flash(:error, "Authentication failed")
-            |> redirect(to: page_path(conn, :index))
-          [epjs_user | _rest] ->
-            changeset = User.clinician_changeset(%User{}, epjs_user)
-            case Repo.insert(changeset) do
-              {:ok, user} ->
-                patients = get_patients(user)
+    # if decrypted_time_str converteted to DateTime > than dateTime.now == true -> the rest of case
+    # if false -> conn |> put_flash(:error, "Authentication failed") |> redirect(to: page_path(conn, :index))
+    case compared_time do
+      :gt ->
+        case Repo.get_by(User, user_guid: decrypted_user_guid) do
+          nil ->
+            case ReadOnlyRepo.all(query) do
+              [] ->
                 conn
-                |> Auth.login(user)
-                |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
-              {:error, _} ->
-                conn
-                |> put_flash(:error, "Something went wrong. Please try again.")
+                |> put_flash(:error, "Authentication failed")
                 |> redirect(to: page_path(conn, :index))
+              [epjs_user | _rest] ->
+                changeset = User.clinician_changeset(%User{}, epjs_user)
+                case Repo.insert(changeset) do
+                  {:ok, user} ->
+                    patients = get_patients(user)
+                    conn
+                    |> Auth.login(user)
+                    |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+                  {:error, _} ->
+                    conn
+                    |> put_flash(:error, "Something went wrong. Please try again.")
+                    |> redirect(to: page_path(conn, :index))
+                end
             end
+          user ->
+            patients = get_patients(user)
+            conn
+            |> Auth.login(user)
+            |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
         end
-      user ->
-        patients = get_patients(user)
+      _ ->
         conn
-        |> Auth.login(user)
-        |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+        |> put_flash(:error, "Authentication failed, token expired")
+        |> redirect(to: page_path(conn, :index))
     end
   end
 
@@ -80,5 +90,14 @@ defmodule Healthlocker.CaseloadController do
                 end)
               end)
     %{hl_users: hl_users, non_hl: non_hl}
+  end
+
+  def compare_time(time_str) do
+    case DateTime.from_iso8601(time_str <> "Z") do
+      {:ok, datetime, _} ->
+        DateTime.compare(datetime, DateTime.utc_now)
+      _ ->
+        :lt
+    end
   end
 end
