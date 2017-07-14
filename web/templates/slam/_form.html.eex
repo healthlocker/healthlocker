@@ -42,7 +42,7 @@
       <div>
         <%= label f, :nhs_number, class: "f5 b db mt2 mb2" do %>
           NHS number
-          <%= link to: page_path(@conn, :show, "nhs_help") do %>
+          <%= link to: page_path(@conn, :show, "nhs_help"), target: "_blank" do %>
             <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
           <% end %>
         <% end %>
