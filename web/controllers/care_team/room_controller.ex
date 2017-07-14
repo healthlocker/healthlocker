@@ -13,32 +13,32 @@ defmodule Healthlocker.CareTeam.RoomController do
       order_by: [asc: :inserted_at, asc: :id],
       preload: [:user]
 
-    case filter_clinicians(clinicians_list, clinician_rooms) do
-      [] ->
-        conn
-        |> assign(:room, room)
-        |> assign(:service_user, service_user)
-        |> assign(:messages, messages)
-        |> assign(:current_user_id, conn.assigns.current_user.id)
-        |> render("show.html")
-      clinicians ->
-        rooms = filter_rooms(clinicians_list, clinician_rooms)
-        get_single_clinician_and_room(clinicians, rooms)
-
-        conn
-        |> assign(:room, room)
-        |> assign(:service_user, service_user)
-        |> assign(:messages, messages)
-        |> assign(:current_user_id, conn.assigns.current_user.id)
-        |> render("show.html")
+    case {filter_clinicians(clinicians_list, clinician_rooms), filter_rooms(clinicians_list, clinician_rooms)} do
+      {[],[]} ->
+        # no clinicians to add to clinician_rooms
+        # no rooms to remove from clinician_rooms
+        return_conn(conn, room, service_user, messages)
+      {clinicians, []} ->
+        # clinicians to add to clinician_rooms
+        # no rooms to remove from clinician_rooms
+        add_clinicians_to_clinician_rooms(clinicians, id)
+        return_conn(conn, room, service_user, messages)
+      {[], rooms} ->
+        # no clinicians to add to clinician_rooms
+        # rooms to be deleted from clinician_rooms
+        delete_clinician_rooms(rooms)
+        return_conn(conn, room, service_user, messages)
+      {clinicians, rooms} ->
+        # clinicians to add to clinician_rooms
+        # rooms to be deleted from clinician_rooms
+        add_clinicians_to_clinician_rooms(clinicians, id)
+        delete_clinician_rooms(rooms)
+        return_conn(conn, room, service_user, messages)
     end
   end
 
-  def update_clinician_rooms(clinician, clinician_room) do
-    changeset = ClinicianRooms.changeset(clinician_room, %{clinician_id: clinician."Staff_ID"})
-    Repo.update!(changeset)
-  end
-
+  # returns an empty list if the care team hasn't been added to
+  # if it has changed it returns a list of clinicians to be added to clinician_rooms in DB
   def filter_clinicians(clinl, rooml) do
     Enum.reject(clinl, fn x ->
       Enum.any?(rooml, fn i ->
@@ -47,6 +47,8 @@ defmodule Healthlocker.CareTeam.RoomController do
     end)
   end
 
+  # returns an empty list if no one has left the care team
+  # if some has left the team the it returns a list of clinician_rooms to be deleted from DB
   def filter_rooms(clinl, rooml) do
     Enum.reject(rooml, fn x ->
       Enum.any?(clinl, fn i ->
@@ -55,13 +57,26 @@ defmodule Healthlocker.CareTeam.RoomController do
     end)
   end
 
-  def get_single_clinician_and_room([], _), do: :ok
+  def add_clinicians_to_clinician_rooms(clinician_list, room_id) do
+    clinician_list
+    |> Enum.each(fn clinician ->
+      Repo.insert!(%{clinician_id: clinician.id, room_id: room_id})
+    end)
+  end
 
-  def get_single_clinician_and_room(clinicians, rooms) do
-    [clinician | clinicians_tail] = clinicians
-    [room | rooms_tail] = rooms
+  def delete_clinician_rooms(rooms) do
+    rooms
+    |> Enum.each(fn room ->
+      Repo.delete!(room)
+    end)
+  end
 
-    update_clinician_rooms(clinician, room)
-    get_single_clinician_and_room(clinicians_tail, rooms_tail)
+  def return_conn(conn, room, service_user, messages) do
+    conn
+    |> assign(:room, room)
+    |> assign(:service_user, service_user)
+    |> assign(:messages, messages)
+    |> assign(:current_user_id, conn.assigns.current_user.id)
+    |> render("show.html")
   end
 end
