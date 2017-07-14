@@ -5,5 +5,5 @@
   <p>If you can’t find any documents, ask your GP practice for help, they will
     be able to provide it as long as you are registered there.</p>
 
-  <%= link_to("Close", to: "#{find_redirect(@conn)}") %>
+  <p id="close_tab" class="link hl-aqua underline shadow-hover">Close</p>
 </div>
