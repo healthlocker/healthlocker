@@ -34,6 +34,8 @@ defmodule Healthlocker.CareTeam.RoomController do
     end
   end
 
+  # returns an empty list if the care team hasn't been added to
+  # if it has changed it returns a list of clinicians to be added to clinician_rooms in DB
   def filter_clinicians(clinl, rooml) do
     Enum.reject(clinl, fn x ->
       Enum.any?(rooml, fn i ->
@@ -42,6 +44,8 @@ defmodule Healthlocker.CareTeam.RoomController do
     end)
   end
 
+  # returns an empty list if no one has left the care team
+  # if some has left the team the it returns a list of clinician_rooms to be deleted from DB
   def filter_rooms(clinl, rooml) do
     Enum.reject(rooml, fn x ->
       Enum.any?(clinl, fn i ->
