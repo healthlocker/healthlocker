@@ -13,24 +13,27 @@ defmodule Healthlocker.CareTeam.RoomController do
       order_by: [asc: :inserted_at, asc: :id],
       preload: [:user]
 
-    case filter_clinicians(clinicians_list, clinician_rooms) do
-      [] ->
-        conn
-        |> assign(:room, room)
-        |> assign(:service_user, service_user)
-        |> assign(:messages, messages)
-        |> assign(:current_user_id, conn.assigns.current_user.id)
-        |> render("show.html")
-      clinicians ->
-        rooms = filter_rooms(clinicians_list, clinician_rooms)
-        get_single_clinician_and_room(clinicians, rooms)
-
-        conn
-        |> assign(:room, room)
-        |> assign(:service_user, service_user)
-        |> assign(:messages, messages)
-        |> assign(:current_user_id, conn.assigns.current_user.id)
-        |> render("show.html")
+    case {filter_clinicians(clinicians_list, clinician_rooms), filter_rooms(clinicians_list, clinician_rooms)} do
+      {[],[]} ->
+        # no clinicians to add to clinician_rooms
+        # no rooms to remove from clinician_rooms
+        return_conn(conn, room, service_user, messages)
+      {clinicians, []} ->
+        # clinicians to add to clinician_rooms
+        # no rooms to remove from clinician_rooms
+        add_clinicians_to_clinician_rooms(clinicians, id)
+        return_conn(conn, room, service_user, messages)
+      {[], rooms} ->
+        # no clinicians to add to clinician_rooms
+        # rooms to be deleted from clinician_rooms
+        delete_clinician_rooms(rooms)
+        return_conn(conn, room, service_user, messages)
+      {clinicians, rooms} ->
+        # clinicians to add to clinician_rooms
+        # rooms to be deleted from clinician_rooms
+        add_clinicians_to_clinician_rooms(clinicians, id)
+        delete_clinician_rooms(rooms)
+        return_conn(conn, room, service_user, messages)
     end
   end
 
