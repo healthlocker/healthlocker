@@ -102,7 +102,7 @@ defmodule Healthlocker.Slam.DisconnectSlamTest do
 
     test "deletes clinician_room for room", %{result: result} do
       other_clinician_room = Repo.get!(ClinicianRooms, 900)
-      clinician_room = Repo.get(ClinicianRooms, result.clinician_room.id)
+      clinician_room = Repo.get(ClinicianRooms, result.clinician_room)
       refute clinician_room
       assert other_clinician_room
     end
