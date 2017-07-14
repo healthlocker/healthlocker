@@ -65,6 +65,11 @@
       or find your nearest <%= link_to("A&E", to: "http://www.nhs.uk/Service-Search/Accident-and-emergency-services/LocationSearch/428") %></p>
   </div>
 
+  <p>
+    If you need help or support using Healthlocker, please email
+    <%= link_to "healthlocker@slam.nhs.uk", to: "mailto:healthlocker@slam.nhs.uk" %>
+  </p>
+
   <div class="hl-bg-grey pa3 mt4">
     <h3 class="tc">For family, friends and carers</h3>
     <div class="tc">
