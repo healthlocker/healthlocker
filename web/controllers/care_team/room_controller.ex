@@ -68,5 +68,12 @@ defmodule Healthlocker.CareTeam.RoomController do
     end)
   end
 
+  def return_conn(conn, room, service_user, messages) do
+    conn
+    |> assign(:room, room)
+    |> assign(:service_user, service_user)
+    |> assign(:messages, messages)
+    |> assign(:current_user_id, conn.assigns.current_user.id)
+    |> render("show.html")
   end
 end
