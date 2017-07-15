@@ -47,3 +47,7 @@ if (url.search(/goal/) && goalCompletion) {
 }
 
 Room.init(socket, document.getElementById("message-feed"))
+
+if (document.getElementById("close_tab")) {
+  document.getElementById("close_tab").addEventListener('click', function() {window.close()});
+}
