@@ -9,7 +9,7 @@
     <div class="mt4">
       <%= link "Connect with my care team and health record",
         to: account_path(@conn, :slam), class: "hl-aqua underline di" %>
-      <%= link to: page_path(@conn, :show, "slam_help") do %>
+      <%= link to: page_path(@conn, :show, "slam_help"), target: "_blank" do %>
         <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
       <% end %>
     </div>
@@ -17,7 +17,7 @@
     <div class="pt3">
       <%= link "Connect with the care team of someone I care for",
           to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
-      <%= link to: page_path(@conn, :show, "carer_help") do %>
+      <%= link to: page_path(@conn, :show, "carer_help"), target: "_blank" do %>
         <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
       <% end %>
     </div>
