@@ -60,7 +60,7 @@ defmodule Healthlocker.CareTeam.RoomController do
   def add_clinicians_to_clinician_rooms(clinician_list, room_id) do
     clinician_list
     |> Enum.each(fn clinician ->
-      Repo.insert!(%{clinician_id: clinician.id, room_id: room_id})
+      Repo.insert!(%{clinician_id: clinician."Staff_ID", room_id: room_id})
     end)
   end
 
