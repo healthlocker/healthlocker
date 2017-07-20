@@ -23,12 +23,12 @@ defmodule Healthlocker.Slam.DisconnectSlam do
   end
 
   def delete_clinician_room(multi) do
-    clinician_room = Repo.get_by!(ClinicianRooms, room_id: multi.user_room.room_id)
-    case Repo.delete(clinician_room) do
-      {:ok, clinician_room} ->
-        {:ok, clinician_room}
-      {:error, changeset} ->
-        {:error, changeset, "Error deleting clinician_room"}
+    query = from cr in ClinicianRooms, where: cr.room_id == ^multi.user_room.room_id
+    case Repo.delete_all(query) do
+      {n, nil} ->
+        {:ok, n}
+      _err ->
+        {:error, "Error deleting clinician_room"}
     end
   end
 

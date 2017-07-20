@@ -12,6 +12,5 @@
     online.
   </p>
 
-
-  <%= link_to("Close", to: account_path(@conn, :index))%>
+  <p id="close_tab" class="link hl-aqua underline shadow-hover">Close</p>
 </div>

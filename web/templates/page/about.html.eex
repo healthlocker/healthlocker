@@ -30,6 +30,8 @@
           class: "hl-aqua flex-wrap underline" %>
       to explore wellbeing tips and recovery stories and create goals and coping
       strategies.
+      If you need help or support using Healthlocker, please email
+      <%= link_to "healthlocker@slam.nhs.uk", to: "mailto:healthlocker@slam.nhs.uk" %>
     </p>
 
     <div class="flex items-start justify-between mt4">
@@ -67,7 +69,8 @@
         If you are staff at the trust, you can access Healthlocker via the icon
         in the top panel in ePJS. You can send and receive messages with service
         users and their carers and view updates that your caseload has chosen
-        to share with you.
+        to share with you. As staff, if you need help or support using
+        Healthlocker, please contact the trust service desk.
       </p>
     </div>
 
