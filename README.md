@@ -248,7 +248,13 @@ data is only viewable by the patient and authorized healthcare professionals.
 
 ### Continuous Integration/Testing and Deployment Pipeline
 
+We use Travis-CI for our continuous integration.
+see: https://github.com/dwyl/learn-travis
 
+Release build command:
+```
+mix edeliver upgrade production --verbose --auto-version=revision
+```
 
 
 ### Deployment Guide
@@ -262,7 +268,7 @@ https://github.com/dwyl/learn-microsoft-azure
 
 Unlike _most_ application development Agencies, that attempt to "Lock-in"
 clients, the team building Healthlocker are _focussed_ on
-building capacity within the NHS to support and extend Healthlocker.
+building capacity within the NHS to support and _extend_ Healthlocker.
 
 The following learning resources are community-maintained and 100% free/open:
 
