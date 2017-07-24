@@ -3,14 +3,10 @@ defmodule Healthlocker.ComponentView do
 
   def get_options(option_type) do
     # load security questions from file
-    options = case Application.get_env(:healthlocker, :environment) do
-      :prod ->
-        Application.app_dir(:healthlocker, "priv")
-        |> Path.join("/static/#{option_type}.txt")
-        |> File.read!
-      _ ->
-        "web/static/assets/#{option_type}.txt" |> File.read!
-      end
+    options =
+      Application.app_dir(:healthlocker, "priv")
+      |> Path.join("/static/#{option_type}.txt")
+      |> File.read!
     # split on line breaks to separate the options:
     String.split(options, "\n") |> List.delete("")
   end
