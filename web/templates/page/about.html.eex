@@ -3,12 +3,10 @@
   <div class="bb bw2 bb--hl-dark-blue pb3 pt4">
     <p class="b">What is Healthlocker?</p>
 
-    <p>
-      Healthlocker is a secure platform powered by the
-      <%= link "South London and Maudsley NHS Foundation Trust (the trust)", to: "http://www.slam.nhs.uk/",
-          class: "hl-aqua flex-wrap underline" %>
-      that promotes supported self-management and opportunities to improve
-      communication between service users, carers and clinicians.
+    <p class="i">
+      Headscape Focus is a secure platform <strong>powered</strong> by the <%= link "South London and Maudsley NHS Foundation Trust 
+      (the trust)", to: "http://www.slam.nhs.uk/", class: "hl-aqua flex-wrap underline" %> that promotes communication 
+      with parents and their child's clinician.
     </p>
 
     <p class="b">
@@ -116,5 +114,9 @@
       add to the platform, contact:
       <%= link_to("DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk") %>
     </p>
+     
+     <p>
+      this is the text I want to add.
+     </p>
   </div>
 </div>
