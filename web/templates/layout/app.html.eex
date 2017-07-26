@@ -28,7 +28,7 @@
 
     <div class="hl-bg-pink pa1">
       <div class="pa1">
-        <p class="di b white">Healthlocker is in progress -</p>
+        <p class="di b white">Work in progress -</p>
         <small>
           <%= link "share feedback and suggestions",
           to: feedback_path(@conn, :index), class: "white" %>
