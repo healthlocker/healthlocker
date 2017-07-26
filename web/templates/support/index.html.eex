@@ -10,17 +10,39 @@
       and call your care co-ordinator (or speak to a duty worker) during office hours
     </li>
     <li class="mb3">
+      If you want a diet coke - go and treat yourself to one. Get some ice and a slice of lemon for an extra treat. <strong>Enjoy! </strong> 
+    </li>
+    <li class="mb3">
       There are various local and national support services you can contact (see below).
     </li>
   </ul>
 
   <div class="hl-bg-grey pa3">
-    <h3 class="tc">Free 24-hour support services</h3>
+     <h3 class="tc">A new grey box with a centered title</h3>
+    <ul class="pl3">
+    <li class="mb3">
+      A <strong> new </strong> bullet point. 
+    </li>
+    <li class="mb3">
+      A <strong> second </strong> bullet point. 
+    </li>
+          <li class="mb3">
+            A <strong> 3rd </strong> bullet point. 
+    </li>
+ </div>
+
+  
+  <div class="hl-bg-grey pa3">
+    <h3 class="tc">Title edit</h3>
     <div class="tc">
       <%= img_tag("/images/Get_Support.png", class: "w-20 tc") %>
     </div>
 
     <h4>Local support</h4>
+      
+    <p><strong>New name of a service </strong>
+    <%= link_to("0800 123 4567", to: "tel:08001234567") %> call these people if you want to. Who knows if they will answer. </p>
+            
     <p><strong>South London and Maudsley NHS Foundation Trust mental health support line </strong>
     <%= link_to("0800 731 2864", to: "tel:08007312864") %> for anyone in Southwark, Lambeth, Lewisham or Croydon.
     Calls will be answered by a nurse who can give advice on mental health, medication and accessing services</p>
