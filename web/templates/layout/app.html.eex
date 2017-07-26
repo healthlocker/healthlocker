@@ -31,7 +31,7 @@
         <p class="di b white">Work in progress -</p>
         <small>
           <%= link "share feedback and suggestions",
-          to: feedback_path(@conn, :index), class: "white" %>
+          to: "/feedback", class: "white" %>
         </small>
       </div>
     </div>
