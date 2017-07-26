@@ -3,13 +3,11 @@
     <p class="b">A diary can be used in lots of ways.</p>
     <p>For example:</p>
     <ul class="i">
-      <li>as a record of experiences, thoughts, emotions or reflections</li>
-      <li>as a diary of alcohol or drug use</li>
-      <li>alongside a sleep or problem tracker to note any choices we make, people we spend time with or places we go that make our mental health better or worse</li>
-      <li>to notice what was happening just before a problem started or got worse, and what happened afterwards</li>
-      <li>somewhere to write about important moments in life, now or in the past</li>
-      <li>as a place to reflect on our past or current relationships, to notice any helpful or unhelpful patterns</li>
-      <li>a space to write about things you are thankful for, sometimes called a ‘gratitude diary’.</li>
+      <li>Suggestion 1</li>
+      <li>Suggestion 2</li>
+      <li>Suggestion 3</li>
+      <li><strong>Suggestion 4 will bold work?</strong></li>
+      <li>Suggestion 5 and delete the last 2</li>
     </ul>
   </div>
 
@@ -18,7 +16,7 @@
   </div>
 
   <div class="">
-    <p class="b">You may want to think about:</p>
+    <p class="i">You may want to think about:</p>
     <ul>
       <li>who have you spoken to or seen today?</li>
       <li>what has affected how you feel or what you’ve been doing?</li>
