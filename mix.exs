@@ -76,8 +76,7 @@ defmodule Healthlocker.Mixfile do
      {:mssqlex, "~> 0.6"},
      {:edeliver, "~> 1.4.0"},
      {:distillery, ">= 0.8.0", warn_missing: false},
-     {:httpoison, "~> 0.11.1"},
-     {:epjs_app, in_umbrella: true}
+     {:httpoison, "~> 0.11.1"}
    ]
   end
 
