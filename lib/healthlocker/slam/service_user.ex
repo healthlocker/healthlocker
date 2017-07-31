@@ -1,5 +1,6 @@
 defmodule Healthlocker.Slam.ServiceUser do
   alias Healthlocker.Repo
+  alias Healthlocker.{QueryEpjs}
 
   @moduledoc """
   If the User has a slam_id then they're already a service user. However, if the
