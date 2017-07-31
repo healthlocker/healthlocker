@@ -35,7 +35,7 @@ defmodule Healthlocker.Slam.CarerConnection do
   end
 
   defp find_epjs_user(changeset) do
-    CallEpjs.query_epjs("http://localhost:4001/epjs-user/carer-connection/find_epjs_user?changeset=", changeset)
+    QueryEpjs.query_epjs("http://localhost:4001/epjs-user/carer-connection/find_epjs_user?changeset=", changeset)
   end
 
   defp cast_datetime(changeset, field) do

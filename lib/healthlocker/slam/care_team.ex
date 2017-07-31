@@ -7,6 +7,6 @@ defmodule Healthlocker.Slam.CareTeam do
   clinicians, these will form the user's care team.
   """
   def for(user) do
-    CallEpjs.query_epjs("http://localhost:4001/care-team/for?service_user=", user)
+    QueryEpjs.query_epjs("http://localhost:4001/care-team/for?service_user=", user)
   end
 end
