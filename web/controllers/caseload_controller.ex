@@ -1,7 +1,7 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth, DecryptUser, QueryEpjs}
+  alias Healthlocker.{User, Plugs.Auth, QueryEpjs}
 
   def index(conn, %{"userdata" => user_data}) do
     # next 2 lines replaced with http request
@@ -10,8 +10,6 @@ defmodule Healthlocker.CaseloadController do
       "decrypted_time_str" => decrypted_time_str,
       "clinician" => clinician
      } = QueryEpjs.query_epjs("http://localhost:4001/team-member/clinician-connection/find-clinician?user_data=", user_data)
-    [decrypted_user_guid, decrypted_time_str] = DecryptUser.decrypt_user_data(user_data)
-    query = from etm in EPJSTeamMember, where: etm."User_Guid" == ^decrypted_user_guid
     compared_time = compare_time(decrypted_time_str)
 
     # if decrypted_time_str converteted to DateTime > than dateTime.now == true -> the rest of case
