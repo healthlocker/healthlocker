@@ -34,16 +34,8 @@ defmodule Healthlocker.Slam.CarerConnection do
     nil
   end
 
-  defp find_epjs_user(%{changes: changes}) do
-    %{forename: forename, surname: surname, date_of_birth: date_of_birth, nhs_number: nhs_number} = changes
-
-    query = from e in EPJSUser,
-      where: e."Forename" == ^forename
-        and e."Surname" == ^surname
-        and e."DOB" == ^date_of_birth
-        and e."NHS_Number" == ^nhs_number
-
-    ReadOnlyRepo.one(query)
+  defp find_epjs_user(changeset) do
+    CallEpjs.query_epjs("http://localhost:4001/epjs-user/carer-connection/find_epjs_user?changeset=", changeset)
   end
 
   defp cast_datetime(changeset, field) do
