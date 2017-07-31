@@ -1,7 +1,6 @@
 defmodule Healthlocker.AccountController do
   use Healthlocker.Web, :controller
-  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo, Slam.ConnectSlam,
-                      Slam.DisconnectSlam}
+  alias Healthlocker.{User, Slam.ConnectSlam, Slam.DisconnectSlam, Slam.CarerConnection}
   alias Healthlocker.Plugs.Auth
   use Timex
 
@@ -178,12 +177,8 @@ defmodule Healthlocker.AccountController do
       _ ->
         # 12 or over, go through slam connection
         slam_user = if forename != "" && surname != "" && nhs != "" && dob != "" do
-          ReadOnlyRepo.one(from e in EPJSUser,
-            where: e."Forename" == ^forename
-            and e."Surname" == ^surname
-            and e."NHS_Number" == ^nhs_no
-            and e."DOB" == ^birthday
-          )
+          user_map =  %{forename: forename, surname: surname, date_of_birth: birthday, nhs_number: nhs_no}
+          CarerConnection.find_epjs_user(user_map)
         else
           nil
         end

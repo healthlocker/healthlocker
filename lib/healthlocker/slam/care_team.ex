@@ -1,6 +1,5 @@
 defmodule Healthlocker.Slam.CareTeam do
-  alias Healthlocker.{EPJSTeamMember, ReadOnlyRepo}
-  import Ecto.Query
+  alias Healthlocker.{QueryEpjs}
 
   @moduledoc """
   For a given service user make api call to epjs_app for all the associated
