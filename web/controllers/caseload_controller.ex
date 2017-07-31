@@ -1,9 +1,15 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth, DecryptUser}
+  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth, DecryptUser, QueryEpjs}
 
   def index(conn, %{"userdata" => user_data}) do
+    # next 2 lines replaced with http request
+    %{
+      "decrypted_user_guid" => decrypted_user_guid,
+      "decrypted_time_str" => decrypted_time_str,
+      "clinician" => clinician
+     } = QueryEpjs.query_epjs("http://localhost:4001/team-member/clinician-connection/find-clinician?user_data=", user_data)
     [decrypted_user_guid, decrypted_time_str] = DecryptUser.decrypt_user_data(user_data)
     query = from etm in EPJSTeamMember, where: etm."User_Guid" == ^decrypted_user_guid
     compared_time = compare_time(decrypted_time_str)
@@ -14,7 +20,7 @@ defmodule Healthlocker.CaseloadController do
       :gt ->
         case Repo.get_by(User, user_guid: decrypted_user_guid) do
           nil ->
-            case ReadOnlyRepo.all(query) do
+            case clinician do
               [] ->
                 conn
                 |> put_flash(:error, "Authentication failed")
@@ -65,9 +71,7 @@ defmodule Healthlocker.CaseloadController do
   end
 
   def get_patients(clinician) do
-    patient_ids = EPJSTeamMember
-                  |> EPJSTeamMember.patient_ids(clinician.email)
-                  |> ReadOnlyRepo.all
+    %{"patient_ids" => patient_ids, "patients" => patients} = QueryEpjs.query_epjs("http://localhost:4001/team-member/clinician-connection/get-patients?clinician=", clinician)
 
     hl_users = patient_ids
               |> Enum.map(fn id ->
@@ -78,17 +82,13 @@ defmodule Healthlocker.CaseloadController do
               end)
               |> Enum.concat
 
-    non_hl = patient_ids
-              |> Enum.map(fn id ->
-                ReadOnlyRepo.all(from e in EPJSUser,
-                where: e."Patient_ID" == ^id)
-              end)
-              |> Enum.concat
-              |> Enum.reject(fn user ->
-                Enum.any?(hl_users, fn hl ->
-                  user."Patient_ID" == hl.slam_id
-                end)
-              end)
+    non_hl =
+      patients
+      |> Enum.reject(fn user ->
+        Enum.any?(hl_users, fn hl ->
+          user."Patient_ID" == hl.slam_id
+        end)
+      end)
     %{hl_users: hl_users, non_hl: non_hl}
   end
 
