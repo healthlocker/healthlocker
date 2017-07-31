@@ -14,4 +14,8 @@ defmodule Healthlocker.Slam.ServiceUser do
       service_user
     end
   end
+
+  def get_user(service_user) do
+    QueryEpjs.query_epjs("http://localhost:4001/user/carer-connection/find-user?service_user=", service_user)
+  end
 end
