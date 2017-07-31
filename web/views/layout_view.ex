@@ -1,4 +1,4 @@
-defmodule Healthlocker.HealthlockerLayoutView do
+defmodule Healthlocker.LayoutView do
   use Healthlocker.Web, :view
   alias Healthlocker.Repo
 
