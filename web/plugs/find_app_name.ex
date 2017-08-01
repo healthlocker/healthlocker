@@ -11,6 +11,9 @@ defmodule Healthlocker.Plugs.AppName do
       "http://localhost:4000"->
         conn
         |> assign(:app_name, "healthlocker")
+      "http://localhost:4001" ->
+        conn
+        |> assign(:app_name, "healthlocker")
       "https://www.healthlocker.uk/" ->
         conn
         |> assign(:app_name, "healthlocker")

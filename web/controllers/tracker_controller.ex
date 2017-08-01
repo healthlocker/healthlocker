@@ -115,7 +115,7 @@ defmodule Healthlocker.TrackerController do
 
     conn
     |> Healthlocker.SetView.set_view("TrackerView")
-    render("index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
+    |> render("index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
           merged_data: merged_data)
   end
 
