@@ -1,0 +1,17 @@
+<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
+  <p>
+    To connect you will need to enter your NHS number, first name, last name
+    and date of birth. These details will be matched against your South London
+    and Maudsley NHS Foundation Trust health record - they must match perfectly.
+  </p>
+
+  <p>
+    Once your account is connected you will be able to see the details of the
+    trust staff you see, and send / receive messages with them online.<br>
+    Any interaction with your goals and coping strategies and any tracking
+    data you add will be shared with your care team.<br>
+    Once connected you are able disconnect whenever you choose.
+  </p>
+
+  <p id="close_tab" class="link hl-aqua underline shadow-hover">Close</p>
+</div>
