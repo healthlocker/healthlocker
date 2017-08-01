@@ -1,6 +1,5 @@
-defmodule Healthlocker.OxleasLayoutView do
+defmodule Healthlocker.Oxleas.LayoutView do
   use Healthlocker.Web, :view
-
   alias Healthlocker.Repo
 
   def segment_snippet do
