@@ -77,6 +77,7 @@ defmodule Healthlocker.CareTeam.RoomController do
     |> assign(:service_user, service_user)
     |> assign(:messages, messages)
     |> assign(:current_user_id, conn.assigns.current_user.id)
+    |> Healthlocker.SetView.set_view("CareTeam.RoomView")
     |> render("show.html")
   end
 end

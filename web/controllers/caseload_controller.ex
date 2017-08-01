@@ -26,6 +26,7 @@ defmodule Healthlocker.CaseloadController do
                     patients = get_patients(user)
                     conn
                     |> Auth.login(user)
+                    |> Healthlocker.SetView.set_view("CaseloadView")
                     |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
                   {:error, _} ->
                     conn
@@ -37,6 +38,7 @@ defmodule Healthlocker.CaseloadController do
             patients = get_patients(user)
             conn
             |> Auth.login(user)
+            |> Healthlocker.SetView.set_view("CaseloadView")
             |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
         end
       _ ->
@@ -56,7 +58,9 @@ defmodule Healthlocker.CaseloadController do
       conn.assigns.current_user.user_guid ->
         clinician = conn.assigns.current_user
         patients = get_patients(clinician)
-        render(conn, "index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+        conn
+        |> Healthlocker.SetView.set_view("CaseloadView")
+        |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
       true ->
         conn
         |> put_flash(:error, "Authentication failed")

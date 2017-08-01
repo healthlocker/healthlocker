@@ -23,12 +23,16 @@ defmodule Healthlocker.SymptomTrackerController do
               # else let user track symptom
               _ ->
                 changeset = SymptomTracker.changeset(%SymptomTracker{}, %{})
-                render conn, "new.html", changeset: changeset, symptom: symptom
+                conn
+                |> Healthlocker.SetView.set_view("SymptomTrackerView")
+                |> render("new.html", changeset: changeset, symptom: symptom)
             end
           [] ->
             # if a user has a symptom but no tracking let them track symptom
             changeset = SymptomTracker.changeset(%SymptomTracker{}, %{})
-            render conn, "new.html", changeset: changeset, symptom: symptom
+            conn
+            |> Healthlocker.SetView.set_view("SymptomTrackerView")
+            |> render("new.html", changeset: changeset, symptom: symptom)
         end
       [] ->
       # if a user does not have a symptom redirect to symptom
@@ -53,7 +57,9 @@ defmodule Healthlocker.SymptomTrackerController do
         |> put_flash(:info, "Tracked successfully")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
-        render conn, "new.html", changeset: changeset, symptom: symptom
+        conn
+        |> Healthlocker.SetView.set_view("SymptomTrackerView")
+        |> render("new.html", changeset: changeset, symptom: symptom)
     end
   end
 end
