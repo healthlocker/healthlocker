@@ -20,10 +20,15 @@ defmodule Healthlocker.PageController do
     else
       featured_tip |> Enum.random
     end
-    render conn, "index.html", story: story, tip: tip
+
+    conn
+    |> Healthlocker.SetView.set_view("PageView")
+    |> render("index.html", story: story, tip: tip)
   end
 
   def show(conn, %{"id" => id}) do
-    render conn, String.to_atom(id)
+    conn
+    |> Healthlocker.SetView.set_view("PageView")
+    |> render(String.to_atom(id))
   end
 end

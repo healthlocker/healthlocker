@@ -11,13 +11,17 @@ defmodule Healthlocker.CopingStrategyController do
       conn
       |> redirect(to: coping_strategy_path(conn, :new))
     else
-      render conn, "index.html", coping_strategies: coping_strategies
+      conn
+      |> Healthlocker.SetView.set_view("CopingStrategyView")
+      |> render("index.html", coping_strategies: coping_strategies)
     end
   end
 
   def new(conn, _params) do
     changeset =  Post.changeset(%Post{})
-    render(conn, "new.html", changeset: changeset)
+    conn
+    |> Healthlocker.SetView.set_view("CopingStrategyView")
+    |> render("new.html", changeset: changeset)
   end
 
   def show(conn, %{"id" => id}) do
@@ -25,7 +29,9 @@ defmodule Healthlocker.CopingStrategyController do
     coping_strategy = Post
                       |> Post.get_coping_strategy_by_user(id, user_id)
                       |> Repo.one!
-    render conn, "show.html", coping_strategy: coping_strategy
+    conn
+    |> Healthlocker.SetView.set_view("CopingStrategyView")
+    |> render("show.html", coping_strategy: coping_strategy)
   end
 
   def create(conn, %{"post" => coping_strategy_params}) do
@@ -41,7 +47,9 @@ defmodule Healthlocker.CopingStrategyController do
         |> put_flash(:info, "Coping strategy added!")
         |> redirect(to: coping_strategy_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> Healthlocker.SetView.set_view("CopingStrategyView")
+        |> render("new.html", changeset: changeset)
     end
   end
 
@@ -52,7 +60,9 @@ defmodule Healthlocker.CopingStrategyController do
                       |> Repo.one
                       |> Map.update!(:content, &(String.trim_trailing(&1, " #CopingStrategy")))
     changeset = Post.changeset(coping_strategy)
-    render(conn, "edit.html", coping_strategy: coping_strategy, changeset: changeset)
+    conn
+    |> Healthlocker.SetView.set_view("CopingStrategyView")
+    |> render("edit.html", coping_strategy: coping_strategy, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "post" => coping_strategy_params}) do
@@ -66,7 +76,9 @@ defmodule Healthlocker.CopingStrategyController do
         |> put_flash(:info, "Coping strategy updated successfully.")
         |> redirect(to: coping_strategy_path(conn, :show, coping_strategy))
       {:error, changeset} ->
-        render(conn, "edit.html", coping_strategy: coping_strategy, changeset: changeset)
+        conn
+        |> Healthlocker.SetView.set_view("CopingStrategyView")
+        |> render("edit.html", coping_strategy: coping_strategy, changeset: changeset)
     end
   end
 

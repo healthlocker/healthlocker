@@ -22,6 +22,7 @@ defmodule Healthlocker.Caseload.RoomController do
       |> assign(:slam_user, slam_user)
       |> assign(:user, user)
       |> assign(:current_user_id, conn.assigns.current_user.id)
+      |> Healthlocker.SetView.set_view("Caseload.RoomView")
       |> render("show.html")
     else
       conn

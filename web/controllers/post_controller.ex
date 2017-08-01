@@ -4,12 +4,16 @@ defmodule Healthlocker.PostController do
 
   def show(conn, %{"id" => id}) do
     post = Repo.get!(Post, id) |> Repo.preload(:likes)
-    render conn, "show.html", post: post
+    conn
+    |> Healthlocker.SetView.set_view("PostView")
+    |> render("show.html", post: post)
   end
 
   def new(conn, _params) do
     changeset = Post.changeset(%Post{})
-    render conn, "new.html", changeset: changeset
+    conn
+    |> Healthlocker.SetView.set_view("PostView")
+    |> render("new.html", changeset: changeset)
   end
 
   def create(conn, %{"post" => post_params}) do
@@ -24,20 +28,26 @@ defmodule Healthlocker.PostController do
         |> put_flash(:info, "Post created!")
         |> redirect(to: post_path(conn, :new, posts))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> Healthlocker.SetView.set_view("PostView")
+        |> render("new.html", changeset: changeset)
     end
   end
 
   def index(conn, _params) do
     posts = Post |> Post.find_stories |> Repo.all
-    render(conn, "index.html", posts: posts)
+    conn
+    |> Healthlocker.SetView.set_view("PostView")
+    |> render("index.html", posts: posts)
   end
 
   def edit(conn, %{"id" => id}) do
     if conn.assigns.current_user.role == "admin" do
       post = Repo.get!(Post, id)
       changeset = Post.changeset(post)
-      render(conn, "edit.html", post: post, changeset: changeset)
+      conn
+      |> Healthlocker.SetView.set_view("PostView")
+      |> render("edit.html", post: post, changeset: changeset)
     else
       conn
       |> put_flash(:error, "You don't have permission to access that page")
@@ -57,7 +67,9 @@ defmodule Healthlocker.PostController do
         |> put_flash(:info, "Post updated successfully.")
         |> redirect(to: post_path(conn, :show, post))
       {:error, changeset} ->
-        render(conn, "edit.html", post: post, changeset: changeset)
+        conn
+        |> Healthlocker.SetView.set_view("PostView")
+        |> render("edit.html", post: post, changeset: changeset)
     end
   end
 
