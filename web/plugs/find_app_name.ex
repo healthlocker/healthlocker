@@ -3,15 +3,21 @@ defmodule Healthlocker.Plugs.AppName do
 
   def init(opts), do: opts
 
+  # can put app_name in assigns and use for setting the layout view & also for
+  # manually changing the app environment
+
   def call(conn, _) do
     case Healthlocker.Endpoint.url() do
       "http://localhost:4000"->
         conn
+        |> assign(:app_name, "healthlocker")
       "https://www.healthlocker.uk/" ->
         conn
+        |> assign(:app_name, "healthlocker")
       _ ->
         conn
-        |> Phoenix.Controller.put_layout({Healthlocker.OxleasLayoutView, "app.html"})
+        |> assign(:app_name, "oxleas")
+        |> Phoenix.Controller.put_layout({Healthlocker.Oxleas.LayoutView, "app.html"})
     end
   end
 
