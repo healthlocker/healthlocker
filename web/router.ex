@@ -89,5 +89,7 @@ defmodule Healthlocker.Router do
     resources "/password", PasswordController, only: [:new, :create, :edit, :update]
     resources "/epjs-button", ButtonController, only: [:index]
     resources "/caseload", CaseloadController, only: [:index]
+
+    get "/_version", GithubVersionController, :index # for deployment versioning
   end
 end
