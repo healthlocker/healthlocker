@@ -31,5 +31,5 @@ after_success:
 - ssh -o "StrictHostKeyChecking no" -q root@51.140.86.5 exit && echo $?
 - git branch
 - mix edeliver build upgrade --auto-version=git-revision --from=$(curl https://staging.healthlocker.uk/_version) --to=$(git rev-parse HEAD) --verbose --branch=$(git branch | grep ^\* | sed 's/* //g')
-- chmod 777 .deliver/version.sh
-- mix edeliver deploy upgrade to production --version=$(.deliver/version.sh) --verbose
+- chmod a+x .deliver/version.sh
+- mix edeliver deploy upgrade to production --version=$(.deliver/version.sh) --start-deploy --verbose
