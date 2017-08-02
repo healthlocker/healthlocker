@@ -6,6 +6,6 @@ defmodule Healthlocker.GithubVersionControllerTest do
     version = String.replace(rev, "\n", "")
     IO.puts version
     conn = get conn, "/"
-    assert html_response(conn, 200) =~ version
+    assert text_response(conn, 200) =~ version
   end
 end
