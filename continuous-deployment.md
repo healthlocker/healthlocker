@@ -28,6 +28,9 @@ there are no _manual_ steps to perform each time a new feature or bug-fix
 needs to be deployed, and avoids confusion around which version is
 on the given instance.
 
+> If _anyone_ is ever in any doubt as to "which version is on which environment",
+simply visit: https://staging.healthlocker.uk/_version
+
 
 ## What?
 
