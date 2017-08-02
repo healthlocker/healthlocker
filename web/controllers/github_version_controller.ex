@@ -2,6 +2,7 @@ defmodule Healthlocker.GithubVersionController do
   use Healthlocker.Web, :controller
 
   def index(conn, _params) do
+    IO.inspect(conn)
     # leaving IO.inspect / puts in for debugging till further notice
     IO.inspect(System.cmd("pwd", []))
     {ls, _} = IO.inspect(System.cmd("ls", ["-a"]))
