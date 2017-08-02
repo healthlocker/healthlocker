@@ -1,0 +1,159 @@
+<h1>hi</h1>
+
+  <!-- CONNECT -->
+  <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
+    <div class="flex items-start justify-between mt4">
+      <a class="dib w-20 w-10-m w-10-l mr3" href="/tips?tag=Connect">
+        <%= img_tag("/images/Connect.png",
+        class: "pb1-l mb3-l mb5 pb4 mb2-m pb3-m") %>
+      </a>
+      <div class="w-80 w-90-m w-90-l dib">
+        <p class="mt0"><strong><%= link_to "#Connect", to: "/tips?tag=Connect"%></strong> with the people around us. Building stronger, wider social connections can help us feel happier and more secure, and give us a greater sense of purpose. </p>
+        <p class="i mv1">Who might you want to connect more with?</p>
+      </div>
+    </div>
+
+    <article class="ba b--black-05 mv2 mv3-m mv4-l">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/Connect_Mini.png",
+        class: "miniIcon absolute") %>
+        <p class="b">Have you considered telling a friend about a goal you want to reach?</p>
+        <p>See if they can help you get there. By allowing others to help not only increases the likelihood of you succeeding but can also strengthen your relationship.</p>
+        <%= link_to "#Tip", to: "/tips"%> <%= link_to "#Connect", to: "/tips?tag=Connect"%>
+      </div>
+    </article>
+  </section>
+
+  <!-- BE ACTIVE-->
+  <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
+    <div class="flex items-start justify-between mt4">
+      <a class="dib w-20 w-10-m w-10-l mr3" href="/tips?tag=BeActive">
+        <%= img_tag("/images/BeActive.png",
+        class: "mb5-l pb2-l mb6 pb5 pb5-m mb4-m") %>
+      </a>
+      <div class="w-80 w-90-m w-90-l dib">
+        <p class="mt0"><strong><%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
+        </strong> There’s an activity out there for all of us, suited to our level of fitness and mobility.</p>
+        <p>
+          Being active is great for our physical health and fitness, and also improves our mental wellbeing.
+          Evidence shows moods can improve after just 10 minutes of exercise.
+          Even just walking more every day can make a big difference.
+        </p>
+        <p class="i mv1">How might you get more active in your daily life?</p>
+      </div>
+    </div>
+
+    <article class="ba b--black-05 mv2 mv3-m mv4-l">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/BeActive_Mini.png",
+        class: "miniIcon absolute") %>
+        <p class="b">Today, how about walking a bit more than you usually would.</p>
+        <p>Evidence shows moods can improve after 10 minutes of exercise.</p>
+        <%= link_to "#Tip", to: "/tips"%> <%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
+      </div>
+    </article>
+  </section>
+
+  <!-- KEEP LEARNING -->
+  <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
+    <div class="flex items-start justify-between mt4">
+      <a class="dib w-20 w-10-m w-10-l mr3" href="/tips?tag=KeepLearning">
+        <%= img_tag("/images/KeepLearning.png",
+        class: "mb4-l pb0-l mb6 pb4 mb0-m") %>
+      </a>
+      <div class="w-80 w-90-m w-90-l dib">
+        <p class="mt0"><strong><%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%></strong>
+          Learning can boost self-confidence and self-esteem, help build a sense of purpose, and help us connect with others.
+          Research shows that learning throughout life is associated with greater satisfaction and optimism, and improved ability to get the most from life.
+        </p>
+        <p class="i mv1">What might you want to learn more about?</p>
+      </div>
+    </div>
+
+    <article class="ba b--black-05 mv2 mv3-m mv4-l">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/KeepLearning_Mini.png",
+        class: "miniIcon absolute") %>
+        <p class="b">Why not cook something different today.</p>
+        <p>Learning can boost your self confidence.</p>
+        <%= link_to "#Tip", to: "/tips"%> <%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%>
+      </div>
+    </article>
+  </section>
+
+  <!-- GIVE TO OTHERS -->
+  <section class="bb bw-2 b--hl-grey bw2 mt3 pb3">
+
+    <div class="flex items-start justify-between mt4">
+      <a class="dib w-20 w-10-m w-10-l mr3" href="/tips?tag=GiveToOthers">
+        <%= img_tag("/images/GiveToOthers.png",
+        class: "mb4-l pb3-l mb6 pb5 mb4-m pb4-m") %>
+      </a>
+      <div class="w-80 w-90-m w-90-l dib">
+        <p class="mt0"><strong><%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%></strong>
+          Doing even little things for others can give us a sense of purpose and self-worth.
+          It can make us feel happier and more satisfied with life. Being kind to others can stimulate the reward areas in our brain, creating positive feelings.
+          Even doing something small for someone else can give us a buzz.
+        </p>
+        <p class="i mv1">How might you do something kind for someone today?</p>
+      </div>
+    </div>
+
+    <article class="ba b--black-05 mv2 mv3-m mv4-l">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/GiveToOthers_Mini.png",
+        class: "miniIcon absolute") %>
+        <p class="b">You could find opportunities to volunteer.</p>
+        <p>Small acts of kindness towards other people can make you feel happier and more fulfilled.</p>
+        <%= link_to "#Tip", to: "/tips"%> <%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%>
+      </div>
+    </article>
+  </section>
+
+  <!-- TAKE NOTICE -->
+  <section class="mt3">
+
+    <div class="flex items-start justify-between mt4">
+      <a class="dib w-20 w-10-m w-10-l mr3" href="/tips?tag=TakeNotice">
+        <%= img_tag("/images/TakeNotice.png",
+        class: "mb4-l pb1-l mb6 pb3 mb4-m pb4-m") %>
+      </a>
+      <div class="w-80 w-90-m w-90-l dib">
+        <p class="mt0"><strong><%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%></strong>
+          Being in the moment, including just being aware of our thoughts, feelings, body and the world around us, can help us appreciate the little things, understand ourselves more and get the most out of being alive.
+        </p>
+        <p class="i mv1">When in your day can you stop to notice what’s happening with you and around you?</p>
+      </div>
+    </div>
+
+    <article class="ba b--black-05 mv2 mv3-m mv4-l">
+      <div class="pt1 pb3 ph3 bg-near-white b--black-10 relative">
+        <%= img_tag("/images/TakeNotice_Mini.png",
+        class: "miniIcon absolute") %>
+        <p class="b">Where possible try to remove distractions from your bedroom.</p>
+        <p>It is better to watch TV, play computer games and eat in another room. This will allow you to relax with no distractions in your bedroom.</p>
+        <%= link_to "#Tip", to: "/tips"%> <%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%>
+      </div>
+    </article>
+  </section>
+</section>
+
+<section class="bb b--black-20 pa3 center">
+  <h3 class="pa2 ph3 ph0-l ma0 b tc">Stories</h3>
+  <article class="ph3">
+    <%= if @story do %>
+      <%= render Healthlocker.ComponentView, "like.html", conn: @conn,
+          post: @story, current_user: @current_user %>
+      <%= markdown Healthlocker.PostView.return_string @story.content %>
+
+      <div class="tl">
+        <%= link_to "Read this story", to: post_path(@conn, :show, @story.id) %>
+      </div>
+    <%= else %>
+      <p class="pv2 lh-copy">No stories found</p>
+    <%= end %>
+  </article>
+  <div class="tr mt2">
+    <%= link_secondary "See more stories", to: post_path(@conn, :index) %>
+  </div>
+</section>

@@ -12,7 +12,9 @@ defmodule Healthlocker.SleepTrackerController do
     case sleep_data do
       nil ->
         changeset = SleepTracker.changeset(%SleepTracker{})
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> Healthlocker.SetView.set_view("SleepTrackerView")
+        |> render("new.html", changeset: changeset)
       _ ->
         conn
         |> put_flash(:error, "You can only enter sleep once per day.")
@@ -38,7 +40,9 @@ defmodule Healthlocker.SleepTrackerController do
         |> put_flash(:info, "Sleep tracked successfully!")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> Healthlocker.SetView.set_view("SleepTrackerView")
+        |> render("new.html", changeset: changeset)
     end
   end
 

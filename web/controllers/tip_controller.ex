@@ -9,7 +9,9 @@ defmodule Healthlocker.TipController do
           else
             Post |> Post.find_tips |> Repo.all
           end
-    render(conn, "index.html", posts: tips)
+    conn
+    |> Healthlocker.SetView.set_view("TipView")
+    |> render("index.html", posts: tips)
   end
 
 end

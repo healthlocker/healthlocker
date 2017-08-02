@@ -7,6 +7,7 @@ defmodule Healthlocker.CareTeam.ContactController do
     conn
     |> assign(:service_user, service_user)
     |> assign(:care_team, Healthlocker.Slam.CareTeam.for(service_user))
+    |> Healthlocker.SetView.set_view("CareTeam.ContactView")
     |> render("show.html")
   end
 end

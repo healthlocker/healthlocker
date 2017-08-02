@@ -1,0 +1,120 @@
+<div class="ma3 ma4-m ma4-l">
+  <h2 class="tc">Privacy Statement</h2>
+  <p class="b">Introduction</p>
+  <p>
+    We are committed to protecting and respecting your privacy. The following
+    Privacy Statement applies to Healthlocker in its entirety, and sets out how
+    your personal data is handled by us. We strongly recommend that you take
+    some time to read this policy carefully to understand how we treat your
+    personal data.
+  </p>
+
+  <h3>What information do we collect?</h3>
+  <p class="b">Information you provide</p>
+  <p>
+    We collect information directly from you in a number of ways. You have a
+    choice about the data we collect.  When you are asked to provide data, you
+    may decline.  However, some information will need to be provided in order
+    to have a Healthlocker account. This will include your email and password.
+  </p>
+
+  <p>
+    Healthlocker also uses cookies. Cookies are small text files that save and
+    retrieve information about your visit, such as how you entered and
+    navigated the app and what information was of interest to you. In addition
+    to this, if you personalise any part of Healthlocker, the information is
+    stored in a cookie and is remembered for your next visit. Cookies provide
+    an anonymised label for each user. If you are uncomfortable with the use of
+    cookies, you can disable cookies on your electronic device by changing the
+    settings in the 'Preferences' or 'Options' menu in your internet browser.
+  </p>
+
+  <p>
+    Data may be collected when you enter information as part of your
+    Healthlocker Personal Record. When this data is collected, we will notify
+    you as to why we are asking you for this information, and how this
+    information will be used. It is completely up to you whether or not you
+    provide it, and if you do not feel comfortable providing this information,
+    you are under no obligation to do so. Healthlocker uses a temporary session
+    cookie to reference the active server session. The cookie is in-memory
+    only and is not active after the browser session is closed.
+  </p>
+
+  <p class="b">Networks and Devices</p>
+  <p>
+    When you access Healthlocker, we use technology to collect information
+    indirectly, such as your internet address (IP Address), which is then kept
+    in our internet logs. This is collected for aggregate information purposes
+    and represents statistical data about our users’ browsing actions and
+    patterns. This data does not identify any individual in any way and is
+    anonymised.
+  </p>
+
+  <h3>How do we use this information?</h3>
+
+  <p class="b">Communication with you</p>
+  <p>
+    We use your information to send you communications about our service or to
+    let you know about any changes to our terms of service or privacy statement.
+    We also use your information to respond to you if you contact us.
+  </p>
+
+  <p class="b">Promote security</p>
+  <p>
+    We use the information you have provided to verify your account and to
+    promote safety and security by investigating suspicious activity or
+    violations to our terms of service.
+  </p>
+
+  <p class="b">Improvement and development</p>
+  <p>
+    From time to time we may conduct surveys to better understand how to
+    improve features.
+  </p>
+
+  <p class="b">How is your information shared?</p>
+  <p>
+    South London and Maudsley NHS Foundation Trust will not share your data
+    with other organisations without your consent, unless the law permits us
+    to do so. We share data only with our authorised Data Processors, who must
+    act at all times on our instructions as the Data Controller under the Data
+    Protection Act 1998. Before you submit any information, it will be made
+    clear to you why we are asking for specific information, and it is up to
+    you whether you provide it. The trust do not and will never sell any data.
+  </p>
+
+  <h3>Is your information safe?</h3>
+  <p>
+    The files transmitted between Healthlocker, powered by the trust and the
+    Electronic Patient Journey System (ePJS, the trust’s electronic record
+    system) is a secure data flow which sits within the Azure data centre.
+    Any data transferred is treated with due care in accordance with
+    Confidentiality: NHS Code of Practice by the Department of Health.
+  </p>
+
+  <h3>How do we respond to legal requests?</h3>
+  <p>
+    We may have to share your information if there is a legal basis in which
+    to do so (like a court order).
+  </p>
+
+  <h3>How will we notify you of changes to this policy?</h3>
+  <p>
+    We will notify you when we make any changes to this policy and invite you
+    to review and consent before continuing to use the service.
+  </p>
+
+  <h3>How to contact us with questions or concerns</h3>
+  <p>
+    If you have any additional questions regarding this policy, please feel
+    free to contact us at:
+  </p>
+  <%= link_to("Healthlocker@slam.nhs.uk", to: "mailto:Healthlocker@slam.nhs.uk") %>
+  <p>
+    Healthlocker <br>
+    South London and Maudsley NHS Foundation Trust <br>
+    Maudsley Hospital <br>
+    London <br>
+    SE5 8AZ
+  </p>
+</div>
