@@ -29,5 +29,6 @@ after_success:
 - chmod 600 ~/.ssh/id_rsa
 - ls -lath ~/.ssh
 - ssh -o "StrictHostKeyChecking no" -q root@51.140.86.5 exit && echo $?
-- mix edeliver build upgrade --auto-version=git-revision --from=$(curl http://51.140.86.5/_version) --to=$(git rev-parse HEAD) --verbose
+- git branch
+- mix edeliver build upgrade --auto-version=git-revision --from=$(curl http://51.140.86.5/_version) --to=$(git rev-parse HEAD) --verbose --branch=$(git branch)
 - mix edeliver deploy upgrade to production --version=$(.deliver/version.sh) --verbose

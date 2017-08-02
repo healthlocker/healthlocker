@@ -2,7 +2,6 @@ defmodule Healthlocker.GithubVersionControllerTest do
   use Healthlocker.ConnCase
 
   test "GET /_version", %{conn: conn} do
-    IO.inspect(conn)
     {rev, _} = System.cmd("git", ["rev-parse", "HEAD"])
     version = String.replace(rev, "\n", "")
     IO.puts version
