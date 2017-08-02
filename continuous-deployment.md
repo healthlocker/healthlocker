@@ -94,3 +94,8 @@ Travis needs to know _exactly_ which version to deploy
 e.g: `/home/hladmin/healthlocker/releases/1.0.3+3a4f948/healthlocker_1.0.3+3a4f948.tar.gz`
 
 the `.deliver/version.sh` bash script handles returning the latest version to be deployed.
+
+
+```
+scp  ./vm.args root@51.140.86.5:/home/hladmin/healthlocker/releases/1.0.3+793b658/vm.args
+```
