@@ -4,6 +4,8 @@ defmodule Healthlocker.SupportController do
   plug :find_room
 
   def index(conn, _params) do
-    render conn, "index.html"
+    conn
+    |> Healthlocker.SetView.set_view("SupportView")
+    |> render("index.html")
   end
 end

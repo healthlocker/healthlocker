@@ -16,10 +16,14 @@ defmodule Healthlocker.DiaryController do
             conn
             |> redirect(to: diary_path(conn, :edit, diary))
           _ ->
-            render conn, "new.html", changeset: changeset
+            conn
+            |> Healthlocker.SetView.set_view("DiaryView")
+            |> render("new.html", changeset: changeset)
         end
       _ ->
-        render conn, "new.html", changeset: changeset
+        conn
+        |> Healthlocker.SetView.set_view("DiaryView")
+        |> render("new.html", changeset: changeset)
     end
   end
 
@@ -35,14 +39,18 @@ defmodule Healthlocker.DiaryController do
         |> put_flash(:info, ["Diary saved successfully, view it in ", link_to("Tracking Overview", to: tracker_path(conn, :index))])
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
-        render conn, "new.html", changeset: changeset
+        conn
+        |> Healthlocker.SetView.set_view("DiaryView")
+        |> render("new.html", changeset: changeset)
     end
   end
 
   def edit(conn, %{"id" => diary_id}) do
     diary = Repo.get(Diary, diary_id)
     changeset = Diary.changeset(diary)
-    render conn, "edit.html", changeset: changeset, diary: diary
+    conn
+    |> Healthlocker.SetView.set_view("DiaryView")
+    |> render("edit.html", changeset: changeset, diary: diary)
   end
 
   def update(conn, %{"id" => diary_id, "diary" => diary}) do
@@ -55,7 +63,9 @@ defmodule Healthlocker.DiaryController do
         |> put_flash(:info, ["Updated diary entry, view it in ", link_to("Tracking Overview", to: tracker_path(conn, :index))])
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
-        render conn, "edit.html", changeset: changeset, diary: old_diary
+        conn
+        |> Healthlocker.SetView.set_view("DiaryView")
+        |> render("edit.html", changeset: changeset, diary: old_diary)
     end
   end
 end

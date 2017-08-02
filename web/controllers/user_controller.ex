@@ -5,12 +5,16 @@ defmodule Healthlocker.UserController do
   alias Healthlocker.Plugs.Auth
 
   def index(conn, _params) do
-    render conn, "index.html"
+    conn
+    |> Healthlocker.SetView.set_view("UserView")
+    |> render("index.html")
   end
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})
-    render(conn, "new.html", changeset: changeset)
+    conn
+    |> Healthlocker.SetView.set_view("UserView")
+    |> render("new.html", changeset: changeset)
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -32,16 +36,21 @@ defmodule Healthlocker.UserController do
                                                            user: user)
             user.password_hash ->
               conn
+              |> Healthlocker.SetView.set_view("UserView")
               |> render("new.html", changeset: changeset)
             !user.password_hash ->
               conn
               |> redirect(to: "/users/#{user.id}/signup2", action: :signup2,
                                                            user: user)
             true ->
-              render(conn, "new.html", changeset: changeset)
+              conn
+              |> Healthlocker.SetView.set_view("UserView")
+              |> render("new.html", changeset: changeset)
           end
         else
-          render(conn, "new.html", changeset: changeset)
+          conn
+          |> Healthlocker.SetView.set_view("UserView")
+          |> render("new.html", changeset: changeset)
         end
     end
   end
@@ -49,7 +58,9 @@ defmodule Healthlocker.UserController do
   def signup2(conn, %{"user_id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.security_question(%User{})
-    render(conn, "signup2.html", changeset: changeset,
+    conn
+    |> Healthlocker.SetView.set_view("UserView")
+    |> render("signup2.html", changeset: changeset,
                                  action: "/users/#{user.id}/#{:create2}",
                                  user: user)
   end
@@ -64,16 +75,20 @@ defmodule Healthlocker.UserController do
         |> redirect(to: "/users/#{user.id}/signup3", action: :signup3,
                                                      user: user)
       {:error, changeset} ->
-        render(conn, "signup2.html", changeset: changeset,
-                                     action: "/users/#{user.id}/#{:create2}",
-                                     user: user)
+        conn
+        |> Healthlocker.SetView.set_view("UserView")
+        |> render("signup2.html", changeset: changeset,
+                     action: "/users/#{user.id}/#{:create2}",
+                     user: user)
     end
   end
 
   def signup3(conn, %{"user_id" => id}) do
     user = Repo.get!(User, id)
     changeset = User.data_access(%User{})
-    render(conn, "signup3.html", changeset: changeset,
+    conn
+    |> Healthlocker.SetView.set_view("UserView")
+    |> render("signup3.html", changeset: changeset,
                                  action: "/users/#{user.id}/#{:create3}",
                                  user: user)
   end
@@ -89,9 +104,11 @@ defmodule Healthlocker.UserController do
         |> put_flash(:info, "Account created successfully - Welcome to Healthlocker!")
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "signup3.html", changeset: changeset,
-                                     action: "/users/#{user.id}/#{:create3}",
-                                     user: user)
+        conn
+        |> Healthlocker.SetView.set_view("UserView")
+        |> render("signup3.html", changeset: changeset,
+                       action: "/users/#{user.id}/#{:create3}",
+                       user: user)
     end
   end
 end

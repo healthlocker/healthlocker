@@ -24,7 +24,9 @@ defmodule Healthlocker.GoalController do
       conn
       |> redirect(to: goal_path(conn, :new))
     else
-      render conn, "index.html", goals: incomplete_goals, complete_goals: completed
+      conn
+      |> Healthlocker.SetView.set_view("GoalView")
+      |> render("index.html", goals: incomplete_goals, complete_goals: completed)
     end
   end
 
@@ -33,8 +35,9 @@ defmodule Healthlocker.GoalController do
     changeset = Goal.changeset(%Goal{
       steps: Enum.map(1..5, fn _ -> Step.changeset(%Step{}) end)
     })
-
-    render(conn, "new.html", changeset: changeset)
+    conn
+    |> Healthlocker.SetView.set_view("GoalView")
+    |> render("new.html", changeset: changeset)
   end
 
   def show(conn, %{"id" => id}) do
@@ -42,7 +45,9 @@ defmodule Healthlocker.GoalController do
     goal = Goal
           |> Goal.get_goal_by_user(id, user_id)
           |> Repo.one!
-    render conn, "show.html", goal: goal
+    conn
+    |> Healthlocker.SetView.set_view("GoalView")
+    |> render("show.html", goal: goal)
   end
 
   def create(conn, %{"goal" => goal_params}) do
@@ -59,7 +64,9 @@ defmodule Healthlocker.GoalController do
         |> put_flash(:info, "Goal added!")
         |> redirect(to: goal_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> Healthlocker.SetView.set_view("GoalView")
+        |> render("new.html", changeset: changeset)
     end
   end
 
@@ -70,7 +77,9 @@ defmodule Healthlocker.GoalController do
           |> Repo.one
           |> Map.update!(:content, &(String.trim_trailing(&1, " #Goal")))
     changeset = Goal.changeset(goal)
-    render(conn, "edit.html", goal: goal, changeset: changeset)
+    conn
+    |> Healthlocker.SetView.set_view("GoalView")
+    |> render("edit.html", goal: goal, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "goal" => goal_params}) do
@@ -87,7 +96,9 @@ defmodule Healthlocker.GoalController do
         |> put_flash(:info, "Goal updated successfully.")
         |> redirect(to: goal_path(conn, :index))
       {:error, changeset} ->
-        render(conn, "edit.html", goal: goal, changeset: changeset)
+        conn
+        |> Healthlocker.SetView.set_view("GoalView")
+        |> render("edit.html", goal: goal, changeset: changeset)
     end
   end
 

@@ -9,6 +9,8 @@ defmodule Healthlocker.ToolkitController do
                         |> Post.get_coping_strategies(user_id)
                         |> Repo.all
                         |> Enum.take(-3)
-    render conn, "index.html", coping_strategies: coping_strategies
+    conn
+    |> Healthlocker.SetView.set_view("ToolkitView")
+    |> render("index.html", coping_strategies: coping_strategies)
   end
 end
