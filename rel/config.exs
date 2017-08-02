@@ -44,4 +44,3 @@ release :healthlocker do
     :runtime_tools
   ]
 end
-
