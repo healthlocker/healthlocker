@@ -3,7 +3,7 @@ defmodule Healthlocker.Caseload.UserController do
   use Timex
   alias Healthlocker.SleepTracker
 
-  alias Healthlocker.{User, ReadOnlyRepo, EPJSUser, EPJSPatientAddressDetails, Goal, Post, Slam.ServiceUser}
+  alias Healthlocker.{User, Goal, Post, Slam.ServiceUser, Slam.Address}
 
   def show(conn, %{"id" => id, "section" => section, "date" => date, "shift" => shift}) do
     if conn.assigns.current_user.user_guid do
@@ -53,10 +53,9 @@ defmodule Healthlocker.Caseload.UserController do
     user = Repo.get!(User, id)
     room = Repo.one! assoc(user, :rooms)
     service_user = ServiceUser.for(user)
-    slam_user = ReadOnlyRepo.one(from e in EPJSUser,
-                where: e."Patient_ID" == ^service_user.slam_id)
-    address = ReadOnlyRepo.one(from e in EPJSPatientAddressDetails,
-                    where: e."Patient_ID" == ^service_user.slam_id)
+    slam_user = ServiceUser.get_user(service_user)
+    address = Address.for(service_user)
+
     goals = Goal
           |> Goal.get_goals(id)
           |> Repo.all

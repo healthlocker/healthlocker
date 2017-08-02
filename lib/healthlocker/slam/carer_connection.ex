@@ -1,8 +1,7 @@
 defmodule Healthlocker.Slam.CarerConnection do
   use Ecto.Schema
   import Ecto.Changeset
-  import Ecto.Query
-  alias Healthlocker.{EPJSUser, ReadOnlyRepo}
+  alias Healthlocker.{QueryEpjs}
 
   embedded_schema do
     field :forename
@@ -30,20 +29,12 @@ defmodule Healthlocker.Slam.CarerConnection do
     if epjs_user, do: put_change(changeset, :epjs_patient_id, epjs_user."Patient_ID"), else: changeset
   end
 
-  defp find_epjs_user(%{changes: changes}) when changes == %{} do
+  def find_epjs_user(%{changes: changes}) when changes == %{} do
     nil
   end
 
-  defp find_epjs_user(%{changes: changes}) do
-    %{forename: forename, surname: surname, date_of_birth: date_of_birth, nhs_number: nhs_number} = changes
-
-    query = from e in EPJSUser,
-      where: e."Forename" == ^forename
-        and e."Surname" == ^surname
-        and e."DOB" == ^date_of_birth
-        and e."NHS_Number" == ^nhs_number
-
-    ReadOnlyRepo.one(query)
+  def find_epjs_user(changeset) do
+    QueryEpjs.query_epjs("http://localhost:4001/epjs-user/carer-connection/find_epjs_user?changeset=", changeset)
   end
 
   defp cast_datetime(changeset, field) do
