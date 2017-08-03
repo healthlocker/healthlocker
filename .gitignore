@@ -29,3 +29,4 @@ erl_crash.dump
 .deliver/releases/
 
 /.vagrant
+deploy_key

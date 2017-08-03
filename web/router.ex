@@ -90,4 +90,8 @@ defmodule Healthlocker.Router do
     resources "/epjs-button", ButtonController, only: [:index]
     resources "/caseload", CaseloadController, only: [:index]
   end
+
+  scope "/", Healthlocker do
+    get "/_version", GithubVersionController, :index # for deployment versioning
+  end
 end
