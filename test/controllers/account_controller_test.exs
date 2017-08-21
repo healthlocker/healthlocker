@@ -113,7 +113,7 @@ defmodule Healthlocker.AccountControllerTest do
 
     test "renders consent.html on /account/consent", %{conn: conn} do
       conn = get conn, account_path(conn, :consent)
-      assert html_response(conn, 200) =~ "anonymous data"
+      assert html_response(conn, 200) =~ "anonymous usage data"
     end
 
     test "renders slam.html on /account/slam", %{conn: conn} do
