@@ -8,19 +8,9 @@ defmodule Healthlocker.Plugs.AppName do
 
   def call(conn, _) do
     case Healthlocker.Endpoint.url() do
-      "http://localhost:4000"->
-        conn
-        |> assign(:app_name, "healthlocker")
-      "http://localhost:4001" ->
-        conn
-        |> assign(:app_name, "healthlocker")
-      "https://www.healthlocker.uk/" ->
-        conn
-        |> assign(:app_name, "healthlocker")
       _ ->
         conn
-        |> assign(:app_name, "oxleas")
-        |> Phoenix.Controller.put_layout({Healthlocker.Oxleas.LayoutView, "app.html"})
+        |> assign(:app_name, "healthlocker")
     end
   end
 
