@@ -1,3 +1,8 @@
+<div>
+  <p>This tracker will allow you to keep a record of how you are sleeping.</p>
+<p class="b">How did you sleep last night?</p>
+</div>
+  
 <div class="br2 mv4 center">
   <%= form_for @changeset, @action, fn f -> %>
     <div class="form-group">
