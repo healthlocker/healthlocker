@@ -82,7 +82,7 @@
       to: "http://www.slam.nhs.uk/",
       class: "hl-aqua flex-wrap underline" %></strong>
       have a <%= link_to("Carer FAQs", to: "http://www.slam.nhs.uk/patients-and-carers/carer-information/frequently-asked-questions") %>
-      resource, a <%= link_to("handbook for families", to: "http://www.slam.nhs.uk/media/176078/CARERS%20HANDBOOK%204TH%20DESIGN%20WEBSITE.pdf") %>
+      resource, a <%= link_to("handbook for families", to: "http://www.slam.nhs.uk/media/176078/carers-handbook-2017.pdf") %>
       and guidance on <%= link "confidentiality and sharing information with carers", to: "http://www.slam.nhs.uk/media/425250/slam_carers_confidentiality.pdf", class: "hl-aqua flex-wrap underline" %>
       on their website
     </p>
