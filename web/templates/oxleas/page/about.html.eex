@@ -1,0 +1,120 @@
+<div class="ma3 ma4-m ma4-l">
+  <h2 class="tc">About</h2>
+  <div class="bb bw2 bb--hl-dark-blue pb3 pt4">
+    <p class="b">What is Healthlocker?</p>
+
+    <p>
+      Healthlocker is a secure platform powered by the
+      <%= link "South London and Maudsley NHS Foundation Trust (the trust)", to: "http://www.slam.nhs.uk/",
+          class: "hl-aqua flex-wrap underline" %>
+      that promotes supported self-management and opportunities to improve
+      communication between service users, carers and clinicians.
+    </p>
+
+    <p class="b">
+      It is currently in development, more
+      features and improvements will be added in the coming months.
+    </p>
+
+    <div class="tc mv3">
+      <%= img_tag("/images/About_Clinician.png", class: "w4") %>
+    </div>
+  </div>
+
+  <div class="mt4 mb5">
+    <p class="b">Who is Healthlocker for?</p>
+
+    <p>
+      Anyone can
+      <%= link "sign up to Healthlocker", to: user_path(@conn, :new),
+          class: "hl-aqua flex-wrap underline" %>
+      to explore wellbeing tips and recovery stories and create goals and coping
+      strategies.
+      If you need help or support using Healthlocker, please email
+      <%= link_to "healthlocker@slam.nhs.uk", to: "mailto:healthlocker@slam.nhs.uk" %>
+    </p>
+
+    <div class="flex items-start justify-between mt4">
+      <div class="w3 w-10-m w-10-l">
+        <%= img_tag("/images/About_Service_user.png") %>
+      </div>
+
+      <p class="w-80 w-90-m w-90-l mv0">
+        If you are a service user at the South London and Maudsley NHS
+        Foundation Trust, you can choose to connect your Healthlocker account
+        with your health record and care team. This will enable you to send and
+        receive messages with your care team, share tracking, goals and coping
+        strategies with them.
+      </p>
+    </div>
+
+    <div class="flex items-start justify-between mv4">
+      <p class="w-80 w-90-m w-90-l mv0">
+        If you are a close family member, friend or carer of a service user at the
+        trust, you can connect with their care team and let the team know how
+        the person you support is doing.
+      </p>
+
+      <div class="w3 w-10-m w-10-l">
+        <%= img_tag("/images/About_Carers.png", class: "w-100") %>
+      </div>
+    </div>
+
+    <div class="flex items-start justify-between mv4">
+      <div class="w3 w-10-m w-10-l">
+        <%= img_tag("/images/About_Researchers.png", class: "w-100") %>
+      </div>
+
+      <p class="w-80 w-90-m w-90-l mv0">
+        If you are staff at the trust, you can access Healthlocker via the icon
+        in the top panel in ePJS. You can send and receive messages with service
+        users and their carers and view updates that your caseload has chosen
+        to share with you. As staff, if you need help or support using
+        Healthlocker, please contact the trust service desk.
+      </p>
+    </div>
+
+    <p>
+      Healthlocker is powered by South London and Maudsley NHS Foundation Trust,
+      if you are interested in using Healthlocker in your trust or organisation,
+      contact:
+      <%= link_to "DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk" %>
+    </p>
+  </div>
+
+  <div class="mv5">
+    <p class="b">Why Healthlocker?</p>
+
+    <p>
+      Healthlocker aims to demonstrate how personalised health records (PHRs)
+      could enhance NHS service delivery and support people to stay well.
+    </p>
+  </div>
+
+  <div class="mv5">
+    <p class="b">How does it work / what next?</p>
+
+    <p>
+      Healthlocker is built using agile development processes which enable
+      iteration through user-centred build, test and learn cycles.
+    </p>
+
+    <p>
+      Healthlocker integrates with the trust's clinical record system (ePJS).
+    </p>
+
+    <p>
+      The platform is being built open source and in a modular way that allows
+      for future integrations, features and partnerships. Development of
+      Healthlocker so far has been funded by
+      <%= link_to("Maudsley Charity", to: "http://www.maudsleycharity.org/")%>.
+    </p>
+
+    <p>
+      Healthlocker will continue to grow and develop. If you are interested in
+      using Healthlocker in your trust or organisation or have ideas for how to
+      add to the platform, contact:
+      <%= link_to("DigitalServices@slam.nhs.uk", to: "mailto:DigitalServices@slam.nhs.uk") %>
+    </p>
+  </div>
+</div>

@@ -31,6 +31,8 @@ environment :prod do
   set include_erts: true
   set include_src: false
   set cookie: :"dAfW2?q9h{m(zcV!3qWp>.c;bn_D;PsJp3?SK&56imsT;s%mnv2f1|dVTmtM@c9O"
+  set vm_args: "rel/vm.args"
+  set sys_config: nil
 end
 
 # You may define one or more releases in this file.
@@ -44,4 +46,3 @@ release :healthlocker do
     :runtime_tools
   ]
 end
-
