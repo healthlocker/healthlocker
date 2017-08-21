@@ -4,6 +4,8 @@ defmodule Healthlocker.ComponentController do
 
   def index(conn, _params) do
     post = Post |> first |> Repo.one
-    render conn, "index.html", post: post
+    conn
+    |> Healthlocker.SetView.set_view("ComponentView")
+    |> render("index.html", post: post)
   end
 end

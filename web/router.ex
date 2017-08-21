@@ -8,6 +8,7 @@ defmodule Healthlocker.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Healthlocker.Plugs.Auth, repo: Healthlocker.Repo
+    plug Healthlocker.Plugs.AppName
     plug :find_room
   end
 
@@ -88,5 +89,9 @@ defmodule Healthlocker.Router do
     resources "/password", PasswordController, only: [:new, :create, :edit, :update]
     resources "/epjs-button", ButtonController, only: [:index]
     resources "/caseload", CaseloadController, only: [:index]
+  end
+
+  scope "/", Healthlocker do
+    get "/_version", GithubVersionController, :index # for deployment versioning
   end
 end
