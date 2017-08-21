@@ -156,6 +156,10 @@
     <%= link_to("Lewisham", to: "https://www.changegrowlive.org/content/new-direction-lewisham") %>.
     All services are free and confidential and for people over 18 years old</p>
 
+    <p><strong><%= link_to("Recovery College", to: "http://www.slamrecoverycollege.co.uk/") %></strong> 
+    run free educational courses for South London and Maudsley service users, carers, volunteers and staff. 
+    See the latest <%= link_to("timetable", to: "http://www.slamrecoverycollege.co.uk/timetable.html") %> to enrol.</p>
+      
     <h4 class="mt-3rem">National mental health charities</h4>
     <p><strong><%= link_to("Mind", to: "https://www.mind.org.uk") %></strong>
     is the UK’s largest mental health charity. They provide information and advice
@@ -197,8 +201,22 @@
     After very promising early results it is now being trialled across sites in the UK.
     It’s for young people between the ages of 16 and 25 who have had an eating disorder
     for three years or less. The website includes a self-assessment tool</p>
+    
+     <p><strong><%= link_to("SH:24", to: "https://sh24.org.uk/") %></strong> 
+     provides free STI test kits for over 16s and free contraceptive pill for over 18s living in Southwark and Lambeth. 
+     Also has lots of information about <%= link_to("contraceptive options", to: "https://sh24.org.uk/contraception") %> 
+     and <%= link_to("sexual health", to: "https://sh24.org.uk/sexual-health/") %>.
+       
+       
+      
   </div>
 
   <p><%= link_to("Suggest an addition or amendment to this page.", to: "/feedback") %></p>
+    
+   <p><i>Any links provided within Healthlocker are done so as a convenience and for informational purposes only;
+     they do not constitute an endorsement or an approval by South London and Maudsley NHS Foundation Trust of 
+     any of the products, services or opinions of the third party. South London and Maudsley NHS Foundation Trust 
+     take no responsibility for the accuracy, legality or content of the external site or for that of subsequent links. 
+     Please contact the external site for answers to questions regarding its content.</i></p>
 
 </div>
