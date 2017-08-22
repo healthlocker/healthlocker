@@ -16,9 +16,13 @@
 
         <%= for step <- goal.steps do %>
           <%= if is_bitstring(step.details) do %>
-            <ul>
-              <li><%= step.details %></li>
-            </ul>
+            <div>
+              <%= if step.complete do %>
+              <p>TICK <%= step.details %></p>
+              <% else %>
+              <p>UNTICKED <%= step.details %></p>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
         <%= if goal.important do %>
