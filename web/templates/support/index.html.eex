@@ -82,7 +82,7 @@
       to: "http://www.slam.nhs.uk/",
       class: "hl-aqua flex-wrap underline" %></strong>
       have a <%= link_to("Carer FAQs", to: "http://www.slam.nhs.uk/patients-and-carers/carer-information/frequently-asked-questions") %>
-      resource, a <%= link_to("handbook for families", to: "http://www.slam.nhs.uk/media/176078/CARERS%20HANDBOOK%204TH%20DESIGN%20WEBSITE.pdf") %>
+      resource, a <%= link_to("handbook for families", to: "http://www.slam.nhs.uk/media/176078/carers-handbook-2017.pdf") %>
       and guidance on <%= link "confidentiality and sharing information with carers", to: "http://www.slam.nhs.uk/media/425250/slam_carers_confidentiality.pdf", class: "hl-aqua flex-wrap underline" %>
       on their website
     </p>
@@ -156,6 +156,10 @@
     <%= link_to("Lewisham", to: "https://www.changegrowlive.org/content/new-direction-lewisham") %>.
     All services are free and confidential and for people over 18 years old</p>
 
+    <p><strong><%= link_to("Recovery College", to: "http://www.slamrecoverycollege.co.uk/") %></strong> 
+    run free educational courses for South London and Maudsley service users, carers, volunteers and staff. 
+    See the latest <%= link_to("timetable", to: "http://www.slamrecoverycollege.co.uk/timetable.html") %> to enrol.</p>
+      
     <h4 class="mt-3rem">National mental health charities</h4>
     <p><strong><%= link_to("Mind", to: "https://www.mind.org.uk") %></strong>
     is the UK’s largest mental health charity. They provide information and advice
@@ -197,8 +201,23 @@
     After very promising early results it is now being trialled across sites in the UK.
     It’s for young people between the ages of 16 and 25 who have had an eating disorder
     for three years or less. The website includes a self-assessment tool</p>
+    
+     <p><strong><%= link_to("SH:24", to: "https://sh24.org.uk/") %></strong> 
+     provides free STI test kits for over 16s and free contraceptive pill for over 18s living in Southwark and Lambeth. 
+     Also has lots of information about <%= link_to("contraceptive options", to: "https://sh24.org.uk/contraception") %> 
+     and <%= link_to("sexual health", to: "https://sh24.org.uk/sexual-health/") %>.
+       
+       
+      
   </div>
 
   <p><%= link_to("Suggest an addition or amendment to this page.", to: "/feedback") %></p>
+    
+   <p><i>We provide links to external resources and websites on Healthlocker because we hope they may prove helpful.
+     South London and Maudsley NHS Foundation Trust does not however formally endorse or approve any of the products, 
+     services or opinions of these third party organisations or their users / members.  South London and Maudsley NHS 
+     Foundation Trust does not routinely monitor these resources and takes no responsibility for their accuracy, legality
+     or content or for that of subsequent links. Please contact the external website directly if you have any questions
+     regarding its content.</i></p>
 
 </div>
