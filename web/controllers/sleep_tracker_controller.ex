@@ -2,6 +2,7 @@ defmodule Healthlocker.SleepTrackerController do
   use Healthlocker.Web, :controller
   use Timex
   alias Healthlocker.{SleepTracker}
+  import Healthlocker.ComponentHelpers.Link
 
   def new(conn, _params) do
     user = conn.assigns.current_user
@@ -37,7 +38,8 @@ defmodule Healthlocker.SleepTrackerController do
       {:ok, params} ->
         conn |> track_created(params)
         conn
-        |> put_flash(:info, "Sleep tracked successfully!")
+        |> put_flash(:info, ["Tracker saved successfully, view it in ",
+        link_to("Tracking Overview", to: tracker_path(conn, :index))])
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         conn
