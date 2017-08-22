@@ -74,7 +74,7 @@ defmodule Healthlocker.CopingStrategyController do
       {:ok, coping_strategy} ->
         conn
         |> put_flash(:info, "Coping strategy updated successfully.")
-        |> redirect(to: coping_strategy_path(conn, :show, coping_strategy))
+        |> redirect(to: coping_strategy_path(conn, :index))
       {:error, changeset} ->
         conn
         |> Healthlocker.SetView.set_view("CopingStrategyView")
