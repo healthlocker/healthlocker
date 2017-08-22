@@ -1,15 +1,21 @@
-<p class="b">Note down an action you can take to stay well.
+<p class="b">Note down actions you can take if you notice a change in your feelings, thoughts or behaviour.
 <p>
-  Something you can do, or avoid doing when you notice a change in your
-  feelings, thoughts or behaviour.
+What could you do, or avoid doing?<br>
+Is there something you know has helped in the past?
 </p>
-<p>For example, practice relaxation techniques, leave the room if things are
-  too tense, take a break or tell someone you trust.</p>
+<p>For example,<br>
+If I start to feel anxious I can:<br>
+- practice relaxation techniques<br>
+- leave the room if things are too tense<br>
+- take a break or go for a walk<br>
+- talk to someone I trust.</p>
 <%= form_for @changeset, @action, fn f -> %>
   <div class="center">
     <div class="center">
       <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 h4 ba b--black-20 pa2 br2 mb2 default-font" %>
       <div class="tr mt4">
+<p>Read about recovery, self management and spotting warning signs on <%= link "Rethink", to: "https://www.rethink.org/living-with-mental-illness/recovery/tools-for-recovery/self-management",
+          class: "hl-aqua flex-wrap underline" %>.  
         <%= submit_primary "Save" %>
       </div>
     </div>
