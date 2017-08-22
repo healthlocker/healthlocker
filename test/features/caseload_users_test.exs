@@ -133,7 +133,7 @@ defmodule Healthlocker.CaseloadUsersTest do
     |> log_in("robert_macmurray@nhs.co.uk")
     |> click(Query.link("Caseload"))
     |> click(Query.link("Tony Daly"))
-    |> click(Query.link("Messages"))
+    |> click(Query.link("Communications"))
   end
 
   test "view carer", %{session: session} do
