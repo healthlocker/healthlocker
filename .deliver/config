@@ -1,4 +1,4 @@
-APP="healthlocker_dev"
+APP="healthlocker"
 
 BUILD_HOST="51.140.86.5"
 BUILD_USER="root"
