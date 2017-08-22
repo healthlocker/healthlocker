@@ -213,10 +213,11 @@
 
   <p><%= link_to("Suggest an addition or amendment to this page.", to: "/feedback") %></p>
     
-   <p><i>Any links provided within Healthlocker are done so as a convenience and for informational purposes only;
-     they do not constitute an endorsement or an approval by South London and Maudsley NHS Foundation Trust of 
-     any of the products, services or opinions of the third party. South London and Maudsley NHS Foundation Trust 
-     take no responsibility for the accuracy, legality or content of the external site or for that of subsequent links. 
-     Please contact the external site for answers to questions regarding its content.</i></p>
+   <p><i>We provide links to external resources and websites on Healthlocker because we hope they may prove helpful.
+     South London and Maudsley NHS Foundation Trust does not however formally endorse or approve any of the products, 
+     services or opinions of these third party organisations or their users / members.  South London and Maudsley NHS 
+     Foundation Trust does not routinely monitor these resources and takes no responsibility for their accuracy, legality
+     or content or for that of subsequent links. Please contact the external website directly if you have any questions
+     regarding its content.</i></p>
 
 </div>
