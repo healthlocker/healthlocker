@@ -3,6 +3,7 @@ defmodule Healthlocker.UserController do
 
   alias Healthlocker.User
   alias Healthlocker.Plugs.Auth
+  import Healthlocker.ComponentHelpers.Link
 
   def index(conn, _params) do
     conn
@@ -101,7 +102,9 @@ defmodule Healthlocker.UserController do
       {:ok, user} ->
         conn
         |> Auth.login(user)
-        |> put_flash(:info, "Account created successfully - Welcome to Healthlocker!")
+        |> put_flash(:info, ["Welcome to Healthlocker!
+        Connect to your care team and record - find out more in ",
+        link_to("Account.", to: account_path(conn, :index))])
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         conn
