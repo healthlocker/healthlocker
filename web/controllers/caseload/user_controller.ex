@@ -71,6 +71,10 @@ defmodule Healthlocker.Caseload.UserController do
     date = Date.to_iso8601(date)
     {:ok, date_time, _} = DateTime.from_iso8601(date <> "T23:59:59Z")
 
+    care_team = EPJSTeamMember
+                    |> EPJSTeamMember.get_care_team(service_user.slam_id)
+                    |> ReadOnlyRepo.all
+
     symptom_data = Healthlocker.TrackerController.get_symptom_tracking_data(date_time, service_user.id)
     diary_data = Healthlocker.TrackerController.get_diary_data(date_time, service_user.id)
     merged_data = Healthlocker.TrackerController.merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(date_time))
@@ -78,6 +82,6 @@ defmodule Healthlocker.Caseload.UserController do
     %{user: user, room: room, service_user: service_user, slam_user: slam_user,
     address: address, goals: goals, strategies: strategies, sleep_data: sleep_data,
     date: date, symptom_data: symptom_data, diary_data: diary_data,
-    merged_data: merged_data}
+    merged_data: merged_data, care_team: care_team}
   end
 end

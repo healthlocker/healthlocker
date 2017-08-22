@@ -42,6 +42,17 @@
         </td>
       </tr>
     </table>
+
+    <div class="pt6">
+      <h3><%= Healthlocker.ComponentView.full_name(@user) %>'s care team</h3>
+
+      <%= for member <- @care_team do %>
+      <div class="w-100 hl-bg-grey pa3 mv3 br3">
+        <p class="b di"><%= Healthlocker.ComponentView.full_name(member) %></p>
+      </div>
+      <% end %>
+    </div>
+
   </div>
 <%= else %>
   <%= render "carer_menu.html", assigns %>
