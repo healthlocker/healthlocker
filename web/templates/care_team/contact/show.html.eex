@@ -10,8 +10,9 @@
   <%= if Kernel.length(@care_team) == 0 do %>
     <p class="hl-pink">No staff are associated with your account at this time.</p>
     <p class="hl-pink">
-      If you are currently receiving support from SLaM, either call your team
-      or email: <%= link "healthlocker@slam.nhs.uk",
+      If you are currently receiving support from SLaM and would like to use
+      Healthlocker with your care team, speak to your care coordinator or email:
+      <%= link "healthlocker@slam.nhs.uk",
       to: "mailto:healthlocker@slam.nhs.uk", class: "hl-aqua underline di" %>
     </p>
   <% end %>
