@@ -26,20 +26,22 @@
           <% end %>
         <% end %>
         <%= if goal.important do %>
-          <div class="w-10 di">
+          <div class="w-10 fl mv3">
             <%= img_tag("/images/star_selected.svg", class: "w2") %>
           </div>
-          <p class="di i">Important</p>
+          <p class="di i mv3">Important</p>
         <% end %>
-        <%= if goal.achieved_at do %>
-          <div class="w-10 di">
-            <%= img_tag("/images/Goal-Achieved-dark-blue.svg", class: "w2") %>
-          </div>
-          <p class="di i">Achieved</p>
-        <% end %>
-        <p class="mv3 f6 i fr">
+        <p class="mv3 i fr">
           Created <%= Healthlocker.ComponentView.pretty_date(goal.inserted_at) %>
         </p>
+
+        <%= if goal.achieved_at do %>
+          <div class="w-10 fl mv3">
+            <%= img_tag("/images/Goal-Achieved-dark-blue.svg", class: "w2") %>
+          </div>
+          <p class="i fl mv3">Achieved</p>
+          <p class="mv3 fr">Acheived <%= Healthlocker.ComponentView.pretty_date(goal.achieved_at) %></p>
+        <% end %>
         </div>
       <% end %>
     </div>
