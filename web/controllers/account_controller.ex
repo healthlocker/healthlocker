@@ -12,7 +12,6 @@ defmodule Healthlocker.AccountController do
           |> Repo.preload(:caring)
     changeset = User.update_changeset(user)
     conn
-    |> Healthlocker.SetView.set_view("AccountView")
     |> render("index.html", changeset: changeset, user: user,
               slam_id: user.slam_id, action: account_path(conn, :update))
   end
@@ -27,11 +26,9 @@ defmodule Healthlocker.AccountController do
       {:ok, _params} ->
         conn
         |> put_flash(:info, "Updated successfully!")
-        |> Healthlocker.SetView.set_view("AccountView")
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("AccountView")
         |> render("index.html", changeset: changeset, user: user,
                 slam_id: user.slam_id, action: account_path(conn, :update))
     end
@@ -49,7 +46,6 @@ defmodule Healthlocker.AccountController do
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("AccountView")
         |> render("index.html", changeset: changeset, user: user,
                 slam_id: user.slam_id, action: account_path(conn, :update))
     end
@@ -60,7 +56,6 @@ defmodule Healthlocker.AccountController do
     user = Repo.get!(User, user_id)
     changeset = User.update_data_access(user)
     conn
-    |> Healthlocker.SetView.set_view("AccountView")
     |> render("consent.html", changeset: changeset, user: user,
                         action: account_path(conn, :update_consent))
   end
@@ -78,7 +73,6 @@ defmodule Healthlocker.AccountController do
         |> redirect(to: account_path(conn, :consent))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("AccountView")
         |> render("consent.html", changeset: changeset, user: user,
                   action: account_path(conn, :update_consent))
     end
@@ -89,7 +83,6 @@ defmodule Healthlocker.AccountController do
     user = Repo.get!(User, user_id)
     changeset = User.security_question(%User{})
     conn
-    |> Healthlocker.SetView.set_view("AccountView")
     |> render("edit_security.html", changeset: changeset, user: user,
                     action: account_path(conn, :update_security))
   end
@@ -108,7 +101,6 @@ defmodule Healthlocker.AccountController do
           |> redirect(to: account_path(conn, :edit_security))
         {:error, changeset} ->
           conn
-          |> Healthlocker.SetView.set_view("AccountView")
           |> render("edit_security.html", changeset: changeset, user: user,
                     action: account_path(conn, :update_security))
       end
@@ -118,7 +110,6 @@ defmodule Healthlocker.AccountController do
 
       conn
       |> put_flash(:error, "Security answer does not match")
-      |> Healthlocker.SetView.set_view("AccountView")
       |> render("edit_security.html", changeset: %{changeset | action: :update}, user: user,
                 action: account_path(conn, :update_security))
     end
@@ -129,7 +120,6 @@ defmodule Healthlocker.AccountController do
     user = Repo.get!(User, user_id)
     changeset = User.password_changeset(%User{})
     conn
-    |> Healthlocker.SetView.set_view("AccountView")
     |> render("edit_password.html", changeset: changeset, user: user,
                     action: account_path(conn, :update_password))
   end
@@ -149,7 +139,6 @@ defmodule Healthlocker.AccountController do
             |> redirect(to: account_path(conn, :edit_password))
           {:error, changeset} ->
             conn
-            |> Healthlocker.SetView.set_view("AccountView")
             |> render("edit_password.html", changeset: changeset, user: user,
                          action: account_path(conn, :update_password))
         end
@@ -159,7 +148,6 @@ defmodule Healthlocker.AccountController do
 
         conn
         |> put_flash(:error, "Incorrect current password")
-        |> Healthlocker.SetView.set_view("AccountView")
         |> render("edit_password.html", changeset: %{changeset | action: :update},
                 user: user, action: account_path(conn, :update_password))
     end
@@ -170,7 +158,6 @@ defmodule Healthlocker.AccountController do
     user = Repo.get!(User, user_id)
     changeset = User.connect_slam(%User{})
     conn
-    |> Healthlocker.SetView.set_view("AccountView")
     |> render("slam.html", user: user, changeset: changeset,
                   action: account_path(conn, :check_slam))
   end
@@ -228,7 +215,6 @@ defmodule Healthlocker.AccountController do
             {:error, _type, changeset, _} ->
               conn
               |> put_flash(:error, "Something went wrong")
-              |> Healthlocker.SetView.set_view("AccountView")
               |> render("slam.html", user: user, changeset: changeset,
                             action: account_path(conn, :check_slam))
           end

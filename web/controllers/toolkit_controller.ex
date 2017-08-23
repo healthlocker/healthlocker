@@ -10,7 +10,6 @@ defmodule Healthlocker.ToolkitController do
                         |> Repo.all
                         |> Enum.take(-3)
     conn
-    |> Healthlocker.SetView.set_view("ToolkitView")
     |> render("index.html", coping_strategies: coping_strategies)
   end
 end

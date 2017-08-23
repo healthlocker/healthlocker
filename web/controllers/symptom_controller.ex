@@ -5,7 +5,6 @@ defmodule Healthlocker.SymptomController do
   def new(conn, _params) do
     changeset = Symptom.changeset(%Symptom{})
     conn
-    |> Healthlocker.SetView.set_view("SymptomView")
     |> render("new.html", changeset: changeset)
   end
 
@@ -21,7 +20,6 @@ defmodule Healthlocker.SymptomController do
         |> redirect(to: symptom_tracker_path(conn, :new))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("SymptomView")
         |> render("new.html", changeset: changeset)
     end
   end

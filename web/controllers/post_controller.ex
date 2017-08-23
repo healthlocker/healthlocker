@@ -5,14 +5,12 @@ defmodule Healthlocker.PostController do
   def show(conn, %{"id" => id}) do
     post = Repo.get!(Post, id) |> Repo.preload(:likes)
     conn
-    |> Healthlocker.SetView.set_view("PostView")
     |> render("show.html", post: post)
   end
 
   def new(conn, _params) do
     changeset = Post.changeset(%Post{})
     conn
-    |> Healthlocker.SetView.set_view("PostView")
     |> render("new.html", changeset: changeset)
   end
 
@@ -29,7 +27,6 @@ defmodule Healthlocker.PostController do
         |> redirect(to: post_path(conn, :new, posts))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("PostView")
         |> render("new.html", changeset: changeset)
     end
   end
@@ -37,7 +34,6 @@ defmodule Healthlocker.PostController do
   def index(conn, _params) do
     posts = Post |> Post.find_stories |> Repo.all
     conn
-    |> Healthlocker.SetView.set_view("PostView")
     |> render("index.html", posts: posts)
   end
 
@@ -46,7 +42,6 @@ defmodule Healthlocker.PostController do
       post = Repo.get!(Post, id)
       changeset = Post.changeset(post)
       conn
-      |> Healthlocker.SetView.set_view("PostView")
       |> render("edit.html", post: post, changeset: changeset)
     else
       conn
@@ -68,7 +63,6 @@ defmodule Healthlocker.PostController do
         |> redirect(to: post_path(conn, :show, post))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("PostView")
         |> render("edit.html", post: post, changeset: changeset)
     end
   end
