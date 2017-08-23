@@ -5,33 +5,23 @@
   <ul>
     <li>
       I will use this as a self-management tool, not a tool to be used in a
-      crisis - the content is not monitored
+      crisis (the content is not monitored)
     </li>
     <li>I will provide accurate information during registration</li>
     <li>
       I am responsible for maintaining the confidentiality of my login details
     </li>
-    <li>I will respect other users, including NHS staff, at all times</li>
+    <li>I will respect other users, including NHS staff, at all times.</li>
   </ul>
 
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />
 
     <div class="mt3">
-      <%= checkbox f, :data_access, class: "checkbox" %>
-      <%= label f, :data_access do %>
-        I agree to my anonymous Healthlocker usage data being used by the
-        Healthlocker team to improve the service and for researchers to
-        use to drive forward the future of health care.
-      <% end %>
-      <span class="hl-pink"><%= error_tag f, :data_access %></span>
-    </div>
-
-    <div class="mt3">
       <%= checkbox f, :terms_conditions, class: "checkbox" %>
       <%= label f, :terms_conditions do %>
         I accept the
-        <%= link_to("terms of service", to: page_path(@conn, :show, "terms")) %>
+        <%= link_to("terms of service.", to: page_path(@conn, :show, "terms")) %>
       <% end %>
       <span class="hl-pink"><%= error_tag f, :terms_conditions %></span>
     </div>
@@ -40,9 +30,18 @@
       <%= checkbox f, :privacy, class: "checkbox" %>
       <%= label f, :privacy do %>
         I accept the terms of the
-        <%= link_to("privacy statement", to: page_path(@conn, :show, "privacy")) %>
+        <%= link_to("privacy statement.", to: page_path(@conn, :show, "privacy")) %>
       <% end %>
       <span class="hl-pink"><%= error_tag f, :privacy %></span>
+    </div>
+        
+            <div class="mt3">
+      <%= checkbox f, :data_access, class: "checkbox" %>
+      <%= label f, :data_access do %>
+        I allow my anonymous Healthlocker usage data data to be accessed by 
+        researchers to drive forward the future of mental health and care.
+      <% end %>
+      <span class="hl-pink"><%= error_tag f, :data_access %></span>
     </div>
 
     <div class="tr mt4">

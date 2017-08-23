@@ -5,13 +5,13 @@
   <div class="w-100 mw7 center">
     <%= cond do %>
      <%= String.contains?(@conn.request_path, "rooms") -> %>
-       <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
+       <%= link "Communications", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
        <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 hl-bg-grey" %>
      <%= String.contains?(@conn.query_string, "details") -> %>
-       <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 hl-bg-grey" %>
+       <%= link "Communications", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-dark-blue tc pv1 hl-bg-grey" %>
        <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
      <%= true -> %>
-       <%= link "Messages", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
+       <%= link "Communications", to: caseload_user_room_path(@conn, :show, @user, @room), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
        <%= link "Details and contacts", to: caseload_user_path(@conn, :show, @user, section: "details"), class: "link w-50 dib fl hl-dark-blue tc pv1 hl-bg-grey" %>
   <% end %>
   </div>

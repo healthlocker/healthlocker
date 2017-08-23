@@ -95,7 +95,7 @@ defmodule Healthlocker.ClinicianMessageTest do
     |> resize_window(768, 1024) # The caseload link doesn't show on mobile.
     |> click(Query.link("Caseload"))
     |> click(Query.link("Tony Daly"))
-    |> click(Query.link("Messages"))
+    |> click(Query.link("Communications"))
     |> fill_in(Query.css("#message-input"), with: "Sand")
     |> send_keys([:enter])
     |> has_text?("Sand")

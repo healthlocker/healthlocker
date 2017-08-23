@@ -11,4 +11,6 @@
         </div>
     </article>
   <% end %>
-</section>
+
+<p><%= link "Write your own story, or suggest an addition or amendment to this page.", to: "/feedback", class: "hl-aqua flex-wrap underline" %></p>          
+   </section>       

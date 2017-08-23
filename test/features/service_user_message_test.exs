@@ -29,7 +29,7 @@ defmodule Healthlocker.ServiceUserMessageTest do
     |> click(@care_team_link)
 
     assert current_path(session) =~ "/care-team/rooms/"
-    assert has_text?(session, "Messages")
+    assert has_text?(session, "Communications")
   end
 
   test "send messages", %{session: session} do
