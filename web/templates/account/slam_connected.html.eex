@@ -35,5 +35,5 @@
 <% end %>
 
 <div class="bt b--hl-dark-blue pt4">
-  <%= link_to("Disconnect SLaM account", to: page_path(@conn, :show, "disconnect")) %>
+  <%= link_to("Disconnect from your care team and health record", to: page_path(@conn, :show, "disconnect")) %>
 </div>

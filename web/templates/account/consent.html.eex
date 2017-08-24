@@ -24,7 +24,7 @@
 
       <div class="mt3">
         <%= checkbox f, :data_access, class: "checkbox" %>
-        <%= label f, "I allow my anonymous data to be accessed by researchers to
+        <%= label f, "I allow my anonymous usage data to be accessed by researchers to
         drive forward the future of mental health and care" %>
         <span class="hl-pink"><%= error_tag f, :data_access %></span>
       </div>

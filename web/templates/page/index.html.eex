@@ -17,12 +17,11 @@
 <%= end %>
 
 <section class="bb bw2 bb--hl-dark-blue pb3 pt4 center">
-  <h3 class="pb2 ph3 ph0-l ma0 tc">Tips: 5 Ways to Wellbeing</h3>
+  <h3 class="pb2 ph3 ph0-l ma0 tc">Wellbeing Tips</h3>
   <div>
     <p>Small improvements in our wellbeing can help to decrease some mental
       health problems and also help us to get more out of life.</p>
-    <p>These 5 actions are proven to improve personal wellbeing. <br>
-      <%= link_to "Read the full document", to: "https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing" %>
+    <p>These 5 ways to wellbeing are proven to improve personal wellbeing. <%= link_to "Read the full document.", to: "https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing" %>
     </p>
   </div>
 
@@ -34,7 +33,7 @@
         class: "pb1-l mb3-l mb5 pb4 mb2-m pb3-m") %>
       </a>
       <div class="w-80 w-90-m w-90-l dib">
-        <p class="mt0"><strong><%= link_to "#Connect", to: "/tips?tag=Connect"%></strong> with the people around us. Building stronger, wider social connections can help us feel happier and more secure, and give us a greater sense of purpose. </p>
+        <p class="mt0"><strong>1. <%= link_to "#Connect", to: "/tips?tag=Connect"%></strong> with the people around us. Building stronger, wider social connections can help us feel happier and more secure, and give us a greater sense of purpose. </p>
         <p class="i mv1">Who might you want to connect more with?</p>
       </div>
     </div>
@@ -58,7 +57,7 @@
         class: "mb5-l pb2-l mb6 pb5 pb5-m mb4-m") %>
       </a>
       <div class="w-80 w-90-m w-90-l dib">
-        <p class="mt0"><strong><%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
+        <p class="mt0"><strong>2. <%= link_to "#BeActive", to: "/tips?tag=BeActive"%>
         </strong> There’s an activity out there for all of us, suited to our level of fitness and mobility.</p>
         <p>
           Being active is great for our physical health and fitness, and also improves our mental wellbeing.
@@ -88,7 +87,7 @@
         class: "mb4-l pb0-l mb6 pb4 mb0-m") %>
       </a>
       <div class="w-80 w-90-m w-90-l dib">
-        <p class="mt0"><strong><%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%></strong>
+        <p class="mt0"><strong>3. <%= link_to "#KeepLearning", to: "/tips?tag=KeepLearning"%></strong>
           Learning can boost self-confidence and self-esteem, help build a sense of purpose, and help us connect with others.
           Research shows that learning throughout life is associated with greater satisfaction and optimism, and improved ability to get the most from life.
         </p>
@@ -116,7 +115,7 @@
         class: "mb4-l pb3-l mb6 pb5 mb4-m pb4-m") %>
       </a>
       <div class="w-80 w-90-m w-90-l dib">
-        <p class="mt0"><strong><%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%></strong>
+        <p class="mt0"><strong>4. <%= link_to "#GiveToOthers", to: "/tips?tag=GiveToOthers"%></strong>
           Doing even little things for others can give us a sense of purpose and self-worth.
           It can make us feel happier and more satisfied with life. Being kind to others can stimulate the reward areas in our brain, creating positive feelings.
           Even doing something small for someone else can give us a buzz.
@@ -145,7 +144,7 @@
         class: "mb4-l pb1-l mb6 pb3 mb4-m pb4-m") %>
       </a>
       <div class="w-80 w-90-m w-90-l dib">
-        <p class="mt0"><strong><%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%></strong>
+        <p class="mt0"><strong>5. <%= link_to "#TakeNotice", to: "/tips?tag=TakeNotice"%></strong>
           Being in the moment, including just being aware of our thoughts, feelings, body and the world around us, can help us appreciate the little things, understand ourselves more and get the most out of being alive.
         </p>
         <p class="i mv1">When in your day can you stop to notice what’s happening with you and around you?</p>
