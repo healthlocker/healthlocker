@@ -2,7 +2,7 @@ defmodule Healthlocker.CarePlanController do
   use Healthlocker.Web, :controller
   alias Healthlocker.{EPJSSummaryNeeds, EPJSRecoveryCarePlan,
   EPJSRcpLifeEventTriggers, EPJSRcpHelpFromOthers, EPJSRcpGoalsAsp,
-  EPJSRCPDailyActivity, EPJSRcpContingency}
+  EPJSRcpDailyActivity, EPJSRcpContingency}
 
   def index(conn, _params) do
     id = conn.assigns.current_user.slam_id
@@ -39,7 +39,7 @@ defmodule Healthlocker.CarePlanController do
       where: esn."SLAM_Recovery_Focused_Care_Plan_ID" == ^recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID"
     goals_asp = ReadOnlyRepo.one(goals_asp_query)
 
-    daily_activity_query = from esn in EPJSRCPDailyActivity,
+    daily_activity_query = from esn in EPJSRcpDailyActivity,
       where: esn."SLAM_Recovery_Focused_Care_Plan_ID" == ^recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID"
     daily_activity = ReadOnlyRepo.one(daily_activity_query)
 

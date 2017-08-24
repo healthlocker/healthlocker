@@ -1,4 +1,4 @@
-defmodule Healthocker.EPJSRcpGoalsAsp do
+defmodule Healthlocker.EPJSRcpGoalsAsp do
   use Healthlocker.Web, :model
 
   @primary_key {:SLAM_Recovery_Focused_Care_Plan_ID, :integer, autogenerate: false}
