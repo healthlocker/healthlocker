@@ -69,7 +69,7 @@ defmodule Healthlocker.CopingStrategyControllerTest do
     test "updates coping strategy with valid data", %{conn: conn} do
       coping_strategy = Repo.insert! %Post{content: "some stuff"}
       conn = put conn, coping_strategy_path(conn, :update, coping_strategy), post: @valid_attrs
-      assert redirected_to(conn) == coping_strategy_path(conn, :show, coping_strategy)
+      assert redirected_to(conn) == coping_strategy_path(conn, :index)
     end
 
     test "does not update coping strategy when data is invalid", %{conn: conn} do

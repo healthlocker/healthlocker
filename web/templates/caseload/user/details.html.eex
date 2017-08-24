@@ -4,7 +4,9 @@
     <table class="hl-bg-light-yellow br3 w-80 tl center pa3">
       <tr>
         <th class="b tl pv2 mw3">Date of Birth: </th>
-        <td class="pv2"><%= Healthlocker.ComponentView.pretty_date(@slam_user."DOB") %></td>
+        <%= if !is_nil(@slam_user."DOB") do %>
+          <td class="pv2"><%= Healthlocker.ComponentView.pretty_date(@slam_user."DOB") %></td>
+        <% end %>
       </tr>
       <tr>
         <th class="b tl pv2 mw3">Email: </th>
@@ -42,6 +44,17 @@
         </td>
       </tr>
     </table>
+
+    <div class="pt6">
+      <h3><%= Healthlocker.ComponentView.full_name(@user) %>'s care team</h3>
+
+      <%= for member <- @care_team do %>
+      <div class="w-100 hl-bg-grey pa3 mv3 br3">
+        <p class="b di"><%= member %></p>
+      </div>
+      <% end %>
+    </div>
+
   </div>
 <%= else %>
   <%= render "carer_menu.html", assigns %>
