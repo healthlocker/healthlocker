@@ -1,15 +1,28 @@
 defmodule Healthlocker.Slam.ConnectSlam do
   alias Ecto.Multi
-  alias Healthlocker.{User, Room, UserRoom, Repo, ClinicianRooms}
+  alias Healthlocker.{User, Room, UserRoom, Repo, ClinicianRooms, Carer}
+  import Ecto.Query
 
-  def connect_su_and_create_rooms(user, params) do
+  def connect_su_and_create_rooms(user, params, carer) do
     Multi.new
     |> Multi.update(:user, User.connect_slam(user, params))
     |> Multi.insert(:room, Room.changeset(%Room{}, %{
       name: "service-user-care-team:" <> Integer.to_string(user.id)
     }))
+    |> Multi.run(:carer, &check_carers_to_add(&1, user, params.slam_id, carer))
     |> Multi.run(:user_room, &add_su_to_room/1)
     |> Multi.run(:clinician_room, &add_clinicians_to_room/1)
+  end
+
+  defp check_carers_to_add(_multi, user, slam_id, carer) do
+    if carer do
+      query = from(c in Carer, where: c.slam_id == ^slam_id, update: [set: [caring_id: ^user.id]])
+      case Repo.update_all(query, []) do
+        {_n, nil} -> {:ok, "Carer updated successfully"}
+      end
+    else
+      {:ok, "No carers to update"}
+    end
   end
 
   defp add_su_to_room(multi) do
