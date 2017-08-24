@@ -3,7 +3,7 @@ defmodule Healthlocker.Caseload.UserController do
   use Timex
   alias Healthlocker.SleepTracker
 
-  alias Healthlocker.{User, ReadOnlyRepo, EPJSUser, EPJSPatientAddressDetails, Goal, Post, Slam.ServiceUser}
+  alias Healthlocker.{User, ReadOnlyRepo, EPJSUser, EPJSPatientAddressDetails, Goal, Post, Slam.ServiceUser, EPJSTeamMember}
 
   def show(conn, %{"id" => id, "section" => section, "date" => date, "shift" => shift}) do
     if conn.assigns.current_user.user_guid do
@@ -41,7 +41,7 @@ defmodule Healthlocker.Caseload.UserController do
       address: details.address, goals: details.goals, strategies: details.strategies,
       room: details.room, service_user: details.service_user, sleep_data: details.sleep_data,
       date: details.date, symptom_data: details.symptom_data, diary_data: details.diary_data,
-      merged_data: details.merged_data)
+      merged_data: details.merged_data, care_team: details.care_team)
     else
       conn
       |> put_flash(:error, "Authentication failed")

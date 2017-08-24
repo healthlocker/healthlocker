@@ -24,11 +24,7 @@ defmodule Healthlocker.EPJSTeamMember do
 
   def get_care_team(query, slam_id) do
     from etm in query,
-    join: ec in "epjs_clinicians",
     where: etm."Patient_ID" == ^slam_id,
-    select: %{
-      first_name: ec.first_name,
-      last_name: ec.last_name
-    }
+    select: etm."Staff_Name"
   end
 end
