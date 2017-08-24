@@ -1,7 +1,9 @@
 defmodule Healthlocker.CarePlanControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.User
+  alias Healthlocker.{User, EPJSSummaryNeeds, EPJSRecoveryCarePlan,
+  EPJSRcpLifeEventTriggers, EPJSRcpHelpFromOthers, EPJSRcpGoalsAsp,
+  EPJSRCPDailyActivity, EPJSRcpContingency}
 
   describe "current_user is assigned in the session" do
     setup do
