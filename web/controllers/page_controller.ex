@@ -22,13 +22,11 @@ defmodule Healthlocker.PageController do
     end
 
     conn
-    |> Healthlocker.SetView.set_view("PageView")
     |> render("index.html", story: story, tip: tip)
   end
 
   def show(conn, %{"id" => id}) do
     conn
-    |> Healthlocker.SetView.set_view("PageView")
     |> render(String.to_atom(id))
   end
 end

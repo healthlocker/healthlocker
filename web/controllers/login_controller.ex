@@ -6,7 +6,6 @@ defmodule Healthlocker.LoginController do
 
   def index(conn, _) do
     conn
-    |> Healthlocker.SetView.set_view("LoginView")
     |> render("index.html")
   end
 
@@ -27,7 +26,6 @@ defmodule Healthlocker.LoginController do
       {:error, _reason, conn} ->
         conn
         |> put_flash(:error, "Invalid email/password combination")
-        |> Healthlocker.SetView.set_view("LoginView")
         |> render("index.html")
     end
   end

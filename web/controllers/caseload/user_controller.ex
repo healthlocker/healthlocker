@@ -16,9 +16,8 @@ defmodule Healthlocker.Caseload.UserController do
         end
 
       details = get_details(id, shifted_date)
-      
+
       conn
-      |> Healthlocker.SetView.set_view("Caseload.UserView")
       |> render(String.to_atom(section), user: details.user, slam_user: details.slam_user,
       address: details.address, goals: details.goals, strategies: details.strategies, room: details.room,
       service_user: details.service_user, sleep_data: details.sleep_data, date: details.date,
@@ -36,7 +35,6 @@ defmodule Healthlocker.Caseload.UserController do
       details = get_details(id, Date.utc_today())
 
       conn
-      |> Healthlocker.SetView.set_view("Caseload.UserView")
       |> render(String.to_atom(section), user: details.user, slam_user: details.slam_user,
       address: details.address, goals: details.goals, strategies: details.strategies,
       room: details.room, service_user: details.service_user, sleep_data: details.sleep_data,

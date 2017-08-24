@@ -14,7 +14,6 @@ defmodule Healthlocker.SleepTrackerController do
       nil ->
         changeset = SleepTracker.changeset(%SleepTracker{})
         conn
-        |> Healthlocker.SetView.set_view("SleepTrackerView")
         |> render("new.html", changeset: changeset)
       _ ->
         conn
@@ -43,7 +42,6 @@ defmodule Healthlocker.SleepTrackerController do
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("SleepTrackerView")
         |> render("new.html", changeset: changeset)
     end
   end

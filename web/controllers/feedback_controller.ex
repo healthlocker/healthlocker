@@ -3,7 +3,6 @@ defmodule Healthlocker.FeedbackController do
 
   def index(conn, _params) do
     conn
-    |> Healthlocker.SetView.set_view("CaseloadView")
     |> render("index.html")
   end
 

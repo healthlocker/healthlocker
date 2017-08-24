@@ -1,9 +1,0 @@
-<div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <p>Your NHS number will be on any letter, prescription, test result,
-    appointment letter or medical card from the NHS. NHS numbers are made up
-    of 10 digits shown in a 3-3-4 format.</p>
-  <p>If you can’t find any documents, ask your GP practice for help, they will
-    be able to provide it as long as you are registered there.</p>
-
-  <p id="close_tab" class="link hl-aqua underline shadow-hover">Close</p>
-</div>
