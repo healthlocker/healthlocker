@@ -1,7 +1,7 @@
 defmodule Healthlocker.AccountController do
   use Healthlocker.Web, :controller
   alias Healthlocker.{User, EPJSUser, ReadOnlyRepo, Slam.ConnectSlam,
-                      Slam.DisconnectSlam}
+                      Slam.DisconnectSlam, Carer}
   alias Healthlocker.Plugs.Auth
   use Timex
 
@@ -213,11 +213,18 @@ defmodule Healthlocker.AccountController do
 
         if slam_user do
           user = conn.assigns.current_user |> Repo.preload(:caring)
+          carer = case Carer |> Repo.get_by(slam_id: slam_user."Patient_ID") do
+            nil ->
+              nil
+            carer ->
+              carer
+          end
+
           multi = ConnectSlam.connect_su_and_create_rooms(user, %{
             first_name: forename,
             last_name: surname,
             slam_id: slam_user."Patient_ID",
-            c4c: c4c})
+            c4c: c4c}, carer)
           changeset = User.update_changeset(user)
           case Repo.transaction(multi) do
             {:ok, result} ->
