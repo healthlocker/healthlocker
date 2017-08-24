@@ -19,7 +19,7 @@ defmodule Healthlocker.CarerMessageTest do
       data_access: true
     )
 
-    Repo.insert!(%Healthlocker.Carer{carer: carer, caring: service_user})
+    Repo.insert!(%Healthlocker.Carer{carer: carer, caring: service_user, slam_id: 1})
 
     Mix.Tasks.Healthlocker.Room.Create.run("run")
 

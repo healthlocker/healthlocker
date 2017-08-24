@@ -13,7 +13,7 @@ defmodule Healthlocker.CarerTest do
     user = EctoFactory.insert(:user, email: "bob@healthlocker.uk")
     carer = EctoFactory.insert(:user, email: "mary@healthlocker.uk")
 
-    relationship = %Carer{caring: user, carer: carer}
+    relationship = %Carer{caring: user, carer: carer, slam_id: 1}
     Repo.insert(relationship)
 
     carers = Repo.all(Ecto.assoc(user, :carers))
@@ -26,8 +26,8 @@ defmodule Healthlocker.CarerTest do
     carer1 = EctoFactory.insert(:user, email: "mary@healthlocker.uk")
     carer2 = EctoFactory.insert(:user, email: "dave@healthlocker.uk")
 
-    Repo.insert(%Carer{caring: user, carer: carer1})
-    Repo.insert(%Carer{caring: user, carer: carer2})
+    Repo.insert(%Carer{caring: user, carer: carer1, slam_id: 1})
+    Repo.insert(%Carer{caring: user, carer: carer2, slam_id: 2})
 
     carers = Repo.all(Ecto.assoc(user, :carers))
     assert length(carers) == 2
@@ -38,8 +38,8 @@ defmodule Healthlocker.CarerTest do
     dave = EctoFactory.insert(:user, email: "dave@healthlocker.uk")
     carer = EctoFactory.insert(:user, email: "mary@healthlocker.uk")
 
-    Repo.insert(%Carer{caring: bob, carer: carer})
-    Repo.insert(%Carer{caring: dave, carer: carer})
+    Repo.insert(%Carer{caring: bob, carer: carer, slam_id: 1})
+    Repo.insert(%Carer{caring: dave, carer: carer, slam_id: 2})
 
     caring = Repo.all(Ecto.assoc(carer, :caring))
     assert length(caring) == 2

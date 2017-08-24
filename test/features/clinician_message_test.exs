@@ -24,7 +24,7 @@ defmodule Healthlocker.ClinicianMessageTest do
       data_access: true
     )
 
-    Repo.insert!(%Carer{carer: carer, caring: service_user})
+    Repo.insert!(%Carer{carer: carer, caring: service_user, slam_id: 202})
 
     Repo.insert!(%User{
       email: "robert_macmurray@nhs.co.uk",
