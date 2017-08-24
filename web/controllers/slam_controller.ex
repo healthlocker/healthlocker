@@ -26,25 +26,23 @@ defmodule Healthlocker.SlamController do
 
       query = from u in User, where: u.slam_id == ^slam_id
       service_user = Repo.one(query)
-
-      if service_user do
-        multi = ConnectCarer.connect_carer_and_create_rooms(conn.assigns.current_user, update_params, service_user)
-        case Repo.transaction(multi) do
-          {:ok, _user} ->
-            conn
-            |> put_flash(:info, "Account connected!")
-            |> redirect(to: account_path(conn, :index))
-          {:error, _type, changeset, _} ->
-            conn
-            |> put_flash(:error, "Something went wrong")
-            |> Healthlocker.SetView.set_view("SlamView")
-            |> render("new.html", changeset: changeset)
-        end
+      service_user_id = if service_user do
+        service_user.id
       else
-        conn
-        |> put_flash(:error, "Something went wrong")
-        |> Healthlocker.SetView.set_view("SlamView")
-        |> render("new.html", changeset: changeset)
+        nil
+      end
+
+      multi = ConnectCarer.connect_carer_and_create_rooms(conn.assigns.current_user, update_params, service_user_id, slam_id)
+      case Repo.transaction(multi) do
+        {:ok, _user} ->
+          conn
+          |> put_flash(:info, "Account connected!")
+          |> redirect(to: account_path(conn, :index))
+        {:error, _type, changeset, _} ->
+          conn
+          |> put_flash(:error, "Something went wrong")
+          |> Healthlocker.SetView.set_view("SlamView")
+          |> render("new.html", changeset: changeset)
       end
     else
       conn
