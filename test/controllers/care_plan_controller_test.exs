@@ -14,7 +14,8 @@ defmodule Healthlocker.CarePlanControllerTest do
         email: "abc@gmail.com",
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
-        security_answer: "Answer"
+        security_answer: "Answer",
+        slam_id: 203
       } |> Repo.insert
 
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
