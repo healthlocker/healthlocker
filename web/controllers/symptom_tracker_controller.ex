@@ -1,6 +1,7 @@
 defmodule Healthlocker.SymptomTrackerController do
   use Healthlocker.Web, :controller
   alias Healthlocker.{Symptom, SymptomTracker}
+  import Healthlocker.ComponentHelpers.Link
 
   def new(conn, _params) do
     user_id = conn.assigns.current_user.id
@@ -24,14 +25,12 @@ defmodule Healthlocker.SymptomTrackerController do
               _ ->
                 changeset = SymptomTracker.changeset(%SymptomTracker{}, %{})
                 conn
-                |> Healthlocker.SetView.set_view("SymptomTrackerView")
                 |> render("new.html", changeset: changeset, symptom: symptom)
             end
           [] ->
             # if a user has a symptom but no tracking let them track symptom
             changeset = SymptomTracker.changeset(%SymptomTracker{}, %{})
             conn
-            |> Healthlocker.SetView.set_view("SymptomTrackerView")
             |> render("new.html", changeset: changeset, symptom: symptom)
         end
       [] ->
@@ -54,11 +53,11 @@ defmodule Healthlocker.SymptomTrackerController do
     case Repo.insert(changeset) do
       {:ok, _symptom_tracker} ->
         conn
-        |> put_flash(:info, "Tracked successfully")
+        |> put_flash(:info, ["Tracker saved successfully, view it in ",
+        link_to("Tracking Overview", to: tracker_path(conn, :index))])
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("SymptomTrackerView")
         |> render("new.html", changeset: changeset, symptom: symptom)
     end
   end

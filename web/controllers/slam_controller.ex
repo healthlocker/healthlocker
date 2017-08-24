@@ -6,7 +6,6 @@ defmodule Healthlocker.SlamController do
   def new(conn, _param) do
     changeset = CarerConnection.changeset(%CarerConnection{})
     conn
-    |> Healthlocker.SetView.set_view("SlamView")
     |> render("new.html", changeset: changeset)
   end
 
@@ -26,6 +25,7 @@ defmodule Healthlocker.SlamController do
 
       query = from u in User, where: u.slam_id == ^slam_id
       service_user = Repo.one(query)
+
       service_user_id = if service_user do
         service_user.id
       else
@@ -41,13 +41,11 @@ defmodule Healthlocker.SlamController do
         {:error, _type, changeset, _} ->
           conn
           |> put_flash(:error, "Something went wrong")
-          |> Healthlocker.SetView.set_view("SlamView")
           |> render("new.html", changeset: changeset)
       end
     else
       conn
       |> put_flash(:error, "Your Healthlocker account could not be linked with your health record. Please check your details are correct and try again.")
-      |> Healthlocker.SetView.set_view("SlamView")
       |> render("new.html", changeset: changeset)
     end
   end

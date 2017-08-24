@@ -7,7 +7,6 @@ defmodule Healthlocker.PasswordController do
   def new(conn, _params) do
     changeset = User.email_changeset(%User{})
     conn
-    |> Healthlocker.SetView.set_view("PasswordView")
     |> render("new.html", changeset: changeset, action: password_path(conn, :create))
   end
 
@@ -65,7 +64,6 @@ defmodule Healthlocker.PasswordController do
         else
           changeset = User.password_changeset(%User{})
           conn
-          |> Healthlocker.SetView.set_view("PasswordView")
           |> render("edit.html", changeset: changeset, token: token)
         end
     end

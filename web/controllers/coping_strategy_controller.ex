@@ -12,7 +12,6 @@ defmodule Healthlocker.CopingStrategyController do
       |> redirect(to: coping_strategy_path(conn, :new))
     else
       conn
-      |> Healthlocker.SetView.set_view("CopingStrategyView")
       |> render("index.html", coping_strategies: coping_strategies)
     end
   end
@@ -20,7 +19,6 @@ defmodule Healthlocker.CopingStrategyController do
   def new(conn, _params) do
     changeset =  Post.changeset(%Post{})
     conn
-    |> Healthlocker.SetView.set_view("CopingStrategyView")
     |> render("new.html", changeset: changeset)
   end
 
@@ -30,7 +28,6 @@ defmodule Healthlocker.CopingStrategyController do
                       |> Post.get_coping_strategy_by_user(id, user_id)
                       |> Repo.one!
     conn
-    |> Healthlocker.SetView.set_view("CopingStrategyView")
     |> render("show.html", coping_strategy: coping_strategy)
   end
 
@@ -48,7 +45,6 @@ defmodule Healthlocker.CopingStrategyController do
         |> redirect(to: coping_strategy_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("CopingStrategyView")
         |> render("new.html", changeset: changeset)
     end
   end
@@ -61,7 +57,6 @@ defmodule Healthlocker.CopingStrategyController do
                       |> Map.update!(:content, &(String.trim_trailing(&1, " #CopingStrategy")))
     changeset = Post.changeset(coping_strategy)
     conn
-    |> Healthlocker.SetView.set_view("CopingStrategyView")
     |> render("edit.html", coping_strategy: coping_strategy, changeset: changeset)
   end
 
@@ -74,10 +69,9 @@ defmodule Healthlocker.CopingStrategyController do
       {:ok, coping_strategy} ->
         conn
         |> put_flash(:info, "Coping strategy updated successfully.")
-        |> redirect(to: coping_strategy_path(conn, :show, coping_strategy))
+        |> redirect(to: coping_strategy_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("CopingStrategyView")
         |> render("edit.html", coping_strategy: coping_strategy, changeset: changeset)
     end
   end

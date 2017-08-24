@@ -17,12 +17,10 @@ defmodule Healthlocker.DiaryController do
             |> redirect(to: diary_path(conn, :edit, diary))
           _ ->
             conn
-            |> Healthlocker.SetView.set_view("DiaryView")
             |> render("new.html", changeset: changeset)
         end
       _ ->
         conn
-        |> Healthlocker.SetView.set_view("DiaryView")
         |> render("new.html", changeset: changeset)
     end
   end
@@ -40,7 +38,6 @@ defmodule Healthlocker.DiaryController do
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("DiaryView")
         |> render("new.html", changeset: changeset)
     end
   end
@@ -49,7 +46,6 @@ defmodule Healthlocker.DiaryController do
     diary = Repo.get(Diary, diary_id)
     changeset = Diary.changeset(diary)
     conn
-    |> Healthlocker.SetView.set_view("DiaryView")
     |> render("edit.html", changeset: changeset, diary: diary)
   end
 
@@ -64,7 +60,6 @@ defmodule Healthlocker.DiaryController do
         |> redirect(to: toolkit_path(conn, :index))
       {:error, changeset} ->
         conn
-        |> Healthlocker.SetView.set_view("DiaryView")
         |> render("edit.html", changeset: changeset, diary: old_diary)
     end
   end

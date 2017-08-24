@@ -5,7 +5,6 @@ defmodule Healthlocker.SupportController do
 
   def index(conn, _params) do
     conn
-    |> Healthlocker.SetView.set_view("SupportView")
     |> render("index.html")
   end
 end

@@ -33,7 +33,7 @@ defmodule Healthlocker.TrackerViewTest do
 
   test "date_with_day_and_month returns the correct date string" do
     actual = TrackerView.date_with_day_and_month(~D[2017-04-07])
-    expected = "Friday 7th April"
+    expected = "Friday 7 April"
     assert actual == expected
   end
 end

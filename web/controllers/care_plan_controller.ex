@@ -3,7 +3,6 @@ defmodule Healthlocker.CarePlanController do
 
   def index(conn, _params) do
     conn
-    |> Healthlocker.SetView.set_view("CarePlanView")
     |> render("index.html")
   end
 end

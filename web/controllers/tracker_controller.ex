@@ -91,7 +91,6 @@ defmodule Healthlocker.TrackerController do
     date = Date.to_iso8601(Date.utc_today())
 
     conn
-    |> Healthlocker.SetView.set_view("TrackerView")
     |> render("index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
           merged_data: merged_data)
   end
@@ -114,7 +113,6 @@ defmodule Healthlocker.TrackerController do
     merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(shifted_date_time))
 
     conn
-    |> Healthlocker.SetView.set_view("TrackerView")
     |> render("index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
           merged_data: merged_data)
   end
@@ -137,7 +135,6 @@ defmodule Healthlocker.TrackerController do
     merged_data = merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(shifted_date_time))
 
     conn
-    |> Healthlocker.SetView.set_view("TrackerView")
     |> render("index.html", sleep_data: sleep_data, date: date, symptom_data: symptom_data,
           merged_data: merged_data)
   end
