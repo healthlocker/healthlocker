@@ -45,7 +45,7 @@ defmodule Healthlocker.AccountController do
     case Repo.transaction(multi) do
       {:ok, _params} ->
         conn
-        |> put_flash(:info, "Your account has been disconnected from SLaM")
+        |> put_flash(:info, "Account disconnected from your care team and health record.")
         |> redirect(to: account_path(conn, :index))
       {:error, changeset} ->
         conn
@@ -196,10 +196,10 @@ defmodule Healthlocker.AccountController do
       :gt ->
         # go to error page
         conn
-        |> put_flash(:error, "We are unable to connect your account as you are under the age of 12. You can continue to use Healthlocker without this connection.")
+        |> put_flash(:error, "We are unable to connect your account as you are under the age of 16. You can continue to use Healthlocker without this connection.")
         |> redirect(to: page_path(conn, :index))
       _ ->
-        # 12 or over, go through slam connection
+        # 16 or over, go through slam connection
         slam_user = if forename != "" && surname != "" && nhs != "" && dob != "" do
           ReadOnlyRepo.one(from e in EPJSUser,
             where: e."Forename" == ^forename
@@ -247,8 +247,8 @@ defmodule Healthlocker.AccountController do
   end
 
   def check_age(birthday) do
-    twelve_years_ago = Timex.shift(DateTime.utc_now, years: -12)
+    sixteen_years_ago = Timex.shift(DateTime.utc_now, years: -16)
 
-    DateTime.compare(birthday, twelve_years_ago)
+    DateTime.compare(birthday, sixteen_years_ago)
   end
 end

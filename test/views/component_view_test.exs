@@ -96,4 +96,17 @@ defmodule Healthlocker.ComponentViewTest do
     expected = ""
     assert actual == expected
   end
+
+  test "epjs_job_title gives the full name of clinician" do
+    actual = ComponentView.epjs_job_title(%{Job_Title: "Manager"})
+    expected = "Manager"
+    assert actual == expected
+  end
+
+  test "epjs_job_title gives empty string with first & last name are nil" do
+    actual = ComponentView.epjs_job_title(%{Job_Title: nil})
+    expected = ""
+    assert actual == expected
+  end
+
 end

@@ -96,4 +96,13 @@ defmodule Healthlocker.ComponentView do
       ""
     end
   end
+
+  def epjs_job_title(user) do
+    if user."Job_Title" do
+      user."Job_Title"
+    else
+      ""
+    end
+  end
+
 end
