@@ -8,7 +8,6 @@ defmodule Healthlocker.CarePlanController do
     id = conn.assigns.current_user.slam_id
     care_plan_data = get_care_plan_data(id)
     conn
-    |> Healthlocker.SetView.set_view("CarePlanView")
     |> render("index.html", summary_needs: care_plan_data.summary_needs,
     recovery_care_plan: care_plan_data.recovery_care_plan,
     life_event_triggers: care_plan_data.life_event_triggers,
