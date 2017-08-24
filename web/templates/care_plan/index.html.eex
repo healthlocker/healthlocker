@@ -1,6 +1,150 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Care plan</h2>
-  <p>
-    Your care plan is coming soon. You will be able to access it from this page
-  </p>
+  <h2 class="tc">Care Plan</h2>
+
+  <%= if !is_nil(@recovery_care_plan["SLAM_Recovery_Focused_Care_Plan_ID"]) do %>
+    <div class="mv2">
+      <h3 class="b">mhlSummaryOfNeed</h3>
+      <h4>Assessed_By</h4>
+      <p><%= @summary_needs["Assessed_By"]%></p>
+      <h4>Assessed_Date</h4>
+      <p><%= @summary_needs["Assessed_Date"]%></p>
+      <h4>End_Date</h4>
+      <p><%= @summary_needs["End_Date"]%></p>
+      <h4>Summary_Of_Need_Mental_Health</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Mental_Health"]%></p>
+      <h4>Summary_Of_Need_Physical_Health</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Physical_Health"]%></p>
+      <h4>Summary_Of_Need_Relationship</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Relationship"]%></p>
+      <h4>Summary_Of_Need_Occupation_Education</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Occupation_Education"]%></p>
+      <h4>Summary_Of_Need_Daily_Living</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Daily_Living"]%></p>
+      <h4>Summary_Of_Need_Accomodation</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Accomodation"]%></p>
+      <h4>Summary_Of_Need_Finance</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Finance"]%></p>
+      <h4>Summary_Of_Need_Ethnicity</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Ethnicity"]%></p>
+      <h4>Summary_Of_Need_Drug</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Drug"]%></p>
+      <h4>Summary_Of_Need_Religion</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Religion"]%></p>
+      <h4>Summary_Of_Need_Child_need</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Child_need"]%></p>
+      <h4>Summary_Of_Need_Risk</h4>
+      <p><%= @summary_needs["Summary_Of_Need_Risk"]%></p>
+    </div>
+
+    <div class="mv2">
+      <h3 class="b">mhlSLAMRecoveryCarePlan</h3>
+      <h4>Important_To_Me_Detail</h4>
+      <p><%= @recovery_care_plan["Important_To_Me_Detail"] %></p>
+      <h4>Staying_Well_Detail</h4>
+      <p><%= @recovery_care_plan["Staying_Well_Detail"] %></p>
+      <h4>Like_To_Be_Different_Detail</h4>
+      <p><%= @recovery_care_plan["Like_To_Be_Different_Detail"] %></p>
+      <h4>Staying_In_Control_Detail</h4>
+      <p><%= @recovery_care_plan["Staying_In_Control_Detail"] %></p>
+      <h4>Support_To_Communicate_Detail</h4>
+      <p><%= @recovery_care_plan["Support_To_Communicate_Detail"] %></p>
+      <h4>Others_Might_Do_Detail</h4>
+      <p><%= @recovery_care_plan["Others_Might_Do_Detail"] %></p>
+      <h4>Supporters_Action_To_Take_Detail</h4>
+      <p><%= @recovery_care_plan["Supporters_Action_To_Take_Detail"] %></p>
+      <h4>Previous_Support_Type_Detail</h4>
+      <p><%= @recovery_care_plan["Previous_Support_Type_Detail"] %></p>
+      <h4>Preferred_Medication_Detail</h4>
+      <p><%= @recovery_care_plan["Preferred_Medication_Detail"] %></p>
+      <h4>Unacceptable_Medication_detail</h4>
+      <p><%= @recovery_care_plan["Unacceptable_Medication_detail"] %></p>
+      <h4>Prefer_Not_To_Share_With</h4>
+      <p><%= @recovery_care_plan["Prefer_Not_To_Share_With"] %></p>
+      <h4>Completed_By</h4>
+      <p><%= @recovery_care_plan["Completed_By"] %></p>
+      <h4>Completed_Date</h4>
+      <p><%= @recovery_care_plan["Completed_Date"] %></p>
+      <h4>Feeling_Well_Detail</h4>
+      <p><%= @recovery_care_plan["Feeling_Well_Detail"] %></p>
+      <h4>See_As_My_Strengths_Detail</h4>
+      <p><%= @recovery_care_plan["See_As_My_Strengths_Detail"] %></p>
+      <h4>Recovery_And_Staying_Well_Staff_View</h4>
+      <p><%= @recovery_care_plan["Recovery_And_Staying_Well_Staff_View"] %></p>
+      <h4>Achieve_Goals_Staff_View</h4>
+      <p><%= @recovery_care_plan["Achieve_Goals_Staff_View"] %></p>
+      <h4>Changes_And_Early_Signs_Staff_View</h4>
+      <p><%= @recovery_care_plan["Changes_And_Early_Signs_Staff_View"] %></p>
+      <h4>Life_Events_And_Triggers_Staff_View</h4>
+      <p><%= @recovery_care_plan["Life_Events_And_Triggers_Staff_View"] %></p>
+      <h4>Do_In_Crisis_Staff_View</h4>
+      <p><%= @recovery_care_plan["Do_In_Crisis_Staff_View"] %></p>
+      <h4>Help_From_Others_Staff_View</h4>
+      <p><%= @recovery_care_plan["Help_From_Others_Staff_View"] %></p>
+      <h4>Goals_And_Aspirations_Staff_View</h4>
+      <p><%= @recovery_care_plan["Goals_And_Aspirations_Staff_View"] %></p>
+    </div>
+
+    <div class="mv2">
+      <h3 class="b">mhlSLAMRecoveryCarePlanContingency</h3>
+      <h4>Changes_Detail</h4>
+      <p><%= @contingency["Changes_Detail"] %></p>
+      <h4>What_Helps_Detail</h4>
+      <p><%= @contingency["What_Helps_Detail"] %></p>
+      <h4>What_Makes_Worse_Detail</h4>
+      <p><%= @contingency["What_Makes_Worse_Detail"] %></p>
+    </div>
+
+    <div class="mv2">
+      <h3 class="b">mhlSLAMRecoveryFocusedCarePlanDailyActivity</h3>
+      <h4>Activity_Detail</h4>
+      <p><%= @daily_activity["Activity_Detail"] %></p>
+      <h4>Times_Detail</h4>
+      <p><%= @daily_activity["Times_Detail"] %></p>
+      <h4>Activity_Reason_Detail</h4>
+      <p><%= @daily_activity["Activity_Reason_Detail"] %></p>
+      <h4>DailyActAgreeByOther</h4>
+      <p><%= @daily_activity["DailyActAgreeByOther"] %></p>
+      <h4>DailyActAgreeBy</h4>
+      <p><%= @daily_activity["DailyActAgreeBy"] %></p>
+    </div>
+
+    <div class="mv2">
+      <h3 class="b">mhlSLAMRecoveryFocusedCarePlanGettingHelpFromOthersGeneral</h3>
+      <h4>Others_Might_Do_Detail</h4>
+      <p><%= @help_from_others["Others_Might_Do_Detail"] %></p>
+      <h4>Supporters_Action_To_Take_Detail</h4>
+      <p><%= @help_from_others["Supporters_Action_To_Take_Detail"] %></p>
+      <h4>Previous_Support_Type_Detail</h4>
+      <p><%= @help_from_others["Previous_Support_Type_Detail"] %></p>
+    </div>
+
+    <div class="mv2">
+      <h3 class="b">mhlSLAMRecoveryFocusedCarePlanGoalsAndAsp</h3>
+      <h4>Personal_Goal_Detail</h4>
+      <p><%= @goals_asp["Personal_Goal_Detail"] %></p>
+      <h4>Required_Action_Detail</h4>
+      <p><%= @goals_asp["Required_Action_Detail"] %></p>
+      <h4>Support_By_Detail</h4>
+      <p><%= @goals_asp["Support_By_Detail"] %></p>
+    </div>
+
+    <div class="mv2">
+      <h3 class="b">mhlSLAMRecoveryFocusedCarePlanLifeEventsTriggers</h3>
+      <h4>Trigger_Detail</h4>
+      <p><%= @life_event_triggers["Trigger_Detail"] %></p>
+      <h4>Coping_Strategy_Detail</h4>
+      <p><%= @life_event_triggers["Coping_Strategy_Detail"] %></p>
+    </div>
+  <% else %>
+    <p>Healthlocker is unable to pull your care plan from your record, this may
+      be because:</p>
+    <ul>
+      <li>your care team use a different care plan template</li>
+      <li>your care team have uploaded your care plan as a document rather than
+        completing the fields in clinical record system.</li>
+      <li>Soon there will be a new care plan which all teams can use. Please be
+      patient whilst this is rolled out.</li>
+      <li>If you want a copy of your care plan, ask your care coordinator.</li>
+    </ul>
+  <% end %>
 </div>
