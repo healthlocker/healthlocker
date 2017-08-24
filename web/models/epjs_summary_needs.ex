@@ -1,4 +1,4 @@
-defmodule Healthocker.EPJSSummaryNeeds do
+defmodule Healthlocker.EPJSSummaryNeeds do
   use Healthlocker.Web, :model
 
   @primary_key {:Patient_ID, :integer, autogenerate: false}
