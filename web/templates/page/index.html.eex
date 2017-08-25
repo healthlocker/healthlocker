@@ -5,7 +5,8 @@
       Healthlocker is a secure platform powered by the South London and
       Maudsley NHS Foundation Trust (the trust) that promotes supported
       self-management and opportunities to improve communication between
-      service users, carers and clinicians.
+      service users, carers and clinicians.  <%= link "Watch a YouTube video", to: "http://bit.ly/HLSUGuide",
+ +          class: "hl-aqua flex-wrap underline" %> that shows you how to use each feature.
     </p>
     <p>
       It is currently in development, more features and improvements will be
