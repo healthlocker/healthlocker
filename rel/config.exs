@@ -24,15 +24,13 @@ use Mix.Releases.Config,
 environment :dev do
   set dev_mode: true
   set include_erts: false
-  set cookie: :"?J.<C_D^;nAeubhv?qoXqFK_=;y`5c@yN_`ttp)@4QI7:Sm2lTcnG{lD(G6Lu&[<"
+  set cookie: :"@LvvjdQma$@xq:(&%H;[uR1^!c2]a<Dm@:7I7ys,zcobD4!A|}8.sVe;$qO(ozkw"
 end
 
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"dAfW2?q9h{m(zcV!3qWp>.c;bn_D;PsJp3?SK&56imsT;s%mnv2f1|dVTmtM@c9O"
-  set vm_args: "rel/vm.args"
-  set sys_config: nil
+  set cookie: :"5.C$LO|l!X>H/MpSK}?xzQ[VM6`X`~R8a=.Cb,2H_2;Z*BxE&2GNrQU_h|dn@:!1"
 end
 
 # You may define one or more releases in this file.
@@ -46,3 +44,4 @@ release :healthlocker do
     :runtime_tools
   ]
 end
+
