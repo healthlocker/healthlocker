@@ -44,7 +44,8 @@
         Foundation Trust, you can choose to connect your Healthlocker account
         with your health record and care team. This will enable you to send and
         receive messages with your care team, share tracking, goals and coping
-        strategies with them.
+        strategies with them.  <%= link "Watch a YouTube video", to: "http://bit.ly/HLSUGuide",
+          class: "hl-aqua flex-wrap underline" %> that shows you how to use each feature.
       </p>
     </div>
 
@@ -70,7 +71,8 @@
         in the top panel in ePJS. You can send and receive messages with service
         users and their carers and view updates that your caseload has chosen
         to share with you. As staff, if you need help or support using
-        Healthlocker, please contact the trust service desk.
+        Healthlocker, please contact the trust service desk.  <%= link "Watch a YouTube video", 
+        to: "http://bit.ly/HLStaffGuide", class: "hl-aqua flex-wrap underline" %> that shows you how to use each feature.
       </p>
     </div>
 
