@@ -18,9 +18,19 @@
           <%= if is_bitstring(step.details) do %>
             <div>
               <%= if step.complete do %>
-              <p>TICK <%= step.details %></p>
+                <div class="db">
+                  <div class="w-10 dib">
+                    <img src="/images/checked_box.png" alt="Checked box">
+                  </div>
+                  <p class="dib"><%= step.details %></p>
+                </div>
               <% else %>
-              <p>UNTICKED <%= step.details %></p>
+                <div class="db">
+                  <div class="w-10 dib">
+                    <img src="/images/unchecked_box.png" alt="Unchecked box">
+                  </div>
+                  <p><%= step.details %></p>
+                </div>
               <% end %>
             </div>
           <% end %>
