@@ -1,4 +1,4 @@
-<%= if @service_user == @user do %>
+<%= if @user.role !== "carer" do %>
   <%= render "menu.html", assigns %>
   <div class=" pt-10em hl-dark-blue w-100">
     <table class="hl-bg-light-yellow br3 w-80 tl center pa3">

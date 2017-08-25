@@ -73,19 +73,31 @@ defmodule Healthlocker.ComponentViewTest do
     assert String.contains?(actual, category_link)
   end
 
-  test "full_name gives the full name of the user" do
+  test "full_name gives the full name of the user for maps with atoms" do
     actual = ComponentView.full_name(%{first_name: "First", last_name: "Last"})
+    expected = "First Last"
+    assert actual == expected
+  end
+
+  test "full_name gives the full name of the user" do
+    actual = ComponentView.full_name(%{"first_name" => "First", "last_name" => "Last"})
     expected = "First Last"
     assert actual == expected
   end
 
   test "full_name gives empty string with first & last name are nil" do
     actual = ComponentView.full_name(%{first_name: nil, last_name: nil})
-    expected = ""
+    expected = " "
     assert actual == expected
   end
 
   test "epjs_full_name gives the full name of clinician" do
+    actual = ComponentView.epjs_full_name(%{"Staff_Name" => "First Last"})
+    expected = "First Last"
+    assert actual == expected
+  end
+
+  test "epjs_full_name gives the full name of clinician for maps with atoms" do
     actual = ComponentView.epjs_full_name(%{Staff_Name: "First Last"})
     expected = "First Last"
     assert actual == expected

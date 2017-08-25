@@ -1,4 +1,4 @@
-<%= if @service_user == @user do %>
+<%= if @user.role !== "carer" do %>
 <%= render "menu.html", assigns %>
   <div class="pv3 hl-dark-blue w-100 center flex justify-between">
     <div class="w-60 pt6 pr3 br b--hl-dark-blue bw2 tc">
@@ -40,7 +40,7 @@
             <%= img_tag("/images/Goal-Achieved-dark-blue.svg", class: "w2") %>
           </div>
           <p class="i fl mv3">Achieved</p>
-          <p class="mv3 fr">Acheived <%= Healthlocker.ComponentView.pretty_date(goal.achieved_at) %></p>
+          <p class="mv3 fr">Achieved <%= Healthlocker.ComponentView.pretty_date(goal.achieved_at) %></p>
         <% end %>
         </div>
       <% end %>
