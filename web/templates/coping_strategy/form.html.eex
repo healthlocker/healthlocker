@@ -13,9 +13,9 @@ If I start to feel anxious I can:<br>
   <div class="center">
     <div class="center">
       <%= textarea f, :content, placeholder: "Content", class: "db border-box hover-black w-100 h4 ba b--black-20 pa2 br2 mb2 default-font" %>
+      <p>Read about recovery, self management and spotting warning signs on <%= link "Rethink", to: "https://www.rethink.org/living-with-mental-illness/recovery/tools-for-recovery/self-management",
+            class: "hl-aqua flex-wrap underline" %>.  </p>
       <div class="tr mt4">
-<p>Read about recovery, self management and spotting warning signs on <%= link "Rethink", to: "https://www.rethink.org/living-with-mental-illness/recovery/tools-for-recovery/self-management",
-          class: "hl-aqua flex-wrap underline" %>.  
         <%= submit_primary "Save" %>
       </div>
     </div>
