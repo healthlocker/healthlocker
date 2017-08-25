@@ -38,7 +38,7 @@
             <div class="mt3">
       <%= checkbox f, :data_access, class: "checkbox" %>
       <%= label f, :data_access do %>
-        I allow my anonymous Healthlocker usage data data to be accessed by 
+        I allow my anonymous Healthlocker usage data to be accessed by 
         researchers to drive forward the future of mental health and care.
       <% end %>
       <span class="hl-pink"><%= error_tag f, :data_access %></span>
