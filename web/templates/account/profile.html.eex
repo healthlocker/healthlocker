@@ -1,7 +1,7 @@
 <%= form_for @changeset, @action, fn f -> %>
   <input name="_method" type="hidden" value="put" />
   <%= if Kernel.length(@user.caring) == 0 do %>
-    <%= if !@user.guid do %>
+    <%= if !@user.user_guid do %>
       <p class="pt3">
         If you are service user or family/friend or carer of someone with the
         South London and Maudsley NHS Foundation Trust, you can:
