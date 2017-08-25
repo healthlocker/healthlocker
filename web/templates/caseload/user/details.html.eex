@@ -45,7 +45,7 @@
       </tr>
     </table>
 
-    <div class="pt6">
+    <div class="pt4">
       <h3><%= Healthlocker.ComponentView.full_name(@user) %>'s care team</h3>
 
       <%= for member <- @care_team do %>
