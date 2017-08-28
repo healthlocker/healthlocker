@@ -24,6 +24,7 @@ defmodule Healthlocker.Caseload.UserControllerTest do
         password_hash: Comeonin.Bcrypt.hashpwsalt("password"),
         security_question: "Question?",
         security_answer: "Answer",
+        user_guid: "yfjhgkhsdf",
         role: "clinician"
       } |> Repo.insert
 
@@ -86,6 +87,16 @@ defmodule Healthlocker.Caseload.UserControllerTest do
       user = Repo.get(User, 123_456)
       conn = get conn, caseload_user_path(conn, :show, user, section: "tracking", date: "2017-05-18", shift: "next")
       assert html_response(conn, 200) =~ "Tracking overview"
+    end
+
+    test "caseload/users/ works with empty list", %{conn: conn} do
+      conn = get conn, caseload_user_path(conn, :index, patients: [])
+      assert html_response(conn, 200) =~ "Users not signed up to Healthlocker"
+    end
+
+    test "caseload/users/ works with list containing user ids", %{conn: conn} do
+      conn = get conn, caseload_user_path(conn, :index, patients: ["180"])
+      assert html_response(conn, 200) =~ "Users not signed up to Healthlocker"
     end
   end
 end
