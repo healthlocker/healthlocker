@@ -29,6 +29,11 @@
       <p class="b di mv0"><%= Healthlocker.ComponentView.full_name(carer) %></p><span class="fr hl-pink fw9">></span>
     </div>
   <% end %>
+  <%= for caring <- carer.caring do %>
+    <div class="w-80 hl-bg-grey pa3 mv1 ml-20 br3 hl-dark-blue">
+      <p class="b di o-50">friend/family/carer of <%= caring."Forename" <> " " <> caring."Surname" %></p>
+    </div>
+  <% end %>
 <% end %>
 
 <div class="w-100 tc mw6 center">
