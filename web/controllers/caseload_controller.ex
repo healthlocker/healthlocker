@@ -110,14 +110,20 @@ defmodule Healthlocker.CaseloadController do
         where: c.slam_id == ^id)
       end)
       |> Enum.concat
-      |> IO.inspect
 
-    carers_list =
-      carer_connections
-      |> Enum.map(fn carer ->
-        Repo.get(User, carer.carer_id)
+    carer_connections
+    |> Enum.map(fn carer_conn ->
+      su =
+        ReadOnlyRepo.all(from e in EPJSUser,
+        where: e."Patient_ID" == ^carer_conn.slam_id)
+
+      carer =
+        Repo.get(User, carer_conn.carer_id)
         |> Repo.preload(:rooms)
-      end)
+        |> Repo.preload(:caring)
+
+      %{carer | caring: su}
+    end)
   end
 
   def compare_time(time_str) do
