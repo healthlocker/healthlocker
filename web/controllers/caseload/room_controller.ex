@@ -12,8 +12,14 @@ defmodule Healthlocker.Caseload.RoomController do
 
       user = Repo.get!(User, user_id)
       service_user = ServiceUser.for(user)
-      slam_user = ReadOnlyRepo.one(from e in EPJSUser,
-      where: e."Patient_ID" == ^service_user.slam_id)
+      slam_user = cond do
+        Map.has_key?(service_user, "Patient_ID") or Map.has_key?(service_user, :Patient_ID) ->
+          service_user
+        Map.has_key?(service_user, :id) or Map.has_key?(service_user, "id")->
+          ReadOnlyRepo.one(from e in EPJSUser,
+          where: e."Patient_ID" == ^service_user.slam_id)
+        true -> nil
+      end
 
       conn
       |> assign(:service_user, service_user)
