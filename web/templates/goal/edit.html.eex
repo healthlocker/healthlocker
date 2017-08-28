@@ -3,7 +3,7 @@
 <section class="ma3 ma4-m ma4-l center">
 
   <p class="tl b">What do you want to achieve? You may want to ensure your goal is SMART.</p>
-  <p>  
+  <p>
     <strong>Specific</strong>, be very clear about what you want to achieve.<br>
      <strong>Measurable</strong>, how will you know when you have achieved your goal? <br>
      <strong>Achievable</strong>, avoid setting yourself a challenge that is too big. <br>
@@ -16,7 +16,7 @@
       </div>
       <p class="b pt2 mb0">Steps to take:</p>
       <p class="mt1">List the things you could do to achieve this goal.</p>
-      <p>Come back each and tick each step off as you complete them.</p>
+      <p>Come back and tick each step off as you complete them.</p>
       <%= inputs_for f, :steps, fn s -> %>
         <div class="mb3">
           <%= checkbox s, :complete, class: "checkbox" %>
@@ -24,9 +24,6 @@
             Healthlocker.ComponentView.highlight_errors(@changeset, :details) %>
         </div>
       <% end %>
-    <div class=" mb3 pb3 bb b--hl-grey bw2">
-        <%= textarea f, :content, placeholder: "Content", class: "h4 db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
-      </div>
       <div class="relative mt4">
         <span class="b">Star as important</span>
 
@@ -34,9 +31,6 @@
           <%= label f, :important, class: "star pointer" do %>
         <% end %>
         <p class="i">Important goals will be at the top of the list.</p>
-      </div>
-    <div class=" mb3 pb3 bb b--hl-grey bw2">
-        <%= textarea f, :content, placeholder: "Content", class: "h4 db border-box hover-black w-100 ba b--black-20 pa2 br2 mb2 default-font" %>
       </div>
       <div class="relative mt4">
         <span class="b">Mark as achieved</span>

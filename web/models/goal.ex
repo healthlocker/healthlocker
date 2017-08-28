@@ -32,6 +32,7 @@ defmodule Healthlocker.Goal do
   def get_goals(query, user_id) do
     from g in query,
     where: like(g.content, "%#Goal") and g.user_id == ^user_id,
+    order_by: [desc: g.updated_at],
     preload: [:steps]
   end
 

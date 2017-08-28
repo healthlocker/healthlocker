@@ -1,10 +1,28 @@
 <%= form_for @changeset, @action, fn f -> %>
   <input name="_method" type="hidden" value="put" />
   <%= if Kernel.length(@user.caring) == 0 do %>
-    <p class="pt3">
-      If you are service user or family/friend or carer of someone with the
-      South London and Maudsley NHS Foundation Trust, you can:
-    </p>
+    <%= if !@user.user_guid do %>
+      <p class="pt3">
+        If you are service user or family/friend or carer of someone with the
+        South London and Maudsley NHS Foundation Trust, you can:
+      </p>
+
+      <div class="mt4">
+         <%= link "Connect with my care team and health record",
+           to: account_path(@conn, :slam), class: "hl-aqua underline di" %>
+         <%= link to: page_path(@conn, :show, "slam_help"), target: "_blank" do %>
+           <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+         <% end %>
+      </div>
+
+      <div class="pt3">
+       <%= link "Connect with the care team of someone I care for",
+           to: slam_path(@conn, :new), class: "hl-aqua underline di" %>
+       <%= link to: page_path(@conn, :show, "carer_help"), target: "_blank" do %>
+         <%= img_tag("/images/Tooltip.png", class: "w1 h1") %>
+       <% end %>
+      </div>
+    <% end %>
 
     <div class="w-100 mt4 flex items-center justify-between">
       <div class="w-40 dib">

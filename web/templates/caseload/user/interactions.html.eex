@@ -13,35 +13,47 @@
             <%= String.trim_trailing(goal.content, " #Goal") %>
           </p>
 
-
-        <%= for step <- goal.steps do %>
-          <%= if is_bitstring(step.details) do %>
-            <div>
-              <%= if step.complete do %>
-              <p>TICK <%= step.details %></p>
-              <% else %>
-              <p>UNTICKED <%= step.details %></p>
-              <% end %>
-            </div>
+          <%= for step <- goal.steps do %>
+            <%= if is_bitstring(step.details) do %>
+              <div>
+                <%= if step.complete do %>
+                  <div class="db">
+                    <div class="w-10 dib pt2">
+                      <img src="/images/checked_box.png" alt="Checked box">
+                    </div>
+                    <p class="dib"><%= step.details %></p>
+                  </div>
+                <% else %>
+                  <div class="db">
+                    <div class="w-10 dib pt2">
+                      <img src="/images/unchecked_box.png" alt="Unchecked box">
+                    </div>
+                    <p class="dib"><%= step.details %></p>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-        <%= if goal.important do %>
-          <div class="w-10 fl mv3">
-            <%= img_tag("/images/star_selected.svg", class: "w2") %>
+          <div class="db">
+            <%= if goal.important do %>
+              <div class="w-10 mv3 di">
+                <%= img_tag("/images/star_selected.svg", class: "w2") %>
+              </div>
+              <p class="di i mv3 w-40">Important</p>
+            <% end %>
+            <p class="mv3 di i w-40 fr">
+              Created <%= Healthlocker.ComponentView.pretty_date(goal.inserted_at) %>
+            </p>
           </div>
-          <p class="di i mv3">Important</p>
-        <% end %>
-        <p class="mv3 i fr">
-          Created <%= Healthlocker.ComponentView.pretty_date(goal.inserted_at) %>
-        </p>
-
-        <%= if goal.achieved_at do %>
-          <div class="w-10 fl mv3">
-            <%= img_tag("/images/Goal-Achieved-dark-blue.svg", class: "w2") %>
+          <div class="db">
+            <%= if goal.achieved_at do %>
+              <div class="w-10 fl mv3">
+                <%= img_tag("/images/Goal-Achieved-dark-blue.svg", class: "w2") %>
+              </div>
+              <p class="i fl mv3">Achieved</p>
+              <p class="mb3 mt0 fr">Achieved <%= Healthlocker.ComponentView.pretty_date(goal.achieved_at) %></p>
+            <% end %>
           </div>
-          <p class="i fl mv3">Achieved</p>
-          <p class="mv3 fr">Achieved <%= Healthlocker.ComponentView.pretty_date(goal.achieved_at) %></p>
-        <% end %>
         </div>
       <% end %>
     </div>
