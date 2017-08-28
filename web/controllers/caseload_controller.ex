@@ -68,7 +68,7 @@ defmodule Healthlocker.CaseloadController do
     end
   end
 
-  def get_hl_patients(clinician) do
+  defp get_hl_patients(clinician) do
     # get all patient ids for a clinician
     patient_ids =
       EPJSTeamMember
@@ -102,7 +102,7 @@ defmodule Healthlocker.CaseloadController do
     %{hl_users: hl_users, non_hl_ids_list: non_hl_ids_list, carers: carers}
   end
 
-  def get_carers_for_unconnected_users(non_hl_ids_list) do
+  defp get_carers_for_unconnected_users(non_hl_ids_list) do
     carer_connections =
       non_hl_ids_list
       |> Enum.map(fn id ->
