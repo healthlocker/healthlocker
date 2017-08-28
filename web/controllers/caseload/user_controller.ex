@@ -9,7 +9,6 @@ defmodule Healthlocker.Caseload.UserController do
     cond do
       conn.assigns.current_user.user_guid ->
         clinician = conn.assigns.current_user
-        # hl_patients = get_hl_patients(clinician)
         non_hl = get_non_hl_patients(patients_list)
         conn
         |> render("index.html", non_hl: non_hl)
@@ -20,7 +19,20 @@ defmodule Healthlocker.Caseload.UserController do
     end
   end
 
-  def get_non_hl_patients(patient_ids) do
+  def index(conn, _params) do
+    cond do
+      conn.assigns.current_user.user_guid ->
+        clinician = conn.assigns.current_user
+        conn
+        |> render("index.html", non_hl: [])
+      true ->
+        conn
+        |> put_flash(:error, "Authentication failed")
+        |> redirect(to: page_path(conn, :index))
+    end
+  end
+
+  defp get_non_hl_patients(patient_ids) do
     patient_ids
     |> Enum.map(fn id ->
       ReadOnlyRepo.all(from e in EPJSUser,
