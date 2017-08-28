@@ -1,7 +1,7 @@
 defmodule Healthlocker.CaseloadController do
   use Healthlocker.Web, :controller
 
-  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth, DecryptUser}
+  alias Healthlocker.{EPJSTeamMember, EPJSUser, User, Plugs.Auth, DecryptUser, Carer}
 
   def index(conn, %{"userdata" => user_data}) do
     [decrypted_user_guid, decrypted_time_str] = DecryptUser.decrypt_user_data(user_data)
@@ -23,10 +23,11 @@ defmodule Healthlocker.CaseloadController do
                 changeset = User.clinician_changeset(%User{}, epjs_user)
                 case Repo.insert(changeset) do
                   {:ok, user} ->
-                    patients = get_patients(user)
+                    hl_patients = get_hl_patients(user)
                     conn
                     |> Auth.login(user)
-                    |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+                    |> render("index.html", hl_users: hl_patients.hl_users,
+                      carers: hl_patients.carers, patients_list: hl_patients.non_hl_ids_list)
                   {:error, _} ->
                     conn
                     |> put_flash(:error, "Something went wrong. Please try again.")
@@ -34,10 +35,11 @@ defmodule Healthlocker.CaseloadController do
                 end
             end
           user ->
-            patients = get_patients(user)
+            hl_patients = get_hl_patients(user)
             conn
             |> Auth.login(user)
-            |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+            |> render("index.html", hl_users: hl_patients.hl_users,
+              carers: hl_patients.carers, patients_list: hl_patients.non_hl_ids_list)
         end
       _ ->
         conn
@@ -55,9 +57,10 @@ defmodule Healthlocker.CaseloadController do
         |> halt
       conn.assigns.current_user.user_guid ->
         clinician = conn.assigns.current_user
-        patients = get_patients(clinician)
+        hl_patients = get_hl_patients(clinician)
         conn
-        |> render("index.html", hl_users: patients.hl_users, non_hl: patients.non_hl)
+        |> render("index.html", hl_users: hl_patients.hl_users,
+          carers: hl_patients.carers, patients_list: hl_patients.non_hl_ids_list)
       true ->
         conn
         |> put_flash(:error, "Authentication failed")
@@ -65,32 +68,56 @@ defmodule Healthlocker.CaseloadController do
     end
   end
 
-  def get_patients(clinician) do
-    patient_ids = EPJSTeamMember
-                  |> EPJSTeamMember.patient_ids(clinician.email)
-                  |> ReadOnlyRepo.all
+  def get_hl_patients(clinician) do
+    # get all patient ids for a clinician
+    patient_ids =
+      EPJSTeamMember
+      |> EPJSTeamMember.patient_ids(clinician.email)
+      |> ReadOnlyRepo.all
+      |> Enum.uniq
 
-    hl_users = patient_ids
-              |> Enum.map(fn id ->
-                Repo.all(from u in User,
-                where: u.slam_id == ^id,
-                preload: [carers: :rooms],
-                preload: [:rooms])
-              end)
-              |> Enum.concat
+    # for each Patient id, check if it exists in HL database to get the user details
+    hl_users =
+      patient_ids
+      |> Enum.map(fn id ->
+        Repo.all(from u in User,
+        where: u.slam_id == ^id,
+        preload: [carers: :rooms],
+        preload: [:rooms])
+      end)
+      |> Enum.concat
 
-    non_hl = patient_ids
-              |> Enum.map(fn id ->
-                ReadOnlyRepo.all(from e in EPJSUser,
-                where: e."Patient_ID" == ^id)
-              end)
-              |> Enum.concat
-              |> Enum.reject(fn user ->
-                Enum.any?(hl_users, fn hl ->
-                  user."Patient_ID" == hl.slam_id
-                end)
-              end)
-    %{hl_users: hl_users, non_hl: non_hl}
+    # remove ids from list which we already have from HL database
+    non_hl_ids_list =
+      patient_ids
+      |> Enum.reject(fn id ->
+        Enum.any?(hl_users, fn user ->
+          id == user.slam_id
+        end)
+      end)
+
+    # get any carers that have connected without a service user connected in HL
+    carers = get_carers_for_unconnected_users(non_hl_ids_list)
+
+    %{hl_users: hl_users, non_hl_ids_list: non_hl_ids_list, carers: carers}
+  end
+
+  def get_carers_for_unconnected_users(non_hl_ids_list) do
+    carer_connections =
+      non_hl_ids_list
+      |> Enum.map(fn id ->
+        Repo.all(from c in Carer,
+        where: c.slam_id == ^id)
+      end)
+      |> Enum.concat
+      |> IO.inspect
+
+    carers_list =
+      carer_connections
+      |> Enum.map(fn carer ->
+        Repo.get(User, carer.carer_id)
+        |> Repo.preload(:rooms)
+      end)
   end
 
   def compare_time(time_str) do
