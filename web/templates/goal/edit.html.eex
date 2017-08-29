@@ -17,7 +17,7 @@
       </div>
       <p class="b pt2 mb0">Steps to take:</p>
       <p class="mt1">List the things you could do to achieve this goal.</p>
-      <p>Come back each and tick each step off as you complete them.</p>
+      <p>Come back and tick each step off as you complete them.</p>
       <%= inputs_for f, :steps, fn s -> %>
         <div class="mb3">
           <%= checkbox s, :complete, class: "checkbox" %>
