@@ -18,7 +18,7 @@
           <div class="di w-80 w-90-m w-90-l self-end pb2-m pb2-l pl3-m pl3-l">
             <p class="mb0 pr3-m pr3-l di-m di-l">
               <strong>Sleep: </strong>
-              <%= if data.sleep_data.hours_slept == "0" do %>
+              <%= if data.sleep_data.hours_slept == "0" or data.sleep_data.hours_slept == "0.0" do %>
                 <%= "0 hours" %>
               <% else %>
                 <%= format_average_sleep(String.to_float(data.sleep_data.hours_slept)) %>
