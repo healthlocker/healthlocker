@@ -3,7 +3,7 @@ defmodule Healthlocker.Email do
 
   def send_feedback(subject, message) do
     new_email()
-    |> to(System.get_env("TO_EMAIL"))
+    |> to([System.get_env("TO_EMAIL"), System.get_env("FROM_EMAIL")])
     |> from(System.get_env("FROM_EMAIL"))
     |> subject(subject)
     |> text_body(message)
