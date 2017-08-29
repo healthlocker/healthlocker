@@ -37,3 +37,4 @@
   <div class="w-100 bn br2 hl-bg-grey ph3">
     <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
   </div>
+</div>
