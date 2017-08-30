@@ -93,25 +93,11 @@ defmodule Healthlocker.ComponentView do
   end
 
   def epjs_full_name(user) do
-    cond do
-      Map.has_key?(user, "Staff_Name") ->
-        to_string(user."Staff_Name")
-      Map.has_key?(user, :Staff_Name) ->
-        to_string(user."Staff_Name")
-      true ->
-        ""
-    end
+    user."Staff_Name"
   end
 
   def epjs_job_title(user) do
-    cond do
-      Map.has_key?(user, "Job_Title") ->
-        to_string(user."Job_Title")
-      Map.has_key?(user, :Job_Title) ->
-        to_string(user."Job_Title")
-      true ->
-        ""
-    end
+    user."Job_Title"
   end
 
 end

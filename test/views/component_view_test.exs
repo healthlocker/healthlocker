@@ -91,12 +91,6 @@ defmodule Healthlocker.ComponentViewTest do
     assert actual == expected
   end
 
-  test "epjs_full_name gives the full name of clinician" do
-    actual = ComponentView.epjs_full_name(%{"Staff_Name" => "First Last"})
-    expected = "First Last"
-    assert actual == expected
-  end
-
   test "epjs_full_name gives the full name of clinician for maps with atoms" do
     actual = ComponentView.epjs_full_name(%{Staff_Name: "First Last"})
     expected = "First Last"
@@ -105,7 +99,7 @@ defmodule Healthlocker.ComponentViewTest do
 
   test "epjs_full_name gives empty string with first & last name are nil" do
     actual = ComponentView.epjs_full_name(%{Staff_Name: nil})
-    expected = ""
+    expected = nil
     assert actual == expected
   end
 
@@ -117,7 +111,7 @@ defmodule Healthlocker.ComponentViewTest do
 
   test "epjs_job_title gives empty string with first & last name are nil" do
     actual = ComponentView.epjs_job_title(%{Job_Title: nil})
-    expected = ""
+    expected = nil
     assert actual == expected
   end
 
