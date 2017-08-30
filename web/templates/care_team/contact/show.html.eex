@@ -1,10 +1,10 @@
 <%= render Healthlocker.CareTeamView, "menu.html", assigns %>
 
 <div class="pt6">
-  <%= if @current_user == @service_user do %>
-    <h3>Your care team</h3>
-  <%= else %>
+  <%= if @current_user.role == "carer" do %>
     <h3><%= Healthlocker.ComponentView.full_name(@service_user) %>'s care team</h3>
+  <%= else %>
+    <h3>Your care team</h3>
   <% end %>
 
   <%= if Kernel.length(@care_team) == 0 do %>
