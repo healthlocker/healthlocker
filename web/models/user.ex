@@ -89,7 +89,7 @@ defmodule Healthlocker.User do
 
   def name_changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:first_name, :last_name])
+    |> cast(params, [:first_name, :last_name, :role])
     |> validate_required([:first_name, :last_name])
   end
 

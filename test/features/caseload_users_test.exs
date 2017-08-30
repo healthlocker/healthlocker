@@ -54,7 +54,7 @@ defmodule Healthlocker.CaseloadUsersTest do
       slam_id: nil
     )
 
-    Repo.insert!(%Carer{carer: carer, caring: service_user_1})
+    Repo.insert!(%Carer{carer: carer, caring: service_user_1, slam_id: 202})
 
     Repo.insert!(%User{
       email: "robert_macmurray@nhs.co.uk",

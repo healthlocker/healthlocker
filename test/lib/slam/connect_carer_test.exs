@@ -1,7 +1,7 @@
 defmodule Healthlocker.Slam.ConnectCarerTest do
   use Healthlocker.ModelCase, async: true
   alias Healthlocker.{User, Slam.ConnectCarer, EPJSTeamMember, ReadOnlyRepo,
-                      EPJSClinician, ClinicianRooms, Room}
+                      ClinicianRooms, Room}
 
   describe "success paths for connecting carer" do
     setup %{} do
@@ -34,7 +34,7 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
       multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
         "first_name" => "Kat",
         "last_name" => "Bow"
-      }, service_user)
+      }, service_user.id, 203)
 
       {:ok, result} = Repo.transaction(multi)
 
@@ -47,7 +47,7 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
       multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
         "first_name" => "Kat",
         "last_name" => "Bow"
-      }, service_user)
+      }, service_user.id, 203)
 
       assert [user: {:update, _, []},
               carer: {:insert, _, []},
@@ -106,7 +106,7 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
       multi = ConnectCarer.connect_carer_and_create_rooms(user, %{
         "first_name" => "Kat",
         "last_name" => "Bow"
-        }, service_user)
+        }, service_user.id, 203)
 
       {:ok, multi: multi}
     end
@@ -114,7 +114,7 @@ defmodule Healthlocker.Slam.ConnectCarerTest do
     test "user response with no first or last name" do
       user = Repo.get!(User, 123456)
       service_user = Repo.get!(User, 123457)
-      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{}, service_user)
+      multi = ConnectCarer.connect_carer_and_create_rooms(user, %{}, service_user, 203)
       assert {:error, type, result, _} = Repo.transaction(multi)
       assert result.errors
       assert type == :user

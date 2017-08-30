@@ -21,9 +21,23 @@
   <% end %>
 </div>
 
-<h3 class="pt4 pb3 b--hl-grey bt bw1">Users not signed up to Healthlocker</h3>
-<%= for user <- @non_hl do %>
-  <div class="w-100 hl-bg-grey pa3 mv2 br3 hl-dark-blue">
-       <p class="b di o-50"><%= user."Forename" %> <%= user."Surname" %></p>
-   </div>
+<h3 class="pt4 pb3 b--hl-grey bt bw1">Carers of users not signed up to Healthlocker</h3>
+<%= for carer <- @carers do %>
+  <%= link to: caseload_user_room_path(@conn, :show, carer, room_for(carer)),
+          class: "no-underline hl-dark-blue cf" do %>
+    <div class="w-100 pa3 mv1 b--hl-yellow ba bw1 br3 hl-dark-blue justify-between">
+      <p class="b di mv0"><%= Healthlocker.ComponentView.full_name(carer) %></p><span class="fr hl-pink fw9">></span>
+    </div>
+  <% end %>
+  <%= for caring <- carer.caring do %>
+    <div class="w-80 hl-bg-grey pa3 mv1 ml-20 br3 hl-dark-blue">
+      <p class="b di o-50">friend/family/carer of <%= caring."Forename" <> " " <> caring."Surname" %></p>
+    </div>
+  <% end %>
 <% end %>
+
+<div class="w-100 tc mw6 center">
+  <%= link to: caseload_user_path(@conn, :index, patients: @patients_list) do %>
+    <span class="mt4 mb3 f5 link dib ph1 pv3 br-pill hl-dark-blue pointer hl-shadow-hover ba bw1 b--hl-yellow hl-bg-yellow w-100">See all users not connected to Healthlocker</span>
+  <% end %>
+</div>

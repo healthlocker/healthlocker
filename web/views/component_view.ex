@@ -82,27 +82,22 @@ defmodule Healthlocker.ComponentView do
   end
 
   def full_name(user) do
-    if user.first_name && user.last_name do
-      user.first_name <> " " <> user.last_name
-    else
-      ""
+    cond do
+      Map.has_key?(user, "first_name") or Map.has_key?(user, "last_name") ->
+        to_string(user["first_name"]) <> " " <> to_string(user["last_name"])
+      Map.has_key?(user, :first_name) or Map.has_key?(user, :last_name) ->
+        to_string(user.first_name) <> " " <> to_string(user.last_name)
+      true ->
+        to_string(user."Forename") <> " " <> to_string(user."Surname")
     end
   end
 
   def epjs_full_name(user) do
-    if user."Staff_Name" do
-      user."Staff_Name"
-    else
-      ""
-    end
+    user."Staff_Name"
   end
 
   def epjs_job_title(user) do
-    if user."Job_Title" do
-      user."Job_Title"
-    else
-      ""
-    end
+    user."Job_Title"
   end
 
 end

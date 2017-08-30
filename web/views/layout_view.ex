@@ -18,7 +18,11 @@ defmodule Healthlocker.LayoutView do
     user = user |> Repo.preload(:caring)
 
     case user.caring do
-      [] -> false
+      [] ->
+        case user.role do
+          "carer" -> true
+          _ -> false
+        end
       _ -> true
     end
   end

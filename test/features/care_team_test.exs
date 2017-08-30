@@ -9,6 +9,7 @@ defmodule Healthlocker.CareTeamTest do
       terms_conditions: true,
       privacy: true,
       data_access: true,
+      role: "carer",
       slam_id: nil
     )
 
@@ -20,7 +21,7 @@ defmodule Healthlocker.CareTeamTest do
       data_access: true
     )
 
-    relationship = %Carer{caring: bob, carer: carer}
+    relationship = %Carer{caring: bob, carer: carer, slam_id: 1}
     Repo.insert(relationship)
 
     Mix.Tasks.Healthlocker.Room.Create.run("run")
@@ -53,6 +54,7 @@ defmodule Healthlocker.CareTeamTest do
       |> click(@nav_button)
       |> click(@care_team_link)
       |> click(@contacts_link)
+      |> take_screenshot
 
       assert has_text?(session, "'s care team")
     end

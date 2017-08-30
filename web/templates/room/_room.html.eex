@@ -11,9 +11,12 @@
     <%= @current_user.role != "clinician" -> %>
       <p class="hl-pink">
         If you need urgent help or advice, go to <%= link_to("Get support", to: support_path(@conn, :index)) %>. Do not leave a note in an emergency.</strong><br>
-        Your note will be visible to
-        <%= if @service_user == @current_user, do: "your" %>
-        <%= if @service_user != @current_user, do: "their" %>
+          Your note will be visible to
+        <%= if @current_user.role =="carer" do %>
+          <%= "their" %>
+        <%= else %>
+          <%= "your" %>
+        <% end %>
         whole care team. Do not expect an immediate response.
       </p>
   <% end %>
@@ -25,11 +28,11 @@
 
   <%= cond do %>
     <%= @current_user.role == "clinician" -> %>
-    <%= @service_user == @current_user -> %>
-      <p class="b">Leave a note for your care team.</p>
-    <%= @service_user != @current_user -> %>
+    <%= @current_user.role == "carer" -> %>
       <p class="b">Leave a note for <%= Healthlocker.ComponentView.full_name(@service_user) %>'s care team.</p>
       <p> Share your thoughts, observations and reflections. </p>
+    <%= true -> %>
+      <p class="b">Leave a note for your care team.</p>
   <% end %>
   <div class="w-100 bn br2 hl-bg-grey ph3">
     <input id="message-input" class="input-reset bn hl-bg-grey w-100" placeholder="Type a message"/>
