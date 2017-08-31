@@ -1,7 +1,7 @@
 <div class="ma3 ma4-m ma4-l">
   <h2 class="tc">Care Plan</h2>
 
-  <%= if !is_nil(@recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID") do %>
+  <%= if !is_nil(@recovery_care_plan) do %>
     <div class="mv2">
       <h3 class="b">mhlSummaryOfNeed</h3>
       <h4>Assessed_By</h4>
