@@ -3,7 +3,7 @@ defmodule Healthlocker.CarePlanControllerTest do
 
   alias Healthlocker.{User, Room, UserRoom}
 
-  describe "current_user is assigned in the session" do
+  describe "current_user is assigned in the session without a care plan" do
     setup do
       %User{
         id: 123456,
@@ -31,7 +31,7 @@ defmodule Healthlocker.CarePlanControllerTest do
 
     test "/care-plan :: index", %{conn: conn} do
       conn = get conn, care_plan_path(conn, :index)
-      assert html_response(conn, 200) =~ "Care Plan"
+      assert html_response(conn, 200) =~ "Healthlocker is unable to pull your care plan"
     end
   end
 
