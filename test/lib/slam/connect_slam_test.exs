@@ -87,7 +87,7 @@ defmodule Healthlocker.Slam.ConnectSlamTest do
         password_hash: Comeonin.Bcrypt.hashpwsalt("password")
       } |> Repo.insert!
 
-      service_user = %User{
+      %User{
         id: 123457,
         first_name: "Lisa",
         last_name: "Sandoval",

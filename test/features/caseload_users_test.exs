@@ -32,7 +32,7 @@ defmodule Healthlocker.CaseloadUsersTest do
       Tel_home: "02085 123 456"
     })
 
-    service_user_2 = EctoFactory.insert(:user,
+    EctoFactory.insert(:user,
       email: "kat@dwyl.io",
       first_name: "Kat",
       last_name: "Bow",
