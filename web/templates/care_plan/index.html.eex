@@ -170,15 +170,21 @@
       <% end %>
     </div>
   <% else %>
-    <p>Healthlocker is unable to pull your care plan from your record, this may
-      be because:</p>
+    <p>
+      Healthlocker is unable to pull your care plan from your record,
+      this may be because:
+    </p>
     <ul>
       <li>your care team use a different care plan template</li>
-      <li>your care team have uploaded your care plan as a document rather than
-        completing the fields in clinical record system.</li>
-      <li>Soon there will be a new care plan which all teams can use. Please be
-      patient whilst this is rolled out.</li>
-      <li>If you want a copy of your care plan, ask your care coordinator.</li>
+      <li>
+        your care team have uploaded your care plan as a document rather than
+        completing the fields in clinical record system.
+      </li>
     </ul>
+    <p>
+      Soon there will be a new care plan which all teams can use. Please be
+      patient whilst this is rolled out. If you want a copy of your care plan,
+      ask your care coordinator.
+    </p>
   <% end %>
 </div>
