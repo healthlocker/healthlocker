@@ -18,7 +18,9 @@ defmodule Healthlocker.ComponentView do
 
   # changes datetime to DD/MM/YYYY format
   def datetime_formatter(datetime) do
-    Timex.format!(datetime, "%d/%m/%Y", :strftime)
+    if !is_nil(datetime) do
+      Timex.format!(datetime, "%d/%m/%Y", :strftime)
+    end
   end
 
   # gives the date in the format DD/MM/YYYY

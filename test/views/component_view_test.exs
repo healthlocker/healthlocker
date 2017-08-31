@@ -59,7 +59,7 @@ defmodule Healthlocker.ComponentViewTest do
   test "datetime_formatter changes datetime to DD/MM/YYYY" do
     datetime = DateTime.from_naive!(~N[2016-05-24 13:26:08.003], "Etc/UTC")
     actual = ComponentView.datetime_formatter(datetime)
-    assert actual = "24/05/2016"
+    assert actual == "24/05/2016"
   end
 
   test "pretty_date returns date in the format DD/MM/YYYY" do
