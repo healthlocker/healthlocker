@@ -1,39 +1,41 @@
 <div class="ma3 ma4-m ma4-l">
   <h2 class="tc">Care Plan</h2>
 
-  <%= if !is_nil(@recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID") do %>
+  <%= if !is_nil(@recovery_care_plan) do %>
     <div class="mv2">
       <h3 class="b">mhlSummaryOfNeed</h3>
-      <h4>Assessed By</h4>
-      <p><%= @summary_needs."Assessed_By" %></p>
-      <h4>Assessed Date</h4>
-      <p><%= @summary_needs."Assessed_Date" %></p>
-      <h4>End Date</h4>
-      <p><%= @summary_needs."End_Date" %></p>
-      <h4>Summary Of Need Mental Health</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Mental_Health" %></p>
-      <h4>Summary Of Need Physical Health</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Physical_Health" %></p>
-      <h4>Summary Of Need Relationship</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Relationship" %></p>
-      <h4>Summary Of Need Occupation Education</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Occupation_Education" %></p>
-      <h4>Summary Of Need Daily Living</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Daily_Living" %></p>
-      <h4>Summary Of Need Accomodation</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Accomodation" %></p>
-      <h4>Summary Of Need Finance</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Finance" %></p>
-      <h4>Summary Of Need Ethnicity</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Ethnicity" %></p>
-      <h4>Summary Of Need Drug</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Drug" %></p>
-      <h4>Summary Of Need Religion</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Religion" %></p>
-      <h4>Summary Of Need Child need</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Child_need" %></p>
-      <h4>Summary Of Need Risk</h4>
-      <p><%= @summary_needs."Summary_Of_Need_Risk" %></p>
+      <%= if !is_nil(@summary_needs) do %>
+        <h4>Assessed By</h4>
+        <p><%= @summary_needs."Assessed_By" %></p>
+        <h4>Assessed Date</h4>
+        <p><%= @summary_needs."Assessed_Date" %></p>
+        <h4>End Date</h4>
+        <p><%= @summary_needs."End_Date" %></p>
+        <h4>Summary Of Need Mental Health</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Mental_Health" %></p>
+        <h4>Summary Of Need Physical Health</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Physical_Health" %></p>
+        <h4>Summary Of Need Relationship</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Relationship" %></p>
+        <h4>Summary Of Need Occupation Education</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Occupation_Education" %></p>
+        <h4>Summary Of Need Daily Living</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Daily_Living" %></p>
+        <h4>Summary Of Need Accomodation</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Accomodation" %></p>
+        <h4>Summary Of Need Finance</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Finance" %></p>
+        <h4>Summary Of Need Ethnicity</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Ethnicity" %></p>
+        <h4>Summary Of Need Drug</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Drug" %></p>
+        <h4>Summary Of Need Religion</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Religion" %></p>
+        <h4>Summary Of Need Child need</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Child_need" %></p>
+        <h4>Summary Of Need Risk</h4>
+        <p><%= @summary_needs."Summary_Of_Need_Risk" %></p>
+      <% end %>
     </div>
 
     <div class="mv2">
