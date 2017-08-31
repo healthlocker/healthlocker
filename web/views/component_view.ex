@@ -1,5 +1,6 @@
 defmodule Healthlocker.ComponentView do
   use Healthlocker.Web, :view
+  use Timex
 
   def get_options(option_type) do
     # load security questions from file
@@ -13,6 +14,11 @@ defmodule Healthlocker.ComponentView do
       end
     # split on line breaks to separate the options:
     String.split(options, "\n") |> List.delete("")
+  end
+
+  # changes datetime to DD/MM/YYYY format
+  def datetime_formatter(datetime) do
+    Timex.format!(datetime, "%d/%m/%Y", :strftime)
   end
 
   # gives the date in the format DD/MM/YYYY
