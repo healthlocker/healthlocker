@@ -8,7 +8,7 @@
         <h4>Assessed By</h4>
         <p><%= @summary_needs."Assessed_By" %></p>
         <h4>Assessed Date</h4>
-        <p><%= @summary_needs."Assessed_Date" %></p>
+        <p><%= Healthlocker.ComponentView.datetime_formatter(@summary_needs."Assessed_Date") %></p>
         <h4>End Date</h4>
         <p><%= @summary_needs."End_Date" %></p>
         <h4>Summary Of Need Mental Health</h4>
@@ -65,7 +65,7 @@
       <h4>Completed By</h4>
       <p><%= @recovery_care_plan."Completed_By" %></p>
       <h4>Completed Date</h4>
-      <p><%= @recovery_care_plan."Completed_Date" %></p>
+      <p><%= Healthlocker.ComponentView.datetime_formatter(@recovery_care_plan."Completed_Date") %></p>
       <h4>Feeling Well Detail</h4>
       <p><%= @recovery_care_plan."Feeling_Well_Detail" %></p>
       <h4>See As My Strengths Detail</h4>
