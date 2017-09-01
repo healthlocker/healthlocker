@@ -2,11 +2,13 @@ defmodule Healthlocker.CarePlanController do
   use Healthlocker.Web, :controller
   alias Healthlocker.{EPJSSummaryNeeds, EPJSRecoveryCarePlan,
   EPJSRcpLifeEventTriggers, EPJSRcpHelpFromOthers, EPJSRcpGoalsAsp,
-  EPJSRcpDailyActivity, EPJSRcpContingency, CarePlanQuery}
+  EPJSRcpDailyActivity, EPJSRcpContingency, CarePlanQuery, Room}
 
   def index(conn, _params) do
     id = conn.assigns.current_user.slam_id
-    room = Repo.get! assoc(conn.assigns.current_user, :rooms), conn.assigns.current_user.id
+    user_id = conn.assigns.current_user.id
+    room_id = Repo.get_by(Room, name: "service-user-care-team:" <> to_string(user_id))
+    room = Repo.get! assoc(conn.assigns.current_user, :rooms), room_id.id
     care_plan_data = get_care_plan_data(id)
     conn
     |> render("index.html", summary_needs: care_plan_data.summary_needs,
