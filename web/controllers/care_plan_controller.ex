@@ -6,6 +6,7 @@ defmodule Healthlocker.CarePlanController do
 
   def index(conn, _params) do
     id = conn.assigns.current_user.slam_id
+    room = Repo.get! assoc(conn.assigns.current_user, :rooms), conn.assigns.current_user.id
     care_plan_data = get_care_plan_data(id)
     conn
     |> render("index.html", summary_needs: care_plan_data.summary_needs,
@@ -14,7 +15,7 @@ defmodule Healthlocker.CarePlanController do
     help_from_others: care_plan_data.help_from_others,
     goals_asp: care_plan_data.goals_asp,
     daily_activity: care_plan_data.daily_activity,
-    contingency: care_plan_data.contingency)
+    contingency: care_plan_data.contingency, room: room)
   end
 
   def get_care_plan_data(patient_id) do
