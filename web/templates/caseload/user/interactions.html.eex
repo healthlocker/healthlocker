@@ -18,17 +18,17 @@
               <div>
                 <%= if step.complete do %>
                   <div class="db">
-                    <div class="w-10 dib pt2">
-                      <img src="/images/checked_box.png" alt="Checked box">
+                    <div class="w1-15 dib pt1 pb0 mb0">
+                      <%= img_tag("/images/checked_box.png", alt: "Checked box") %>
                     </div>
-                    <p class="dib"><%= step.details %></p>
+                    <p class="dib ml2"><%= step.details %></p>
                   </div>
                 <% else %>
                   <div class="db">
-                    <div class="w-10 dib pt2">
-                      <img src="/images/unchecked_box.png" alt="Unchecked box">
+                    <div class="w1-15 dib pt1">
+                      <%= img_tag("/images/unchecked_box.png", alt: "Unchecked box") %>
                     </div>
-                    <p class="dib"><%= step.details %></p>
+                    <p class="dib ml2"><%= step.details %></p>
                   </div>
                 <% end %>
               </div>
