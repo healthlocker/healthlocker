@@ -142,6 +142,10 @@
         <h4>End date</h4>
         <p><%= @summary_needs."End_Date" %></p>
       <% end %>
+      <p>
+        <%= link_to("Write a note", to: care_team_room_path(@conn, :show, @room)) %>
+        to your care team about your Care Plan Summary.
+      </p>
     </div>
   <% else %>
     <p>
@@ -159,6 +163,9 @@
       Soon there will be a new care plan which all teams can use. Please be
       patient whilst this is rolled out. <br>If you want a copy of your care plan,
       ask your care coordinator.
+    </p>
+    <p>
+      <%= link_to("Ask your care coordinator.", to: care_team_room_path(@conn, :show, @room)) %>
     </p>
   <% end %>
 </div>
