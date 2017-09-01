@@ -1,173 +1,151 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Care Plan</h2>
+  <h2 class="tc">Care Plan Summary</h2>
 
   <%= if !is_nil(@recovery_care_plan) do %>
-    <div class="mv2">
-      <h3 class="b">mhlSummaryOfNeed</h3>
+  <div class="mt2 mb3 pb3 bb b--hl-grey bw2">
+    <h3 class="b">Recovery Care Plan</h3>
+    <h4>What is important to me?</h4>
+    <p><%= @recovery_care_plan."Important_To_Me_Detail" %></p>
+    <h4>What does staying well mean to me?</h4>
+    <p><%= @recovery_care_plan."Staying_Well_Detail" %></p>
+    <h4>What, if anything, would I like to be different in my life?</h4>
+    <p><%= @recovery_care_plan."Like_To_Be_Different_Detail" %></p>
+    <h4>How will I stay in control and safe?</h4>
+    <p><%= @recovery_care_plan."Staying_In_Control_Detail" %></p>
+    <h4>What supports me to communicate more easily with others?</h4>
+    <p><%= @recovery_care_plan."Support_To_Communicate_Detail" %></p>
+    <h4>What am I like when I am feeling well?</h4>
+    <p><%= @recovery_care_plan."Feeling_Well_Detail" %></p>
+    <h4>What do I see as my strengths?</h4>
+    <p><%= @recovery_care_plan."See_As_My_Strengths_Detail" %></p>
+    <h4>Recovery and staying well: What my care team say</h4>
+    <p><%= @recovery_care_plan."Recovery_And_Staying_Well_Staff_View" %></p>
+    <h4>Goals: what my care team say</h4>
+    <p><%= @recovery_care_plan."Achieve_Goals_Staff_View" %></p>
+    <h4>Changes and early warning signs: what my care team say</h4>
+    <p><%= @recovery_care_plan."Changes_And_Early_Signs_Staff_View" %></p>
+    <h4>Triggers: what my care team say</h4>
+    <p><%= @recovery_care_plan."Life_Events_And_Triggers_Staff_View" %></p>
+    <h4>What to do in a crisis: what my care team say</h4>
+    <p><%= @recovery_care_plan."Do_In_Crisis_Staff_View" %></p>
+    <h4>Getting help from others: what my care team say</h4>
+    <p><%= @recovery_care_plan."Help_From_Others_Staff_View" %></p>
+    <h4>Goals and aspirations: what my care team say</h4>
+    <p><%= @recovery_care_plan."Goals_And_Aspirations_Staff_View" %></p>
+  </div>
+
+  <div class="mt2 mb3 pb3 bb b--hl-grey bw2">
+    <h3 class="b">Goals and aspirations</h3>
+    <h4>Personal goals</h4>
+    <%= for goals_asp <- @goals_asp do %>
+      <p><%= goals_asp."Personal_Goal_Detail" %></p>
+    <% end %>
+    <h4>What could I do to achieve my goals?</h4>
+    <%= for goals_asp <- @goals_asp do %>
+      <p><%= goals_asp."Required_Action_Detail" %></p>
+    <% end %>
+    <h4>Who will support me to achieve my goals?</h4>
+    <%= for goals_asp <- @goals_asp do %>
+      <p><%= goals_asp."Support_By_Detail" %></p>
+    <% end %>
+    <p class="mt4">Create or edit <%= link "your goals", to: goal_path(@conn, :index), class: "hl-aqua flex-wrap underline" %> based on your care plan.</p>
+  </div>
+
+  <div class="mt2 mb3 pb3 bb b--hl-grey bw2">
+    <h3 class="b">Triggers and coping strategies</h3>
+    <h4>Life events or triggers</h4>
+    <%= for life_event_triggers <- @life_event_triggers do %>
+      <p><%= life_event_triggers."Trigger_Detail" %></p>
+    <% end %>
+    <h4>Coping strategies</h4>
+    <%= for life_event_triggers <- @life_event_triggers do %>
+      <p><%= life_event_triggers."Coping_Strategy_Detail" %></p>
+    <% end %>
+    <p class="mt4">Create or edit <%= link "your coping strategies", to: coping_strategy_path(@conn, :index), class: "hl-aqua flex-wrap underline" %> based on your care plan.</p>
+  </div>
+
+  <div class="mt2 mb3 pb3 bb b--hl-grey bw2">
+    <h3 class="b">Contingency Plan</h3>
+    <h4>What changes do I need to look out for?</h4>
+    <%= for contingency <- @contingency do %>
+      <p><%= contingency."Changes_Detail" %></p>
+    <% end %>
+    <h4>What helps me stay well?</h4>
+    <%= for contingency <- @contingency do %>
+      <p><%= contingency."What_Helps_Detail" %></p>
+    <% end %>
+    <h4>What makes things worse for me?</h4>
+    <%= for contingency <- @contingency do %>
+      <p><%= contingency."What_Makes_Worse_Detail" %></p>
+    <% end %>
+  </div>
+
+  <div class="mt2 mb3 pb3 bb b--hl-grey bw2">
+    <h3 class="b">Crisis Plan, getting help from others</h3>
+    <h4>Things others might do (or did in the past) that would not help or would make symptoms worse (name who you would not like to be contacted)</h4>
+    <%= for help_from_others <- @help_from_others do %>
+      <p><%= help_from_others."Others_Might_Do_Detail" %></p>
+    <% end %>
+    <h4>What I want my supporters to do if I'm a danger to myself or others</h4>
+    <%= for help_from_others <- @help_from_others do %>
+      <p><%= help_from_others."Supporters_Action_To_Take_Detail" %></p>
+    <% end %>
+    <h4>Types of support that have helped in the past</h4>
+    <%= for help_from_others <- @help_from_others do %>
+      <p><%= help_from_others."Previous_Support_Type_Detail" %></p>
+    <% end %>
+    <h4>Preferred medications and why</h4>
+    <p><%= @recovery_care_plan."Preferred_Medication_Detail" %></p>
+    <h4>Medication or treatment I would prefer not to have</h4>
+    <p><%= @recovery_care_plan."Unacceptable_Medication_detail" %></p>
+              <br>
+    <h4>People I would prefer not to share my Care Plan with</h4>
+    <p><%= @recovery_care_plan."Prefer_Not_To_Share_With" %></p>
+    <h4>Care Plan completed by</h4>
+    <p><%= @recovery_care_plan."Completed_By" %></p>
+    <h4>Care Plan completed date</h4>
+    <p><%= !is_nil(@recovery_care_plan."Completed_Date") && Healthlocker.ComponentView.datetime_formatter(@recovery_care_plan."Completed_Date") %></p>
+  </div>
+
+   <div class="mt2 mb3 pb3 bb b--hl-grey bw2">
+      <h3 class="b">Summary of need</h3>
       <%= if !is_nil(@summary_needs) do %>
-        <h4>Assessed By</h4>
-        <p><%= @summary_needs."Assessed_By" %></p>
-        <h4>Assessed Date</h4>
-        <p><%= Healthlocker.ComponentView.datetime_formatter(@summary_needs."Assessed_Date") %></p>
-        <h4>End Date</h4>
-        <p><%= @summary_needs."End_Date" %></p>
-        <h4>Summary Of Need Mental Health</h4>
+        <h4>Mental health</h4>
         <p><%= @summary_needs."Summary_Of_Need_Mental_Health" %></p>
-        <h4>Summary Of Need Physical Health</h4>
+        <h4>Physical health</h4>
         <p><%= @summary_needs."Summary_Of_Need_Physical_Health" %></p>
-        <h4>Summary Of Need Relationship</h4>
+        <h4>Relationships</h4>
         <p><%= @summary_needs."Summary_Of_Need_Relationship" %></p>
-        <h4>Summary Of Need Occupation Education</h4>
+        <h4>Occupation and education</h4>
         <p><%= @summary_needs."Summary_Of_Need_Occupation_Education" %></p>
-        <h4>Summary Of Need Daily Living</h4>
+        <h4>Daily living</h4>
         <p><%= @summary_needs."Summary_Of_Need_Daily_Living" %></p>
-        <h4>Summary Of Need Accomodation</h4>
+        <h4>Accomodation</h4>
         <p><%= @summary_needs."Summary_Of_Need_Accomodation" %></p>
-        <h4>Summary Of Need Finance</h4>
+        <h4>Finance</h4>
         <p><%= @summary_needs."Summary_Of_Need_Finance" %></p>
-        <h4>Summary Of Need Ethnicity</h4>
+        <h4>Ethnicity and culture</h4>
         <p><%= @summary_needs."Summary_Of_Need_Ethnicity" %></p>
-        <h4>Summary Of Need Drug</h4>
+        <h4>Drug or alcohol use</h4>
         <p><%= @summary_needs."Summary_Of_Need_Drug" %></p>
-        <h4>Summary Of Need Religion</h4>
+        <h4>Religion, spirituality and values</h4>
         <p><%= @summary_needs."Summary_Of_Need_Religion" %></p>
-        <h4>Summary Of Need Child need</h4>
+        <h4>Child need and risk</h4>
         <p><%= @summary_needs."Summary_Of_Need_Child_need" %></p>
-        <h4>Summary Of Need Risk</h4>
+        <h4>Risk</h4>
         <p><%= @summary_needs."Summary_Of_Need_Risk" %></p>
+            <br>
+        <h4>Assessed by</h4>
+        <p><%= @summary_needs."Assessed_By" %></p>
+        <h4>Assessed date</h4>
+        <p><%= !is_nil(@summary_needs."Assessed_Date") && Healthlocker.ComponentView.datetime_formatter(@summary_needs."Assessed_Date") %></p>
+        <h4>End date</h4>
+        <p><%= @summary_needs."End_Date" %></p>
       <% end %>
-    </div>
-
-    <div class="mv2">
-      <h3 class="b">mhlSLAMRecoveryCarePlan</h3>
-      <h4>Important To Me Detail</h4>
-      <p><%= @recovery_care_plan."Important_To_Me_Detail" %></p>
-      <h4>Staying Well Detail</h4>
-      <p><%= @recovery_care_plan."Staying_Well_Detail" %></p>
-      <h4>Like To Be Different Detail</h4>
-      <p><%= @recovery_care_plan."Like_To_Be_Different_Detail" %></p>
-      <h4>Staying In Control Detail</h4>
-      <p><%= @recovery_care_plan."Staying_In_Control_Detail" %></p>
-      <h4>Support To Communicate Detail</h4>
-      <p><%= @recovery_care_plan."Support_To_Communicate_Detail" %></p>
-      <h4>Others Might Do Detail</h4>
-      <p><%= @recovery_care_plan."Others_Might_Do_Detail" %></p>
-      <h4>Supporters Action To Take Detail</h4>
-      <p><%= @recovery_care_plan."Supporters_Action_To_Take_Detail" %></p>
-      <h4>Previous Support Type Detail</h4>
-      <p><%= @recovery_care_plan."Previous_Support_Type_Detail" %></p>
-      <h4>Preferred Medication Detail</h4>
-      <p><%= @recovery_care_plan."Preferred_Medication_Detail" %></p>
-      <h4>Unacceptable Medication detail</h4>
-      <p><%= @recovery_care_plan."Unacceptable_Medication_detail" %></p>
-      <h4>Prefer Not To Share With</h4>
-      <p><%= @recovery_care_plan."Prefer_Not_To_Share_With" %></p>
-      <h4>Completed By</h4>
-      <p><%= @recovery_care_plan."Completed_By" %></p>
-      <h4>Completed Date</h4>
-      <p><%= Healthlocker.ComponentView.datetime_formatter(@recovery_care_plan."Completed_Date") %></p>
-      <h4>Feeling Well Detail</h4>
-      <p><%= @recovery_care_plan."Feeling_Well_Detail" %></p>
-      <h4>See As My Strengths Detail</h4>
-      <p><%= @recovery_care_plan."See_As_My_Strengths_Detail" %></p>
-      <h4>Recovery And Staying Well Staff View</h4>
-      <p><%= @recovery_care_plan."Recovery_And_Staying_Well_Staff_View" %></p>
-      <h4>Achieve Goals Staff View</h4>
-      <p><%= @recovery_care_plan."Achieve_Goals_Staff_View" %></p>
-      <h4>Changes And Early Signs Staff View</h4>
-      <p><%= @recovery_care_plan."Changes_And_Early_Signs_Staff_View" %></p>
-      <h4>Life Events And Triggers Staff View</h4>
-      <p><%= @recovery_care_plan."Life_Events_And_Triggers_Staff_View" %></p>
-      <h4>Do In Crisis Staff View</h4>
-      <p><%= @recovery_care_plan."Do_In_Crisis_Staff_View" %></p>
-      <h4>Help From Others Staff View</h4>
-      <p><%= @recovery_care_plan."Help_From_Others_Staff_View" %></p>
-      <h4>Goals And Aspirations Staff View</h4>
-      <p><%= @recovery_care_plan."Goals_And_Aspirations_Staff_View" %></p>
-    </div>
-
-    <div class="mv2">
-      <h3 class="b">mhlSLAMRecoveryCarePlanContingency</h3>
-      <h4>Changes Detail</h4>
-      <%= for contingency <- @contingency do %>
-        <p><%= contingency."Changes_Detail" %></p>
-      <% end %>
-      <h4>What Helps Detail</h4>
-      <%= for contingency <- @contingency do %>
-        <p><%= contingency."What_Helps_Detail" %></p>
-      <% end %>
-      <h4>What Makes Worse Detail</h4>
-      <%= for contingency <- @contingency do %>
-        <p><%= contingency."What_Makes_Worse_Detail" %></p>
-      <% end %>
-    </div>
-
-    <div class="mv2">
-      <h3 class="b">mhlSLAMRecoveryFocusedCarePlanDailyActivity</h3>
-      <h4>Activity Detail</h4>
-      <%= for daily_activity <- @daily_activity do %>
-        <p><%= daily_activity."Activity_Detail" %></p>
-      <% end %>
-      <h4>Times Detail</h4>
-      <%= for daily_activity <- @daily_activity do %>
-        <p><%= daily_activity."Times_Detail" %></p>
-      <% end %>
-      <h4>Activity Reason Detail</h4>
-      <%= for daily_activity <- @daily_activity do %>
-        <p><%= daily_activity."Activity_Reason_Detail" %></p>
-      <% end %>
-      <h4>Daily Act Agree By Other</h4>
-      <%= for daily_activity <- @daily_activity do %>
-        <p><%= daily_activity."DailyActAgreeByOther" %></p>
-      <% end %>
-      <h4>Daily Act Agree By</h4>
-      <%= for daily_activity <- @daily_activity do %>
-        <p><%= daily_activity."DailyActAgreeBy" %></p>
-      <% end %>
-    </div>
-
-    <div class="mv2">
-      <h3 class="b">mhlSLAMRecoveryFocusedCarePlanGettingHelpFromOthersGeneral</h3>
-      <h4>Others Might Do Detail</h4>
-      <%= for help_from_others <- @help_from_others do %>
-        <p><%= help_from_others."Others_Might_Do_Detail" %></p>
-      <% end %>
-      <h4>Supporters Action To Take Detail</h4>
-      <%= for help_from_others <- @help_from_others do %>
-        <p><%= help_from_others."Supporters_Action_To_Take_Detail" %></p>
-      <% end %>
-      <h4>Previous Support Type Detail</h4>
-      <%= for help_from_others <- @help_from_others do %>
-        <p><%= help_from_others."Previous_Support_Type_Detail" %></p>
-      <% end %>
-    </div>
-
-    <div class="mv2">
-      <h3 class="b">mhlSLAMRecoveryFocusedCarePlanGoalsAndAsp</h3>
-      <h4>Personal Goal Detail</h4>
-      <%= for goals_asp <- @goals_asp do %>
-        <p><%= goals_asp."Personal_Goal_Detail" %></p>
-      <% end %>
-      <h4>Required Action Detail</h4>
-      <%= for goals_asp <- @goals_asp do %>
-        <p><%= goals_asp."Required_Action_Detail" %></p>
-      <% end %>
-      <h4>Support By Detail</h4>
-      <%= for goals_asp <- @goals_asp do %>
-        <p><%= goals_asp."Support_By_Detail" %></p>
-      <% end %>
-    </div>
-
-    <div class="mv2">
-      <h3 class="b">mhlSLAMRecoveryFocusedCarePlanLifeEventsTriggers</h3>
-      <h4>Trigger Detail</h4>
-      <%= for life_event_triggers <- @life_event_triggers do %>
-        <p><%= life_event_triggers."Trigger_Detail" %></p>
-      <% end %>
-      <h4>Coping Strategy Detail</h4>
-      <%= for life_event_triggers <- @life_event_triggers do %>
-        <p><%= life_event_triggers."Coping_Strategy_Detail" %></p>
-      <% end %>
+      <p>
+        <%= link_to("Write a note", to: care_team_room_path(@conn, :show, @room)) %>
+        to your care team about your Care Plan Summary.
+      </p>
     </div>
   <% else %>
     <p>
@@ -183,8 +161,11 @@
     </ul>
     <p>
       Soon there will be a new care plan which all teams can use. Please be
-      patient whilst this is rolled out. If you want a copy of your care plan,
+      patient whilst this is rolled out. <br>If you want a copy of your care plan,
       ask your care coordinator.
+    </p>
+    <p>
+      <%= link_to("Ask your care coordinator.", to: care_team_room_path(@conn, :show, @room)) %>
     </p>
   <% end %>
 </div>

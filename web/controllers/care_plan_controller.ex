@@ -2,10 +2,13 @@ defmodule Healthlocker.CarePlanController do
   use Healthlocker.Web, :controller
   alias Healthlocker.{EPJSSummaryNeeds, EPJSRecoveryCarePlan,
   EPJSRcpLifeEventTriggers, EPJSRcpHelpFromOthers, EPJSRcpGoalsAsp,
-  EPJSRcpDailyActivity, EPJSRcpContingency}
+  EPJSRcpDailyActivity, EPJSRcpContingency, CarePlanQuery, Room}
 
   def index(conn, _params) do
     id = conn.assigns.current_user.slam_id
+    user_id = conn.assigns.current_user.id
+    room_id = Repo.get_by(Room, name: "service-user-care-team:" <> to_string(user_id))
+    room = Repo.get! assoc(conn.assigns.current_user, :rooms), room_id.id
     care_plan_data = get_care_plan_data(id)
     conn
     |> render("index.html", summary_needs: care_plan_data.summary_needs,
@@ -14,7 +17,7 @@ defmodule Healthlocker.CarePlanController do
     help_from_others: care_plan_data.help_from_others,
     goals_asp: care_plan_data.goals_asp,
     daily_activity: care_plan_data.daily_activity,
-    contingency: care_plan_data.contingency)
+    contingency: care_plan_data.contingency, room: room)
   end
 
   def get_care_plan_data(patient_id) do
@@ -28,45 +31,45 @@ defmodule Healthlocker.CarePlanController do
 
     life_event_triggers =
       if recovery_care_plan do
-        query = from esn in EPJSRcpLifeEventTriggers,
-        where: esn."SLAM_Recovery_Focused_Care_Plan_ID" == ^recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID"
-        ReadOnlyRepo.all(query)
+        EPJSRcpLifeEventTriggers
+        |> CarePlanQuery.get_care_plan_details(recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID")
+        |> ReadOnlyRepo.all
       else
         []
       end
 
     help_from_others =
       if recovery_care_plan do
-        query = from esn in EPJSRcpHelpFromOthers,
-        where: esn."SLAM_Recovery_Focused_Care_Plan_ID" == ^recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID"
-        ReadOnlyRepo.all(query)
+        EPJSRcpHelpFromOthers
+        |> CarePlanQuery.get_care_plan_details(recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID")
+        |> ReadOnlyRepo.all
       else
         []
       end
 
     goals_asp =
       if recovery_care_plan do
-        query = from esn in EPJSRcpGoalsAsp,
-        where: esn."SLAM_Recovery_Focused_Care_Plan_ID" == ^recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID"
-        ReadOnlyRepo.all(query)
+        EPJSRcpGoalsAsp
+        |> CarePlanQuery.get_care_plan_details(recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID")
+        |> ReadOnlyRepo.all
       else
         []
       end
 
     daily_activity =
       if recovery_care_plan do
-        query = from esn in EPJSRcpDailyActivity,
-        where: esn."SLAM_Recovery_Focused_Care_Plan_ID" == ^recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID"
-        ReadOnlyRepo.all(query)
+        EPJSRcpDailyActivity
+        |> CarePlanQuery.get_care_plan_details(recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID")
+        |> ReadOnlyRepo.all
       else
         []
       end
 
     contingency =
       if recovery_care_plan do
-        query = from esn in EPJSRcpContingency,
-        where: esn."SLAM_Recovery_Focused_Care_Plan_ID" == ^recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID"
-        ReadOnlyRepo.all(query)
+        EPJSRcpContingency
+        |> CarePlanQuery.get_care_plan_details(recovery_care_plan."SLAM_Recovery_Focused_Care_Plan_ID")
+        |> ReadOnlyRepo.all
       else
         []
       end
