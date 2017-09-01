@@ -1,6 +1,6 @@
 defmodule Healthlocker.SymptomControllerTest do
   use Healthlocker.ConnCase
-  alias Healthlocker.{User, Symptom}
+  alias Healthlocker.User
 
   @valid_attrs %{symptom: "a problem"}
   @invalid_attrs %{symptom: ""}

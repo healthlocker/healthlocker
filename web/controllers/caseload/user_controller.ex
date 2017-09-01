@@ -8,7 +8,6 @@ defmodule Healthlocker.Caseload.UserController do
   def index(conn, %{"patients" => patients_list}) do
     cond do
       conn.assigns.current_user.user_guid ->
-        clinician = conn.assigns.current_user
         non_hl = get_non_hl_patients(patients_list)
         conn
         |> render("index.html", non_hl: non_hl)
@@ -22,7 +21,6 @@ defmodule Healthlocker.Caseload.UserController do
   def index(conn, _params) do
     cond do
       conn.assigns.current_user.user_guid ->
-        clinician = conn.assigns.current_user
         conn
         |> render("index.html", non_hl: [])
       true ->

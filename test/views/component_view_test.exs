@@ -56,6 +56,12 @@ defmodule Healthlocker.ComponentViewTest do
     assert expect_strings_in_list
   end
 
+  test "datetime_formatter changes datetime to DD/MM/YYYY" do
+    datetime = DateTime.from_naive!(~N[2016-05-24 13:26:08.003], "Etc/UTC")
+    actual = ComponentView.datetime_formatter(datetime)
+    assert actual == "24/05/2016"
+  end
+
   test "pretty_date returns date in the format DD/MM/YYYY" do
     {:ok, date} = Date.new(2017, 4, 10)
     actual =  ComponentView.pretty_date(date)

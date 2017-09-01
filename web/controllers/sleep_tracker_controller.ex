@@ -1,7 +1,7 @@
 defmodule Healthlocker.SleepTrackerController do
   use Healthlocker.Web, :controller
   use Timex
-  alias Healthlocker.{SleepTracker}
+  alias Healthlocker.SleepTracker
   import Healthlocker.ComponentHelpers.Link
 
   def new(conn, _params) do
@@ -27,11 +27,6 @@ defmodule Healthlocker.SleepTrackerController do
     changeset = SleepTracker.changeset(%SleepTracker{}, st_params)
               |> Ecto.Changeset.put_assoc(:user, user)
               |> Ecto.Changeset.put_change(:for_date, Date.utc_today())
-    # if user has for_date already, put_flash & redirect for Can only enter data once per day
-
-    sleep_data = SleepTracker
-                |> SleepTracker.get_sleep_data_today(user.id)
-                |> Repo.one
 
     case Repo.insert(changeset) do
       {:ok, params} ->

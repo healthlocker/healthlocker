@@ -66,7 +66,7 @@ defmodule Healthlocker.CopingStrategyController do
     changeset = Post.changeset(coping_strategy, content)
 
     case Repo.update(changeset) do
-      {:ok, coping_strategy} ->
+      {:ok, _coping_strategy} ->
         conn
         |> put_flash(:info, "Coping strategy updated successfully.")
         |> redirect(to: coping_strategy_path(conn, :index))

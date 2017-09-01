@@ -16,7 +16,7 @@ defmodule Healthlocker.CareTeam.RoomController do
     clinicians = make_clinician_rooms_entries(care_team, id)
 
     case Repo.insert_all(ClinicianRooms, clinicians) do
-      {n, nil} ->
+      {_n, nil} ->
         return_conn(conn, room, service_user, messages)
       _err ->
         conn
