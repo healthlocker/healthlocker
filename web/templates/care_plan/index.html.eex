@@ -104,7 +104,7 @@
     <h4>Care Plan completed by</h4>
     <p><%= @recovery_care_plan."Completed_By" %></p>
     <h4>Care Plan completed date</h4>
-    <p><%= Healthlocker.ComponentView.datetime_formatter(@recovery_care_plan."Completed_Date") %></p>
+    <p><%= !is_nil(@recovery_care_plan."Completed_Date") && Healthlocker.ComponentView.datetime_formatter(@recovery_care_plan."Completed_Date") %></p>
   </div>
 
    <div class="mt2 mb3 pb3 bb b--hl-grey bw2">
@@ -138,7 +138,7 @@
         <h4>Assessed by</h4>
         <p><%= @summary_needs."Assessed_By" %></p>
         <h4>Assessed date</h4>
-        <p><%= Healthlocker.ComponentView.datetime_formatter(@summary_needs."Assessed_Date") %></p>
+        <p><%= !is_nil(@summary_needs."Assessed_Date") && Healthlocker.ComponentView.datetime_formatter(@summary_needs."Assessed_Date") %></p>
         <h4>End date</h4>
         <p><%= @summary_needs."End_Date" %></p>
       <% end %>
