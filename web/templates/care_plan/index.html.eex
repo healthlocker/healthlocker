@@ -120,7 +120,7 @@
         <p><%= @summary_needs."Summary_Of_Need_Occupation_Education" %></p>
         <h4>Daily living</h4>
         <p><%= @summary_needs."Summary_Of_Need_Daily_Living" %></p>
-        <h4>Accomodation</h4>
+        <h4>Accommodation</h4>
         <p><%= @summary_needs."Summary_Of_Need_Accomodation" %></p>
         <h4>Finance</h4>
         <p><%= @summary_needs."Summary_Of_Need_Finance" %></p>
