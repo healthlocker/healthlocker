@@ -17,12 +17,15 @@ defmodule Healthlocker.TrackerView do
   end
 
   def get_week_average(data) do
-    total_slept = Enum.map(data, fn struct -> String.to_float(struct.hours_slept) end)
+    total_slept =
+      Enum.map(data, fn struct -> String.to_float(struct.hours_slept) end)
       |> Enum.sum
-    if Kernel.length(data) == 0 do
-      0
-    else
-      format_average_sleep(total_slept / Kernel.length(data))
+    cond do
+      Kernel.length(data) == 0 -> ""
+      total_slept / Kernel.length(data) == 0 ->
+        "0 hours"
+      true ->
+        format_average_sleep(total_slept / Kernel.length(data))
     end
   end
 
