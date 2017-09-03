@@ -3,10 +3,14 @@
 
   <p class="pb2 ma0 b">Tips: 5 Ways to Wellbeing</p>
   <div>
-    <p>Small improvements in our wellbeing can help to decrease some mental
-      health problems and also help us to get more out of life.</p>
-    <p>These 5 actions are proven to improve personal wellbeing. <br>
-      <%= link_to "Read the full document", to: "https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing" %>
+    <p>
+      Small improvements in our wellbeing can help to decrease some mental
+      health problems and also help us to get more out of life.
+    </p>
+    <p>
+      These 5 ways to wellbeing are proven to improve personal wellbeing.
+      <%= link_to "Read the full document.",
+      to: "https://www.gov.uk/government/publications/five-ways-to-mental-wellbeing" %>
     </p>
   </div>
 
@@ -59,5 +63,5 @@
   <% end %>
 
   <p class="mt4"><%= link_to "Create a goal", to: "/goal/new"%> for yourself based on one of the 5 ways to wellbeing.</p>
-<p><%= link "Share your own tips, or suggest an addition or amendment to this page.", to: "/feedback", class: "hl-aqua flex-wrap underline" %></p>  
+<p><%= link "Share your own tips, or suggest an addition or amendment to this page.", to: "/feedback", class: "hl-aqua flex-wrap underline" %></p>
 </div>
