@@ -54,8 +54,6 @@ You first need to create the database and tables.
 cd /home/"server_name"/"app_name"/builds (example: cd /home/hladmin/healthlocker/builds/)
 mix ecto.create
 mix ecto.migrate
-sudo -u postgres psql
-\connect "name_of_the_database_your_app_uses" (e.g. \connect healthlocker_dev)
 ```
 
 In Oxleas-adhd, [a super admin role needs to be set up](https://github.com/healthlocker/oxleas-adhd/blob/master/deployment_and_ssl_doc.md#add-super_admin-user-to-database).
@@ -64,9 +62,17 @@ Healthlocker does not use a `super-admin` role, however an `admin` role will
 need to be set up. You can create an account for the email you wish to make an
 admin account on the website at https://www.healthlocker.uk/users/new.
 
-Then on the server run `select id from users where email = 'email you signed up with';`.
+On the server, connect to the postgres database by running:
+```
+sudo -u postgres psql
+\connect "name_of_the_database_your_app_uses" (e.g. \connect healthlocker_dev)
+```
+
+Once connected to postgres, run `select id from users where email = 'email you signed up with';`.
 Use this `id` in place of `id_from_last_step` below.
 
 `UPDATE users SET role = 'admin' WHERE id = id_from_last_step;`
 
 When you have entered this info type `\q` then press `return`.
+
+`exit` the server.
