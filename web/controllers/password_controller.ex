@@ -32,7 +32,7 @@ defmodule Healthlocker.PasswordController do
       user ->
         user = reset_password_token(user)
         # send password token to pw_params["email"]
-        Healthlocker.Email.send_reset_email(email, user.reset_password_token)
+        Healthlocker.Email.send_reset_email(email, user.reset_password_token, conn.host)
         |> Healthlocker.Mailer.deliver_now()
 
         conn
