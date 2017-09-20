@@ -71,8 +71,8 @@ defmodule Healthlocker.PasswordControllerTest do
 
   test "POST /password with non_existent_email", %{conn: conn} do
     conn = post conn, password_path(conn, :create), user: @non_existent_email
-    assert redirected_to(conn) == password_path(conn, :new)
-    assert get_flash(conn, :error) == "Could not send reset email. Please try again later"
+    assert redirected_to(conn) == login_path(conn, :index)
+    assert get_flash(conn, :info) == "If your email address exists in our database, you will receive a password reset link at your email address in a few minutes."
   end
 
   test "POST /password with invalid data", %{conn: conn} do
