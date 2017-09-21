@@ -30,6 +30,28 @@ defmodule Healthlocker.Router do
 
     resources "/posts", PostController, only: [:new, :create, :edit, :update]
   end
+  
+  # endpoints not requiring a logged in user
+  scope "/", Healthlocker do
+    pipe_through :browser
+
+    get "/", PageController, :index
+    resources "/feedback", FeedbackController, only: [:index, :create]
+    resources "/login", LoginController, only: [:index, :create, :delete]
+    resources "/users", UserController, only: [:index, :new, :create, :update] do
+      get "/signup2", UserController, :signup2
+      put "/create2", UserController, :create2
+      get "/signup3", UserController, :signup3
+      put "/create3", UserController, :create3
+    end
+    resources "/pages", PageController, only: [:index, :show]
+    resources "/posts", PostController, only: [:show, :index]
+    resources "/support", SupportController, only: [:index]
+    resources "/tips", TipController, only: [:index]
+    resources "/password", PasswordController, only: [:new, :create, :edit, :update]
+    resources "/epjs-button", ButtonController, only: [:index]
+    resources "/caseload", CaseloadController, only: [:index]
+  end
 
   # endpoints requiring a logged in user
   scope "/", Healthlocker do
@@ -77,28 +99,6 @@ defmodule Healthlocker.Router do
       get "/next-date", TrackerController, :next_date
     end
     resources "/diary", DiaryController, only: [:new, :create, :edit, :update]
-  end
-
-  # endpoints not requiring a logged in user
-  scope "/", Healthlocker do
-    pipe_through :browser
-
-    get "/", PageController, :index
-    resources "/feedback", FeedbackController, only: [:index, :create]
-    resources "/login", LoginController, only: [:index, :create, :delete]
-    resources "/users", UserController, only: [:index, :new, :create, :update] do
-      get "/signup2", UserController, :signup2
-      put "/create2", UserController, :create2
-      get "/signup3", UserController, :signup3
-      put "/create3", UserController, :create3
-    end
-    resources "/pages", PageController, only: [:index, :show]
-    resources "/posts", PostController, only: [:show, :index]
-    resources "/support", SupportController, only: [:index]
-    resources "/tips", TipController, only: [:index]
-    resources "/password", PasswordController, only: [:new, :create, :edit, :update]
-    resources "/epjs-button", ButtonController, only: [:index]
-    resources "/caseload", CaseloadController, only: [:index]
   end
 
   scope "/", Healthlocker do
