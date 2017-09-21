@@ -20,6 +20,6 @@ defmodule Healthlocker.Plugs.RequireAdmin do
     conn
     |> Phoenix.Controller.put_flash(:error,  "You do not have access to that page.")
     |> Phoenix.Controller.redirect(to: Healthlocker.Router.Helpers.page_path(conn, :index))
-    |> halt
+    |> halt()
   end
 end
