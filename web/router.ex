@@ -16,15 +16,26 @@ defmodule Healthlocker.Router do
     plug :find_room
   end
 
+  pipeline :admin do
+    plug Healthlocker.Plugs.RequireAdmin
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  # endpoints requiring an admin user
+  scope "/", Healthlocker do
+    pipe_through [:browser, :admin]
+
+    resources "/posts", PostController, only: [:new, :create, :edit, :update]
   end
 
   # endpoints requiring a logged in user
   scope "/", Healthlocker do
     pipe_through [:browser, :logged_in]
 
-    resources "/posts", PostController, only: [:new, :create, :edit, :update] do
+    resources "/posts", PostController, only: [:show, :index] do
       post "/likes", PostController, :likes
     end
 
