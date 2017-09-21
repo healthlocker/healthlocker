@@ -14,7 +14,7 @@ defmodule Healthlocker.PasswordController do
     email = pw_params["email"]
     user = case email do
       nil ->
-        nil
+        "No input"
       email ->
         User
         |> Repo.get_by(email: email)
@@ -23,16 +23,20 @@ defmodule Healthlocker.PasswordController do
     case user do
       nil ->
         conn
+        |> put_flash(:info, "If your email address exists in our database, you will receive a password reset link at your email address in a few minutes.")
+        |> redirect(to: login_path(conn, :index))
+      "No input" ->
+        conn
         |> put_flash(:error, "Could not send reset email. Please try again later")
         |> redirect(to: password_path(conn, :new))
       %{role: "clinician"} ->
         conn
-        |> put_flash(:error, "Could not send reset email. Please try again later")
-        |> redirect(to: password_path(conn, :new))
+        |> put_flash(:info, "If your email address exists in our database, you will receive a password reset link at your email address in a few minutes.")
+        |> redirect(to: login_path(conn, :index))
       user ->
         user = reset_password_token(user)
         # send password token to pw_params["email"]
-        Healthlocker.Email.send_reset_email(email, user.reset_password_token)
+        Healthlocker.Email.send_reset_email(email, user.reset_password_token, conn.host)
         |> Healthlocker.Mailer.deliver_now()
 
         conn

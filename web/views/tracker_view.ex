@@ -206,9 +206,13 @@ defmodule Healthlocker.TrackerView do
     day_of_week(date, 0) <> " " <> Integer.to_string(date.day) <> " " <> Timex.month_name(date.month)
   end
 
+  # converts to London timezone so that it takes into account BST
+  # Converts to time and displays it as 11:00, 13:10 etc.
   def printed_time(naive_date_time) do
-    [hours, minutes | _] = naive_date_time
-    |> NaiveDateTime.to_time()
+    datetime = Timex.Timezone.convert(naive_date_time, "Europe/London")
+
+    [hours, minutes | _] = datetime
+    |> DateTime.to_time()
     |> Time.to_string
     |> String.split(":")
 
