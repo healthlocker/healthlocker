@@ -15,7 +15,6 @@ defmodule Healthlocker.Slam.CarerConnection do
   def changeset(changeset, params \\ %{}) do
     changeset
     |> cast(params, [:forename, :surname, :date_of_birth, :nhs_number])
-    |> cast_datetime(:date_of_birth)
     |> validate_required([:forename, :surname, :date_of_birth, :nhs_number])
     |> validate_slam()
   end
@@ -36,6 +35,7 @@ defmodule Healthlocker.Slam.CarerConnection do
 
   defp find_epjs_user(%{changes: changes}) do
     %{forename: forename, surname: surname, date_of_birth: date_of_birth, nhs_number: nhs_number} = changes
+    date_of_birth = convert_to_datetime(date_of_birth)
 
     query = from e in EPJSUser,
       where: e."Forename" == ^forename
@@ -46,12 +46,7 @@ defmodule Healthlocker.Slam.CarerConnection do
     ReadOnlyRepo.one(query)
   end
 
-  defp cast_datetime(changeset, field) do
-    if value = get_change(changeset, field) do
-      datetime = value |> Timex.parse!("%d/%m/%Y", :strftime) |> DateTime.from_naive!("Etc/UTC")
-      put_change(changeset, field, datetime)
-    else
-      changeset
-    end
+  defp convert_to_datetime(date_string) do
+    datetime = date_string |> Timex.parse!("%d/%m/%Y", :strftime) |> DateTime.from_naive!("Etc/UTC")
   end
 end
