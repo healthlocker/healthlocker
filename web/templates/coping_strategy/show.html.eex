@@ -5,7 +5,7 @@
   </div>
   <div class="hl-bg-grey pv1 ph3 mt2 word-wrap">
     <span class="b">
-      <%= markdown String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %>
+      <p><%= String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %></p>
     </span>
   </div>
   <p class="mv3 f6 i">
