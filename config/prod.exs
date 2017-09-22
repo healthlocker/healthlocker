@@ -38,7 +38,8 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   hostname: System.get_env("READ_ONLY_HOSTNAME"),
   username: System.get_env("READ_ONLY_USERNAME"),
   password: System.get_env("READ_ONLY_PASSWORD"),
-  database: System.get_env("READ_ONLY_DATABASE")
+  database: System.get_env("READ_ONLY_DATABASE"),
+  idle_timeout: System.get_env("TIMEOUT_INTERVAL")
 
 # Do not print debug messages in production
 config :logger, level: :info, format: "[$level] $message\n"
