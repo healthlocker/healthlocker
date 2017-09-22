@@ -14,6 +14,6 @@ defmodule Healthlocker.Plugs.RequireLogin do
     conn
     |> Phoenix.Controller.put_flash(:error,  "You must be logged in to access that page!")
     |> Phoenix.Controller.redirect(to: Healthlocker.Router.Helpers.login_path(conn, :index))
-    |> halt
+    |> halt()
   end
 end
