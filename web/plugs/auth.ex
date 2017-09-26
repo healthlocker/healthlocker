@@ -1,6 +1,7 @@
 defmodule Healthlocker.Plugs.Auth do
   import Plug.Conn
   import Comeonin.Bcrypt, only: [checkpw: 2, dummy_checkpw: 0]
+  use Timex
 
   def init(opts) do
     Keyword.fetch!(opts, :repo)
@@ -9,12 +10,20 @@ defmodule Healthlocker.Plugs.Auth do
   def call(conn, repo) do
     user_id = get_session(conn, :user_id)
     cond do
+      session_expired?(conn) ->
+        logout(conn)
       user = conn.assigns[:current_user] ->
-        put_current_user(conn, user)
+        conn
+        |> put_session(:expiry_time, gen_expiration_datetime_string())
+        |> put_current_user(user)
       user = user_id && repo.get(Healthlocker.User, user_id) |> repo.preload(:likes) ->
-        put_current_user(conn, user)
+        conn
+        |> put_session(:expiry_time, gen_expiration_datetime_string())
+        |> put_current_user(user)
       true ->
-        assign(conn, :current_user, nil)
+        conn
+        |> assign(:current_user, nil)
+        |> put_session(:expiry_time, false)
     end
   end
 
@@ -22,6 +31,7 @@ defmodule Healthlocker.Plugs.Auth do
     conn
     |> put_current_user(user)
     |> put_session(:user_id, user.id)
+    |> put_session(:expiry_time, gen_expiration_datetime_string())
     |> configure_session(renew: true)
   end
 
@@ -60,7 +70,22 @@ defmodule Healthlocker.Plugs.Auth do
     end
   end
 
+  defp gen_expiration_datetime_string do
+    Timex.now |> Timex.shift(minutes: +String.to_integer(System.get_env("SESSION_TIMEOUT"))) |> Timex.format!("{ISO:Extended}")
+  end
+
+  defp session_expired?(conn) do
+    if get_session(conn, :expiry_time) do
+      expiry_time = get_session(conn, :expiry_time) |> Timex.parse!("{ISO:Extended}")
+      Timex.after?(Timex.now, expiry_time)
+    else
+      get_session(conn, :expiry_time)
+    end
+  end
+
   def logout(conn) do
-    configure_session(conn, drop: true)
+    conn
+    |> configure_session(drop: true)
+    |> put_session(:expiry_time, false)
   end
 end
