@@ -71,7 +71,7 @@ defmodule Healthlocker.Plugs.Auth do
   end
 
   defp gen_expiration_datetime_string do
-    Timex.now |> Timex.shift(minutes: +30) |> Timex.format!("{ISO:Extended}")
+    Timex.now |> Timex.shift(minutes: +String.to_integer(System.get_env("SESSION_TIMEOUT"))) |> Timex.format!("{ISO:Extended}")
   end
 
   defp session_expired?(conn) do
