@@ -42,12 +42,7 @@ config :healthlocker, Healthlocker.ReadOnlyRepo,
   idle_timeout: String.to_integer(System.get_env("TIMEOUT_INTERVAL"))
 
 # Do not print debug messages in production
-config :logger,
-  backends: [{LoggerFileBackend, :error_log}]
-
-config :logger, :error_log,
-  path: "/var/log/healthlocker/error.log",
-  level: :error
+config :logger, level: :info, format: "[$level] $message\n"
 
 config :healthlocker, :analytics, Healthlocker.Analytics.Segment
 
