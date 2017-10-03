@@ -192,7 +192,7 @@ defmodule Healthlocker.AccountController do
             where: e."Forename" == ^forename
             and e."Surname" == ^surname
             and e."NHS_Number" == ^nhs_no
-            and e."DOB" == ^birthday
+            and e."DOB" == fragment("convert (datetime, ?, 103)", ^birthday)
           )
         else
           nil
@@ -200,8 +200,9 @@ defmodule Healthlocker.AccountController do
 
         if slam_user do
           user = conn.assigns.current_user |> Repo.preload(:caring)
-          carer = case Carer |> Repo.get_by(slam_id: slam_user."Patient_ID") do
-            nil ->
+          carer_query = from c in Carer, where: c.slam_id == ^slam_user."Patient_ID"
+          carer = case Repo.all(carer_query) do
+            [] ->
               nil
             carer ->
               carer
@@ -236,12 +237,14 @@ defmodule Healthlocker.AccountController do
   def datetime_birthday(date_string) do
     date_string
     |> Timex.parse!("%d/%m/%Y", :strftime)
-    |> DateTime.from_naive!("Etc/UTC")
+    |> Timex.format!("%d/%m/%Y", :strftime)
   end
 
   def check_age(birthday) do
-    sixteen_years_ago = Timex.shift(DateTime.utc_now, years: -16)
+    sixteen_years_ago = Timex.shift(NaiveDateTime.utc_now, years: -16)
 
-    DateTime.compare(birthday, sixteen_years_ago)
+    birthday
+    |> Timex.parse!("%d/%m/%Y", :strftime)
+    |> NaiveDateTime.compare(sixteen_years_ago)
   end
 end
