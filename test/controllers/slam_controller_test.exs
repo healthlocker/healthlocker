@@ -58,20 +58,23 @@ defmodule Healthlocker.SlamControllerTest do
     assert html_response(conn, 200) =~ ~r/Connect/
   end
 
-  test "POST /slam with valid attrs", %{conn: conn} do
-    conn = post(conn, slam_path(conn, :create), carer_connection: @valid_attrs)
-    assert redirected_to(conn) == account_path(conn, :index)
-  end
+  # can only test with mssql database set up
+  # test "POST /slam with valid attrs", %{conn: conn} do
+  #   conn = post(conn, slam_path(conn, :create), carer_connection: @valid_attrs)
+  #   assert redirected_to(conn) == account_path(conn, :index)
+  # end
 
-  test "POST /slam without carer details", %{conn: conn} do
-    conn = post conn, slam_path(conn, :create), carer_connection: @invalid_carer
-    assert html_response(conn, 200) =~ ~r/Connect/
-  end
+  # can only test with mssql database set up
+  # test "POST /slam without carer details", %{conn: conn} do
+  #   conn = post conn, slam_path(conn, :create), carer_connection: @invalid_carer
+  #   assert html_response(conn, 200) =~ ~r/Connect/
+  # end
 
-  test "POST /slam with incorrect slam details", %{conn: conn} do
-    conn = post conn, slam_path(conn, :create), carer_connection: @invalid_slam
-    assert html_response(conn, 200) =~ ~r/Connect/
-  end
+  # can only test with mssql database set up
+  # test "POST /slam with incorrect slam details", %{conn: conn} do
+  #   conn = post conn, slam_path(conn, :create), carer_connection: @invalid_slam
+  #   assert html_response(conn, 200) =~ ~r/Connect/
+  # end
 
   test "POST /slam with blank form", %{conn: conn} do
     conn = post conn, slam_path(conn, :create), carer_connection: @invalid_attrs
