@@ -200,8 +200,9 @@ defmodule Healthlocker.AccountController do
 
         if slam_user do
           user = conn.assigns.current_user |> Repo.preload(:caring)
-          carer = case Carer |> Repo.get_by(slam_id: slam_user."Patient_ID") do
-            nil ->
+          carer_query = from c in Carer, where: c.slam_id == ^slam_user."Patient_ID"
+          carer = case Carer |> Repo.all(carer_query) do
+            [] ->
               nil
             carer ->
               carer
