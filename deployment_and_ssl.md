@@ -47,6 +47,49 @@ TIMEOUT_INTERVAL
 MPass
 ```
 
+### Setting up AppSignal
+
+AppSignal is used for error logging of the staging and live sites. It is set up
+differently on live and staging. You can run through this set up after you have
+completed your first deploy of the application.
+
+For both live and staging, you will need to ssh into the relevant server, and
+add a variable to the profile called `APPSIGNAL_PUSH_API_KEY`. Set this to the
+push api key you get from AppSignal by going to
+[your AppSignal account](https://appsignal.com/accounts), selecting any
+Healthlocker application, going to settings, and the `Push and Deploy` tab.
+This will be the same for all apps, so it does not matter which application
+you take this from.
+
+#### Live set up
+You need to ssh into the live server, and go to the folder containing the
+application by running `cd /home/hladmin/healthlocker/builds`.
+
+Run `mix appsignal.install <your push api key>`.
+
+When running through the install, you will have an option to choose whether to
+configure AppSignal using a `config` file, or with environment variables. For
+live, choose `from a config file`.
+
+AppSignal will start running once you have completed steps to have the app
+running.
+
+#### Staging set up
+On staging, AppSignal is configured using environment variables. You will need
+to set two additional environment variables for the staging site to complete
+this:
+
+`APPSIGNAL_APP_NAME="Healthlocker-staging"`
+`APPSIGNAL_APP_ENV="staging"`
+
+Once these are set, run `mix appsignal.install <your push api key>`.
+
+For staging, choose the option to configure AppSignal using environment
+variables.
+
+AppSignal will start running once you have completed steps to have the app
+running.
+
 ### Setting up roles
 You first need to create the database and tables.
 `ssh` into the server with `ssh root@"IP Address of server"`
