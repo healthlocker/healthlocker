@@ -20,6 +20,7 @@ defmodule Healthlocker.Slam.CarerConnection do
   end
 
   defp validate_slam(changeset, options \\ []) do
+    IO.inspect changeset
     epjs_user = find_epjs_user(changeset)
 
     changeset = validate_change(changeset, :nhs_number, fn _, _ ->
@@ -40,13 +41,16 @@ defmodule Healthlocker.Slam.CarerConnection do
     query = from e in EPJSUser,
       where: e."Forename" == ^forename
         and e."Surname" == ^surname
-        and e."DOB" == ^date_of_birth
+        and e."DOB" == fragment("convert (datetime, ?, 103)", ^date_of_birth)
         and e."NHS_Number" == ^nhs_number
 
     ReadOnlyRepo.one(query)
   end
 
   defp convert_to_datetime(date_string) do
-    datetime = date_string |> Timex.parse!("%d/%m/%Y", :strftime) |> DateTime.from_naive!("Etc/UTC")
+    # this ensures the datetime is always in the same format
+    date_string
+    |> Timex.parse!("%d/%m/%Y", :strftime)
+    |> Timex.format!("%d/%m/%Y", :strftime)
   end
 end

@@ -192,7 +192,7 @@ defmodule Healthlocker.AccountController do
             where: e."Forename" == ^forename
             and e."Surname" == ^surname
             and e."NHS_Number" == ^nhs_no
-            and e."DOB" == ^birthday
+            and e."DOB" == fragment("convert (datetime, ?, 103)", ^birthday)
           )
         else
           nil
@@ -236,7 +236,7 @@ defmodule Healthlocker.AccountController do
   def datetime_birthday(date_string) do
     date_string
     |> Timex.parse!("%d/%m/%Y", :strftime)
-    |> DateTime.from_naive!("Etc/UTC")
+    |> Timex.format!("%d/%m/%Y", :strftime)
   end
 
   def check_age(birthday) do
