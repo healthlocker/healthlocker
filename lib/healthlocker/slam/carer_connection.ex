@@ -20,7 +20,6 @@ defmodule Healthlocker.Slam.CarerConnection do
   end
 
   defp validate_slam(changeset, options \\ []) do
-    IO.inspect changeset
     epjs_user = find_epjs_user(changeset)
 
     changeset = validate_change(changeset, :nhs_number, fn _, _ ->
