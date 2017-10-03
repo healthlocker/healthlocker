@@ -240,8 +240,10 @@ defmodule Healthlocker.AccountController do
   end
 
   def check_age(birthday) do
-    sixteen_years_ago = Timex.shift(DateTime.utc_now, years: -16)
+    sixteen_years_ago = Timex.shift(NaiveDateTime.utc_now, years: -16)
 
-    DateTime.compare(birthday, sixteen_years_ago)
+    birthday
+    |> Timex.parse!("%d/%m/%Y", :strftime)
+    |> NaiveDateTime.compare(sixteen_years_ago)
   end
 end
