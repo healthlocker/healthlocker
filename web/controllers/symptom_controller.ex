@@ -3,9 +3,15 @@ defmodule Healthlocker.SymptomController do
   alias Healthlocker.Symptom
 
   def new(conn, _params) do
-    changeset = Symptom.changeset(%Symptom{})
-    conn
-    |> render("new.html", changeset: changeset)
+    if tracker_exists?(conn.assigns.current_user.id) do
+      conn
+      |> put_flash(:error, "You can only set up your problem tracker once. Track your problem now." )
+      |> redirect(to: symptom_tracker_path(conn, :new))
+    else
+      changeset = Symptom.changeset(%Symptom{})
+      conn
+      |> render("new.html", changeset: changeset)
+    end
   end
 
   def create(conn, %{"symptom" => symptom}) do
