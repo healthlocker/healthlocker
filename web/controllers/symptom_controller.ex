@@ -24,4 +24,8 @@ defmodule Healthlocker.SymptomController do
         |> render("new.html", changeset: changeset)
     end
   end
+
+  defp tracker_exists?(user_id) do
+    !!Repo.get_by(Symptom, user_id: user_id)
+  end
 end
