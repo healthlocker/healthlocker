@@ -31,12 +31,6 @@ defmodule Healthlocker.TrackerViewTest do
     assert actual == expected
   end
 
-  test "date_with_day_and_month returns the correct date string" do
-    actual = TrackerView.date_with_day_and_month(~D[2017-04-07])
-    expected = "Friday 7 April"
-    assert actual == expected
-  end
-
   test "printed_time while in BST" do
     actual = TrackerView.printed_time(~N[2017-09-20 12:22:06.896685])
     expected = "13:22"
@@ -47,5 +41,42 @@ defmodule Healthlocker.TrackerViewTest do
     actual = TrackerView.printed_time(~N[2000-01-01 11:00:07])
     expected = "11:00"
     assert actual == expected
+  end
+
+  describe "date_with_day_and_month returns the correct date string" do
+    test "Monday" do
+      actual = TrackerView.date_with_day_and_month(~D[2017-10-16])
+      assert actual == "Monday 16 October"
+    end
+
+    test "Tuesday" do
+      actual = TrackerView.date_with_day_and_month(~D[2017-10-17])
+      assert actual == "Tuesday 17 October"
+    end
+
+    test "Wednesday" do
+      actual = TrackerView.date_with_day_and_month(~D[2017-10-18])
+      assert actual == "Wednesday 18 October"
+    end
+
+    test "Thursday" do
+      actual = TrackerView.date_with_day_and_month(~D[2017-10-19])
+      assert actual == "Thursday 19 October"
+    end
+
+    test "Friday" do
+      actual = TrackerView.date_with_day_and_month(~D[2017-10-20])
+      assert actual == "Friday 20 October"
+    end
+
+    test "Saturday" do
+      actual = TrackerView.date_with_day_and_month(~D[2017-10-21])
+      assert actual == "Saturday 21 October"
+    end
+
+    test "Sunday" do
+      actual = TrackerView.date_with_day_and_month(~D[2017-10-22])
+      assert actual == "Sunday 22 October"
+    end
   end
 end
