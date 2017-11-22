@@ -37,6 +37,11 @@ defmodule Healthlocker.TrackerViewTest do
     assert actual == expected
   end
 
+  test "date_with_day_and_month returns the correct date string on Saturday" do
+    actual = TrackerView.date_with_day_and_month(~D[2017-10-21])
+    assert actual == "Saturday 21 October"
+  end
+
   test "printed_time while in BST" do
     actual = TrackerView.printed_time(~N[2017-09-20 12:22:06.896685])
     expected = "13:22"
