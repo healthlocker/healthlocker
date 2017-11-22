@@ -20,6 +20,7 @@ defmodule Healthlocker.SymptomController do
         |> redirect(to: symptom_tracker_path(conn, :new))
       {:error, changeset} ->
         conn
+        |> put_flash(:error, "You've already added a problem. Track it in the problem tracker.")
         |> render("new.html", changeset: changeset)
     end
   end
