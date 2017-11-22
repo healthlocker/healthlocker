@@ -190,7 +190,7 @@ defmodule Healthlocker.TrackerView do
   end
 
   @days_of_week ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-  defp day_of_week(_date, 6) do
+  defp day_of_week(_date, 7) do
     @days_of_week |> Enum.at(6)
   end
 
@@ -203,7 +203,7 @@ defmodule Healthlocker.TrackerView do
   end
 
   def date_with_day_and_month(date) do
-    day_of_week(date, 0) <> " " <> Integer.to_string(date.day) <> " " <> Timex.month_name(date.month)
+    day_of_week(date, 1) <> " " <> Integer.to_string(date.day) <> " " <> Timex.month_name(date.month)
   end
 
   # converts to London timezone so that it takes into account BST
