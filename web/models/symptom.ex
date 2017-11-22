@@ -12,6 +12,7 @@ defmodule Healthlocker.Symptom do
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:symptom])
+    |> unique_constraint(:user_id)
     |> validate_required([:symptom])
   end
 end
