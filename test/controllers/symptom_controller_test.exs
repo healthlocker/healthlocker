@@ -52,6 +52,13 @@ defmodule Healthlocker.SymptomControllerTest do
       {:ok, conn: build_conn() |> assign(:current_user, Repo.get(User, 123456)) }
     end
 
+    test "/symptom/new redirects to /symptom_tracker/new when symptom exists", %{conn: conn} do
+      conn = get conn, symptom_path(conn, :new)
+      assert redirected_to(conn) == symptom_tracker_path(conn, :new)
+      error_flash = "You can only set up your problem tracker once. Track your problem now."
+      assert get_flash(conn, :error) == error_flash
+    end
+
     test "does not create duplicate problem", %{conn: conn} do
       conn = post conn, symptom_path(conn, :create), symptom: @valid_attrs
       assert html_response(conn, 200) =~ "Problem tracker"
