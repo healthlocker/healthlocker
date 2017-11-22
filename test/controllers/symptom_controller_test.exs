@@ -62,7 +62,7 @@ defmodule Healthlocker.SymptomControllerTest do
     test "does not create duplicate problem", %{conn: conn} do
       conn = post conn, symptom_path(conn, :create), symptom: @valid_attrs
       assert html_response(conn, 200) =~ "Problem tracker"
-      error_flash = "You can only set up your problem tracker once. Track your problem now."
+      error_flash = "Something went wrong. Try again later."
       assert get_flash(conn, :error) == error_flash
     end
   end
