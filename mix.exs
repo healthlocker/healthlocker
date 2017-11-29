@@ -22,6 +22,7 @@ defmodule Healthlocker.Mixfile do
         :phoenix,
         :phoenix_pubsub,
         :phoenix_html,
+        :phoenix_html_sanitizer,
         :cowboy,
         :logger,
         :gettext,
