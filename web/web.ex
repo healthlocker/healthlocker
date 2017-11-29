@@ -49,6 +49,7 @@ defmodule Healthlocker.Web do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+      use PhoenixHtmlSanitizer, :basic_html
 
       import Healthlocker.Router.Helpers
       import Healthlocker.ErrorHelpers
