@@ -5,8 +5,8 @@
   </div>
   <div class="hl-bg-grey pv1 ph3 mt2 word-wrap">
     <span class="b">
-      <p><%= String.trim_trailing(@coping_strategy.content, " #CopingStrategy") %></p>
-    </span>
+      <p><%= format_output(@coping_strategy.content) %></p>
+    </span
   </div>
   <p class="mv3 f6 i">
     Created <%= Healthlocker.ComponentView.pretty_date(@coping_strategy.inserted_at) %>

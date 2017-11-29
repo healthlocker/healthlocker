@@ -3,10 +3,10 @@
       p.id
     end), @post.id) do %>
     <%= img_tag("/images/Bookmark_selected.png", class: "w1 h2 relative bm-top mb-2") %>
-  <%= else %>
+  <% else %>
     <%= link to: post_post_path(@conn, :likes, @post.id),
             method: "post" do %>
       <%= img_tag("/images/Bookmark_unselected.png", class: "w1 h2 relative bm-top") %>
     <% end %>
-  <%= end %>
-<%= end %>
+  <% end %>
+<% end %>

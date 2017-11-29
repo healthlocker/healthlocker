@@ -5,12 +5,12 @@
     <article class="ph3 pb3 bb b--black-20">
         <%= render Healthlocker.ComponentView, "like.html", conn: @conn,
             post: post, current_user: @current_user %>
-        <%= markdown return_string(post.content) %>
+        <%= markdown(post.content) %>
         <div class="tl">
           <%= link_to "Read this story", to: post_path(@conn, :show, post)%>
         </div>
     </article>
   <% end %>
 
-<p><%= link "Write your own story, or suggest an addition or amendment to this page.", to: "/feedback", class: "hl-aqua flex-wrap underline" %></p>          
-   </section>       
+<p><%= link "Write your own story, or suggest an addition or amendment to this page.", to: "/feedback", class: "hl-aqua flex-wrap underline" %></p>
+   </section>

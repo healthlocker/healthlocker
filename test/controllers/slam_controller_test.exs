@@ -2,28 +2,6 @@ defmodule Healthlocker.SlamControllerTest do
   use Healthlocker.ConnCase
   alias Healthlocker.{User, EPJSUser, ReadOnlyRepo}
 
-  @valid_attrs %{
-    first_name: "Kat",
-    last_name: "Bow",
-    forename: "Lisa",
-    surname: "Sandoval",
-    date_of_birth: "01/07/1997",
-    nhs_number: "2848783643"
-  }
-  @invalid_carer %{
-    forename: "Lisa",
-    surname: "Sandoval",
-    date_of_birth: "01/07/1997",
-    nhs_number: "2848783643"
-  }
-  @invalid_slam %{
-    first_name: "Kat",
-    last_name: "Bow",
-    forename: "Lisa",
-    surname: "Sandoval",
-    date_of_birth: "01/07/1997",
-    nhs_number: "regyfuihweufgiui2"
-  }
   @invalid_attrs %{}
 
   setup do

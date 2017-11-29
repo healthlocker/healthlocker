@@ -1,6 +1,6 @@
 <%= if @user.role =="carer" do %>
   <%= render Healthlocker.Caseload.UserView, "carer_menu.html", assigns %>
-<%= else %>
+<% else %>
   <%= render Healthlocker.Caseload.UserView, "menu.html", assigns %>
 <% end %>
 <%= render Healthlocker.RoomView, "_room.html", assigns %>

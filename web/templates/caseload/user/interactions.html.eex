@@ -74,7 +74,7 @@
       <% end %>
     </div>
   </div>
-<%= else %>
+<% else %>
   <%= render "carer_menu.html", assigns %>
   <p>Content not available for carers</p>
 <% end %>
