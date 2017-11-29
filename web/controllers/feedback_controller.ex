@@ -6,8 +6,8 @@ defmodule Healthlocker.FeedbackController do
     |> render("index.html")
   end
 
-  def create(conn, %{"feedback" => %{"subject" => subject, "content" => content}}) do
-    Healthlocker.Email.send_feedback(subject, content)
+  def create(conn, %{"feedback" => %{"subject" => subject, "content" => content, "email" => email}}) do
+    Healthlocker.Email.send_feedback(subject, content, email)
     |> Healthlocker.Mailer.deliver_now()
 
     conn
