@@ -3,7 +3,7 @@
 <div class="pt6">
   <%= if @current_user.role == "carer" do %>
     <h3><%= Healthlocker.ComponentView.full_name(@service_user) %>'s care team</h3>
-  <%= else %>
+  <% else %>
     <h3>Your care team</h3>
   <% end %>
 

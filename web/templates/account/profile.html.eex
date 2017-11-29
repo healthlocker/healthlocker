@@ -38,7 +38,7 @@
         <span class="hl-pink"><%= error_tag f, :last_name %></span>
       </div>
     </div>
-  <%= else %>
+  <% else %>
     <div class="pt3 tc">
       <p class="hl-aqua di">
         Account connected to South London and Maudsley NHS Foundation Trust
