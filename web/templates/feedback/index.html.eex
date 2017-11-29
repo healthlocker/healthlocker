@@ -3,7 +3,7 @@
   <p class="">Healthlocker is an ongoing collaboration between service users, staff and family, friends and carers at South London and Maudsley NHS Foundation Trust.</p>
   <p class="">Please send us your feedback and ideas to improve it.</p>
    <p class="">Or share your own tip or story that we could add to Healthlocker.</p>
-  <div class="form-group">
+  <div>
     <%= label f, :subject, class: "f5 b db mb2" %>
     <%= text_input f, :subject, class: "ph2 input-reset bn hl-bg-grey w-100" %>
   </div>
@@ -12,6 +12,11 @@
     <%= label f, "Your feedback and suggestions", class: "f5 b db mb2" %>
   <p class="">If you would like us to follow up to discuss, please leave your name and contact details.</p>
     <%= textarea f, :content, class: "w-100 h4 mb2 b--light-blue f4 pa2" %>
+  </div>
+
+  <div class="mt3">
+    <%= label f, "Email (optional)", class: "f5 b db mb2" %>
+    <%= text_input f, :email, class: "ph2 input-reset bn hl-bg-grey w-100" %>
   </div>
 
   <div class="tr mt4">
