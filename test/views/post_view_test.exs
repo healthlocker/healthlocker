@@ -13,6 +13,11 @@ defmodule Healthlocker.PostViewTest do
     assert result == ""
   end
 
+  test "sanitises markdown to remove scripts" do
+    {:safe, result} = PostView.markdown("<script>alert('TEST');</script>")
+    assert result == "<p>alert(‘TEST’);</p>"
+  end
+
   describe "PostView.heading/1" do
     test "when heading exists it extracts the header" do
       post = %Post{content: "# I'm a markdown heading"}
