@@ -1,12 +1,12 @@
 defmodule Healthlocker.Email do
   use Bamboo.Phoenix, view: Healthlocker.FeedbackView
 
-  def send_feedback(subject, message) do
+  def send_feedback(subject, message, email \\ "") do
     new_email()
     |> to([System.get_env("TO_EMAIL"), System.get_env("FROM_EMAIL")])
     |> from(System.get_env("FROM_EMAIL"))
     |> subject(subject)
-    |> text_body(message)
+    |> text_body("Message from: #{email}\n#{message}")
   end
 
   def send_reset_email(to_email, token, host) do
