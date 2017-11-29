@@ -7,10 +7,10 @@
       <%= String.contains?(@conn.request_path, "rooms") -> %>
         <%= link "Communications", to: care_team_room_path(@conn, :show, @room), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
         <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 hl-bg-grey" %>
-      <%= String.contains?(@conn.request_path, "contacts") -> %>
+      <% String.contains?(@conn.request_path, "contacts") -> %>
         <%= link "Communications", to: care_team_room_path(@conn, :show, @room), class: "link w-50 dib fl black tc pv1 hl-bg-grey" %>
         <%= link "Contacts", to: care_team_contact_path(@conn, :show, section: "contacts"), class: "link w-50 dib fl hl-pink b tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
-      <%= true -> %>
+      <% true -> %>
         <%= link "Communications", to: care_team_room_path(@conn, :show, @room), class: "link w-50 dib fl black tc pt1 hl-bg-grey bb bw2 b--hl-pink pb3" %>
         <%= link "Contacts", to: care_team_contact_path(@conn, :show), class: "link w-50 dib fl black tc pv1 hl-bg-grey" %>
     <% end %>

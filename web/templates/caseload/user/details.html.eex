@@ -56,7 +56,7 @@
     </div>
 
   </div>
-<%= else %>
+<% else %>
   <%= render "carer_menu.html", assigns %>
   <p class="mt0 pt-10em"><strong><%= Healthlocker.ComponentView.full_name(@user) %></strong> (friend/family/carer) of <strong><%= Healthlocker.ComponentView.full_name(@service_user) %></strong></p>
 <% end %>

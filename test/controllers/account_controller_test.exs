@@ -1,7 +1,7 @@
 defmodule Healthlocker.AccountControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.{User, EPJSUser, ReadOnlyRepo, Room, UserRoom,
+  alias Healthlocker.{User, Room, UserRoom,
                       ClinicianRooms, Message, Room}
 
   @valid_attrs %{
@@ -39,14 +39,6 @@ defmodule Healthlocker.AccountControllerTest do
     password_check: "password",
     password: "New password",
     password_confirmation: "not new password"
-  }
-
-  @slam_attrs %{
-    "Forename" => "Kat",
-    "Surname" => "Bow",
-    "NHS_Number" => "uvhjbfnwqoekhfg8y9i",
-    "DOB" => "01/01/1989",
-    "c4c" => "true"
   }
 
   describe "current_user is assigned in the session" do
