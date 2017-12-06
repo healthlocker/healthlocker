@@ -45,10 +45,41 @@ defmodule Healthlocker.TrackerController do
     |> merge_map_data(data_list, atom, n + 1)
   end
 
+  def merge_sleep_data(list, data_list, atom, 6) do
+    list
+    |> List.update_at(6, fn map ->
+      case Enum.filter(data_list, fn data_map ->
+        Date.compare(NaiveDateTime.to_date(map.inserted_at), data_map.for_date) == :eq
+      end) do
+        [head | _] ->
+          map
+          |> Map.put(atom, head)
+        [] ->
+          map
+      end
+    end)
+  end
+
+  def merge_sleep_data(list, data_list, atom, n) do
+    list
+    |> List.update_at(n, fn map ->
+      case Enum.filter(data_list, fn data_map ->
+        Date.compare(NaiveDateTime.to_date(map.inserted_at), data_map.for_date) == :eq
+      end) do
+        [head | _] ->
+          map
+          |> Map.put(atom, head)
+        [] ->
+          map
+      end
+    end)
+    |> merge_sleep_data(data_list, atom, n + 1)
+  end
+
   def merge_tracking_data(list, sleep_data, symptom_data, diary_data, date_time) do
     list
     |> create_date_list(date_time, 0)
-    |> merge_map_data(sleep_data, :sleep_data, 0)
+    |> merge_sleep_data(sleep_data, :sleep_data, 0)
     |> merge_map_data(symptom_data, :symptom_data, 0)
     |> merge_map_data(diary_data, :diary_data, 0)
   end
