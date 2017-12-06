@@ -10,7 +10,7 @@
       <section class="bb bw2 b--black-10 dib w-100">
         <div class="w-90 dib fl">
           <h4 class="ma2 ph3-m ph4-l f5 lh-copy hl-dark-blue di w-100 word-wrap">
-            <p><%= format_output(coping_strategy.content) %></p>
+            <p><%= format_output(coping_strategy.content, " #CopingStrategy") %></p>
           </h4>
         </div>
       </section>
