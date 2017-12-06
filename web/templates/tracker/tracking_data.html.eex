@@ -27,7 +27,7 @@
             <p class="mt0 di-m di-l"><strong>Woke up:</strong> <%= data.sleep_data.wake_count %> times</p>
           </div>
         </div>
-        <p class="i ml5-m ml5-l"><%= data.sleep_data.notes %></p>
+        <p class="i ml5-m ml5-l"><%= format_output(data.sleep_data.notes, " ") %></p>
       <% end %>
 
         <%= if Map.has_key?(data.sleep_data, :hours_slept) and (Map.has_key?(data.symptom_data, :affected_scale) or Map.has_key?(data.diary_data, :entry)) do %>
@@ -44,7 +44,7 @@
             <%= data.symptom_data.affected_scale %>
           </p>
         </div>
-        <p class="i ml5-m ml5-l"><%= data.symptom_data.notes %></p>
+        <p class="i ml5-m ml5-l"><%= format_output(data.symptom_data.notes, " ") %></p>
       <% end %>
 
       <%= if Map.has_key?(data.symptom_data, :affected_scale) and Map.has_key?(data.diary_data, :entry) do %>
@@ -61,7 +61,7 @@
               <strong>Diary </strong>
               <%= printed_time(data.diary_data.updated_at) %>
             </p>
-            <p class=""><%= data.diary_data.entry %></p>
+            <p class=""><%= format_output(data.diary_data.entry, " ") %></p>
           </div>
         </div>
       <% end %>

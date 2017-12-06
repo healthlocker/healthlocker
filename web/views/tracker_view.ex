@@ -1,6 +1,7 @@
 defmodule Healthlocker.TrackerView do
   use Healthlocker.Web, :view
   use Timex
+  import Healthlocker.CopingStrategyView , only: [format_output: 2]
 
   def get_symptom(data) do
     case data do
