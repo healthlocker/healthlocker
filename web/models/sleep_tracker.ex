@@ -28,9 +28,9 @@ defmodule Healthlocker.SleepTracker do
   end
 
   def get_sleep_data_today(query, user_id) do
-    today = Date.utc_today()
+    yesterday = Timex.shift(Date.utc_today(), days: -1)
     from st in query,
-    where: st.user_id == ^user_id and st.for_date == ^today,
+    where: st.user_id == ^user_id and st.for_date == ^yesterday,
     preload: [:user]
   end
 
