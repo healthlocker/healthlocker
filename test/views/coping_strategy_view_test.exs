@@ -2,10 +2,8 @@ defmodule Healthlocker.CopingStrategyViewTest do
   use Healthlocker.ConnCase, async: true
   alias Healthlocker.CopingStrategyView
 
-  test "checks format_output will handle empty strings as expected" do
+  test "checks format_output handles a case where no string is given" do
     assert CopingStrategyView.format_output(nil, " ") == nil
-    {:safe, result} = CopingStrategyView.format_output("   ", " ")
-    assert result == ""
   end
 
   test "checks format_output handles strings as expected" do
