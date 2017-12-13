@@ -9,9 +9,7 @@
       <% end %>
       <%= for goal <- @goals do %>
         <div class="bw2 br3 pv3 ph3 mv1 hl-bg-light-aqua dib w-100 tl word-wrap">
-          <p class="b di">
-            <%= String.trim_trailing(goal.content, " #Goal") %>
-          </p>
+          <p class="b di"><%= format_output(goal.content, " #Goal") %></p>
 
           <%= for step <- goal.steps do %>
             <%= if is_bitstring(step.details) do %>
@@ -66,7 +64,7 @@
       <% end %>
       <%= for strategy <- @strategies do %>
       <div class="bw2 br3 dib w-100 pv1 ph3 mv1 hl-bg-light-yellow tl word-wrap">
-        <p><%= String.trim_trailing(strategy.content, " #CopingStrategy") %></p>
+        <p><%= format_output(strategy.content, " #CopingStrategy") %></p>
         <p class="mv3 f6 i tr">
           Created <%= Healthlocker.ComponentView.pretty_date(strategy.inserted_at) %>
         </p>
