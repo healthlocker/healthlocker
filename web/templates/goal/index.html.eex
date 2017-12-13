@@ -11,6 +11,27 @@
         <div class="w-90 dib fl">
           <h4 class="ma2 ph3-m ph4-l f5 lh-copy hl-dark-blue di w-100">
             <p><%= format_output(goal.content, " #Goal") %></p>
+              <%= for step <- goal.steps do %>
+                <%= if is_bitstring(step.details) do %>
+                  <div>
+                    <%= if step.complete do %>
+                      <div class="db">
+                        <div class="w1-15 dib pt1 v-mid">
+                          <%= img_tag("/images/checked_box.png", alt: "Checked box") %>
+                        </div>
+                        <p class="dib ml2 v-mid fw1"><%= step.details %></p>
+                      </div>
+                    <% else %>
+                      <div class="db">
+                        <div class="w1-15 dib pt1 v-mid">
+                          <%= img_tag("/images/unchecked_box.png", alt: "Unchecked box") %>
+                        </div>
+                        <p class="dib ml2 v-mid fw1"><%= step.details %></p>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
           </h4>
         </div>
         <%= if goal.important do %>
