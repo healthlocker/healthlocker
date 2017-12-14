@@ -16,6 +16,7 @@ defmodule Healthlocker.GoalController do
                       |> Enum.filter(fn goal ->
                         !goal.completed
                       end)
+                      |> incomplete_goals_with_sorted_steps
     completed = Goal
               |> Goal.get_completed_goals(user_id)
               |> Repo.all
@@ -119,5 +120,16 @@ defmodule Healthlocker.GoalController do
 
   defp track_created(conn, %Goal{} = goal) do
     Healthlocker.Analytics.track(conn.assigns.current_user, :create, goal)
+  end
+
+  def incomplete_goals_with_sorted_steps(goals) do
+    goals
+    |> Enum.map(fn goal ->
+      Map.update!(goal, :steps, fn steps -> sort_steps_by_id(steps) end)
+    end)
+  end
+
+  def sort_steps_by_id(list) do
+    Enum.sort(list, &(&1.id < &2.id))
   end
 end
