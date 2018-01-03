@@ -1,7 +1,7 @@
 defmodule Healthlocker.GoalControllerTest do
   use Healthlocker.ConnCase
 
-  alias Healthlocker.{Goal, User}
+  alias Healthlocker.{Goal, User, Step, GoalController}
 
   @valid_attrs %{content: "some content"}
   @invalid_attrs %{content: ""}
@@ -83,6 +83,18 @@ defmodule Healthlocker.GoalControllerTest do
       goal = Repo.insert! %Goal{content: "some content", user_id: 123456}
       conn = delete conn, goal_path(conn, :delete, goal)
       assert redirected_to(conn) == goal_path(conn, :index)
+    end
+
+    test "sort_steps puts completed steps to the end of the steps list" do
+      goal = Repo.insert! %Goal{content: "some content", user_id: 123456}
+      Repo.insert! %Step{id: 1, goal_id: goal.id, complete: true}
+      Enum.each(2..5, fn x
+        -> Repo.insert!(%Step{id: x, goal_id: goal.id, complete: false})
+      end)
+      query = from s in Step, where: s.goal_id == ^goal.id
+
+      assert GoalController.sort_steps(Repo.all(query)) |> Enum.at(0) |> Map.fetch!(:id) == 2
+      assert GoalController.sort_steps(Repo.all(query)) |> Enum.at(4) |> Map.fetch!(:id) == 1
     end
   end
 

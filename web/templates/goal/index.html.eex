@@ -17,14 +17,14 @@
                     <%= if step.complete do %>
                       <div class="db">
                         <div class="w1-15 dib pt1 v-mid">
-                          <%= img_tag("/images/checked_box.png", alt: "Checked box") %>
+                          <%= img_tag("/images/checked_box_grey.png", alt: "Checked box") %>
                         </div>
                         <p class="dib ml2 v-mid fw1"><%= step.details %></p>
                       </div>
                     <% else %>
                       <div class="db">
                         <div class="w1-15 dib pt1 v-mid">
-                          <%= img_tag("/images/unchecked_box.png", alt: "Unchecked box") %>
+                          <%= img_tag("/images/unchecked_box_grey.png", alt: "Unchecked box") %>
                         </div>
                         <p class="dib ml2 v-mid fw1"><%= step.details %></p>
                       </div>
