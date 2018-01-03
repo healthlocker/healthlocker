@@ -29,6 +29,10 @@ input {
   font-family: 'century-gothic', sans-serif;
 }
 
+textarea {
+  font-family: 'century-gothic', sans-serif;
+}
+
 input:focus, textarea:focus {
   outline: none;
   border:1px solid #25bdc3;
