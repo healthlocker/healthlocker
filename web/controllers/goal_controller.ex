@@ -125,11 +125,14 @@ defmodule Healthlocker.GoalController do
   def incomplete_goals_with_sorted_steps(goals) do
     goals
     |> Enum.map(fn goal ->
-      Map.update!(goal, :steps, fn steps -> sort_steps_by_id(steps) end)
+      Map.update!(goal, :steps, fn steps -> sort_steps(steps) end)
     end)
   end
 
-  def sort_steps_by_id(list) do
-    Enum.sort(list, &(&1.id < &2.id))
+  def sort_steps(list) do
+    sorted_list = Enum.sort(list, &(&1.id < &2.id))
+    incomplete_steps = Enum.filter(sorted_list, &(&1.complete != true))
+    complete_steps = Enum.filter(sorted_list, &(&1.complete == true))
+    Enum.concat(incomplete_steps, complete_steps)
   end
 end
