@@ -4,10 +4,8 @@ defmodule Healthlocker.PostView do
 
   def markdown(body) do
     if !is_nil(body) do
-      {:safe, raw_html} =
-        body
-        |> Earmark.as_html!
-        |> raw
+      {:ok, text, _} = Earmark.as_html(body, %Earmark.Options{ breaks: true })
+      {:safe, raw_html} = text |> raw
       sanitize(raw_html)
     else
       ""
