@@ -35,6 +35,6 @@ defmodule Healthlocker.SleepTracker do
   end
 
   def last_week(end_date) do
-    Timex.shift(end_date, days: -6)
+    Timex.shift(end_date, days: -7)
   end
 end
