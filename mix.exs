@@ -65,6 +65,7 @@ defmodule Healthlocker.Mixfile do
      {:earmark, "~> 1.1"},
      {:comeonin, "~> 3.0"},
      {:credo, "~> 0.7.2", only: [:dev, :test]},
+     {:quantum, ">= 2.2.1"},
      {:timex, "~> 3.0"},
      {:segment, github: "tonydaly/analytics-elixir"},
      {:bamboo, "~> 0.7"},
