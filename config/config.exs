@@ -51,6 +51,11 @@ config :ecto_factory, factories: [
   ]}
 ]
 
+config :healthlocker, Healthlocker.Scheduler,
+  jobs: [
+    {{:extended, "* * * * *"}, {Healthlocker.Notication, :send, []}}
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

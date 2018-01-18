@@ -15,7 +15,8 @@ defmodule Healthlocker do
       supervisor(Healthlocker.Endpoint, []),
       # Start your own worker by calling: Healthlocker.Worker.start_link(arg1, arg2, arg3)
       # worker(Healthlocker.Worker, [arg1, arg2, arg3]),
-      worker(Segment, [Application.get_env(:segment, :write_key)])
+      worker(Segment, [Application.get_env(:segment, :write_key)]),
+      worker(Healthlocker.Scheduler, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
