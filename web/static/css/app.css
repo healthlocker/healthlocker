@@ -321,8 +321,8 @@ code {
   display: block;
 }
 
-.top-50 {
-  top: 50%;
+.top-70 {
+  top: 70%;
 }
 
 .left-50 {
@@ -331,4 +331,18 @@ code {
 
 .ml--8{
   margin-left: -8rem;
+}
+
+@media screen and (min-width: 48em) {
+  .top-50-ns {
+    top: 50%;
+  }
+
+  .w-97-ns {
+    width: 97%;
+  }
+
+  .v-5-ns {
+    vertical-align: 5px;
+  }
 }
