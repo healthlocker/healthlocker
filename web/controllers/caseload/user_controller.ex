@@ -105,6 +105,7 @@ defmodule Healthlocker.Caseload.UserController do
     strategies = Post
                 |> Post.get_coping_strategies(id)
                 |> Repo.all
+                |> Enum.map(&(Map.update(&1, :updated_at, 0, fn ndate -> DateTime.from_naive(ndate, "Etc/UTC") end)))
 
     sleep_data = if Map.has_key?(service_user, :id) do
       SleepTracker
