@@ -101,6 +101,7 @@ defmodule Healthlocker.Caseload.UserController do
     goals = Goal
           |> Goal.get_goals(id)
           |> Repo.all
+          |> Healthlocker.GoalController.incomplete_goals_with_sorted_steps
     strategies = Post
                 |> Post.get_coping_strategies(id)
                 |> Repo.all
