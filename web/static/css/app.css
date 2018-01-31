@@ -316,3 +316,19 @@ code {
 .w1-15 {
   width: 1.15rem;
 }
+
+#delete_goal:checked ~ .delete-goal-div {
+  display: block;
+}
+
+.top-50 {
+  top: 50%;
+}
+
+.left-50 {
+  left: 50%;
+}
+
+.ml--8{
+  margin-left: -8rem;
+}

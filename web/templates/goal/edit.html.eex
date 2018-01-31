@@ -56,6 +56,24 @@
     </div>
   <% end %>
   <div class="tr mt4">
-    <%= link_to("Delete goal", to: goal_path(@conn, :delete, @goal), method: "delete") %>
+    <input type="checkbox" id="delete_goal" class="dn">
+    <label for="delete_goal" class="link hl-aqua underline">Delete goal</label>
+    <div class="delete-goal-div w5 h4 bg-white ba br3 absolute top-50 left-50 ml--8 dn">
+      <div class="tc">
+        <p class="tc pl2 pr2">Are you sure you want to delete this goal?</p>
+        <%= link("Delete goal",
+          to: goal_path(@conn, :delete, @goal),
+          method: "delete",
+          class: "f5 link dib ph3 pv2 br-pill hl-dark-blue pointer hl-shadow-hover
+                  hl-bg-grey default-font")
+        %>
+        <input type="checkbox" class="dn">
+        <label for="delete_goal" class="f5 link dib ph3 pv2 br-pill hl-dark-blue
+                                        pointer hl-shadow-hover hl-bg-yellow
+                                        default-font ml2">
+                                        Cancel
+        </label>
+      </div>
+    </div>
   </div>
 </section>
