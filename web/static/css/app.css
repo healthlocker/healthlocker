@@ -321,6 +321,10 @@ code {
   display: block;
 }
 
+.top-50 {
+  top: 50%;
+}
+
 .top-70 {
   top: 70%;
 }
@@ -329,8 +333,12 @@ code {
   left: 50%;
 }
 
-.ml--8{
-  margin-left: -8rem;
+.ml--8 {
+  margin-left: -8.5rem;
+}
+
+.w5-plus {
+  width: 17rem;
 }
 
 @media screen and (min-width: 48em) {
