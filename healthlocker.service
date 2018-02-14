@@ -6,7 +6,6 @@ Type=simple
 User=root
 Restart=on-failure
 Environment=MIX_ENV=prod "PORT=4000"
-Environment=LANG=en_US.UTF-8
 
 WorkingDirectory="the file path to my app"
 
