@@ -23,7 +23,7 @@ touch /lib/systemd/system/healthlocker.service
 Now that the file is created you will need to paste the code you have copied
 to your clipboard into the file. To do this you will need to...
 
-- vim `/lib/systemd/system/'app_name'.service`
+- `vim /lib/systemd/system/'app_name'.service`
 - type `:set paste` and then press return
 - type `i` to enter insert mode
 - paste the contents you copied earlier
@@ -65,7 +65,7 @@ will be specific to your application. For healthlocker we needed
 
 To add an environment variable you will need to...
 
-- vim `/lib/systemd/system/'app_name'.service`
+- `vim /lib/systemd/system/'app_name'.service`
 - use the down arrow and put your curser on the line that says `RESTART=on-failure`
 - press `o` which enter insert mode on a new line
 - then type Environment="variable_key=variable_value"
