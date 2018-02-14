@@ -23,24 +23,22 @@ touch /lib/systemd/system/healthlocker.service
 Now that the file is created you will need to paste the code you have copied
 to your clipboard into the file. To do this you will need to...
 
-```
-vim /lib/systemd/system/'app_name'.service
-type :set paste and then press return
-type i to enter insert mode
-press ctrl/cmd + v to paste the contents you copied earlier
-press the escape key
-```
+- vim /lib/systemd/system/'app_name'.service
+- type :set paste and then press return
+- type i to enter insert mode
+- paste the contents you copied earlier
+- press the escape key
+
 You will need to update the `Description` and `WorkingDirectory` lines with the
 necessary information. To do so
 
-```
-use the arrow keys to go to the end of the line you want to edit
-press i to ender insert mode
-delete the example text using backspace
-then type in your description or file path
-press the escape key
-type :wq to save and exit your file
-```
+- use the arrow keys to go to the end of the line you want to edit
+- press i to ender insert mode
+- delete the example text using backspace
+- then type in your description or file path
+- press the escape key
+- type :wq to save and exit your file
+- press enter
 
 Now that you have created and added to your file, the next step is to add in
 any environment variables you will need.
@@ -67,19 +65,18 @@ will be specific to your application. For healthlocker we needed
 
 To add an environment variable you will need to...
 
-```
-vim /lib/systemd/system/'app_name'.service
-use the down arrow and put your curser on the line that says RESTART=on-failure
-press o to enter insert mode
-then type ENVIRONMENT="your variable here"
-```
+- vim /lib/systemd/system/'app_name'.service
+- use the down arrow and put your curser on the line that says RESTART=on-failure
+- press o which enter insert mode on a new line
+- then type Environment="variable_key=variable_value"
 
-Repeat this process until you have entered all of your environment variables.
+Repeat this process until you have entered all of your environment variables,
+- press the escape key
+- press :wq to save and exit
 
-Once you have added all your variables you can check to see if your service is
-working as you would expect it to by starting it with the command (provided your
-application is not running already. If it is then turn if off however you would
-normally)
+To check to see if your service is working as you would expect it to by starting
+it with the command (provided your application is not running already. If it is
+then turn if off however you would normally)
 ```
 systemctl start 'app_name'.service
 ```
@@ -87,16 +84,18 @@ systemctl start 'app_name'.service
 This should start your application and allow you to be able to navigate to it in
 the browser as you normally would.
 
-If you want to stop the application or check the status and see some of the logs
-use the commands below
+If you want to check the status of the application use
 ```
 systemctl status 'app_name'.service
-systemctl stop 'app_name'.service
 ```
 
 Once you have confirmed your site is running as expected stop the application
-running and use the command
+using
+```
+systemctl stop 'app_name'.service
+```
 
+The last command to run is
 ```
 systemctl enable app_name.service
 ```
