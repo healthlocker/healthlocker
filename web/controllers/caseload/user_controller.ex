@@ -101,9 +101,11 @@ defmodule Healthlocker.Caseload.UserController do
     goals = Goal
           |> Goal.get_goals(id)
           |> Repo.all
+          |> Healthlocker.GoalController.incomplete_goals_with_sorted_steps
     strategies = Post
                 |> Post.get_coping_strategies(id)
                 |> Repo.all
+                |> Enum.map(&(Map.update(&1, :updated_at, 0, fn ndate -> DateTime.from_naive(ndate, "Etc/UTC") end)))
 
     sleep_data = if Map.has_key?(service_user, :id) do
       SleepTracker

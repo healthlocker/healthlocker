@@ -7,6 +7,7 @@ defmodule Healthlocker.CopingStrategyController do
     coping_strategies = Post
                         |> Post.get_coping_strategies(user_id)
                         |> Repo.all
+                        |> Enum.map(&(Map.update(&1, :updated_at, 0, fn ndate -> DateTime.from_naive(ndate, "Etc/UTC") end)))
     if Kernel.length(coping_strategies) == 0 do
       conn
       |> redirect(to: coping_strategy_path(conn, :new))

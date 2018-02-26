@@ -316,3 +316,41 @@ code {
 .w1-15 {
   width: 1.15rem;
 }
+
+#delete_goal:checked ~ .delete-goal-div {
+  display: block;
+}
+
+.top-50 {
+  top: 50%;
+}
+
+.top-70 {
+  top: 70%;
+}
+
+.left-50 {
+  left: 50%;
+}
+
+.ml--8 {
+  margin-left: -8.5rem;
+}
+
+.w5-plus {
+  width: 17rem;
+}
+
+@media screen and (min-width: 48em) {
+  .top-50-ns {
+    top: 50%;
+  }
+
+  .w-97-ns {
+    width: 97%;
+  }
+
+  .v-5-ns {
+    vertical-align: 5px;
+  }
+}
