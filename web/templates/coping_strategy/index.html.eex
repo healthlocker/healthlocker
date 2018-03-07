@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Coping strategies</h2>
+  <%= h2_header "Coping strategies" %>
 
   <div class="db tr">
     <%= link_primary "Add new", to: coping_strategy_path(@conn, :new) %>

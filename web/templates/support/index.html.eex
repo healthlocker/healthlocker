@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Get support</h2>
+  <%= h2_header "Get support" %>
   <p class="b">If you need help or advice you have lots of options:</p>
   <ul class="pl3">
     <li class="mb3">
