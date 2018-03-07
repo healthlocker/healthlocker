@@ -2,8 +2,8 @@
   <h3 class="hl-darkBlue tc">Log in</h3>
   <section class="mw7 center">
     <div class="bb b--black-20 pb4 mt4">
-      <span class="fl mt0">Not an existing user?</span>
-      <div class="tr">
+      <span class="mt0">Not an existing user?</span>
+      <div class="dib pl3">
         <%= link_to("Sign up", to: user_path(@conn, :new)) %>
       </div>
     </div>
