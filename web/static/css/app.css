@@ -321,6 +321,22 @@ code {
   display: block;
 }
 
+#diary-ways-read-more:checked ~ .diary-ways-read-more-div {
+  display: block;
+}
+
+#diary-ways-read-more:checked ~ .diary-ways-read-more-read-more {
+  display: none;
+}
+
+#diary-think-read-more:checked ~ .diary-think-read-more-div {
+  display: block;
+}
+
+#diary-think-read-more:checked ~ .diary-think-read-more-read-more {
+  display: none;
+}
+
 .top-50 {
   top: 50%;
 }
