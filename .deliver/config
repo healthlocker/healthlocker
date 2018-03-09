@@ -1,14 +1,14 @@
 APP="healthlocker"
 
-BUILD_HOST="51.140.86.5"
+BUILD_HOST="51.140.45.21"
 BUILD_USER="root"
 BUILD_AT="/home/hladmin/healthlocker/builds"
 
-STAGING_HOSTS="51.140.86.5"
+STAGING_HOSTS="51.140.45.21"
 STAGING_USER="root"
 DELIVER_TO="/home/hladmin"
 
-PRODUCTION_HOSTS="51.140.86.5"
+PRODUCTION_HOSTS="51.140.45.21"
 PRODUCTION_USER="root"
 DELIVER_TO="/home/hladmin"
 

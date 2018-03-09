@@ -42,4 +42,9 @@ defmodule Healthlocker.PageControllerTest do
     conn = get conn, page_path(conn, :show, "slam_help")
     assert html_response(conn, 200) =~ "To connect you will need to enter"
   end
+
+  test "On / the word Home in the nav bar is bold", %{conn: conn} do
+    conn = get conn, page_path(conn, :index)
+    assert html_response(conn, 200) =~ "<a class=\"pb3 pt4 pt5-l f3 white-80 db hover-white b\" href=\"/\">Home</a>"
+  end
 end
