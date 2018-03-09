@@ -63,30 +63,30 @@
       <nav class="sidenav vh-100 fixed z-1 top-0 left-0 hl-bg-dark-blue overflow-x-hidden tc measure-narrow-l br-l b--white" id="my-sidenav">
         <%= img_tag("/images/x_icon.svg", id: "close-nav", class: "w2 mt5 pointer") %>
         <%= if @current_user do %>
-          <%= link "Goals and tracking",  class: "pb3 pt4 pt5-l f3 white-80 db hover-white",
+          <%= link "Goals and tracking",  class: "pb3 pt4 pt5-l " <> nav_bar_classes(@conn.path_info, "toolkit"),
               to: toolkit_path(@conn, :index) %>
           <%= if care_team?(@current_user) or @current_user.slam_id do %>
-            <%= link "Care team", class: "pa3 f3 white-80 db hover-white",
+            <%= link "Care team", class: "pa3 " <> nav_bar_classes(@conn.path_info, "tips"),
                 to: care_team_room_path(@conn, :show, @room) %>
           <% end %>
         <% else %>
-          <%= link "Home", to: page_path(@conn, :index), class: "pb3 pt4 pt5-l f3 white-80 db hover-white" %>
-          <%= link "About", to: page_path(@conn, :show, "about"), class: "pa3 f3 white-80 db hover-white" %>
+          <%= link "Home", to: page_path(@conn, :index), class: "pb3 pt4 pt5-l " <> nav_bar_classes(@conn.path_info, "home") %>
+          <%= link "About", to: page_path(@conn, :show, "about"), class: "pa3 " <> nav_bar_classes(@conn.path_info, "about") %>
         <% end %>
-        <%= link "Tips", to: tip_path(@conn, :index), class: "pa3 f3 white-80 db hover-white" %>
-        <%= link "Stories", to: post_path(@conn, :index), class: "pa3 f3 white-80 db hover-white" %>
+        <%= link "Tips", to: tip_path(@conn, :index), class: "pa3 " <> nav_bar_classes(@conn.path_info, "tips") %>
+        <%= link "Stories", to: post_path(@conn, :index), class: "pa3 " <> nav_bar_classes(@conn.path_info, "posts") %>
         <%= link "Get support", to: support_path(@conn, :index), class: "mv3 mh5 mh6-m hl-bg-pink pv2 f3 white-80 db hover-white" %>
         <%= if @current_user do %>
           <%= link "Account", to: account_path(@conn, :index),
-                   class: "pa3 f3 white-80 db hover-white" %>
+                   class: "pa3 " <> nav_bar_classes(@conn.path_info, "account-security") %>
 
-          <%= link "Log out", class: "pa3 f3 white-80 db hover-white mb6 mb0-m mb0-l",
+          <%= link "Log out", class: "pa3 mb6 mb0-m mb0-l f3 white-80 db hover-white",
                              to: login_path(@conn, :delete, @current_user),
                              method: "delete" %>
         <% else %>
-          <%= link "Sign up", class: "pa3 f3 white-80 db hover-white",
+          <%= link "Sign up", class: "pa3 " <> nav_bar_classes(@conn.path_info, "new"),
               to: user_path(@conn, :new) %>
-          <%= link "Log in", class: "pa3 f3 white-80 db hover-white mb6 mb0-m mb0-l",
+          <%= link "Log in", class: "pa3 mb6 mb0-m mb0-l " <> nav_bar_classes(@conn.path_info, "login"),
               to: login_path(@conn, :index) %>
         <% end %>
       </nav>
