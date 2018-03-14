@@ -26,4 +26,22 @@ defmodule Healthlocker.LayoutView do
       _ -> true
     end
   end
+
+  def nav_bar_classes(list, "account-security") do
+    case Enum.member?(list, "account") || Enum.member?(list, "security") do
+      true -> "f3 white-80 db hover-white b"
+      false -> "f3 white-80 db hover-white"
+    end
+  end
+
+  def nav_bar_classes(list, string) do
+    if string === "home" && list === [] do
+      "f3 white-80 db hover-white b"
+    else
+      case Enum.member?(list, string) do
+        true -> "f3 white-80 db hover-white b"
+        false -> "f3 white-80 db hover-white"
+      end
+    end
+  end
 end
