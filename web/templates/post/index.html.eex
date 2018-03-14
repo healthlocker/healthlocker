@@ -1,4 +1,4 @@
-
+<%= top_link() %>
 <section class="pa3 center">
   <h2 class="tc pb3">Stories</h2>
   <%= for post <- @posts do %>
@@ -12,5 +12,6 @@
     </article>
   <% end %>
 
-<p><%= link "Write your own story, or suggest an addition or amendment to this page.", to: "/feedback", class: "hl-aqua flex-wrap underline" %></p>
-   </section>
+  <p><%= link "Write your own story, or suggest an addition or amendment to this page.", to: "/feedback", class: "hl-aqua flex-wrap underline" %></p>
+  <%= back_to_top() %>
+</section>
