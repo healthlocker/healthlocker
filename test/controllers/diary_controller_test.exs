@@ -102,7 +102,7 @@ defmodule Healthlocker.DiaryControllerTest do
     test "PUT /diary/:id to update an entry with incorrect details will not work", %{conn: conn} do
       diary = Repo.get(Diary, 654321)
       conn = put conn, diary_path(conn, :update, diary), diary: @invalid_attrs
-      assert html_response(conn, 200) =~ "Diary"
+      assert html_response(conn, 200) =~ "Edit diary entry"
     end
   end
 end
