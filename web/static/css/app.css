@@ -255,6 +255,10 @@ select:focus {
   padding-top: 9em;
 }
 
+.top--2 {
+  top: -2rem
+}
+
 /* Messages */
 
 #message-feed {

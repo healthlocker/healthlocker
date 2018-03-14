@@ -12,4 +12,12 @@ defmodule Healthlocker.ComponentHelpers.Link do
   def link_to(text, opts \\ []) do
     link(text, [class: @base_classes] ++ opts)
   end
+
+  def top_link do
+    content_tag(:a, "", [class: "absolute top--2", name: "top"])
+  end
+
+  def back_to_top do
+    content_tag(:a, "Back to top", [class: @base_classes, href: "#top"])
+  end
 end

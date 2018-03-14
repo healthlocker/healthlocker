@@ -7,18 +7,18 @@
   <div class="mt3 flex items-center justify-between">
     <div class="w-40">
       <p class="f5 b db mb2 mt0">First name</p>
-      <p class="pa2 br2 input-reset bn hl-bg-grey w-100 mt0"><%= @user.first_name %></p>
+      <p class="pa2 br2 input-reset bn w-100 mt0"><%= @user.first_name %></p>
     </div>
 
     <div class="w-50">
       <p class="f5 b db mb2 mt0">Last name</p>
-      <p class="pa2 br2 input-reset bn hl-bg-grey w-100 mt0"><%= @user.last_name %></p>
+      <p class="pa2 br2 input-reset bn w-100 mt0"><%= @user.last_name %></p>
     </div>
   </div>
 
   <div class="mt4">
     <p class="f5 b db mb2 mt0">Email</p>
-    <p class="pa2 br2 input-reset bn hl-bg-grey w-100 mt0"><%= @user.email %></p>
+    <p class="pa2 br2 input-reset bn w-100 mt0"><%= @user.email %></p>
   </div>
 
   <div class="mt4">

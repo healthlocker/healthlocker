@@ -40,6 +40,11 @@ necessary information. To do so
 - type `:wq` to save and exit your file
 - press enter
 
+An example of a `Description` for the Healthlocker app would be
+`Description=Healthlocker deamon`
+An example of a `WorkingDirectory` for the Healthlocker app would be
+`/home/hladmin/healthlocker/builds/`
+
 Now that you have created and added to your file, the next step is to add in
 any environment variables you will need.
 

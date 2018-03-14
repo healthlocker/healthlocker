@@ -1,3 +1,4 @@
+<%= top_link() %>
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
   <%= h2_header "Tips" %>
 
@@ -64,4 +65,5 @@
 
   <p class="mt4"><%= link_to "Create a goal", to: "/goal/new"%> for yourself based on one of the 5 ways to wellbeing.</p>
 <p><%= link "Share your own tips, or suggest an addition or amendment to this page.", to: "/feedback", class: "hl-aqua flex-wrap underline" %></p>
+  <%= back_to_top() %>
 </div>
