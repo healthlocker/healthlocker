@@ -50,7 +50,8 @@
 
       <%= for member <- @care_team do %>
       <div class="w-100 hl-bg-grey pa3 mv3 br3">
-        <p class="b di"><%= member %></p>
+        <p class="b di"><%= Healthlocker.ComponentView.epjs_full_name(member) %></p>
+        <p><%= Healthlocker.ComponentView.epjs_job_title(member) %></p>
       </div>
       <% end %>
     </div>

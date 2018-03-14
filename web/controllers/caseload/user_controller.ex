@@ -88,56 +88,69 @@ defmodule Healthlocker.Caseload.UserController do
     user = Repo.get!(User, id)
     room = Repo.one! assoc(user, :rooms)
     service_user = ServiceUser.for(user)
-    slam_user = cond do
-      Map.has_key?(service_user, "Patient_ID") or Map.has_key?(service_user, :Patient_ID) ->
-        service_user
-      Map.has_key?(service_user, :id) or Map.has_key?(service_user, "id") ->
-        ReadOnlyRepo.one(from e in EPJSUser,
-        where: e."Patient_ID" == ^service_user.slam_id)
-      true -> nil
-    end
+
+    slam_user =
+      cond do
+        Map.has_key?(service_user, "Patient_ID") or Map.has_key?(service_user, :Patient_ID) ->
+          service_user
+        Map.has_key?(service_user, :id) or Map.has_key?(service_user, "id") ->
+          ReadOnlyRepo.one(from e in EPJSUser,
+          where: e."Patient_ID" == ^service_user.slam_id)
+        true -> nil
+      end
+
     address = ReadOnlyRepo.one(from e in EPJSPatientAddressDetails,
                     where: e."Patient_ID" == ^slam_user."Patient_ID")
-    goals = Goal
-          |> Goal.get_goals(id)
-          |> Repo.all
-          |> Healthlocker.GoalController.incomplete_goals_with_sorted_steps
-    strategies = Post
-                |> Post.get_coping_strategies(id)
-                |> Repo.all
-                |> Enum.map(&(Map.update(&1, :updated_at, 0, fn ndate -> DateTime.from_naive(ndate, "Etc/UTC") end)))
 
-    sleep_data = if Map.has_key?(service_user, :id) do
-      SleepTracker
-        |> SleepTracker.get_sleep_data(service_user.id, date)
-        |> Repo.all
-      else
-        nil
-    end
+    goals =
+      Goal
+      |> Goal.get_goals(id)
+      |> Repo.all
+      |> Healthlocker.GoalController.incomplete_goals_with_sorted_steps
+
+    strategies =
+      Post
+      |> Post.get_coping_strategies(id)
+      |> Repo.all
+      |> Enum.map(&(Map.update(&1, :updated_at, 0, fn ndate -> DateTime.from_naive(ndate, "Etc/UTC") end)))
+
+    sleep_data =
+      if Map.has_key?(service_user, :id) do
+        SleepTracker
+          |> SleepTracker.get_sleep_data(service_user.id, date)
+          |> Repo.all
+        else
+          nil
+      end
 
     date = Date.to_iso8601(date)
     {:ok, date_time, _} = DateTime.from_iso8601(date <> "T23:59:59Z")
 
-    care_team = EPJSTeamMember
-                    |> EPJSTeamMember.get_care_team(slam_user."Patient_ID")
-                    |> ReadOnlyRepo.all
+    care_team =
+      EPJSTeamMember
+      |> EPJSTeamMember.get_care_team(slam_user."Patient_ID")
+      |> ReadOnlyRepo.all
 
-    symptom_data = if Map.has_key?(service_user, :id) do
-      Healthlocker.TrackerController.get_symptom_tracking_data(date_time, service_user.id)
-    else
-      nil
-    end
+    symptom_data =
+      if Map.has_key?(service_user, :id) do
+        Healthlocker.TrackerController.get_symptom_tracking_data(date_time, service_user.id)
+      else
+        nil
+      end
 
-    diary_data = if Map.has_key?(service_user, :id) do
-      Healthlocker.TrackerController.get_diary_data(date_time, service_user.id)
-    else
-      nil
-    end
-    merged_data = if !sleep_data and !symptom_data and !diary_data do
-      nil
-    else
-      Healthlocker.TrackerController.merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(date_time))
-    end
+    diary_data =
+      if Map.has_key?(service_user, :id) do
+        Healthlocker.TrackerController.get_diary_data(date_time, service_user.id)
+      else
+        nil
+      end
+
+    merged_data =
+      if !sleep_data and !symptom_data and !diary_data do
+        nil
+      else
+        Healthlocker.TrackerController.merge_tracking_data([], sleep_data, symptom_data, diary_data, DateTime.to_naive(date_time))
+      end
 
     %{user: user, room: room, service_user: service_user, slam_user: slam_user,
     address: address, goals: goals, strategies: strategies, sleep_data: sleep_data,
