@@ -1,6 +1,6 @@
 <%= top_link() %>
 <section class="pa3 center">
-  <h2 class="tc pb3">Stories</h2>
+  <%= h2_header "Stories", class: "pb3" %>
   <%= for post <- @posts do %>
     <article class="ph3 pb3 bb b--black-20">
         <%= render Healthlocker.ComponentView, "like.html", conn: @conn,

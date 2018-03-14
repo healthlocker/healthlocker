@@ -2,7 +2,7 @@
     6months are passed in as a param instead of id. See how this was down in
     PageController and related templates. Since 7days is 'default', can
     even leave as index with month/6months as templates to pass into show. -->
-<h2 class="tc">Tracking overview</h2>
+<%= h2_header "Tracking overview" %>
 <div class="w-100">
   <p class="link w-100 bb b--black-30 dib fl black tc pv1 bg-white">7 days</p>
 </div>

@@ -1,6 +1,6 @@
 <section class="absolute w-100 left-0 hl-bg-grey">
   <div class="hl-bg-grey w-100 pa3 mw7 center">
-    <h2 class="ma0 tc">Care team</h2>
+    <%= h2_header "Care team", class: "ma0" %>
   </div>
   <div class="w-100 mw7 center">
     <%= cond do %>

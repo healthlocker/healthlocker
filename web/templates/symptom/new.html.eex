@@ -1,5 +1,5 @@
 <div class="br2 mv4 center">
-  <h2 class="tc">Problem tracker</h2>
+  <%= h2_header "Problem tracker" %>
 
   <p>This tracker will allow you to keep a record of how much a mental health problem or difficulty is affecting you.</p>
 

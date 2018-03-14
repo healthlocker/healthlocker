@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Sleep tracker</h2>
+  <%= h2_header "Sleep tracker" %>
 
   <%= render "form.html", changeset: @changeset,
                           action: sleep_tracker_path(@conn, :create),
