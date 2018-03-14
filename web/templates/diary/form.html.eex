@@ -6,10 +6,15 @@
       <li>as a record of experiences, thoughts, emotions or reflections</li>
       <li>as a diary of alcohol or drug use</li>
       <li>alongside a sleep or problem tracker to note any choices we make, people we spend time with or places we go that make our mental health better or worse</li>
-      <li>to notice what was happening just before a problem started or got worse, and what happened afterwards</li>
-      <li>somewhere to write about important moments in life, now or in the past</li>
-      <li>as a place to reflect on our past or current relationships, to notice any helpful or unhelpful patterns</li>
-      <li>a space to write about things you are thankful for, sometimes called a ‘gratitude diary’.</li>
+      <input type="checkbox" id="diary-ways-read-more" class="dn">
+      <label for="diary-ways-read-more" class="diary-ways-read-more-read-more hl-aqua underline">[Read more]</label>
+      <div class="diary-ways-read-more-div dn">
+        <li>to notice what was happening just before a problem started or got worse, and what happened afterwards</li>
+        <li>somewhere to write about important moments in life, now or in the past</li>
+        <li>as a place to reflect on our past or current relationships, to notice any helpful or unhelpful patterns</li>
+        <li>a space to write about things you are thankful for, sometimes called a ‘gratitude diary’.</li>
+      </div>
+      <label for="diary-ways-read-more" class="diary-ways-read-more-div hl-aqua underline dn">[Read less]</label>
     </ul>
   </div>
 
@@ -23,18 +28,23 @@
       <li>who have you spoken to or seen today?</li>
       <li>what has affected how you feel or what you’ve been doing?</li>
       <li>have you made any plans to do something?</li>
-      <li>is there anything preventing you from making plans or carrying out your plans?</li>
-      <li>is there anything you are struggling with?</li>
-      <li>how have you felt at different times in the day?</li>
-      <li>what are you thankful for?</li>
-      <li>have you seen anything inspiring or beautiful?</li>
-      <li>if you found yourself feeling bad or having difficulties, what did you notice was happening before?</li>
+      <input type="checkbox" id="diary-think-read-more" class="dn">
+      <label for="diary-think-read-more" class="diary-think-read-more-read-more hl-aqua underline">[Read more]</label>
+      <div class="diary-think-read-more-div dn">
+        <li>is there anything preventing you from making plans or carrying out your plans?</li>
+        <li>is there anything you are struggling with?</li>
+        <li>how have you felt at different times in the day?</li>
+        <li>what are you thankful for?</li>
+        <li>have you seen anything inspiring or beautiful?</li>
+        <li>if you found yourself feeling bad or having difficulties, what did you notice was happening before?</li>
+      </div>
+      <label for="diary-think-read-more" class="diary-think-read-more-div hl-aqua underline dn">[Read less]</label>
     </ul>
   </div>
 
   <%= form_for @changeset, @action, @method, fn f -> %>
     <div class="">
-      <%= textarea f, :entry, class: "pa3 input-reset bn hl-bg-grey w-100 " <>
+      <%= textarea f, :entry, class: "pa3 input-reset bn hl-bg-grey w-100 h4" <>
       Healthlocker.ComponentView.highlight_errors(@changeset, :entry) %>
       <span class="hl-pink"><%= error_tag f, :entry %></span>
     </div>
