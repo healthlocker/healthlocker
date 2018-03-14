@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">About</h2>
+  <%= h2_header "About" %>
   <div class="bb bw2 bb--hl-dark-blue pb3 pt4">
     <p class="b">What is Healthlocker?</p>
 

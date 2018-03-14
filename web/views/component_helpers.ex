@@ -8,6 +8,7 @@ defmodule Healthlocker.ComponentHelpers do
     quote do
       import Healthlocker.ComponentHelpers.Button
       import Healthlocker.ComponentHelpers.Link
+      import Healthlocker.ComponentHelpers.Header
     end
   end
 end

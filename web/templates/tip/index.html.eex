@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h2 class="tc">Tips</h2>
+  <%= h2_header "Tips" %>
 
   <p class="pb2 ma0 b">Tips: 5 Ways to Wellbeing</p>
   <div>

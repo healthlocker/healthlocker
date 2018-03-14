@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Care Plan Summary</h2>
+  <%= h2_header "Care plan summary" %>
 
   <%= if !is_nil(@recovery_care_plan) do %>
   <div class="mt2 mb3 pb3 bb b--hl-grey bw2">

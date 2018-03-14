@@ -1,4 +1,4 @@
-<h2 class="tc">Account</h2>
+<%= h2_header "Account" %>
 <div class="w-100">
   <%= cond do %>
    <%= @conn.request_path == "/account" -> %>
