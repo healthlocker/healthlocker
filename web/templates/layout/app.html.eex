@@ -51,8 +51,7 @@
                 <%= link_primary "Log out", to: login_path(@conn, :delete, @current_user),
                     method: "delete"%>
               <% @current_user && @current_user.role == "clinician" -> %>
-                <%= link "Caseload", to: caseload_path(@conn, :index),
-                    class: "f5 white-80 dib hover-white pointer" %>
+                <%= link_primary "Caseload", to: caseload_path(@conn, :index) %>
               <% true -> %>
                 <%= link_primary "Log in", to: login_path(@conn, :index) %>
             <% end %>
