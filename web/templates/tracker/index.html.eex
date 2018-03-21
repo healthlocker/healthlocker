@@ -16,6 +16,9 @@
 </div>
 
 <%= render "tracking_data.html", assigns %>
+  <div class="tr">
+    <%= link_primary "View or create a new goal", to: goal_path(@conn, :index) %>
+  </div>
 <%= if @current_user.slam_id do %>
   <p class="hl-pink" >Your Care team will also be able to see your tracking overview.</p>
 <% end %>
