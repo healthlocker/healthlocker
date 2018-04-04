@@ -65,7 +65,7 @@
           <%= link "Goals and tracking",  class: "pb3 pt4 pt5-l " <> nav_bar_classes(@conn.path_info, "toolkit"),
               to: toolkit_path(@conn, :index) %>
           <%= if care_team?(@current_user) or @current_user.slam_id do %>
-            <%= link "Care team", class: "pa3 " <> nav_bar_classes(@conn.path_info, "tips"),
+            <%= link "Care team", class: "pa3 " <> nav_bar_classes(@conn.path_info, "care-team"),
                 to: care_team_room_path(@conn, :show, @room) %>
           <% end %>
         <% else %>
