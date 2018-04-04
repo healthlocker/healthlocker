@@ -1,6 +1,7 @@
 defmodule Healthlocker.PageControllerTest do
   use Healthlocker.ConnCase
   import Healthlocker.Fixtures
+  alias Healthlocker.User
 
   test "gets page when there are no stories or tips", %{conn: conn} do
     conn = get conn, page_path(conn, :index)
@@ -29,6 +30,15 @@ defmodule Healthlocker.PageControllerTest do
   end
 
   test "render security.html on /pages/security", %{conn: conn} do
+    %User{
+      id: 123456,
+      first_name: "My",
+      last_name: "Name",
+      email: "abc@gmail.com",
+      password_hash: Comeonin.Bcrypt.hashpwsalt("password")
+    } |> Repo.insert
+
+    conn = conn |> assign(:current_user, Repo.get(User, 123456))
     conn = get conn, page_path(conn, :show, "security")
     assert html_response(conn, 200) =~ "Update security question"
   end

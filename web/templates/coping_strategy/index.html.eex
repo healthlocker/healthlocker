@@ -11,6 +11,9 @@
         <div class="w-90 dib fl">
           <h4 class="ma2 ph3-m ph4-l f5 lh-copy hl-dark-blue di w-100 word-wrap">
             <p><%= format_output(coping_strategy.content, " #CopingStrategy") %></p>
+            <p class="mv3 f6 i tr black">
+              Created <%= Healthlocker.ComponentView.pretty_date(coping_strategy.inserted_at) %>
+            </p>
           </h4>
         </div>
       </section>

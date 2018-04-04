@@ -30,6 +30,7 @@ input {
 }
 
 textarea {
+  border-radius: 5px;
   font-family: 'century-gothic', sans-serif;
 }
 

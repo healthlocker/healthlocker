@@ -52,18 +52,18 @@
       <% end %>
 
       <%= if Map.has_key?(data.diary_data, :entry) do %>
-        <div class="tracker-icon flex justify-between mt2">
+        <div class="tracker-icon flex justify-between mt2 items-end">
           <div class="di w-20 w-10-m w-10-l">
             <%= img_tag("/images/Toolkit_diary.png", class: "h3 tracker-icon") %>
           </div>
           <div class="di w-80 w-90-m w-90-l pl3-m pl3-l">
-            <p class="mt1">
+            <p class="mb2">
               <strong>Diary </strong>
               <%= printed_time(data.diary_data.updated_at) %>
             </p>
-            <p class=""><%= format_output(data.diary_data.entry, " ") %></p>
           </div>
         </div>
+        <p class=""><%= format_output(data.diary_data.entry, " ") %></p>
       <% end %>
 
     </section>
