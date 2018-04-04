@@ -20,11 +20,6 @@ defmodule Healthlocker.AccountView do
 
     if user_role != "clinician" do
       case path do
-        "/account" -> [
-          create_selected_link("Profile", account_path(conn, :index), " w-33"),
-          create_link("Security", page_path(conn, :show, "security"), " w-33"),
-          create_link("Consent", account_path(conn, :consent), " w-33")
-        ]
         "/pages/security" -> [
           create_link("Profile", account_path(conn, :index), " w-33"),
           create_selected_link("Security", page_path(conn, :show, "security"), " w-33"),
@@ -35,16 +30,21 @@ defmodule Healthlocker.AccountView do
           create_link("Security", page_path(conn, :show, "security"), " w-33"),
           create_selected_link("Consent", account_path(conn, :consent), " w-33")
         ]
+        _ -> [
+          create_selected_link("Profile", account_path(conn, :index), " w-33"),
+          create_link("Security", page_path(conn, :show, "security"), " w-33"),
+          create_link("Consent", account_path(conn, :consent), " w-33")
+        ]
       end
     else
       case path do
-        "/account" -> [
-          create_selected_link("Profile", account_path(conn, :index), " w-50"),
-          create_link("Consent", account_path(conn, :consent), " w-50")
-        ]
         "/account/consent" -> [
           create_link("Profile", account_path(conn, :index), " w-50"),
           create_selected_link("Consent", account_path(conn, :consent), " w-50")
+        ]
+        _ -> [
+          create_selected_link("Profile", account_path(conn, :index), " w-50"),
+          create_link("Consent", account_path(conn, :consent), " w-50")
         ]
       end
     end
