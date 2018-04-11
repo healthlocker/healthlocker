@@ -43,16 +43,16 @@ config :healthlocker, Healthlocker.Repo,
   pool_size: 10
 
 config :healthlocker, Healthlocker.ReadOnlyRepo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "epjs_dev",
-  hostname: "localhost",
+  # adapter: Ecto.Adapters.Postgres,
+  # username: "postgres",
+  # password: "postgres",
+  # database: "epjs_dev",
+  # hostname: "localhost",
   pool_size: 10
-  # adapter: MssqlEcto,
-  # hostname: System.get_env("READ_ONLY_HOSTNAME"),
-  # username: System.get_env("READ_ONLY_USERNAME"),
-  # password: System.get_env("READ_ONLY_PASSWORD"),
-  # database: System.get_env("READ_ONLY_DATABASE")
+  adapter: MssqlEcto,
+  hostname: System.get_env("READ_ONLY_HOSTNAME"),
+  username: System.get_env("READ_ONLY_USERNAME"),
+  password: System.get_env("READ_ONLY_PASSWORD"),
+  database: System.get_env("READ_ONLY_DATABASE")
 
 config :healthlocker, :analytics, Healthlocker.Analytics.Segment

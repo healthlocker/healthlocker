@@ -48,39 +48,39 @@ An example of a `WorkingDirectory` for the Healthlocker app would be
 Now that you have created and added to your file, the next step is to add in
 any environment variables you will need.
 
-You will need to know the environment variables that you need to add, as they
-will be specific to your application. For healthlocker we needed
-- appsignal_push_api_key
-- ses_server
-- ses_port
-- smtp_username
-- smtp_password
-- segment_write_key
-- read_only_hostname
-- read_only_username
-- read_only_password
-- read_only_database
-- port
-- secret_key_base
-- timeout_interval
-- to_email
-- from_email
-- mpass
-- session_timeout
+This assumes that you have a file with your list of environment variables in.
 
-To add an environment variable you will need to...
+To add them you will need to...
 
 - `vim /lib/systemd/system/'app_name'.service`
 - use the down arrow and put your curser on the line that says `RESTART=on-failure`
 - press `o` which enter insert mode on a new line
-- then type Environment="variable_key=variable_value"
+- then type `EnvironmentFile=path/to/env/var/file`
 
-Repeat this process until you have entered all of your environment variables,
-- press the escape key
-- type `:wq` to save and exit
+For example
+```
+EnvironmentFile=/root/.profile
+```
 
-To check to see if your service is working as you would expect it to by starting
-it with the command (provided your application is not running already. If it is
+Add the following to your environment file...
+- set -a (above first variable)
+- some variables in the middle
+- set +a (below last variable)
+
+If you use the command export in file your environment variable are stored you
+will need to remove it from all the variables.
+
+You should end up with something like this...
+```
+set -a
+PORT=3000
+RELEASE_VERSION=4.0.0
+...other variables
+set +a
+```
+
+Check to see if your service is working as you would expect it to by starting
+it with the following command (provided your application is not running already. If it is
 then turn if off however you would normally)
 ```
 systemctl start 'app_name'.service
