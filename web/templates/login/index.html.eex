@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h3 class="hl-darkBlue tc">Log in</h3>
+  <%= h2_header "Log in" %>
   <section class="mw7 center">
     <div class="bb b--black-20 pb4 mt4">
       <span class="mt0">Not an existing user?</span>

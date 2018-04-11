@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Password reset</h2>
+  <%= h2_header "Password reset" %>
   <p>Please enter a new password for your account.</p>
     <%= form_for @changeset, password_path(@conn, :update, @token), [method: "put"], fn f -> %>
     <div>

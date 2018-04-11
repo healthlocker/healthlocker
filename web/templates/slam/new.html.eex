@@ -1,5 +1,5 @@
 <div class="ma0 ma3-ns ma4-m ma4-l">
-  <h2 class="tc">Connect</h2>
+  <%= h2_header "Connect" %>
 
   <h3>Your details</h3>
 

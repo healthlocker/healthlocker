@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Sign up</h2>
+  <%= h2_header "Sign up" %>
   <%= form_for @changeset, @action, fn f -> %>
     <input name="_method" type="hidden" value="put" />
 
