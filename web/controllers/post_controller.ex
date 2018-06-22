@@ -32,9 +32,13 @@ defmodule Healthlocker.PostController do
   end
 
   def index(conn, _params) do
-    posts = Post |> Post.find_stories |> Repo.all
-    conn
-    |> render("index.html", posts: posts)
+    posts =
+      Post
+      |> Post.find_stories
+      |> Repo.all
+      |> Enum.shuffle
+
+    render(conn, "index.html", posts: posts)
   end
 
   def edit(conn, %{"id" => id}) do
