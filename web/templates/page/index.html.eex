@@ -18,7 +18,7 @@
 <% end %>
 
 <section class="bb bw2 bb--hl-dark-blue pb3 pt4 center">
-  <h3 class="pb2 ph3 ph0-l ma0 tc">Wellbeing Tips</h3>
+  <h3 class="pb2 ph3 ph0-l ma0 tc hl-pink">Wellbeing tips</h3>
   <div>
     <p>Small improvements in our wellbeing can help to decrease some mental
       health problems and also help us to get more out of life.</p>
@@ -165,7 +165,7 @@
 </section>
 
 <section class="bb b--black-20 pa3 center">
-  <h3 class="pa2 ph3 ph0-l ma0 b tc">Stories</h3>
+  <h3 class="pa2 ph3 ph0-l ma0 b tc hl-pink">Stories</h3>
   <article class="ph3">
     <%= if @story do %>
       <%= render Healthlocker.ComponentView, "like.html", conn: @conn,

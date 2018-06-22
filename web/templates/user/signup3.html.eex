@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l mv2 mv3-m mv4-l">
-  <h2 class="tc">Sign up</h2>
+  <%= h2_header "Sign up" %>
 
   <p class="b">By creating an account and accessing Healthlocker, I agree:</p>
   <ul>
@@ -34,11 +34,11 @@
       <% end %>
       <span class="hl-pink"><%= error_tag f, :privacy %></span>
     </div>
-        
+
             <div class="mt3">
       <%= checkbox f, :data_access, class: "checkbox" %>
       <%= label f, :data_access do %>
-        I allow my anonymous Healthlocker usage data to be accessed by 
+        I allow my anonymous Healthlocker usage data to be accessed by
         researchers to drive forward the future of mental health and care.
       <% end %>
       <span class="hl-pink"><%= error_tag f, :data_access %></span>

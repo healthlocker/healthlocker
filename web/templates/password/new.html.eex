@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Password reset</h2>
+  <%= h2_header "Password reset" %>
     <%= form_for @changeset, @action, fn f -> %>
     <div>
       <%= label f, :email, class: "f5 b db mb2 mt4" %>

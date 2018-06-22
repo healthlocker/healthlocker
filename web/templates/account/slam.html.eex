@@ -1,5 +1,5 @@
 <div class="ma0 ma3-ns ma4-m ma4-l">
-  <h2 class="tc">Account</h2>
+  <%= h2_header "Connect" %>
   <p>Please use the correct information as it appears on your health record.</p>
 
   <%= form_for @changeset, @action, fn f -> %>

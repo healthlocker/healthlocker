@@ -1,5 +1,5 @@
 <div class="ma3 ma4-m ma4-l">
-  <h2 class="tc">Goals and tracking</h2>
+  <%= h2_header "Goals and tracking" %>
   <div class="w-100 mw6 center flex items-end justify-between">
     <div class="tc w-40 dib">
       <%= link to: goal_path(@conn, :index) do %>
